@@ -1,0 +1,3 @@
+[submodule "doculab"]
+	path = doculab
+	url = file:///Users/moklett/Dropbox/git/chargify-docs.git
