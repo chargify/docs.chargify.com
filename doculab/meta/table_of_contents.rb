@@ -46,6 +46,7 @@ Doculab::TableOfContents.define do
   end
   
   section "Gateways & Merchant Accounts" do
+    page "What are Gateways and Merchant Accounts?"
     page "Getting a Gateway or Merchant Account"
     page "Configuring Your Gateway"
   end
