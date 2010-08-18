@@ -12,10 +12,10 @@ This is a Rails 3 app, with all dependencies managed by Bundler.  If you're not 
 
     % rvm gemset create docs.chargify.com
     % rvm gemset use docs.chargify.com
-    % gem install bundler
+    % gem install bundler --pre
     % git clone git://github.com/<your githubs>/docs.chargify.com.git
-    % bundle install
     % cd docs.chargify.com
+    % bundle install
     % rails server
     
 You can now browse the docs at http://localhost:3000
