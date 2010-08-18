@@ -32,6 +32,7 @@ Doculab::TableOfContents.define do
     page "Viewing & Filtering Subscriptions", :permalink => 'viewing-and-filtering-subscriptions'
     page "Manipulating Subscriptions"
     page "Upgrades/Downgrades"
+    page "Refunds"
     page "Reporting Metered Usage"
     page "Reporting Quantity Allocations"
   end
