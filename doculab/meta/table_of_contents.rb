@@ -63,6 +63,9 @@ Doculab::TableOfContents.define do
     page "Products", :permalink => "api-products"
     page "Subscriptions", :permalink => "api-subscriptions"
     page "Site Data", :permalink => "api-site-data"
+    page "Metered Usage", :permalink => "api-metered-components"
+    page "Quantity Allocations", :permalink => "api-quantity-based-components"
+    page "Refunds", :permalink => "api-refunds"
   end
   
   section "Integration" do
