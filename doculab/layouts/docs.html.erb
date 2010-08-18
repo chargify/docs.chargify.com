@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<head>
+  
+  <title><%= page_title %></title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <link href="http://chargify.com/site/main_css/" rel="stylesheet" type="text/css" media="all"/>
+  <link href="/stylesheets/doculab/doculab.css" rel="stylesheet" type="text/css" media="all"/>
+  <!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="http://chargify.com/site/IE_css/" media="screen"/><![endif]-->
+
+  <link rel="shortcut icon" href="http://chargify.com/favicon.ico" />
+
+</head>
+
+<body>
+  <div id="wrapper">
+        <div id="header">
+      <div class="inner_nav clearfix">
+        <ul class="nav">
+          <li><a href="http://chargify.com/blog/" class="blog">Blog</a></li>
+          <li><a href="http://chargify.com/about-us/" class="about">About Us</a></li>
+          <li><a href="http://app.chargify.com/login" class="login">Sign In</a></li>
+          <li><a href="http://support.chargify.com" class="support">Call Us: <b>1-800-401-2414</b></a></li>
+        </ul>
+        <div id="menu_wrapper" class="clearfix">
+          <ul id="menu">
+            <li><a href="http://chargify.com/pricing-and-signup/">Pricing &amp; Sign Up</a></li>
+            <li><a href="http://chargify.com/features/recurring-billing-system/">Features</a></li>
+            <li><a href="http://chargify.com/how-it-works/">How It Works</a></li>
+            <li><a href="http://chargify.com/">Home</a></li>
+          </ul>
+        </div>
+        <span class="logo"><a href="http://chargify.com/">Chargify</a></span>
+      </div>
+    </div>
+    <div id="content">
+      <div class="container">
+        <div class="inner">
+          <div class="sidebar">
+            <div class="top">
+              <div class="bottom">
+                <div id="table_of_contents">
+                  <p id="home_link">
+                    <a href="/">Documentation Home</a>
+                  </p>
+
+                  <ul>
+                  <%- sections.each do |section| -%>
+                    <li><strong><%= section.title -%></strong>
+                    <%- unless section.pages.empty? -%>
+                      <ul>
+                      <%- section.pages.each do |page| -%>
+                        <li><%= toc_link(page) -%></li>
+                      <%- end -%>
+                      </ul>
+                    <%- end -%>
+                    </li>
+                  <%- end -%>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div id="docupage">
+              <%- if page.parent && page.parent.title.present? -%>
+                <h2 class="section"><span>Section:</span> <%= page.parent.title %></h2>
+              <%- end -%>
+              <h1 class="title"><%= page.title %></h1>
+              
+              <%= content_for?(:doc_content) ? yield(:doc_content) : yield %>
+              
+              <%- if page && (page.next_page || page.previous_page)  -%>
+                <ul id="page_navigation">
+                  <%- if next_page = page.next_page -%>
+                    <li class="next"><span>Next page:</span> <%= toc_link(next_page) %></li>
+                  <%- end -%>
+                  <%- if previous_page = page.previous_page -%>
+                    <li class="prev"><span>Previous page:</span> <%= toc_link(previous_page)  %></li>
+                  <%- end -%>
+                </ul>
+              <%- end -%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <div class="inner">
+        <div class="footer_column">
+          <h5>Features</h5>
+          <ul class="footer_links">
+            <li><a href="http://chargify.com/features/recurring-billing-system/">Recurring Billing System</a></li>
+            <li><a href="http://chargify.com/features/subscription-management/">Subscription Management</a></li>
+            <li><a href="http://chargify.com/features/business-intelligence-tools/">Business Intelligence Tools</a></li>
+            <li><a href="http://chargify.com/features/pci-compliant-security/">PCI Compliant Security</a></li>
+            <li><a href="http://chargify.com/features/recurring-billing-api/">Recurring Billing API</a></li>
+            <li><a href="http://chargify.com/features/branded-payment-websites/">Branded Payment Websites</a></li>
+            <li><a href="http://chargify.com/features/dunning-management/">Dunning Management</a></li>
+            <li><a href="http://chargify.com/features/easy-to-use-interface/">Easy-to-use Interface</a></li>
+            <li><a href="http://chargify.com/features/iphone-app/">iPhone App</a></li>
+            <li><a href="http://chargify.com/features/multi-gateway-support/">Multi-Gateway Support</a></li>
+            <li><a href="http://chargify.com/features/metered-billing/">Metered Billing</a></li>
+            <li><a href="http://chargify.com/features/coupon-and-discount-support/">Coupon/Discount Support</a></li>
+          </ul>
+        </div>
+        <div class="footer_column">
+          <h5>Resources</h5>
+          <ul class="footer_links">
+            <li><a href="http://support.chargify.com/faqs/api">API Documentation</a></li>
+            <li><a href="http://support.chargify.com/">Support Center</a></li>
+            <li><a href="http://support.chargify.com/faqs">Knowledge Base</a></li>
+            <li><a href="http://support.chargify.com/faqs/general-questions">General Questions</a></li>
+            <li><a href="http://support.chargify.com/faqs/billing-payment">Billing &amp; Payment</a></li>
+            <li><a href="http://support.chargify.com/discussions">Forums</a></li>
+            <li><a href="http://support.chargify.com/discussions/suggestions">Suggestions</a></li>
+                                                <li><a href="http://chargify.com/consultants/">Implementation Consultants</a></li>
+          </ul>
+        </div>
+        <div class="footer_column">
+          <h5>Community</h5>
+          <ul class="footer_links">
+            <li><a href="http://chargify.com/blog/">The Bullring Blog</a></li>
+            <li><a href="http://twitter.com/chargify">Twitter</a></li>
+            <li><a href="http://www.flickr.com/photos/chargify/">Flickr</a></li>
+            <li><a href="http://grasshopperlabs.com">Grasshopper Labs</a></li>
+          </ul>
+        </div>
+        <div class="footer_column_last">
+          <h5>Chargify</h5>
+          <ul class="footer_links">
+            <li><a href="http://chargify.com/about-us/">About Us</a></li>
+            <li><a href="http://chargify.com/how-it-works/">How It Works</a></li>
+            <li><a href="http://chargify.com/news/">News</a></li>
+            <li><a href="http://chargify.com/careers/">Careers</a></li>
+            <li><a href="http://chargify.com/contact-us/">Contact Us</a></li>
+            <li><a href="http://app.chargify.com/login">Login</a></li>
+          </ul>
+        </div>
+        <div class="footer_base">
+          <div class="poweredbygg">
+            <a href="http://grasshoppergroup.com/" target="_blank"><span>Powered by Grasshopper Group</span></a>
+          </div>
+          <p>&copy; Copyright 2010 Chargify LLC. All rights reserved. <a href="http://chargify.com/terms-conditions/">Terms &amp; Conditions</a>. <a href="http://chargify.com/privacy-policy/">Privacy Policy</a>. <span><a href="http://chargify.com/sitemap/">Sitemap.</a></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

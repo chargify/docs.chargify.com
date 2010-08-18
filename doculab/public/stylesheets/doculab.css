@@ -1,0 +1,44 @@
+#table_of_contents                    {font-family: Helvetica, Arial, sans-serif; font-size: 14px; width: 220px;}
+#table_of_contents ul                 {list-style: none; margin: 0; padding: 0;}
+#table_of_contents li                 {margin: 0 0 21px 0; }
+#table_of_contents li strong          {font-size: 16px; color: #333333; line-height: 21px; }
+#table_of_contents ul ul              {margin: 0 0 0 21px;}
+#table_of_contents li li              {font-size: 14px; font-weight: normal; color: #333333; margin: 0; padding: 0; line-height: 21px; text-indent: -14px;}
+#table_of_contents li li a            {color: #6B9029; text-decoration: none; border: none;}
+#table_of_contents li li a.current    {color: #4c4c4c; font-weight: bold;}
+#table_of_contents li li a:hover      {color: #6B9029; text-decoration: underline;}
+
+#home_link                            {font-size: 16px; line-height: 21px; margin: 7px 0 21px 0;}
+
+#search_form                          {margin-bottom: 1.5em;}
+#search_form input                    {font-size: 14px; color: #aaaaaa; line-height: 22px; width: 200px; margin: 0;}
+
+
+#docupage                             {font-family: Helvetica, Arial, sans-serif; font-size: 14px; padding: 21px 0 0 12px;}
+#docupage h1                          {font-size: 28px; line-height: 42px; text-align: left; margin: 0 0 21px 0; text-shadow: #ccc 1px 1px 0;}
+#docupage h2                          {font-size: 18px; line-height: 21px; text-align: left; margin: 0 0 21px 0; text-shadow: #ccc 1px 1px 0;}
+#docupage h3                          {font-size: 16px; line-height: 21px; text-align: left; margin: 21px 0;}
+
+#docupage h1.title                    {line-height: 28px;}
+#docupage h2.section                  {float: right; margin: -1px 0 0 0; line-height: 1; text-align: right; font-weight: normal;}
+#docupage h2.section span             {display: block; font-size: 10px; line-height: 1; font-weight: normal; text-align: right; color: #aaa; text-shadow: none;}
+
+#docupage p, #docupage li,
+#docupage td, #docupage dd            {font-size: 1em; color: #333333; line-height: 1.5em;}
+
+#docupage p,
+#docupage ul                          { margin: 1.5em 0;}
+
+#docupage p img                       {display: block; margin: 0 auto;}
+
+
+#page_navigation                      {border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; margin: 28px 0 0 0; padding: 14px 0; list-style: none; overflow: auto;}
+#page_navigation li                   {margin: 0; padding: 0; display: block;}
+#page_navigation li.next              {float: right;}
+#page_navigation li.prev              {float: left;}
+#page_navigation li span              { display: block; font-size: 11px; color: #aaaaaa; line-height: 1; }
+#page_navigation li.next span         { text-align: right; padding-right: 24px;}
+#page_navigation li.prev span         { padding-left: 24px; }
+#page_navigation li a                 { display: block; float: left; line-height: 18px; border: none;}
+#page_navigation li.next a            { padding-right: 24px; background: transparent url("/images/doculab/icons/arrow_right_16x16.png") no-repeat right center;}
+#page_navigation li.prev a            { padding-left: 24px; background: transparent url("/images/doculab/icons/arrow_left_16x16.png") no-repeat left center;}

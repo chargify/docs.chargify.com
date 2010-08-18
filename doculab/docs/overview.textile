@@ -1,0 +1,36 @@
+Chargify is a web service that manages the recurring billing for your subscription-based business.  
+
+!/images/doculab/overview.png!
+
+Integration with Chargify for your app, service, or website consists of *4 main phases*:
+
+h3. 1. Define your Products
+
+Using Chargify, you will sell *Subscriptions* to your *Products*.  So to get started, you'll need to tell us what you sell. Setting up your Products involves giving them a name, price, recurring interval, available options and components, and more.
+
+* View ""Define What You Sell"":/quick_start_products in the Quick Start Guide
+* View the in-depth "section on Configuring Products":/product_intro
+
+Before or after defining your Products, you'll also need to  "configure your Site":/quick_start_site.
+
+h3. 2. Sell Subscriptions
+
+Once Chargify knows what it is you offer, you’ll be able to sell subscriptions to those products. There are two main ways to sell subscriptions:
+
+# On the Chargify website using your subdomain (i.e. http://acme.chargify.com) and our ""Hosted Payment Pages"":/selling-via-hosted-payment-pages (i.e. we host them for you). When selling with hosted pages, you would provide links to these payment pages from your website.
+# On your own website, by talking to "Chargify via our API":/selling-via-apiic.
+
+
+h3. 3. Recurring Subscription lifecycle
+
+Chargify manages the "recurring lifecycle of your subscriptions":/subscription-states. According to the recurring periods you define, Chargify handles the collection of payments from your customers via the credit cards they gave during sign up.
+
+We also handle (when you so choose) the notifications of card declines and the "Dunning process":/dunning to make sure you keep getting paid. These features are optional, and could also be handled by your app given the information Chargify provides.
+
+At any time, you can get detailed information about your subscriptions, either via our "admin UI":/viewing-and-filtering-subscriptions or "our API":/api-subscriptions.
+
+h3. 4. Managing access to your app or service
+
+Most likely, you’ll need to control access to your own app depending on whether or not someone’s subscription is active. Chargify communicates with you via "Post-backs":/post-backs, where we alert you to changes in subscriptions so that you may fetch the latest data and take appropriate action.
+
+Additionally, full subscription information is always available "via the API":/api-subscriptions so that you may perform maintenance or actions within your own system.

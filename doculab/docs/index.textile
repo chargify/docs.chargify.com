@@ -1,0 +1,9 @@
+To get going quickly with Chargify, we suggest the following starting points:
+
+* "Chargify Overview":/overview
+* "Terminology":/terminology
+* The "Quick Start Guide":/quick-start-site
+
+In-depth documentation can be accessed via the menu on the left.
+
+You may also be interested in our "Support Site":http://support.chargify.com, where you can engage in discussions with the community and open support tickets.  Additionally, the Support Site hosts our "Frequently Asked Questions":http://support.chargify.com/faqs
