@@ -1,0 +1,14 @@
+*Note: Refunds are currently only supported for the Authorize.Net gateway* 
+
+With Chargify you have the ability to apply a refund to payments that have been processed at the gateway. It is important to note the distinction between a Credit and a Refund. A refund will return an amount, up to the full amount of the original payment, back to the customer's credit card. A credit, however, will simply update the customer's Chargify balance without actually returning the funds. A refund does *not* affect the customer's account balance, but will change the total revenue collected for the subscription.
+
+!/images/doculab/refund1.jpg!
+
+To issue a refund, simply navigate to the subscription detail page by clicking on the "Start Date" or on the "View" link in the Subscriptions listing.  There, you will see a link to "Add a Refund". From there you will see a list of Payments that are eligible for a refund. Select the payment you'd like to add a refund to by clicking the "Select" link next to it.
+
+A refund is then created by selecting an amount (i.e. "10.00") and a memo (i.e. "Refund for XYZ").
+
+!/images/doculab/refund2.jpg!
+
+Chargify will communicate with your Payment Gateway and, depending on the state of the transaction and the amount of the refund, either void the original transaction or apply a credit to the credit card. Note that a partial refund can only be applied to a payment once it has been settled at the Gateway. Transactions generally settle within 24 hours. 
+
