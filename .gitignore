@@ -4,3 +4,4 @@ log/*.log
 tmp/**/*
 public/*.html
 public/**/*.html
+.DS_Store

@@ -54,6 +54,7 @@ Doculab::TableOfContents.define do
     page "Adding Users"
     page "Merchant Information"
     page "Paying Chargify"
+    page "Deleting Products & Subscriptions"
   end
   
   section "Chargify API" do
