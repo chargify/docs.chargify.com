@@ -26,6 +26,10 @@ All public-facing docs are stored at [doculab/docs](http://github.com/grasshoppe
 
 You can make changes there and send us pull requests.  (More on that later)
 
+#### Image specs
+
+All images should be sized to 640px wide.
+
 
 Colophon
 ---------
