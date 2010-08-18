@@ -1,0 +1,58 @@
+*Note: Refunds are currently only supported for the Authorize.Net gateway*
+
+With Chargify you have the ability to apply a refund to a payment that has been processed at the gateway. 
+
+For more information on creating refunds in general, please see "http://support.chargify.com/faqs/features/refunds":http://support.chargify.com/faqs/features/refunds.
+
+
+h2. Refund Input Attributes
+
+In order to create a refund, you must pass an a payment id, amount and a memo.  The amount can be specified by either the @amount@ parameter or the @amount_in_cents@ parameter.
+
+* @payment_id@ (required) The id of the Payment that the credit will be applied to
+* @amount@ (either 'amount' or 'amount_in_cents' is required) If you use this parameter, you should pass a dollar amount represented as a string.  For example, $10.00 would be represented as @10.00@.
+* @amount_in_cents@ (either 'amount' or 'amount_in_cents' is required) If you use this parameter, you should pass the amount represented as a number of cents, either as a string or integer.  For example, $10.00 would be represented as @1000@.  If you pass a value for both 'amount' and 'amount_in_cents', the value in 'amount_in_cents' will be used and 'amount' will be discarded.
+* @memo@ (required) A helpful explanation for the refund.  This amount will remind you and your customer for the reason for the refund.
+
+h2. Refund Output Attributes
+
+When a refund is successfully created, a representation of the newly created refund will be returned to you as JSON or XML in the message body, with the following attributes:
+
+* @id@ The id of the created refund
+* @success@ Either @true@ or @false@, depending on the success of the refund.
+* @amount_in_cents@ The amount of the refund and captured payment, represented in cents.
+* @memo@ The memo for the created refund.
+
+h2. Response Codes
+
+A response code is returned in the standard HTTP response to your API request.
+
+* @201 Created@ is returned for successfully created refunds.
+* @422 Unprocessable Entity@ is returned when the refund could not be created (see below section on errors)
+* @404 Not Found@ is returned if the referenced subscription or payment could not be found.
+* Other status codes may be returned in other error cases. See the [API User Guide](http://support.chargify.com/faqs/api/api-user-guide) for more information.
+
+h2. Errors
+
+Errors are returned either as an array of error explanation strings and formatted as either an XML or JSON array, depending on your Accept headers.  The listing of currently possible error messages is listed below:
+
+* Memo: cannot be blank.
+* Amount: is not a number.
+* Amount: must be greater than or equal to 0.
+* [Gateway response if a gateway fail] ([Your original memo])
+
+
+h2. Methods
+
+_format_ may be either 'xml' or 'json'.
+
+h3. Create
+
+Creating a refund requires a valid, live subscription and payment.  A refund in the amount specified will be immediately applied to the customer's credit card.
+
+Please refer to the usage examples for more information.
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/refunds.<format>@
+Method: @POST@  
+Required Parameters: XML or JSON data, as specified by the required attributes  
+Response: The created refund, if successful.  Errors otherwise
