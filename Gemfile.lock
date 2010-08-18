@@ -32,7 +32,7 @@ GEM
     arel (0.4.0)
       activesupport (>= 3.0.0.beta)
     builder (2.1.2)
-    doculab (0.1.1)
+    doculab (0.2.0)
       RedCloth
       tilt
     erubis (2.6.6)
@@ -73,5 +73,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  doculab
+  doculab (>= 0.2.0)
   rails (= 3.0.0.rc)
