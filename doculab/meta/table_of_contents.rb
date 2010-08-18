@@ -1,13 +1,7 @@
 Doculab::TableOfContents.define do
-  section "Introduction" do
-    page "Chargify Overview", :permalink => 'overview'
-    # page "Use Cases"
-    page "Terminology"
-    page "Web User Interface", :permalink => 'web-ui-overview'
-    page "Chargify API", :permalink => 'chargify-api-overview'
-  end
-  
   section "Quick Start Guide" do
+    page "Chargify Overview", :permalink => 'overview'
+    page "Terminology"
     page "Configure Your Site", :permalink => 'quick-start-site'
     page "Define What You Sell", :permalink => 'quick-start-products'
     page "Sell Subscriptions", :permalink => 'quick-start-subscriptions'

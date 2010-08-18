@@ -1,8 +1,4 @@
-To get going quickly with Chargify, we suggest the following starting points:
-
-* "Chargify Overview":/overview
-* "Terminology":/terminology
-* The "Quick Start Guide":/quick-start-site
+To get going quickly with Chargify, we suggest starting with the "Chargify Overview in the Quick Start Guide":/overview
 
 In-depth documentation can be accessed via the menu on the left.
 
