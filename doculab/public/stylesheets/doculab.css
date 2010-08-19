@@ -24,12 +24,21 @@
 #docupage h2.section span             {display: block; font-size: 10px; line-height: 1; font-weight: normal; text-align: right; color: #aaa; text-shadow: none;}
 
 #docupage p, #docupage li,
-#docupage td, #docupage dd            {font-size: 1em; color: #333333; line-height: 1.5em;}
+#docupage td, #docupage th,
+#docupage dd                          {font-size: 1em; color: #333333; line-height: 1.5em;}
 
 #docupage p,
-#docupage ul                          { margin: 1.5em 0;}
+#docupage ul,
+#docupage ol,
+#docupage table                       { margin: 1.5em 0;}
 
 #docupage p img                       {display: block; margin: 0 auto;}
+
+#docupage table                       {width:100%;border-collapse: collapse; border-spacing: 0;}
+#docupage td, #docupage th            {text-align: left; padding: 11px 10px 9px 10px; border: 1px solid #ccc;}
+#docupage th                          {vertical-align: bottom; padding-top: 10px; background: #ccc; border-bottom: 1px solid #aaa;}
+#docupage td                          {vertical-align: top;}
+
 
 
 #page_navigation                      {border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; margin: 28px 0 0 0; padding: 14px 0; list-style: none; overflow: auto;}

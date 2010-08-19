@@ -48,6 +48,7 @@ Doculab::TableOfContents.define do
   
   section "Your Account" do
     page "Sites"
+    page "Currency"
     page "Users"
     page "Merchant Information"
     page "Paying Chargify"
