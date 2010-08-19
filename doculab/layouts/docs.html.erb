@@ -41,11 +41,11 @@
           <div class="sidebar">
             <div class="top">
               <div class="bottom">
+                <div id="search">
+                  <!-- future search -->
+                </div>
+                
                 <div id="table_of_contents">
-                  <p id="home_link">
-                    <a href="/">Documentation Home</a>
-                  </p>
-
                   <ul>
                   <%- sections.each do |section| -%>
                     <li><strong><%= section.title -%></strong>
@@ -65,9 +65,12 @@
           </div>
           <div class="column">
             <div id="docupage">
-              <%- if page.parent && page.parent.title.present? -%>
-                <h2 class="section"><span>Section:</span> <%= page.parent.title %></h2>
-              <%- end -%>
+              <div id="breadcrumbs">
+                <%- unless index? -%>
+                <p><%= raw breadcrumbs.join(" &raquo; ") %></p>
+                <%- end -%>
+              </div>
+
               <h1 class="title"><%= page.title %></h1>
               
               <%= content_for?(:doc_content) ? yield(:doc_content) : yield %>
