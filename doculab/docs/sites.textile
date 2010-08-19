@@ -1,0 +1,3 @@
+Sites are simply "containers" for your Products, Customers, and Subscriptions.  You can get by just fine having just one Site, although most people will want 2 sites at a minimum - one for _testing_ and one for _production_.
+
+* Please refer to the ""Configure Your Site"":/quick-start-site in the Quick Start Guide for important background information.

@@ -8,10 +8,10 @@ h3. 1. Define your Products
 
 Using Chargify, you will sell *Subscriptions* to your *Products*.  So to get started, you'll need to tell us what you sell. Setting up your Products involves giving them a name, price, recurring interval, available options and components, and more.
 
-* View ""Define What You Sell"":/quick_start_products in the Quick Start Guide
-* View the in-depth "section on Configuring Products":/product_intro
+* View ""Define What You Sell"":/quick-start-products in the Quick Start Guide
+* View the in-depth "section on Configuring Products":/product-intro
 
-Before or after defining your Products, you'll also need to  "configure your Site":/quick_start_site.
+Before or after defining your Products, you'll also need to  "configure your Site":/quick-start-site.
 
 h3. 2. Sell Subscriptions
 

@@ -1,4 +1,4 @@
-When you are new to Chargify you have no *Sites*.  Sites are simply "containers" for your Products, Customer, and Subscriptions.  You can get by just fine having just one Site, although most people will want 2 sites at a minimum - one for _testing_ and one for _production_.
+When you are new to Chargify you have no *Sites*.  Sites are simply "containers" for your Products, Customers, and Subscriptions.  You can get by just fine having just one Site, although most people will want 2 sites at a minimum - one for _testing_ and one for _production_.
 
 h3. Create a new Site
 

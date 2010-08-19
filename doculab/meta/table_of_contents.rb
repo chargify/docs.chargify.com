@@ -26,6 +26,7 @@ Doculab::TableOfContents.define do
     page "Viewing & Filtering Subscriptions", :permalink => 'viewing-and-filtering-subscriptions'
     page "Manipulating Subscriptions"
     page "Upgrades/Downgrades"
+    page "One-time Charges"
     page "Refunds"
     page "Reporting Metered Usage"
     page "Reporting Quantity Allocations"
@@ -46,7 +47,7 @@ Doculab::TableOfContents.define do
   end
   
   section "Your Account" do
-    page "Creating Sites"
+    page "Sites"
     page "Adding Users"
     page "Merchant Information"
     page "Paying Chargify"
