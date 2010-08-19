@@ -48,7 +48,7 @@ Doculab::TableOfContents.define do
   
   section "Your Account" do
     page "Sites"
-    page "Adding Users"
+    page "Users"
     page "Merchant Information"
     page "Paying Chargify"
     page "Deleting Products & Subscriptions"
