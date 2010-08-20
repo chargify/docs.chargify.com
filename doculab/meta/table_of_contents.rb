@@ -67,6 +67,9 @@ Doculab::TableOfContents.define do
   end
   
   section "Integration" do
+    page "Integration Overview"
+    page "Hosted Page Integration"
+    page "API Integration"
     page "Post-backs"
   end
   
