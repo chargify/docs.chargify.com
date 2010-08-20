@@ -48,6 +48,7 @@ Doculab::TableOfContents.define do
   
   section "Your Account" do
     page "Sites"
+    page "Currency"
     page "Users"
     page "Merchant Information"
     page "Paying Chargify"
@@ -66,6 +67,9 @@ Doculab::TableOfContents.define do
   end
   
   section "Integration" do
+    page "Integration Overview"
+    page "Hosted Page Integration"
+    page "API Integration"
     page "Post-backs"
   end
   

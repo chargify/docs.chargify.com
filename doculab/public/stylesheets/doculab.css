@@ -8,29 +8,34 @@
 #table_of_contents li li a.current    {color: #4c4c4c; font-weight: bold;}
 #table_of_contents li li a:hover      {color: #6B9029; text-decoration: underline;}
 
-#home_link                            {font-size: 16px; line-height: 21px; margin: 7px 0 21px 0;}
-
-#search_form                          {margin-bottom: 1.5em;}
-#search_form input                    {font-size: 14px; color: #aaaaaa; line-height: 22px; width: 200px; margin: 0;}
-
+#search                               { height: 26px; margin-bottom: 35px; border: 1px solid #ccc; background: #fff; width: 200px;}
 
 #docupage                             {font-family: Helvetica, Arial, sans-serif; font-size: 14px; padding: 21px 0 0 12px;}
 #docupage h1                          {font-size: 28px; line-height: 42px; text-align: left; margin: 0 0 21px 0; text-shadow: #ccc 1px 1px 0;}
 #docupage h2                          {font-size: 18px; line-height: 21px; text-align: left; margin: 0 0 21px 0; text-shadow: #ccc 1px 1px 0;}
 #docupage h3                          {font-size: 16px; line-height: 21px; text-align: left; margin: 21px 0;}
 
-#docupage h1.title                    {line-height: 28px;}
+#docupage h1.title                    {line-height: 1; padding-bottom: 14px;}
 #docupage h2.section                  {float: right; margin: -1px 0 0 0; line-height: 1; text-align: right; font-weight: normal;}
 #docupage h2.section span             {display: block; font-size: 10px; line-height: 1; font-weight: normal; text-align: right; color: #aaa; text-shadow: none;}
 
 #docupage p, #docupage li,
-#docupage td, #docupage dd            {font-size: 1em; color: #333333; line-height: 1.5em;}
+#docupage td, #docupage th,
+#docupage dd                          {font-size: 1em; color: #333333; line-height: 1.5em;}
 
 #docupage p,
-#docupage ul                          { margin: 1.5em 0;}
+#docupage ul,
+#docupage ol,
+#docupage table                       { margin: 0 0 1.5em 0;}
 
 #docupage p img                       {display: block; margin: 0 auto;}
 
+#docupage table                       {width:100%;border-collapse: collapse; border-spacing: 0;}
+#docupage td, #docupage th            {text-align: left; padding: 11px 10px 9px 10px; border: 1px solid #ccc;}
+#docupage th                          {vertical-align: bottom; padding-top: 10px; background: #ccc; border-bottom: 1px solid #aaa;}
+#docupage td                          {vertical-align: top;}
+
+#docupage #breadcrumbs p              { margin: 0 0 35px 0; font-size: 16px; line-height: 28px;}
 
 #page_navigation                      {border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; margin: 28px 0 0 0; padding: 14px 0; list-style: none; overflow: auto;}
 #page_navigation li                   {margin: 0; padding: 0; display: block;}
