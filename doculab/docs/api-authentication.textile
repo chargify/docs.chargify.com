@@ -1,0 +1,37 @@
+The API Authentication is implemented as HTTP Basic Authentication over SSL (HTTPS).  *Your API login credentials are not the same as the credentials you use to log in to the web interface*.  You must obtain your API credentials separately.
+
+
+h3. Obtaining Your API Credentials
+
+Your API key can be generated from the "API Access" tab of your seller dashboard.
+
+!http://s3.amazonaws.com/entp-tender-production/assets/fcfc0b15a3780bd7b2a0c516665c6550464c4b7e/_Chargify__Acme__Inc.___API_Access_2_normal.png!
+
+!http://s3.amazonaws.com/entp-tender-production/assets/dc6a8924ee5dc8f6a8fcf9338a0b0f45239928d6/_Chargify__Acme__Inc.___API_Access_normal.png!
+
+Your http username is your "API Key".
+
+Your "password" is always the letter "x".
+
+
+h3. Authenticating with your API Credentials
+
+You will use HTTP Basic Authentication to verify your identify via the API.  All requests must come over SSL/HTTPS, and be to the subdomain of the Site you wish to access.  For example, if your Site's subdomain is @acme@, then you would access the Customer resource at:
+
+<pre>
+  <code>https://acme.chargify.com/customers.json</code>
+</pre>
+
+h4. An example using authentication via curl:
+
+<pre>
+  <code>curl -u api-key:x https://subdomain.chargify.com/customers.xml</code>
+</pre>
+
+or
+
+<pre>
+  <code>curl -i https://<api-key>:x@subdomain.chargify.com/customers.xml</code>
+</pre>
+
+Please review the recommendations for setting your HTTP Accept and Content-Type headers as outlined in the "API Introduction":/api-introduction

@@ -58,9 +58,18 @@ Doculab::TableOfContents.define do
     page "Deleting Products & Subscriptions"
   end
   
+  section "Integration" do
+    page "Integration Overview"
+    page "Hosted Page Integration"
+    page "API Integration"
+    page "Post-backs"
+  end
+  
   section "Chargify API" do
     page "API Introduction"
     page "API Authentication"
+    page "API Response Codes"
+    page "API Resources"
     page "Products", :permalink => "api-products"
     page "Subscriptions", :permalink => "api-subscriptions"
     page "Site Data", :permalink => "api-site-data"
@@ -68,13 +77,6 @@ Doculab::TableOfContents.define do
     page "Quantity Allocations", :permalink => "api-quantity-based-components"
     page "Refunds", :permalink => "api-refunds"
     page "Coupons", :permalink => "api-coupons"
-  end
-  
-  section "Integration" do
-    page "Integration Overview"
-    page "Hosted Page Integration"
-    page "API Integration"
-    page "Post-backs"
   end
   
   section "Code Samples & Libraries" do

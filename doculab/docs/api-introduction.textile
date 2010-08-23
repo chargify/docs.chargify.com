@@ -1,0 +1,52 @@
+The Chargify API allows you to keep the customer purchase flow on your own site, while passing the billing information to us for processing. The API attempts to conform to the "RESTful":http://en.wikipedia.org/wiki/Representational_State_Transfer design principles. You interact with the resources exposed via the API by accessing resource collection and element URIs using the HTTP verbs (GET, POST, PUT, and DELETE).  Chargify accepts and returns both JSON and XML data via the API.
+
+h3. Authentication
+
+Authentication is implemented as HTTP Basic Authentication over SSL (https), as described in "API Authentication":api-authentication
+
+
+h3. URL
+
+The URL for API requests includes the subdomain of the Site you are working with:
+
+<pre>
+<code>https://<subdomain>.chargify.com/<resource URI></code>
+</pre>
+
+
+h3. Resources
+
+The available resources are listed on the "API Resources":/api-resources page.
+
+
+h3. Response Data
+
+Response data is sent as either XML or JSON, depending on the type of data requested (HTTP @Content-Type@ header) or the type specified as being accepted (HTTP @Accept@ header).
+
+Response codes are documented in "API Response Codes":/api-response-codes.
+
+h3. Request Data
+
+POST and PUT request data may be formatted as either XML (@application/xml@) or JSON (@application/json@).  For best results, you should set your HTTP @Content-Type@ request header accordingly, although you may also specify your format by appending @.xml@ or @.json@ extensions on to the resource URI.
+
+Note that Chargify does not accept PUT or POST data sent as query params or form encoded data - data must be sent as either XML or JSON.  If you fail to set your @Content-Type@ to either @application/xml@ or @application/json@, your request may fail due to triggering of forgery protection mechanisms.
+
+
+h3. Debugging
+
+If you're having difficulty executing a request via our API, try the simplest thing and attempt your request via the curl command-line tool, as shown in the below example.  Add the @--verbose@ flag to your request to receive even more debugging information.
+
+
+h3. Examples
+
+The following examples use the curl command-line tool to exectute API requests.
+
+h4. Subscription listing
+
+*Request:*
+
+<script src="http://gist.github.com/545860.js?file=api-introduction-request-1.txt"></script>
+
+*Response:*
+
+<script src="http://gist.github.com/545860.js?file=api-introduction-response-1.js"></script>

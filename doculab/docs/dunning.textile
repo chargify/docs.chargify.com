@@ -1,0 +1,11 @@
+Dunning is the process of how you communicate with your customers in regards to failed credit card transactions and expiring credit cards. Chargify gives you the ability to customize these communications.
+
+h3. Customizing your dunning notifications
+
+!http://s3.amazonaws.com/entp-tender-production/assets/3ce704345790fdb44ebe1adf78d7e6afbbcf744d/Dock_normal.jpg!
+
+To begin customizing your dunning notification, click on the 'Notifications' tab at the top of the page and then click on the 'Dunning emails' tab on the left.
+
+You can edit the subject and body of the email for each day in your dunning strategy. In addition to the text you specify, you can also include keywords that Chargify will replace dynamically before sending the email. Custom parameters look like this:  {{custom_parameter}}. For a full list of custom parameters see the right hand column of the notifications page.
+
+For more information on how Dunning works, see: <http://support.chargify.com/faqs/features/what-is-dunning-and-how-does-it-help-me-retain-more-customers>
