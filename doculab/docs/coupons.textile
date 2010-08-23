@@ -1,0 +1,42 @@
+Chargify allows you to create one-time coupons to give customers a discount on signup. After the initial coupon is applied, customers will be charged the normal amount at the next assessment. 
+
+h3. Creating a Coupon
+
+Coupons are added to the Product Family from the Products tab. Once a coupon has been created it can be shared across all products in the family. To create a new Coupon click the "Create Coupon" link.
+
+A Coupon consists of 5 pieces of information:
+
+* **Name**: A name for the coupon. The name is not displayed to customers
+* **Coupon Code**: The code that customers will enter to redeem the coupon. The code must be uppercase letters, numbers and underscores with no spaces
+* **Description**: A description of the coupon that can be displayed to customers
+* **Amount**: The amount that will be discounted from the initial subscription
+* **Percentage**: The percent of the product's base price that will be discounted
+* **Expiration Date**: Coupons will no longer be redeemable after this time
+
+!http://s3.amazonaws.com/entp-tender-production/assets/7e1b901edbfec00d8cac942d8020ecdfaca8faba/_Chargify__Chargify___Production___New_Coupon_normal.jpg!
+
+Once you have created a Coupon, it will appear under the Product Family on the Products tab. You can make changes to the component by clicking the 'Edit Coupon' link.
+
+
+h3. Amount vs. Percentage Coupons
+
+Chargify allows you to create two types of coupons: Amount Coupons and Percentage Coupons. An Amount Coupon will give the customer a flat dollar amount discount. A Percentage Coupon will give the customer a discount equal to a specified percentage of the Product's base price. To create a coupon for an exact dollar amount, specify the the value in the Amount field below. To create a coupon that provides a percentage discount on the price of the product, specify the percentage in the Percentage field below. Note: Only one field is required. If both are specified the percentage will be ignored.
+
+
+h3. Creating a Subscription with a Coupon in the Admin Interface
+
+To apply a coupon to a subscription, use the Coupon Code field on the new Subscription page.
+
+!http://s3.amazonaws.com/entp-tender-production/assets/c5eea228b5fb0c4ab4922963503327ef17100ab3/_Chargify__Grasshopper___asdf___New_Subscription_normal.jpg!
+
+
+h3. Creating a Subscription with a Coupon in the Hosted Payment Page
+
+Customers can also apply coupons through the Hosted Payment Page.  *However, you will first need to enable the coupon code field to be shown on your hosted pages*.  This is done in the "Hosted Page Settings" section of the "Settings" tab.
+
+!http://s3.amazonaws.com/entp-tender-production/assets/2a8665d9ad13d2fc57c66a34fc333ab480c79723/_Chargify__Grasshopper___asdf___Buy_Chargify__basic_from_Grasshopper_normal.jpg!
+
+
+h3. Creating a Subscription with a Coupon through the API
+
+For API info see: "http://docs.chargify.com/api-coupons":http://docs.chargify.com/api-coupons

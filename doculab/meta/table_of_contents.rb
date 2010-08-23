@@ -10,9 +10,11 @@ Doculab::TableOfContents.define do
   
   section "Configuring Products" do
     page "What are Products?", :permalink => 'product-intro'
+    page "Product Families"
     page "Defining Product Pricing", :permalink => 'product-pricing'
     page "Product Options"
     page "Product Components"
+    page "Coupons"
   end
   
   section "Selling Subscriptions" do
@@ -28,6 +30,7 @@ Doculab::TableOfContents.define do
     page "Upgrades/Downgrades"
     page "One-time Charges"
     page "Refunds"
+    page "Reactivation"
     page "Reporting Metered Usage"
     page "Reporting Quantity Allocations"
   end
@@ -64,6 +67,7 @@ Doculab::TableOfContents.define do
     page "Metered Usage", :permalink => "api-metered-components"
     page "Quantity Allocations", :permalink => "api-quantity-based-components"
     page "Refunds", :permalink => "api-refunds"
+    page "Coupons", :permalink => "api-coupons"
   end
   
   section "Integration" do

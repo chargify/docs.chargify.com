@@ -1,0 +1,25 @@
+h3. Prorated Upgrades and Downgrades
+
+Chargify offers the ability to upgrade or downgrade a Customer's subscription in the middle of a billing period. This action will have the following effects:
+
+* *Prorated credit*: A prorated credit will be created to reimburse the Customer for their current product. Note that this is not a refund; no money will be returned to the user. The credit only effects the Customer's balance.
+* *Charge*: A charge for the full amount of the new product will be applied
+* *Updated Period Start/End Dates*: The period start date will be reset to today's date
+
+To initiate an upgrade or downgrade through the Admin Interface, click the Subscriptions tab and then click the 'Upgrade/Downgrade' link in the Subscription options.
+
+!http://s3.amazonaws.com/entp-tender-production/assets/fe929fd1e3c627c1f0648689132593c79015ffb4/upgrade_index_normal.jpg!
+
+Alternatively, you can click the 'Upgrade/Downgrade' link when viewing a Subscription.
+
+!http://s3.amazonaws.com/entp-tender-production/assets/e59701f980288270e4623931688cdc07c9bcdf35/sub_up_normal.jpg!
+
+Upon clicking 'Upgrade/Downgrade', you will be able to view the available products, as well as the current product associated with the Subscription. To migrate to another product, press the 'Select Product'.
+
+!http://s3.amazonaws.com/entp-tender-production/assets/61d1191a82234fe25ab31eebae77533acf4a4f1b/matrix_normal.jpg!
+
+You will see a success message upon completion of the upgrade or downgrade. Check the Account Transactions tab for a list of the credits/charges that were created.
+
+Upgrades/Downgrades can also be initiated through API, see: http://support.chargify.com/faqs/api/api-prorated-upgrades-downgrades
+
+If you'd like to change products without proration, you can use the pre-existing Edit Subscription functionality. Changes made using this method will bypass prorations.

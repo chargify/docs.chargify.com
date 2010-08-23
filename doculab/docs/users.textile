@@ -1,0 +1,15 @@
+h3. Adding Users
+
+You have the option of adding more user accounts (login and password) to your Seller account, so that other people can help you with its management.
+
+Starting on your Seller homepage, navigate to the "Users" tab and click on the "Create New User" link.
+
+!http://s3.amazonaws.com/entp-tender-production/assets/de05d8b8bb4e9a87a4cee0877a999c95d5ba6f08/user_management_normal.png!
+
+There are 3 levels of access for user accounts:
+
+* *Owner*: The first user account is the "owner" of the Seller account.  They have implicit admin capabilities that cannot be revoked.
+* *Admin*: Any user may be made an Admin by the owner or by the other Admins.
+* *Regular*: A user on the account without Admin privileges.
+
+Currently, the only differentiator between an Admin account and a regular account is that an Admin may create, edit, and delete other user accounts

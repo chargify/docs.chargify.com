@@ -1,0 +1,41 @@
+Reactivation allows you to restart a previously canceled subscription.  Reactivating a subscription will have the following effects:
+
+* The subscription balance will be reset to $0
+* The subscription will be immediately activated
+* The customer will be charged the normal price for a single period
+* The customer's billing date will be reset to today
+
+
+h3. How to reactivate a subscription
+
+To reactivate a subscription, navigate to the Subscription and use the "Reactivate" link in the Operations menu.
+
+!/images/doculab/reactivation-1.png!
+
+You will see a confirmation screen that outlines what will occur on reactivation. Click 'Reactivate Subscription' to initiate the reactivation.
+
+!/images/doculab/reactivation-2.png!
+
+
+h3. Updating the credit card before reactivation
+
+There are two ways to update the credit card before reactivation.  You may need to do this if the subscription was originally canceled due to failed transactions on the original card.
+
+From the reactivation confirmation screen, there are two links in the "Credit Card" section:
+
+# *Update Payment Profile*: allows the Merchant to manually update the card
+# *Send Update Profile request email to Customer*: sends an email to the Customer requesting card update, including a link to a page where they can do so
+
+Once the card is updated, you will still need to initiate the reactivation.  Canceled subscriptions do not become active again just because the attached card is updated.
+
+
+h3. Why does reactivation reset the balance to $0?
+
+Reactivation resets the balance to $0 for 2 reasons:
+
+* To avoid what could be perceived as an overcharge
+* Many recurring billing businesses prefer to forgive any unpaid amount that resulted in the cancellation, since they are happy to have the customer back.
+
+When you use a built-in Chargify dunning strategy that performs automatic cancellation, the subscription will be canceled after 14 or 21 days of non-payment.  If the customer is cancelled on the 14th day and decides to reactivate on the 15th day, it would not be right to charge them their full overdue balance plus another full period price going forward.
+
+If you prefer to capture the overdue balance, we currently suggest adding a one-time charge once the subscription is active again.

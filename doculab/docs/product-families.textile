@@ -1,0 +1,17 @@
+h3. What is a Product Family?
+
+*Product Families* provide a grouping for your Products that can be considered different "feature levels" or "plans" of the same service or offering.  If you're building a web app with different plans, in general, a Product Family will represent your app, and Products will represent your plans.  We've just generalized the terminology to apply to more situations.
+
+
+h3. Creating Product Families
+
+Product Families are created via your "Site":/sites Dashboard from the "Products" tab.  Clicking the "Create New Product Family" will take you where you want to go.
+
+!/images/doculab/product-families-1.png!
+
+
+h3. How to structure Product Families and Products
+
+An example may help.  Let's say we're Acme Corporation, and we have two web applications: a project management suite called "AcmeProjects" and a CRM called "AcmeCRM". Our Acme brand is strong, and our customers often sign up for both of our services. In this case, we might make a single Site called "Acme", and two Product Families: AcmeProjects and AcmeCRM. This way, our customers might be able to sign up both services and we treat them as one customer/user/login on both our own site and on Chargify. We would be able to compare sales data directly between AcmeProjects and AcmeCRM. Our customer's credit cards would show charges from the same entity (Acme Corp) for both products. (Note: Chargify does not aggregate charges.)
+
+On the other hand, let's consider a case where the AcmeProjects and AcmeCRM brands are strong on their own right, and we wish to keep them more separated. Perhaps we have 2 different merchant accounts and we want the credit card charges to show up separately as AcmeProjects and AcmeCRM. In this case, we might create two Sites, each with their own subdomain and one Product Family within each.
