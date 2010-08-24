@@ -2,16 +2,21 @@ Doculab::TableOfContents.define do
   section "Quick Start Guide" do
     page "Chargify Overview", :permalink => 'overview'
     page "Terminology"
-    page "Configure Your Site", :permalink => 'quick-start-site'
+    page "Getting Started"
     page "Define What You Sell", :permalink => 'quick-start-products'
     page "Sell Subscriptions", :permalink => 'quick-start-subscriptions'
     page "Manage Your Subscriptions", :permalink => 'quick-start-manage-subscriptions'
   end
   
-  section "Configuring Products" do
-    page "What are Products?", :permalink => 'product-intro'
+  section "Sites" do
+    page "Sites Intro", :permalink => "sites"
+    page "Settings"
+  end
+  
+  section "Products" do
+    page "Products Intro"
     page "Product Families"
-    page "Defining Product Pricing", :permalink => 'product-pricing'
+    page "Product Pricing", :permalink => 'product-pricing'
     page "Product Options"
     page "Product Components"
     page "Coupons"
@@ -50,7 +55,6 @@ Doculab::TableOfContents.define do
   end
   
   section "Your Account" do
-    page "Sites"
     page "Currency"
     page "Users"
     page "Merchant Information"
@@ -80,9 +84,12 @@ Doculab::TableOfContents.define do
   end
   
   section "Code Samples & Libraries" do
-    page "Ruby", :permalink => "ruby-code-samples-and-libraries"
-    page "PHP", :permalink => "php-code-samples-and-libraries"
-    page "Python", :permalink => "python-code-samples-and-libraries"
-    page ".Net", :permalink => "dot-net-code-samples-and-libraries"
+    page "API Code Overview", :permalink => "api-code"
+    page "Ruby", :permalink => "ruby-code"
+    page "PHP", :permalink => "php-code"
+    page "Python", :permalink => "python-code"
+    page ".Net", :permalink => "dot-net-code"
+    page "ColdFusion", :permalink => "coldfusion-code"
+    page "Java/Scala", :permalink => "java-code"
   end
 end

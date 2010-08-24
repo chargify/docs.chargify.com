@@ -1,5 +1,29 @@
-To get going quickly with Chargify, we suggest starting with the "Chargify Overview in the Quick Start Guide":/overview
+h3. Getting Started
 
-In-depth documentation can be accessed via the menu on the left.
+We suggest starting with our "Quick Start Guide", specifically one of the following pages:
 
-You may also be interested in our "Support Site":http://support.chargify.com, where you can engage in discussions with the community and open support tickets.  Additionally, the Support Site hosts our "Frequently Asked Questions":http://support.chargify.com/faqs
+* "Chargify Overview":/overview - get quickly oriented to see where Chargify fits in to the big picture
+* "Terminology":/terminology - learn the terms we'll use throughout these docs
+
+If you're new to the concept of Merchant Accounts and Gateways, you may be interested in our "Basic Payment Gateway Requirements":http://support.chargify.com/faqs/getting-started/payment-gateway-requirements knowledge base article.
+
+
+h3. Using this documentation
+
+The documentation can be read page by page by following the "Next Page" links at the bottom of each page.  The documentation can also be browsed and searched via the sidebar.
+
+!/images/doculab/nav_example.png!
+
+!/images/doculab/arrow_to_menu_and_search.png!
+
+
+h3. Support
+
+We maintain a "Support Forum":http://support.chargify.com and "Knowledge Base":http://support.chargify.com/faqs with answers to community and frequently asked questions.
+
+Feel free to "start a discussion":http://support.chargify.com/discussion/new to get help from Chargify community and staff.
+
+
+h3. API Integration
+
+Chargify can be integrated in to many environments and programming languages via our RESTful API.  Some of our users have contributed their API Wrappers in various programming languages.  Check out the "API Code Overview":/api-code doc for an introduction to the wrappers and available code samples.

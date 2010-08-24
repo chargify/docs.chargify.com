@@ -1,0 +1,3 @@
+Before you can sell subscriptions, you need to define what it is you are offering.  To start, you'll need to create a "Product Family":/product-families and one or more "Products":/product-intro within those families.
+
+If you're selling subscriptions to recurring plans, *then your different plans are set up as different Products* within Chargify.

@@ -1,0 +1,10 @@
+Your Site Settings control the behavior of the following:
+
+* Gateway and gateway credentials to use
+* Post-back configuration
+* Dunning plans
+* Hosted page configuration (page title, custom CSS, terms of service, etc)
+
+Make sure to visit the Settings tab and verify your selections before you start selling.
+
+!/images/doculab/settings.png!

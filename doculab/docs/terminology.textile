@@ -12,7 +12,7 @@ h3. Sites
 
 Each seller may have as many "Sites" as they wish. A Site is a container for your Products, Subscriptions, and Customers. Each Site has its own settings and configuration. In particular, each site defines its own subdomain, currency, and gateway settings. Any reporting that Chargify performs is done at the Site level.
 
-For more about Sites, see "Configure your Site":/quick-start-site
+For more about Sites, see the "Sites Intro":/sites
 
 h3. Products
 
