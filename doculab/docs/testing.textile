@@ -1,0 +1,9 @@
+Please test your integration before going live.  Whether you are using the hosted payment pages or our API, you need to verify your setup through real usage, both so you'll know that your configuration options are correct, and so you'll know more about what your customers will experience.
+
+Chargify sites that are in test mode will work with both the "Chargify Test Gateway" and with the test gateways provided by providers like Authorize.Net, PaymentExpress, Beanstream, etc.  Note that all of the major gateway providers will give you a free test or "developer's" account so that you can test your integration.
+
+When you're ready to go live, you can use the "Clear site data" link at the top of the web UI to clear all of your test data.  You may choose to keep your product set up at this time.
+
+*When your site has no active subscriptions, you may change it in and out of test mode.*  So, once you clear your subscriptions, you can move your site to live mode and change your gateway credentials to those for your production payment gateway.
+
+It is our recommendation to also run a handful of tests against your live gateway.  This testing can reveal misconfigurations in your gateway settings for things like AVS (Address Verification Service) and other fraud filter checks.  *You can always void these transactions later* through your payment gateway interface.  It is worth the few cents in transaction fees you will incur to verify your setup before your Customers attempt to use it.

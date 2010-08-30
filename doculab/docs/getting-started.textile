@@ -1,0 +1,6 @@
+h3. 1. Create a Site and configure a gateway
+
+* "Sites Intro":/sites
+* "Site settings":/sites
+
+h3. 2. Conf

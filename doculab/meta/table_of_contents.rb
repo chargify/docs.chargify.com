@@ -3,9 +3,6 @@ Doculab::TableOfContents.define do
     page "Chargify Overview", :permalink => 'overview'
     page "Terminology"
     page "Getting Started"
-    page "Define What You Sell", :permalink => 'quick-start-products'
-    page "Sell Subscriptions", :permalink => 'quick-start-subscriptions'
-    page "Manage Your Subscriptions", :permalink => 'quick-start-manage-subscriptions'
   end
   
   section "Sites" do
@@ -67,6 +64,7 @@ Doculab::TableOfContents.define do
     page "Hosted Page Integration"
     page "API Integration"
     page "Post-backs"
+    page "Testing"
   end
   
   section "Chargify API" do
