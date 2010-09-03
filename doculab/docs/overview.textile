@@ -2,8 +2,9 @@ Chargify is a web service that manages the recurring billing for your subscripti
 
 !/images/doculab/overview.png!
 
-Integration with Chargify for your app, service, or website consists of *4 main phases*:
+h3. Features
 
+TODO
 
 h3. 1. Define your Products
 
@@ -14,7 +15,7 @@ h3. 2. Sell Subscriptions
 
 Once Chargify knows what it is you offer, you’ll be able to sell subscriptions to those products. There are two main ways to sell subscriptions:
 
-# On the Chargify website using your subdomain (i.e. http://acme.chargify.com) and our ""Hosted Payment Pages"":/selling-via-hosted-payment-pages (i.e. we host them for you). When selling with hosted pages, you would provide links to these payment pages from your website.
+# On the Chargify website using your subdomain (i.e. http://acme.chargify.com) and our ""Hosted Payment Pages"":/selling-via-hosted-payment-pages. When selling with hosted pages, you would provide links to these payment pages from your website.
 # On your own website, by talking to "Chargify via our API":/selling-via-api.
 
 Before going live, make sure you've reviewed the information in the support article on "Basic Payment Gateway Requirements":http://support.chargify.com/faqs/getting-started/payment-gateway-requirements.
@@ -22,7 +23,7 @@ Before going live, make sure you've reviewed the information in the support arti
 
 h3. 3. Recurring Subscription lifecycle
 
-Chargify manages the "recurring lifecycle of your subscriptions":/subscription-states. According to the recurring periods you define, Chargify handles the collection of payments from your customers via the credit cards they gave during sign up.
+Chargify manages the "recurring lifecycle of your subscriptions":/subscription-states. According to the recurring periods you define, Chargify handles the collection of payments from your customers via the credit cards currently on file.
 
 We also handle (when you so choose) the notifications of card declines and the "Dunning process":/dunning to make sure you keep getting paid. These features are optional, and could also be handled by your app given the information Chargify provides.
 

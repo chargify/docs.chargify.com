@@ -8,6 +8,8 @@ Doculab::TableOfContents.define do
   section "Sites" do
     page "Sites Intro", :permalink => "sites"
     page "Settings"
+    page "Gateway Configuration"
+    page "Hosted Page Settings"
   end
   
   section "Products" do
@@ -19,22 +21,28 @@ Doculab::TableOfContents.define do
     page "Coupons"
   end
   
-  section "Selling Subscriptions" do
-    page "What are Subscriptions?", :permalink => 'subscription-intro'
-    page "Selling via Hosted Payment Pages"
-    page "Selling via the API", :permalink => 'selling-via-api'
-    page "Creating Subscriptions Manually"
+  section "Customers" do
+    page "Customers Intro"
   end
   
-  section "Managing Subscriptions" do
-    page "Viewing & Filtering Subscriptions", :permalink => 'viewing-and-filtering-subscriptions'
-    page "Manipulating Subscriptions"
+  section "Subscriptions" do
+    page "Subscriptions Intro"
+    page "Create Subscriptions"
+    page "Managing Subscriptions"
     page "Upgrades/Downgrades"
     page "One-time Charges"
     page "Refunds"
     page "Reactivation"
     page "Reporting Metered Usage"
     page "Reporting Quantity Allocations"
+  end
+
+  section "Integration" do
+    page "Integration Overview"
+    page "Hosted Page Integration"
+    page "API Integration"
+    page "Post-backs"
+    page "Testing"
   end
   
   section "Subscription Lifecycle" do
@@ -57,14 +65,6 @@ Doculab::TableOfContents.define do
     page "Merchant Information"
     page "Paying Chargify"
     page "Deleting Products & Subscriptions"
-  end
-  
-  section "Integration" do
-    page "Integration Overview"
-    page "Hosted Page Integration"
-    page "API Integration"
-    page "Post-backs"
-    page "Testing"
   end
   
   section "Chargify API" do
