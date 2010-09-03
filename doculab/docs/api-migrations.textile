@@ -1,0 +1,181 @@
+Chargify offers the ability to upgrade or downgrade a Customer's subscription in the middle of a billing period, which is called a "Migration". For details on how prorated upgrades/downgrades work, and how to initiate them through the Admin Interface, see "Upgrades/Downgrades":/upgrades-downgrades.
+
+h2. URIs
+
+
+h2. Input Attributes
+
+The Chargify API allows you initiate an upgrade/downgrade by posting JSON or XML that includes:
+
+* @product_id@ or @product_handle@: The ID or handle of the Product that the subscription will migrate to
+* @include_trial@: Boolean, default 0. If 1 is sent the customer will migrate to the new product with a trial if one is available. If 0 is sent, the trial period will be ignored.
+* @include_initial_charge@: Boolean, default 0. If 1 is sent initial charges will be assessed. If 0 is sent initial charges will be ignored.
+ 
+h2. Methods
+
+_format_ may be either 'xml' or 'json'.
+
+h3. Create
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/migrations.json@  
+Method: @POST@  
+Required Parameters: product_id or product_handle 
+Response: The updated subscription  
+**Usage Examples:**  
+"XML example":#api-migrations-xml-create  
+"JSON example":#api-migrations-json-create  
+
+h2. Usage Examples
+
+h3(#api-migrations-xml-create). XML Create Migration Example
+
+<pre><code>
+Feature: Chargify Migrations Create XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to migrate a subscription to a new product via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept xml
+
+  Scenario: Migrate a subscription successfully with a product_id
+    Given I have 2 products
+    And I have an active subscription to the first product
+    And I have this xml subscription data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <product_id>[@products.last.id]</product_id>
+      """          
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/migrations.xml
+    Then the response status should be "200 OK"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <id type="integer">`auto generated`</id>
+        <state>active</state>
+        <balance_in_cents type="integer">`auto generated`</balance_in_cents>
+        <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
+        <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
+        <trial_started_at type="datetime">`auto generated`</trial_started_at>
+        <trial_ended_at type="datetime">`auto generated`</trial_ended_at>
+        <activated_at type="datetime">`auto generated`</activated_at>
+        <expires_at type="datetime">`auto generated`</expires_at>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+        <cancellation_message nil="true"></cancellation_message>
+        <customer>
+          <id type="integer">`auto generated`</id>
+          <first_name>`your value`</first_name>
+          <last_name>`your value`</last_name>
+          <email>`your value`</email>
+          <organization>`your value`</organization>
+          <reference>`your value`</reference>
+          <created_at type="datetime">`auto generated`</created_at>
+          <updated_at type="datetime">`auto generated`</updated_at>
+        </customer>
+        <product>
+          <id>`auto generated`</id>
+          <accounting_code>`your value`</accounting_code>
+          <handle>`your value`</handle>
+          <description>`your value`</description>
+          <interval>`your value`</interval>
+          <interval_unit>`your value`</interval_unit>
+          <name>`your value`</name>
+          <price_in_cents>`your value`</price_in_cents>
+          <product_family>
+            <id>`auto generated`</id>
+            <accounting_code>`your value`</accounting_code>
+            <handle>`your value`</handle>
+            <name>`your value`</name>
+            <description>`your value`</description>
+          </product_family>
+        </product>
+        <credit_card>
+          <card_type>bogus</card_type>
+          <expiration_month type="integer">`your value`</expiration_month>
+          <expiration_year type="integer">`your value`</expiration_year>
+          <first_name>`your value`</first_name>
+          <last_name>`your value`</last_name>
+          <masked_card_number>XXXX-XXXX-XXXX-1</masked_card_number>
+        </credit_card>
+      </subscription>
+      """
+</code></pre>
+
+
+h3(#api-migrations-json-create). JSON Create Migration Example
+
+<pre><code>
+Feature: Chargify Migrations Create JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to migrate a subscription to a new product via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept json
+
+  Scenario: Migrate a subscription successfully with a product_id
+    Given I have 2 products
+    And I have an active subscription to the first product
+    And I have this json subscription data
+      """
+      {"product_id": [@products.last.id]}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/migrations.json
+    Then the response status should be "200 OK"
+    And the response should be the json:
+      """
+      {"subscription":{
+        "id":[@subscription.id],
+        "state":"active",
+        "balance_in_cents":`auto generated`,
+        "current_period_started_at":`auto generated`,
+        "current_period_ends_at":`auto generated`,
+        "activated_at":`auto generated`,
+        "trial_ended_at":`auto generated`,
+        "trial_started_at":`auto generated`,
+        "expires_at":`auto generated`,
+        "created_at":`auto generated`,
+        "updated_at":`auto generated`,
+        "cancellation_message":null,
+        "customer":{
+          "id":`auto generated`,
+          "first_name":`your value`,
+          "last_name":`your value`,
+          "email":`your value`,
+          "organization":`your value`,
+          "reference":`your value`,
+          "updated_at":`auto generated`,
+          "created_at":`auto generated`
+        },
+        "product":{
+          "id":[@products.last.id],
+          "name":"[@products.last.name]",
+          "handle":"[@products.last.handle]",
+          "price_in_cents":[@products.last.price_in_cents],
+          "accounting_code":"[@products.last.accounting_code]",
+          "description":`your value`,
+          "interval":[@products.last.interval],
+          "interval_unit":"[@products.last.interval_unit]",
+          "product_family":{
+            "id":[@products.last.product_family.id],
+            "name":"[@products.last.product_family.name]",
+            "handle":"[@products.last.product_family.handle]",
+            "accounting_code":"[@products.last.product_family.accounting_code]",
+            "description":`your value`
+          }
+        },
+        "credit_card":{
+          "first_name":`your value`,
+          "last_name":`your value`,
+          "masked_card_number":`your value`,
+          "card_type":`auto generated`,
+          "expiration_month":`your value`,
+          "expiration_year":`your value`
+        }
+      }}
+      """
+</code></pre>

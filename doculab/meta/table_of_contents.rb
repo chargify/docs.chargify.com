@@ -10,6 +10,7 @@ Doculab::TableOfContents.define do
     page "Settings"
     page "Gateway Configuration"
     page "Hosted Page Settings"
+    page "Clearing Site Data"
   end
   
   section "Products" do
@@ -21,20 +22,17 @@ Doculab::TableOfContents.define do
     page "Coupons"
   end
   
-  section "Customers" do
-    page "Customers Intro"
-  end
-  
   section "Subscriptions" do
     page "Subscriptions Intro"
-    page "Create Subscriptions"
-    page "Managing Subscriptions"
+    page "Subscription States"
+    page "Dunning"
+    page "Cancellation"
     page "Upgrades/Downgrades"
     page "One-time Charges"
+    page "Credits"
     page "Refunds"
     page "Reactivation"
-    page "Reporting Metered Usage"
-    page "Reporting Quantity Allocations"
+    page "Setting Component Allocations"
   end
 
   section "Integration" do
@@ -45,49 +43,35 @@ Doculab::TableOfContents.define do
     page "Testing"
   end
   
-  section "Subscription Lifecycle" do
-    page "Subscription States"
-    page "Subscription Renewals"
-    page "Handling Failed Charges"
-    page "Dunning"
-    page "Cancellations"
-  end
-  
-  section "Gateways & Merchant Accounts" do
-    page "What are Gateways and Merchant Accounts?"
-    page "Getting a Gateway or Merchant Account"
-    page "Configuring Your Gateway"
-  end
-  
   section "Your Account" do
     page "Currency"
     page "Users"
-    page "Merchant Information"
-    page "Paying Chargify"
-    page "Deleting Products & Subscriptions"
   end
   
   section "Chargify API" do
-    page "API Introduction"
-    page "API Authentication"
-    page "API Response Codes"
-    page "API Resources"
-    page "Products", :permalink => "api-products"
-    page "Subscriptions", :permalink => "api-subscriptions"
-    page "Site Data", :permalink => "api-site-data"
-    page "Metered Usage", :permalink => "api-metered-components"
-    page "Quantity Allocations", :permalink => "api-quantity-based-components"
-    page "Refunds", :permalink => "api-refunds"
-    page "Coupons", :permalink => "api-coupons"
+    page "API: Introduction"
+    page "API: Authentication"
+    page "API: Resources"
+    page "API: Products"
+    page "API: Coupons"
+    page "API: Customers"
+    page "API: Subscriptions"
+    page "API: Transactions"
+    page "API: Migrations (Prorated Upgrades/Downgrades)", :permalink => "api-migrations"
+    page "API: Charges"
+    page "API: Credits"
+    page "API: Metered Usage"
+    page "API: Quantity Allocations"
+    page "API: Refunds"
   end
   
-  section "Code Samples & Libraries" do
-    page "API Code Overview", :permalink => "api-code"
-    page "Ruby", :permalink => "ruby-code"
-    page "PHP", :permalink => "php-code"
-    page "Python", :permalink => "python-code"
-    page ".Net", :permalink => "dot-net-code"
-    page "ColdFusion", :permalink => "coldfusion-code"
-    page "Java/Scala", :permalink => "java-code"
-  end
+  # section "Code Samples & Libraries" do
+  #   page "API Code Overview", :permalink => "api-code"
+  #   page "Ruby", :permalink => "ruby-code"
+  #   page "PHP", :permalink => "php-code"
+  #   page "Python", :permalink => "python-code"
+  #   page ".Net", :permalink => "dot-net-code"
+  #   page "ColdFusion", :permalink => "coldfusion-code"
+  #   page "Java/Scala", :permalink => "java-code"
+  # end
 end

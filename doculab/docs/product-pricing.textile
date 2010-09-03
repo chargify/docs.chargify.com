@@ -1,3 +1,28 @@
-TODO
+Product pricing is defined beneath "Step 2" of the Product creation and edit screens.  In addition to pricing, this is also how you define your recurring period intervals, trials, and expirations.
 
-Talk about startup fees, trial pricing, period lengths, and expirations.
+<!-- TODO: include a screenshot of the product pricing section -->
+
+
+h3. Up-front charges
+
+The "one-time, up-front charge" field allows you to specify an _up-front fee_ or _startup fee_ that is charged once, at signup time only.
+
+
+h3. Trial period
+
+A _trial period_ may be defined in terms of number of days or months, and can be given a price or be marked as free (i.e. 0 units of your currency).
+
+Subscriptions that are created for a product that has a free trial are still assessed any Up-front charges.
+
+The _trial period_ for a Subscription continues for the duration defined here.  During this time it will be in the @trialing@ state.  At the end of the _trial period_, a charge in the amount of the normal recurring price will be assessed.
+
+
+h3. Recurring period and price
+
+The _recurring period_ can also be defined in terms of the number of days or months.  You also define a price that is charged *at the beginning* of each active period (unless there is a trial period).  Subscriptions would renew according to the period until they are either cancelled, expired, or otherwise terminated.
+
+Out of all of the pricing option fields, the recurring period and price are the only ones that are absolutely required.
+
+h3. Expiration interval
+
+An expiration interval can be defined in a number of days or months, and is counted from the day that a Subscription is first created for this Product.  The Subscription will automatically transition to @expired@ state at the time of the first renewal assessment (as defined by the recurring period or end of the trial period) that occurs after the expiration interval has expired.  Since recurring charges are assessed in advance, no new charges would be assessed at the beginning of the period in which the Subscription expired.

@@ -1,0 +1,15 @@
+h3. API Signup flow
+
+# You provide a form on your own website that collects information from your customer
+# Using the Subscriptions API resource, you send a request to create a subscription
+## If errors exist or the credit card charge is declined, they are returned to you, which you can display through your application
+## If no errors exist and the credit card charge is accepted (or no charge is required) then a successful response is sent back to you from the API request, which you may handle by displaying a "Success" page to the customer
+# You may then interact with the Subscription, Customer, or any other resource we expose via the API to handle changes within your own application state
+
+
+h3. API Considerations
+
+* If you supply a @reference@ value when creating a Customer, you will be able to easily interact with the  Customer resource and the related resources (i.e. Subscriptions), since your application and Chargify now share a common identifier for the Customer
+* You may choose to save the Chargify Customer ID and/or the Subscription ID within your own application for later referencing those resources (this is a good idea)
+
+<!-- TODO: document other flows, like card updates, customer information updates, upgrades, etc -->

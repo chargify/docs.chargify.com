@@ -1,0 +1,850 @@
+You may create a new Customer at any time, or you may create a Customer at the same time you create a Subscription.  The only validation restriction is that you may only create one customer for a given @reference@ value.  This value must be unique (but it may be blank) and represents a unique value for the customer from your own app, i.e. the customer's id.  This allows you to retrieve a given customer via a piece of shared information.  Alternatively, you may choose to store the Chargify unique ID for the customer, which is stored in the @id@ attribute.
+
+h2. Customer Attributes
+
+All of the customer attribute fields are returned from GET (read) operations.  Only those attributes not marked as *read only* may be set via POST (create) or PUT (update) operations. Note, when sent via the querystring these parameters should be contained within a @customer@ param, for example: @customer[first_name]=Charlie@.
+
+* @first_name@ (Required)
+* @last_name@ (Required)
+* @email@ (Required)
+* @organization@ (Optional) Company/Organization name
+* @reference@ (Optional, but encouraged) The unique identifier used within your own application for this customer
+* @id@ (Read Only) The unique identifier for this customer within Chargify
+* @created_at@ (Read Only) The creation date for this customer
+* @updated_at@ (Read Only) The date of last update for this customer
+
+
+h2. Methods
+
+h3. List
+
+URL: @https://<subdomain>.chargify.com/customers.<format>@  
+Method: @GET@
+Optional Parameters: @page@
+Response: An array of Customers, up to 50 per page
+"XML example":#api-usage-xml-customers-list
+"JSON example":#api-usage-json-customers-list
+
+
+h3. Read/Show (via Chargify ID)
+
+URL: @https://<subdomain>.chargify.com/customers/<id>.<format>@
+Method: @GET@
+Required Parameters: @id@
+Response: An single Customer
+"XML example":#api-usage-xml-customers-read
+"JSON example":#api-usage-json-customers-read
+
+
+h3. Read/Show (via Reference value)
+
+Note: The old URL for this for of lookup (@https://<subdomain>.chargify.com/customers/<id>.<format>@) is being deprecated. (It will remain, though, as the List URL)
+  
+URL: @https://<subdomain>.chargify.com/customers/lookup.<format>?reference=<reference>@  
+Method: @GET@
+Required Parameters: @reference@ (URL-encoded)
+Response: An single Customer
+"XML example":#api-usage-xml-customers-read
+"JSON example":#api-usage-json-customers-read
+
+
+h3. Create
+
+URL: @https://<subdomain>.chargify.com/customers.<format>@  
+Method: @POST@
+Required Parameters: XML or JSON data, as specified by the required attributes
+Response: The created customer
+"XML example":#api-usage-xml-customers-create
+"JSON example":#api-usage-json-customers-create
+
+
+h3. Edit/Update
+
+URL: @https://<subdomain>.chargify.com/customers/<id>.<format>@  
+Method: @PUT@
+Required Parameters: XML or JSON data, as specified by the required attributes
+Response: The updated customer
+"XML example":#api-usage-xml-customers-update
+"JSON example":#api-usage-json-customers-update
+
+
+h3. Delete
+
+Customer deletion is not currently supported (you will receive a 403 Forbidden response)
+
+URL: @https://<subdomain>.chargify.com/customers/<id>.<format>@  
+Method: @DELETE@
+Required Parameters: @id@
+"XML example":#api-usage-xml-customers-delete
+"JSON example":#api-usage-json-customers-delete
+
+
+h2. Usage Examples
+
+h3(#api-usage-xml-customers-list). XML List Usage Example
+
+<pre><code>
+Feature: Chargify XML API Customers list
+  In order integrate my app with Chargify
+  As a developer
+  I want to list my customers via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept xml
+
+
+  Scenario: Retrieve a list of my customers
+    Given I have 5 customers
+    When I send a GET request to https://[@subdomain].chargify.com/customers.xml
+    Then the response status should be "200 OK"
+    And the response should be a "customers" array with 5 "customer" elements
+
+  Scenario: Retrieve a list of my customers (limited by per-page maximum, which is 50)
+    Given I have 55 customers
+    When I send a GET request to https://[@subdomain].chargify.com/customers.xml
+    Then the response status should be "200 OK"
+    And the response should be a "customers" array with 50 "customer" elements
+
+  Scenario: Retrieve the 2nd page of my customers
+    Given I have 55 customers
+    When I send a GET request to https://[@subdomain].chargify.com/customers.xml?page=2
+    Then the response status should be "200 OK"
+    And the response should be a "customers" array with 5 "customer" elements
+
+  Scenario: Fetch a blank page of customers (page past bounds)
+    Given I have 55 customers
+    When I send a GET request to https://[@subdomain].chargify.com/customers.xml?page=3
+    Then the response status should be "200 OK"
+    And the response should be a "customers" array with 0 "customer" elements
+</code></pre>
+
+
+h3(#api-usage-json-customers-list). JSON List Usage Example
+
+<pre><code>
+Feature: Chargify API JSON Customers listing
+  In order integrate an app with Chargify
+  As a developer
+  I want to be able to list my customers via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept JSON
+
+  Scenario: Retrieve a list of my customers
+    Given I have 5 customers
+    When I send a GET request to https://[@subdomain].chargify.com/customers.json
+    Then the response status should be "200 OK"
+    And the response should be a json array with 5 "customer" objects
+
+  Scenario: Retrieve a list of my customers (limited by per-page maximum, which is 50)
+    Given I have 55 customers
+    When I send a GET request to https://[@subdomain].chargify.com/customers.json
+    Then the response status should be "200 OK"
+    And the response should be a json array with 50 "customer" objects
+
+  Scenario: Retrieve the 2nd page of my customers
+    Given I have 55 customers
+    When I send a GET request to https://[@subdomain].chargify.com/customers.json?page=2
+    Then the response status should be "200 OK"
+    And the response should be a json array with 5 "customer" objects
+
+  Scenario: Fetch a blank page of customers (page past bounds)
+    Given I have 55 customers
+    When I send a GET request to https://[@subdomain].chargify.com/customers.json?page=3
+    Then the response status should be "200 OK"
+    And the response should be a json array with 0 "customer" objects
+</code></pre>
+
+
+h3(#api-usage-xml-customers-read). XML Read Usage Example
+
+<pre><code>
+Feature: Chargify XML API Customers read/fetch
+  In order integrate my app with Chargify
+  As a developer
+  I want to retrieve a customer via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept xml
+
+
+  Scenario: Retrieve a customer via Chargify's id
+    Given I have a customer with these attributes
+      | id             | first_name | last_name | email           | organization | reference |
+      | [@customer.id] | Joe        | Blow      | joe@example.com | ABC Corp.    | 777       |
+    When I send a GET request to https://[@subdomain].chargify.com/customers/[@customer.id].xml
+    Then the response status should be "200 OK"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <customer>
+        <id type="integer">`auto generated`</id>
+        <first_name>Joe</first_name>
+        <last_name>Blow</last_name>
+        <email>joe@example.com</email>
+        <organization>ABC Corp.</organization>
+        <reference>777</reference>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+      </customer>
+      """
+
+
+  Scenario: Attempt to retrieve a customer that doesn't exist
+    Given I have 0 customers
+    When I send a GET request to https://[@subdomain].chargify.com/customers/999.xml
+    Then the response status should be "404 Not Found"
+
+
+  Scenario: [DEPRECATED] Retrieve a customer via my reference id (as an integer or simple string)
+    Given I have a customer with these attributes
+      | reference | first_name | last_name | email           |
+      | 7890      | Joe        | Blow      | joe@example.com |
+    When I send a GET request to https://[@subdomain].chargify.com/customers.xml?reference=7890
+    Then the response status should be "200 OK"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <customer>
+        <id type="integer">`auto generated`</id>
+        <first_name>Joe</first_name>
+        <last_name>Blow</last_name>
+        <email>joe@example.com</email>
+        <organization>`your value`</organization>
+        <reference>7890</reference>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+      </customer>
+      """
+
+
+  Scenario: Retrieve a customer via my reference id (as an integer or simple string)
+    Given I have a customer with these attributes
+      | reference | first_name | last_name | email           |
+      | 7890      | Joe        | Blow      | joe@example.com |
+    When I send a GET request to https://[@subdomain].chargify.com/customers/lookup.xml?reference=7890
+    Then the response status should be "200 OK"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <customer>
+        <id type="integer">`auto generated`</id>
+        <first_name>Joe</first_name>
+        <last_name>Blow</last_name>
+        <email>joe@example.com</email>
+        <organization>`your value`</organization>
+        <reference>7890</reference>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+      </customer>
+      """
+
+
+  Scenario: [DEPRECATED] Retrieve a customer via my reference id (as a string needing escaping)
+    Given I have a customer with these attributes
+      | reference       | first_name | last_name | email           |
+      | joe@example.com | Joe        | Blow      | joe@example.com |
+    When I send a GET request to https://[@subdomain].chargify.com/customers.xml?reference=joe%40example.com
+    Then the response status should be "200 OK"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <customer>
+        <id type="integer">`auto generated`</id>
+        <first_name>Joe</first_name>
+        <last_name>Blow</last_name>
+        <email>joe@example.com</email>
+        <organization>`your value`</organization>
+        <reference>joe@example.com</reference>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+      </customer>
+      """
+
+
+  Scenario: Retrieve a customer via my reference id (as a string needing escaping)
+    Given I have a customer with these attributes
+      | reference       | first_name | last_name | email           |
+      | joe@example.com | Joe        | Blow      | joe@example.com |
+    When I send a GET request to https://[@subdomain].chargify.com/customers/lookup.xml?reference=joe%40example.com
+    Then the response status should be "200 OK"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <customer>
+        <id type="integer">`auto generated`</id>
+        <first_name>Joe</first_name>
+        <last_name>Blow</last_name>
+        <email>joe@example.com</email>
+        <organization>`your value`</organization>
+        <reference>joe@example.com</reference>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+      </customer>
+      """
+
+
+  Scenario: [DEPRECATED] Attempt to retrieve a non-existent customer via my reference id
+    Given I have 0 customers
+    When I send a GET request to https://[@subdomain].chargify.com/customers.xml?reference=bogus
+    Then the response status should be "404 Not Found"
+
+
+  Scenario: Attempt to retrieve a non-existent customer via my reference id
+    Given I have 0 customers
+    When I send a GET request to https://[@subdomain].chargify.com/customers/lookup.xml?reference=bogus
+    Then the response status should be "404 Not Found"
+</code></pre>
+
+
+
+h3(#api-usage-json-customers-read). JSON Read Usage Example
+
+<pre><code>
+Feature: Chargify API JSON Customer read
+  In order integrate an app with Chargify
+  As a developer
+  I want to be able to fetch a customer via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept JSON
+
+
+  Scenario: Retrieve a customer via Chargify's id
+     Given I have a customer with these attributes
+       | id             | first_name | last_name | email           | organization | reference |
+       | [@customer.id] | Joe        | Blow      | joe@example.com | ABC Corp.    | 777       |
+     When I send a GET request to https://[@subdomain].chargify.com/customers/[@customer.id].json
+     Then the response status should be "200 OK"
+     And the response should be the json:
+       """
+       {"customer":{
+         "first_name":"Joe",
+         "last_name":"Blow",
+         "email":"joe@example.com",
+         "organization":"ABC Corp.",
+         "reference":"777",
+         "id":[@customer.id],
+         "created_at":`auto generated`,
+         "updated_at":`auto generated`
+       }}
+       """
+
+
+   Scenario: Attempt to retrieve a customer that doesn't exist
+     Given I have 0 customers
+     When I send a GET request to https://[@subdomain].chargify.com/customers/999.json
+     Then the response status should be "404 Not Found"
+
+
+   Scenario: [DEPRECATED] Retrieve a customer via my reference id (as an integer or simple string)
+     Given I have a customer with these attributes
+       | reference | first_name | last_name | email           |
+       | 7890      | Joe        | Blow      | joe@example.com |
+     When I send a GET request to https://[@subdomain].chargify.com/customers.json?reference=7890
+     Then the response status should be "200 OK"
+     And the response should be the json:
+       """
+       {"customer":{
+         "first_name":"Joe",
+         "last_name":"Blow",
+         "email":"joe@example.com",
+         "organization":`your value`,
+         "reference":"7890",
+         "id":[@customer.id],
+         "created_at":`auto generated`,
+         "updated_at":`auto generated`
+       }}
+       """
+
+
+  Scenario: Retrieve a customer via my reference id (as an integer or simple string)
+    Given I have a customer with these attributes
+      | reference | first_name | last_name | email           |
+      | 7890      | Joe        | Blow      | joe@example.com |
+    When I send a GET request to https://[@subdomain].chargify.com/customers/lookup.json?reference=7890
+    Then the response status should be "200 OK"
+    And the response should be the json:
+      """
+      {"customer":{
+        "first_name":"Joe",
+        "last_name":"Blow",
+        "email":"joe@example.com",
+        "organization":`your value`,
+        "reference":"7890",
+        "id":[@customer.id],
+        "created_at":`auto generated`,
+        "updated_at":`auto generated`
+      }}
+      """
+
+
+   Scenario: [DEPRECATED] Retrieve a customer via my reference id (as a string needing escaping)
+     Given I have a customer with these attributes
+       | reference       | first_name | last_name | email           |
+       | joe@example.com | Joe        | Blow      | joe@example.com |
+     When I send a GET request to https://[@subdomain].chargify.com/customers.json?reference=joe%40example.com
+     Then the response status should be "200 OK"
+     And the response should be the json:
+       """
+       {"customer":{
+         "first_name":"Joe",
+         "last_name":"Blow",
+         "email":"joe@example.com",
+         "organization":`your value`,
+         "reference":"joe@example.com",
+         "id":`auto generated`,
+         "created_at":`auto generated`,
+         "updated_at":`auto generated`
+       }}
+       """
+
+
+   Scenario: Retrieve a customer via my reference id (as a string needing escaping)
+     Given I have a customer with these attributes
+       | reference       | first_name | last_name | email           |
+       | joe@example.com | Joe        | Blow      | joe@example.com |
+     When I send a GET request to https://[@subdomain].chargify.com/customers/lookup.json?reference=joe%40example.com
+     Then the response status should be "200 OK"
+     And the response should be the json:
+       """
+       {"customer":{
+         "first_name":"Joe",
+         "last_name":"Blow",
+         "email":"joe@example.com",
+         "organization":`your value`,
+         "reference":"joe@example.com",
+         "id":`auto generated`,
+         "created_at":`auto generated`,
+         "updated_at":`auto generated`
+       }}
+       """
+
+
+  Scenario: [DEPRECATED] Attempt to retrieve a non-existent customer via my reference id
+    Given I have 0 customers
+    When I send a GET request to https://[@subdomain].chargify.com/customers.json?reference=bogus
+    Then the response status should be "404 Not Found"
+
+
+  Scenario: Attempt to retrieve a non-existent customer via my reference id
+    Given I have 0 customers
+    When I send a GET request to https://[@subdomain].chargify.com/customers/lookup?reference=bogus
+    Then the response status should be "404 Not Found"
+</code></pre>
+
+
+h3(#api-usage-xml-customers-create). XML Create Usage Example
+
+<pre><code>
+Feature: Chargify XML API Customer create
+  In order integrate my app with Chargify
+  As a developer
+  I want to create customers via the Chargify XML API
+
+  Note that you can also create a customer inline when creating a subscription (via +customer_attributes+)
+
+  Background:
+    Given I am a valid API user
+    And I send and accept xml
+
+  Scenario: Create a customer successfully (sending only required attributes)
+    Given I have this xml customer data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customer>
+          <email>joe@example.com</email>
+          <first_name>Joe</first_name>
+          <last_name>Blow</last_name>
+        </customer>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/customers.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <customer>
+        <id type="integer">`auto generated`</id>
+        <first_name>Joe</first_name>
+        <last_name>Blow</last_name>
+        <email>joe@example.com</email>
+        <organization>`your value`</organization>
+        <reference>`your value`</reference>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+      </customer>
+      """
+
+  Scenario: Create a customer successfully (sending all available attributes)
+    Given I have this xml customer data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customer>
+          <email>joe@example.com</email>
+          <first_name>Joe</first_name>
+          <last_name>Blow</last_name>
+          <organization>ABC Corp.</organization>
+          <reference>777</reference>
+        </customer>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/customers.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <customer>
+        <id type="integer">`auto generated`</id>
+        <first_name>Joe</first_name>
+        <last_name>Blow</last_name>
+        <email>joe@example.com</email>
+        <organization>ABC Corp.</organization>
+        <reference>777</reference>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+      </customer>
+      """
+
+  Scenario: Create a customer fails due to missing required attributes
+    Given I have this xml customer data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customer>
+          <first_name>Joe</first_name>
+        </customer>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/customers.xml
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <errors>
+        <error>Last name: cannot be blank.</error>
+        <error>Email address: cannot be blank.</error>
+      </errors>
+      """
+
+  Scenario: Create a customer fails due to unknown attributes
+    Given I have this xml customer data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customer>
+        <emailzzz>joe@example.com</emailzzz>
+        <first_name>Joe</first_name>
+        <last_name>Blow</last_name>
+        </customer>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/customers.xml
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <errors>
+        <error>unknown attribute: emailzzz</error>
+      </errors>
+      """
+</code></pre>
+
+
+h3(#api-usage-json-customers-create). JSON Create Usage Example
+
+<pre><code>
+Feature: Chargify API JSON Customer create
+  In order integrate an app with Chargify
+  As a developer
+  I want to be able to create a customer via the Chargify JSON API
+
+  Note that you can also create a customer inline when creating a subscription (via +customer_attributes+)
+
+  Background:
+    Given I am a valid API user
+    And I send and accept JSON
+
+
+  Scenario: Create a customer successfully (sending only required attributes)
+    Given I have this json customer data
+      """
+      {"customer":{
+        "first_name":"Joe",
+        "last_name":"Blow",
+        "email":"joe@example.com"
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/customers.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"customer":{
+        "first_name":"Joe",
+        "last_name":"Blow",
+        "email":"joe@example.com",
+        "organization":null,
+        "reference":null,
+        "id":`auto generated`,
+        "created_at":`auto generated`,
+        "updated_at":`auto generated`
+      }}
+      """
+
+
+  Scenario: Create a customer successfully (sending all available attributes)
+    Given I have this json customer data
+      """
+      {"customer":{
+        "first_name":"Joe",
+        "last_name":"Blow",
+        "email":"joe@example.com",
+        "organization":"ABC Corp.",
+        "reference":"777"
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/customers.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"customer":{
+        "first_name":"Joe",
+        "last_name":"Blow",
+        "email":"joe@example.com",
+        "organization":"ABC Corp.",
+        "reference":"777",
+        "id":`auto generated`,
+        "created_at":`auto generated`,
+        "updated_at":`auto generated`
+      }}
+      """
+
+
+  Scenario: Create a customer fails (missing required attributes)
+    Given I have this json customer data
+      """
+      {"customer":{
+        "first_name":"Joe"
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/customers.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the json:
+      """
+      {"errors":
+        [
+          "Last name: cannot be blank.",
+          "Email address: cannot be blank."
+        ]
+      }
+      """
+
+  Scenario: Create a customer fails due to unknown attributes
+    Given I have this json customer data
+      """
+      {"customer":{
+        "emailzzz":"joe@example.com"
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/customers.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the json:
+      """
+      {"errors":
+        [
+          "unknown attribute: emailzzz"
+        ]
+      }
+      """
+</code></pre>
+
+
+h3(#api-usage-xml-customers-update). XML Update Usage Example
+
+<pre><code>
+Feature: Chargify XML API Customers update
+  In order integrate my app with Chargify
+  As a developer
+  I want to update customers via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept xml
+
+
+  Scenario: Update a customer successfully (i.e. with a valid attribute)
+    Given I have a customer with these attributes
+      | id   | first_name | last_name | email           |
+      | <id> | Joe        | Blow      | joe@example.com |
+    And I have this xml customer data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customer>
+          <email>joe.blow@example.com</email>
+        </customer>
+      """
+    When I send a PUT request with the xml data to https://[@subdomain].chargify.com/customers/[@customer.id].xml
+    Then the response status should be "200 OK"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <customer>
+        <id type="integer">`auto generated`</id>
+        <first_name>Joe</first_name>
+        <last_name>Blow</last_name>
+        <email>joe.blow@example.com</email>
+        <organization>`your value`</organization>
+        <reference>`your value`</reference>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+      </customer>
+      """
+
+  Scenario: Update a customer fails due to invalid attributes
+    Given I have a customer with these attributes
+      | id   | first_name | last_name | email           |
+      | <id> | Joe        | Blow      | joe@example.com |
+    And I have this xml customer data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customer>
+          <email>joe.blow</email>
+        </customer>
+      """
+    When I send a PUT request with the xml data to https://[@subdomain].chargify.com/customers/[@customer.id].xml
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <errors>
+        <error>Email address: must be a valid email format.</error>
+      </errors>
+      """
+
+  Scenario: Update a customer fails due to "Customer not found" (i.e. unknown ID of 0)
+    Given I have 0 customers
+    And I have this xml customer data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customer>
+          <first_name>Jim</first_name>
+        </customer>
+      """
+    When I send a PUT request with the xml data to https://[@subdomain].chargify.com/customers/0.xml
+    Then the response status should be "404 Not Found"
+</code></pre>
+
+
+h3(#api-usage-json-customers-update). JSON Update Usage Example
+
+
+<pre><code>
+Feature: Chargify API JSON Customer update
+  In order integrate an app with Chargify
+  As a developer
+  I want to be able to update a customer via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept JSON
+
+  Scenario: Update a customer
+    Given I have a customer with these attributes
+      | id   | first_name | last_name | email           |
+      | <id> | Joe        | Blow      | joe@example.com |
+    And I have this json customer data
+      """
+      {"customer":{
+        "email":"joe.blow@example.com"
+      }}
+      """
+    When I send a PUT request with the json data to https://[@subdomain].chargify.com/customers/[@customer.id].json
+    Then the response status should be "200 OK"
+    And the response should be the json:
+      """
+      {"customer":{
+        "first_name":"Joe",
+        "last_name":"Blow",
+        "email":"joe.blow@example.com",
+        "organization":`your value`,
+        "reference":`your value`,
+        "id":`auto generated`,
+        "created_at":`auto generated`,
+        "updated_at":`auto generated`
+      }}
+      """
+
+  Scenario: Update a customer fails due to invalid attributes
+    Given I have a customer with these attributes
+      | id   | first_name | last_name | email           |
+      | <id> | Joe        | Blow      | joe@example.com |
+    And I have this json customer data
+      """
+        {"customer":{
+          "email":"joe.blow"
+        }}
+      """
+    When I send a PUT request with the json data to https://[@subdomain].chargify.com/customers/[@customer.id].json
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the json:
+      """
+      {"errors":
+        [
+          "Email address: must be a valid email format."
+        ]
+      }
+      """
+
+  Scenario: Update a customer fails due to "Customer not found" (i.e. unknown ID of 0)
+    Given I have 0 customers
+    And I have this json customer data
+      """
+      {"customer":{
+        "first_name":"Jim"
+      }}
+      """
+    When I send a PUT request with the json data to https://[@subdomain].chargify.com/customers/0.json
+    Then the response status should be "404 Not Found"
+</code></pre>
+
+
+h3(#api-usage-xml-customers-delete). XML Delete Usage Example
+
+<pre><code>
+Feature: Chargify API XML Customer delete
+  In order integrate an app with Chargify
+  As a developer
+  I want to be able to delete a customer via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept XML
+
+  # We do not currently allow customer deletion via the API
+  Scenario: Delete a customer
+    Given I have a customer with these attributes
+      | id   | first_name | last_name | email           |
+      | <id> | Joe        | Blow      | joe@example.com |
+    When I send a DELETE request to https://[@subdomain].chargify.com/customers/[@customer.id].xml
+    Then the response status should be "403 Forbidden"
+</code></pre>
+
+
+h3(#api-usage-json-customers-delete). JSON Delete Usage Example
+
+<pre><code>
+Feature: Chargify API JSON Customer delete
+  In order integrate an app with Chargify
+  As a developer
+  I want to be able to delete a customer via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept JSON
+
+  # We do not currently allow customer deletion via the API
+  Scenario: Delete a customer
+    Given I have a customer with these attributes
+      | id   | first_name | last_name | email           |
+      | <id> | Joe        | Blow      | joe@example.com |
+    When I send a DELETE request to https://[@subdomain].chargify.com/customers/[@customer.id].json
+    Then the response status should be "403 Forbidden"
+</code></pre>

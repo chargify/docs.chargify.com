@@ -1,0 +1,24 @@
+In Chargify, you sell Subscriptions to your Products.  You must first create and configure a Product before you can sell anything to a Customer.  Products are administered on a Site-by-Site basis, on the main "Products" tab.
+
+In your app or business, you might call these Products your "Plans" or "Feature Levels".  For example, if you have "Basic", "Pro", and "Max" plans, each of these would be a separate Product within Chargify.
+
+!/images/doculab/product-intro-1.png!
+
+
+h3. Product Families
+
+Products belong to a "*Product Family*":/product-families.  Product Families should contain the Products that are all different "feature levels" of the same thing - i.e. you can usually upgrade and downgrade between Products within the same Product Family.  The "Product Family documentation":/product-families goes in to more depth on how to structure your Product Family and Product relationships.
+
+h3. Creating a Product
+
+Once you have created a Product Family, you will have access to the "Create a Product" link next to the Product Family name.
+
+!/images/doculab/product-intro-2.png!
+
+Some of the basic parameters of a Product are:
+
+* *Name*
+* *Description*
+* *Accounting Code*
+* "*Product Options*":/product-options such as Return URL and Parameters, API handle, Credit Card requirements, and Address requirements
+* "*Product Pricing*":/product-pricing allows you to set the recurring interval, recurring price, trial period, trial price, initial fees, and expiration intervals

@@ -1,0 +1,165 @@
+See the documentation for "Credits":/credits if you need information about Credits in general.
+
+h2. URIs
+
+h2. Credit Input Attributes
+
+In order to create a credit, you must pass an amount and an optional memo.  The amount can be specified by either the @amount@ parameter or the @amount_in_cents@ parameter.
+
+* @amount@ (either 'amount' or 'amount_in_cents' is required) If you use this parameter, you should pass a dollar amount represented as a string.  For example, $10.00 would be represented as @10.00@.
+* @amount_in_cents@ (either 'amount' or 'amount_in_cents' is required) If you use this parameter, you should pass the amount represented as a number of cents, either as a string or integer.  For example, $10.00 would be represented as @1000@.  If you pass a value for both 'amount' and 'amount_in_cents', the value in 'amount_in_cents' will be used and 'amount' will be discarded.
+* @memo@ A helpful explanation for the credit.  This amount will remind you and your customer for the reason for the assessment of the credit.
+
+h2. Credit Output Attributes
+
+When a credit is successfully created, a representation of the newly created credit will be returned to you as JSON or XML in the message body, with the following attributes:
+
+* @success@ Either @true@ or @false@, depending on the success of the credit.  (Note: At this time, all credits that are returned will return @true@ here.  @false@ may be returned in the future when more options are added to the credit creation API)
+* @amount_in_cents@ The amount of the credit, represented in cents.
+* @memo@ The memo for the created credit.
+
+h2. Response Codes
+
+A response code is returned in the standard HTTP response to your API request.
+
+* @201 Created@ is returned for successfully created credits.
+* @422 Unprocessable Entity@ is returned when the credit could not be created (see below section on errors)
+* @404 Not Found@ is returned if the referenced subscription could not be found.
+* Other status codes may be returned in other error cases. See the [API User Guide](http://support.chargify.com/faqs/api/api-user-guide) for more information.
+
+h2. Errors
+
+Errors are returned either as an array of error explanation strings and formatted as either an XML or JSON array, depending on your Accept headers.  The listing of currently possible error messages is listed below:
+
+* Memo: cannot be blank.
+* Amount: is not a number.
+* Amount: must be greater than or equal to 0.
+* This subscription is not eligible to accept credits.
+* [Gateway response if a gateway fail] ([Your original memo])
+
+h2. Methods
+
+_format_ may be either 'xml' or 'json'.
+
+h3. Create
+
+Creating a credit requires a valid, live subscription.  The subscription must be referenced by @id@ (available via the API when subscriptions are read or listed - [more](http://support.chargify.com/faqs/api/api-subscriptions)).
+
+Please refer to the usage examples for more information.
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/credits.<format>@  
+Method: @POST@  
+Required Parameters: XML or JSON data, as specified by the required attributes  
+Response: The created credit, if successful.  Errors otherwise  
+**Usage Examples:**  
+"JSON example":#api-usage-json-credits-create  
+"XML example":#api-usage-xml-credits-create
+
+h2. Usage Examples
+
+h3(#api-usage-json-credits-create). JSON Credit Create Usage Example
+
+<pre><code>
+Feature: Chargify Credits Create JSON API
+ In order integrate my app with Chargify
+ As a developer
+ I want to add one-off credits to a subscription via the Chargify JSON API
+
+ Background:
+   Given I am a valid API user
+   And I send and accept json
+
+ Scenario: Create a credit on a subscription with an amount and a memo
+   Given I have 1 subscription
+   And I have this json credit data
+     """
+     {"credit":{
+       "amount":"1.00",
+       "memo":"This is the description of the one time credit."
+     }}
+     """
+   When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/credits.json
+   Then the response status should be "201 Created"
+   And the response should be the json:
+     """
+     {"credit":{
+       "id":@auto generated@,
+       "success":true,
+       "memo":"This is the description of the one time credit.",
+       "amount_in_cents":100,
+       "ending_balance_in_cents":-100,
+       "type":"Credit",
+       "subscription_id":@auto generated@,
+       "product_id":@auto generated@,
+       "created_at":@auto generated@
+     }}
+     """
+
+ Scenario: Create a credit on a subscription with an amount_in_cents and a memo
+   Given I have 1 subscription
+   And I have this json credit data
+     """
+     {"credit":{
+       "amount_in_cents":100,
+       "memo":"This is the description of the one time credit."
+     }}
+     """
+   When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/credits.json
+   Then the response status should be "201 Created"
+   And the response should be the json:
+     """
+     {"credit":{
+       "id":@auto generated@,
+       "success":true,
+       "memo":"This is the description of the one time credit.",
+       "amount_in_cents":100,
+       "ending_balance_in_cents":-100,
+       "type":"Credit",
+       "success":true,
+       "subscription_id":@auto generated@,
+       "product_id":@auto generated@,
+       "created_at":@auto generated@
+     }}
+     """
+</code></pre>
+
+h3(#api-usage-xml-credits-create). XML Credit Create Usage Example
+
+<pre><code>
+Feature: Chargify Credits Create XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to add one-off credits to a subscription via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept xml
+
+  Scenario: Create a credit on a subscription with an amount and a memo
+    Given I have 1 subscription
+    And I have this xml credit data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <credit>
+        <amount>1.00</amount>
+        <memo>This is the description of the one time credit.</memo>
+      </credit>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/credits.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <credit>
+        <id type="integer">@auto generated@</id>
+        <amount_in_cents type="integer">100</amount_in_cents>
+        <created_at type="datetime">@auto generated@</created_at>
+        <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+        <memo>This is the description of the one time credit.</memo>
+        <subscription_id type="integer">@auto generated@</subscription_id>
+        <product_id type="integer">@auto generated@</product_id>
+        <success type="boolean">true</success>
+        <type>Credit</type>
+      </credit>
+      """
+</code></pre>

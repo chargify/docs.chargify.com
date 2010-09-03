@@ -1,0 +1,1378 @@
+h2. URI/Method
+
+|_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
+| Subscriptions<br/>@/subscriptions@ | List subscriptions | Create new subscription | - | - |
+| Subscription<br/>@/subscriptions/<x>@ | Read subscription | - | Update subscription | Cancel subscription |
+  
+h2. Subscription Input Attributes
+
+When creating a subscription, you must specify a product and a customer.  Credit card details may be required, depending on the options for the Product being subscribed (see "Product Options":/product-options).
+
+The product may be specified by @product_id@ or by @product_handle@ (API Handle).
+
+An existing customer may be specified by a @customer_id@ (ID within Chargify) or a @customer_reference@ (unique value within your app that you have shared with Chargify via the @reference@ attribute on a customer).  A new customer may be created by providing @customer_attributes@.
+
+* @product_handle@ The API Handle of the product for which you are creating a subscription. Required, unless a product_id is given instead.
+* @product_id@ The Product ID of the product for which you are creating a subscription. The product ID is not currently published, so we recommend using the API Handle instead.
+* @customer_id@ The ID of an existing customer within Chargify.  Required, unless a customer_reference or a set of customer_attributes is given.
+* @customer_reference@ The reference value (provided by your app) of an existing customer within Chargify.  Required, unless a customer_id or a set of customer_attributes is given.
+* @customer_attributes@
+** @first_name@ The first name of the customer.  Required when creating a customer via attributes.
+** @last_name@ The last name of the customer.  Required when creating a customer via attributes.
+** @email@ The email address of the customer.  Required when creating a customer via attributes.
+** @organization@ The organization/company of the customer.  Optional.
+** @reference@ A customer "reference", or unique identifier from your app, stored in Chargify.  Can be used so that you may reference your customers within Chargify using the same unique value you use in your application.  Optional.
+* @payment_profile_attributes@ (this may also be referred to as @credit_card_attributes@)
+** @first_name@ (Optional) First name on card.  If omitted, the @first_name@ from customer attributes will be used.
+** @last_name@ (Optional) Last name on card.  If omitted, the @last_name@ from customer attributes will be used.
+** @full_number@ The full credit card number (string representation, i.e. "5424000000000015")
+** @expiration_month@ The 1- or 2-digit credit card expiration month, as an integer or string, i.e. "5"
+** @expiration_year@ The 4-digit credit card expiration year, as an integer or string, i.e. "2012"
+** @cvv@ (Optional, may be required by your gateway settings) The 3- or 4-digit Card Verification Value. _This value is merely passed through to the payment gateway_.
+** @billing_address@ (Optional, may be required by your product configuration or gateway settings) The credit card billing street address (i.e. "123 Main St."). _This value is merely passed through to the payment gateway_.
+** @billing_city@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address city (i.e. "Boston"). _This value is merely passed through to the payment gateway_.
+** @billing_state@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address state (i.e. "MA"). _This value is merely passed through to the payment gateway_.
+** @billing_zip@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address zip code (i.e. "12345"). _This value is merely passed through to the payment gateway_.
+** @billing_country@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address country, preferably in [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format (i.e. "US"). _This value is merely passed through to the payment gateway. Some gateways require country codes in a specific format. Please check your gateway's documentation._
+** @vault_token@ (Optional, used only for Subscription Import) The "token" provided by your vault storage for an already stored payment profile
+** @customer_vault_token@  (Optional, used only for Subscription Import) (only for Authorize.Net CIM storage) The customerProfileId for the owner of the customerPaymentProfileId provided as the vault_token
+** @current_vault@  (Optional, used only for Subscription Import) The vault that stores the payment profile with the provided vault_token. May be authorizenet, trust_commerce, payment_express, beanstream, or braintree1
+** @last_four@  (Optional, used only for Subscription Import) If you have the last 4 digits of the credit card number, you may supply them here so that we may create a masked card number (i.e. 'XXXX-XXXX-XXXX-1234') for display in the UI
+** @card_type@  (Optional, used only for Subscription Import) If you know the card type (i.e. Visa, MC, etc) you may supply it here so that we may display the card type in the UI. May be visa, master, discover, american_express, diners_club, jcb, switch, solo, dankort, maestro, forbrugsforeningen, orlaser`
+* @cancellation_message@ (Optional) Can be used when canceling a subscription (via the HTTP DELETE method) to make a note about the reason for cancellation.
+* @next_billing_at@ (Optional, used for Subscription Import) Set this attribute to a future date/time to sync imported subscriptions to your existing renewal schedule. See the notes on "Date/Time Format" below. If you provide a next_billing_at timestamp that is in the future, no trial or initial charges will be applied when you create the subscription. In fact, no payment will be captured at all. The first payment will be captured, according to the prices defined by the product, near the time specified by next_billing_at. If you do not provide a value for next_billing_at, any trial and/or initial charges will be assessed and charged at the time of subscription creation. If the card cannot be successfully charged, the subscription will not be created.
+
+
+h2. Subscription Output Attributes
+
+The following attributes are returned on a subscription read/list operation.
+
+* @id@ The subscription unique id within Chargify.
+* @state@ The current state of the subscription. Please see the documentation for "Subscription States":/subscription-states
+* @balance_in_cents@ Gives the current outstanding subscription balance, in the number of cents.
+* @current_period_started_at@ Timestamp relating to the start of the current (recurring) period
+* @current_period_ends_at@ Timestamp relating to the end of the current (recurring) period (i.e. when the next regularly scheduled attempted charge will occur)
+* @next_assessment_at@ Timestamp that indicates when capture of payment will be tried or retried.  This value will usually track the @current_period_ends_at@, but will diverge if a renewal payment fails and must be retried.  In that case, the @current_period_ends_at@ will advance to the end of the next period (time doesn't stop because a payment was missed) but the @next_assessment_at@ will be scheduled for the auto-retry time (i.e. 24 hours in the future, in some cases)
+* @trial_started_at@ Timestamp for when the trial period (if any) began
+* @trial_ended_at@ Timestamp for when the trial period (if any) ended</td>
+* @activated_at@ (Read Only) Timestamp for when the subscription began (i.e. when it came out of trial, or when it began in the case of no trial)
+* @expires_at@ Timestamp giving the expiration date of this subscription (if any)
+* @created_at@ The creation date for this subscription
+* @updated_at@ The date of last update for this subscription
+* @customer@ For customer attributes, see [Customers API](/faqs/api/api-customers)
+* @product@ For product attributes, see [Products API](#todo)
+* @credit_card@ Nested credit card attributes
+** @type@ The type of card used (bogus, visa, master)
+** @expiration_month@ An integer representing the expiration month of the card(1 - 12)
+** @expiration_year@ An integer representing the 4-digit expiration year of the card(i.e. '2012')
+** @first_name@ The first name of the card holder
+** @last_name@ The last name of the card holder
+** @masked_card_number@ A string representation of the credit card number with all but the last 4 digits masked with X's (i.e. 'XXXX-XXXX-XXXX-1234')
+* @cancellation_message@ Seller-provided reason for, or note about, the cancellation.
+
+
+h2. Methods
+
+_format_ may be either 'xml' or 'json'.
+
+h3. List
+
+Listing subscriptions is paginated, 2000 at a time, by default.  They are listed most recently created first.
+
+You may control pagination using the @page@ and/or @per_page@ parameters.
+
+URL: @https://<subdomain>.chargify.com/subscriptions.<format>@  
+Method: @GET@  
+Optional Parameters:
+@page@: an integer value which specifies which page of results to fetch, starting at 1.  Fetching successively higher page numbers will return additional results, until there are no more results to return (in which case an empty result set will be returned).  Defaults to 1.
+@per_page@: how many records to fetch in each request, defaults to 2000. Note: fetching subscriptions is currently unoptimized, so fetching large batches of subscriptions will be a slow operation.  
+Response: An array of Subscriptions  
+**Usage Examples:**  
+"XML example":#api-usage-xml-subscriptions-list  
+"JSON example":#api-usage-json-subscriptions-list  
+
+h3. List By Customer
+
+URL: @https://<subdomain>.chargify.com/customers/<customer_id>/subscriptions.<format>@  
+Method: @GET@  
+Required Parameters, @customer_id@  
+Response: An array of Subscriptions  
+**Usage Examples:**  
+"XML example":#api-usage-xml-subscriptions-list  
+"JSON example":#api-usage-json-subscriptions-list  
+
+
+h3. Read
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@  
+Method: @GET@  
+Required Parameters: @subscription_id@  
+Response: An single Subscription  
+"XML example":#api-usage-xml-subscriptions-read  
+"JSON example":#api-usage-json-subscriptions-read  
+
+
+h3. Create
+
+URL: @https://<subdomain>.chargify.com/subscriptions.<format>@  
+Method: @POST@  
+Required Parameters: XML or JSON data, as specified by the required attributes  
+Response: The created subscription  
+**Usage Examples:**  
+"XML example":#api-usage-xml-subscriptions-create  
+"JSON example":#api-usage-json-subscriptions-create  
+
+h3. Importing Subscriptions
+
+Subscriptions can be "imported" via the API to handle the following scenarios:
+
+* You already have existing subscriptions with specific renewal dates that you would like to import to Chargify
+* You already have credit cards stored in your provider's vault and you would like to create subscriptions using those tokens
+
+Before importing, you should have already set up your products to match your offerings.  Then, you can create Subscriptions via the API just like you normally would, but using a few special attributes.
+
+The following _additions_ to the subscription input attributes make imports possible.
+
+* @next_billing_at@: set this attribute to a future date/time to sync imported subscriptions to your existing renewal schedule.  See the notes on "Date/Time Format" below.  If you provide a @next_billing_at@ timestamp that is in the future, no trial or initial charges will be applied when you create the subscription.  In fact, no payment will be captured at all.  The first payment will be captured, according to the prices defined by the product, near the time specified by @next_billing_at@.  If you do not provide a value for @next_billing_at@, any trial and/or initial charges will be assessed and charged at the time of subscription creation.  If the card cannot be successfully charged, the subscription will not be created.
+* @payment_profile_attributes@
+  * @vault_token@: the "token" provided by your vault storage for an already stored payment profile
+  * @customer_vault_token@ (only for Authorize.Net CIM storage): the @customerProfileId@ for the owner of the @customerPaymentProfileId@ provided as the @vault_token@
+  * @current_vault@: the vault that stores the payment profile with the provided @vault_token@.  May be @authorizenet@, @trust_commerce@, @payment_express@, @beanstream@, or @braintree1@
+  * @last_four@ (optional): If you have the last 4 digits of the credit card number, you may supply them here so that we may create a masked card number (i.e. 'XXXX-XXXX-XXXX-1234') for display in the UI
+  * @card_type@ (optional): If you know the card type (i.e. Visa, MC, etc) you may supply it here so that we may display the card type in the UI.  May be @visa@, @master@, @discover@, @american_express@, @diners_club@, @jcb@, @switch@, @solo@, @dankort@, @maestro@, @forbrugsforeningen, or @laser@
+
+*Note:* @payment_profile_attributes@ is the same thing as @credit_card_attributes@ used elsewhere in the documentation.  The two keys are interchangeable, pick one to use but not both.  Most new documentation will refer to @payment_profile_attributes@
+
+h4. Date/Time formats
+
+We will attempt to parse any string you send as the value of @next_billing_at@ in to a date or time.  For best results, use a known format like described in ["Date and Time Specification" of RFC 2822](http://tools.ietf.org/html/rfc2822#section-3.3) or [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601).
+
+The following are all equivalent and will work as input to @next_billing_at@:
+
+@Aug 06 11:34:00 -0400 2010@  
+@Aug 06 11:34 -0400 2010@  
+@2010-08-06T11:34:00-04:00@  
+@8/6/2010 11:34:00 EDT@  
+@8/6/2010 8:34:00 PDT@  
+@2010-08-06T15:34:00Z@  
+
+You may also pass just a date, in which case we will assume the time to be midnight
+
+@2010-08-06@
+
+h4. Full Example
+
+Here is a sample JSON document that you might @POST@ to @https://<subdomain>.chargify.com/subscription.json@ to import a subscription:
+
+<pre><code>
+{
+  "product_handle":"basic",
+  "next_billing_at":"2010-08-29T12:00:00-04:00",
+  "customer_attributes":{
+    "first_name":"John",
+    "last_name":"Doe",
+    "email":"john.doe@example.com",
+    "reference":"123",
+    "organization":"Acme Widgets"
+  },
+  "payment_profile_attributes":{
+    "vault_token":"12345",
+    "customer_vault_token":"67890",
+    "current_vault":"authorizenet",
+    "expiration_year":"2020",
+    "expiration_month":"12",
+    "card_type":"visa",
+    "last_four":"1111"
+  }
+}
+</code></pre>
+    
+h3. Update
+
+The update action currently allows you to edit the attributes of the customer, payment profile (credit card), or subscribed product (although no proration or reset options are offered at this time).
+
+This is how you would change the card that somebody uses for their subscription.  You can also use this method to simply change the expiration date of the card.
+
+You also use this method to change the subscription to a different product by setting a new value for @product_handle@.  Note that no proration or period reset is initiated when you change the product using this method.  This method merely changes the product, and *the new payment amount is calculated and charged at the normal start of the next period*.  If you desire prorated upgrades and downgrades instead, please see this article: http://support.chargify.com/faqs/features/proration
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@  
+Method: @PUT@  
+Required Parameters: None
+Optional Parameters: XML or JSON data with updated values for @customer_attributes@ or @credit_card_attributes@
+Response: The updated subscription  
+**Usage Examples:**  
+"XML example":#api-usage-xml-subscriptions-update  
+"JSON example":#api-usage-json-subscriptions-update  
+
+
+h3. Delete/Cancel
+
+The delete action causes the cancellation of a subscription, i.e. it sets the subscription state to @canceled@.
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@  
+Method: @DELETE@  
+Required Parameters: None
+Optional Parameters: XML or JSON data with a @cancellation_message@ note that will be stored with the subscription.
+Response: 200 OK on success
+**Usage Examples:**  
+"XML example":#api-usage-xml-subscriptions-delete  
+"JSON example":#api-usage-json-subscriptions-delete  
+
+h3. Reactivate
+
+Chargify offers the ability to reactivate a previously canceled subscription. For details on how reactivation works, and how to reactivate subscriptions through the Admin Interface, see "Reactivation":reactivation
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/reactivate.xml@
+Method: @PUT@
+Required Parameters: none
+Optional Parameters: @include_trial@ - Boolean, default 0. If 1 is sent the reactivated subscription will include a trial if one is available. If 0 is sent, the trial period will be ignored.  This parameter should be sent in a query string, and does not need to be nested inside a @subscription@ object
+Response: The updated subscription  
+
+"XML example":#api-react-xml
+"JSON example":#api-react-json
+
+h3. Reset Balance
+
+Chargify offers the ability to easily reset the balance of a subscription to zero. If a subscription has a positive balance, this API call will issue a credit to the subscription for the outstanding balance. This is particularly helpful if you want to reactivate a canceled subscription without charging the customer for their previously owed balance. 
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/reset_balance.xml@
+Method: PUT
+Required Parameters: none
+Response: The updated subscription
+
+**Usage Examples:**  
+"XML example":#api-reset-balance-xml 
+"JSON example":#api-reset-balance-json
+
+
+h2. Usage Examples
+
+h3(#api-usage-xml-subscriptions-list). XML List Usage Example
+
+<pre><code>
+Feature: Chargify Subscriptions List XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to interact with my subscriptions via the Chargify API
+
+  Background:
+    Given I am a valid API user
+    And I accept xml responses
+
+
+  Scenario: Retrieve a customer's subscriptions
+    Given I have a customer with these attributes
+      | id             | first_name | last_name | email           |
+      | [@customer.id] | Joe        | Blow      | joe@example.com |
+    And the customer has 2 subscriptions
+    When I send a GET request to https://[@subdomain].chargify.com/customers/[@customer.id]/subscriptions.xml
+    Then the response status should be "200 OK"
+    And the response should be a "subscriptions" array with 2 "subscription" elements
+</code></pre>
+
+h3(#api-usage-json-subscriptions-list). JSON List Usage Example
+
+<pre><code>
+Feature: Chargify Subscriptions List JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to interact with my subscriptions via the Chargify API
+
+  Background:
+    Given I am a valid API user
+    And I accept json responses
+
+
+  Scenario: Retrieve a customer's subscriptions
+    Given I have a customer with these attributes
+      | id             | first_name | last_name | email           |
+      | [@customer.id] | Joe        | Blow      | joe@example.com |
+    And the customer has 2 subscriptions
+    When I send a GET request to https://[@subdomain].chargify.com/customers/[@customer.id]/subscriptions.json
+    Then the response status should be "200 OK"
+    And the response should be a json array with 2 "subscription" objects
+</code></pre>
+
+
+h3(#api-usage-xml-subscriptions-read). XML Read Usage Example
+
+<pre><code>
+Feature: Chargify Subscriptions Read/Show/Lookup XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to read/show/lookup a subscription via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I accept xml responses
+
+  Scenario: Retrieve a subscription via ID
+    Given I have an active subscription
+    When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
+    Then the response status should be "200 OK"
+    And print the response
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <id type="integer">[@subscription.id]</id>
+        <state>active</state>
+        <balance_in_cents type="integer">0</balance_in_cents>
+        <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
+        <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
+        <trial_started_at type="datetime">`auto generated`</trial_started_at>
+        <trial_ended_at type="datetime">`auto generated`</trial_ended_at>
+        <activated_at type="datetime">`auto generated`</activated_at>
+        <expires_at type="datetime">`auto generated`</expires_at>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+        <customer>
+          <id type="integer">`auto generated`</id>
+          <first_name>`your value`</first_name>
+          <last_name>`your value`</last_name>
+          <email>`your value`</email>
+          <organization>`your value`</organization>
+          <reference>`your value`</reference>
+          <created_at type="datetime">`auto generated`</created_at>
+          <updated_at>`auto generated`</updated_at>
+        </customer>
+        <product>
+           <accounting_code>`your value`</accounting_code>
+           <handle>`your value`</handle>
+           <interval>`your value`</interval>
+           <interval_unit>`your value`</interval_unit>
+           <name>`your value`</name>
+           <price_in_cents>`your value`</price_in_cents>
+           <product_family>
+             <accounting_code>`your value`</accounting_code>
+             <handle>`your value`</handle>
+             <name>`your value`</name>
+           </product_family>
+         </product>
+        <credit_card>
+          <card_type>`auto generated`</card_type>
+          <expiration_month>`your value`</expiration_month>
+          <expiration_year type="integer">`your value`</expiration_year>
+          <first_name>`your value`</first_name>
+          <last_name>`your value`</last_name>
+          <masked_card_number>`auto generated`</masked_card_number>
+        </credit_card>
+      </subscription>
+      """
+
+  Scenario: Attempt to retrieve a subscription that doesn't exist
+    Given I have 0 subscriptions
+    When I send a GET request to https://[@subdomain].chargify.com/subscriptions/9999.xml
+    Then the response status should be "404 Not Found"
+</code></pre>
+
+
+h3(#api-usage-json-subscriptions-read). JSON Read Usage Example
+
+<pre><code>
+Feature: Chargify Subscriptions Read/Show/Lookup JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to read/show/lookup a subscription via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I accept json responses
+
+  Scenario: Retrieve a subscription via ID
+    Given I have an active subscription
+    When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
+    Then the response status should be "200 OK"
+    And the response should be the json:
+      """
+      {"subscription":{
+        "id":[@subscription.id],
+        "state":"active",
+        "balance_in_cents":0,
+        "current_period_started_at":`auto generated`,
+        "current_period_ends_at":`auto generated`,
+        "activated_at":`auto generated`,
+        "trial_ended_at":`auto generated`,
+        "trial_started_at":`auto generated`,
+        "expires_at":`auto generated`,
+        "created_at":`auto generated`,
+        "updated_at":`auto generated`,
+        "cancellation_message":null,
+        "customer":{
+          "id":`auto generated`,
+          "first_name":`your value`,
+          "last_name":`your value`,
+          "email":`your value`,
+          "organization":`your value`,
+          "reference":`your value`,
+          "updated_at":`auto generated`,
+          "created_at":`auto generated`
+        },
+        "product":{
+          "id":`auto generated`,
+          "name":`your value`,
+          "handle":`your value`,
+          "price_in_cents":`your value`,
+          "accounting_code":`your value`,
+          "interval":`your value`,
+          "interval_unit":`your value`,
+          "product_family":{
+            "id":`auto generated`,
+            "name":`your value`,
+            "handle":`your value`,
+            "accounting_code":`your value`
+          }
+        },
+        "credit_card":{
+          "first_name":`your value`,
+          "last_name":`your value`,
+          "masked_card_number":`your value`,
+          "card_type":`auto generated`,
+          "expiration_month":`your value`,
+          "expiration_year":`your value`
+        }
+      }}
+      """
+
+  Scenario: Attempt to retrieve a subscription that doesn't exist
+    Given I have 0 subscriptions
+    When I send a GET request to https://[@subdomain].chargify.com/subscriptions/9999.json
+    Then the response status should be "404 Not Found"
+</code></pre>
+
+
+h3(#api-usage-xml-subscriptions-create). XML Create Usage Example
+
+<pre><code>
+Feature: Chargify Subscriptions Create XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to create a subscription via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I accept xml responses
+
+  Scenario: Create a subscription successfully with customer data, credit card data, and a product handle
+    Given I have 1 product
+    And I have this xml subscription data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <subscription>
+          <product_handle>[@product.handle]</product_handle>
+          <customer_attributes>
+            <first_name>Joe</first_name>
+            <last_name>Blow</last_name>
+            <email>joe@example.com</email>
+          </customer_attributes>
+          <credit_card_attributes>
+            <full_number>1</full_number>
+            <expiration_month>10</expiration_month>
+            <expiration_year>2020</expiration_year>
+          </credit_card_attributes>
+        </subscription>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <id type="integer">`auto generated`</id>
+        <state>active</state>
+        <balance_in_cents type="integer">`auto generated`</balance_in_cents>
+        <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
+        <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
+        <trial_started_at type="datetime">`auto generated`</trial_started_at>
+        <trial_ended_at type="datetime">`auto generated`</trial_ended_at>
+        <activated_at type="datetime">`auto generated`</activated_at>
+        <expires_at type="datetime">`auto generated`</expires_at>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+        <customer>
+          <id type="integer">`auto generated`</id>
+          <first_name>Joe</first_name>
+          <last_name>Blow</last_name>
+          <email>joe@example.com</email>
+          <organization>`your value`</organization>
+          <reference>`your value`</reference>
+          <created_at type="datetime">`auto generated`</created_at>
+          <updated_at type="datetime">`auto generated`</updated_at>
+        </customer>
+        <product>
+           <accounting_code>`your value`</accounting_code>
+           <handle>[@product.handle]</handle>
+           <interval>`your value`</interval>
+           <interval_unit>`your value`</interval_unit>
+           <name>`your value`</name>
+           <price_in_cents>`your value`</price_in_cents>
+           <product_family>
+             <accounting_code>`your value`</accounting_code>
+             <handle>`your value`</handle>
+             <name>`your value`</name>
+           </product_family>
+         </product>
+        <credit_card>
+          <card_type>bogus</card_type>
+          <expiration_month type="integer">10</expiration_month>
+          <expiration_year type="integer">2020</expiration_year>
+          <first_name>Joe</first_name>
+          <last_name>Blow</last_name>
+          <masked_card_number>XXXX-XXXX-XXXX-1</masked_card_number>
+        </credit_card>
+      </subscription>
+      """
+
+
+  Scenario: Create a subscription using an existing customer ID
+    Given I have 1 product
+    And I have 1 customer
+    And I have this xml subscription data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <subscription>
+          <product_handle>[@product.handle]</product_handle>
+          <customer_id>[@customer.id]</customer_id>
+          <credit_card_attributes>
+            <full_number>1</full_number>
+            <expiration_month>10</expiration_month>
+            <expiration_year>2020</expiration_year>
+          </credit_card_attributes>
+        </subscription>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions.xml
+    Then the response status should be "201 Created"
+
+
+  Scenario: Create a subscription using an existing customer reference
+    Given I have 1 product
+    And I have a customer with these attributes
+      | reference | first_name | last_name | email           |
+      | 7890      | Joe        | Blow      | joe@example.com |
+    And I have this xml subscription data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <subscription>
+          <product_handle>[@product.handle]</product_handle>
+          <customer_reference>[@customer.reference]</customer_reference>
+          <credit_card_attributes>
+            <full_number>1</full_number>
+            <expiration_month>10</expiration_month>
+            <expiration_year>2020</expiration_year>
+          </credit_card_attributes>
+        </subscription>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions.xml
+    Then the response status should be "201 Created"
+
+
+  Scenario: Creating a subscription fails due to missing or invalid attributes
+    Given I have 1 product
+    And I have this xml subscription data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <subscription>
+          <product_handle>[@product.handle]</product_handle>
+          <customer_attributes>
+            <first_name>Joe</first_name>
+          </customer_attributes>
+          <credit_card_attributes>
+            <full_number>1</full_number>
+          </credit_card_attributes>
+        </subscription>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions.xml
+    Then the response status should be "422 Unprocessable Entity"
+    And print the response
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <errors>
+        <error>Credit card expiration year: cannot be blank.</error>
+        <error>Last name: cannot be blank.</error>
+        <error>Credit card expiration month: cannot be blank.</error>
+        <error>Email address: cannot be blank.</error>
+      </errors>
+      """
+
+
+  Scenario: Creating a subscription fails due to a missing product
+    Given I have 1 product
+    And I have this xml subscription data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <subscription>
+          <product_handle>this-does-not-exist</product_handle>
+          <customer_attributes>
+            <first_name>Joe</first_name>
+            <last_name>Blow</last_name>
+            <email>joe@example.com</email>
+          </customer_attributes>
+          <credit_card_attributes>
+            <full_number>1</full_number>
+            <expiration_month>10</expiration_month>
+            <expiration_year>2020</expiration_year>
+          </credit_card_attributes>
+        </subscription>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions.xml
+    Then the response status should be "422 Unprocessable Entity"
+    And print the response
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <errors>
+        <error>Product with API Handle 'this-does-not-exist' does not exist for this merchant.</error>
+      </errors>
+      """
+
+
+h3(#api-usage-json-subscriptions-create). JSON Create Usage Example
+
+<pre><code>
+Feature: Chargify Subscriptions Create JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to create a subscription via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept json
+
+  Scenario: Create a subscription successfully with customer data, credit card data, and a product handle
+    Given I have 1 product
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle":"[@product.handle]",
+        "customer_attributes":{
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com"
+        },
+        "credit_card_attributes":{
+          "full_number":"1",
+          "expiration_month":"10",
+          "expiration_year":"2020"
+        }
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"subscription":{
+        "id":`auto generated`,
+        "state":"active",
+        "balance_in_cents":`auto generated`,
+        "current_period_started_at":`auto generated`,
+        "current_period_ends_at":`auto generated`,
+        "activated_at":`auto generated`,
+        "trial_ended_at":`auto generated`,
+        "trial_started_at":`auto generated`,
+        "expires_at":`auto generated`,
+        "created_at":`auto generated`,
+        "updated_at":`auto generated`,
+        "cancellation_message":null,
+        "customer":{
+          "id":`auto generated`,
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com",
+          "organization":`your value`,
+          "reference":`your value`,
+          "updated_at":`auto generated`,
+          "created_at":`auto generated`
+        },
+        "product":{
+          "id":`auto generated`,
+          "name":`your value`,
+          "handle":"[@product.handle]",
+          "price_in_cents":`your value`,
+          "accounting_code":`your value`,
+          "interval":`your value`,
+          "interval_unit":`your value`,
+          "product_family":{
+            "id":`auto generated`,
+            "name":`your value`,
+            "handle":`your value`,
+            "accounting_code":`your value`
+          }
+        },
+        "credit_card":{
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "masked_card_number":"XXXX-XXXX-XXXX-1",
+          "card_type":`auto generated`,
+          "expiration_month":10,
+          "expiration_year":2020
+        }
+      }}
+      """
+
+
+  Scenario: Create a subscription using an existing customer ID
+    Given I have 1 product
+    And I have 1 customer
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle":"[@product.handle]",
+        "customer_id":"[@customer.id]",
+        "credit_card_attributes":{
+          "full_number":"1",
+          "expiration_month":"10",
+          "expiration_year":"2020"
+        }
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions.json
+    Then the response status should be "201 Created"
+
+
+  Scenario: Create a subscription using an existing customer reference
+    Given I have 1 product
+    And I have a customer with these attributes
+      | reference | first_name | last_name | email           |
+      | 7890      | Joe        | Blow      | joe@example.com |
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle":"[@product.handle]",
+        "customer_reference":"[@customer.reference]",
+        "credit_card_attributes":{
+          "full_number":"1",
+          "expiration_month":"10",
+          "expiration_year":"2020"
+        }
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions.json
+    Then print the response
+    Then the response status should be "201 Created"
+
+
+  Scenario: Creating a subscription fails due to missing or invalid attributes
+    Given I have 1 product
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle":[@product.handle],
+        "customer_attributes":{
+          "first_name":"Joe"
+        },
+        "credit_card_attributes":{
+          "full_number":"1"
+        }
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the json:
+      """
+      {"errors":
+        [
+          "Credit card expiration year: cannot be blank.",
+          "Last name: cannot be blank.",
+          "Credit card expiration month: cannot be blank.",
+          "Email address: cannot be blank."
+        ]
+      }
+      """
+
+
+  Scenario: Creating a subscription fails due to a missing product
+    Given I have 1 product
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle":"this-does-not-exist",
+        "customer_attributes":{
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com"
+        },
+        "credit_card_attributes":{
+          "full_number":"1",
+          "expiration_month":"10",
+          "expiration_year":"2020"
+        }
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the json:
+      """
+      {"errors":
+        [
+          "Product with API Handle 'this-does-not-exist' does not exist for this merchant."
+        ]
+      }
+      """
+</code></pre>
+
+
+h3(#api-usage-xml-subscriptions-update). XML Update Usage Example
+
+<pre><code>
+Feature: Chargify Subscriptions Edit/Update XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to edit/update a subscription via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept xml
+
+  Scenario: Update the credit card information on a subscription using credit_card_attributes
+    Given I have an active subscription
+    And I have this xml subscription data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <credit_card_attributes>
+          <full_number>2</full_number>
+          <expiration_month>10</expiration_month>
+          <expiration_year>2040</expiration_year>
+        </credit_card_attributes>
+      </subscription>
+      """
+    When I send a PUT request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
+    Then the response status should be "200 OK"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <id type="integer">[@subscription.id]</id>
+        <state>active</state>
+        <balance_in_cents type="integer">0</balance_in_cents>
+        <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
+        <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
+        <trial_started_at type="datetime">`auto generated`</trial_started_at>
+        <trial_ended_at type="datetime">`auto generated`</trial_ended_at>
+        <activated_at type="datetime">`auto generated`</activated_at>
+        <expires_at type="datetime">`auto generated`</expires_at>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+        <cancellation_message nil="true"></cancellation_message>
+        <customer>
+          <id type="integer">`auto generated`</id>
+          <first_name>`your value`</first_name>
+          <last_name>`your value`</last_name>
+          <email>`your value`</email>
+          <organization>`your value`</organization>
+          <reference>`your value`</reference>
+          <created_at type="datetime">`auto generated`</created_at>
+          <updated_at>`auto generated`</updated_at>
+        </customer>
+        <product>
+          <id>`auto generated`</id>
+          <accounting_code>`your value`</accounting_code>
+          <handle>`your value`</handle>
+          <interval>`your value`</interval>
+          <interval_unit>`your value`</interval_unit>
+          <name>`your value`</name>
+          <price_in_cents>`your value`</price_in_cents>
+          <product_family>
+            <id>`auto generated`</id>
+            <accounting_code>`your value`</accounting_code>
+            <handle>`your value`</handle>
+            <name>`your value`</name>
+          </product_family>
+        </product>
+        <credit_card>
+          <card_type>`auto generated`</card_type>
+          <expiration_month type="integer">10</expiration_month>
+          <expiration_year type="integer">2040</expiration_year>
+          <first_name>`your value`</first_name>
+          <last_name>`your value`</last_name>
+          <masked_card_number>XXXX-XXXX-XXXX-2</masked_card_number>
+        </credit_card>
+      </subscription>
+      """
+
+  Scenario: Update the product associated with the subscription
+    Given I have 2 products
+    And I have an active subscription to the first product
+    And I have this xml subscription data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <product_handle>[@products.last.handle]</product_handle>
+      </subscription>
+      """
+    When I send a PUT request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
+    Then the response status should be "200 OK"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <id type="integer">[@subscription.id]</id>
+        <state>active</state>
+        <balance_in_cents type="integer">0</balance_in_cents>
+        <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
+        <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
+        <trial_started_at type="datetime">`auto generated`</trial_started_at>
+        <trial_ended_at type="datetime">`auto generated`</trial_ended_at>
+        <activated_at type="datetime">`auto generated`</activated_at>
+        <expires_at type="datetime">`auto generated`</expires_at>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+        <cancellation_message nil="true"></cancellation_message>
+        <customer>
+          <id type="integer">`auto generated`</id>
+          <first_name>`your value`</first_name>
+          <last_name>`your value`</last_name>
+          <email>`your value`</email>
+          <organization>`your value`</organization>
+          <reference>`your value`</reference>
+          <created_at type="datetime">`auto generated`</created_at>
+          <updated_at>`auto generated`</updated_at>
+        </customer>
+        <product>
+          <id type="integer">[@products.last.id]</id>
+          <accounting_code>[@products.last.accounting_code]</accounting_code>
+          <handle>[@products.last.handle]</handle>
+          <interval type="integer">[@products.last.interval]</interval>
+          <interval_unit>[@products.last.interval_unit]</interval_unit>
+          <name>[@products.last.name]</name>
+          <price_in_cents type="integer">[@products.last.price_in_cents]</price_in_cents>
+          <product_family>
+            <id type="integer">[@products.last.product_family.id]</id>
+            <accounting_code>[@products.last.product_family.accounting_code]</accounting_code>
+            <handle>[@products.last.product_family.handle]</handle>
+            <name>[@products.last.product_family.name]</name>
+          </product_family>
+        </product>
+        <credit_card>
+          <card_type>`auto generated`</card_type>
+          <expiration_month type="integer">`your value`</expiration_month>
+          <expiration_year type="integer">`your value`</expiration_year>
+          <first_name>`your value`</first_name>
+          <last_name>`your value`</last_name>
+          <masked_card_number>`your value`</masked_card_number>
+        </credit_card>
+      </subscription>
+      """
+</code></pre>
+
+
+h3(#api-usage-json-subscriptions-update). JSON Update Usage Example
+
+
+<pre><code>
+Feature: Chargify Subscriptions Edit/Update JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to edit/update a subscription via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept json
+
+  Scenario: Update the credit card information on a subscription using credit_card_attributes
+    Given I have an active subscription
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "credit_card_attributes":{
+          "full_number":"2",
+          "expiration_month":"10",
+          "expiration_year":"2030"
+        }
+      }}
+      """
+    When I send a PUT request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
+    Then the response status should be "200 OK"
+    And the response should be the json:
+      """
+      {"subscription":{
+        "id":[@subscription.id],
+        "state":"active",
+        "balance_in_cents":`auto generated`,
+        "current_period_started_at":`auto generated`,
+        "current_period_ends_at":`auto generated`,
+        "activated_at":`auto generated`,
+        "trial_ended_at":`auto generated`,
+        "trial_started_at":`auto generated`,
+        "expires_at":`auto generated`,
+        "created_at":`auto generated`,
+        "updated_at":`auto generated`,
+        "cancellation_message":null,
+        "customer":{
+          "id":`auto generated`,
+          "first_name":`your value`,
+          "last_name":`your value`,
+          "email":`your value`,
+          "organization":`your value`,
+          "reference":`your value`,
+          "updated_at":`auto generated`,
+          "created_at":`auto generated`
+        },
+        "product":{
+          "id":`auto generated`,
+          "name":`your value`,
+          "handle":`your value`,
+          "price_in_cents":`your value`,
+          "accounting_code":`your value`,
+          "interval":`your value`,
+          "interval_unit":`your value`,
+          "product_family":{
+            "id":`auto generated`,
+            "name":`your value`,
+            "handle":`your value`,
+            "accounting_code":`your value`
+          }
+        },
+        "credit_card":{
+          "first_name":`your value`,
+          "last_name":`your value`,
+          "masked_card_number":"XXXX-XXXX-XXXX-2",
+          "card_type":`auto generated`,
+          "expiration_month":10,
+          "expiration_year":2030
+        }
+      }}
+      """
+
+  Scenario: Update the product associated with the subscription
+    Given I have 2 products
+    And I have an active subscription to the first product
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle": [@products.last.handle]
+      }}
+      """
+    When I send a PUT request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
+    Then the response status should be "200 OK"
+    And print the response
+    And the response should be the json:
+      """
+      {"subscription":{
+        "id":[@subscription.id],
+        "state":"active",
+        "balance_in_cents":`auto generated`,
+        "current_period_started_at":`auto generated`,
+        "current_period_ends_at":`auto generated`,
+        "activated_at":`auto generated`,
+        "trial_ended_at":`auto generated`,
+        "trial_started_at":`auto generated`,
+        "expires_at":`auto generated`,
+        "created_at":`auto generated`,
+        "updated_at":`auto generated`,
+        "cancellation_message":null,
+        "customer":{
+          "id":`auto generated`,
+          "first_name":`your value`,
+          "last_name":`your value`,
+          "email":`your value`,
+          "organization":`your value`,
+          "reference":`your value`,
+          "updated_at":`auto generated`,
+          "created_at":`auto generated`
+        },
+        "product":{
+          "id":[@products.last.id],
+          "name":"[@products.last.name]",
+          "handle":"[@products.last.handle]",
+          "price_in_cents":[@products.last.price_in_cents],
+          "accounting_code":"[@products.last.accounting_code]",
+          "interval":[@products.last.interval],
+          "interval_unit":"[@products.last.interval_unit]",
+          "product_family":{
+            "id":[@products.last.product_family.id],
+            "name":"[@products.last.product_family.name]",
+            "handle":"[@products.last.product_family.handle]",
+            "accounting_code":"[@products.last.product_family.accounting_code]"
+          }
+        },
+        "credit_card":{
+          "first_name":`your value`,
+          "last_name":`your value`,
+          "masked_card_number":`your value`,
+          "card_type":`auto generated`,
+          "expiration_month":`your value`,
+          "expiration_year":`your value`
+        }
+      }}
+      """
+</code></pre>
+
+
+h3(#api-usage-xml-subscriptions-delete). XML Delete/Cancel Usage Example
+
+<pre><code>
+Feature: Chargify Subscriptions Cancel XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to cancel a subscription via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I accept xml responses
+
+
+  Scenario: Cancel a subscription without giving a reason/message
+    Given I have an active subscription
+    When I send a DELETE request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
+    Then the response status should be "200 OK"
+
+
+  Scenario: Cancel a subscription while giving a reason/message
+    Given I have an active subscription
+    And I have this xml subscription data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <cancellation_message>
+          Canceling the subscription via the API
+        </cancellation_message>
+      </subscription>
+      """
+    When I send a DELETE request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
+    Then the response status should be "200 OK"
+</code></pre>
+
+
+h3(#api-usage-json-subscriptions-delete). JSON Delete/Cancel Usage Example
+
+<pre><code>
+Feature: Chargify Subscriptions Cancel JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to cancel a subscription via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I accept json responses
+
+
+  Scenario: Cancel a subscription without giving a reason/message
+    Given I have an active subscription
+    When I send a DELETE request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
+    Then the response status should be "200 OK"
+
+
+  Scenario: Cancel a subscription while giving a reason/message
+    Given I have an active subscription
+    And I have this json subscription data
+      """
+      {
+        'subscription': {
+          'cancellation_message': 'Canceling the subscription via the API'
+        }
+      }
+      """
+    When I send a DELETE request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
+    Then the response status should be "200 OK"
+</code></pre>
+
+h3(#api-react-xml). XML Reactivation Example
+
+<pre><code>
+Feature: Reactivation
+  In order to allow my customers to cancel and then return to their plans
+  As a Seller
+  I want the ability to reactivate a canceled subscription
+
+  Background:
+    Given I am a valid API user
+    And I send and accept xml
+
+  Scenario: Reactivating a subscription
+    Given I have a canceled subscription
+    When I send a PUT request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/reactivate.xml
+    Then the response status should be "200 OK"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <id type="integer">[@subscription.id]</id>
+        <state>active</state>
+        <balance_in_cents type="integer">0</balance_in_cents>
+        <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
+        <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
+        <trial_started_at type="datetime">`auto generated`</trial_started_at>
+        <trial_ended_at type="datetime">`auto generated`</trial_ended_at>
+        <activated_at type="datetime">`auto generated`</activated_at>
+        <expires_at type="datetime">`auto generated`</expires_at>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+        <cancellation_message nil="true"></cancellation_message>
+        <customer>
+          <id type="integer">`auto generated`</id>
+          <first_name>`your value`</first_name>
+          <last_name>`your value`</last_name>
+          <email>`your value`</email>
+          <organization>`your value`</organization>
+          <reference>`your value`</reference>
+          <created_at type="datetime">`auto generated`</created_at>
+          <updated_at>`auto generated`</updated_at>
+        </customer>
+        <product>
+          <id>`auto generated`</id>
+          <accounting_code>`your value`</accounting_code>
+          <handle>`your value`</handle>
+          <description>`your value`</description>
+          <interval>`your value`</interval>
+          <interval_unit>`your value`</interval_unit>
+          <name>`your value`</name>
+          <price_in_cents>`your value`</price_in_cents>
+          <initial_charge_in_cents type="integer" nil="true"></initial_charge_in_cents>
+          <trial_interval type="integer" nil="true"></trial_interval>
+          <trial_interval_unit nil="true"></trial_interval_unit>
+          <trial_price_in_cents type="integer" nil="true"></trial_price_in_cents>
+          <expiration_interval type="integer">`your value`</expiration_interval>
+          <expiration_interval_unit>`your value`</expiration_interval_unit>
+          <archived_at type="datetime" nil="true"></archived_at>
+          <created_at type="datetime">`auto generated`</created_at>
+          <updated_at type="datetime">`auto generated`</updated_at>
+          <request_credit_card type="boolean">true</request_credit_card>
+          <require_credit_card type="boolean">true</require_credit_card>
+          <return_url nil="true"></return_url>
+          <return_params nil="true"></return_params>
+          <product_family>
+            <id>`auto generated`</id>
+            <accounting_code>`your value`</accounting_code>
+            <handle>`your value`</handle>
+            <name>`your value`</name>
+            <description>`your value`</description>
+          </product_family>
+        </product>
+        <credit_card>
+          <card_type>`auto generated`</card_type>
+          <expiration_month type="integer">12</expiration_month>
+          <expiration_year type="integer">2011</expiration_year>
+          <first_name>`your value`</first_name>
+          <last_name>`your value`</last_name>
+          <masked_card_number>XXXX-XXXX-XXXX-1</masked_card_number>
+        </credit_card>
+      </subscription>
+      """
+</code></pre>
+
+h3(#api-react-json). JSON Reactivation Example
+
+<pre><code>
+Feature: Reactivation
+  In order to allow my customers to cancel and then return to their plans
+  As a Seller
+  I want the ability to reactivate a canceled subscription
+
+  Background:
+    Given I am a valid API user
+    And I send and accept json
+
+  Scenario: Reactivating a subscription
+    Given I have a canceled subscription
+    When I send a PUT request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/reactivate.json
+    Then the response status should be "200 OK"
+    And the response should be the json:
+      """
+      {"subscription":{
+        "id":[@subscription.id],
+        "state":"active",
+        "balance_in_cents":0,
+        "current_period_started_at":`auto generated`,
+        "current_period_ends_at":`auto generated`,
+        "activated_at":`auto generated`,
+        "trial_ended_at":`auto generated`,
+        "trial_started_at":`auto generated`,
+        "expires_at":`auto generated`,
+        "created_at":`auto generated`,
+        "updated_at":`auto generated`,
+        "cancellation_message":null,
+        "customer":{
+          "id":`auto generated`,
+          "first_name":`your value`,
+          "last_name":`your value`,
+          "email":`your value`,
+          "organization":`your value`,
+          "reference":`your value`,
+          "updated_at":`auto generated`,
+          "created_at":`auto generated`
+        },
+        "product":{
+          "id":`auto generated`,
+          "name":`your value`,
+          "handle":`your value`,
+          "price_in_cents":`your value`,
+          "accounting_code":`your value`,
+          "description":`your value`,
+          "interval":`your value`,
+          "interval_unit":`your value`,
+          "initial_charge_in_cents":null,
+          "trial_price_in_cents":null,
+          "trial_interval":null,
+          "trial_interval_unit":null,
+          "expiration_interval_unit":null,
+          "expiration_interval":null,
+          "return_url":null,
+          "return_params":null,
+          "require_credit_card":true,
+          "request_credit_card":true,
+          "created_at":`auto generated`,
+          "updated_at":`auto generated`,
+          "archived_at":null,
+          "product_family":{
+            "id":`auto generated`,
+            "name":`your value`,
+            "handle":`your value`,
+            "accounting_code":`your value`,
+            "description":`your value`
+          }
+        },
+        "credit_card":{
+          "first_name":`your value`,
+          "last_name":`your value`,
+          "masked_card_number":"XXXX-XXXX-XXXX-1",
+          "card_type":`auto generated`,
+          "expiration_month":12,
+          "expiration_year":2011
+        }
+      }}
+      """
+</code></pre>
+
+
+h3(#api-reset-balance-xml). XML Reset Balance Example
+
+<pre><code>
+Feature: Reset Subscription Balance
+  In order to allow sellers to reset a customer's balance back to zero
+  As a Seller
+  I want the ability to reset a subscription
+
+  Background:
+    Given I am a valid API user
+    And I send and accept xml
+
+  Scenario: Resetting the balance on a subscription with a positive balance
+    Given I have a subscription
+    And the subscription has a positive balance
+    When I send a PUT request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/reset_balance.xml
+    Then the response status should be "200 OK"
+    And the subscription balance should be zero
+</code></pre>
+
+
+h3(#api-reset-balance-json). JSON Reset Balance Example
+
+<pre><code>
+Feature: Reset Subscription Balance
+  In order to allow sellers to reset a customer's balance back to zero
+  As a Seller
+  I want the ability to reset a subscription
+
+  Background:
+    Given I am a valid API user
+    And I send and accept json
+
+  Scenario: Resetting the balance on a subscription with a positive balance
+    Given I have a subscription
+    And the subscription has a positive balance
+    When I send a PUT request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/reset_balance.json
+    Then the response status should be "200 OK"
+    And the subscription balance should be zero
+</code></pre>

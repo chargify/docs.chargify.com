@@ -6,6 +6,8 @@ Chargify offers the ability to upgrade or downgrade a Customer's subscription in
 * *Charge*: A charge for the full amount of the new product will be applied
 * *Updated Period Start/End Dates*: The period start date will be reset to today's date
 
+*Note*: The prorated credit is always at least 0.01 currency units (for instance, $0.01). Even if your customer only had a product for a few seconds, proration will result in a minimum charge for that time of 0.01.
+
 To initiate an upgrade or downgrade through the Admin Interface, click the Subscriptions tab and then click the 'Upgrade/Downgrade' link in the Subscription options.
 
 !http://s3.amazonaws.com/entp-tender-production/assets/fe929fd1e3c627c1f0648689132593c79015ffb4/upgrade_index_normal.jpg!
@@ -20,6 +22,6 @@ Upon clicking 'Upgrade/Downgrade', you will be able to view the available produc
 
 You will see a success message upon completion of the upgrade or downgrade. Check the Account Transactions tab for a list of the credits/charges that were created.
 
-Upgrades/Downgrades can also be initiated through API, see: http://support.chargify.com/faqs/api/api-prorated-upgrades-downgrades
+Upgrades/Downgrades can also be initiated through API; see "API Migrations":/api-migrations
 
 If you'd like to change products without proration, you can use the pre-existing Edit Subscription functionality. Changes made using this method will bypass prorations.

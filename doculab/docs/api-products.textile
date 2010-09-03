@@ -1,0 +1,263 @@
+h2. Product Attributes
+
+All of the product attribute fields are returned from GET (read) operations, and all are read only at this time.
+
+* @price_in_cents@ The product price, in integer cents
+* @name@ The product name
+* @handle@ The product API handle
+* @description@ The product description
+* @product_family@ Nested attributes pertaining to the product family to which this product belongs
+  * @name@ The product family name
+  * @handle@ The product family API handle
+  * @accounting_code@ The product family accounting code (has no bearing in Chargify, may be used within your app)
+  * @description@ The product family description
+* @accounting_code@ The accounting code (has no bearing in Chargify, may be used within your app)
+* @interval_unit@ A string representing the interval unit for this product, either @month@ or @day@
+* @interval@ The numerical interval.  i.e. an @interval@ of '30' coupled with an @interval_unit@ of 'day' would mean this product would renew every 30 days
+* @initial_charge_in_cents@ The up front charge you have specified.
+* @trial_price_in_cents@ The price of the trial period for a subscription to this product, in integer cents.
+* @trial_interval@ A numerical interval for the length of the trial period of a subscription to this product.  See the description of @interval@ for a description of how this value is coupled with an interval unit to calculate the full interval
+* @trial_interval_unit@ A string representing the trial interval unit for this product, either @month@ or @day@
+* @expiration_interval@ A numerical interval for the length a subscription to this product will run before it expires.   See the description of @interval@ for a description of how this value is coupled with an interval unit to calculate the full interval
+* @expiration_interval_unit@ A string representing the trial interval unit for this product, either @month@ or @day@
+* @return_url@ The URL a buyer is returned to after successful purchase.  See the section on "Return URLs and Parameters" [here](http://support.chargify.com/faqs/features/hosted-signup-page)
+* @return_params@ The parameters string we will use in constructing your return URL.  See the section on "Return URLs and Parameters" [here](http://support.chargify.com/faqs/features/hosted-signup-page)
+* @require_credit_card@ Boolean
+* @request_credit_card@ Boolean
+* @created_at@ Timestamp indicating when this product was created
+* @updated_at@ Timestamp indicating when this product was last updated
+* @archived_at@ Timestamp indicating when this product was archived
+
+
+h2. Methods
+
+h3. List
+
+URL: @https://<subdomain>.chargify.com/products.<format>@  
+Method: @GET@  
+Response: An array of Products  
+"XML example":#api-usage-xml-products-list  
+"JSON example":#api-usage-json-products-list
+
+
+h3. Read/Show (via Chargify ID)
+
+URL: @https://<subdomain>.chargify.com/products/<id>.<format>@  
+Method: @GET@  
+Required Parameters: @id@  
+Response: An single Product  
+"XML example":#api-usage-xml-products-read  
+"JSON example":#api-usage-json-products-read
+
+
+h3. Read/Show (via API handle)
+
+URL: @https://<subdomain>.chargify.com/products/handle/<handle>.<format>@  
+Method: @GET@  
+Required Parameters: @handle@  
+Response: An single Product  
+"XML example":#api-usage-xml-products-read  
+"JSON example":#api-usage-json-products-read
+
+h2. Usage Examples
+
+h3(#api-usage-xml-products-list). XML List Usage Example
+
+<pre><code>
+Feature: Chargify API XML Products listing
+  In order integrate an app with Chargify
+  As a developer
+  I want to be able to list my products via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept XML
+
+  Scenario: Retrieve a list of my products
+    Given I have 3 products
+    When I send a GET request to https://[@subdomain].chargify.com/products.xml
+    Then the response status should be "200 OK"
+    And the response should be a "products" array with 3 "product" elements
+</code></pre>
+
+
+h3(#api-usage-json-products-list). JSON List Usage Example
+
+<pre><code>
+Feature: Chargify API JSON Products listing
+  In order integrate an app with Chargify
+  As a developer
+  I want to be able to list my products via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept JSON
+
+  Scenario: Retrieve a list of my products
+    Given I have 3 products
+    When I send a GET request to https://[@subdomain].chargify.com/products.json
+    Then the response status should be "200 OK"
+    And the response should be a json array with 3 "product" objects
+</code></pre>
+
+
+h3(#api-usage-xml-products-read). XML Read/Show Usage Example
+
+<pre><code>
+Feature: Chargify API XML Product read
+  In order integrate an app with Chargify
+  As a developer
+  I want to be able to fetch a product via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept XML
+
+
+  Scenario: Retrieve a product via Chargify's id
+    Given I have a product with these attributes
+      | id            | name  | handle | interval | interval_unit | price_in_cents |
+      | [@product.id] | Basic | basic  | 1        | month         | 4900           |
+    When I send a GET request to https://[@subdomain].chargify.com/products/[@product.id].xml
+    Then the response status should be "200 OK"
+    And the response should be the xml:
+    """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <product>
+        <name>Basic</name>
+        <handle>basic</handle>
+        <accounting_code>`your value`</accounting_code>
+        <description>`your value`</description>
+        <interval type="integer">1</interval>
+        <interval_unit>month</interval_unit>
+        <price_in_cents type="integer">4900</price_in_cents>
+        <product_family>
+          <accounting_code>`your value`</accounting_code>
+          <description >`your value`</description>
+          <handle>`your value`</handle>
+          <name>`your value`</name>
+        </product_family>
+      </product>
+      """
+
+
+   Scenario: Attempt to retrieve a product that doesn't exist
+     Given I have 0 products
+     When I send a GET request to https://[@subdomain].chargify.com/products/999.xml
+     Then the response status should be "404 Not Found"
+
+
+   Scenario: Retrieve a product via the API Handle
+     Given I have a product with these attributes
+       | id            | name  | handle | interval | interval_unit | price_in_cents |
+       | [@product.id] | Basic | basic  | 1        | month         | 4900           |
+     When I send a GET request to https://[@subdomain].chargify.com/products/handle/basic.xml
+     Then the response status should be "200 OK"
+     And the response should be the xml:
+     """
+     <?xml version="1.0" encoding="UTF-8"?>
+     <product>
+       <name>Basic</name>
+       <handle>basic</handle>
+       <accounting_code>`your value`</accounting_code>
+       <description>`your value`</description>
+       <interval type="integer">1</interval>
+       <interval_unit>month</interval_unit>
+       <price_in_cents type="integer">4900</price_in_cents>
+       <product_family>
+         <accounting_code>`your value`</accounting_code>
+       <description>`your value`</description>
+         <handle>`your value`</handle>
+         <name>`your value`</name>
+       </product_family>
+     </product>
+     """
+
+
+  Scenario: Attempt to retrieve a product, by handle, that doesn't exist
+    Given I have 0 products
+    When I send a GET request to https://[@subdomain].chargify.com/products/handle/dne.xml
+    Then the response status should be "404 Not Found"
+</code></pre>
+
+
+h3(#api-usage-json-products-read). JSON Read/Show Usage Example
+
+<pre><code>
+Feature: Chargify API JSON Product read
+  In order integrate an app with Chargify
+  As a developer
+  I want to be able to fetch a product via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept JSON
+
+
+  Scenario: Retrieve a product via Chargify's id
+     Given I have a product with these attributes
+       | id            | name  | handle | interval | interval_unit | price_in_cents |
+       | [@product.id] | Basic | basic  | 1        | month         | 4900           |
+     When I send a GET request to https://[@subdomain].chargify.com/products/[@product.id].json
+     Then the response status should be "200 OK"
+     And the response should be the json:
+     """
+      {
+        "product":{
+          "price_in_cents":4900,
+          "name":"Basic",
+          "handle":"basic",
+          "product_family":{
+            "name":`your value`,
+            "handle":`your value`,
+            "description":`your value`,
+            "accounting_code":`your value`
+          },
+          "description":`your value`,
+          "accounting_code":`your value`,
+          "interval_unit":"month",
+          "interval":1
+        }
+      }
+      """
+
+
+   Scenario: Attempt to retrieve a product that doesn't exist
+     Given I have 0 products
+     When I send a GET request to https://[@subdomain].chargify.com/products/999.json
+     Then the response status should be "404 Not Found"
+
+
+   Scenario: Retrieve a product via the API Handle
+     Given I have a product with these attributes
+       | id            | name  | handle | interval | interval_unit | price_in_cents |
+       | [@product.id] | Basic | basic  | 1        | month         | 4900           |
+     When I send a GET request to https://[@subdomain].chargify.com/products/handle/basic.json
+     Then the response status should be "200 OK"
+     And the response should be the json:
+     """
+      {
+        "product":{
+          "price_in_cents":4900,
+          "name":"Basic",
+          "handle":"basic",
+          "product_family":{
+            "name":`your value`,
+            "handle":`your value`,
+            "description":`your value`,
+            "accounting_code":`your value`
+          },
+          "description":`your value`,
+          "accounting_code":`your value`,
+          "interval_unit":"month",
+          "interval":1
+        }
+      }
+      """
+
+
+  Scenario: Attempt to retrieve a product, by handle, that doesn't exist
+    Given I have 0 products
+    When I send a GET request to https://[@subdomain].chargify.com/products/handle/dne.json
+    Then the response status should be "404 Not Found"
+</code></pre>

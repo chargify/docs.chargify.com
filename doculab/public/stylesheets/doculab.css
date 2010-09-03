@@ -8,12 +8,14 @@
 #table_of_contents li li a.current    {color: #4c4c4c; font-weight: bold;}
 #table_of_contents li li a:hover      {color: #6B9029; text-decoration: underline;}
 
-#search                               { height: 26px; margin-bottom: 35px; border: 1px solid #ccc; background: #fff; width: 200px;}
+#search                               {height: 26px; margin-bottom: 35px; border: 1px solid #ccc; background: #fff; width: 200px;}
+#search span                          {color:#aaa; font-size: 13px; line-height: 26px; margin: 0 0 0 7px;}
 
 #docupage                             {font-family: Helvetica, Arial, sans-serif; font-size: 14px; padding: 21px 0 0 12px;}
 #docupage h1                          {font-size: 28px; line-height: 42px; text-align: left; margin: 0 0 21px 0; text-shadow: #ccc 1px 1px 0;}
 #docupage h2                          {font-size: 18px; line-height: 21px; text-align: left; margin: 0 0 21px 0; text-shadow: #ccc 1px 1px 0;}
 #docupage h3                          {font-size: 16px; line-height: 21px; text-align: left; margin: 21px 0;}
+#docupage h5                          {font-size: 0.9em;}
 
 #docupage h1.title                    {line-height: 1; padding-bottom: 14px;}
 #docupage h2.section                  {float: right; margin: -1px 0 0 0; line-height: 1; text-align: right; font-weight: normal;}
@@ -34,6 +36,15 @@
 #docupage td, #docupage th            {text-align: left; padding: 11px 10px 9px 10px; border: 1px solid #ccc;}
 #docupage th                          {vertical-align: bottom; padding-top: 10px; background: #ccc; border-bottom: 1px solid #aaa;}
 #docupage td                          {vertical-align: top;}
+
+#docupage ol li ol                    {margin: 0;}
+#docupage ol li                       {list-style:decimal;}
+#docupage ol ol li                    {list-style:lower-alpha;}
+#docupage ol ol ol li                 {list-style:lower-roman;}
+
+#docupage pre, #docupage code         {background-color: #333; font-family: 'Bitstream Vera Sans Mono', "Monaco", Courier, monospace; color: #fff; font-size: 12px;}
+#docupage pre                         {padding: 20px; margin: 1.5em 0; overflow:auto;}
+#docupage code                        {padding: 0 2px;}
 
 #docupage #breadcrumbs p              { margin: 0 0 35px 0; font-size: 16px; line-height: 28px;}
 

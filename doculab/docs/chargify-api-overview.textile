@@ -1,9 +1,0 @@
-The Chargify API allows you to interact with our system programmatically from your own application.  Using the API you interact with Resources such as:
-
-* Products
-* Subscriptions
-* Customers
-
-You'll likely need access to a web developer or programmer (if you're not one) to get the most use out of the API.
-
-More in depth information on our API can be found starting in the "API Introduction":/api-introduction.

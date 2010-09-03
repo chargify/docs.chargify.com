@@ -44,3 +44,8 @@ h3. Switching Sites
 In order to work with a Site (configure Products, see Subscriptions, etc) you will first need to "switch" to it.  You can do this at any time via the "Site Switcher" pull down menu in the toolbar.  The current site is always listed first, with your other Sites listed thereafter.
 
 !/images/doculab/sites-2.png!
+
+
+h3. Clearing/Deleting Site Data
+
+See "Clearing Site Data":/clearing-site-data for a description of how to remove Products and/or Subscriptions/Customers from your test Site.

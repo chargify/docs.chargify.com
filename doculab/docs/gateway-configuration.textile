@@ -1,0 +1,24 @@
+By default, your Site will be set to use the Chargify Test Gateway.  The Test Gateway is great for playing around, but in order to test your integration with a sandbox gateway, or to sell subscriptions using a real gateway, you will need to choose a gateway and enter your credentials.
+
+h3. The Chargify Test Gateway
+
+This gateway does not do any real authorizations or captures on credit cards.  It allows you to simulate successful and unsuccessful credit card transactions.
+
+When using the Chargify Test Gateway:
+
+* Use the credit card number "1" to simulate a successful credit card transaction
+* Use the credit card number "2" to simulate a declined credit card transaction
+
+h3. Sites in _test_ mode connect to "Sandbox" gateways
+
+Any Site that is in test mode will only work with gateways accounts that are provided as test, developer, or sandbox accounts from your gateway provider.  Usually, these "test" gateways use a different URL than their production counterparts, and Sites that are in test mode will only connect to these URLs.
+
+<!-- TODO: create a list of links to resources for getting test gateway accounts with each of our supported gateways -->
+
+h3. Sites in _production_ mode connect to "Live" gateways
+
+Any Site that is in production mode will only work with real, live gateway accounts.  If you are experiencing problems with incorrect credentials, ensure that you don't have a mismatch between your Chargify Site mode (test vs. production) and your type of gateway (test vs. live)
+
+h3. Changing gateways
+
+You may only change gateways if the Site has *no live subscriptions*.  If you need to change gateways, you may either create another Site, or cancel all of the subscriptions within your Site.  If you are working with a test site, you may also consider "clearing your Site data":/clearing-site-data for a quick way to "reset" your Site and change gateways.

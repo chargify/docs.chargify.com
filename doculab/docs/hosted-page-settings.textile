@@ -1,14 +1,6 @@
-Chargify offers a hosted/white label signup page for all of our customers. The hosted page allows you to integrate with the Chargify platform without having to worry about collecting credit card information or writing custom code yourself. You can point your customers to a unique URL on the Chargify site and we will securely handle subscription signup and payment processing. 
+This section describes how to customize the look, feel, and behavior of your Hosted Pages.  If you need information on how to use the Hosted Pages to sell Subscriptions, please see the "Hosted Page Integration":/hosted-page-integration documentation.
 
-_To use hosted signup pages with the Beanstream gateway, you *must* enable billing address collection._
-
-!http://s3.amazonaws.com/entp-tender-production/assets/0a600c477a13047b5aea02209285bb734b7de98a/screenshot_normal.jpg!
-
-Each Product has its own hosted signup page page and unique URL.  You can find the URLs for these pages on your product overview screen, as indicated in the following image:
-
-!http://s3.amazonaws.com/entp-tender-production/assets/cf5517d8793fc367ca82e738b0aac7ad3f14c2a0/hosted-signup-page-link-location_normal.png!
-
-h3. Customizing the Hosted Signup Page - Site Settings
+h3. Customizing the Hosted Signup Page
 
 You can customize the look and feel of your hosted page to match your site by uploading a logo, providing custom CSS and JavaScript, and specifying URLs that link back to your site.
 
@@ -80,11 +72,14 @@ bc. ?first_name=John&last_name=Doe&email=john.doe@example.com&reference=1234
 
 ![hosted-signup-pre-populated.png](http://s3.amazonaws.com/entp-tender-production/assets/4cad8d1d427d0365b6f8e48e16c0bd2b7232a17c/hosted-signup-pre-populated_normal.png)
 
-## Return URL and parameters
 
-When configuring a product, it is possible to specify a @Return URL@ and @Return parameters@.
+h3(#return-url). Return URL and parameters
 
-![params.jpg](http://s3.amazonaws.com/entp-tender-production/assets/b69536c3ef198b4ca722d0b754396f332ff06818/params_normal.jpg)
+The Return URL is configured in the "Product Options":/product-options on a per-product basis, but is documented here for its effect on the Hosted Payment Pages.
+
+When creating or editing a product, you may specify a *Return URL* and *Return parameters*.
+
+!http://s3.amazonaws.com/entp-tender-production/assets/b69536c3ef198b4ca722d0b754396f332ff06818/params_normal.jpg!
 
 The Return URL is the URL that the user will be redirected to after a successful transaction. The Return parameters specify the data that will be passed back in the query string of the Return URL.
 

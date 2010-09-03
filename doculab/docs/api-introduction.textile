@@ -1,4 +1,12 @@
-The Chargify API allows you to keep the customer purchase flow on your own site, while passing the billing information to us for processing. The API attempts to conform to the "RESTful":http://en.wikipedia.org/wiki/Representational_State_Transfer design principles. You interact with the resources exposed via the API by accessing resource collection and element URIs using the HTTP verbs (GET, POST, PUT, and DELETE).  Chargify accepts and returns both JSON and XML data via the API.
+The Chargify API allows you to interact with our system programmatically from your own application.  Using the API you interact with Resources such as:
+
+* Products
+* Subscriptions
+* Customers
+
+The API attempts to conform to the "RESTful":http://en.wikipedia.org/wiki/Representational_State_Transfer design principles. You interact with the resources exposed via the API by accessing resource collection and element URIs using the HTTP verbs (GET, POST, PUT, and DELETE).  Chargify accepts and returns both JSON and XML data via the API.
+
+You'll likely need access to a web developer or programmer (if you're not one) to get the most use out of the API.
 
 h3. Authentication
 
@@ -23,7 +31,7 @@ h3. Response Data
 
 Response data is sent as either XML or JSON, depending on the type of data requested (HTTP @Content-Type@ header) or the type specified as being accepted (HTTP @Accept@ header).
 
-Response codes are documented in "API Response Codes":/api-response-codes.
+Response codes are sent via the normal HTTP Response Code, and are documented separately for each resource.
 
 h3. Request Data
 
@@ -36,6 +44,7 @@ h3. Debugging
 
 If you're having difficulty executing a request via our API, try the simplest thing and attempt your request via the curl command-line tool, as shown in the below example.  Add the @--verbose@ flag to your request to receive even more debugging information.
 
+Another handy tool is "PostBin":/http://postbin.org.  You could create a PostBin and send your request to them instead of us to see visually what it is you're sending, if you're not sure.
 
 h3. Examples
 

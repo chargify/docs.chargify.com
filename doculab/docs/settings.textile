@@ -1,10 +1,10 @@
+Settings are selected on a Site-by-Site basis.  Choose your selections by visiting the "Settings" tab for any Site.  Make sure to visit the Settings tab and verify your selections before you start selling.
+
+!/images/doculab/settings.png!
+
 Your Site Settings control the behavior of the following:
 
-* Gateway and gateway credentials to use
+* "Gateway Configuration":/gateway-configuration - choose your gateway and enter your credentials
 * Post-back configuration
 * Dunning plans
 * Hosted page configuration (page title, custom CSS, terms of service, etc)
-
-Make sure to visit the Settings tab and verify your selections before you start selling.
-
-!/images/doculab/settings.png!

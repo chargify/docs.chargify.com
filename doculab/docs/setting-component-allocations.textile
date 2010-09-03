@@ -1,0 +1,32 @@
+In order for Chargify to assess charges for your Components, you must report to us the Component's status (i.e. quantity used or allocated, or whether the feature was enabled or not) for each Subscription. 
+
+NOTE: At the time of this writing, setting Component allocations can only be done from the API.  Unfortunately, this feature is not yet within the UI or Hosted Pages, but it is something we are working towards.
+
+Components get "post-billed" (after usage) on the next billing cycle date, so if your Customer subscribed to the parent Product on the 23rd of the month, then he'll get billed for any Components on the 23rd of each month, assuming the product is on monthly billing cycle.  Chargify simply looks at the quantity on the billing date and then bills accordingly.
+
+Future releases may allow for proration of added/removed units, averaging of the count, "high-water mark", 95th percentile, etc. There are a number of approaches we've heard about that will be interesting to consider.
+
+
+h4. Reporting Metered Component usage
+
+For Metered Components, you tell our API every time your customer uses some "widgets" (units). At the end of the billing period, Chargify will bill your customer for the total number of widgets reported, and then we will reset the widget count to zero and the whole process starts over for the new billing period.
+
+Note: this differs from Quantity-based Components, which DO NOT reset to zero at the start of every billing period.
+
+The API calls required to report usage are detailed in the documentation on the "Reporting Metered Components usage via the API":/api-components#reporting-metered-usage.
+
+h4. Reporting Quantity-based allocations
+
+For Quantity-based Components, you tell our API every time your customer changes the quantity of "widgets" (units) being utilized, but the assumption is that those widgets stay in use by your customer forever, until some future change.
+
+A common use-case is software license fees, where you want to collect $100/month for each employee of your customer who accesses your service. So you might set the quanity to 3 and Chargify will bill your customer $300 every billing period until you change the quantity.
+
+Note: this differs from Metered Components, which DO reset to zero at the start of every billing period.
+
+The API calls required to report allocated quantities are detailed in the documentation on the "Reporting Quantity-based Components usage via the API":/api-components#reporting-allocated-quantities.
+
+h4. Reporting On/Off component status
+
+You report the status if On/Off Components (i.e. "enabled" or not) similarly to Quantity-based components.  Instead of reporting a number for the @allocated_quantity@, you pass a boolean to @enabled@.
+
+The API calls required to report enabled status are detailed in the documentation on the "Reporting On/Off Components status via the API":/api-components#reporting-onoff-status.

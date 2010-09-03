@@ -1,0 +1,322 @@
+For "live" subscriptions (i.e. subscriptions that are not canceled or expired) you have the ability to attach a one-time (or "one-off") charge of an arbitrary amount.  For more information on assessing charges, in general, please see "One-time Charges":/one-time-charges.
+
+h2. Charge Input Attributes
+
+In order to create a charge, you must pass an amount and a memo.  The amount can be specified by either the @amount@ parameter or the @amount_in_cents@ parameter.
+
+* @amount@ (either 'amount' or 'amount_in_cents' is required) If you use this parameter, you should pass a dollar amount represented as a string.  For example, $10.00 would be represented as @10.00@.
+* @amount_in_cents@ (either 'amount' or 'amount_in_cents' is required) If you use this parameter, you should pass the amount represented as a number of cents, either as a string or integer.  For example, $10.00 would be represented as @1000@.  If you pass a value for both 'amount' and 'amount_in_cents', the value in 'amount_in_cents' will be used and 'amount' will be discarded.
+* @memo@ (required) A helpful explanation for the charge.  This amount will remind you and your customer for the reason for the assessment of the charge.
+
+h2. Charge Output Attributes
+
+When a charge is successfully created, a representation of the newly created charge will be returned to you as JSON or XML in the message body, with the following attributes:
+
+* @success@ Either @true@ or @false@, depending on the success of the charge.  (Note: At this time, all charges that are returned will return @true@ here.  @false@ may be returned in the future when more options are added to the charge creation API)
+* @amount_in_cents@ The amount of the charge and captured payment, represented in cents.
+* @memo@ The memo for the created charge.
+
+h2. Response Codes
+
+A response code is returned in the standard HTTP response to your API request.
+
+* @201 Created@ is returned for successfully created charges.
+* @422 Unprocessable Entity@ is returned when the charge could not be created (see below section on errors)
+* @404 Not Found@ is returned if the referenced subscription could not be found.
+* Other status codes may be returned in other error cases. See the [API User Guide](http://support.chargify.com/faqs/api/api-user-guide) for more information.
+
+h2. Errors
+
+Errors are returned either as an array of error explanation strings and formatted as either an XML or JSON array, depending on your Accept headers.  The listing of currently possible error messages is listed below:
+
+* Memo: cannot be blank.
+* Amount: is not a number.
+* Amount: must be greater than or equal to 0.
+* This subscription is not eligible to accept charges.
+* [Gateway response if a gateway fail] ([Your original memo])
+
+
+h2. Methods
+
+_format_ may be either 'xml' or 'json'.
+
+h3. Create
+
+Creating a charge requires a valid, live subscription.  The subscription must be referenced by @id@ (available via the API when subscriptions are read or listed - [more](http://support.chargify.com/faqs/api/api-subscriptions)).
+
+A payment in the amount of the assessed charge is automatically captured from the credit card on file for the subscription.
+
+Please refer to the usage examples for more information.
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/charges.<format>@  
+Method: @POST@  
+Required Parameters: XML or JSON data, as specified by the required attributes  
+Response: The created charge, if successful.  Errors otherwise  
+**Usage Examples:**  
+"JSON example":#api-usage-json-charges-create  
+"XML example":#api-usage-xml-charges-create
+
+h2. Usage Examples
+
+h3(#api-usage-json-charges-create). JSON Charge Create Usage Example
+
+<pre><code>
+Feature: Chargify Subscriptions Create JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to add one-off charges to a subscription via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept json
+
+
+  Scenario: Create a charge on a subscription with an amount and a memo
+    Given I have 1 subscription
+    And I have this json charge data
+      """
+      {"charge":{
+        "amount":"1.00",
+        "memo":"This is the description of the one time charge."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/charges.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"charge":{
+        "success":true,
+        "memo":"This is the description of the one time charge.",
+        "amount_in_cents":100
+      }}
+      """
+
+
+  Scenario: Create a charge on a subscription with an amount_in_cents and a memo
+    Given I have 1 subscription
+    And I have this json charge data
+      """
+      {"charge":{
+        "amount_in_cents":100,
+        "memo":"This is the description of the one time charge."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/charges.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"charge":{
+        "success":true,
+        "memo":"This is the description of the one time charge.",
+        "amount_in_cents":100
+      }}
+      """
+
+
+  Scenario: Creating a charge fails when parameters are missing
+    Given I have 1 subscription
+    And I have this json charge data
+      """
+      {"charge":{}}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/charges.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the json:
+      """
+      {"errors":[
+        "Memo: cannot be blank.",
+        "Amount: is not a number."
+      ]}
+      """
+
+
+  Scenario: Creating a charge fails when the card is declined at the gateway
+    Given I have 1 subscription
+    And the subscription's credit card won't charge
+    And I have this json charge data
+      """
+      {"charge":{
+        "amount_in_cents":100,
+        "memo":"This is the description of the one time charge."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/charges.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the json:
+      """
+      {"errors":[
+        "Bogus Gateway: Forced failure (Payment for: This is the description of the one time charge.)"
+      ]}
+      """
+
+
+  Scenario: A '404 Not Found' error is raised when the subscription is not found
+    Given I have 0 subscriptions
+    And I have this json charge data
+      """
+      {"charge":{
+        "amount_in_cents":100,
+        "memo":"This is the description of the one time charge."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/9999/charges.json
+    Then the response status should be "404 Not Found"
+
+
+  Scenario: Creating a charge fails when the subscription is at end-of-life (i.e. canceled)
+    Given I have 1 subscription
+    And the subscription state is canceled
+    And I have this json charge data
+      """
+      {"charge":{
+        "amount_in_cents":100,
+        "memo":"This is the description of the one time charge."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/charges.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the json:
+      """
+      {"errors":[
+        "This subscription is not eligible to accept charges."
+      ]}
+      """
+</code></pre>
+
+h3(#api-usage-xml-charges-create). XML Charge Create Usage Example
+
+<pre><code>
+Feature: Chargify Subscriptions Create XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to add one-off charges to a subscription via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept xml
+
+
+  Scenario: Create a charge on a subscription with an amount and a memo
+    Given I have 1 subscription
+    And I have this xml charge data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <charge>
+        <amount>1.00</amount>
+        <memo>This is the description of the one time charge.</memo>
+      </charge>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/charges.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <charge>
+        <success type="boolean">true</success>
+        <memo>This is the description of the one time charge.</memo>
+        <amount_in_cents type="integer">100</amount_in_cents>
+      </charge>
+      """
+
+
+  Scenario: Create a charge on a subscription with an amount_in_cents and a memo
+    Given I have 1 subscription
+    And I have this xml charge data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <charge>
+        <amount_in_cents type="integer">100</amount_in_cents>
+        <memo>This is the description of the one time charge.</memo>
+      </charge>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/charges.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <charge>
+        <success type="boolean">true</success>
+        <memo>This is the description of the one time charge.</memo>
+        <amount_in_cents type="integer">100</amount_in_cents>
+      </charge>
+      """
+
+
+  Scenario: Creating a charge fails when parameters are missing
+    Given I have 1 subscription
+    And I have this xml charge data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <charge>
+        <memo></memo>
+      </charge>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/charges.xml
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <errors>
+        <error>Memo: cannot be blank.</error>
+        <error>Amount: is not a number.</error>
+      </errors>
+      """
+
+
+  Scenario: Creating a charge fails when the card is declined at the gateway
+    Given I have 1 subscription
+    And the subscription's credit card won't charge
+    And I have this xml charge data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <charge>
+        <amount_in_cents type="integer">100</amount_in_cents>
+        <memo>This is the description of the one time charge.</memo>
+      </charge>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/charges.xml
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <errors>
+        <error>Bogus Gateway: Forced failure (Payment for: This is the description of the one time charge.)</error>
+      </errors>
+      """
+
+
+  Scenario: A '404 Not Found' error is raised when the subscription is not found
+    Given I have 0 subscriptions
+    And I have this xml charge data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <charge>
+        <amount_in_cents type="integer">100</amount_in_cents>
+        <memo>This is the description of the one time charge.</memo>
+      </charge>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/9999/charges.xml
+    Then the response status should be "404 Not Found"
+
+
+  Scenario: Creating a charge fails when the subscription is at end-of-life (i.e. canceled)
+    Given I have 1 subscription
+    And the subscription state is canceled
+    And I have this xml charge data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <charge>
+        <amount_in_cents type="integer">100</amount_in_cents>
+        <memo>This is the description of the one time charge.</memo>
+      </charge>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/charges.xml
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <errors>
+        <error>This subscription is not eligible to accept charges.</error>
+      </errors>
+      """
+</code></pre>

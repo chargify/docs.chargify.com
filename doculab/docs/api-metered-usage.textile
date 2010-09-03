@@ -1,0 +1,194 @@
+h2. URI/Methods
+
+TODO
+
+h2. Input Attributes
+
+The Chargify API allows you to record metered component usage by posting JSON or XML that includes:
+
+* **quantity**: The amount of units used
+* **memo**: An optional description of the usage
+
+h2. Methods
+
+_format_ may be either 'xml' or 'json'.
+
+h3. List Usage
+
+URL: @https://[@subdomain].chargify.com/subscriptions/<subscription_id>/components/<component_id>/usages.json@
+Method: @GET@  
+Required Parameters: @subscription_id@, @component_id@
+Response: A collection of usages
+**Usage Examples:**  
+"XML example":#api-list-usage-xml  
+"JSON example":#api-list-usage-json  
+
+h3. Create Usage
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/components/<component_id>/usages.json@  
+Method: @POST@  
+Required Parameters: XML or JSON data, as specified by the required attributes  
+Response: The created usage log  
+**Usage Examples:**  
+"XML example":#api-usage-xml-create  
+"JSON example":#api-usage-json-create
+
+h3. List Components for a Product Family
+
+URL: @https://[@subdomain].chargify.com/product_families/<product_family_id>/components.xml@
+Method: @GET@  
+Required Parameters: @product_family_id@
+Response: A collection of components
+**Usage Examples:**  
+"XML example":#api-list-comp-xml  
+"JSON example":#api-list-comp-json  
+
+h2. Usage Examples
+
+h3(#api-list-usage-xml). XML List Usage Example
+
+<pre><code>
+Feature: Chargify Metered Component Usage XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to view a list the usages associated with a subscription
+
+  Background:
+    Given I am a valid API user
+    And I send and accept xml
+
+  Scenario: List metered component usages for a subscription
+    Given I have 1 product
+    And the product family has a metered component
+    And I have an active subscription to the first product
+    And the component is associated with the subscription
+    And the component has 2 usages
+    When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/components/[@component.id]/usages.xml
+    Then the response status should be "200 OK"
+    And the response should be a "usages" array with 2 "usage" elements
+</code></pre>
+
+h3(#api-list-usage-json). JSON List Usage Example
+
+<pre><code>
+Feature: Chargify Metered Component Usage JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to view a list the usages associated with a subscription
+
+  Background:
+    Given I am a valid API user
+    And I send and accept json
+
+  Scenario: List metered component usages for a subscription
+    Given I have 1 product
+    And the product family has a metered component
+    And I have an active subscription to the first product
+    And the component is associated with the subscription
+    And the component has 2 usages
+    When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/components/[@component.id]/usages.json
+    Then the response status should be "200 OK"
+    And the response should be a json array with 2 "usage" objects
+</code></pre>
+
+h3(#api-usage-xml-create). XML Create Usage Example
+
+<pre><code>
+Feature: Chargify Metered Component Usage XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to record metered usage for a subscription
+
+  Background:
+    Given I am a valid API user
+    And I send and accept xml
+
+  Scenario: Record metered usage
+    Given I have 1 product
+    And the product family has a metered component
+    And I have an active subscription to the first product
+    And I have this xml usage data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <usage>
+          <quantity>5</quantity>
+          <memo>My Memo</memo>
+        </usage>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/components/[@component.id]/usages.xml
+    Then the response status should be "200 OK"
+    And the response should be the xml:
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <usage>
+          <id>@auto generated@</id>
+          <quantity type="integer">5</quantity>
+          <memo>My Memo</memo>
+        </usage>
+      """    
+    And a usage will have been recorded
+</code></pre>
+
+
+h3(#api-usage-json-create). JSON Create Usage Example
+
+<pre><code>
+Feature: Chargify Metered Component Usage JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to record metered usage for a subscription
+
+  Background:
+    Given I am a valid API user
+    And I send and accept json
+
+  Scenario: Record metered usage
+    Given I have 1 product
+    And the product family has a metered component
+    And I have an active subscription to the first product
+    And I have this json usage data
+      """
+      {
+        "usage":{
+          "quantity":5,
+          "memo":"My memo"
+        }
+      }
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/components/[@component.id]/usages.json
+    Then the response status should be "200 OK"
+    And the response should be the json:
+      """
+      {
+        "usage":{
+          "id":@auto generated@,
+          "quantity":5,
+          "memo":"My memo"
+        }
+      }
+      """
+    And a usage will have been recorded
+</code></pre>
+
+
+h3(#api-list-comp-xml). XML List Components for a Product Family
+
+<pre><code>
+Scenario: List metered components in product family
+  Given I have 1 product
+  And the product family has a metered component
+  When I send a GET request to https://[@subdomain].chargify.com/product_families/[@product_family.id]/components.xml
+  Then the response status should be "200 OK"
+  And the response should be a "components" array with 1 "component" element
+</code></pre>
+
+h3(#api-list-comp-json). JSON List Components for a Product Family
+
+<pre><code>
+Scenario: List metered components in product family
+  Given I have 1 product
+  And the product family has a metered component
+  When I send a GET request to https://[@subdomain].chargify.com/product_families/[@product_family.id]/components.json
+  Then the response status should be "200 OK"
+  And the response should be a json array with 1 "component" object
+</code></pre>

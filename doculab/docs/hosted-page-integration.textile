@@ -1,0 +1,26 @@
+Chargify offers a hosted/white label signup page for all of our customers. The hosted page allows you to integrate with the Chargify platform without having to worry about collecting credit card information or writing custom code yourself. You can point your customers to a unique URL on the Chargify site and we will securely handle subscription signup and payment processing. 
+
+If you need information on configuring the look, feel, and behavior of your Hosted Payment Page, please see "Hosted Page Settings":/hosted-page-settings.
+
+_To use hosted signup pages with the Beanstream gateway, you *must* enable billing address collection from within the "Hosted Page Settings":/hosted-page-settings._
+
+!http://s3.amazonaws.com/entp-tender-production/assets/0a600c477a13047b5aea02209285bb734b7de98a/screenshot_normal.jpg!
+
+Each Product has its own hosted signup page page and unique URL.  You can find the URLs for these pages on your product overview screen, as indicated in the following image:
+
+!http://s3.amazonaws.com/entp-tender-production/assets/cf5517d8793fc367ca82e738b0aac7ad3f14c2a0/hosted-signup-page-link-location_normal.png!
+
+
+h3. Hosted Payment Page signup flow
+
+# Provide your potential Customers with a link to the Hosted page for the Product you would like to offer them
+# The customer fills out their credit card details and other requested or required information (the information collected by the Hosted Payment Form is controlled by the "Product Options":/product-options) and presses the submit button
+## If the customer enters information incorrectly or their credit card is declined, they are notified within the Hosted Payment Page and given a chance to make corrections
+## If the customer enters information correctly and their credit card is accepted (or is not required) then they are redirected either to:
+### a Chargify-hosted receipt page
+### the page identified by the Return URL you provided in the "Product Options":/product-options
+# If you use a Return URL and Return URL parameters, you can capture information about the signup within your Return URL page to change your own application state (however you'll probably want to verify this information via our API to avoid susceptibility to URL-hacking)
+# You can also observe "Post-backs":/post-backs to change your application state based on the signup
+
+
+<!-- TODO: document flow for card updates via hosted pages -->

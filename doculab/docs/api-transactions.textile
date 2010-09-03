@@ -1,0 +1,269 @@
+The Transactions API allows you to view a list of all transactions both for a site and for an individual subscription.
+
+h2. URIs
+
+
+h2. Transaction Types
+
+The following is a list of available transaction types
+
+* @charge@ 
+* @refund@ 
+* @payment@
+* @credit@ 
+* @payment_authorization@ 
+* @info@ 
+* @adjustment@ 
+ 
+h2. Transaction Attributes
+
+All of the transaction attribute fields are returned from GET (read) operations, and all are read only at this time.
+
+* @type@ The type of the transaction, see above
+* @id@ The unique identifier for the Transaction
+* @amount_in_cents@ The amount in cents of the Transaction
+* @created_at@ Timestamp indicating when the Transaction was created
+* @ending_balance_in_cents@ The remaining balance on the subscription after the Transaction has been processed
+* @memo@ A note about the Transaction
+* @subscription_id@ The unique identifier for the associated Subscription
+* @product_id@ The unique identifier for the product associated with the Subscription
+* @success@ Whether or not the Transaction was successful 
+
+h2. Methods
+
+h3. List transactions for a Site
+
+URL: @https://<subdomain>.chargify.com/transactions.<format>@  
+Method: @GET@  
+Optional Parameters (via query string):
+
+* @kinds[]@ An array of transaction types (see above). Multiple values can be passed in the url, for example: @http://example.com?kinds[]=charge&kinds[]=payment&kinds[]=credit@
+* @since_id@ Returns transactions with an id greater than or equal to the one specified
+* @max_id@ Returns transactions with an id less than or equal to the one specified
+* @since_date (format YYYY-MM-DD)@ Returns transactions with a created_at date greater than or equal to the one specified
+* @until_date (format YYYY-MM-DD)@ Returns transactions with a created_at date less than or equal to the one specified
+* @page@ and @per_page@ The page number and number of results used for pagination. By default results are paginated 20 per page.
+
+Response: An array of Transactions  
+
+"XML example":#api-usage-xml-site-list  
+"JSON example":#api-usage-json-site-list
+
+
+h3. List transactions for a Subscription
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/transactions.<format>@  
+Method: @GET@  
+Optional Parameters:
+
+* @kinds[]@ An array of transaction types, see above
+* @since_id@ Returns transactions with an id greater than or equal to the one specified
+* @max_id@ Returns transactions with an id less than or equal to the one specified
+* @since_date (format YYYY-MM-DD)@ Returns transactions with a created_at date greater than or equal to the one specified
+* @until_date (format YYYY-MM-DD)@ Returns transactions with a created_at date less than or equal to the one specified
+* @page@ and @per_page@ The page number and number of results used for pagination. By default results are paginated 20 per page.
+
+Response: An array of Transactions  
+
+"XML example":#api-usage-xml-sub-list  
+"JSON example":#api-usage-json-sub-list
+
+h2. Usage Examples
+
+
+h3(#api-usage-xml-site-list). XML List Transactions for Site Example
+
+<pre><code>
+Feature: Chargify API XML Transactions listing
+  In order integrate an app with Chargify
+  As a developer
+  I want to be able to list my transactions via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept XML
+    And I have 1 product
+    And I have 1 active subscriptions
+
+  Scenario: Retrieve a list of all the account transactions for my site
+    Given I have transactions
+    When I send a GET request to https://[@subdomain].chargify.com/transactions.xml
+    Then the response status should be "200 OK"
+    And the response should be a "transactions" array with 7 "transaction" elements
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <transactions type="array">
+        <transaction>
+          <id type="integer">[@charge.id]</id>
+          <amount_in_cents type="integer">0</amount_in_cents>
+          <created_at type="datetime">[@charge.created_at]</created_at>
+          <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+          <memo>memo</memo>
+          <subscription_id type="integer">[@subscription.id]</subscription_id>
+          <product_id type="integer">[@subscription.product_id]</product_id>
+          <success type="boolean">true</success>
+          <type>Charge</type>
+        </transaction>
+        <transaction>
+          <id type="integer">[@credit.id]</id>
+          <amount_in_cents type="integer">0</amount_in_cents>
+          <created_at type="datetime">[@credit.created_at]</created_at>
+          <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+          <memo></memo>
+          <subscription_id type="integer">[@subscription.id]</subscription_id>
+          <product_id type="integer">[@subscription.product_id]</product_id>
+          <success type="boolean">true</success>
+          <type>Credit</type>
+        </transaction>
+        <transaction>
+          <id type="integer">[@payment.id]</id>
+          <amount_in_cents type="integer">1000</amount_in_cents>
+          <created_at type="datetime">[@payment.created_at]</created_at>
+          <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+          <memo></memo>
+          <subscription_id type="integer">[@subscription.id]</subscription_id>
+          <product_id type="integer">[@subscription.product_id]</product_id>
+          <success type="boolean">true</success>
+          <type>Payment</type>
+        </transaction>
+        <transaction>
+          <id type="integer">[@payment_authorization.id]</id>
+          <amount_in_cents type="integer">0</amount_in_cents>
+          <created_at type="datetime">[@payment_authorization.created_at]</created_at>
+          <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+          <memo></memo>
+          <subscription_id type="integer">[@subscription.id]</subscription_id>
+          <product_id type="integer">[@subscription.product_id]</product_id>
+          <success type="boolean">true</success>
+          <type>PaymentAuthorization</type>
+        </transaction>
+        <transaction>
+          <id type="integer">[@refund.id]</id>
+          <amount_in_cents type="integer">2000</amount_in_cents>
+          <created_at type="datetime">[@refund.created_at]</created_at>
+          <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+          <memo></memo>
+          <subscription_id type="integer">[@subscription.id]</subscription_id>
+          <product_id type="integer">[@subscription.product_id]</product_id>
+          <success type="boolean">true</success>
+          <type>Refund</type>
+        </transaction>
+        <transaction>
+          <id type="integer">[@adjustment.id]</id>
+          <amount_in_cents type="integer">0</amount_in_cents>
+          <created_at type="datetime">[@adjustment.created_at]</created_at>
+          <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+          <memo></memo>
+          <subscription_id type="integer">[@subscription_2.id]</subscription_id>
+          <product_id type="integer">[@subscription.product_id]</product_id>
+          <success type="boolean">true</success>
+          <type>Adjustment</type>
+        </transaction>
+        <transaction>
+          <id type="integer">[@info_transaction.id]</id>
+          <amount_in_cents type="integer">0</amount_in_cents>
+          <created_at type="datetime">[@info_transaction.created_at]</created_at>
+          <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+          <memo></memo>
+          <subscription_id type="integer">[@subscription_2.id]</subscription_id>
+          <product_id type="integer">[@subscription.product_id]</product_id>
+          <success type="boolean">true</success>
+          <type>InfoTransaction</type>
+        </transaction>
+      </transactions>
+      """
+</code></pre>
+
+
+h3(#api-usage-json-site-list). JSON List Transactions for Site Example
+
+<pre><code>
+Scenario: Retrieve a list of all the account transactions for my site
+  Given I have transactions
+  When I send a GET request to https://[@subdomain].chargify.com/transactions.json
+  Then the response status should be "200 OK"
+  And the response should be a json array with 7 "transaction" objects
+</code></pre>
+
+
+h3(#api-usage-xml-sub-list). XML List Transactions for Site Example
+
+<pre><code>
+Scenario: Retrieve a list of all the account transactions for a subscription
+  Given I have transactions
+  When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/transactions.xml
+  Then the response status should be "200 OK"
+  And the response should be a "transactions" array with 5 "transaction" elements
+  And the response should be the xml:
+    """
+    <?xml version="1.0" encoding="UTF-8"?>
+    <transactions type="array">
+      <transaction>
+        <id type="integer">[@charge.id]</id>
+        <amount_in_cents type="integer">0</amount_in_cents>
+        <created_at type="datetime">[@charge.created_at]</created_at>
+        <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+        <memo>memo</memo>
+        <subscription_id type="integer">[@subscription.id]</subscription_id>
+        <product_id type="integer">[@subscription.product_id]</product_id>
+        <success type="boolean">true</success>
+        <type>Charge</type>
+      </transaction>
+      <transaction>
+        <id type="integer">[@credit.id]</id>
+        <amount_in_cents type="integer">0</amount_in_cents>
+        <created_at type="datetime">[@credit.created_at]</created_at>
+        <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+        <memo></memo>
+        <subscription_id type="integer">[@subscription.id]</subscription_id>
+        <product_id type="integer">[@subscription.product_id]</product_id>
+        <success type="boolean">true</success>
+        <type>Credit</type>
+      </transaction>
+      <transaction>
+        <id type="integer">[@payment.id]</id>
+        <amount_in_cents type="integer">1000</amount_in_cents>
+        <created_at type="datetime">[@payment.created_at]</created_at>
+        <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+        <memo></memo>
+        <subscription_id type="integer">[@subscription.id]</subscription_id>
+        <product_id type="integer">[@subscription.product_id]</product_id>
+        <success type="boolean">true</success>
+        <type>Payment</type>
+      </transaction>
+      <transaction>
+        <id type="integer">[@payment_authorization.id]</id>
+        <amount_in_cents type="integer">0</amount_in_cents>
+        <created_at type="datetime">[@payment_authorization.created_at]</created_at>
+        <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+        <memo></memo>
+        <subscription_id type="integer">[@subscription.id]</subscription_id>
+        <product_id type="integer">[@subscription.product_id]</product_id>
+        <success type="boolean">true</success>
+        <type>PaymentAuthorization</type>
+      </transaction>
+      <transaction>
+        <id type="integer">[@refund.id]</id>
+        <amount_in_cents type="integer">2000</amount_in_cents>
+        <created_at type="datetime">[@refund.created_at]</created_at>
+        <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+        <memo></memo>
+        <subscription_id type="integer">[@subscription.id]</subscription_id>
+        <product_id type="integer">[@subscription.product_id]</product_id>
+        <success type="boolean">true</success>
+        <type>Refund</type>
+      </transaction>
+    </transactions>
+    """
+</code></pre>
+
+h3(#api-usage-json-sub-list). JSON List Transactions for Site Example
+
+<pre><code>
+Scenario: Retrieve a list of all the account transactions for a subscription
+  Given I have transactions
+  When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/transactions.json
+  Then the response status should be "200 OK"
+  And the response should be a json array with 5 "transaction" objects
+</code></pre>
