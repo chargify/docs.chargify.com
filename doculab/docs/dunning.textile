@@ -1,6 +1,16 @@
-Dunning is the process of how you communicate with your customers in regards to failed credit card transactions and expiring credit cards. Chargify gives you the ability to customize these communications.
+Dunning is the process of how you handle past due accounts.  It involves communicating with your customers in response to failed credit card transactions. Chargify gives you the ability to customize these communications.
 
-h3. Customizing your dunning notifications
+h2. Selecting your dunning plan
+
+!/images/doculab/dunning-plans-settings.png!
+
+Chargify can send your customers dunning emails on your behalf if you check the appropriate box within the "Dunning Plans" section of the "Settings" page.  These emails will be sent according to the dunning plan you select.
+
+Unless you customize your dunning notifications (see below), these emails will include a link to a Chargify-hosted page that allows the customer to update the card on file.
+
+Even if you do not want Chargify to manage your dunning, *you'll still need to select both your dunning plan and whether or not you want dunning emails sent to your customers*.  Currently, even if you haven't configured Chargify to send dunning emails on your behalf, we will still respect the "Cancel" action initiated by your selected dunning settings.  In other words, if the dunning plan selected automatically cancels a Subscription 21 days after it transitions to @past_due@ state, we will set the Subscription to @canceled@ state.  So, if you want to manage dunning yourself, you should select the "Never Cancel" strategy and uncheck the appropriate box that instructs us to send emails on your behalf.  Then, you'll want to key off of the @past_due@ state within your own app as to when to start dunning.  If you cancel the subscription yourself, the dunning process will discontinue.
+
+h2. Customizing your dunning notifications
 
 !http://s3.amazonaws.com/entp-tender-production/assets/3ce704345790fdb44ebe1adf78d7e6afbbcf744d/Dock_normal.jpg!
 
