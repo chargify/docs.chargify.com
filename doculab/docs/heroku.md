@@ -9,7 +9,7 @@ Chargify simplifies recurring billing for Web 2.0 and SaaS companies. With Charg
 
 Deploying to Heroku
 -------------------
-To use Chargify on Heroku, install the (add-on) add-on:
+To use Chargify on Heroku, install the Chargify add-on:
 
     $ heroku addons:add chargify
 

@@ -21,9 +21,11 @@ URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/migration
 Method: @POST@  
 Required Parameters: product_id or product_handle 
 Response: The updated subscription  
-**Usage Examples:**  
-"XML example":#api-migrations-xml-create  
-"JSON example":#api-migrations-json-create  
+**Usage Examples:**
+"XML example":#api-migrations-xml-create
+"XML example, with trial":#api-migrations-xml-create-with-trial
+"JSON example":#api-migrations-json-create
+"JSON example, with trial":#api-migrations-json-create-with-trial
 
 h2. Usage Examples
 
@@ -45,8 +47,10 @@ Feature: Chargify Migrations Create XML API
     And I have this xml subscription data
       """
         <?xml version="1.0" encoding="UTF-8"?>
-        <product_id>[@products.last.id]</product_id>
-      """          
+        <migration>
+          <product_id>[@products.last.id]</product_id>
+        </migration>
+      """
     When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/migrations.xml
     Then the response status should be "200 OK"
     And the response should be the xml:
@@ -104,6 +108,35 @@ Feature: Chargify Migrations Create XML API
       """
 </code></pre>
 
+h3(#api-migrations-xml-create-with-trial). XML Create Migration Example, with trial
+
+<pre><code>
+Feature: Chargify Migrations Create XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to migrate a subscription to a new product via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept xml
+
+  Scenario: Migrate a subscription successfully with a trial
+    Given I have 2 products
+    And I have an active subscription to the first product
+    And the second product has a trial
+    And I have this xml subscription data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <migration>
+          <product_id>[@products.last.id]</product_id>
+          <include_trial>1</include_trial>
+        </migration>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/migrations.xml?product_id=[@products.last.id]
+    Then the response status should be "200 OK"
+    And the subscription should be trialing
+</code></pre>
+
 
 h3(#api-migrations-json-create). JSON Create Migration Example
 
@@ -122,7 +155,9 @@ Feature: Chargify Migrations Create JSON API
     And I have an active subscription to the first product
     And I have this json subscription data
       """
-      {"product_id": [@products.last.id]}
+       {"migration":{
+         "product_id": [@products.last.id]
+       }}
       """
     When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/migrations.json
     Then the response status should be "200 OK"
@@ -178,4 +213,33 @@ Feature: Chargify Migrations Create JSON API
         }
       }}
       """
+</code></pre>
+
+h3(#api-migrations-json-create-with-trial). JSON Create Migration Example, with trial
+
+<pre><code>
+Feature: Chargify Migrations Create JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to migrate a subscription to a new product via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept json
+
+  Scenario: Migrate a subscription successfully with a trial
+    Given I have 2 products
+    And I have an active subscription to the first product
+    And the second product has a trial
+    And I have this json subscription data
+      """
+      {"migration":{
+        "product_id": [@products.last.id],
+        "include_trial": 1
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/migrations.json
+    Then the response status should be "200 OK"
+    And the subscription should be trialing
+    And the response should be the json:
 </code></pre>
