@@ -6,22 +6,28 @@ p(note). Components that are "used" on a Subscription have their *charges billed
 
 h2. Types of Components
 
-* Quantity-based: used when a Subscription is provisioned with a certain quantity of an item, and charges are calculated based on that quantity.  These components also give the ability to use different pricing schemes, such as per-unit, volume, tiered, and stairstep
-* Metered-usage: used when a Subscription is assessed an amount based on the quantity used in any given period; the quantity resets to 0 at the beginning of each period
-* On/Off Components: used to elect upgrade options where electing the option results in an extra charge
+h3. Quantity-based
 
-h3. Use-case examples for Quantity-based Components
+This component type would be used when a Subscription is provisioned with a certain quantity of an item, and charges are calculated based on that quantity.  These components also give the ability to use different pricing schemes, such as per-unit, volume, tiered, and stairstep. Some examples:
 
 * A Project Management tool allows you to purchase the ability to manage extra projects at $10 per month per project
+* A hosting company that allows you to purchase additional IP addresses at $1 each per month
+* Software seats that cost $100/each when you buy 1-5, $90/each when you buy 6-10, etc.
 
-h3. Use-case examples for Metered Components
+
+h3. Metered-usage
+
+This component type would be used when a Subscription is assessed an amount based on the quantity used in any given period; the quantity resets to 0 at the beginning of each period. Some examples:
 
 * An email gateway provides 1000 credits per period, but allows you to send over your credit limit at a cost of $0.10 per email per period
-* A hosting company charges for hours of compute time at a certain cost per hour
+* A hosting company that charges for hours of compute time at a certain cost per hour
 
-h3. Use-case examples for On/Off Components
+h3. On/Off
+
+This component type is used to elect "add-on" options where electing the option results in an extra charge. Some examples:
 
 * A web app offers an SSL connection upgrade at $5/month
+
 
 h2. Configuring Components available for Product Families
 
