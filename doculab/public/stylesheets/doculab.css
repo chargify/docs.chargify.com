@@ -46,6 +46,10 @@
 #docupage pre                         {padding: 20px; margin: 1.5em 0; overflow:auto;}
 #docupage code                        {padding: 0 2px;}
 
+#docupage .note, #docupage .warning   {border: 3px solid #000;-moz-border-radius: 5px;border-radius: 5px;padding: 15px 15px 15px 70px;background: transparent url() 15px 15px no-repeat;}
+#docupage .note                       {background-color: #ffffcc;border-color: #fad190;background-image: url("/images/doculab/icons/note.png");}
+#docupage .warning                    {background-color: #fce3e3;border-color: #990000;background-image: url("/images/doculab/icons/warning.png");}
+
 #docupage #breadcrumbs p              { margin: 0 0 35px 0; font-size: 16px; line-height: 28px;}
 
 #page_navigation                      {border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; margin: 28px 0 0 0; padding: 14px 0; list-style: none; overflow: auto;}

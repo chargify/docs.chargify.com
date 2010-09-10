@@ -2,39 +2,39 @@ Components allow you to introduce additional "line items" to your Products that 
 
 Components are defined at the Product Family level, and are therefore available to all Products within the Family.
 
-Components that are "used" on a Subscription have their *charges billed at the end of the period* (which coincides with the start of the next period, which is when recurring charges are alos billed).  See "Setting Component Allocations":/setting-component-allocations for more.
+p(note). Components that are "used" on a Subscription have their *charges billed at the end of the period* (which coincides with the start of the next period, which is when recurring charges are also billed).  See "Setting Component Allocations":/setting-component-allocations for more.
 
-We currently support the following types of Components:
+h2. Types of Components
 
 * Quantity-based: used when a Subscription is provisioned with a certain quantity of an item, and charges are calculated based on that quantity.  These components also give the ability to use different pricing schemes, such as per-unit, volume, tiered, and stairstep
 * Metered-usage: used when a Subscription is assessed an amount based on the quantity used in any given period; the quantity resets to 0 at the beginning of each period
 * On/Off Components: used to elect upgrade options where electing the option results in an extra charge
 
-h4. Use-case examples for Quantity-based Components
+h3. Use-case examples for Quantity-based Components
 
 * A Project Management tool allows you to purchase the ability to manage extra projects at $10 per month per project
 
-h4. Use-case examples for Metered Components
+h3. Use-case examples for Metered Components
 
 * An email gateway provides 1000 credits per period, but allows you to send over your credit limit at a cost of $0.10 per email per period
 * A hosting company charges for hours of compute time at a certain cost per hour
 
-h4. Use-case examples for On/Off Components
+h3. Use-case examples for On/Off Components
 
 * A web app offers an SSL connection upgrade at $5/month
 
-h3. Configuring Components available for Product Families
+h2. Configuring Components available for Product Families
 
 <!-- TODO: insert a screenshot of defining products -->
 
 Components are added to Product Families from the "Products" tab of a Site.  Creation is fairly self-explanatory with helpful embedded documentation.
 
-NOTE: Configuring components is not currently available from within the API at the time of this writing.
+p(warning). Configuring components is not currently available from within the API at the time of this writing.
 
-h3. Setting Component allocations on Subscriptions
+h2. Setting Component allocations on Subscriptions
 
 Once a Component has been defined for a Product Family, any Subscription to a Product within that Family may have usage or allocation data reported in order to assess charges for them at the end of the period.
 
 For more information, please see "Setting Component Allocations":/setting-component-allocations.
 
-NOTE: At the time of this writing, setting Component allocations can only be done from the API.  Unfortunately, this feature is not yet within the UI or Hosted Pages, but it is something we are working towards.
+p(warning). At the time of this writing, setting Component allocations can only be done from the API.  Unfortunately, this feature is not yet within the UI or Hosted Pages, but it is something we are working towards.
