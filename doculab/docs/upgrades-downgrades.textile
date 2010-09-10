@@ -24,4 +24,4 @@ You will see a success message upon completion of the upgrade or downgrade. Chec
 
 Upgrades/Downgrades can also be initiated through API; see "API Migrations":/api-migrations
 
-If you'd like to change products without proration, you can use the pre-existing Edit Subscription functionality. Changes made using this method will bypass prorations.
+The "Upgrade/Downgrade" page also provides a way to just change the subscribed Product without effecting any proration.

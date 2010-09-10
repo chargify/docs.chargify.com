@@ -2,6 +2,8 @@ Components allow you to introduce additional "line items" to your Products that 
 
 Components are defined at the Product Family level, and are therefore available to all Products within the Family.
 
+Components that are "used" on a Subscription have their *charges billed at the end of the period* (which coincides with the start of the next period, which is when recurring charges are alos billed).  See "Setting Component Allocations":/setting-component-allocations for more.
+
 We currently support the following types of Components:
 
 * Quantity-based: used when a Subscription is provisioned with a certain quantity of an item, and charges are calculated based on that quantity.  These components also give the ability to use different pricing schemes, such as per-unit, volume, tiered, and stairstep
