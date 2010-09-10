@@ -48,10 +48,14 @@ Doculab::TableOfContents.define do
     page "Users"
   end
   
-  section "Chargify API" do
-    page "API: Introduction"
-    page "API: Authentication"
-    page "API: Resources"
+  section "Chargify API Basics" do
+    page "API Introduction"
+    page "API Authentication"
+    page "API Resources"
+    page "API Code Samples & Libraries", :permalink => "api-code"
+  end
+  
+  section "Chargify API Resources" do
     page "API: Products"
     page "API: Coupons"
     page "API: Customers"

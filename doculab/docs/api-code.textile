@@ -1,0 +1,38 @@
+The following sample code has been contributed by our community of developers to help you get started with Chargify faster. The code they've given back to everyone represents a lot of time & work that you can benefit from as you implement Chargify with your app!
+
+If you have usage examples or code libraries in other languages, please let us know.
+
+Please note that these samples were graciously given to us by our users, so we don't offer official support for them. Of course, we help where we can, but our internal knowledge is Ruby. Most of the people who made the code are happy to help, and some of them can easily be reached on Twitter.
+
+h2. PHP
+
+* "http://github.com/abraham/chargify":http://github.com/abraham/chargify Sample PHP app by Abraham Williams. "http://abrah.am":http://abrah.am, "@abraham":http://twitter.com/abraham
+* "http://github.com/jforrest/Chargify-PHP-Client":http://github.com/jforrest/Chargify-PHP-Client: A PHP API wrapper from Jason at RigBooks
+* "http://github.com/lewsid/chargify_api_php":http://github.com/lewsid/chargify_api_php: A PHP API wrapper by one of our active beta testers.
+* "http://chargeigniter.com":http://chargeigniter.com: CodeIgniter PHP code by Kyle Anderson
+
+h2. Ruby/Rails
+
+* "http://github.com/grasshopperlabs/chargify_api_ares":http://github.com/grasshopperlabs/chargify_api_ares: This is the "official" gem by the Chargify team.  It uses ActiveResource, which is built into Rails, and is a good option for easy integration.
+
+* "http://github.com/pengwynn/chargify":http://github.com/pengwynn/chargify: This is a Chargify gem that uses HTTParty. It was created by "@pengwynn":http://twitter.com/pengwynn, who is one of our active beta testers. It has tests by using a Chargify "mock".
+
+* "http://github.com/jsmestad/chargify":http://github.com/jsmestad/chargify: This is a Chargify gem by "@jsmestad":http://twitter.com/jsmestad, another of our active users.
+
+h2. Python / Django
+
+* "http://github.com/gdoermann/django-chargify":http://github.com/gdoermann/django-chargify: A Django wrapper for Chargify by "@gdoermann":http://twitter.com/gdoermann
+* "http://github.com/getyouridx/pychargify":http://github.com/getyouridx/pychargify: A Python API wrapper by one of our active beta testers.
+* "http://github.com/hindsightlabs/chargify-python":http://github.com/hindsightlabs/chargify-python: A simple Python API wrapper.
+
+h2. .Net
+
+* "http://chargify.codeplex.com":http://chargify.codeplex.com: A .Net API wrapper and complete sample app by one of our active beta testers (Kori Francis, "@Djbyter":http://twitter.com/Djbyter)
+
+h2. ColdFusion
+
+* "http://github.com/dustMason/Chargify-API-Coldfusion-Component":http://github.com/dustMason/Chargify-API-Coldfusion-Component: A simple ColdFusion cfc by Jordan Sitkin ("@specifyApp":http://twitter.com/specifyApp). He says (as of Aug 23, 2010): "At the moment it only includes the basic functionality of the Customers and Subscriptions parts of the API, but can easily be extended to handle the rest."
+
+h2. Java / Scala
+
+* "http://github.com/IntroSpectrum/chargify-scala":http://github.com/IntroSpectrum/chargify-scala: A Scala API wrapper by one of our active beta testers.
