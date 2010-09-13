@@ -10,8 +10,9 @@ Each Product has its own hosted signup page page and unique URL.  You can find t
 
 !http://s3.amazonaws.com/entp-tender-production/assets/cf5517d8793fc367ca82e738b0aac7ad3f14c2a0/hosted-signup-page-link-location_normal.png!
 
+For more information on the full set of URLs available, see "Hosted Page URLs":#hosted-page-urls, below.
 
-h3. Hosted Payment Page signup flow
+h2. Hosted Payment Page signup flow
 
 # Provide your potential Customers with a link to the Hosted page for the Product you would like to offer them
 # The customer fills out their credit card details and other requested or required information (the information collected by the Hosted Payment Form is controlled by the "Product Options":/product-options) and presses the submit button
@@ -24,3 +25,83 @@ h3. Hosted Payment Page signup flow
 
 
 <!-- TODO: document flow for card updates via hosted pages -->
+
+h2(#hosted-page-urls). Hosted Page URLs
+
+If you choose to use the Chargify-hosted pages, you can programmatically generate some of the URLs for the pages so that you may easily embed the links within your own site or emails.
+
+The pages that are (or will be) accessible via generated URLs are as follows:
+
+|_. Page          |_. Shortname     |_. Resource    |_. URI |
+| Signup          | Coming soon...  | Product       | (can be obtained from UI, as described above) |
+| Update Payment  | update_payment  | Subscription  | @/update_payment/[subscription.id]/[token]@ |
+
+h4. Obtaining your Shared Key
+
+A Shared Key, that is known only to you and Chargify, is used to generate and validate the hosted page URLs.  This allows you to create URLs that are "unguessable".  However, anyone with the URL will be able to visit the page.  If you require a stronger authorization scheme, you should not distribute URLs for the hosted pages, and instead use our API to integrate your app with Chargify.
+
+Every Chargify Site has a unique Shared Key.  You may obtain your key by visiting the "Settings" tab for the Site in which your are interested:
+
+!http://s3.amazonaws.com/entp-tender-production/assets/be063a896189b9fd3aa52991ff6e56db6e759eb8/_Chargify__Acme__Inc.___Your_Sites_normal.png!
+  
+The Shared Key is shown in the section titled "Hosted Page URLs":
+
+!http://s3.amazonaws.com/entp-tender-production/assets/aa9f8e29e9f196278673f342c1e5c3ff303621e6/_Chargify__Acme__Inc.___My_Site___Settings_normal.png!
+
+
+h4. Generating Tokens
+
+URLs are constructed, and later verified, via a secret token.  This token is the first 10 characters of the "SHA-1":http://en.wikipedia.org/wiki/SHA-1 hex digest of a specially constructed message.  In pseudo-code:
+
+<pre><code>token = SHA1(message)[0..9]
+</code></pre>
+    
+The message is a concatenation of the page "shortname", the resource's ID, and the Site's Shared Key. The message parts are joined using double dashes (--). Consider the Update Payment page for a subscription with ID '77' and a Shared Key of '1234':
+
+<pre><code>message = "update_payment--77--1234"
+</code></pre>
+
+Putting it all together:
+
+<pre><code>token = SHA1("update_payment--77--1234")[0..9]
+# => b59a09cc72
+</code></pre>
+
+
+h3. Generating URLs
+
+URLs follow the pattern:
+
+<pre><code>https://[subdomain].chargify.com/[shortname]/[id]/[token]
+</code></pre>
+
+So, a full URL for the Update Payment page on the `acme` subdomain, using the values from the earlier example, would be:
+
+<pre><code>https://acme.chargify.com/update_payment/77/b59a09cc72
+</code></pre>
+
+h4. Resource IDs
+
+The required value for [id] in the URL is available via the `id` parameter in a response from our API.  This ID is a unique value assigned to resources by Chargify.
+
+h4. Token Length
+
+You may pass a token that is longer than 10 characters; however, we only verify that the first 10 characters of your token match the expected token.
+
+h4. Pretty IDs
+
+You may pass more information in the [id] parameter, as long as that information is proceeded by a dash (-).  For example, the following two URLs access the same payment update page:
+
+<pre><code>
+https://acme.chargify.com/update_payment/77/b59a09cc72
+https://acme.chargify.com/update_payment/77-john-doe/b59a09cc72
+</code></pre>
+
+In this example, we're adding the customers name to the subscription ID, making it more "personal".  Just make sure that anything you add to the URL is in fact composed of URL-safe characters.
+
+h4. URL Validity
+
+A "404 Not Found" response will be returned if the URL is not valid.  Invalid URLs can result from either of the following:
+
+* The resource ID does not identify a valid resource for the given Site
+* The token does not match the expected token for the page shortname and ID
