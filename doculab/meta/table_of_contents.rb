@@ -41,6 +41,7 @@ Doculab::TableOfContents.define do
     page "API Integration"
     page "Post-backs"
     page "Testing"
+    page "Exporting Data"
   end
   
   section "Your Account" do
