@@ -10,16 +10,24 @@ h3. Quantity-based
 
 This component type would be used when a Subscription is provisioned with a certain quantity of an item, and charges are calculated based on that quantity (i.e. "per-seat").  These components also give the ability to use different pricing schemes, such as per-unit, volume, tiered, and stairstep. Some examples:
 
-* A Project Management tool allows you to purchase the ability to manage extra projects at $10 per month per project
-* A hosting company that allows you to purchase additional IP addresses at $1 each per month
+* IP Addresses - say your basic service offers 1 custom IP address for free, and extras can be purchased for $1 each
+* Extra Projects - say your project management service allows users to purchase extra "projects" a la carte for $5/each/month.
 * Software seats that cost $100/each when you buy 1-5, $90/each when you buy 6-10, etc.
+* Charge flat fees based on a number of customers (like how Chargify works):
+** 0-50 customers = $0
+** 51-500 = $49
+** etc
 
 Each "widget" that you've reported to us as being in use is assumed to remain in use by that Customer until some future change.  In other words, the quantity allocated does NOT reset to 0 at the end of the billing period.  In contrast, Metered-usage component usages DO reset to 0 at the end of the period.
 
 
 h3. Metered-usage
 
-This component type would be used when a Subscription is assessed an amount based on the quantity used in any given period; the quantity resets to 0 at the beginning of each period. Some examples:
+For Metered Components, you tell us every time one of your Customers uses some unit or units of your "widgets". At the end of the billing period, Chargify will bill your customer for the total number of widgets used, and then we will reset the widget count to zero and the whole process starts over for the new billing period.
+
+Note that this is different from Quantity-based components, which DO NOT reset to zero at the start of every billing period. If you want to bill for a quantity of something that does not change unless you change it, then you want Quantity Components, instead.
+
+Some examples:
 
 * An email gateway provides 1000 credits per period, but allows you to send over your credit limit at a cost of $0.10 per email per period
 * A hosting company that charges for hours of compute time at a certain cost per hour
@@ -31,21 +39,22 @@ This component type is used to elect "add-on" options where electing the option 
 * A web app offers an SSL connection upgrade at $5/month
 
 
-h2. Configuring Components available for Product Families
+h2. Creating/Configuring Components available for Product Families
 
 p(warning). Configuring components is only available from the UI (no in the API) at the time of this writing.
 
-Components are defined on the Product Family level, and are available to all Products within the Family.
-
-To create a Quantity Component for your Chargify Site, start on the "Products" tab and click "Create a Component".
+Components are defined on the Product Family level, and are available to all Products within the Family.  To create any Component for a Product Family, start on the "Products" tab and click "Create a Component".
 
 !http://s3.amazonaws.com/entp-tender-production/assets/06cfb932c2d3510250dcfb93cd56f5549686e27f/_Chargify__Acme__Inc.___My_Site___Products_normal.png!
 
-Next, you'll be able to choose what type of component to create.  Choose "Quantity Based Component".
+Next, you'll be able to choose what type of component to create.
 
 !http://s3.amazonaws.com/entp-tender-production/assets/b112974686fe10aa2baf7ef03f5e73660f04d56f/_Chargify__Acme__Inc.___My_Site___New_Component_normal.png!
 
-Finally, define your Quantity Component using the form.
+
+h3. Creating Quantity-based Components
+
+Choose to create a "Quantity Based Component" and define it using the form.
 
 !http://s3.amazonaws.com/entp-tender-production/assets/3cd793004f7796295b38fdbcb07a3c6aa54306da/_Chargify__Acme__Inc.___My_Site___New_Quantity_Based_Component_3_normal.png!
 
@@ -53,20 +62,36 @@ Quantity Components support 4 "pricing schemes" via a dropdown select on this fo
 
 !http://s3.amazonaws.com/entp-tender-production/assets/33d3404d8c3facd6fe2f8088a0381a92f8e887f5/price_brackets_normal.png!
 
-h3. General Price Bracket Rules
+h4. General Price Bracket Rules
 
 * No Overlap: Brackets may not overlap in quantity
 * No Gaps: Gaps in quantity are not allowed; however the lowest bracket need not start at 1
 * *Defining Infinity:* One bracket with a blank "ending quantity" is allowed - a blank value here indicates an unbounded quantity (&infin;)
 * Per-Unit or Per-Bracket: Prices should be given as "per unit" for per-unit, tiered, and volume pricing schemes. Prices for the stairstep pricing scheme are given as a cost for the entire bracket.
 
-h3. Per-unit Pricing Scheme
+h4. Per-unit Pricing Scheme
 
 In a per-unit pricing scheme, prices are defined as per-unit costs, and all units cost the same.  Thus, only 1 price bracket may be defined.  If you define a component for "IP Addresses" that cost $1/each/period and a customer buys 3, then a $3 charge would be added at the end of the period.
 
-h3. Tiered Pricing Scheme
+h4. Tiered Pricing Scheme
 
 In the tiered pricing scheme, multiple price brackets define the prices at different quantity levels.  Prices are given on a per-unit basis.  Your customers will pay the defined price per unit for each allocated unit.  An example can illustrate this the best.  Say you allow your customers to purchase extra widgets to augment their monthly plan.  The pricing structure is defined as follows:
+
+h3. Creating Metered Components
+
+Choose to create a "Metered Component" and define it using the form.
+
+A Metered Component consists of 3 pieces of information:
+
+* **Name**: The name of the Component. i.e. Text Messages
+* **Unit Name**: The name of the unit that the component's usage is measured in. i.e. message
+* **Price Per Unit**: The amount the customer will be charged per unit
+
+!http://s3.amazonaws.com/entp-tender-production/assets/94e682e39425c4bb9266872465749c443251dfa1/metered_form_normal.jpg!
+
+Once you have created a Metered Component, it will appear under the Product Family on the Products tab. You can make changes to the component by clicking the 'Edit Component' link.
+
+!http://s3.amazonaws.com/entp-tender-production/assets/935dc96e5323745369be443fb3270adcd4dd5909/metered_index_normal.jpg!
 
 
 h2. Setting Component allocations on Subscriptions
