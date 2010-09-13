@@ -22,3 +22,5 @@ Some of the basic parameters of a Product are:
 * *Accounting Code*
 * "*Product Options*":/product-options such as Return URL and Parameters, API handle, Credit Card requirements, and Address requirements
 * "*Product Pricing*":/product-pricing allows you to set the recurring interval, recurring price, trial period, trial price, initial fees, and expiration intervals
+
+p(note). *Why do we call them "Products", and not "Plans"?** Chargify makes it easy to sell other things that are not plan-based, such as Sponsorships.  Often, these things might belong to separate Product Families along side your normal recurring service offerings.  "Plans" just seemed too restrictive.  Just think of it this way: If your customers can pay for it, its a Product.  If they can upgrade/downgrade to another Product, then those Products are part of the same Product Family.*
