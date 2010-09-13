@@ -8,7 +8,7 @@ h2. Types of Components
 
 h3. Quantity-based
 
-This component type would be used when a Subscription is provisioned with a certain quantity of an item, and charges are calculated based on that quantity.  These components also give the ability to use different pricing schemes, such as per-unit, volume, tiered, and stairstep. Some examples:
+This component type would be used when a Subscription is provisioned with a certain quantity of an item, and charges are calculated based on that quantity (i.e. "per-seat").  These components also give the ability to use different pricing schemes, such as per-unit, volume, tiered, and stairstep. Some examples:
 
 * A Project Management tool allows you to purchase the ability to manage extra projects at $10 per month per project
 * A hosting company that allows you to purchase additional IP addresses at $1 each per month
