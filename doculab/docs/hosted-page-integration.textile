@@ -2,7 +2,9 @@ Chargify offers a hosted/white label signup page for all of our customers. The h
 
 If you need information on configuring the look, feel, and behavior of your Hosted Payment Page, please see "Hosted Page Settings":/hosted-page-settings.
 
-_To use hosted signup pages with the Beanstream gateway, you *must* enable billing address collection from within the "Hosted Page Settings":/hosted-page-settings._
+p(note). Components are not currently included in our Hosted Signup Pages. If you want to use any "Components":/product-components in your product/pricing structure, then you will need to create web pages to interact with your customers and use the Chargify API.
+
+p(warning). To use hosted signup pages with the Beanstream gateway, you *must* enable billing address collection from within the "Hosted Page Settings":/hosted-page-settings.
 
 !http://s3.amazonaws.com/entp-tender-production/assets/0a600c477a13047b5aea02209285bb734b7de98a/screenshot_normal.jpg!
 
