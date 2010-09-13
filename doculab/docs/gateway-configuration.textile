@@ -38,5 +38,3 @@ Click "Use this Gateway" next to the name of your gateway provider. Some provide
 Finally, enter your gateway credentials. All fields are required. The credentials requested for your gateway should be provided by your gateway, either via email or in their administrative interface. Be sure that you are entering your test credentials for a test site or live credentials for a production site.
 
 !http://s3.amazonaws.com/entp-tender-production/assets/0f8c24d5fae5529f40d9a1e0bd1abfaa246d9524/set_gateway_credentials_normal.png!
-
-Find out more about Chargify's "gateway requirements":http://support.chargify.com/faqs/billing-payment/payment-gateway-requirements.

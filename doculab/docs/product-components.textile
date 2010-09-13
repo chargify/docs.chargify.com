@@ -14,6 +14,8 @@ This component type would be used when a Subscription is provisioned with a cert
 * A hosting company that allows you to purchase additional IP addresses at $1 each per month
 * Software seats that cost $100/each when you buy 1-5, $90/each when you buy 6-10, etc.
 
+Each "widget" that you've reported to us as being in use is assumed to remain in use by that Customer until some future change.  In other words, the quantity allocated does NOT reset to 0 at the end of the billing period.  In contrast, Metered-usage component usages DO reset to 0 at the end of the period.
+
 
 h3. Metered-usage
 
@@ -31,11 +33,41 @@ This component type is used to elect "add-on" options where electing the option 
 
 h2. Configuring Components available for Product Families
 
-<!-- TODO: insert a screenshot of defining products -->
+p(warning). Configuring components is only available from the UI (no in the API) at the time of this writing.
 
-Components are added to Product Families from the "Products" tab of a Site.  Creation is fairly self-explanatory with helpful embedded documentation.
+Components are defined on the Product Family level, and are available to all Products within the Family.
 
-p(warning). Configuring components is not currently available from within the API at the time of this writing.
+To create a Quantity Component for your Chargify Site, start on the "Products" tab and click "Create a Component".
+
+!http://s3.amazonaws.com/entp-tender-production/assets/06cfb932c2d3510250dcfb93cd56f5549686e27f/_Chargify__Acme__Inc.___My_Site___Products_normal.png!
+
+Next, you'll be able to choose what type of component to create.  Choose "Quantity Based Component".
+
+!http://s3.amazonaws.com/entp-tender-production/assets/b112974686fe10aa2baf7ef03f5e73660f04d56f/_Chargify__Acme__Inc.___My_Site___New_Component_normal.png!
+
+Finally, define your Quantity Component using the form.
+
+!http://s3.amazonaws.com/entp-tender-production/assets/3cd793004f7796295b38fdbcb07a3c6aa54306da/_Chargify__Acme__Inc.___My_Site___New_Quantity_Based_Component_3_normal.png!
+
+Quantity Components support 4 "pricing schemes" via a dropdown select on this form: per-unit, volume, tiered, and stairstep.  The latter 3 schemes (volume, tiered, and stairstep) allow you to define multiple price brackets (or "steps"), so you can charge different amounts depending on the quantity allocated.
+
+!http://s3.amazonaws.com/entp-tender-production/assets/33d3404d8c3facd6fe2f8088a0381a92f8e887f5/price_brackets_normal.png!
+
+h3. General Price Bracket Rules
+
+* No Overlap: Brackets may not overlap in quantity
+* No Gaps: Gaps in quantity are not allowed; however the lowest bracket need not start at 1
+* *Defining Infinity:* One bracket with a blank "ending quantity" is allowed - a blank value here indicates an unbounded quantity (&infin;)
+* Per-Unit or Per-Bracket: Prices should be given as "per unit" for per-unit, tiered, and volume pricing schemes. Prices for the stairstep pricing scheme are given as a cost for the entire bracket.
+
+h3. Per-unit Pricing Scheme
+
+In a per-unit pricing scheme, prices are defined as per-unit costs, and all units cost the same.  Thus, only 1 price bracket may be defined.  If you define a component for "IP Addresses" that cost $1/each/period and a customer buys 3, then a $3 charge would be added at the end of the period.
+
+h3. Tiered Pricing Scheme
+
+In the tiered pricing scheme, multiple price brackets define the prices at different quantity levels.  Prices are given on a per-unit basis.  Your customers will pay the defined price per unit for each allocated unit.  An example can illustrate this the best.  Say you allow your customers to purchase extra widgets to augment their monthly plan.  The pricing structure is defined as follows:
+
 
 h2. Setting Component allocations on Subscriptions
 
