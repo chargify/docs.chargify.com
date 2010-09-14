@@ -4,6 +4,8 @@ h3. 1. Create/configure a Site and configure a gateway
 * "Site settings":/settings
 * "Gateway Configuration":/gateway-configuration
 
+p(note). If you need an introduction to the purpose and function of Gateways and Merchant Accounts, or need help obtaining one, please see our "FAQ on Basic Payment Gateway Requirements":http://support.chargify.com/faqs/getting-started/payment-gateway-requirements
+
 h3. 2. Configure your Products
 
 * "Products Intro":/products-intro

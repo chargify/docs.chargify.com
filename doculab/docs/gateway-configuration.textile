@@ -1,3 +1,5 @@
+p(note). If you need an introduction to the purpose and function of Gateways and Merchant Accounts, or need help obtaining one, please see our "FAQ on Basic Payment Gateway Requirements":http://support.chargify.com/faqs/getting-started/payment-gateway-requirements
+
 By default, your Site will be set to use the Chargify Test Gateway.  The Test Gateway is great for playing around, but in order to test your integration with a sandbox gateway, or to sell subscriptions using a real gateway, you will need to choose a gateway and enter your credentials.
 
 h3. The Chargify Test Gateway
