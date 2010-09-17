@@ -77,6 +77,39 @@ h4. Tiered Pricing Scheme
 
 In the tiered pricing scheme, multiple price brackets define the prices at different quantity levels.  Prices are given on a per-unit basis.  Your customers will pay the defined price per unit for each allocated unit.  An example can illustrate this the best.  Say you allow your customers to purchase extra widgets to augment their monthly plan.  The pricing structure is defined as follows:
 
+|_. Starting quantity |_. Ending quantity |_. Price each  |
+|   1                 |   10              |   $2          |
+|   11                |   20              |   $1          |
+
+If a customer buys 10 units, they will pay $2 per unit, for a total of $20.
+
+If a customer buys 20 units, they will pay $2 each for the first 10 units, plus $1 each for the next 10 units, for a total of $30 (10 x $2 + 10 x $1).
+
+h4. Volume Pricing Scheme
+
+In the volume pricing scheme, multiple price brackets define the prices at different quantity levels, much like in the tiered scheme.  However, unlike the tiered scheme, the price per unit for all units is determined by the prevailing price for the allocated quantity.  So, taking the pricing setup from the earlier example:
+
+|_. Starting quantity |_. Ending quantity |_. Price each  |
+|   1                 |   10              |   $2          |
+|   11                |   20              |   $1          |
+
+If a customer buys 10 units, they will pay $2 per unit, for a total of $20.
+
+If a customer buys 20 units, they will pay $1 per unit for all units, for a total of $20.
+
+
+h4. Stairstep Pricing Scheme
+
+In the stairstep pricing scheme, multiple price brackets are defined, but the pricing is given as a total cost for the whole bracket instead of per unit costs.  This is how Chargify itself works.
+
+|_. Starting quantity |_. Ending quantity |_. Price |
+|   1                 |   10              |   $10   |
+|   11                |   20              |   $20   |
+
+If 10 units are allocated (i.e. 10 paying customers), then the cost would be $10 total for this component.
+
+If 20 units are allocated, then the cost would be $20 total for this component.
+
 h3. Creating Metered Components
 
 Choose to create a "Metered Component" and define it using the form.

@@ -66,7 +66,7 @@ Doculab::TableOfContents.define do
     page "API: Charges"
     page "API: Credits"
     page "API: Metered Usage"
-    page "API: Quantity Allocations"
+    page "API: Quantity Component Allocations", :permalink => "api-quantity-allocations"
     page "API: Refunds"
   end
   
