@@ -40,6 +40,7 @@ Doculab::TableOfContents.define do
     page "Hosted Page Integration"
     page "API Integration"
     page "Post-backs"
+    page "Webhooks"
     page "Testing"
     page "Exporting Data"
   end
