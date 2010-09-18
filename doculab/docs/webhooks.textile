@@ -37,6 +37,13 @@ The following events are monitored within Chargify and can generate Webhooks:
 
 p(note). Multiple Webhook events may be triggered by a single system event.  For example, the creation of a new Subscription will typically fire both a @signup_success@ and @payment_success@ event (if a payment was necessary to start the Subscription).
 
+h2. Payload Resources
+
+The resource objects sent as payload contain the same information as the corresponding API resource.  To see the attribute keys that are sent with the Subscription and Payment payload objects, see the API documentation.  (Payment objects are a type of Transaction resource)
+
+* "API Subscription resources":/api-subscriptions
+* "API Transaction resources":/api-transactions
+
 h2. Webhook Verification
 
 Using your "Site shared key":#finding-your-site-shared-key and a "signature" that is calculated and sent with the Webhook, you can verify the contents of a Webhook as being authentic and un-tampered.
