@@ -205,7 +205,7 @@ Response: The updated subscription
 "JSON example":#api-usage-json-subscriptions-update  
 
 
-h3. Delete/Cancel
+h3(#cancel). Delete/Cancel
 
 The delete action causes the cancellation of a subscription, i.e. it sets the subscription state to @canceled@.
 

@@ -8,7 +8,9 @@ Chargify can send your customers dunning emails on your behalf if you check the 
 
 Unless you customize your dunning notifications (see below), these emails will include a link to a Chargify-hosted page that allows the customer to update the card on file.
 
-Even if you do not want Chargify to manage your dunning, *you'll still need to select both your dunning plan and whether or not you want dunning emails sent to your customers*.  Currently, even if you haven't configured Chargify to send dunning emails on your behalf, we will still respect the "Cancel" action initiated by your selected dunning settings.  In other words, if the dunning plan selected automatically cancels a Subscription 21 days after it transitions to @past_due@ state, we will set the Subscription to @canceled@ state.  So, if you want to manage dunning yourself, you should select the "Never Cancel" strategy and uncheck the appropriate box that instructs us to send emails on your behalf.  Then, you'll want to key off of the @past_due@ state within your own app as to when to start dunning.  If you cancel the subscription yourself, the dunning process will discontinue.
+p(warning). Even if you do not want Chargify to manage your dunning, *you'll still need to select your dunning plan to control automatic cancellation*.
+
+Currently, even if you haven't configured Chargify to send dunning emails on your behalf, we will still respect the "Cancel" action initiated by your selected dunning settings.  In other words, if the dunning plan selected automatically cancels a Subscription 21 days after it transitions to @past_due@ state, we will set the Subscription to @canceled@ state.  So, if you want to manage dunning yourself, you should select the "Never Cancel" strategy and uncheck the appropriate box that instructs us to send emails on your behalf.  Then, you'll want to key off of the @past_due@ state within your own app as to when to start dunning.  If you cancel the subscription yourself, the dunning process will discontinue.
 
 h2. Customizing your dunning notifications
 

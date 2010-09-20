@@ -1,0 +1,33 @@
+A canceled Subscription is no longer billed by Chargify.  There are two ways a Subscription can be canceled:
+
+# Explicitly requesting cancellation via the UI or API
+# After a period of time (defined by your "Dunning":/dunning plan) passes with no payment for an overdue balance
+
+h2. Requesting Cancellation
+
+h3. Via the Admin UI
+
+You can request cancellation of a Subscription yourself by clicking "Cancel Subscription" from the operations menu.
+
+!/images/doculab/subscription-cancellation.png!
+
+After clicking "Cancel Subscription", you will have the opportunity to enter a message about the cancellation and review the action before pressing the "Cancel Subscription" button.
+
+!/images/doculab/subscription-cancellation-2.png!
+
+When you cancel a Subscription:
+
+* The subscription is immediately canceled, and the customer's credit card will no longer be charged
+* No refunds or prorations are made
+* No email is sent to your Customer
+
+You can later "Reactivate":/reactivation a canceled Subscription.
+
+h3. Via the API
+
+See the "Delete/Cancel method in the Subscriptions API":/api-subscriptions#cancel.
+
+
+h2. Automatic Cancellation due to Dunning
+
+After a failed payment, Subscriptions transition to the Past Due state within Chargify.  At this point, Chargify begins attempting to re-run the payment on a smart schedule.  Eventually, we cease retrying to re-run the payment, and some of the Dunning strategies will automatically move the Subscription to Canceled state. See the "Dunning documentation":/dunning for how to control this automatic cancelation.
