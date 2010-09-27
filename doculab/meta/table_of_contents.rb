@@ -33,6 +33,7 @@ Doculab::TableOfContents.define do
     page "Refunds"
     page "Reactivation"
     page "Setting Component Allocations"
+    page "Billing Dates"
   end
 
   section "Integration" do
