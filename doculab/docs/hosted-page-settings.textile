@@ -70,7 +70,7 @@ For example, accessing a hosted signup page URL with the following query string 
 
 bc. ?first_name=John&last_name=Doe&email=john.doe@example.com&reference=1234
 
-![hosted-signup-pre-populated.png](http://s3.amazonaws.com/entp-tender-production/assets/4cad8d1d427d0365b6f8e48e16c0bd2b7232a17c/hosted-signup-pre-populated_normal.png)
+!http://s3.amazonaws.com/entp-tender-production/assets/4cad8d1d427d0365b6f8e48e16c0bd2b7232a17c/hosted-signup-pre-populated_normal.png!
 
 
 h3(#return-url). Return URL and parameters
