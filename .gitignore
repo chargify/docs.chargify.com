@@ -3,6 +3,7 @@
 db/*.sqlite3
 log/*.log
 tmp/**/*
+tmp/
 public/*.html
 public/**/*.html
 .DS_Store

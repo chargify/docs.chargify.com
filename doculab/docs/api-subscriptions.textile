@@ -26,8 +26,8 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @first_name@ (Optional) First name on card.  If omitted, the @first_name@ from customer attributes will be used.
 ** @last_name@ (Optional) Last name on card.  If omitted, the @last_name@ from customer attributes will be used.
 ** @full_number@ The full credit card number (string representation, i.e. "5424000000000015")
-** @expiration_month@ The 1- or 2-digit credit card expiration month, as an integer or string, i.e. "5"
-** @expiration_year@ The 4-digit credit card expiration year, as an integer or string, i.e. "2012"
+** @expiration_month@ (Optional when performing a Subscription Import via `vault_token`, required otherwise) The 1- or 2-digit credit card expiration month, as an integer or string, i.e. "5"
+** @expiration_year@ (Optional when performing a Subscription Import via `vault_token`, required otherwise) The 4-digit credit card expiration year, as an integer or string, i.e. "2012"
 ** @cvv@ (Optional, may be required by your gateway settings) The 3- or 4-digit Card Verification Value. _This value is merely passed through to the payment gateway_.
 ** @billing_address@ (Optional, may be required by your product configuration or gateway settings) The credit card billing street address (i.e. "123 Main St."). _This value is merely passed through to the payment gateway_.
 ** @billing_city@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address city (i.e. "Boston"). _This value is merely passed through to the payment gateway_.
