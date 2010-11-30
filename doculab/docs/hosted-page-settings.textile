@@ -51,7 +51,7 @@ h4. Requesting/Requiring Shipping and Billing addresses
 
 On the settings page for a product you can determine whether or not you want to collect the shipping and billing address information for the user. When an address is 'requested', the fields appear on the page but are not required. Clicking the 'require' checkbox will make the fields mandatory.
 
-h3. Pre-populating Data
+h3(#pre-populating-data). Pre-populating Data
 
 When linking to the hosted payment page, it is possible to have certain values pre-populated by passing parameters as a "application/x-www-form-urlencoded" encoded data set (this simply a normal query string for GET requests, and a normal form post for POST requests).
 

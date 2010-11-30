@@ -16,7 +16,7 @@ For more information on the full set of URLs available, see "Hosted Page URLs":#
 
 h2. Hosted Payment Page signup flow
 
-# Provide your potential Customers with a link to the Hosted page for the Product you would like to offer them
+# Provide your potential Customers with a link to the Hosted page for the Product you would like to offer them.  Note that you have the option to pass in some data to pre-populate the form or variables that are sent to Chargify - see "Hosted Page Settings: Pre-populating Data":/hosted-page-settings#pre-populating-data
 # The customer fills out their credit card details and other requested or required information (the information collected by the Hosted Payment Form is controlled by the "Product Options":/product-options) and presses the submit button
 ## If the customer enters information incorrectly or their credit card is declined, they are notified within the Hosted Payment Page and given a chance to make corrections
 ## If the customer enters information correctly and their credit card is accepted (or is not required) then they are redirected either to:
