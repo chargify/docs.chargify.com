@@ -16,7 +16,7 @@ Your "password" is always the letter "x".
 
 h3. Authenticating with your API Credentials
 
-You will use HTTP Basic Authentication to verify your identify via the API.  All requests must come over SSL/HTTPS, and be to the subdomain of the Site you wish to access.  For example, if your Site's subdomain is @acme@, then you would access the Customer resource at:
+You will use HTTP Basic Authentication to verify your identity via the API.  All requests must come over SSL/HTTPS, and be to the subdomain of the Site you wish to access.  For example, if your Site's subdomain is @acme@, then you would access the Customer resource at:
 
 <pre>
   <code>https://acme.chargify.com/customers.json</code>
