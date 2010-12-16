@@ -1,0 +1,14 @@
+Adding an Adjustment to a subscription will either increase or decrease the balance due on the subscription. *An adjustment does not actually touch the gateway or return any funds to the customer's credit card*. 
+
+To assess an Adjustment, navigate to the subscription detail page by clicking on the “Start Date” or on the “View” link in the Subscriptions listing. There, you will see a link to “Make a Balance Adjustment”.
+
+An adjustment is created by first selecting one of the following actions:
+* Decrease the subscription's balance by X
+* Increase the subscription's balance by X
+* Set the subscription's balance to X
+
+Next, select an amount (i.e. “10.00”) and add a memo (i.e. “Additional charge for extra usage”). All amounts should be entered as positive numbers.
+
+If you chose to either increase or decrease the balance, then the amount entered will be added or subtracted, respectively, from the subscription's balance.
+
+If you chose to set the balance to a specific amount, the subscription's balance will automatically be set to that amount.

@@ -1,6 +1,4 @@
-See the documentation for "Credits":/credits if you need information about Credits in general.
-
-h2. URIs
+p(warning). The Credits API "has been deprecated":http://changelog.chargify.com/post/2312880133/api-change-credits-become-adjustments in favor of Adjustments. For information on how to use Adjustments, see the documentation for "Adjustments":/api-adjustments.
 
 h2. Credit Input Attributes
 

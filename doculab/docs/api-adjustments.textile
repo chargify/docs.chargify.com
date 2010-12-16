@@ -1,0 +1,435 @@
+Adjustments allow you to change the current balance of a subscription. Adjustments with positive amounts make the balance go up, Adjustments with negative amounts make the balance go down (like Credits).
+
+h2. Ajustment Input Attributes
+
+In order to create an adjustment, you must pass an amount and an optional memo.  The amount can be specified by either the @amount@ parameter or the @amount_in_cents@ parameter. The amount can be specified as a positive or a negative number. Optionally, an @adjustment_method@ parameter can be specified.
+
+* @amount@ (either 'amount' or 'amount_in_cents' is required) If you use this parameter, you should pass a dollar amount represented as a string.  For example, $10.00 would be represented as @10.00@ and -$10.00 would be represented as @-10.00@.
+* @amount_in_cents@ (either 'amount' or 'amount_in_cents' is required) If you use this parameter, you should pass the amount represented as a number of cents, either as a string or integer.  For example, $10.00 would be represented as @1000@ and -$10.00 would be represented as @-1000@.  If you pass a value for both 'amount' and 'amount_in_cents', the value in 'amount_in_cents' will be used and 'amount' will be discarded.
+* @memo@ A helpful explanation for the adjustment.  This amount will remind you and your customer for the reason for the assessment of the adjustment.
+* @adjustment_method@ (Optional) A string that toggles how the adjustment should be applied. If @target@ is passed for this param, the adjustment will automatically set the subscription's balance to the amount. If left blank, the amount will be added to the current balance.
+
+h2. Adjustment Output Attributes
+
+When an adjustment is successfully created, a representation of the newly created adjustment will be returned to you as JSON or XML in the message body, with the following attributes:
+
+* @success@ Either @true@ or @false@, depending on the success of the adjustment.  (Note: At this time, all adjustments that are returned will return @true@ here.  @false@ may be returned in the future when more options are added to the adjustment creation API)
+* @amount_in_cents@ The amount of the adjustment, represented in cents.
+* @memo@ The memo for the created adjustment.
+
+h2. Response Codes
+
+A response code is returned in the standard HTTP response to your API request.
+
+* @201 Created@ is returned for the successfully created adjustment.
+* @422 Unprocessable Entity@ is returned when the adjustment could not be created (see below section on errors)
+* @404 Not Found@ is returned if the referenced subscription could not be found.
+* Other status codes may be returned in other error cases. See the [API User Guide](http://support.chargify.com/faqs/api/api-user-guide) for more information.
+
+h2. Errors
+
+Errors are returned either as an array of error explanation strings and formatted as either an XML or JSON array, depending on your Accept headers.  The listing of currently possible error messages is listed below:
+
+* Memo: cannot be blank.
+* Amount: is not a number.
+* Amount: must be greater than or equal to 0.
+* This subscription is not eligible to accept adjustments.
+* [Gateway response if a gateway fail] ([Your original memo])
+
+h2. Methods
+
+_format_ may be either 'xml' or 'json'.
+
+h3. Create
+
+Creating an adjustment requires a valid, live subscription.  The subscription must be referenced by @id@ (available via the API when subscriptions are read or listed - [more](http://support.chargify.com/faqs/api/api-subscriptions)).
+
+Please refer to the usage examples for more information.
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/adjustments.<format>@  
+Method: @POST@  
+Required Parameters: XML or JSON data, as specified by the required attributes
+Response: The created adjustment, if successful.  Errors otherwise
+**Usage Examples:**
+"JSON example":#api-usage-json-adjustments-create  
+"XML example":#api-usage-xml-adjustments-create
+
+h2. Usage Examples
+
+h3(#api-usage-json-adjustments-create). JSON Adjustment Create Usage Examples
+
+<pre><code>
+  Scenario: Create an adjustment on a subscription that increases the balance by a certain dollar amount
+    Given I have 1 subscription
+    And I have this json credit data
+      """
+      {"adjustment":{
+        "amount":"4.00",
+        "memo":"This is the description of an adjustment on a subscription that increases the balance by a certain dollar amount."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/adjustments.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"adjustment":{
+        "id":`auto generated`,
+        "success":true,
+        "memo":"This is the description of an adjustment on a subscription that increases the balance by a certain dollar amount.",
+        "amount_in_cents":400,
+        "ending_balance_in_cents":400,
+        "type":"Adjustment",
+        "transaction_type":"adjustment",
+        "subscription_id":`auto generated`,
+        "product_id":`auto generated`,
+        "created_at":`auto generated`
+      }}
+      """
+
+  Scenario: Create an adjustment on a subscription that increases the balance by a certain amount of cents
+    Given I have 1 subscription
+    And I have this json credit data
+      """
+      {"adjustment":{
+        "amount_in_cents":100,
+        "memo":"This is the description of an adjustment on a subscription that increases the balance by a certain amount of cents."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/adjustments.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"adjustment":{
+        "id":`auto generated`,
+        "success":true,
+        "memo":"This is the description of an adjustment on a subscription that increases the balance by a certain amount of cents.",
+        "amount_in_cents":100,
+        "ending_balance_in_cents":100,
+        "type":"Adjustment",
+        "transaction_type":"adjustment",
+        "success":true,
+        "subscription_id":`auto generated`,
+        "product_id":`auto generated`,
+        "created_at":`auto generated`
+      }}
+      """
+
+  Scenario: Create an adjustment on a subscription that decreases the balance by a certain dollar amount
+    Given I have 1 subscription
+    And I have this json credit data
+      """
+      {"adjustment":{
+        "amount":"-4.00",
+        "memo":"This is the description of an adjustment on a subscription that decreases the balance by a certain dollar amount."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/adjustments.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"adjustment":{
+        "id":`auto generated`,
+        "success":true,
+        "memo":"This is the description of an adjustment on a subscription that decreases the balance by a certain dollar amount.",
+        "amount_in_cents":-400,
+        "ending_balance_in_cents":-400,
+        "type":"Adjustment",
+        "transaction_type":"adjustment",
+        "subscription_id":`auto generated`,
+        "product_id":`auto generated`,
+        "created_at":`auto generated`
+      }}
+      """
+
+  Scenario: Create an adjustment on a subscription that decreases the balance by a certain amount of cents
+    Given I have 1 subscription
+    And I have this json credit data
+      """
+      {"adjustment":{
+        "amount_in_cents":"-400",
+        "memo":"This is the description of an adjustment on a subscription that decreases the balance by a certain amount of cents."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/adjustments.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"adjustment":{
+        "id":`auto generated`,
+        "success":true,
+        "memo":"This is the description of an adjustment on a subscription that decreases the balance by a certain amount of cents.",
+        "amount_in_cents":-400,
+        "ending_balance_in_cents":-400,
+        "type":"Adjustment",
+        "transaction_type":"adjustment",
+        "subscription_id":`auto generated`,
+        "product_id":`auto generated`,
+        "created_at":`auto generated`
+      }}
+      """
+
+  Scenario: Create an adjustment on a subscription that sets the balance to an exact dollar amount
+    Given I have 1 subscription
+    And I have this json credit data
+      """
+      {"adjustment":{
+        "adjustment_method":"target",
+        "amount":"100.00",
+        "memo":"This is the description of an adjustment on a subscription that sets the balance to an exact dollar amount."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/adjustments.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"adjustment":{
+        "id":`auto generated`,
+        "success":true,
+        "memo":"This is the description of an adjustment on a subscription that sets the balance to an exact dollar amount.",
+        "amount_in_cents":10000,
+        "ending_balance_in_cents":10000,
+        "type":"Adjustment",
+        "transaction_type":"adjustment",
+        "subscription_id":`auto generated`,
+        "product_id":`auto generated`,
+        "created_at":`auto generated`
+      }}
+      """
+
+  Scenario: Create an adjustment on a subscription that sets the balance to an exact positive amount of cents
+    Given I have 1 subscription
+    And I have this json credit data
+      """
+      {"adjustment":{
+        "adjustment_method":"target",
+        "amount_in_cents":"10000",
+        "memo":"This is the description of an adjustment on a subscription that sets the balance to an exact amount of cents."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/adjustments.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"adjustment":{
+        "id":`auto generated`,
+        "success":true,
+        "memo":"This is the description of an adjustment on a subscription that sets the balance to an exact amount of cents.",
+        "amount_in_cents":10000,
+        "ending_balance_in_cents":10000,
+        "type":"Adjustment",
+        "transaction_type":"adjustment",
+        "subscription_id":`auto generated`,
+        "product_id":`auto generated`,
+        "created_at":`auto generated`
+      }}
+      """
+
+  Scenario: Create an adjustment on a subscription that sets the balance to an exact negative amount of cents
+    Given I have 1 subscription
+    And I have this json credit data
+      """
+      {"adjustment":{
+        "adjustment_method":"target",
+        "amount_in_cents":"-10000",
+        "memo":"This is the description of an adjustment on a subscription that sets the balance to an exact amount of cents."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/adjustments.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"adjustment":{
+        "id":`auto generated`,
+        "success":true,
+        "memo":"This is the description of an adjustment on a subscription that sets the balance to an exact amount of cents.",
+        "amount_in_cents":-10000,
+        "ending_balance_in_cents":-10000,
+        "type":"Adjustment",
+        "transaction_type":"adjustment",
+        "subscription_id":`auto generated`,
+        "product_id":`auto generated`,
+        "created_at":`auto generated`
+      }}
+      """
+</code></pre>
+
+h3(#api-usage-xml-adjustments-create). XML Adjustment Create Usage Examples
+
+<pre><code>
+  Scenario: Create an adjustment on a subscription that increases the balance by a certain dollar amount
+    Given I have 1 subscription
+    And I have this xml adjustment data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <adjustment>
+        <amount>4.00</amount>
+        <memo>This is the description of an adjustment on a subscription that increases the balance by a certain dollar amount.</memo>
+      </adjustment>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/adjustments.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <adjustment>
+        <id type="integer">`auto generated`</id>
+        <amount_in_cents type="integer">400</amount_in_cents>
+        <created_at type="datetime">`auto generated`</created_at>
+        <ending_balance_in_cents type="integer">400</ending_balance_in_cents>
+        <memo>This is the description of an adjustment on a subscription that increases the balance by a certain dollar amount.</memo>
+        <subscription_id type="integer">`auto generated`</subscription_id>
+        <product_id type="integer">`auto generated`</product_id>
+        <success type="boolean">true</success>
+        <type>Adjustment</type>
+        <transaction_type>adjustment</transaction_type>
+      </adjustment>
+      """
+      
+  Scenario: Create an adjustment on a subscription that increases the balance by a certain amount of cents
+    Given I have 1 subscription
+    And I have this xml adjustment data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <adjustment>
+        <amount_in_cents>100</amount_in_cents>
+        <memo>This is the description of an adjustment on a subscription that increases the balance by a certain amount of cents.</memo>
+      </adjustment>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/adjustments.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <adjustment>
+        <id type="integer">`auto generated`</id>
+        <amount_in_cents type="integer">100</amount_in_cents>
+        <created_at type="datetime">`auto generated`</created_at>
+        <ending_balance_in_cents type="integer">100</ending_balance_in_cents>
+        <memo>This is the description of an adjustment on a subscription that increases the balance by a certain amount of cents.</memo>
+        <subscription_id type="integer">`auto generated`</subscription_id>
+        <product_id type="integer">`auto generated`</product_id>
+        <success type="boolean">true</success>
+        <type>Adjustment</type>
+        <transaction_type>adjustment</transaction_type>
+      </adjustment>
+      """
+        
+  Scenario: Create an adjustment on a subscription that decreases the balance by a certain dollar amount
+    Given I have 1 subscription
+    And I have this xml adjustment data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <adjustment>
+        <amount>-4.00</amount>
+        <memo>This is the description of an adjustment on a subscription that decreases the balance by a certain dollar amount.</memo>
+      </adjustment>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/adjustments.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <adjustment>
+        <id type="integer">`auto generated`</id>
+        <amount_in_cents type="integer">-400</amount_in_cents>
+        <created_at type="datetime">`auto generated`</created_at>
+        <ending_balance_in_cents type="integer">-400</ending_balance_in_cents>
+        <memo>This is the description of an adjustment on a subscription that decreases the balance by a certain dollar amount.</memo>
+        <subscription_id type="integer">`auto generated`</subscription_id>
+        <product_id type="integer">`auto generated`</product_id>
+        <success type="boolean">true</success>
+        <type>Adjustment</type>
+        <transaction_type>adjustment</transaction_type>
+      </adjustment>
+      """
+        
+  Scenario: Create an adjustment on a subscription that decreases the balance by a certain amount of cents
+    Given I have 1 subscription
+    And I have this xml adjustment data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <adjustment>
+        <amount_in_cents>-400</amount_in_cents>
+        <memo>This is the description of an adjustment on a subscription that decreases the balance by a certain amount of cents.</memo>
+      </adjustment>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/adjustments.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <adjustment>
+        <id type="integer">`auto generated`</id>
+        <amount_in_cents type="integer">-400</amount_in_cents>
+        <created_at type="datetime">`auto generated`</created_at>
+        <ending_balance_in_cents type="integer">-400</ending_balance_in_cents>
+        <memo>This is the description of an adjustment on a subscription that decreases the balance by a certain amount of cents.</memo>
+        <subscription_id type="integer">`auto generated`</subscription_id>
+        <product_id type="integer">`auto generated`</product_id>
+        <success type="boolean">true</success>
+        <type>Adjustment</type>
+        <transaction_type>adjustment</transaction_type>
+      </adjustment>
+      """
+  
+  Scenario: Create an adjustment on a subscription that sets the balance to an exact positive dollar amount
+    Given I have 1 subscription
+    And I have this xml adjustment data
+     """
+     <?xml version="1.0" encoding="UTF-8"?>
+     <adjustment>
+       <adjustment_method>target</adjustment_method>
+       <amount>100.00</amount>
+       <memo>This is the description of an adjustment on a subscription that sets the balance to an exact dollar amount.</memo>
+     </adjustment>
+     """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/adjustments.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+     """
+     <?xml version="1.0" encoding="UTF-8"?>
+     <adjustment>
+       <id type="integer">`auto generated`</id>
+       <amount_in_cents type="integer">10000</amount_in_cents>
+       <created_at type="datetime">`auto generated`</created_at>
+       <ending_balance_in_cents type="integer">10000</ending_balance_in_cents>
+       <memo>This is the description of an adjustment on a subscription that sets the balance to an exact dollar amount.</memo>
+       <subscription_id type="integer">`auto generated`</subscription_id>
+       <product_id type="integer">`auto generated`</product_id>
+       <success type="boolean">true</success>
+       <type>Adjustment</type>
+       <transaction_type>adjustment</transaction_type>
+     </adjustment>
+     """
+
+  Scenario: Create an adjustment on a subscription that sets the balance to an exact positive amount of cents
+    Given I have 1 subscription
+    And I have this xml adjustment data
+     """
+     <?xml version="1.0" encoding="UTF-8"?>
+     <adjustment>
+       <adjustment_method>target</adjustment_method>
+       <amount_in_cents>10000</amount_in_cents>
+       <memo>This is the description of an adjustment on a subscription that sets the balance to an exact amount of cents.</memo>
+     </adjustment>
+     """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/adjustments.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+     """
+     <?xml version="1.0" encoding="UTF-8"?>
+     <adjustment>
+       <id type="integer">`auto generated`</id>
+       <amount_in_cents type="integer">10000</amount_in_cents>
+       <created_at type="datetime">`auto generated`</created_at>
+       <ending_balance_in_cents type="integer">10000</ending_balance_in_cents>
+       <memo>This is the description of an adjustment on a subscription that sets the balance to an exact amount of cents.</memo>
+       <subscription_id type="integer">`auto generated`</subscription_id>
+       <product_id type="integer">`auto generated`</product_id>
+       <success type="boolean">true</success>
+       <type>Adjustment</type>
+       <transaction_type>adjustment</transaction_type>
+     </adjustment>
+     """
+
+</code></pre>

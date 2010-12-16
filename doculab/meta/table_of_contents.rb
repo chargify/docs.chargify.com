@@ -29,7 +29,7 @@ Doculab::TableOfContents.define do
     page "Cancellation"
     page "Upgrades/Downgrades"
     page "One-time Charges"
-    page "Credits"
+    page "Adjustments"
     page "Refunds"
     page "Reactivation"
     page "Setting Component Allocations"
@@ -66,10 +66,11 @@ Doculab::TableOfContents.define do
     page "API: Transactions"
     page "API: Migrations (Prorated Upgrades/Downgrades)", :permalink => "api-migrations"
     page "API: Charges"
-    page "API: Credits"
+    page "API: Adjustments"
     page "API: Metered Usage"
     page "API: Quantity Component Allocations", :permalink => "api-quantity-allocations"
     page "API: Refunds"
+    page "API: Credits"
   end
   
   # section "Code Samples & Libraries" do
