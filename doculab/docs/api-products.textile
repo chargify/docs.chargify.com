@@ -20,8 +20,8 @@ All of the product attribute fields are returned from GET (read) operations, and
 * @trial_interval_unit@ A string representing the trial interval unit for this product, either @month@ or @day@
 * @expiration_interval@ A numerical interval for the length a subscription to this product will run before it expires.   See the description of @interval@ for a description of how this value is coupled with an interval unit to calculate the full interval
 * @expiration_interval_unit@ A string representing the trial interval unit for this product, either @month@ or @day@
-* @return_url@ The URL a buyer is returned to after successful purchase.  See the section on "Return URLs and Parameters" [here](http://support.chargify.com/faqs/features/hosted-signup-page)
-* @return_params@ The parameters string we will use in constructing your return URL.  See the section on "Return URLs and Parameters" [here](http://support.chargify.com/faqs/features/hosted-signup-page)
+* @return_url@ The URL a buyer is returned to after successful purchase.  See the section on "Return URLs and Parameters" [here](/product-options#return-url-and-parameters)
+* @return_params@ The parameters string we will use in constructing your return URL.  See the section on "Return URLs and Parameters" "here":/product-options#return-url-and-parameters
 * @require_credit_card@ Boolean
 * @request_credit_card@ Boolean
 * @created_at@ Timestamp indicating when this product was created

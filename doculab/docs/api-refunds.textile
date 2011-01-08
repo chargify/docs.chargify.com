@@ -2,7 +2,7 @@
 
 With Chargify you have the ability to apply a refund to a payment that has been processed at the gateway. 
 
-For more information on creating refunds in general, please see "http://support.chargify.com/faqs/features/refunds":http://support.chargify.com/faqs/features/refunds.
+For more information on creating refunds in general, please see "Refunds":/refunds.
 
 
 h2. Refund Input Attributes
@@ -30,7 +30,6 @@ A response code is returned in the standard HTTP response to your API request.
 * @201 Created@ is returned for successfully created refunds.
 * @422 Unprocessable Entity@ is returned when the refund could not be created (see below section on errors)
 * @404 Not Found@ is returned if the referenced subscription or payment could not be found.
-* Other status codes may be returned in other error cases. See the [API User Guide](http://support.chargify.com/faqs/api/api-user-guide) for more information.
 
 h2. Errors
 

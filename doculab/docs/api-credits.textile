@@ -23,7 +23,6 @@ A response code is returned in the standard HTTP response to your API request.
 * @201 Created@ is returned for successfully created credits.
 * @422 Unprocessable Entity@ is returned when the credit could not be created (see below section on errors)
 * @404 Not Found@ is returned if the referenced subscription could not be found.
-* Other status codes may be returned in other error cases. See the [API User Guide](http://support.chargify.com/faqs/api/api-user-guide) for more information.
 
 h2. Errors
 
@@ -41,7 +40,7 @@ _format_ may be either 'xml' or 'json'.
 
 h3. Create
 
-Creating a credit requires a valid, live subscription.  The subscription must be referenced by @id@ (available via the API when subscriptions are read or listed - [more](http://support.chargify.com/faqs/api/api-subscriptions)).
+Creating a credit requires a valid, live subscription.  The subscription must be referenced by @id@ (available via the API when subscriptions are read or listed - "more":/api-subscriptions).
 
 Please refer to the usage examples for more information.
 

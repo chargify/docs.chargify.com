@@ -41,7 +41,7 @@ h3. End of Life States
 
 h4. canceled
 
-Indicates a canceled subscription.  This may happen at your request (via the API or the web interface) or due to an expiration of the dunning process without payment.  See the following article for information about restarting a cancelled subscription: http://support.chargify.com/faqs/features/reactivation
+Indicates a canceled subscription.  This may happen at your request (via the API or the web interface) or due to an expiration of the dunning process without payment.  See the "Reactivation":/reactivation documentation for info on our to restart a canceled subscription.
 
 h4. expired
 

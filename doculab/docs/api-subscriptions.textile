@@ -193,7 +193,7 @@ The update action currently allows you to edit the attributes of the customer, p
 
 This is how you would change the card that somebody uses for their subscription.  You can also use this method to simply change the expiration date of the card.
 
-You also use this method to change the subscription to a different product by setting a new value for @product_handle@.  Note that no proration or period reset is initiated when you change the product using this method.  This method merely changes the product, and *the new payment amount is calculated and charged at the normal start of the next period*.  If you desire prorated upgrades and downgrades instead, please see this article: http://support.chargify.com/faqs/features/proration
+You also use this method to change the subscription to a different product by setting a new value for @product_handle@.  Note that no proration or period reset is initiated when you change the product using this method.  This method merely changes the product, and *the new payment amount is calculated and charged at the normal start of the next period*.  If you desire prorated upgrades and downgrades instead, please see the "docs on upgrades/downgrades":/upgrades-downgrades.
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@  
 Method: @PUT@  
