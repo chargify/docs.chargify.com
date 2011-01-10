@@ -10,7 +10,7 @@ Configuration is managed in separate sections: "*Retries and Final Action*":#dun
 
 h3(#dunning-retries). Retries and Final Action
 
-In this section, you choose how many times Chargify should automatically retry failed renewal attempts.  We will retry approximately every 24 hours, for as many attempts as you configure.  At the end of the retry period, you can take a "final action" on the subscription and optionally send an email.
+When a subscription's period ends, the normal renewal process attempts to charge the card on file.  If that attempt results in a failure (i.e. a processor "decline"), the subscription becomes "past due".  **That renewal attempt is renewal attempt #1**.  Chargify will automatically retry the failed charge, currently approximately every 24 hours, up to the number of attempts you configure in this section.  At the end of this "retry period", you can take a "final action" on the subscription and optionally send an email.
 
 p(note). To send periodic "reminder" emails during the retry period, see the next section on "Dunning Emails":#dunning-emails.
 
@@ -22,7 +22,7 @@ Clicking any of the grey boxes will open a window where you can edit your retry 
 
 !/images/doculab/dunning-retry-settings.png!
 
-Select *how many retries* you would like Chargify to perform before you take a "Final Action".  Entering "1" in this box will cause the Final Action to be taken upon the very first attempt to renew.
+Select *how many retries* you would like Chargify to perform before you take a "Final Action".  Entering "1" in this box will cause the Final Action to be taken upon the very first failed attempt to renew, i.e. no retries will take place.
 
 Next select *the Final Action to take*.  You can either *cancel the subscription* or *mark the subscription unpaid*
 
@@ -39,7 +39,7 @@ In the section marked "Dunning", you can configure your "From Address" for the D
 
 !/images/doculab/dunning-email-list.png!
 
-p(note). The "From Address" configured in this section will also be used as the "From Address" on your Final Action email.
+p(note). The "From Address" configured in this section will also be used as the "From Address" on your Final Action email.  It defaults to your merchant email address.
 
 When adding or editing a new Dunning Email, you will be able to edit the Subject and Body, and choose whether or not to be BCC'd on this email.  This email has access to custom parameters as defined in the section below on "Customizing Dunning Emails":#customizing-dunning-emails.
 
@@ -52,8 +52,8 @@ When editing your Final Action Email and Dunning Emails, you can use keywords th
 h3. Custom Parameters
 
 |_. Parameter |_. Description |
-| failure_subject | The reason the transaction failed. e.g. 'Failed Credit Card Transaction' or 'No Credit Card On File' depending on whether or not the client as a Credit Card on file. |
-| from_address | This from address defined for your dunning emails |
+| failure_subject | The reason the transaction failed. e.g. 'Failed Credit Card Transaction' or 'No Credit Card On File' depending on whether or not the client has a Credit Card on file. |
+| from_address | The "from address" defined for your dunning emails |
 | name | The name of your customer. e.g. Bill Williams |
 | payment.amount | The amount just paid, formatted in your currency |
 | product_price | The recurring price of the subscription's current product |
@@ -64,7 +64,7 @@ h3. Custom Parameters
 | update_url | The URL that the customer can use to update their Credit Card information. |
 | masked_card_number | The customer's Credit Card, obscured to only show the last 4 digits.  e.g. XXXX-XXXX-XXXX-1 |
 | reason_for_decline | The reason that a transaction was declined at the gateway. |
-| payment_profile_exists | This returns 'true' or 'false' depending on whether or not the client as a Credit Card on file. It can be used to conditionally display text based on it's value e.g. <br />  {% if payment_profile_exists %}<br />&nbsp;&nbsp;Lorem Ipsum<br />{% endif %}  |  
+| payment_profile_exists | This returns 'true' or 'false' depending on whether or not the client has a Credit Card on file. It can be used to conditionally display text based on it's value e.g. <br />  {% if payment_profile_exists %}<br />&nbsp;&nbsp;Lorem Ipsum<br />{% endif %}  |  
 
 
 
