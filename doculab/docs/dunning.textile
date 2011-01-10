@@ -6,23 +6,50 @@ Dunning is configured from the "Retries and Dunning" section of the "Settings" t
 
 !/images/doculab/retries-and-dunning-settings.png!
 
-Chargify can send your customers dunning emails on your behalf if you check the appropriate box within the "Dunning Plans" section of the "Settings" page.  These emails will be sent according to the dunning plan you select.
+Configuration is managed in separate sections: "*Retries and Final Action*":#dunning-retries and "*Dunning Emails*":#dunning-emails.
 
-Unless you customize your dunning notifications (see below), these emails will include a link to a Chargify-hosted page that allows the customer to update the card on file.
+h3(#dunning-retries). Retries and Final Action
 
-p(warning). Even if you do not want Chargify to manage your dunning, *you'll still need to select your dunning plan to control automatic cancellation*.
+In this section, you choose how many times Chargify should automatically retry failed renewal attempts.  We will retry approximately every 24 hours, for as many attempts as you configure.  At the end of the retry period, you can take a "final action" on the subscription and optionally send an email.
 
-Currently, even if you haven't configured Chargify to send dunning emails on your behalf, we will still respect the "Cancel" action initiated by your selected dunning settings.  In other words, if the dunning plan selected automatically cancels a Subscription 21 days after it transitions to @past_due@ state, we will set the Subscription to @canceled@ state.  So, if you want to manage dunning yourself, you should select the "Never Cancel" strategy and uncheck the appropriate box that instructs us to send emails on your behalf.  Then, you'll want to key off of the @past_due@ state within your own app as to when to start dunning.  If you cancel the subscription yourself, the dunning process will discontinue.
+p(note). To send periodic "reminder" emails during the retry period, see the next section on "Dunning Emails":#dunning-emails.
 
-h2. Customizing your dunning notifications
+In the "Retries and Final Action" section, the grey boxes indicate items you can change about how often to retry and what action to take.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/3ce704345790fdb44ebe1adf78d7e6afbbcf744d/Dock_normal.jpg!
+!/images/doculab/edit-retry-settings-configurable-values.png!
 
-To begin customizing your dunning notification, click on the 'Notifications' tab at the top of the page and then click on the 'Dunning emails' tab on the left.
+Clicking any of the grey boxes will open a window where you can edit your retry settings:
 
-You can edit the subject and body of the email for each day in your dunning strategy. In addition to the text you specify, you can also include keywords that Chargify will replace dynamically before sending the email. Custom parameters are surrounded in double curly braces like this:  {{custom_parameter}}.
+!/images/doculab/dunning-retry-settings.png!
 
-h4. Custom Parameters
+Select *how many retries* you would like Chargify to perform before you take a "Final Action".  Entering "1" in this box will cause the Final Action to be taken upon the very first attempt to renew.
+
+Next select *the Final Action to take*.  You can either *cancel the subscription* or *mark the subscription unpaid*
+
+* When you *cancel the subscription*, the subscription will transition to the "'canceled' state":/subscription-states#canceled and it will cease to accrue any new charges.  No more attempts will be made to collect the balance due.  A canceled subscription can be later "Reactivated":/reactivation.
+* When you *mark the subscription unpaid*, the subscription will transition to the "'unpaid' state":/subscription-states#unpaid, but it will continue to accrue new charges.  No more attempts will be made to collect the balance due.  An unpaid subscription can be moved back to active by either applying a payment, retrying the renewal (and receiving a successful payment), or zeroing out the balance and retrying the renewal.
+
+Finally, you may *optionally specify an email* to be sent upon the execution of the Final Action.  Enter your Subject and Body, and choose whether or not to be BCC'd on this email.  This email has access to custom parameters as defined in the section below on "Customizing Dunning Emails":#customizing-dunning-emails.
+
+h3(#dunning-emails). Dunning Emails
+
+During the retry period (that you define in the "Retry and Final Action":#dunning-retries section), you can choose to send periodic "reminder" emails to the customer of the past due subscription.
+
+In the section marked "Dunning", you can configure your "From Address" for the Dunning Emails, add a new Dunning Email, or edit an existing Dunning Email:
+
+!/images/doculab/dunning-email-list.png!
+
+p(note). The "From Address" configured in this section will also be used as the "From Address" on your Final Action email.
+
+When adding or editing a new Dunning Email, you will be able to edit the Subject and Body, and choose whether or not to be BCC'd on this email.  This email has access to custom parameters as defined in the section below on "Customizing Dunning Emails":#customizing-dunning-emails.
+
+!/images/doculab/dunning-email-edit-window.png!
+
+h2(#customizing-dunning-emails). Customizing your Dunning Emails
+
+When editing your Final Action Email and Dunning Emails, you can use keywords that Chargify will replace dynamically before sending the email. Custom parameters are surrounded in double curly braces like this:  {{custom_parameter}}.
+
+h3. Custom Parameters
 
 |_. Parameter |_. Description |
 | failure_subject | The reason the transaction failed. e.g. 'Failed Credit Card Transaction' or 'No Credit Card On File' depending on whether or not the client as a Credit Card on file. |

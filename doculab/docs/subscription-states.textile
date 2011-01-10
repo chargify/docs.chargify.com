@@ -7,6 +7,7 @@ The state of a subscription is reported in the @state@ attribute of a subscripti
 * past_due
 * suspended
 * canceled
+* unpaid
 * expired
 
 These states may be further broken down in to 3 categories: _Live_, _Problem_, and _End of Life_.
@@ -37,11 +38,19 @@ h4. past_due
 
 Indicates that the most recent payment has failed, and payment is past due for this subscription.  If you have enabled our automated dunning, this subscription will be in the dunning process (additional status  and callbacks from the dunning process will be available in the future).  If you are handling dunning and payment updates yourself, you will want to use this state to initiate a payment update from your customers.
 
+h4(#unpaid). unpaid
+
+Indicates an unpaid subscription.  A subscription is marked unpaid if the retry period expires and you have configured your "Dunning settings":/dunning to have a Final Action of "mark the subscription unpaid".
+
+While a subscription is marked as unpaid, its period still advances and new charges continue to accrue.  However, Chargify does not attempt to automatically collect any overdue balance.  Collecting the balance, or eliminating the balance through an "Adjustment":/adjustments is your responsibility.
+
 h3. End of Life States
 
-h4. canceled
+h4(#canceled). canceled
 
-Indicates a canceled subscription.  This may happen at your request (via the API or the web interface) or due to an expiration of the dunning process without payment.  See the "Reactivation":/reactivation documentation for info on our to restart a canceled subscription.
+Indicates a canceled subscription.  This may happen at your request (via the API or the web interface) or due to an expiration of the "dunning":/dunning process without payment.  See the "Reactivation":/reactivation documentation for info on how to restart a canceled subscription.
+
+While a subscription is canceled, its period will not advance, it will not accrue any new charges, and Chargify will not attempt to collect the overdue balance.
 
 h4. expired
 
