@@ -1,8 +1,10 @@
-Dunning is the process of how you handle past due accounts.  It involves communicating with your customers in response to failed credit card transactions. Chargify gives you the ability to customize these communications.
+Dunning is the process of how you handle past due accounts.  It involves communicating with your customers in response to failed credit card transactions, and what action you take when the subscription can't be renewed. Chargify gives you the ability to customize these communications.
 
-h2. Selecting your dunning plan
+h2. Configuring your Dunning
 
-!/images/doculab/dunning-plans-settings.png!
+Dunning is configured from the "Retries and Dunning" section of the "Settings" tab as shown below.
+
+!/images/doculab/retries-and-dunning-settings.png!
 
 Chargify can send your customers dunning emails on your behalf if you check the appropriate box within the "Dunning Plans" section of the "Settings" page.  These emails will be sent according to the dunning plan you select.
 
