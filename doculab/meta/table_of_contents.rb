@@ -74,6 +74,10 @@ Doculab::TableOfContents.define do
     page "API: Credits"
   end
   
+  section "3rd Party Integrations" do
+    page "Zferral Integration"
+  end
+  
   # section "Code Samples & Libraries" do
   #   page "API Code Overview", :permalink => "api-code"
   #   page "Ruby", :permalink => "ruby-code"

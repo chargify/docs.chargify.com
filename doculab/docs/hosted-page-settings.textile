@@ -90,6 +90,8 @@ The available parameters are:
 * @customer_reference@: Your unique reference if one was sent in the pre-populated data
 * @product_handle@: The product API handle
 * @product_id@: The Chargify generated unique identifier for the product
+* @signup_revenue@: The revenue, formatted as a string of decimal separated dollars and cents, from the subscription signup ($50.00 would be formatted as 50.00)
+* @signup_payment_id@: The ID of the transaction that generated the revenue
 
 Return parameters are specified using a single brace around the name of the parameter and separated with an ampersand.
 
