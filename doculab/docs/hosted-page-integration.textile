@@ -6,6 +6,8 @@ p(note). Components are not currently included in our Hosted Signup Pages. If yo
 
 p(warning). To use hosted signup pages with the Beanstream gateway, you *must* enable billing address collection from within the "Hosted Page Settings":/hosted-page-settings.
 
+p(warning). Accessing *any* hosted payment page will log you out of your Chargify account.  This is necessary for security reasons.  If you would like to test your hosted payment pages without being logged out, please copy the links and open them in another browser.
+
 !http://s3.amazonaws.com/entp-tender-production/assets/0a600c477a13047b5aea02209285bb734b7de98a/screenshot_normal.jpg!
 
 Each Product has its own hosted signup page page and unique URL.  You can find the URLs for these pages on your product overview screen, as indicated in the following image:
