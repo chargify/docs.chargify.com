@@ -1,0 +1,14 @@
+h3. v1.2.1 (2/4/2010)
+
+* "Statements":/statements general release
+  * Tweaked display of XHTML and HTML statement views
+  * Fixed delayed settlement issues in historical data
+  * Finalized html_view semantic markup (can be embedded within merchant apps)
+
+h3. v1.2.0 (2/1/2010)
+
+* "Zferral affiliate marketing integration":/zferral-integration
+
+h3. v1.1.0 (1/24/2010)
+
+* "Statements":/statements initial release
