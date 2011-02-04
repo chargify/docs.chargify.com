@@ -1,9 +1,9 @@
 h3. v1.2.1 (2/4/2010)
 
 * "Statements":/statements general release
-  * Tweaked display of XHTML and HTML statement views
-  * Fixed delayed settlement issues in historical data
-  * Finalized html_view semantic markup (can be embedded within merchant apps)
+* Tweaked display of XHTML and HTML statement views
+* Fixed delayed settlement issues in historical data
+* Finalized html_view semantic markup (can be embedded within merchant apps)
 
 h3. v1.2.0 (2/1/2010)
 
