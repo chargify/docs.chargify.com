@@ -25,6 +25,7 @@ Doculab::TableOfContents.define do
   section "Subscriptions" do
     page "Subscriptions Intro"
     page "Subscription States"
+    page "Statements"
     page "Dunning"
     page "Cancellation"
     page "Upgrades/Downgrades"

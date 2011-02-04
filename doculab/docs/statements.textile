@@ -1,0 +1,47 @@
+Chargify Statements give you and your customers a breakdown of Subscription charges, payments, credits, and activity on a period-by-period basis.  A Statement is similar to an "Invoice" because it is marked as currently paid or unpaid.  Statements display all account activity for a specific usage period.
+
+h2. Statements in the Chargify UI
+
+!/images/doculab/statement_in_ui.png(Statements in the Chargify UI)!
+
+You may view Statements for any Subscription via the "Statements" tab in the left navigation of any single Subscription view.
+
+You may navigate between Statements using the "Next" and "Prev" links at the top of the Statement.
+
+h2. Emailing Statements to your Customers
+
+h3. On-Demand
+
+You may email any Statement to the Customer at any time by using the button near bottom of the Statement view.  There are also links for previewing the text and HTML-email versions of the statement.  Chargify sends all Statement emails as multi-part with both text/plain and text/html parts so that the client may choose which to render.
+
+h3. Automatic Statements
+
+Statements can be sent to your customers automatically via email.  When you choose to send Statements automatically, they will always be sent when the Statement "closes".  At your option, you may also choose to have the Statement emailed when payment is received, in the event that payment is not received when it first becomes due.  See the section on "Statement Lifecycle":#statement-lifecycle for more.
+
+These configuration options are available under the "Settings" tab in the "Statements" sub-tab.
+
+!/images/doculab/statement_configuration.png(Statement Configuration)!
+
+p(note). If you choose to send Automatic Statements, you may want to turn off the sending of "Receipt emails".  Statements are a robust replacement for receipts, so please consider the implications of sending both, and make sure you understand the "differences between statements and receipts":#difference-between-statements-and-receipts.
+
+h2(#statement-lifecycle). Statement Lifecycle
+
+Every Statement is tied to a non-overlapping Usage Period, which usually follows the normal renewal period of the product purchased.
+
+Statement #1 contains all Subscription signup charges and their full payment.  It is immediately closed upon payment.  Statement #2 covers the period up until the first renewal of the Subscription.  The renewal charges will be attached to Statement #2, and an attempt to collect payment is made.  If the first attempt is successful, the payment is also attached to Statement #2 and it is closed and marked as "Paid" (i.e. settled).  If the attempt to collect payment is not successful, the statement is still closed, but it is marked as "Past Due".  If payment is successful later, Statement #2 will be marked as "Paid" (settled) but the payment will be attached to Statement #3, since it was received during the usage period of Statement #3.
+
+One-time charges are attached to the currently open Statement.  From the example above, any one-time charge assessed after signup, but before the first renewal, would be attached to Statement #2.
+
+The following diagram gives a visual representation of how signup and renewal map in to Statement usage periods and their automated emails.
+
+!/images/doculab/statement_usage_periods.png(Statement Usage Periods)!
+
+h2(#differences-between-statements-and-receipts). Differences between Statements and Receipts
+
+When configured to be sent automatically, Statements can be a robust replacement for the Chargify Receipts.  They can be used in conjunction or alone.  The following table describes some of the differences:
+
+|_. Feature/Behavior |_. Statements |_. Receipts |
+| *When are emails sent?* | Once when the statement closes, and (optionally) once when payment is later received | Upon every payment received |
+| *Configurable content with replacement variables?* | No | Yes |
+| *Shows line item charges?* | Yes | No |
+| *Can be easily resent?* | Yes | No |
