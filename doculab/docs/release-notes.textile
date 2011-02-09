@@ -18,3 +18,5 @@ h3. v1.2.0 (2/1/2010)
 h3. v1.1.0 (1/24/2010)
 
 * "Statements":/statements initial release
+
+Fine print: "v1.1.0" is the arbitrary starting point to describe releases in our public release notes.
