@@ -1,3 +1,9 @@
+h3. v1.2.2 (2/9/2010)
+
+* Fixed a bug that caused blank return params when the signup was completed without a credit card
+* Changed statement language for "Balance Due" to "Ending Balance" to clear up confusion over having a positive "Balance Due" and a "PAID" stamp at the same time
+* Fixed a bug that resulted in an Internal Server Error when search results returned enough results to require pagination
+
 h3. v1.2.1 (2/4/2010)
 
 * "Statements":/statements general release
