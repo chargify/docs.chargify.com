@@ -1,19 +1,29 @@
-Chargify allows you to create one-time coupons to give customers a discount on signup. After the initial coupon is applied, customers will be charged the normal amount at the next assessment. 
+Chargify allows you to create both one-time and recurring coupons to give customers a discount.
 
 h3. Creating a Coupon
 
+
 Coupons are added to the Product Family from the Products tab. Once a coupon has been created it can be shared across all products in the family. To create a new Coupon click the "Create Coupon" link.
 
-A Coupon consists of 5 pieces of information:
+h4. Basic coupon fields:
 
 * **Name**: A name for the coupon. The name is not displayed to customers
 * **Coupon Code**: The code that customers will enter to redeem the coupon. The code must be uppercase letters, numbers and underscores with no spaces
 * **Description**: A description of the coupon that can be displayed to customers
+* **Expiration Date**: Coupons will no longer be redeemable after this time
 * **Amount**: The amount that will be discounted from the initial subscription
 * **Percentage**: The percent of the product's base price that will be discounted
-* **Expiration Date**: Coupons will no longer be redeemable after this time
 
-!http://s3.amazonaws.com/entp-tender-production/assets/7e1b901edbfec00d8cac942d8020ecdfaca8faba/_Chargify__Chargify___Production___New_Coupon_normal.jpg!
+h4. Additional options:
+
+* **If the coupon value is greater than the payment due on signup, leave a negative remaining balance on the subscription for the difference:** Selecting this option will leave a negative balance on the subscription if the coupon amount is greater than the amount due. For example, if I apply a $100 coupon to a $30 product, with this option selected, I will have a -$70 balance on my subscription. Otherwise, my balance would be $0.
+
+* **If a free trial exists, delay the coupon until payment is due:** Selecting this option will associate the coupon with the subscription, but it will not be applied until the end of the free trial. This gives users the ability to use a coupon while still getting the chance to use a free trial. If this option is not selected, the coupon will be ignored in the case of a free trial.
+
+h4. Recurring options:
+
+By default, coupons are not applied to future payments after the initial signup. However, you can configure them to do such that by selecting either of the **Continue to apply the coupon..** options. You can set them to recur indefinitely or for a certain number of periods.
+
 
 Once you have created a Coupon, it will appear under the Product Family on the Products tab. You can make changes to the component by clicking the 'Edit Coupon' link.
 
@@ -21,7 +31,6 @@ Once you have created a Coupon, it will appear under the Product Family on the P
 h3. Amount vs. Percentage Coupons
 
 Chargify allows you to create two types of coupons: Amount Coupons and Percentage Coupons. An Amount Coupon will give the customer a flat dollar amount discount. A Percentage Coupon will give the customer a discount equal to a specified percentage of the Product's base price. To create a coupon for an exact dollar amount, specify the the value in the Amount field below. To create a coupon that provides a percentage discount on the price of the product, specify the percentage in the Percentage field below. Note: Only one field is required. If both are specified the percentage will be ignored.
-
 
 h3. Creating a Subscription with a Coupon in the Admin Interface
 
