@@ -71,7 +71,8 @@ The following attributes are returned on a subscription read/list operation.
 * @cancellation_message@ Seller-provided reason for, or note about, the cancellation.
 * @signup_revenue@: The revenue, formatted as a string of decimal separated dollars and cents, from the subscription signup ($50.00 would be formatted as 50.00)
 * @signup_payment_id@: The ID of the transaction that generated the revenue
-
+* @cancel_at_end_of_period@: Whether or not the subscription will (or has) canceled at the end of the period.
+* @delayed_cancel_at@: Timestamp for when the subscription is currently set to cancel.
 
 
 h2. Methods
@@ -220,6 +221,19 @@ Response: 200 OK on success
 **Usage Examples:**  
 "XML example":#api-usage-xml-subscriptions-delete  
 "JSON example":#api-usage-json-subscriptions-delete  
+
+h3(#delayed). Delayed Cancel
+
+Chargify offers the ability to cancel a subscription at the end of the current period (as set by its current product. Setting the subscription to cancel at the end of the period sets the @cancel_at_end_of_period@ to @true@. Note, that you cannot set @cancel_at_end_of_period@ at subscription creation.
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@  
+Method: @PUT@  
+Required Parameters: None
+Optional Parameters: XML or JSON data with @cancel_at_end_of_period@ set to true or false.
+Response: The updated subscription
+**Usage Examples:**  
+"XML example":#api-usage-xml-subscriptions-delayed-cancel  
+"JSON example":#api-usage-json-subscriptions-delayed-cancel
 
 h3. Reactivate
 
@@ -1170,6 +1184,95 @@ Feature: Chargify Subscriptions Cancel JSON API
     When I send a DELETE request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
     Then the response status should be "200 OK"
 </code></pre>
+
+
+h3(#api-usage-xml-subscriptions-delayed-cancel). XML Delayed Cancel Usage Example
+
+<pre><code>
+Feature: Chargify Subscriptions Delayed Cancel XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to cancel a subscription at the end of it's current period via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I accept xml responses
+
+  Scenario: Delay cancel a subscription while giving a reason/message
+    Given I have an active subscription
+    And I have this xml subscription data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <cancel_at_end_of_period>1</cancel_at_end_of_period>
+		<cancellation_message>
+			Canceling the subscription at the end of the period via the API
+		</cancellation_message>
+      </subscription>
+      """
+    When I send a PUT request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
+    Then the response status should be "200 OK"
+		And the response should be the subscription output xml, with the `cancel_at_end_of_period` set to the same value.
+	
+  Scenario: Delay cancel a subscription while giving no reason/message
+    Given I have an active subscription
+    And I have this xml subscription data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <cancel_at_end_of_period>1</cancel_at_end_of_period>
+      </subscription>
+      """
+    When I send a PUT request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
+    Then the response status should be "200 OK"
+		And the response should be the subscription output xml, with the `cancel_at_end_of_period` set to the same value.
+	
+</code></pre>
+
+
+h3(#api-usage-json-subscriptions-delayed-cancel). JSON Delayed Cancel Usage Example
+
+<pre><code>
+Feature: Chargify Subscriptions Delayed Cancel JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to cancel a subscription at the end of the period via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I accept json responses
+
+  Scenario: Delay cancel a subscription while giving a reason/message
+    Given I have an active subscription
+    And I have this json subscription data
+      """
+      {
+        'subscription': {
+					'cancel_at_end_of_period': 1,
+          'cancellation_message': 'Canceling the subscription via the API'
+        }
+      }
+      """
+    When I send a PUT request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
+    Then the response status should be "200 OK"
+		And the response should be the subscription output json, with the `cancel_at_end_of_period` set to the same value.
+		
+	Scenario: Delay cancel a subscription while giving no reason/message
+    Given I have an active subscription
+    And I have this json subscription data
+      """
+      {
+        'subscription': {
+					'cancel_at_end_of_period': 1
+        }
+      }
+      """
+    When I send a PUT request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
+    Then the response status should be "200 OK"
+		And the response should be the subscription output json, with the `cancel_at_end_of_period` set to the same value.
+		
+</code></pre>
+
 
 h3(#api-react-xml). XML Reactivation Example
 

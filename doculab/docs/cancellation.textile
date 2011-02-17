@@ -7,17 +7,18 @@ h2. Requesting Cancellation
 
 h3. Via the Admin UI
 
-You can request cancellation of a Subscription yourself by clicking "Cancel Subscription" from the operations menu.
+You can request cancellation of a Subscription yourself by clicking "Initiate Cancelation" from the operations menu.
 
 !/images/doculab/subscription-cancellation.png!
 
-After clicking "Cancel Subscription", you will have the opportunity to enter a message about the cancellation and review the action before pressing the "Cancel Subscription" button.
+After clicking "Initiate Cancelation", you will have the opportunity to enter a message about the cancellation and review the action before either pressing the "Cancel Immediately" button, or the "Cancel at End of Period" button.
 
 !/images/doculab/subscription-cancellation-2.png!
 
 When you cancel a Subscription:
 
-* The subscription is immediately canceled, and the customer's credit card will no longer be charged
+* You have the option of canceling immediately or at the end of the period, selecting either options means the customer's credit card will no longer be charged.
+* When canceling at the end of the period, the subscription will cease to renew automatically at the "Period Ends At" date and the subscription state will change.
 * No refunds or prorations are made
 * No email is sent to your Customer
 
@@ -26,7 +27,6 @@ You can later "Reactivate":/reactivation a canceled Subscription.
 h3. Via the API
 
 See the "Delete/Cancel method in the Subscriptions API":/api-subscriptions#cancel.
-
 
 h2. Automatic Cancellation due to Dunning
 
