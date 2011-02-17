@@ -9,11 +9,11 @@ h3. Via the Admin UI
 
 You can request cancellation of a Subscription yourself by clicking "Initiate Cancelation" from the operations menu.
 
-!/images/doculab/subscription-cancellation.png!
+!{width:640px;}/images/doculab/cancel_2.png!
 
 After clicking "Initiate Cancelation", you will have the opportunity to enter a message about the cancellation and review the action before either pressing the "Cancel Immediately" button, or the "Cancel at End of Period" button.
 
-!/images/doculab/subscription-cancellation-2.png!
+!{width:640px;}/images/doculab/cancel_1.png!
 
 When you cancel a Subscription:
 
