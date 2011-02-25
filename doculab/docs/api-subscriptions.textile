@@ -642,7 +642,7 @@ Feature: Chargify Subscriptions Create XML API
         <error>Product with API Handle 'this-does-not-exist' does not exist for this merchant.</error>
       </errors>
       """
-
+</pre></code>
 
 h3(#api-usage-json-subscriptions-create). JSON Create Usage Example
 
