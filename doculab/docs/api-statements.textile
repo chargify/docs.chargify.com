@@ -1,0 +1,59 @@
+Chargify Statements give you and your customers a breakdown of Subscription charges, payments, credits, and activity on a period-by-period basis.  A Statement is similar to an "Invoice" because it is marked as currently paid or unpaid.  Statements display all account activity for a specific usage period.
+
+All of the statement attribute fields are returned from GET (read) operations. Note, all of these attributes are *read only*.
+
+* @id@ The unique identifier for this statement within Chargify
+* @subscription_id_@ The unique identifier of the subscription associated with the statement
+* @opened_at@ The date that the statement was opened
+* @closed_at@ The date that the statement was closed
+* @settled_at@ The date that the statement was settled
+* @text_view@ A text representation of the statement
+* @basic_html_view@ A simple HTML representation of the statement
+* @html_view@ A more robust HTML representation of the statement
+* @future_payments@ A collection of payments from future statements that pay charges on this statement
+* @starting_balance_in_cents@ The subscription's balance at the time the statement was opened
+* @ending_balance_in_cents@ The subscription's balance at the time the statement was closed
+* @customer_first_name@ The customer's first name
+* @customer_last_name@ The customer's last name
+* @customer_organization@ The customer's organization
+* @customer_shipping_address@ The customer's shipping address
+* @customer_shipping_address_2@ The customer's shipping address, line 2
+* @customer_shipping_city@ The customer's shipping city
+* @customer_shipping_state@ The customer's shipping state
+* @customer_shipping_country@ The customer's shipping country
+* @customer_shipping_zip@ The customer's shipping zip
+* @customer_billing_address@ The customer's billing address
+* @customer_billing_address_2@ The customer's billing address, line 2
+* @customer_billing_city@ The customer's billing city
+* @customer_billing_state@ The customer's billing state
+* @customer_billing_country@ The customer's billing country
+* @customer_billing_zip@ The customer's billing zip
+* @transactions@ A collection of the transaction objects associated with the statement
+* @events@ A collection of the event objects associated with the statement
+* @created_at@ The creation date for this statement
+* @updated_at@ The date of last update for this statement
+
+
+h2. Methods
+
+h3. List
+
+URL: @https://<subdomain>.chargify.com/statements.<format>@  
+Method: @GET@
+Optional Parameters: @page@
+Response: An array of Statements
+
+h3. Read/Show (via Chargify ID)
+
+URL: @https://<subdomain>.chargify.com/statements/<id>.<format>@
+Method: @GET@
+Required Parameters: @id@
+Response: An single Statement
+
+h2. Rendering Statements on Your Site
+
+The Statements API offers three ways to easily render a statement on your site. You can include a text representation of the statement or one of two HTML views that can be styled to your liking.
+
+* @text_view@ A text representation of the statement
+* @basic_html_view@ A simple HTML representation of the statement
+* @html_view@ A more robust HTML representation of the statement
