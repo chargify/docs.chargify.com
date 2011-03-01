@@ -1,6 +1,6 @@
 h3. v1.2.4 (2/27/2011)
 
-* Updated gateway operations to authorize credits cards on storage and update
+* Updated gateway operations to authorize credit cards on storage and update
 * Added support for Statements in the API
 
 h3. v1.2.3 (2/16/2011)
