@@ -36,9 +36,9 @@ All of the statement attribute fields are returned from GET (read) operations. N
 
 h2. Methods
 
-h3. List
+h3. List Statements for a Subscription
 
-URL: @https://<subdomain>.chargify.com/statements.<format>@  
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/statements.<format>@
 Method: @GET@
 Optional Parameters: @page@
 Response: An array of Statements
