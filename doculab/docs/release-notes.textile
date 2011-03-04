@@ -1,3 +1,11 @@
+h3. v1.2.5 (3/4/2011)
+
+* Merchants signing up will now see a receipt page with helpful "getting started" information
+* Coupon end dates are now selectable via a date picker widget
+* The 'enabled' input for On/Off Components in the API now accepts true/false, yes/no, etc (using 'allocated_quantity' as a workaround is no longer required)
+* Clarfified wording on the "Add a Charge" page to indicate that existing balance credits are not used before the credit card is charged
+* Added the 'canceled_at' field to the Subscription resource in the API
+
 h3. v1.2.4 (2/27/2011)
 
 * Updated gateway operations to authorize credit cards on storage and update
