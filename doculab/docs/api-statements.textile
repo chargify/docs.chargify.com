@@ -3,7 +3,7 @@ Chargify Statements give you and your customers a breakdown of Subscription char
 All of the statement attribute fields are returned from GET (read) operations. Note, all of these attributes are *read only*.
 
 * @id@ The unique identifier for this statement within Chargify
-* @subscription_id_@ The unique identifier of the subscription associated with the statement
+* @subscription_id@ The unique identifier of the subscription associated with the statement
 * @opened_at@ The date that the statement was opened
 * @closed_at@ The date that the statement was closed
 * @settled_at@ The date that the statement was settled
