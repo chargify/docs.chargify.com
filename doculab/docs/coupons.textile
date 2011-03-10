@@ -1,9 +1,19 @@
 Chargify allows you to create both one-time and recurring coupons to give customers a discount.
 
+* Coupons are only applied at the time a normal, recurring charge is assessed to someone.
+
+* They only apply to product base charges, not to component charges or to charges that happen as a result of the "Add a Charge" function.
+
+* They will appear on a customer's record in the order of "charge, adjustment, payment".
+
+* There is currently no way to list the coupons associated with customers, but we have a "story" for that in our development pipeline in Q2 or Q3.
+
+
 h3. Creating a Coupon
 
 
 Coupons are added to the Product Family from the Products tab. Once a coupon has been created it can be shared across all products in the family. To create a new Coupon click the "Create Coupon" link.
+
 
 h4. Basic coupon fields:
 
