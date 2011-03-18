@@ -1,0 +1,150 @@
+h2. URI/Method
+
+|_. Resource/URI |_. GET |_. PUT |
+| Components<br/>@/subscriptions/<x>/components@ | List components | - |
+| Compoments<br/>@/subscriptions/<x>/components/<y>@ | Read component | Update compoment |
+
+h2. Methods
+
+_format_ may be either 'xml' or 'json'.
+
+h3. List Components for a Subscription
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/components.<format>@  
+Method: @GET@  
+Required Parameters:
+@subscription_id@: The id of the subscription from which you want to get a listing of applied components 
+Response: An array of Components 
+**Usage Examples:**  
+"XML example":#api-subscription-xml-components-list  
+"JSON example":#api-subscription-json-components-list  
+
+h3. Read Component for a Subscription
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/components/<component_id>.<format>@  
+Method: @GET@  
+Required Parameters:
+@subscription_id@: The id of the applicable subscription
+@component_id@: The id of the component you want to retrieve information about
+Response: A component
+**Usage Examples:**  
+"XML example":#api-subscription-xml-component-read
+"JSON example":#api-subscription-json-component-read
+
+h2. Usage Examples
+ 
+h3(#api-subscription-xml-components-list). XML List Components Example
+ 
+<pre><code>
+Feature: Chargify Components List for a Subscription XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to interact with my components via the Chargify API
+
+  Background:
+    Given I am a valid API user
+    And I accept xml responses
+
+
+  Scenario: Retrieve a customer's subscriptions
+    Given I have an active subscription
+    And the subscription has 2 components
+    When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/components.xml
+    Then the response status should be "200 OK"
+    And the response should be a "components" array with 2 "component" elements
+</code></pre>
+
+h3(#api-subscription-json-components-list). JSON List Components Example
+
+<pre><code>
+Feature: Chargify Components List for a Subscription JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to interact with my components via the Chargify API
+
+  Background:
+    Given I am a valid API user
+    And I accept json responses
+
+
+  Scenario: Retrieve a customer's subscriptions
+    Given I have an active subscription
+    And the subscription has 2 components
+    When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/components.json
+    Then the response status should be "200 OK"
+    And the response should be a "components" array with 2 "component" elements
+</code></pre>
+
+h3(#api-subscription-xml-component-read). XML Read Component Example
+
+<pre><code>
+Feature: Chargify Component Read/Show/Lookup for a Subscription XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to read/show/lookup a component as applied to a subscription via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I accept xml responses
+
+  Scenario: Retrieve a component for a subscription via ID
+    Given I have an active subscription
+    When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/components/[@component.id].xml
+    Then the response status should be "200 OK"
+    And print the response
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+				<components type="array">
+					<component>
+						<component_id type="integer">[@component.id]</component_id>
+						<subscription_id type="integer">[@subscription.id]</subscription_id>
+						<unit_balance type="integer">`auto generated`</unit_balance>
+						<name>`auto generated`</name>
+						<unit_name>`auto generated`</unit_name>
+						<kind>`auto generated`</kind>
+					</component>
+				</component>
+      """
+
+  Scenario: Attempt to retrieve a component that hasn't been applied to a subscription
+    Given I have no applicable
+    When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/components/9999.xml
+    Then the response status should be "404 Not Found"
+</code></pre>
+
+h3(#api-subscription-json-component-read). JSON Read Component Example
+
+<pre><code>
+Feature: Chargify Subscriptions Read/Show/Lookup JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to read/show/lookup a subscription via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I accept json responses
+
+  Scenario: Retrieve a subscription via ID
+    Given I have an active subscription
+    When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
+    Then the response status should be "200 OK"
+    And the response should be the json:
+      """
+			{
+				"component": {
+					"kind": "`auto generated`",
+					"name": "`auto generated`",
+					"unit_balance": `auto generated`,
+					"subscription_id": [@subscription.id],
+					"component_id": [@component.id],
+					"unit_name": "`auto generated`"
+				}
+			}
+      """
+
+  Scenario: Attempt to retrieve a component that hasn't been applied to a subscription
+    Given I have no applicable component
+    When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/components/9999.json
+    Then the response status should be "404 Not Found"
+</code></pre>
