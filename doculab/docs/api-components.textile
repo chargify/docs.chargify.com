@@ -95,16 +95,16 @@ Feature: Chargify Component Read/Show/Lookup for a Subscription XML API
     And the response should be the xml:
       """
       <?xml version="1.0" encoding="UTF-8"?>
-				<components type="array">
-					<component>
-						<component_id type="integer">[@component.id]</component_id>
-						<subscription_id type="integer">[@subscription.id]</subscription_id>
-						<unit_balance type="integer">`auto generated`</unit_balance>
-						<name>`auto generated`</name>
-						<unit_name>`auto generated`</unit_name>
-						<kind>`auto generated`</kind>
-					</component>
-				</component>
+	<components type="array">
+	  <component>
+             <component_id type="integer">[@component.id]</component_id>
+             <subscription_id type="integer">[@subscription.id]</subscription_id>
+             <unit_balance type="integer">`auto generated`</unit_balance>
+             <name>`auto generated`</name>
+             <unit_name>`auto generated`</unit_name>
+             <kind>`auto generated`</kind>
+	  </component>
+	</component>
       """
 
   Scenario: Attempt to retrieve a component that hasn't been applied to a subscription
@@ -131,16 +131,15 @@ Feature: Chargify Subscriptions Read/Show/Lookup JSON API
     Then the response status should be "200 OK"
     And the response should be the json:
       """
-			{
-				"component": {
-					"kind": "`auto generated`",
-					"name": "`auto generated`",
-					"unit_balance": `auto generated`,
-					"subscription_id": [@subscription.id],
-					"component_id": [@component.id],
-					"unit_name": "`auto generated`"
-				}
-			}
+	{ "component": {
+            "kind": "`auto generated`",
+            "name": "`auto generated`",
+            "unit_balance": `auto generated`,
+            "subscription_id": [@subscription.id],
+            "component_id": [@component.id],
+            "unit_name": "`auto generated`"
+          }
+	}
       """
 
   Scenario: Attempt to retrieve a component that hasn't been applied to a subscription
