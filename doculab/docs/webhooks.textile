@@ -2,8 +2,6 @@ Webhooks offer a way to quickly find out about changes to your Subscriptions tha
 
 p(note). Webhooks will eventually replace our "Post-back":post-backs system.<br/><br/>
 
-p(warning). Webhooks are currently an "alpha" level feature and are subject to change.  Please subscribe to our "Changelog":http://changelog.chargify.com and/or our "@chargify Twitter":http://twitter.com/chargify stream in order to follow our development.  But please do move forward with implementing them - we value your feedback!
-
 h2. Webhook Contents
 
 Webhooks are sent as HTTP POST requests to your URL with a form-encoded body (@Content-Type:  application/x-www-form-urlencoded@) for easy parsing in almost any programming language.  All Webhooks contain the following keys:
