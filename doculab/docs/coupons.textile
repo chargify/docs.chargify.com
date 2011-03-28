@@ -42,7 +42,7 @@ Once you have created a Coupon, it will appear under the Product Family on the P
 
 h3. Amount vs. Percentage Coupons
 
-Chargify allows you to create two types of coupons: Amount Coupons and Percentage Coupons. An Amount Coupon will give the customer a flat dollar amount discount. A Percentage Coupon will give the customer a discount equal to a specified percentage of the Product's base price. To create a coupon for an exact dollar amount, specify the the value in the Amount field below. To create a coupon that provides a percentage discount on the price of the product, specify the percentage in the Percentage field below. Note: Only one field is required. If both are specified the percentage will be ignored.
+Chargify allows you to create two types of coupons: Amount Coupons and Percentage Coupons. An Amount Coupon will give the customer a flat dollar amount discount. A Percentage Coupon will give the customer a discount equal to a specified percentage of the Product's base price only. To create a coupon for an exact dollar amount, specify the the value in the Amount field below. Amount coupons apply the discount to the total order price (including setup and trial fees), which differs from percentage-based coupons. To create a coupon that provides a percentage discount on the price of the product, specify the percentage in the Percentage field below. Note: Only one field is required. If both are specified the percentage will be ignored.
 
 h3. Creating a Subscription with a Coupon in the Admin Interface
 
