@@ -16,7 +16,7 @@ h2. Detailed Flow
 ** The information sent in the secure parameters is verified via its cryptographic signature
 ** Creation of the requested resource is attempted via the passed parameters
 ** A result packet is assembled that consists of a status code, result code, and a reference to a representation of the resource (whether or not it was created successfully)
-# Chargify redirects to a URL you define, adding in signed parameters in the query string information about the result of the original request
+# Chargify redirects to a URI you define, adding in signed parameters in the query string information about the result of the original request
 ** Your app validates the information sent by computing and comparing the cryptographic signature of the result
 ** Your app can display a success/fail screen based solely on the status given in the result
 ** For a better user experience, your app can make a regular API call to fetch the full result and resource.  If the result was a success, you'll have information about the resource to display.  If the result was a failure, you'll be able to re-display your form, pre-filling much of the original form with the originally submitted values and pinpointing errors
@@ -28,6 +28,7 @@ Every Chargify Direct post must contain a set of cryptographically-signed secure
 
 * Authenticate the request so that Chargify can verify it comes from a trusted source (since anyone on the internet can post to Direct endpoints)
 * Allow you to send tamper-proof data along with the request
+* Specify a "Redirection URI":#redirection-uri (or override your default)
 
 h3. Secure Parameter Inputs
 
@@ -68,6 +69,8 @@ p(note).  At this point in development, Chargify is not rejecting any submission
 h4(#secure-data). Secure Data
 
 The @data@ parameter in the secure inputs gives you a chance to provide tamper-proof attributes along with your form submission.  Usually, you will place parameters for the resource being created that you don't want the user to be able to change.  For example, you could include the product handle for a Signup so that the form would only work for creating a subscription to the specified product.  If the same parameter is sent in the normal resource parameters, that parameter will be overridden by the one in the secure data.
+
+*Unless you have registered a default redirection URI for the endpoint you are accessing, one of the parameters in your secure data should be for "@redirect_uri@":#redirection-uri.*
 
 For example, consider a form that contains both of the following hidden form inputs:
 
@@ -110,6 +113,20 @@ An example, in Ruby, is at "https://github.com/chargify/chargify_direct_signatur
 
 This app can also serve as an online verifier of your calculations.  It can be accessed at "http://chargify-direct-signature.heroku.com/":http://chargify-direct-signature.heroku.com/
 
+h2(#redirection-uri). Redirection URI
+
+In order to tell Chargify where to redirect after attempting to create the resource, you should specify a value for @redirect_uri@ within your "secure data":/#secure-data.  This value is not read from normal parameters so, if included, it must be within your secure data paramters.
+
+For example, the following form would attempt to create a Signup resource at Chargify and then redirect to @https://www.example.com@ (with the "result parameters":#results in the query string):
+
+<pre><code><form action="https://api.chargify.com/api/v2/signups" method="post">
+  <input type="hidden" name="secure[api_id]" value="my_api_id"/>
+  <input type="hidden" name="secure[data]" value="redirect_uri=http%3A%2F%2Fwww.example.com"/>
+  <input type="hidden" name="secure[signature]" value="bd8629eba9bd1c134b3a8c6352d784b9f86fb6a9"/>
+  <!-- Resource parameters here-->
+  <input type="submit" value="Submit"/>
+</form></code></pre>
+
 h2(#mirror-parameter). Mirror Parameter
 
 Your form may post any data (formatted like the "secure data":#secure-data) to the @mirror@ parameter.  This data will be reflected back to you, unaltered, as a part of the "result":#results.
@@ -128,7 +145,7 @@ Documentation for the Signup attributes coming soon.
 
 h2(#results). Results
 
-When Chargify redirects back to your redirection URL, it will include the following query-string parameters:
+When Chargify redirects back to your "redirection URI":#redirection-uri, it will include the following query-string parameters:
 
 | @api_id@        | The API ID that made the original request |
 | @status_code@   | An HTTP Status code that represents the status of the request.  The same codes used for API resource creation are used. |
