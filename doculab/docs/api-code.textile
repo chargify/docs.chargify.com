@@ -27,7 +27,7 @@ h2. Python / Django
 
 h2. .Net
 
-* "http://chargify.codeplex.com":http://chargify.codeplex.com: A .Net API wrapper and complete sample app by one of our active beta testers (Kori Francis, "@Djbyter":http://twitter.com/Djbyter)
+* "http://chargify.codeplex.com":http://chargify.codeplex.com: A .Net API wrapper and complete sample app by one of our active beta testers (Kori Francis, "@djbyter":http://twitter.com/djbyter)
 
 h2. ColdFusion
 
@@ -36,3 +36,7 @@ h2. ColdFusion
 h2. Java / Scala
 
 * "http://github.com/IntroSpectrum/chargify-scala":http://github.com/IntroSpectrum/chargify-scala: A Scala API wrapper by one of our active beta testers.
+
+h2. Javascript
+
+* "https://github.com/andyet/node-chargify":https://github.com/andyet/node-chargify: A simple node.js wrapper for the Chargify REST API, by (Nathan Vander Wilt, "@natevw":http://twitter.com/natevw)
