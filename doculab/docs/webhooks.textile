@@ -78,10 +78,10 @@ When you create a Site, a shared key is automatically generated for you.  You ca
 
 h2. Configuring Webhooks
 
-You can configure your Webhooks from the Settings tab for each Site.  You can choose to enable Webhooks, provide a target Webhook URL, and subscribe to individual Webhooks.
+You can configure your Webhooks from the Settings tab for each Site.  You can choose to enable Webhooks, provide a target Webhook URL, and subscribe to individual Webhooks. The target Webhook URL cannot contain any port number except 80 and 443 (which you can specify using @http@ and @https@ protocol).
 
 h2. Webhook Testing
 
 On the Webhook configuration screen on the Settings tab, you can click "Send a test Webhook" to access the Webhook testing panel.  There, we will attempt to send a Webhook to your configured URL and show you what we sent and the response we received from you.
 
-p(note). Testing tip: try creating a Postbin at "http://postbin.org":http://postbin.org and use that as your Webhook test URL.  That way, you can inspect the Webhook contents and headers while you work out your own Webhook handler.
+p(note). Testing tip: try creating a Postbin at "http://postbin.org":http://postbin.org and use that as your Webhook test URL.  That way, you can inspect the Webhook contents and headers while you work out your own Webhook handler. Also, you can add your own url on the end of your Postbin URL and the webhook events will pass-through to your own URL. The format for a pass-through URL is: @http://postbin.org/{postbin_id}?{your_url}@
