@@ -1,6 +1,6 @@
 Webhooks offer a way to quickly find out about changes to your Subscriptions that happen within Chargify.  You can subscribe to events of interest, and we'll post data to the URL you specify when one of those events occurs.
 
-p(note). Webhooks will eventually replace our "Post-back":post-backs system.<br/><br/>
+p(note). Webhooks will eventually replace our "Post-back":post-backs system. Also, webhook events usually get posted back in short order but there can be some delay (anywhere from a few minutes to hours).
 
 h2. Webhook Contents
 
