@@ -191,7 +191,7 @@ Here is a sample JSON document that you might @POST@ to @https://<subdomain>.cha
 }
 </code></pre>
     
-h3. Update
+h3(#update). Update
 
 The update action currently allows you to edit the attributes of the customer, payment profile (credit card), or subscribed product (although no proration or reset options are offered at this time).
 

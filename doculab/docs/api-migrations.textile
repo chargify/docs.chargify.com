@@ -1,7 +1,11 @@
-Chargify offers the ability to upgrade or downgrade a Customer's subscription in the middle of a billing period, which is called a "Migration". For details on how prorated upgrades/downgrades work, and how to initiate them through the Admin Interface, see "Upgrades/Downgrades":/upgrades-downgrades.
+Chargify offers the ability to upgrade or downgrade a Customer's subscription in the middle of a billing period, which is called a "Migration". For details on how upgrades/downgrades work, and how to initiate them through the Admin Interface, see "Upgrades/Downgrades":/upgrades-downgrades.
+
+p(note). If you want a migration with proration, then you want to continue with the methods listed below. However, if you just want to change the product the customer is subscribed to (with no proration) then you'll just want to "update the subscription product":api-subscriptions#update.
 
 h2. URIs
 
+|_. Resource/URI |_. POST |
+| Migrations<br/>@/subscriptions/<subscription_id>/migrations@ | "Create":#create new migration |
 
 h2. Input Attributes
 
@@ -15,7 +19,7 @@ h2. Methods
 
 _format_ may be either 'xml' or 'json'.
 
-h3. Create
+h3(#create). Create
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/migrations.json@  
 Method: @POST@  
