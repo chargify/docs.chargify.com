@@ -1,6 +1,19 @@
-h3. Prorated Upgrades and Downgrades
+Chargify offers the ability to upgrade or downgrade a Customer's subscription in the middle of a billing period. There are two types of Upgrades/Downgrades: "Non-prorated Product Changes":#product-changes and "Prorated Upgrades/Downgrades":#prorated-upgrade-downgrade.
 
-Chargify offers the ability to upgrade or downgrade a Customer's subscription in the middle of a billing period. This action will have the following effects:
+h2(#product-changes). Product Changes (Non-prorated)
+
+Product changes do not trigger any prorated charges or credits.  Instead, they *simply change the product on the subscription*, and *the new amount is billed normally at the next normal billing period*.
+
+There are two ways to access the Product Change page:
+
+# On a subscriptions *Summary* tab, there is a *change* link next to the product name
+# From the Prorated Upgrades/Downgrades page, there is a link guiding you towards the Product Change page
+
+Product changes may be made via the API by updating the @product_handle@ on the subscription, as mentioned in the documentation on the "API Update method on Subscriptions":/api-subscriptions#update.
+
+h2(#prorated-upgrade-downgrade). Prorated Upgrades/Downgrades
+
+Prorated Upgrades/Downgrades cause will have the following effects:
 
 * *Prorated credit*: A prorated credit will be created to reimburse the Customer for their current product. Note that this is not a refund; no money will be returned to the user. The credit only effects the Customer's balance.
 * *Charge*: A charge for the full amount of the new product will be applied
@@ -24,4 +37,4 @@ You will see a success message upon completion of the upgrade or downgrade. Chec
 
 Upgrades/Downgrades can also be initiated through API; see "API Migrations":/api-migrations
 
-The "Upgrade/Downgrade" page also provides a way to just change the subscribed Product without effecting any proration.
+The "Upgrade/Downgrade" page also provides a link to the Non-prorated Product Change page, in case that's what you want to do instead.
