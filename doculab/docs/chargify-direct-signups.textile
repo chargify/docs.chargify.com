@@ -1,0 +1,34 @@
+h2. Signup Input Parameters
+
+For now, you may refer to the documentation for "API V1 Subscriptions":/api-subscriptions for a description of these parameters.  Some of the names have changed slightly, but the mapping should be fairly obvious.
+
+@product.id@
+@product.handle@
+
+@customer.id@
+@customer.reference@
+@customer.first_name@
+@customer.last_name@
+@customer.email@
+@customer.organization@
+@customer.reference@
+@customer.address@
+@customer.address_2@
+@customer.city@
+@customer.state@
+@customer.zip@
+@customer.country@
+@customer.phone@
+
+@payment_profile.id@
+@payment_profile.first_name@
+@payment_profile.last_name@
+@payment_profile.card_number@
+@payment_profile.expiration_month@
+@payment_profile.expiration_year@
+@payment_profile.billing_address@
+@payment_profile.billing_address_2@
+@payment_profile.billing_city@
+@payment_profile.billing_state@
+@payment_profile.billing_country@
+@payment_profile.billing_zip@
