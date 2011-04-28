@@ -46,6 +46,11 @@ Doculab::TableOfContents.define do
     page "Testing"
     page "Exporting Data"
   end
+
+  section "Communication" do
+    page "Communication Overview"
+    page "Mass Emailing Subscribers"
+  end
   
   section "Your Account" do
     page "Currency"
