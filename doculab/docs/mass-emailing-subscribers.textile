@@ -3,7 +3,7 @@ Mass emailing subscribers provides a way for you to notify your subscribers of r
 
 h3. How it works
 
-# Use the "Email Subscribers" link from the header of both the customers tab and the subscriptions tab.
+# Use the "Email Subscribers" link from the header of either the customers tab and the subscriptions tab.
 # The first form shows all of your products.  You can send the email to all of your subscribers, or you can pick a subset of products.  Only customers subscribed to selected products will receive the email.  If a customer is subscribed to multiple selected products, they will only receive one copy of the email.
 # The last form is where you craft the email.  The sender name and email will default from your merchant info but can be overridden for this email.  All four fields will be required to successfully send the email.
 
