@@ -1,4 +1,29 @@
-h3. v1.2.5 (3/5/2011)
+h3. v1.4.0 (5/2/2011)
+
+* "Mass Email" feature - email your entire subscriber base, or just those subscribed to particular products
+
+h3. v1.3.5 (4/19/2011)
+
+* Chargify Direct response params now include the timestamp and nonce
+* Added subscription data to the payment_success and payment_failure webhooks
+
+h3. v1.3.0 (4/7/2011)
+
+* Alpha release of API V2
+
+h3. v1.2.10
+
+* Improved timing of when and if $1 card authorizations are completed
+
+h3. v1.2.9 (3/18/2011)
+
+* Reduced default fetch size of API resources from 2000 to 200
+
+h3. v1.2.7 (3/17/2011)
+
+* Performance improvements to site header stats
+
+h3. v1.2.6 (3/5/2011)
 
 * Configurable card expiration emails
 
