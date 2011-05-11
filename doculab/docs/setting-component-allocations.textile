@@ -1,7 +1,5 @@
 In order for Chargify to assess charges for your Components, you must report to us the Component's status (i.e. quantity used or allocated, or whether the feature was enabled or not) for each Subscription. 
 
-p(note). At the time of this writing, setting Component allocations can only be done from the API.  Unfortunately, this feature is not yet within the UI or Hosted Pages, but it is something we are working towards.
-
 Components get "post-billed" (after usage) on the next billing cycle date, so if your Customer subscribed to the parent Product on the 23rd of the month, then he'll get billed for any Components on the 23rd of each month, assuming the product is on monthly billing cycle.  Chargify simply looks at the quantity on the billing date and then bills accordingly.
 
 Future releases may allow for proration of added/removed units, averaging of the count, "high-water mark", 95th percentile, etc. There are a number of approaches we've heard about that will be interesting to consider.
@@ -13,6 +11,16 @@ For Metered Components, you tell our API every time your customer uses some "wid
 
 Note: this differs from Quantity-based Components, which DO NOT reset to zero at the start of every billing period.
 
+You can report metered usage in the Admin UI by navigating to a subscription and selecting the "Components (Line-Items)" tab. This will display a list of all the available components.
+
+!{width:640px}/images/doculab/setting-alloc-1.png!
+
+Click the 'Ops' button to reveal the context navigation and click the 'Record Usage' link.
+
+!{width:640px}/images/doculab/setting-alloc-2.png!
+
+Fill in a quantity and an memo and press 'Record'. All recorded usage for a billing period will be tallied and charged at the end of the period.
+
 The API calls required to report usage are detailed in "API: Metered Usage":/api-metered-usage.
 
 h4. Reporting Quantity-based allocations
@@ -23,10 +31,14 @@ A common use-case is software license fees, where you want to collect $100/month
 
 Note: this differs from Metered Components, which DO reset to zero at the start of every billing period.
 
+Quantity component allocations can be updated using the Admin UI by selecting the component from the "Components (Line-Items)" tab when viewing a subscription.
+
 The API calls required to report allocated quantities are detailed in "API: Quantity Alocations":/api-quantity-allocations.
 
 h4. Reporting On/Off component status
 
 You report the status if On/Off Components (i.e. "enabled" or not) similarly to Quantity-based components.  Instead of reporting a number for the @allocated_quantity@, you pass a boolean to @enabled@.
+
+On/Off components can be toggled using the Admin UI by selecting the component from the "Components (Line-Items)" tab when viewing a subscription.
 
 The API calls required to report allocated quantities are detailed in "API: Quantity Alocations":/api-quantity-allocations (they behave much like Quantity-based allocations).

@@ -1,8 +1,39 @@
 h2. URI/Method
 
-|_. Resource/URI |_. GET |_. PUT |
-| Components<br/>@/subscriptions/<x>/components@ | List components | - |
-| Compoments<br/>@/subscriptions/<x>/components/<y>@ | Read component | Update compoment |
+|_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
+| Components<br/>@/subscriptions/<x>/components@ | List components belonging to a Subscription | - | - | - |
+| Compoment<br/>@/subscriptions/<x>/components/<y>@ | Read a component belonging to a Subscription | - | - | - |
+| Components<br/>@/product_families/<x>/components@ | List components belonging to a Product Family | - | - | - |
+| Compoment<br/>@/product_families/<x>/components/<y>@ | Read a component belonging to a Product Family | - | - | - |
+| Compoment<br/>@/product_families/<x>/[component_type]@ | - | Create Component | - | - |
+  
+h2. Component Input Attributes
+
+* @name@ The name of the Component. i.e. Text Messages.
+* @unit_name_@ (Not required for On/Off Components) The name of the unit that the component’s usage is measured in. i.e. message
+* @unit_price@ The amount the customer will be charged per unit. The price can contain up to 4 decimal places. i.e. $1.00, $0.0012, etc.
+* @pricing_scheme@ (Not required for On/Off Components) The handle for the pricing scheme. Available options: per_unit, volume, tiered, stairstep. See "Product Components":/product-components for an overview of pricing schemes.
+* @prices@ (Not required for On/Off Components or 'per_unit' pricing schemes) One or more price brackets. See "Product Components":/product-components for an overview of how price brackets work for different pricing schemes.
+** @starting_quantity@ 
+** @ending_quantity@ 
+** @unit_price@ 
+
+h2. Component Output Attributes
+
+In addition to the Input attributes, the following Output attributes are returned.
+* @name@ The name of the Component. i.e. Text Messages.
+* @unit_name_@ The name of the unit that the component’s usage is measured in. i.e. message
+* @unit_price@ The amount the customer will be charged per unit. This field is only populated for 'per_unit' pricing schemes.
+* @pricing_scheme@  The handle for the pricing scheme. Available options: per_unit, volume, tiered, stairstep. See "Product Components":/product-components for an overview of pricing schemes.
+* @prices@ An array of price brackets. If the component uses the 'per_unit' pricing scheme, this array will be empty.
+** @starting_quantity@ 
+** @ending_quantity@ 
+** @unit_price@
+* @product_family_id@ The id of the Product Family that the Component belongs to
+* @kind@ A handle for the component type: metered_component, quantity_based_component, on_off_component
+* @price_per_unit_in_cents@ (*This field is deprecated (see note below)*) This represents the unit price prior to the Chargify upgrade to fractional cent component pricing. This field may no longer represent the correct unit price of the component. The @unit_price@ field should be used instead.
+
+p(note). In May 2011, we added the ability to create components with fractional cent pricing (i.e. $0.0012 per unit). To accommodate this change we made some adjustments on our end that altered how prices are stored. Because of this, we have deprecated the @price_in_cents@ field in favor of the @unit_price@ field. The @price_in_cents@ field is still returned for backwards compatibility, but may not accurately represent the current state of the component if it has been updated since the change. We recommend updating your API calls to use the @unit_price@ field as soon as possible.
 
 h2. Methods
 
@@ -10,18 +41,18 @@ _format_ may be either 'xml' or 'json'.
 
 h3. List Components for a Subscription
 
-URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/components.<format>@  
-Method: @GET@  
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/components.<format>@
+Method: @GET@
 Required Parameters:
-@subscription_id@: The id of the subscription from which you want to get a listing of applied components 
-Response: An array of Components 
+@subscription_id@: The id of the subscription from which you want to get a listing of applied components
+Response: An array of Components
 **Usage Examples:**  
-"XML example":#api-subscription-xml-components-list  
-"JSON example":#api-subscription-json-components-list  
+"XML example":#api-subscription-xml-components-list
+"JSON example":#api-subscription-json-components-list
 
 h3. Read Component for a Subscription
 
-URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/components/<component_id>.<format>@  
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/components/<component_id>.<format>@
 Method: @GET@  
 Required Parameters:
 @subscription_id@: The id of the applicable subscription
@@ -30,6 +61,36 @@ Response: A component
 **Usage Examples:**  
 "XML example":#api-subscription-xml-component-read
 "JSON example":#api-subscription-json-component-read
+
+h3. List Components for a Product Family
+
+URL: @https://<subdomain>.chargify.com/product_families/<product_family_id_>/components.<format>@
+Method: @GET@
+Required Parameters:
+@product_family_id@: The id of the product family from which you want to get a listing of available components
+Response: An array of Components
+
+h3. Read Component for a Product Family
+
+URL: @https://<subdomain>.chargify.com/product_families/<product_family_id_>/components/<component_id>.<format>@
+Method: @GET@  
+Required Parameters:
+@subscription_id@: The id of the applicable product family
+@component_id@: The id of the component you want to retrieve information about
+Response: A component
+
+h3. Create Component
+
+URL: @https://<subdomain>.chargify.com/product_families/<product_family_id_>/<component_type>.<format>@
+Method: @POST@
+Required Parameters: 
+@product_family_id@: The id of the product family from which you want to get a listing of available components
+@compontent_type_@: The endpoint for the type of component you want to create. Options: metered_components, quantity_based_components, on_off_components
+@XML or JSON data@: Specified by the required attributes  
+Response: A component
+**Usage Examples:**  
+"XML example":#api-xml-components-create
+"JSON example":#api-json-components-create
 
 h2. Usage Examples
  
@@ -147,3 +208,63 @@ Feature: Chargify Subscriptions Read/Show/Lookup JSON API
     When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/components/9999.json
     Then the response status should be "404 Not Found"
 </code></pre>
+
+
+
+h3(#api-json-components-create). JSON Create Component Example
+
+<pre><code>
+  Feature: Create Metered Component
+    In order integrate my app with Chargify
+    As a developer
+    I want to create a metered component via the Chargify JSON API
+
+    Background:
+      Given I am a valid API user
+      And I send and accept json
+
+    Scenario: Successfully create a metered component with per_unit pricing
+      Given I have 1 product
+      And I have this json metered_component data
+        """
+        {"metered_component":{
+          "name":"Text messages",
+          "unit_name": "text message",
+          "pricing_scheme": "stairstep",
+          "prices":[
+            {"starting_quantity":1, "unit_price":1.0, "component":null}
+          ]
+        }}
+        """
+      When I send a POST request with the json data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/metered_components.json
+      Then the response status should be "201 Created"
+</code></pre>
+
+
+h3(#api-xml-components-create). XML Create Component Example
+
+<pre><code>
+  Feature: Create Quanitity Component
+    In order integrate my app with Chargify
+    As a developer
+    I want to create a quantity-based component via the Chargify XML API
+
+    Background:
+      Given I am a valid API user
+      And I send and accept xml
+
+    Scenario: Successfully create a quantity-based component with per_unit pricing
+      Given I have 1 product
+      And I have this xml quantity_based_component data
+        """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <quantity_based_component>
+          <name>Swizzles</name>
+          <unit_name>I.P Addresses</unit_name>
+          <pricing_scheme>address</pricing_scheme>
+          <unit_price>1.00</unit_price>
+        </quantity_based_component>
+        """
+      When I send a POST request with the xml data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/quantity_based_components.xml
+      Then the response status should be "201 Created"
+</code></pre>      
