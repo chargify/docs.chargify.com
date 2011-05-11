@@ -41,8 +41,6 @@ This component type is used to elect "add-on" options where electing the option 
 
 h2. Creating/Configuring Components available for Product Families
 
-p(warning). Configuring components is only available from the UI (no in the API) at the time of this writing.
-
 Components are defined on the Product Family level, and are available to all Products within the Family.  To create any Component for a Product Family, start on the "Products" tab and click "Create a Component".
 
 !http://s3.amazonaws.com/entp-tender-production/assets/06cfb932c2d3510250dcfb93cd56f5549686e27f/_Chargify__Acme__Inc.___My_Site___Products_normal.png!
@@ -132,5 +130,3 @@ h2. Setting Component allocations on Subscriptions
 Once a Component has been defined for a Product Family, any Subscription to a Product within that Family may have usage or allocation data reported in order to assess charges for them at the end of the period.
 
 For more information, please see "Setting Component Allocations":/setting-component-allocations.
-
-p(warning). At the time of this writing, setting Component allocations can only be done from the API.  Unfortunately, this feature is not yet within the UI or Hosted Pages, but it is something we are working towards.
