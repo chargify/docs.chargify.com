@@ -1,3 +1,5 @@
+p(note).  We strongly recommend using "Webhooks":/webhooks instead of Post-Backs.  The Webhooks have more features and will eventually replace Post-Backs.
+
 h3. What is a Post-Back?
 
 In order to notify your application of events that happen inside the Chargify application, such as new signups and accounts entering dunning, Chargify can "post-back" to your application. Postbacks are configured on the "Settings" tab for each site.
