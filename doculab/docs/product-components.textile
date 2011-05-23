@@ -41,15 +41,13 @@ This component type is used to elect "add-on" options where electing the option 
 
 h2. Creating/Configuring Components available for Product Families
 
-p(warning). Configuring components is only available from the UI (no in the API) at the time of this writing.
-
 Components are defined on the Product Family level, and are available to all Products within the Family.  To create any Component for a Product Family, start on the "Products" tab and click "Create a Component".
 
-!http://s3.amazonaws.com/entp-tender-production/assets/06cfb932c2d3510250dcfb93cd56f5549686e27f/_Chargify__Acme__Inc.___My_Site___Products_normal.png!
+!{width:640px}/images/doculab/prod-comp-1.png!
 
 Next, you'll be able to choose what type of component to create.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/b112974686fe10aa2baf7ef03f5e73660f04d56f/_Chargify__Acme__Inc.___My_Site___New_Component_normal.png!
+!{width:640px}/images/doculab/prod-comp-2.png!
 
 
 h3. Creating Quantity-based Components
@@ -114,17 +112,24 @@ h3. Creating Metered Components
 
 Choose to create a "Metered Component" and define it using the form.
 
-A Metered Component consists of 3 pieces of information:
+Creating a Metered Component works exactly like creating a Quantity Based Component (see above).
 
-* **Name**: The name of the Component. i.e. Text Messages
-* **Unit Name**: The name of the unit that the component's usage is measured in. i.e. message
-* **Price Per Unit**: The amount the customer will be charged per unit
-
-!http://s3.amazonaws.com/entp-tender-production/assets/94e682e39425c4bb9266872465749c443251dfa1/metered_form_normal.jpg!
-
-Once you have created a Metered Component, it will appear under the Product Family on the Products tab. You can make changes to the component by clicking the 'Edit Component' link.
+Once you have created a Metered Component, it will appear under the Product Family on the Products tab. You can make changes to the component by clicking the 'Edit' link.
 
 !http://s3.amazonaws.com/entp-tender-production/assets/935dc96e5323745369be443fb3270adcd4dd5909/metered_index_normal.jpg!
+
+h3. Creating On/Off Components
+
+Choose to create a "On/Off" and define it using the form.
+
+An On/Off Component consists of 3 pieces of information:
+ 
+* **Name**: The name of the Component. i.e. Text Messages
+* **Price**: The amount the customer will be charged per unit
+
+
+Once you have created an On/Off Component, it will appear under the Product Family on the Products tab. You can make changes to the component by clicking the 'Edit' link.
+
 
 
 h2. Setting Component allocations on Subscriptions
@@ -132,5 +137,3 @@ h2. Setting Component allocations on Subscriptions
 Once a Component has been defined for a Product Family, any Subscription to a Product within that Family may have usage or allocation data reported in order to assess charges for them at the end of the period.
 
 For more information, please see "Setting Component Allocations":/setting-component-allocations.
-
-p(warning). At the time of this writing, setting Component allocations can only be done from the API.  Unfortunately, this feature is not yet within the UI or Hosted Pages, but it is something we are working towards.

@@ -12,7 +12,7 @@ This is a Rails 3 app, with all dependencies managed by Bundler.  If you're not 
 
     % rvm gemset create docs.chargify.com
     % rvm gemset use docs.chargify.com
-    % gem install bundler --pre
+    % gem install bundler
     % git clone git://github.com/<your githubs>/docs.chargify.com.git
     % cd docs.chargify.com
     % bundle install
