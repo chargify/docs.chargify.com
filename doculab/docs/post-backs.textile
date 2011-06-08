@@ -1,4 +1,4 @@
-p(note).  We strongly recommend using "Webhooks":/webhooks instead of Post-Backs.  The Webhooks have more features and will eventually replace Post-Backs.
+p(note).  We strongly recommend using "Webhooks":/webhooks instead of Post-Backs.  Webhooks have more features and can be easier to use.
 
 h3. What is a Post-Back?
 
