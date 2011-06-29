@@ -12,4 +12,8 @@ h3. API Considerations
 * If you supply a @reference@ value when creating a Customer, you will be able to easily interact with the  Customer resource and the related resources (i.e. Subscriptions), since your application and Chargify now share a common identifier for the Customer
 * You may choose to save the Chargify Customer ID and/or the Subscription ID within your own application for later referencing those resources (this is a good idea)
 
+h3. Chargify Direct
+
+Certain API endpoints that require sensitive credit card data support *direct* form posts from your own web pages.  This means that forms on your site can send data *directly* to Chargify servers, reducing your PCI scope since you then don't have to process or transmit the sensitive data.  For more, see the "Introduction to Chargify Direct":/chargify-direct-introduction
+
 <!-- TODO: document other flows, like card updates, customer information updates, upgrades, etc -->

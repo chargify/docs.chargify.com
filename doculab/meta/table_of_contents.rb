@@ -47,6 +47,10 @@ Doculab::TableOfContents.define do
     page "Exporting Data"
   end
 
+  section "Chargify Direct (Transparent Redirect)" do
+    page "Introduction", :permalink => "chargify-direct-introduction"
+  end
+  
   section "Communication" do
     page "Communication Overview"
     page "Mass Emailing Subscribers"
@@ -66,7 +70,7 @@ Doculab::TableOfContents.define do
   
   section "Chargify API Resources" do
     page "API: Products"
-		page "API: Components"
+    page "API: Components"
     page "API: Coupons"
     page "API: Customers"
     page "API: Subscriptions"

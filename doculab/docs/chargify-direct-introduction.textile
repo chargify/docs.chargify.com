@@ -1,4 +1,4 @@
-p(note). This is draft documentation and subject to change.<br/><br/>
+p(note). Chargify Direct is currently in beta testing.  If you would like access to the feature, please "open a ticket":http://help.chargify.com/tickets/new and include the subdomain of the site you would like enabled.  This documentation is a draft and is subject to change.
 
 h2. Overview
 
