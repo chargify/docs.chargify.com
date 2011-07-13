@@ -20,6 +20,7 @@ Doculab::TableOfContents.define do
     page "Product Options"
     page "Product Components"
     page "Coupons"
+    page "Taxes"
   end
   
   section "Subscriptions" do
