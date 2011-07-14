@@ -14,7 +14,7 @@ h3. Tax Type
 
 When defining a tax, there are two Tax Types to choose from:
 
-h4. General Tax (i.e. US Sales Tax, Canadian VAT, Australian VAT, etc.)
+h4. General Tax (i.e. US Sales Tax, Canadian VAT, Australian GST, etc.)
 
 The General Tax allows you to apply a percentage rate tax on a specific geographic region. The region may be as broad as an entire country or as specific as a state/province. A typical use case for this type would be defining US Sales Tax for a specific state.
 
