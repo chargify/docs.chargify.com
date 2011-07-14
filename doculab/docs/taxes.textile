@@ -14,7 +14,7 @@ h3. Tax Type
 
 When defining a tax, there are two Tax Types to choose from:
 
-h4. General Tax (i.e. US Sales Tax)
+h4. General Tax (i.e. US Sales Tax, Canadian VAT, Australian VAT, etc.)
 
 The General Tax allows you to apply a percentage rate tax on a specific geographic region. The region may be as broad as an entire country or as specific as a state/province. A typical use case for this type would be defining US Sales Tax for a specific state.
 
@@ -28,7 +28,7 @@ The EU VAT type works just like the General Tax, with a few distinctions:
 
 h3. Tax Rules
 
-In order to be as flexible as possible, Chargify provides the ability to define your own tax scenarios. Taxes are comprised of one or more 'Tax Rules'. A Tax Rule specifies a geographic region and and a percentage rate to be applied to that region. The geographic region can be either an entire country, or a specific state/province within that country.
+In order to be as flexible as possible, Chargify provides the ability to define your own tax scenarios. Taxes are comprised of one or more 'Tax Rules'. A Tax Rule specifies a geographic region and a percentage rate to be applied to that region. The geographic region can be either an entire country, or a specific state/province within that country.
 
 h2. Marking Products and Components as Taxable
 
