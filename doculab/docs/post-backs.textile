@@ -47,7 +47,33 @@ Note that this data is sent as the content of the response, not in any query or 
 
 bc. params['_json']
 
-This example controller may help you get started: "http://github.com/shayfrendt/matador/blob/master/sample_postback_controller.rb":http://github.com/shayfrendt/matador/blob/master/sample_postback_controller.rb
+This example controller may help you get started:
+
+<pre><code>
+class Chargify::SubscriptionsController < ApplicationController
+  def update  
+    subscription_ids = params['_json']
+    #Rails.logger.debug("SUB IDS: #{subscription_ids.inspect}")
+    begin
+      subscription_ids.each do |id|
+        # Process updated subscriptions here
+        Rails.logger.debug("SUB ID: #{id}")
+      end
+      respond_to do |format|
+        format.json { head :ok }
+      end
+    rescue # watch out, this will rescue everything! You may want to be more selective...
+      respond_to do |format|
+        format.json { head :internal_server_error }
+      end
+    end
+  end
+end
+
+# suggested corresponding named route for routes.rb
+# map.chargify_subscriptions '/chargify/subscriptions/:action.:format', :controller => 'chargify/subscriptions'
+</code></pre>
+
 
 h3. Not receiving Post-backs?
 
