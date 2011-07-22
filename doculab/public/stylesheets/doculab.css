@@ -43,6 +43,8 @@
 #docupage ol ol ol li                 {list-style:lower-roman;}
 
 #docupage pre, #docupage code         {background-color: #333; font-family: 'Bitstream Vera Sans Mono', "Monaco", Courier, monospace; color: #fff; font-size: 12px;}
+#docupage .gist pre,
+#docupage .gist code                  {color: #333;}
 #docupage pre                         {padding: 20px; margin: 1.5em 0; overflow:auto;}
 #docupage code                        {padding: 0 2px;}
 
