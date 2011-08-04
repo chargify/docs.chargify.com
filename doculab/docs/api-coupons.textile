@@ -215,3 +215,22 @@ Scenario: Create a subscription successfully with a coupon
   And the subscription should have 1 coupon
   And the coupon should have been applied
 </code></pre>
+
+h2. Adding and Removing a Coupon to an existing subscription
+
+You can also add or remove a Coupon from an existing subscription using the API. To do that, you should have a valid coupon code and a subscription id.
+
+h3. Add
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/add_coupon.<format>?code=<coupon_code>@
+Method: @GET@
+Required Parameters: subscription_id, coupon_code
+Response: If the coupon is successfully applied, the subscription object will be returned. Otherwise, a 'Coupon is invalid' error will be returned.
+
+h3. Remove
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/remove_coupon.<format>?code=<coupon_code>@
+Method: @GET@
+Required Parameters: subscription_id, coupon_code
+Response: If the coupon is successfully removed, the subscription object will be returned. Otherwise, a '402 Uprocessable Entity' error will be returned.
+
