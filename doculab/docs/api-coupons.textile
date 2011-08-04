@@ -1,4 +1,4 @@
-Coupons are created in the Admin Interface (see "Coupons":/coupons) or via the API. You can also create Subscriptions using one and validate a Coupon via the API
+Coupons are created in the Admin Interface (see "Coupons":/coupons) or via the API. You can also create Subscriptions using a Coupon, add a Coupon to an existing Subscription and validate a Coupon via the API.
 
 h2. URI/Method
 
@@ -8,6 +8,20 @@ h2. URI/Method
 | Coupon<br/>@/coupon/<x>@ | Retrieve coupon | - | Update coupon | Archive subscription |
 
 
+h2. Coupon Input Attributes
+
+When creating a coupon, you must specify a product family using the @product_family_id@. If no @product_family_id@ is passed, the first product family available is used.
+
+* @name@ The internal coupon name. This information is never displayed to customers
+* @code@ The coupon code. Customers will use that to benefit from the coupon advantages.
+* @description@ The coupon description. This will be displayed to the customers after the coupon validation.
+* @percentage@ The discount percentage. Should be an interger between 1 and 100. You should set the percentage or the amount, but not both.
+* @amount@ Flat discount amount. You should set the percentage or the amount, but not both.
+* @allow_negative_balance@  Boolean. If true, credits will carry forward to next billing. Otherwise discount may not exceed total of the charges.
+* @recurring@ Boolean. If true, the discount will be applied at signup and every renewal. Otherwise, discount will be applied only at signup.
+* @coupon_duration_period_count@ Integer. Number of renewals the coupon is good for. Recurring should be set to true.
+* @coupon_end_date@ Coupon ending date.  If set, the coupon will expire in this date.
+* @product_family_id@. The ID of the product family which the coupon belongs to.
 
 h2. Creating a Coupon via the API
 
@@ -15,7 +29,7 @@ To create a coupon, simply pass the coupon information to the correct URL endpoi
 
 h3. Create
 
-URL: @https://<subdomain>.chargify.com/product_families/<product_family_id_>/coupons.<format>@
+URL: @https://<subdomain>.chargify.com/coupons.<format>@
 Method: @POST@
 Required Parameters: Coupon parameters
 Response: The created coupon
@@ -35,6 +49,7 @@ h3(#api-usage-xml-coupon-create). XML Create Coupon Example
           <allow_negative_balance>false</allow_negative_balance>
           <recurring>false</recurring>
           <end_date>2012-08-29T12:00:00-04:00</end_date>
+          <product_family_id>2</product_family_id>
         </coupon>
 </code></pre>
 
@@ -49,7 +64,8 @@ h3(#api-usage-json-coupon-create). JSON Create Coupon Example
            "percentage": "15",
            "allow_negative_balance": "false",
            "recurring": "false",
-           "end_date": "2012-08-29T12:00:00-04:00"
+           "end_date": "2012-08-29T12:00:00-04:00",
+           "product_family_id": "2"
       }
     }
 </code></pre>
@@ -57,11 +73,11 @@ h3(#api-usage-json-coupon-create). JSON Create Coupon Example
 
 h2. Retrieving a Coupon via the API
 
-You can retrieve a coupon via the API with the @show@ method. Retrieving a coupon via the API will allow you to determine whether or not the coupon is valid.
+You can retrieve a coupon via the API with the @show@ method.
 
 h3. Show
 
-URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/coupons/<coupon_id>.json@
+URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>.<format>@
 Method: @GET@
 Required Parameters: coupon_id
 Response: The coupon
@@ -72,7 +88,7 @@ You can update a coupon via the API with a @PUT@ request to the resource endpoin
 
 h3. Update
 
-URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/coupons/<coupon_id>.json@
+URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>.<format>@
 Method: @PUT@
 Required Parameters: Coupon params, including coupon_id
 Response: The updated coupon
@@ -83,19 +99,18 @@ You can archive a coupon via the API with the @archive@ method.
 
 h3. Archive
 
-URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/coupons/<coupon_id>.json@
+URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>.<format>@
 Method: @DELETE@
 Required Parameters:  coupon_id
 Response: The coupon resource
 
-
-h2. Validate
+h2. Validating a Coupon via the API
 
 You can verify if an specific coupon code is valid using the @validate@ method.
 
 h3. Validate
 
-URL: @https://<subdomain>.chargify.com/product_families/<pf_id>/coupons/<coupon_id>.json/validate@
+URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>/validate.<format>@
 Method: @GET@
 Required Parameters:  coupon_id
 Response: If the coupon is invalid, the response will say why. If it's valid, nothing will be returned. As of right now, the following errors are supported:
@@ -111,11 +126,20 @@ You can search for a coupon via the API with the @find@ method. By passing a @co
 
 h3. Find
 
-URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/coupons/find.json@
+URL: @https://<subdomain>.chargify.com/coupons/find.<format>@
 Method: @GET@
 Required Parameters: code
 Response: The coupon
 
+h2. Coupon Usage
+
+You can get more information about an specific coupon usage t
+h3. Usage
+
+URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>/usage.<format>_@
+Method: @GET@
+Required Parameters: coupon_id
+Response: Details about the coupon usage
 
 h2. Creating a Subscription with a Coupon via the API
 
