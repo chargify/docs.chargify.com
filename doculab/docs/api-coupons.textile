@@ -1,31 +1,36 @@
-Coupons are created in the Admin Interface (see "Coupons":/coupons) or via the API. You can also create Subscriptions using a Coupon, add a Coupon to an existing Subscription and validate a Coupon via the API.
+Coupons can be administered in the Admin Interface (see "Coupons":/coupons) or via the API.  In addition to the normal CRUD actions on coupons, you can also create Subscriptions using a Coupon, add a Coupon to an existing Subscription, and validate a Coupon via the API.
 
 h2. URI/Method
 
 
 |_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
-| Coupons<br/>@/coupons@ | - | Create new coupon | - | - |
-| Coupon<br/>@/coupon/<x>@ | Retrieve coupon | - | Update coupon | Archive subscription |
+| Coupons<br/>@/coupons@ | - | "Create new coupon":#api-coupon-create | - | - |
+| Coupon<br/>@/coupon/<id>@ | "Retrieve coupon":#api-coupon-show | - | "Update coupon":#api-coupon-update | "Archive subscription":#api-coupon-archive |
+| Coupon (by code)<br/>@/coupons/find@ | "Find by coupon code":#api-coupon-find | - | - | - |
+| Coupon Usage<br/>@/coupons/<id>/usage@ | "Retrieve Usage":#api-coupon-usage | - | - | - |
+| Subscription<br/>@/subscriptions@ | - | "Create Subscription w/ Coupon":#api-subscription-create-with-coupon | - | - |
+| Subscription Coupon<br/>@/subscriptions/<id>/add_coupon@ | - | "Add Coupon to existing subscription":#api-subscription-coupon-add | - | - |
+| Subscription Coupon<br/>@/subscriptions/<id>/remove_coupon@ | - | "Remove Coupon from existing subscription":#api-subscription-coupon-remove | - | - |
 
 
 h2. Coupon Input Attributes
 
-When creating a coupon, you must specify a product family using the @product_family_id@. If no @product_family_id@ is passed, the first product family available is used.
+When creating a coupon, you must specify a product family using the @product_family_id@. *If no @product_family_id@ is passed, the first product family available is used.*
 
-* @name@ The internal coupon name. This information is never displayed to customers
-* @code@ The coupon code. Customers will use that to benefit from the coupon advantages.
+* @name@ The internal coupon name. This information is never displayed to customers.
+* @code@ The coupon code. This is used by you or your customers to apply the coupon to a subscription.
 * @description@ The coupon description. This will be displayed to the customers after the coupon validation.
 * @percentage@ The discount percentage. Should be an interger between 1 and 100. You should set the percentage or the amount, but not both.
-* @amount@ Flat discount amount. You should set the percentage or the amount, but not both.
+* @amount@ Flat discount amount as a string with dollars and (optionally) cents, i.e. "10.00" for $10.00. You should set the percentage or the amount, but not both.
 * @allow_negative_balance@  Boolean. If true, credits will carry forward to next billing. Otherwise discount may not exceed total of the charges.
-* @recurring@ Boolean. If true, the discount will be applied at signup and every renewal. Otherwise, discount will be applied only at signup.
-* @coupon_duration_period_count@ Integer. Number of renewals the coupon is good for. Recurring should be set to true.
-* @coupon_end_date@ Coupon ending date.  If set, the coupon will expire in this date.
-* @product_family_id@. The ID of the product family which the coupon belongs to.
+* @recurring@ Boolean. If true, the discount will be applied at signup and every renewal (for the number of renewals given by @coupon_duration_period_count@). Otherwise, discount will be applied only at signup.
+* @coupon_duration_period_count@ Integer. Number of renewals the coupon is good for. Recurring should be set to true.  Setting @recurring@ to true and leaving this blank indicates that the coupon applies indefinitely.
+* @coupon_end_date@ Coupon ending date.  If set, the coupon will expire at the end of the day on this date.
+* @product_family_id@. The ID of the product family to which the coupon belongs.  The coupon can be applied *only* to products in this product family.
 
-h2. Creating a Coupon via the API
+h2(#api-coupon-create). Creating a Coupon via the API
 
-To create a coupon, simply pass the coupon information to the correct URL endpoint.
+To create a coupon, simply POST the coupon information to the correct URL endpoint.
 
 h3. Create
 
@@ -71,9 +76,9 @@ h3(#api-usage-json-coupon-create). JSON Create Coupon Example
 </code></pre>
 
 
-h2. Retrieving a Coupon via the API
+h2(#api-coupon-show). Retrieving a Coupon via the API
 
-You can retrieve a coupon via the API with the @show@ method.
+You can retrieve a coupon via the API with the @show@ method.  You must identify the coupon in this call by the @id@ parameter that Chargify assigns.  If instead you would like to find a coupon using a coupon code, see "the Coupon Find method":#api-coupon-find.
 
 h3. Show
 
@@ -82,7 +87,7 @@ Method: @GET@
 Required Parameters: coupon_id
 Response: The coupon
 
-h2. Updating a Coupon via the API
+h2(#api-coupon-update). Updating a Coupon via the API
 
 You can update a coupon via the API with a @PUT@ request to the resource endpoint.
 
@@ -93,9 +98,9 @@ Method: @PUT@
 Required Parameters: Coupon params, including coupon_id
 Response: The updated coupon
 
-h2. Archiving a Coupon via the API
+h2(#api-coupon-archive). Archiving a Coupon via the API
 
-You can archive a coupon via the API with the @archive@ method.
+You can archive a coupon via the API with the @archive@ method.  Archiving makes that coupon unavailable for future use, but allows it to remain attached and functional on existing subscriptions that are using it.
 
 h3. Archive
 
@@ -106,23 +111,23 @@ Response: The coupon resource
 
 h2. Validating a Coupon via the API
 
-You can verify if an specific coupon code is valid using the @validate@ method.
+You can verify if an specific coupon code is valid using the @validate@ method. This method is useful for validating coupon codes that are entered by a customer.  If the coupon is found and is valid, the coupon will be returned with a 200 status code.
 
 h3. Validate
 
 URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>/validate.<format>@
 Method: @GET@
 Required Parameters:  coupon_id
-Response: If the coupon is invalid, the response will say why. If it's valid, nothing will be returned. As of right now, the following errors are supported:
+Response: If the coupon is invalid, the status code will be 404 and the response will say why its invalid. If it's valid the status code will be 200 and the coupon will be returned. The following reasons for invalidity are supported:
 
 * Coupon not found
 * Coupon is invalid
 * Coupon expired
 
 
-h2. Finding a Coupon via the API
+h2(#api-coupon-find). Finding a Coupon via the API
 
-You can search for a coupon via the API with the @find@ method. By passing a @code@ parameter, the find record will attempt to locate a coupon that matches that code. This method is useful for validating coupon code's that are entered by a customer.  If no coupon is found, a 404 is returned.
+You can search for a coupon via the API with the @find@ method. By passing a @code@ parameter, the find  will attempt to locate a coupon that matches that code.   If no coupon is found, a 404 is returned.
 
 h3. Find
 
@@ -131,17 +136,39 @@ Method: @GET@
 Required Parameters: code
 Response: The coupon
 
-h2. Coupon Usage
+h2(#api-coupon-usage). Coupon Usage
 
-You can get more information about an specific coupon usage t
+You can get more information about an specific coupon usage, which consists of the following data points, _per product_:
+
+* Number of signups using coupon
+* Total amount of savings achieved
+* Total revenue received from subscriptions using the coupon
+
 h3. Usage
 
 URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>/usage.<format>_@
 Method: @GET@
 Required Parameters: coupon_id
-Response: Details about the coupon usage
+Response: Details about the coupon usage as an array of data hashes, one per product.  Example json:
 
-h2. Creating a Subscription with a Coupon via the API
+<pre><code>[
+  {
+    "name":"Basic",    // Product Name
+    "id":3,            // Product ID
+    "revenue":"48.00", // Revenue from subscriptions that used coupon
+    "signups":1,       // Number of signups that used coupon
+    "savings":"12.00"  // Savings given by coupon
+  },
+  {
+    "name":"Pro",
+    "id":4,
+    "revenue":"0.00",
+    "signups":0,
+    "savings":"0.00"
+  }
+]</code></pre>
+
+h2(#api-subscription-create-with-coupon). Creating a Subscription with a Coupon via the API
 
 To apply a coupon to a subscription, simply pass a coupon_code parameter along with the usual Subscription parameters.
 
@@ -220,17 +247,17 @@ h2. Adding and Removing a Coupon to an existing subscription
 
 You can also add or remove a Coupon from an existing subscription using the API. To do that, you should have a valid coupon code and a subscription id.
 
-h3. Add
+h3(#api-subscription-coupon-add). Add
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/add_coupon.<format>?code=<coupon_code>@
-Method: @GET@
+Method: @POST@
 Required Parameters: subscription_id, coupon_code
 Response: If the coupon is successfully applied, the subscription object will be returned. Otherwise, a 'Coupon is invalid' error will be returned.
 
-h3. Remove
+h3(#api-subscription-coupon-remove). Remove
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/remove_coupon.<format>?code=<coupon_code>@
-Method: @GET@
+Method: @POST@
 Required Parameters: subscription_id, coupon_code
 Response: If the coupon is successfully removed, the subscription object will be returned. Otherwise, a '402 Uprocessable Entity' error will be returned.
 
