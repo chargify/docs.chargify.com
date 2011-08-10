@@ -4,7 +4,7 @@ When creating and editing a Product, you will have the ability to set certain op
 
 h3(#return-url-and-parameters). Return URL and Parameters
 
-In these fields, you may define a URL, optionally with dynamic parameters, to which the Hosted Payment Page would redirect after a successful signup.  The behavior of this field is covered further in the documentation on "Hosted Page Settings":/hosted-page-settings#return-url.  "Hosted Page Integation":/hosted-page-integration discusses the integration use-cases for these values.
+In these fields, you may define URLs, optionally with dynamic parameters, to which the Hosted Payment Page would redirect after a successful signup and/or credit card update.  The behavior of these fields is covered further in the documentation on "Hosted Page Settings":/hosted-page-settings#return-url.  "Hosted Page Integation":/hosted-page-integration discusses the integration use-cases for these values.
 
 h3. API Handle
 

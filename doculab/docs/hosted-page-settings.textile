@@ -77,11 +77,11 @@ h3(#return-url). Return URL and parameters
 
 The Return URL is configured in the "Product Options":/product-options on a per-product basis, but is documented here for its effect on the Hosted Payment Pages.
 
-When creating or editing a product, you may specify a *Return URL* and *Return parameters*.
+When creating or editing a product, you may specify a *Return URL after successful signup*, *Return URL after successful account update* and *Return parameters*.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/b69536c3ef198b4ca722d0b754396f332ff06818/params_normal.jpg!
+!/images/doculab/return-urls.png!
 
-The Return URL is the URL that the user will be redirected to after a successful transaction. The Return parameters specify the data that will be passed back in the query string of the Return URL.
+The *Return URL after successful signup* is the URL that the user will be redirected to after they sign up using the hosted page. The *Return URL after successful account update* is the URL that the user will be redirected to after they update their payment details using the "self-service" hosted card update page.  The *Return parameters* specify the data that will be passed back in the query string of both Return URLs (i.e. it is shared between both URLs).
 
 The available parameters are:
 
