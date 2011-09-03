@@ -10,9 +10,7 @@ p(warning). Accessing *any* hosted payment page will log you out of your Chargif
 
 !http://s3.amazonaws.com/entp-tender-production/assets/0a600c477a13047b5aea02209285bb734b7de98a/screenshot_normal.jpg!
 
-Each Product has its own hosted signup page page and unique URL.  You can find the URLs for these pages on your product overview screen, as indicated in the following image:
-
-!http://s3.amazonaws.com/entp-tender-production/assets/cf5517d8793fc367ca82e738b0aac7ad3f14c2a0/hosted-signup-page-link-location_normal.png!
+Each Product has its own hosted signup page page and unique URL.  You can find the URLs for these pages on your product overview screen, in the box labelled "Hosted Signup Page URL".
 
 For more information on the full set of URLs available, see "Hosted Page URLs":#hosted-page-urls, below.
 
