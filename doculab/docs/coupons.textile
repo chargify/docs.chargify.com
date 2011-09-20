@@ -20,7 +20,7 @@ Coupons are added to the Product Family from the Products tab. Once a coupon has
 h4. Basic coupon fields:
 
 * **Name**: A name for the coupon. The name is not displayed to customers
-* **Coupon Code**: The code that customers will enter to redeem the coupon. The code must be uppercase letters, numbers and underscores with no spaces
+* **Coupon Code**: The code that customers will enter to redeem the coupon. The code must be uppercase letters, numbers and underscores with no spaces. **NOTE:** You can add additional codes to the coupon once the coupon has been created.
 * **Description**: A description of the coupon that can be displayed to customers
 * **Expiration Date**: Coupons will no longer be redeemable after this time
 * **Amount**: The amount that will be discounted from the initial subscription
@@ -39,6 +39,15 @@ By default, coupons are not applied to future payments after the initial signup.
 
 Once you have created a Coupon, it will appear under the Product Family on the Products tab. You can make changes to the component by clicking the 'Edit Coupon' link.
 
+h5. Adding Additional Codes
+
+Once a coupon has been created you can add additional codes to the coupon. These codes behave exactly like the main coupon code. To add more, click the 'Manage Codes' button for the coupon of your choice. 
+
+!{width:640px}/images/doculab/coupon-more-codes-1.png!
+
+Next, enter the additional codes into the text box, with one coupon per line.
+
+!/images/doculab/coupon-more-codes-2.png!
 
 h3. Amount vs. Percentage Coupons
 
