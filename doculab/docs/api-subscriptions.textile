@@ -22,6 +22,7 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @email@ The email address of the customer.  Required when creating a customer via attributes.
 ** @organization@ The organization/company of the customer.  Optional.
 ** @reference@ A customer "reference", or unique identifier from your app, stored in Chargify.  Can be used so that you may reference your customers within Chargify using the same unique value you use in your application.  Optional.
+* @payment_profile_id@ The Payment Profile ID of an _existing_ card, which belongs to an _existing_ customer to use for payment for this subscription.  If the card or customer does not exist already, or if you want to use a new (unstored) card for the subscription, use @payment_profile_attributes@ *instead* to create a new payment profile along with the subscription.  (This value is available on an existing subscription via the API as @credit_card@ > @id@)
 * @payment_profile_attributes@ (this may also be referred to as @credit_card_attributes@)
 ** @first_name@ (Optional) First name on card.  If omitted, the @first_name@ from customer attributes will be used.
 ** @last_name@ (Optional) Last name on card.  If omitted, the @last_name@ from customer attributes will be used.
@@ -62,17 +63,30 @@ The following attributes are returned on a subscription read/list operation.
 * @customer@ For customer attributes, see [Customers API](/faqs/api/api-customers)
 * @product@ For product attributes, see [Products API](#todo)
 * @credit_card@ Nested credit card attributes
-** @type@ The type of card used (bogus, visa, master)
+** @id@ The Chargify-assigned ID of the stored card.  This value can be used as an input to @payment_profile_id@ when creating a subscription, in order to re-use a stored payment profile _for the same customer_
+** @card_type@ The type of card used (bogus, visa, master)
 ** @expiration_month@ An integer representing the expiration month of the card(1 - 12)
 ** @expiration_year@ An integer representing the 4-digit expiration year of the card(i.e. '2012')
 ** @first_name@ The first name of the card holder
 ** @last_name@ The last name of the card holder
 ** @masked_card_number@ A string representation of the credit card number with all but the last 4 digits masked with X's (i.e. 'XXXX-XXXX-XXXX-1234')
+** @customer_id@ The Chargify-assigned @id@ for the customer record to which the card belongs
+** @customer_vault_token@ (only for Authorize.Net CIM storage): the @customerProfileId@ for the owner of the @customerPaymentProfileId@ provided as the @vault_token@
+** @vault_token@ The "token" provided by your vault storage for an already stored payment profile
+** @current_vault@ The vault that stores the payment profile with the provided @vault_token@.  May be @authorizenet@, @trust_commerce@, @payment_express@, @beanstream@, or @braintree1@
+** @billing_address@ The current billing street address for the card
+** @billing_address_2@ The current billing street address, second line, for the card
+** @billing_city@ The current billing address city for the card
+** @billing_state@ The current billing address state for the card
+** @billing_zip@ The current billing address zip code for the card
+** @billing_country@ The current billing address country for the card
 * @cancellation_message@ Seller-provided reason for, or note about, the cancellation.
-* @signup_revenue@: The revenue, formatted as a string of decimal separated dollars and cents, from the subscription signup ($50.00 would be formatted as 50.00)
-* @signup_payment_id@: The ID of the transaction that generated the revenue
-* @cancel_at_end_of_period@: Whether or not the subscription will (or has) canceled at the end of the period.
-* @delayed_cancel_at@: Timestamp for when the subscription is currently set to cancel.
+* @canceled_at@ The timestamp of the most recent cancellation
+* @signup_revenue@ The revenue, formatted as a string of decimal separated dollars and cents, from the subscription signup ($50.00 would be formatted as 50.00)
+* @signup_payment_id@ The ID of the transaction that generated the revenue
+* @cancel_at_end_of_period@ Whether or not the subscription will (or has) canceled at the end of the period.
+* @delayed_cancel_at@ Timestamp for when the subscription is currently set to cancel.
+* @previous_state@ *Only valid for webhook payloads* The previous state for webhooks that have indicated a change in state.  For normal API calls, this will always be the same as the @state@ (current state)
 
 
 h2. Methods
