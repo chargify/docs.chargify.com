@@ -2,6 +2,10 @@ The Transactions API allows you to view a list of all transactions both for a si
 
 h2. URIs
 
+|_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
+| Transactions<br/>@/transactions@ | List transactions | - | - | - |
+| Transaction<br/>@/transactions/<id>@ | Read transaction | - | - | - |
+| Subscription Transactions<br/>@/subscriptions/<id>/transactions@ | List transactions belonging to a Subscription | - | - | - |
 
 h2. Transaction Types
 
@@ -49,6 +53,16 @@ Response: An array of Transactions
 "XML example":#api-usage-xml-site-list  
 "JSON example":#api-usage-json-site-list
 
+h3. Show transaction
+
+URL: @https://<subdomain>.chargify.com/transactions/<id>.<format>@  
+Method: @GET@  
+Required Parameters: @id@
+
+Response: A single Transaction
+
+"XML example":#api-usage-xml-transaction-show
+"JSON example":#api-usage-json-transaction-show
 
 h3. List transactions for a Subscription
 
@@ -266,4 +280,89 @@ Scenario: Retrieve a list of all the account transactions for a subscription
   When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/transactions.json
   Then the response status should be "200 OK"
   And the response should be a json array with 5 "transaction" objects
+</code></pre>
+
+h3(#api-usage-xml-transaction-show). XML Show Transaction Example
+
+<pre><code>
+Feature: Chargify Transactions Read/Show XML API
+  In order to integrate my app with Chargify
+  As a developer
+  I want to read/show a transaction via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I accept xml responses
+    And I have 1 product
+    And I have 1 active subscriptions
+
+  Scenario: Retrieve a transaction via ID
+    Given I have a transaction
+    When I send a GET request to https://[@subdomain].chargify.com/transactions/[@transaction.id].xml
+    Then the response status should be "200 OK"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <transaction>
+        <transaction_type>payment</transaction_type>
+        <created_at type="datetime">`auto generated`</created_at>
+        <product_id type="integer">[@product.id]</product_id>
+        <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+        <memo></memo>
+        <id type="integer">[@transaction.id]</id>
+        <type>Payment</type>
+        <amount_in_cents type="integer">1000</amount_in_cents>
+        <success type="boolean">true</success>
+        <subscription_id type="integer">[@subscription.id]</subscription_id>
+      </transaction>
+      """
+
+  @allow-rescue
+  Scenario: Attempt to retrieve a transaction that doesn't exist
+    Given no transactions exist
+    When I send a GET request to https://[@subdomain].chargify.com/transactions/9999.xml
+    Then the response status should be "404 Not Found"
+</code></pre>
+
+h3(#api-usage-json-transaction-show). JSON Show Transaction Example
+
+<pre><code>
+Feature: Chargify Transactions Read/Show JSON API
+  In order to integrate my app with Chargify
+  As a developer
+  I want to read/show a transaction via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept JSON
+    And I have 1 product
+    And I have 1 active subscriptions
+
+  Scenario: Retrieve a transaction via ID
+    Given I have a transaction
+    When I send a GET request to https://[@subdomain].chargify.com/transactions/[@transaction.id].json
+    Then the response status should be "200 OK"
+    And the response should be the json:
+      """
+      {
+        "transaction":{
+          "transaction_type":"payment",
+          "created_at":`auto generated`,
+          "product_id":[@product.id],
+          "ending_balance_in_cents":null,
+          "memo":null,
+          "id":[@transaction.id],
+          "type":"Payment",
+          "amount_in_cents":1000,
+          "success":true,
+          "subscription_id":[@subscription.id]
+        }
+      }
+      """
+
+  @allow-rescue
+  Scenario: Attempt to retrieve a transaction that doesn't exist
+    Given no transactions exist
+    When I send a GET request to https://[@subdomain].chargify.com/transactions/9999.json
+    Then the response status should be "404 Not Found"
 </code></pre>
