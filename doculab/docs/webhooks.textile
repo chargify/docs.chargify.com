@@ -1,6 +1,6 @@
 Webhooks offer a way to quickly find out about changes to your Subscriptions that happen within Chargify.  You can subscribe to events of interest, and we'll post data to the URL you specify when one of those events occurs.
 
-p(note). Webhooks are recommended over "Post-backs":post-backs for your integration.
+p(note). Webhooks are recommended over "Post-backs":post-backs for your integration.<br><br>
 
 p(note). Webhook events usually get sent quickly, but sometimes there can be a small delay (if you experience a delay longer than a few minutes please contact us).
 
@@ -28,6 +28,7 @@ The following events are monitored within Chargify and can generate Webhooks:
 | @payment_failure@ | Any failed payment attempt against a credit card<sup>4</sup> | @payment@ |
 | @billing_date_change@ | Any change to the billing date that is initiated explicitly by altering the billing date via the admin UI or the API.  This will not be triggered upon a normal renewal and period advancement | @subscription@<sup>1</sup> |
 | @subscription_state_change@ | Any change to the Subscription state.  This is the "workhorse" of the events - watching this event can tell you if a Subscription ever moves to a "bad" state, i.e. @past_due@ | @subscription@<sup>1,5</sup> |
+| @subscription_product_change@ | A successful change from an old product to a new product within the users Subscription. | @product_change@ |
 | @expiring_card@ | A periodic event sent by Chargify | @subscription@<sup>1,6</sup> |
 
 <sup>1</sup> The @subscription@ object also contains information on the Customer and Product.

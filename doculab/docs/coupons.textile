@@ -4,7 +4,7 @@ h4. How and when are Coupons applied?
 
 * Coupons are only applied at the time a normal, recurring charge is assessed to someone.
 
-* They only apply to product base charges, not to component charges or to charges that happen as a result of the "Add a Charge" function.
+* Coupons apply to the total of all charges, instead of just the base fee.  This means that any setup fees and component charges will also be discounted by a valid coupon.
 
 * They will appear on a customer's record in the order of "charge, adjustment, payment".
 

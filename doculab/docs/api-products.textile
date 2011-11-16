@@ -35,17 +35,31 @@ h3. List
 
 URL: @https://<subdomain>.chargify.com/products.<format>@  
 Method: @GET@  
+
 Response: An array of Products  
+
+"XML example":#api-usage-xml-product-family-products-list
+"JSON example":#api-usage-json-product-family-products-list
+
+h3. List products for a Product Family
+
+URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/products.<format>@  
+Method: @GET@
+Required Parameters: @product_family_id@
+
+Response: An array of Products
+
 "XML example":#api-usage-xml-products-list  
 "JSON example":#api-usage-json-products-list
-
 
 h3. Read/Show (via Chargify ID)
 
 URL: @https://<subdomain>.chargify.com/products/<id>.<format>@  
 Method: @GET@  
 Required Parameters: @id@  
+
 Response: An single Product  
+
 "XML example":#api-usage-xml-products-read  
 "JSON example":#api-usage-json-products-read
 
@@ -55,7 +69,9 @@ h3. Read/Show (via API handle)
 URL: @https://<subdomain>.chargify.com/products/handle/<handle>.<format>@  
 Method: @GET@  
 Required Parameters: @handle@  
+
 Response: An single Product  
+
 "XML example":#api-usage-xml-products-read  
 "JSON example":#api-usage-json-products-read
 
@@ -260,4 +276,24 @@ Feature: Chargify API JSON Product read
     Given I have 0 products
     When I send a GET request to https://[@subdomain].chargify.com/products/handle/dne.json
     Then the response status should be "404 Not Found"
+</code></pre>
+
+h3(#api-usage-xml-product-family-products-list). XML List Products for Product Family Example
+
+<pre><code>
+Scenario: Retrieve a list of my products belonging to a product family
+  Given I have 5 products
+  When I send a GET request to https://[@subdomain].chargify.com/product_families/[@product_family.id]/products.xml
+  Then the response status should be "200 OK"
+  And the response should be a "products" array with 5 "product" elements
+</code></pre>
+
+h3(#api-usage-json-product-family-products-list). JSON List Products for Product Family Example
+
+<pre><code>
+Scenario: Retrieve a list of my products belonging to a product family
+  Given I have 5 products
+  When I send a GET request to https://[@subdomain].chargify.com/product_families/[@product_family.id]/products.json
+  Then the response status should be "200 OK"
+  And the response should be a json array with 5 "product" objects
 </code></pre>
