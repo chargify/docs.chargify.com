@@ -31,6 +31,21 @@ Response: The updated subscription
 "JSON example":#api-migrations-json-create
 "JSON example, with trial":#api-migrations-json-create-with-trial
 
+h3(#preview). Preview
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/migrations/preview.json@  
+Method: @POST@  
+Required Parameters: product_id or product_handle
+Response: Calculated migration values:
+* @prorated_adjustment_in_cents@: Integer, The amount of the prorated adjustment that would be issued for the current subscription.
+* @charge_in_cents@: Integer, The amount of the charge that would be created for the new product.
+* @payment_due_in_cents@: Integer, The amount of the payment due in the case of an upgrade.
+* @credit_applied_in_cents@: Integer, The amount of the credit that would be left in the case of a downgrade.
+
+**Usage Examples:**
+"XML example":#api-migrations-xml-preview
+"JSON example":#api-migrations-json-preview
+
 h2. Usage Examples
 
 h3(#api-migrations-xml-create). XML Create Migration Example
@@ -246,4 +261,63 @@ Feature: Chargify Migrations Create JSON API
     Then the response status should be "200 OK"
     And the subscription should be trialing
     And the response should be the json:
+</code></pre>
+
+h3(#api-migrations-xml-preview). XML Migration Preview Example
+
+<pre><code>
+Feature: Chargify Migrations Preview XML API
+  Given I have 2 products
+  And the first product costs $250
+  And the second product costs $900
+  And I have an active subscription to the first product
+  And it is halfway through the month
+  And I have this xml migration data
+    """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <migration>
+        <product_id>[@products.last.id]</product_id>
+      </migration>
+    """
+  When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/migrations/preview.xml
+  Then the response status should be "200 OK"
+  And the response should be the xml:
+    """
+    <?xml version="1.0" encoding="UTF-8"?>
+    <migration>
+      <prorated_adjustment_in_cents>-12500</prorated_adjustment_in_cents>
+      <charge_in_cents>90000</charge_in_cents>
+      <payment_due_in_cents>77500</payment_due_in_cents>
+      <credit_applied_in_cents>0</credit_applied_in_cents>
+    </migration>
+    """
+</code></pre>
+
+
+h3(#api-migrations-json-preview). JSON Migration Preview Example
+
+<pre><code>
+Feature: Chargify Migrations Preview JSON API
+  Given I have 2 products
+  And the first product costs $250
+  And the second product costs $900
+  And I have an active subscription to the first product
+  And it is halfway through the month
+  And I have this json migration data
+    """
+    {"migration":{
+      "product_id": [@products.last.id]
+    }}
+    """
+  When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/migrations/preview.json
+  Then the response status should be "200 OK"
+  And the response should be the json:
+    """
+    {"migration":{
+      "prorated_adjustment_in_cents":-12500,
+      "charge_in_cents":90000,
+      "payment_due_in_cents":77500,
+      "credit_applied_in_cents":0
+    }}
+    """
 </code></pre>
