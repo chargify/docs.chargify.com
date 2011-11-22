@@ -87,6 +87,7 @@ The following attributes are returned on a subscription read/list operation.
 * @cancel_at_end_of_period@ Whether or not the subscription will (or has) canceled at the end of the period.
 * @delayed_cancel_at@ Timestamp for when the subscription is currently set to cancel.
 * @previous_state@ *Only valid for webhook payloads* The previous state for webhooks that have indicated a change in state.  For normal API calls, this will always be the same as the @state@ (current state)
+* @coupon_code@ The coupon code of the coupon currently applied to the subscription
 
 
 h2. Methods
