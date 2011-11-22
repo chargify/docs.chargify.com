@@ -157,5 +157,21 @@
       </div>
     </div>
   </div>
+  <!-- Start of Google Analytics  -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-10463203-1']);
+    _gaq.push(['_setDomainName','chargify.com']);
+    if(typeof(_vis_opt_GA_track) == "function") {_vis_opt_GA_track();} //VWO code
+    _gaq.push(['_trackPageview']);
+    _gaq.push(['_trackPageLoadTime']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  <!-- End of Google Analytics -->
 </body>
 </html>
