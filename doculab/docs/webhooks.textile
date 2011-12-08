@@ -2,7 +2,7 @@ Webhooks offer a way to quickly find out about changes to your Subscriptions tha
 
 p(note). Webhooks are recommended over "Post-backs":post-backs for your integration.<br><br>
 
-h2(#asynchronous) Webhooks are Asynchronous
+h2(#asynchronous). Webhooks are Asynchronous
 
 p(note). Webhook events usually get sent quickly, but sometimes there can be a small delay (if you experience a delay longer than a few minutes please contact us).
 
