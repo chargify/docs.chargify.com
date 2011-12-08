@@ -2,7 +2,16 @@ Webhooks offer a way to quickly find out about changes to your Subscriptions tha
 
 p(note). Webhooks are recommended over "Post-backs":post-backs for your integration.<br><br>
 
+h2(#asynchronous) Webhooks are Asynchronous
+
 p(note). Webhook events usually get sent quickly, but sometimes there can be a small delay (if you experience a delay longer than a few minutes please contact us).
+
+Webhooks are asynchronous events.  We do our best to always send them in a timely manner, but we do not recommend on relying on webhooks for events that are very time sensitive.
+
+A good example of this is your signup path.  We do not recommend that you block a user from moving forward with provisioning or signup on your side based on a webhook response.  All of our signup paths have synchronous methods of being notified of the event:
+
+* With hosted page signups, you can use the "Return URLs and Return URL Parameters":/product-options#return-url-and-parameters as a hint of the signup.  You can use this hint to make a synchronous API fetch to learn more about the subscription
+* With API signups, you can use the response from the subscription creation request to take action without waiting on a webhook
 
 h2. Webhook Contents
 

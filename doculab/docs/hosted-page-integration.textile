@@ -22,8 +22,8 @@ h2. Hosted Payment Page signup flow
 ## If the customer enters information correctly and their credit card is accepted (or is not required) then they are redirected either to:
 ### a Chargify-hosted receipt page
 ### the page identified by the Return URL you provided in the "Product Options":/product-options
-# If you use a Return URL and Return URL parameters, you can capture information about the signup within your Return URL page to change your own application state (however you'll probably want to verify this information via our API to avoid susceptibility to URL-hacking)
-# You can also observe "Post-backs":/post-backs to change your application state based on the signup
+# If you use a Return URL and Return URL parameters, you can capture information about the signup within your Return URL page to change your own application state (however you'll probably want to verify this information via our API to avoid susceptibility to URL-hacking).  The Return URL and Return URL parameters are how you can be *synchronously* notified of a signup.  This is the best way to learn about a signup via the hosted page in real time.
+# You can also observe "Webhooks":/webhooks to change your application state based on the signup.  Webhooks are *asynchronous* events, so you probably do not want to block your user from completing a signup on your end until you receive the Webhook.  See "Webhooks are Asynchronous":/webhooks#asynchronous
 
 
 <!-- TODO: document flow for card updates via hosted pages -->
