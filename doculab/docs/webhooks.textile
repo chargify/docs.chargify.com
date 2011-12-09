@@ -18,7 +18,7 @@ h2. Webhook Contents
 Webhooks are sent as HTTP POST requests to your URL with a form-encoded body (@Content-Type:  application/x-www-form-urlencoded@) for easy parsing in almost any programming language.  All Webhooks contain the following keys:
 
 | @event@   | An identifier for the type of event that occurred. See "Events":#events, below  |
-| @payload@ | A hash of pertinent data about the event                                        |
+| @payload@ | A hash of pertinent data about the event. |
 
 For example, test Webhooks are sent with the following body:
 
@@ -29,16 +29,17 @@ h2(#events). Events
 The following events are monitored within Chargify and can generate Webhooks:
 
 |_. Event Key |_. Trigger |_. Payload |
-| @signup_success@  | Any successful signup (Subscription created) via the API, admin UI, or hosted pages | @subscription@<sup>1</sup> |
-| @signup_failure@  | Any failed signup (Subscription failed to begin) via the API, admin UI, or hosted pages<sup>2</sup> | @subscription@<sup>1</sup> |
-| @renewal_success@ | A successful periodic renewal<sup>3</sup> | @subscription@<sup>1</sup> |
-| @renewal_failure@ | A failed periodic renewal, i.e. the credit card is declined<sup>3</sup> | @subscription@<sup>1</sup> |
-| @payment_success@ | Any successful payment against a credit card<sup>4</sup> | @payment@ |
-| @payment_failure@ | Any failed payment attempt against a credit card<sup>4</sup> | @payment@ |
-| @billing_date_change@ | Any change to the billing date that is initiated explicitly by altering the billing date via the admin UI or the API.  This will not be triggered upon a normal renewal and period advancement | @subscription@<sup>1</sup> |
-| @subscription_state_change@ | Any change to the Subscription state.  This is the "workhorse" of the events - watching this event can tell you if a Subscription ever moves to a "bad" state, i.e. @past_due@ | @subscription@<sup>1,5</sup> |
-| @subscription_product_change@ | A successful change from an old product to a new product within the users Subscription. | @product_change@ |
-| @expiring_card@ | A periodic event sent by Chargify | @subscription@<sup>1,6</sup> |
+| @signup_success@  | Any successful signup (Subscription created) via the API, admin UI, or hosted pages | @site@, @subscription@<sup>1</sup> |
+| @signup_failure@  | Any failed signup (Subscription failed to begin) via the API, admin UI, or hosted pages<sup>2</sup> | @site@, @subscription@<sup>1</sup> |
+| @renewal_success@ | A successful periodic renewal<sup>3</sup> | @site@, @subscription@<sup>1</sup> |
+| @renewal_failure@ | A failed periodic renewal, i.e. the credit card is declined<sup>3</sup> | @site@, @subscription@<sup>1</sup> |
+| @payment_success@ | Any successful payment against a credit card<sup>4</sup> | @site@, @payment@ |
+| @payment_failure@ | Any failed payment attempt against a credit card<sup>4</sup> | @site@, @payment@ |
+| @billing_date_change@ | Any change to the billing date that is initiated explicitly by altering the billing date via the admin UI or the API.  This will not be triggered upon a normal renewal and period advancement | @site@, @subscription@<sup>1</sup> |
+| @subscription_state_change@ | Any change to the Subscription state.  This is the "workhorse" of the events - watching this event can tell you if a Subscription ever moves to a "bad" state, i.e. @past_due@ | @site@, @subscription@<sup>1,5</sup> |
+| @subscription_product_change@ | A successful change from an old product to a new product within the users Subscription. | @site@, @product_change@ |
+| @expiring_card@ | A periodic event sent by Chargify | @site@, @subscription@<sup>1,6</sup> |
+| @customer_update@ | Any change to the following customer fields: @first_name@, @last_name@, @organization@, @email@, @reference@, @address@, @address 2@, @city@, @state@, @zip@, @country@, @phone@. | @site@, @customer@ |
 
 <sup>1</sup> The @subscription@ object also contains information on the Customer and Product.
 <sup>2</sup> This is usually caused by a failure at the payment gateway.  This event is not generated for input validation errors (i.e. forgetting to fill in a field).
@@ -51,7 +52,7 @@ p(note). Multiple Webhook events may be triggered by a single system event.  For
 
 h2. Payload Resources
 
-The resource objects sent as payload contain the same information as the corresponding API resource.  To see the attribute keys that are sent with the Subscription and Payment payload objects, see the API documentation.  (Payment objects are a type of Transaction resource)
+The resource objects sent as payload contain the same information as the corresponding API resource.  Site payload objects contain the site's @id@ and @subdomain@. To see the attribute keys that are sent with the Subscription and Payment payload objects, see the API documentation.  (Payment objects are a type of Transaction resource)
 
 * "API Subscription resources":/api-subscriptions
 * "API Transaction resources":/api-transactions
