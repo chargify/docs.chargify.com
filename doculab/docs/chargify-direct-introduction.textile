@@ -1,4 +1,4 @@
-p(note). Chargify Direct is currently in beta testing.  You must be on our "Start" plan ($99/month) to be eligible for Chargify Direct.  If you would like access to the feature, please "open a ticket":http://help.chargify.com/tickets/new and include the subdomain of the site you would like enabled.  This documentation is a draft and is subject to change.
+p(note). Chargify Direct is currently in beta testing.  You must be on our *Start* plan ($99/month) to be eligible for Chargify Direct.  If you would like access to the feature, please "open a ticket":http://help.chargify.com/tickets/new and include the subdomain of the site you would like enabled.  This documentation is a draft and is subject to change.
 
 h2. Overview
 
