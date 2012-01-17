@@ -47,6 +47,8 @@ URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/component
 Method: @GET@
 Required Parameters:
 @subscription_id@: The id of the subscription from which you want to get a listing of applied components
+Optional Parameters:
+@include_archived@: Boolean, default 0. If 1 is sent then archived components will also be included.
 Response: An array of Components
 **Usage Examples:**  
 "XML example":#api-subscription-xml-components-list
