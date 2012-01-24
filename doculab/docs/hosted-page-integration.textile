@@ -107,3 +107,4 @@ A "404 Not Found" response will be returned if the URL is not valid.  Invalid UR
 
 * The resource ID does not identify a valid resource for the given Site
 * The token does not match the expected token for the page shortname and ID
+* Using POST instead of the correct GET verb to initially get the hosted page
