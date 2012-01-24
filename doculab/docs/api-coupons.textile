@@ -10,8 +10,7 @@ h2. URI/Method
 | Coupon Usage<br/>@/coupons/<id>/usage@ | "Retrieve Usage":#api-coupon-usage | - | - | - |
 | Subscription<br/>@/subscriptions@ | - | "Create Subscription w/ Coupon":#api-subscription-create-with-coupon | - | - |
 | Subscription Coupon<br/>@/subscriptions/<id>/add_coupon@ | - | "Add Coupon to existing subscription":#api-subscription-coupon-add | - | - |
-| Subscription Coupon<br/>@/subscriptions/<id>/remove_coupon@ | - | "Remove Coupon from existing subscription":#api-subscription-coupon-remove | - | - |
-
+| Subscription Coupon<br/>@/subscriptions/<id>/remove_coupon@ | - | - | - | "Remove Coupon from existing subscription":#api-subscription-coupon-remove |
 
 h2. Coupon Input Attributes
 
@@ -257,7 +256,7 @@ Response: If the coupon is successfully applied, the subscription object will be
 h3(#api-subscription-coupon-remove). Remove
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/remove_coupon.<format>?code=<coupon_code>@
-Method: @POST@
+Method: @DELETE@
 Required Parameters: subscription_id, coupon_code
 Response: If the coupon is successfully removed, the subscription object will be returned. Otherwise, a '402 Uprocessable Entity' error will be returned.
 
