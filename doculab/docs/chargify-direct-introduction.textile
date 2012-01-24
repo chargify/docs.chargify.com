@@ -60,7 +60,7 @@ h3. Secure Parameter Inputs
 These secure inputs should be sent to Chargify through the Direct endpoint nested inside the @secure@ parameter.  For example, the following form demonstrates how to use hidden form inputs to submit all 5 secure inputs:
 
 <pre><code>
-<form method="post" action="http://api.chargify.com/api/v2/signups">
+<form method="post" action="https://api.chargify.com/api/v2/signups">
   <input type="hidden" name="secure[api_id]"    value="1234" />
   <input type="hidden" name="secure[timestamp]" value="1301148971" />
   <input type="hidden" name="secure[nonce]"     value="5b2763d0-39e1-012e-858d-64b9e8d3946e" />
