@@ -14,7 +14,7 @@ Each Product has its own hosted signup page page and unique URL.  You can find t
 
 For more information on the full set of URLs available, see "Hosted Page URLs":#hosted-page-urls, below.
 
-h2. Hosted Payment Page signup flow
+h2. Hosted Payment Page Signup Flow
 
 # Provide your potential Customers with a link to the Hosted page for the Product you would like to offer them.  Note that you have the option to pass in some data to pre-populate the form or variables that are sent to Chargify - see "Hosted Page Settings: Pre-populating Data":/hosted-page-settings#pre-populating-data
 # The customer fills out their credit card details and other requested or required information (the information collected by the Hosted Payment Form is controlled by the "Product Options":/product-options) and presses the submit button
@@ -107,3 +107,4 @@ A "404 Not Found" response will be returned if the URL is not valid.  Invalid UR
 
 * The resource ID does not identify a valid resource for the given Site
 * The token does not match the expected token for the page shortname and ID
+* Using POST instead of the correct GET verb to initially get the hosted page
