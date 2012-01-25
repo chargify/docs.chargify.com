@@ -33,6 +33,7 @@ In addition to the Input attributes, the following Output attributes are returne
 * @product_family_id@ The id of the Product Family that the Component belongs to
 * @kind@ A handle for the component type: metered_component, quantity_based_component, on_off_component
 * @price_per_unit_in_cents@ (*This field is deprecated (see note below)*) This represents the unit price prior to the Chargify upgrade to fractional cent component pricing. This field may no longer represent the correct unit price of the component. The @unit_price@ field should be used instead.
+* @archived@ Boolean flag describing whether a component is archived or not.
 
 p(note). In May 2011, we added the ability to create components with fractional cent pricing (i.e. $0.0012 per unit). To accommodate this change we made some adjustments on our end that altered how prices are stored. Because of this, we have deprecated the @price_in_cents@ field in favor of the @unit_price@ field. The @price_in_cents@ field is still returned for backwards compatibility, but may not accurately represent the current state of the component if it has been updated since the change. We recommend updating your API calls to use the @unit_price@ field as soon as possible.
 
