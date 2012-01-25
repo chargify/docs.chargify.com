@@ -1,0 +1,40 @@
+Chargify Events include various activity that happens around a Site.
+
+The following fields are returned from GET (read) operations. Note, all events are *read only*.
+
+* @id@
+* @key@
+* @message@
+* @created_at@
+
+The following are different types of events you may see in the `key` field:
+
+* @payment_success@
+* @payment_failure@
+* @signup_success@
+* @signup_failure@
+* @billing_date_change@
+* @renewal_success@
+* @renewal_failure@
+* @subscription_state_change@
+* @subscription_product_change@
+* @expiring_card@
+* @customer_update@
+
+h2. Methods
+
+h3. List Events for a Subscription
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/events.<format>@
+Method: @GET@
+Formats: JSON, XML
+Optional Parameters: @page@
+Response: An array of Events
+
+h3. List Events for a Site
+
+URL: @https://<subdomain>.chargify.com/events.<format>@
+Method: @GET@
+Formats: JSON, XML
+Required Parameters: @id@
+Response: An array of Events
