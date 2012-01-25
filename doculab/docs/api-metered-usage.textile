@@ -15,7 +15,7 @@ _format_ may be either 'xml' or 'json'.
 
 h3. List Usage
 
-URL: @https://[@subdomain].chargify.com/subscriptions/<subscription_id>/components/<component_id>/usages.json@
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/components/<component_id>/usages.json@
 Method: @GET@  
 Required Parameters: @subscription_id@, @component_id@
 Optional Parameters:
@@ -44,7 +44,7 @@ Response: The created usage log
 
 h3. List Components for a Product Family
 
-URL: @https://[@subdomain].chargify.com/product_families/<product_family_id>/components.xml@
+URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/components.xml@
 Method: @GET@  
 Required Parameters: @product_family_id@
 
