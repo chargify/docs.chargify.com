@@ -6,6 +6,7 @@ The following fields are returned from GET (read) operations. Note, all events a
 * @key@
 * @message@
 * @created_at@
+* @event_specific_data@
 
 The following are different types of events you may see in the `key` field:
 
