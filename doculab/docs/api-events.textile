@@ -45,3 +45,43 @@ Method: @GET@
 Formats: JSON, XML
 Required Parameters: @id@
 Response: An array of Events
+
+h2. Event Specific Data
+
+Each event type has its own `event_specific_data` specified.
+
+Here's an example event for the `subscription_product_change` event:
+
+<pre>
+{
+    "event": {
+        "id": 351,
+        "key": "subscription_product_change",
+        "message": "Product changed on Marky Mark's subscription from 'Basic' to 'Pro'",
+        "subscription_id": 205,
+        "event_specific_data": {
+            "new_product_id": 3,
+            "previous_product_id": 2
+        },
+        "created_at": "2012-01-30T10:43:31-05:00"
+    }
+}
+</pre>
+
+Here's an example event for the `subscription_state_change` event:
+
+<pre>
+ {
+     "event": {
+         "id": 353,
+         "key": "subscription_state_change",
+         "message": "State changed on Marky Mark's subscription to Pro from trialing to active",
+         "subscription_id": 205,
+         "event_specific_data": {
+             "new_subscription_state": "active",
+             "previous_subscription_state": "trialing"
+         },
+         "created_at": "2012-01-30T10:43:33-05:00"
+     }
+ }
+</pre>
