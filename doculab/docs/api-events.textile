@@ -5,8 +5,9 @@ The following fields are returned from GET (read) operations. Note, all events a
 * @id@
 * @key@
 * @message@
-* @created_at@
+* @subscription_id@
 * @event_specific_data@
+* @created_at@
 
 The following are different types of events you may see in the `key` field:
 
