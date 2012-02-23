@@ -116,13 +116,15 @@ h3. Validate
 
 URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>/validate.<format>@
 Method: @GET@
-Required Parameters:  coupon_id
+Required Parameters:  coupon_id or coupon_code
 Response: If the coupon is invalid, the status code will be 404 and the response will say why its invalid. If it's valid the status code will be 200 and the coupon will be returned. The following reasons for invalidity are supported:
 
 * Coupon not found
 * Coupon is invalid
 * Coupon expired
 
+If you have more than one product family and if the coupon you are validating does not belong to the first product family in your site, then you will need to specify (either in the url or as a query string param) the product family id.
+Eg. URL: @https://<subdomain>.chargify.com/product_families/<product_family_id/coupons/<coupon_id>/validate.<format>@
 
 h2(#api-coupon-find). Finding a Coupon via the API
 
