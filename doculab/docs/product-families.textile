@@ -2,6 +2,10 @@ h3. What is a Product Family?
 
 *Product Families* provide a grouping for your Products that can be considered different "feature levels" or "plans" of the same service or offering.  If you're building a web app with different plans, in general, a Product Family will represent your app, and Products will represent your plans.  We've just generalized the terminology to apply to more situations.
 
+Your customers will be able to upgrade and downgrade between different Products within the *same* Product Family.  They will *not* be able to upgrade or downgrade between products in *different* families.
+
+Additionally, "Coupons":/coupons and "Components":/product-components are scoped by Product Family.  In other words, Coupons and Components from one Family will be accessible to Products within the same family, but not to Products in another Family.
+
 
 h3. Creating Product Families
 

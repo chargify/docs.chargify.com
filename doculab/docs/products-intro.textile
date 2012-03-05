@@ -7,7 +7,7 @@ In your app or business, you might call these Products your "Plans" or "Feature 
 
 h3. Product Families
 
-Products belong to a "*Product Family*":/product-families.  Product Families should contain the Products that are all different "feature levels" of the same thing - i.e. you can usually upgrade and downgrade between Products within the same Product Family.  The "Product Family documentation":/product-families goes in to more depth on how to structure your Product Family and Product relationships.
+Products belong to a "*Product Family*":/product-families.  Product Families should contain the Products that are all different "feature levels" of the same thing - i.e. you can usually upgrade and downgrade between Products within the same Product Family, *but not between Products in different Families*.  The "Product Family documentation":/product-families goes in to more depth on how to structure your Product Family and Product relationships.
 
 h3. Creating a Product
 
