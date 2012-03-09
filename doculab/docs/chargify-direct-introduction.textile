@@ -199,12 +199,12 @@ When Chargify redirects back to your "redirection URI":#redirection-uri, it will
 | @nonce@         | The reflected or auto-generated nonce |
 | @status_code@   | An HTTP Status code that represents the status of the request.  The same codes used for API resource creation are used. |
 | @result_code@   | A Chargify-specific result code, that is related to the status code but may give more specific information about the result of your request |
-| @call_id@       | The ID for the stored representation of the original Call (form post).  The Call may be fetched via the API for full response information (for both success and fail scenarios).
+| @call_id@       | The ID for the stored representation of the original Call (form post).  The Call may be fetched via the API for full response information (for both success and fail scenarios). |
 | @signature@     | The HMAC-SHA1 hexdigest of the previous parameters, to verify their integrity |
 
 h3(#response-signature). Response Signature
 
-The signature of the response is the hexadecimal representation of a computed "Hash-based Message Authentication Code":http://en.wikipedia.org/wiki/HMAC, using SHA-1 as the cryptographic function (HMAC-SHA1).  The secret for the function is the API shared secret (@api_secret@) issued to the API user by Chargify.  The message for the function is the concatenation of the @api_id@, @timestamp@, @nonce@, @status_code@, @result_code@, and @call_id_@ parameters.
+The signature of the response is the hexadecimal representation of a computed "Hash-based Message Authentication Code":http://en.wikipedia.org/wiki/HMAC, using SHA-1 as the cryptographic function (HMAC-SHA1).  The secret for the function is the API shared secret (@api_secret@) issued to the API user by Chargify.  The message for the function is the concatenation of the @api_id@, @timestamp@, @nonce@, @status_code@, @result_code@, and @call_id@ parameters.
 
 <pre><code>HMAC-SHA1(api_secret, api_id+timestamp+nonce+status_code+result_code+call_id)</code></pre>
 
