@@ -14,6 +14,7 @@ The Chargify API allows you initiate an upgrade/downgrade by posting JSON or XML
 * @product_id@ or @product_handle@: The ID or handle of the Product that the subscription will migrate to
 * @include_trial@: Boolean, default 0. If 1 is sent the customer will migrate to the new product with a trial if one is available. If 0 is sent, the trial period will be ignored.
 * @include_initial_charge@: Boolean, default 0. If 1 is sent initial charges will be assessed. If 0 is sent initial charges will be ignored.
+* @include_coupons@: Boolean, default 1. If 1 (or nothing) is sent, any coupons associated with the subscription will be applied to the migration. If 0 is sent, coupons will not be applied.
  
 h2. Methods
 
