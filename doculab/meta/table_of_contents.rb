@@ -93,6 +93,10 @@ Doculab::TableOfContents.define do
   section "Release Information" do
     page "Release Notes"
   end
+
+  section "Contributing" do
+    page "Documentation Repository"
+  end
     
   # section "Code Samples & Libraries" do
   #   page "API Code Overview", :permalink => "api-code"
