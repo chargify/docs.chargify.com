@@ -22,7 +22,7 @@ You can now browse the docs at http://localhost:3000
 
 ### Making changes
 
-All public-facing docs are stored at [doculab/docs](http://github.com/grasshopperlabs/docs.chargify.com/tree/master/doculab/docs/).
+All public-facing docs are stored at [doculab/docs](http://github.com/chargify/docs.chargify.com/tree/master/doculab/docs/).
 
 You can make changes there and send us pull requests.  (More on that later)
 
