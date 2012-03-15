@@ -2,7 +2,7 @@ Chargify supports multiple currencies. Currency configuration is done on a site-
 
 The currency is used in price displays found in the Web UI and on Hosted Pages.  It is also the currency that is used as the "submission currency" to the gateways.  This means that the transactions we submit to your gateway are specified using this currency.  Note that this can be different than the settlement currency of your Merchant Account.
 
-The currencies currently supported by Chargify (updated 8/19/10) are:
+The currencies currently supported by Chargify (updated 3/15/12) are:
 
 |_. Currency |_. Symbol |_. Name |_. Gateway |
 | USD | $ | United States dollar | Authorize.Net, TrustCommerce, Payment Express, Beanstream, Braintree v2, eWay, Samurai |
