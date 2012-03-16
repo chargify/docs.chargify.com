@@ -84,6 +84,7 @@ Doculab::TableOfContents.define do
     page "API: Refunds"
     page "API: Credits"
     page "API: Statements"
+    page "API: Stats"
   end
 
   section "3rd Party Integrations" do
