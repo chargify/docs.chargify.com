@@ -5,6 +5,8 @@ This API call only answers with JSON responses.  An XML version is not provided.
 h2. URI
 
 @https://<subdomain>.chargify.com/stats.json@
+  
+"Authentication":/api-authentication is required.
       
 h2. Example Response
 
