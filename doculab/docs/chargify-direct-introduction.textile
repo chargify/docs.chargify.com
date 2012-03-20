@@ -166,6 +166,12 @@ Creating a Signup creates a Subscription, and may create or reference an existin
 
 Resource URI: @https://api.chargify.com/api/v2/signups@
 
+h4. Card Update
+
+Updating a Subscription's Payment Profile with new information.
+
+Resource URI: @https://api.chargify.com/api/v2/subscriptions/<subscription.id>/card_update@
+
 
 h2(#resource-parameters). Resource Parameters
 
