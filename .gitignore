@@ -8,3 +8,4 @@ public/*.html
 public/**/*.html
 .DS_Store
 config/setup_load_paths.rb
+vendor/bundle
