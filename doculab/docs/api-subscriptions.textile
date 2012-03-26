@@ -97,7 +97,7 @@ _format_ may be either 'xml' or 'json'.
 
 h3. List
 
-Listing subscriptions is paginated, 2000 at a time, by default.  They are listed most recently created first.
+Listing subscriptions is paginated, 20 at a time by default with an allowed max of 200 per page.  They are listed most recently created first.
 
 You may control pagination using the @page@ and/or @per_page@ parameters.
 
@@ -105,7 +105,7 @@ URL: @https://<subdomain>.chargify.com/subscriptions.<format>@
 Method: @GET@  
 Optional Parameters:
 @page@: an integer value which specifies which page of results to fetch, starting at 1.  Fetching successively higher page numbers will return additional results, until there are no more results to return (in which case an empty result set will be returned).  Defaults to 1.
-@per_page@: how many records to fetch in each request, defaults to 2000. Note: fetching subscriptions is currently unoptimized, so fetching large batches of subscriptions will be a slow operation.  
+@per_page@: how many records to fetch in each request, defaults to 20.  The maximum allowed is 200 - any @per_page@ value over 200 will be changed to 200.
 Response: An array of Subscriptions  
 **Usage Examples:**  
 "XML example":#api-usage-xml-subscriptions-list  
