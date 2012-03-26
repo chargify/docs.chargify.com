@@ -91,10 +91,6 @@ Doculab::TableOfContents.define do
     page "Zferral Integration"
   end
 
-  section "Release Information" do
-    page "Release Notes"
-  end
-
   section "Contributing" do
     page "Documentation Repository"
   end
