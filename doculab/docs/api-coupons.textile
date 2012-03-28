@@ -157,16 +157,16 @@ Response: Details about the coupon usage as an array of data hashes, one per pro
   {
     "name":"Basic",    // Product Name
     "id":3,            // Product ID
-    "revenue":"48.00", // Revenue from subscriptions that used coupon
+    "revenue":48.0,    // Revenue from subscriptions that used coupon
     "signups":1,       // Number of signups that used coupon
-    "savings":"12.00"  // Savings given by coupon
+    "savings":12.00    // Savings given by the coupon for this product
   },
   {
     "name":"Pro",
     "id":4,
-    "revenue":"0.00",
+    "revenue":0.0,
     "signups":0,
-    "savings":"0.00"
+    "savings":0.0
   }
 ]</code></pre>
 
