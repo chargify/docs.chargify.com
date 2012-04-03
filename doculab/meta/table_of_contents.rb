@@ -68,23 +68,23 @@ Doculab::TableOfContents.define do
     page "API Resources"
     page "API Code Samples & Libraries", :permalink => "api-code"
   end
-  
+
   section "Chargify API Resources" do
-    page "API: Products"
+    page "API: Adjustments"
+    page "API: Charges"
     page "API: Components"
     page "API: Coupons"
+    page "API: Credits"
     page "API: Customers"
-    page "API: Subscriptions"
-    page "API: Transactions"
-    page "API: Migrations (Prorated Upgrades/Downgrades)", :permalink => "api-migrations"
-    page "API: Charges"
-    page "API: Adjustments"
     page "API: Metered Usage"
+    page "API: Migrations (Prorated Upgrades/Downgrades)", :permalink => "api-migrations"
+    page "API: Products"
     page "API: Quantity Component Allocations", :permalink => "api-quantity-allocations"
     page "API: Refunds"
-    page "API: Credits"
     page "API: Statements"
     page "API: Stats"
+    page "API: Subscriptions"
+    page "API: Transactions"
   end
 
   section "3rd Party Integrations" do
@@ -94,7 +94,7 @@ Doculab::TableOfContents.define do
   section "Contributing" do
     page "Documentation Repository"
   end
-    
+
   # section "Code Samples & Libraries" do
   #   page "API Code Overview", :permalink => "api-code"
   #   page "Ruby", :permalink => "ruby-code"
