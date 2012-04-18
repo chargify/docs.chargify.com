@@ -43,6 +43,7 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 * @cancellation_message@ (Optional) Can be used when canceling a subscription (via the HTTP DELETE method) to make a note about the reason for cancellation.
 * @next_billing_at@ (Optional, used for Subscription Import) Set this attribute to a future date/time to sync imported subscriptions to your existing renewal schedule. See the notes on "Date/Time Format" below. If you provide a next_billing_at timestamp that is in the future, no trial or initial charges will be applied when you create the subscription. In fact, no payment will be captured at all. The first payment will be captured, according to the prices defined by the product, near the time specified by next_billing_at. If you do not provide a value for next_billing_at, any trial and/or initial charges will be assessed and charged at the time of subscription creation. If the card cannot be successfully charged, the subscription will not be created.
 * @vat_number@ (Optional) Supplying the VAT number allows EU customers to opt-out of the Value Added Tax assuming the merchant address and customer billing address are not within the same EU country.
+* @coupon_code@ (Optional) The coupon code of the coupon to apply (See the "coupon docs":/api-coupons#api-subscription-create-with-coupon)
 
 
 h2. Subscription Output Attributes
@@ -258,7 +259,9 @@ Chargify offers the ability to reactivate a previously canceled subscription. Fo
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/reactivate.xml@
 Method: @PUT@
 Required Parameters: none
-Optional Parameters: @include_trial@ - Boolean, default 0. If 1 is sent the reactivated subscription will include a trial if one is available. If 0 is sent, the trial period will be ignored.  This parameter should be sent in a query string, and does not need to be nested inside a @subscription@ object
+Optional Parameters:
+@include_trial@ - Boolean, default 0. If 1 is sent the reactivated subscription will include a trial if one is available. If 0 is sent, the trial period will be ignored.  This parameter should be sent in a query string, and does not need to be nested inside a @subscription@ object
+@coupon_code@ - The coupon code to be applied during reactivation.
 Response: The updated subscription  
 
 "XML example":#api-react-xml
