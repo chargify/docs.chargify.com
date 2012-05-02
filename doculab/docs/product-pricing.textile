@@ -26,3 +26,13 @@ Out of all of the pricing option fields, the recurring period and price are the 
 h3. Expiration interval
 
 An expiration interval can be defined in a number of days or months, and is counted from the day that a Subscription is first created for this Product.  The Subscription will automatically transition to @expired@ state at the time of the first renewal assessment (as defined by the recurring period or end of the trial period) that occurs after the expiration interval has expired.  Since recurring charges are assessed in advance, no new charges would be assessed at the beginning of the period in which the Subscription expired.
+
+*Basic Example*
+
+There is a product called "Small Plan" which costs $10 per month and expires after 10 months.  If John signs up for Small Plan on Jan 1, then John's subscription expires on Nov 1 (10 months after Jan 1).  His last assessment will be on 10/1, which is John's 10th payment and pays his account through 11/1.  On 11/1, no payment is collected because the subscription becomes expired on that same day.  John made 10 payments amounting to $100.
+
+*Trial Examples*
+
+The expiration date is calculated from the day that the subscription is created, without any regard for trial periods.  So, if the Small Plan costs $10 a month, has a 1 month free tiral and expires after 10 months, then John's subscription starting on Jan 1 would still expire on 11/1, with his 9th and final payment occuring on 10/1.
+
+What if the trial period does not match the product period?  For example what happens, if the Small Plan costs $10 per month, has a 14 day free trial, and expires after 10 months?  In this case, John's subscription which begins on Jan 1 would be first charged on Jan 14.  His expiration date would still be set to 11/1, which is 10 months from his signup.  He would be charged on the 14th of every month, up to and including Oct 14, for a total of 10 payments.  He would be paid through Nov 14.  At the time of renewal on Nov 14, his subscription would transition to expired, since this represents the first renewal after the target expiration date.
