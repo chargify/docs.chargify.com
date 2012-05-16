@@ -75,6 +75,15 @@ Response: An single Product
 "XML example":#api-usage-xml-products-read  
 "JSON example":#api-usage-json-products-read
 
+h3. Create
+
+URL: @https://<subdomain>.chargify.com/products.<format>
+Method: @POST@
+Required Parameters: XML or JSON data, as specified by the required attributes
+Response: The created product, if successful. Errors otherwise.
+
+"XML example":#api-usage-xml-product-create
+
 h2. Usage Examples
 
 h3(#api-usage-xml-products-list). XML List Usage Example
@@ -296,4 +305,47 @@ Scenario: Retrieve a list of my products belonging to a product family
   When I send a GET request to https://[@subdomain].chargify.com/product_families/[@product_family.id]/products.json
   Then the response status should be "200 OK"
   And the response should be a json array with 5 "product" objects
+</code></pre>
+
+h3(#api-usage-xml-product-create). XML Create Product Example
+
+<pre><code>
+Feature: Chargif XML API Product Create
+  In order to integrate my app with Charigfy
+  As a developer
+  I want to create products via the Chargify XML API
+  
+  Background:
+    Given I am a valid API user
+    And I send and accept XML
+    
+  Scenario: Create a product successfully
+    Given I have this XML prodcut data
+    """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <product>
+        <name>New Product</name>
+        <interval>1</interval>
+        <description>This is my new product</description>
+        <interval_unit>month</interval_unit>
+        <price_in_cents>1000</price_in_cents>
+      </product>
+    """
+  When I send a POST request with the XML data to https://<subdomain>.chargify.com/products.xml
+  Then the response status should be "201 Created"
+  And the response should be the XML:
+    """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <product>
+        <id type="integer">`auto generated`</id>
+        <name>New Product</name>
+        <handle>`auto generated</handle>
+        <created_at>`auto generated`</created_at>
+        <updated_at>`auto generated`</updated_at>
+        <description>This is my new product</description>
+        <interval_unit>month</interval_unit>
+        <interval>1</interval>
+        <price_in_cents>100</price_in_cents>
+      </product>
+    """
 </code></pre>
