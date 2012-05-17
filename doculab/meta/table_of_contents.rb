@@ -86,6 +86,7 @@ Doculab::TableOfContents.define do
     page "API: Stats"
     page "API: Subscriptions"
     page "API: Transactions"
+    page "API: Webhooks"
   end
 
   section "3rd Party Integrations" do
