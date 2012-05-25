@@ -4,7 +4,7 @@ h2. URIs
 
 |_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
 | @/webhooks@ | List webhooks | - | - | - |
-| @/webhooks/replay@ | - | - | Resend webhooks | - |
+| @/webhooks/replay@ | - | Resend webhooks | -  | - |
 
 h2. Webhook Attributes
 
