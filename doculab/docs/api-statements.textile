@@ -36,6 +36,42 @@ All of the statement attribute fields are returned from GET (read) operations. N
 
 h2. Methods
 
+h3. List Statement IDs for a Subscription
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/statements/ids.<format>@
+Method: @GET@
+Optional Parameters: @page@
+Response: An array of Statement IDs for a subscription
+
+Note that the @per_page@ parameter is preset to 10,000.
+
+h3. List Statement IDs for a Site
+
+URL: @https://<subdomain>.chargify.com/statements/ids.<format>@
+Method: @GET@
+Optional Parameters: @page@
+Response: An array of Statement IDs for a site
+
+Note that the @per_page@ parameter is preset to 10,000.
+
+h4. JSON Output
+
+<pre><code>{
+  "statement_ids":[1,2,3,4 ... 9999,10000]
+}
+</code></pre>
+
+h4. XML Output
+
+<pre><code><statement_ids>
+  <id>1</id>
+  <id>2</id> 
+  ... 
+  <id>9999</id>
+  <id>10000</id>
+</statement_ids>
+</code></pre>
+
 h3. List Statements for a Subscription
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/statements.<format>@

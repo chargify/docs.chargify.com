@@ -81,7 +81,8 @@ h3(#api-usage-json-adjustments-create). JSON Adjustment Create Usage Examples
         "transaction_type":"adjustment",
         "subscription_id":`auto generated`,
         "product_id":`auto generated`,
-        "created_at":`auto generated`
+        "created_at":`auto generated`,
+        "payment_id":null
       }}
       """
 
@@ -109,7 +110,8 @@ h3(#api-usage-json-adjustments-create). JSON Adjustment Create Usage Examples
         "success":true,
         "subscription_id":`auto generated`,
         "product_id":`auto generated`,
-        "created_at":`auto generated`
+        "created_at":`auto generated`,
+        "payment_id":null
       }}
       """
 
@@ -136,7 +138,8 @@ h3(#api-usage-json-adjustments-create). JSON Adjustment Create Usage Examples
         "transaction_type":"adjustment",
         "subscription_id":`auto generated`,
         "product_id":`auto generated`,
-        "created_at":`auto generated`
+        "created_at":`auto generated`,
+        "payment_id":null
       }}
       """
 
@@ -163,7 +166,8 @@ h3(#api-usage-json-adjustments-create). JSON Adjustment Create Usage Examples
         "transaction_type":"adjustment",
         "subscription_id":`auto generated`,
         "product_id":`auto generated`,
-        "created_at":`auto generated`
+        "created_at":`auto generated`,
+        "payment_id":null
       }}
       """
 
@@ -191,7 +195,8 @@ h3(#api-usage-json-adjustments-create). JSON Adjustment Create Usage Examples
         "transaction_type":"adjustment",
         "subscription_id":`auto generated`,
         "product_id":`auto generated`,
-        "created_at":`auto generated`
+        "created_at":`auto generated`,
+        "payment_id":null
       }}
       """
 
@@ -219,7 +224,8 @@ h3(#api-usage-json-adjustments-create). JSON Adjustment Create Usage Examples
         "transaction_type":"adjustment",
         "subscription_id":`auto generated`,
         "product_id":`auto generated`,
-        "created_at":`auto generated`
+        "created_at":`auto generated`,
+        "payment_id":null
       }}
       """
 
@@ -247,7 +253,8 @@ h3(#api-usage-json-adjustments-create). JSON Adjustment Create Usage Examples
         "transaction_type":"adjustment",
         "subscription_id":`auto generated`,
         "product_id":`auto generated`,
-        "created_at":`auto generated`
+        "created_at":`auto generated`,
+        "payment_id":null
       }}
       """
 </code></pre>
@@ -281,6 +288,7 @@ h3(#api-usage-xml-adjustments-create). XML Adjustment Create Usage Examples
         <success type="boolean">true</success>
         <type>Adjustment</type>
         <transaction_type>adjustment</transaction_type>
+        <payment_id type="integer" nil="true"></payment_id>
       </adjustment>
       """
       
@@ -310,6 +318,7 @@ h3(#api-usage-xml-adjustments-create). XML Adjustment Create Usage Examples
         <success type="boolean">true</success>
         <type>Adjustment</type>
         <transaction_type>adjustment</transaction_type>
+        <payment_id type="integer" nil="true"></payment_id>
       </adjustment>
       """
         
@@ -339,6 +348,7 @@ h3(#api-usage-xml-adjustments-create). XML Adjustment Create Usage Examples
         <success type="boolean">true</success>
         <type>Adjustment</type>
         <transaction_type>adjustment</transaction_type>
+        <payment_id type="integer" nil="true"></payment_id>
       </adjustment>
       """
         
@@ -368,6 +378,7 @@ h3(#api-usage-xml-adjustments-create). XML Adjustment Create Usage Examples
         <success type="boolean">true</success>
         <type>Adjustment</type>
         <transaction_type>adjustment</transaction_type>
+        <payment_id type="integer" nil="true"></payment_id>
       </adjustment>
       """
   
@@ -398,6 +409,7 @@ h3(#api-usage-xml-adjustments-create). XML Adjustment Create Usage Examples
        <success type="boolean">true</success>
        <type>Adjustment</type>
        <transaction_type>adjustment</transaction_type>
+       <payment_id type="integer" nil="true"></payment_id>
      </adjustment>
      """
 
@@ -428,6 +440,7 @@ h3(#api-usage-xml-adjustments-create). XML Adjustment Create Usage Examples
        <success type="boolean">true</success>
        <type>Adjustment</type>
        <transaction_type>adjustment</transaction_type>
+       <payment_id type="integer" nil="true"></payment_id>
      </adjustment>
      """
 

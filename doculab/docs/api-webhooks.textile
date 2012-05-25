@@ -1,0 +1,206 @@
+The Webhooks API allows you to view a list of all webhooks and to selectively resend individual or groups of webhooks.
+
+h2. URIs
+
+|_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
+| @/webhooks@ | List webhooks | - | - | - |
+| @/webhooks/replay@ | - | Resend webhooks | -  | - |
+
+h2. Webhook Attributes
+
+* @id@ The unique identifier
+* @successful@ A boolean flag describing whether the webhook was successfully received by the merchant's endpoint
+* @event@ A string describing which event type produced the given Webhook
+* @body@ The data sent within the Webhook post
+* @signature@ The calculated Webhook signature
+* @created_at@ Timestamp indicating when the Webhook was created
+* @accepted_at@ Timestamp indicating when the Webhook was accepted by the merchant endpoint
+* @last_sent_at@ Timestamp indicating when the most recent attempt was made to send the Webhook
+* @last_error_at@ Timestamp indicating when the last send error ocurred 
+* @last_error@ Text describing the status code and/or error from the last failed attempt to send the Webhook
+
+h2. Methods
+
+h3. List Webhooks for a Site
+
+URL: @https://<subdomain>.chargify.com/webhooks.<format>@  
+Method: @GET@  
+Optional Parameters (via query string):
+
+* @status@ A string indicating which type of Webhooks to return, either "successful" or "failed"
+* @page@ and @per_page@ The page number and number of results used for pagination. By default results are paginated 20 per page.
+* @since_date (format YYYY-MM-DD)@ Returns Webhooks with a created_at date greater than or equal to the one specified
+* @until_date (format YYYY-MM-DD)@ Returns Webhooks with a created_at date less than or equal to the one specified
+* @order@ The order in which the Webhooks are retured, either "newest_first" or "oldest_first"
+
+Response: An array of Wehooks  
+
+"XML example":#api-usage-xml-webhook-list  
+"JSON example":#api-usage-json-webhook-list
+
+h3(#api-usage-xml-webhook-list). XML List Webhooks for Site Example
+
+<pre><code>Feature: Chargify API XML Webhooks listing
+  In order to integrate an app with Chargify
+  As a developer
+  I want to be able to list my webhooks via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I accept xml responses
+    And I have 2 webhooks
+
+  Scenario: Retrieve a list of all webhooks for a site
+    When I send a GET request to https://[@subdomain].chargify.com/webhooks.xml
+    Then the response status should be "200 OK"
+    And the response should be a xml array with 2 "webhook" elements
+    And the response should be the xml:
+    """
+    <?xml version="1.0" encoding="UTF-8"?>
+    <webhooks type="array">
+      <webhook>
+        <accepted_at type="datetime">`auto generated`</accepted_at>
+        <created_at type="datetime">`auto generated`</created_at>
+        <event>payment_success</event>
+        <id type="integer">`auto generated`</id>
+        <last_error nil="true"></last_error>
+        <last_error_at type="datetime" nil="true"></last_error_at>
+        <last_sent_at type="datetime">`auto generated`</last_sent_at>
+        <body>`auto generated`</body>
+        <signature>`auto generated`</signature>
+        <successful type="boolean">true</successful>
+      </webhook>
+      <webhook>
+        <accepted_at type="datetime">`auto generated`</accepted_at>
+        <created_at type="datetime">`auto generated`</created_at>
+        <event>payment_success</event>
+        <id type="integer">`auto generated`</id>
+        <last_error nil="true"></last_error>
+        <last_error_at type="datetime" nil="true"></last_error_at>
+        <last_sent_at type="datetime">`auto generated`</last_sent_at>
+        <body>`auto generated`</body>
+        <signature>`auto generated`</signature>
+        <successful type="boolean">true</successful>
+      </webhook>
+    </webhooks>
+    """
+</code></pre>
+
+
+h3(#api-usage-json-webhook-list). JSON List Webhooks for Site Example
+
+<pre><code>Feature: Chargify API JSON Webhooks listing
+  In order to integrate an app with Chargify
+  As a developer
+  I want to be able to list my webhooks via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I accept json responses
+    And I have 2 webhooks
+
+  Scenario: Retrieve a list of all webhooks for a site
+    When I send a GET request to https://[@subdomain].chargify.com/webhooks.json
+    Then the response status should be "200 OK"
+    And the response should be a json array with 2 "webhook" objects
+    And the response should be the json:
+    """
+      [
+        {"webhook":{
+          "last_error_at":null,
+          "accepted_at":`auto generated`,
+          "last_sent_at":`auto generated`,
+          "created_at":`auto generated`,
+          "body":`auto generated`,
+          "signature":`auto generated`,
+          "successful":true,
+          "last_error":null,
+          "id":`auto generated`,
+          "event":"payment_success"
+        }},
+        {"webhook":{
+          "last_error_at":null,
+          "accepted_at":`auto generated`,
+          "last_sent_at":`auto generated`,
+          "created_at":`auto generated`,
+          "body":`auto generated`,
+          "signature":`auto generated`,
+          "successful":true,
+          "last_error":null,
+          "id":`auto generated`,
+          "event":"payment_success"
+        }}
+      ]
+    """
+</code></pre>
+
+
+h3. Replay Webhooks for a Site
+
+Posting to the replay endpoint does not immediate resend the webhooks. They are added to the background job queue and should be resent momentarily.
+
+URL: @https://<subdomain>.chargify.com/webhooks/replay.<format>@  
+Method: @POST@  
+Required Parameters:
+
+* @ids@ An array of webhook ids to replay
+
+Response: An "ok" status message
+
+"XML example":#api-usage-xml-webhook-replay  
+"JSON example":#api-usage-json-webhook-replay
+
+h3(#api-usage-xml-webhook-replay). XML Resend Webhook Example
+
+<pre><code>Feature: Chargify Webhooks Replay XML API
+  In order to integrate my app with Chargify
+  As a developer
+  I want to replay webhooks via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept xml
+    And I have 2 webhooks
+
+  Scenario: Replay a webhook
+    And I have this xml webhook data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <ids type="array">
+        <id type="integer">`your value`</id>
+        <id type="integer">`your value`</id>
+      </ids>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/webhooks/replay.xml
+    Then the response status should be "200 OK"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <status>ok</status>
+      """
+</code></pre>
+
+h3(#api-usage-json-webhook-replay). JSON Resend Webhook Example
+
+<pre><code>Feature: Chargify Webhooks Replay JSON API
+  In order to integrate my app with Chargify
+  As a developer
+  I want to replay webhooks via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept json
+    And I have 2 webhooks
+
+  Scenario: Replay a webhook
+    And I have this json webhook data
+      """
+      {"ids":[`your value`,`your value`]}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/webhooks/replay.json
+    Then the response status should be "200 OK"
+    And the response should be the json:
+      """
+      {"status":"ok"}
+      """
+</code></pre>

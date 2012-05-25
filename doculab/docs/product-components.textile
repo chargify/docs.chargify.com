@@ -137,3 +137,5 @@ h2. Setting Component allocations on Subscriptions
 Once a Component has been defined for a Product Family, any Subscription to a Product within that Family may have usage or allocation data reported in order to assess charges for them at the end of the period.
 
 For more information, please see "Setting Component Allocations":/setting-component-allocations.
+
+p(note). At this time, the current minimum price that you can set for any component's unit price or price at each tier is $0.0001.

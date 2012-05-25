@@ -41,7 +41,9 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @last_four@  (Optional, used only for Subscription Import) If you have the last 4 digits of the credit card number, you may supply them here so that we may create a masked card number (i.e. 'XXXX-XXXX-XXXX-1234') for display in the UI
 ** @card_type@  (Optional, used only for Subscription Import) If you know the card type (i.e. Visa, MC, etc) you may supply it here so that we may display the card type in the UI. May be visa, master, discover, american_express, diners_club, jcb, switch, solo, dankort, maestro, forbrugsforeningen, orlaser`
 * @cancellation_message@ (Optional) Can be used when canceling a subscription (via the HTTP DELETE method) to make a note about the reason for cancellation.
-* @next_billing_at@ (Optional, used for Subscription Import) Set this attribute to a future date/time to sync imported subscriptions to your existing renewal schedule. See the notes on "Date/Time Format" below. If you provide a next_billing_at timestamp that is in the future, no trial or initial charges will be applied when you create the subscription. In fact, no payment will be captured at all. The first payment will be captured, according to the prices defined by the product, near the time specified by next_billing_at. If you do not provide a value for next_billing_at, any trial and/or initial charges will be assessed and charged at the time of subscription creation. If the card cannot be successfully charged, the subscription will not be created.
+* @next_billing_at@ (Optional) Set this attribute to a future date/time to sync imported subscriptions to your existing renewal schedule. See the notes on "Date/Time Format" below. If you provide a next_billing_at timestamp that is in the future, no trial or initial charges will be applied when you create the subscription. In fact, no payment will be captured at all. The first payment will be captured, according to the prices defined by the product, near the time specified by next_billing_at. If you do not provide a value for next_billing_at, any trial and/or initial charges will be assessed and charged at the time of subscription creation. If the card cannot be successfully charged, the subscription will not be created.
+* @vat_number@ (Optional) Supplying the VAT number allows EU customers to opt-out of the Value Added Tax assuming the merchant address and customer billing address are not within the same EU country.
+* @coupon_code@ (Optional) The coupon code of the coupon to apply (See the "coupon docs":/api-coupons#api-subscription-create-with-coupon)
 
 
 h2. Subscription Output Attributes
@@ -96,7 +98,7 @@ _format_ may be either 'xml' or 'json'.
 
 h3. List
 
-Listing subscriptions is paginated, 2000 at a time, by default.  They are listed most recently created first.
+Listing subscriptions is paginated, 20 at a time by default with an allowed max of 200 per page.  They are listed most recently created first.
 
 You may control pagination using the @page@ and/or @per_page@ parameters.
 
@@ -104,7 +106,7 @@ URL: @https://<subdomain>.chargify.com/subscriptions.<format>@
 Method: @GET@  
 Optional Parameters:
 @page@: an integer value which specifies which page of results to fetch, starting at 1.  Fetching successively higher page numbers will return additional results, until there are no more results to return (in which case an empty result set will be returned).  Defaults to 1.
-@per_page@: how many records to fetch in each request, defaults to 2000. Note: fetching subscriptions is currently unoptimized, so fetching large batches of subscriptions will be a slow operation.  
+@per_page@: how many records to fetch in each request, defaults to 20.  The maximum allowed is 200 - any @per_page@ value over 200 will be changed to 200.
 Response: An array of Subscriptions  
 **Usage Examples:**  
 "XML example":#api-usage-xml-subscriptions-list  
@@ -257,7 +259,9 @@ Chargify offers the ability to reactivate a previously canceled subscription. Fo
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/reactivate.xml@
 Method: @PUT@
 Required Parameters: none
-Optional Parameters: @include_trial@ - Boolean, default 0. If 1 is sent the reactivated subscription will include a trial if one is available. If 0 is sent, the trial period will be ignored.  This parameter should be sent in a query string, and does not need to be nested inside a @subscription@ object
+Optional Parameters:
+@include_trial@ - Boolean, default 0. If 1 is sent the reactivated subscription will include a trial if one is available. If 0 is sent, the trial period will be ignored.  This parameter should be sent in a query string, and does not need to be nested inside a @subscription@ object
+@coupon_code@ - The coupon code to be applied during reactivation.
 Response: The updated subscription  
 
 "XML example":#api-react-xml

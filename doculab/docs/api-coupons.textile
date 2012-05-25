@@ -10,8 +10,7 @@ h2. URI/Method
 | Coupon Usage<br/>@/coupons/<id>/usage@ | "Retrieve Usage":#api-coupon-usage | - | - | - |
 | Subscription<br/>@/subscriptions@ | - | "Create Subscription w/ Coupon":#api-subscription-create-with-coupon | - | - |
 | Subscription Coupon<br/>@/subscriptions/<id>/add_coupon@ | - | "Add Coupon to existing subscription":#api-subscription-coupon-add | - | - |
-| Subscription Coupon<br/>@/subscriptions/<id>/remove_coupon@ | - | "Remove Coupon from existing subscription":#api-subscription-coupon-remove | - | - |
-
+| Subscription Coupon<br/>@/subscriptions/<id>/remove_coupon@ | - | - | - | "Remove Coupon from existing subscription":#api-subscription-coupon-remove |
 
 h2. Coupon Input Attributes
 
@@ -117,13 +116,16 @@ h3. Validate
 
 URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>/validate.<format>@
 Method: @GET@
-Required Parameters:  coupon_id
+Required Parameters:  coupon_id or coupon_code
 Response: If the coupon is invalid, the status code will be 404 and the response will say why its invalid. If it's valid the status code will be 200 and the coupon will be returned. The following reasons for invalidity are supported:
 
 * Coupon not found
 * Coupon is invalid
 * Coupon expired
 
+If you have more than one product family and if the coupon you are validating does not belong to the first product family in your site, then you will need to specify (either in the url or as a query string param) the product family id.
+
+Eg. URL: @https://<subdomain>.chargify.com/product_families/<product_family_id/coupons/<coupon_id>/validate.<format>@
 
 h2(#api-coupon-find). Finding a Coupon via the API
 
@@ -155,16 +157,16 @@ Response: Details about the coupon usage as an array of data hashes, one per pro
   {
     "name":"Basic",    // Product Name
     "id":3,            // Product ID
-    "revenue":"48.00", // Revenue from subscriptions that used coupon
+    "revenue":48.0,    // Revenue from subscriptions that used coupon
     "signups":1,       // Number of signups that used coupon
-    "savings":"12.00"  // Savings given by coupon
+    "savings":12.00    // Savings given by the coupon for this product
   },
   {
     "name":"Pro",
     "id":4,
-    "revenue":"0.00",
+    "revenue":0.0,
     "signups":0,
-    "savings":"0.00"
+    "savings":0.0
   }
 ]</code></pre>
 
@@ -257,7 +259,7 @@ Response: If the coupon is successfully applied, the subscription object will be
 h3(#api-subscription-coupon-remove). Remove
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/remove_coupon.<format>?code=<coupon_code>@
-Method: @POST@
+Method: @DELETE@
 Required Parameters: subscription_id, coupon_code
 Response: If the coupon is successfully removed, the subscription object will be returned. Otherwise, a '402 Uprocessable Entity' error will be returned.
 

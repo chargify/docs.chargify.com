@@ -14,7 +14,7 @@ h2. PHP
 
 h2. Ruby/Rails
 
-* "http://github.com/grasshopperlabs/chargify_api_ares":http://github.com/grasshopperlabs/chargify_api_ares: This is the "official" gem by the Chargify team.  It uses ActiveResource, which is built into Rails, and is a good option for easy integration.
+* "http://github.com/chargify/chargify_api_ares":http://github.com/chargify/chargify_api_ares: This is the "official" gem by the Chargify team.  It uses ActiveResource, which is built into Rails, and is a good option for easy integration.
 
 * "http://github.com/pengwynn/chargify":http://github.com/pengwynn/chargify: This is a Chargify gem that uses HTTParty. It was created by "@pengwynn":http://twitter.com/pengwynn, who is one of our active beta testers. It has tests by using a Chargify "mock".
 

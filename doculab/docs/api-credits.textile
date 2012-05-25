@@ -58,66 +58,97 @@ h3(#api-usage-json-credits-create). JSON Credit Create Usage Example
 
 <pre><code>
 Feature: Chargify Credits Create JSON API
- In order integrate my app with Chargify
- As a developer
- I want to add one-off credits to a subscription via the Chargify JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to add one-off credits to a subscription via the Chargify JSON API
 
- Background:
-   Given I am a valid API user
-   And I send and accept json
+  Background:
+    Given I am a valid API user
+    And I send and accept json
 
- Scenario: Create a credit on a subscription with an amount and a memo
-   Given I have 1 subscription
-   And I have this json credit data
-     """
-     {"credit":{
-       "amount":"1.00",
-       "memo":"This is the description of the one time credit."
-     }}
-     """
-   When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/credits.json
-   Then the response status should be "201 Created"
-   And the response should be the json:
-     """
-     {"credit":{
-       "id":@auto generated@,
-       "success":true,
-       "memo":"This is the description of the one time credit.",
-       "amount_in_cents":100,
-       "ending_balance_in_cents":-100,
-       "type":"Credit",
-       "subscription_id":@auto generated@,
-       "product_id":@auto generated@,
-       "created_at":@auto generated@
-     }}
-     """
+  Scenario: Create a credit on a subscription with an amount and a memo
+    Given I have 1 subscription
+    And I have this json credit data
+      """
+      {"credit":{
+        "amount":"1.00",
+        "memo":"This is the description of the one time credit."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/credits.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"credit":{
+        "id":`auto generated`,
+        "success":true,
+        "memo":"This is the description of the one time credit.",
+        "amount_in_cents":-100,
+        "ending_balance_in_cents":-100,
+        "type":"Adjustment",
+        "transaction_type":"adjustment",
+        "subscription_id":`auto generated`,
+        "product_id":`auto generated`,
+        "created_at":`auto generated`,
+        "payment_id":null
+      }}
+      """
 
- Scenario: Create a credit on a subscription with an amount_in_cents and a memo
-   Given I have 1 subscription
-   And I have this json credit data
-     """
-     {"credit":{
-       "amount_in_cents":100,
-       "memo":"This is the description of the one time credit."
-     }}
-     """
-   When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/credits.json
-   Then the response status should be "201 Created"
-   And the response should be the json:
-     """
-     {"credit":{
-       "id":@auto generated@,
-       "success":true,
-       "memo":"This is the description of the one time credit.",
-       "amount_in_cents":100,
-       "ending_balance_in_cents":-100,
-       "type":"Credit",
-       "success":true,
-       "subscription_id":@auto generated@,
-       "product_id":@auto generated@,
-       "created_at":@auto generated@
-     }}
-     """
+  Scenario: Create a credit on a subscription with an amount_in_cents and a memo
+    Given I have 1 subscription
+    And I have this json credit data
+      """
+      {"credit":{
+        "amount_in_cents":100,
+        "memo":"This is the description of the one time credit."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/credits.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"credit":{
+        "id":`auto generated`,
+        "success":true,
+        "memo":"This is the description of the one time credit.",
+        "amount_in_cents":-100,
+        "ending_balance_in_cents":-100,
+        "type":"Adjustment",
+        "transaction_type":"adjustment",
+        "success":true,
+        "subscription_id":`auto generated`,
+        "product_id":`auto generated`,
+        "created_at":`auto generated`,
+        "payment_id":null
+      }}
+      """
+
+  Scenario: Creating a credit fails when parameters are missing
+    Given I have 1 subscription
+    And I have this json credit data
+      """
+      {"credit":{}}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/credits.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the json:
+      """
+      {"errors":[
+        "Amount in cents: is not a number."
+      ]}
+      """
+
+  Scenario: A '404 Not Found' error is raised when the subscription is not found
+    Given I have 0 subscriptions
+    And I have this json credit data
+      """
+      {"credit":{
+        "amount_in_cents":100,
+        "memo":"This is the description of the one time credit."
+      }}
+      """
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions/9999/credis.json
+    Then the response status should be "404 Not Found"
 </code></pre>
 
 h3(#api-usage-xml-credits-create). XML Credit Create Usage Example
@@ -148,15 +179,80 @@ Feature: Chargify Credits Create XML API
       """
       <?xml version="1.0" encoding="UTF-8"?>
       <credit>
-        <id type="integer">@auto generated@</id>
-        <amount_in_cents type="integer">100</amount_in_cents>
-        <created_at type="datetime">@auto generated@</created_at>
+        <id type="integer">`auto generated`</id>
+        <amount_in_cents type="integer">-100</amount_in_cents>
+        <created_at type="datetime">`auto generated`</created_at>
         <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
         <memo>This is the description of the one time credit.</memo>
-        <subscription_id type="integer">@auto generated@</subscription_id>
-        <product_id type="integer">@auto generated@</product_id>
+        <subscription_id type="integer">`auto generated`</subscription_id>
+        <product_id type="integer">`auto generated`</product_id>
         <success type="boolean">true</success>
-        <type>Credit</type>
+        <type>Adjustment</type>
+        <transaction_type>adjustment</transaction_type>
+        <payment_id type="integer" nil="true"></payment_id>
       </credit>
       """
+
+  Scenario: Create a credit on a subscription with an amount_in_cents and a memo
+    Given I have 1 subscription
+    And I have this xml credit data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <credit>
+        <amount_in_cents type="integer">100</amount_in_cents>
+        <memo>This is the description of the one time credit.</memo>
+      </credit>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/credits.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <credit>
+        <id type="integer">`auto generated`</id>
+        <amount_in_cents type="integer">-100</amount_in_cents>
+        <created_at type="datetime">`auto generated`</created_at>
+        <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+        <memo>This is the description of the one time credit.</memo>
+        <subscription_id type="integer">`auto generated`</subscription_id>
+        <product_id type="integer">`auto generated`</product_id>
+        <success type="boolean">true</success>
+        <type>Adjustment</type>
+        <transaction_type>adjustment</transaction_type>
+        <payment_id type="integer" nil="true"></payment_id>
+      </credit>
+      """
+
+  Scenario: Creating a credit fails when parameters are missing
+    Given I have 1 subscription
+    And I have this xml credit data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <credit>
+        <memo></memo>
+      </credit>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/credits.xml
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <errors>
+        <error>Amount in cents: is not a number.</error>
+      </errors>
+      """
+
+  Scenario: A '404 Not Found' error is raised when the subscription is not found
+    Given I have 0 subscriptions
+    And I have this xml credit data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <credit>
+        <amount_in_cents type="integer">100</amount_in_cents>
+        <memo>This is the description of the one time credit.</memo>
+      </credit>
+      """
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions/9999/credits.xml
+    Then the response status should be "404 Not Found"
+
 </code></pre>

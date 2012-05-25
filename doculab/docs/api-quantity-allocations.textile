@@ -37,7 +37,7 @@ In addition to the normal post data, also include a 'components' attribute, as f
 </subscription>
 </code></pre>
 
-*Via the "official Chargify Gem":http://github.com/grasshopperlabs/chargify_api_ares*
+*Via the "official Chargify Gem":http://github.com/chargify/chargify_api_ares*
 
 <pre><code>Chargify::Subscription.create(
   :product_id => 2,
@@ -81,7 +81,7 @@ After a subscription has been created, you may set or update the quantity at any
 </component>
 </code></pre>
 
-*Via the "official Chargify Gem":http://github.com/grasshopperlabs/chargify_api_ares*
+*Via the "official Chargify Gem":http://github.com/chargify/chargify_api_ares*
 
 <pre><code># First way to find and update a component
 component = Chargify::Subscription::Component.find(1, :params => {:subscription_id => 2})
@@ -153,7 +153,7 @@ You'll receive data like the following:
 </component>
 </code></pre>
 
-You can also query the current quantity via the "official Chargify Gem":http://github.com/grasshopperlabs/chargify_api_ares:
+You can also query the current quantity via the "official Chargify Gem":http://github.com/chargify/chargify_api_ares:
 
 <pre><code># First way
 component = Chargify::Subscription::Component.find(1, :params => {:subscription_id => 7})

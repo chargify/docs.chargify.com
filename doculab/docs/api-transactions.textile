@@ -32,6 +32,7 @@ All of the transaction attribute fields are returned from GET (read) operations,
 * @subscription_id@ The unique identifier for the associated Subscription
 * @product_id@ The unique identifier for the product associated with the Subscription
 * @success@ Whether or not the Transaction was successful 
+* @payment_id@ The unique identifier for the payment being explicitly refunded (in whole or in part) by this transaction. Will be null for all transaction types except for "Refund". May be null even for Refunds. For partial refunds, more than one Refund transaction may reference the same payment_id.
 
 h2. Methods
 
@@ -118,6 +119,7 @@ Feature: Chargify API XML Transactions listing
           <product_id type="integer">[@subscription.product_id]</product_id>
           <success type="boolean">true</success>
           <type>Charge</type>
+          <payment_id type="integer" nil="true"></payment_id>
         </transaction>
         <transaction>
           <id type="integer">[@credit.id]</id>
@@ -129,6 +131,7 @@ Feature: Chargify API XML Transactions listing
           <product_id type="integer">[@subscription.product_id]</product_id>
           <success type="boolean">true</success>
           <type>Credit</type>
+          <payment_id type="integer" nil="true"></payment_id>
         </transaction>
         <transaction>
           <id type="integer">[@payment.id]</id>
@@ -140,6 +143,7 @@ Feature: Chargify API XML Transactions listing
           <product_id type="integer">[@subscription.product_id]</product_id>
           <success type="boolean">true</success>
           <type>Payment</type>
+          <payment_id type="integer" nil="true"></payment_id>
         </transaction>
         <transaction>
           <id type="integer">[@payment_authorization.id]</id>
@@ -151,6 +155,7 @@ Feature: Chargify API XML Transactions listing
           <product_id type="integer">[@subscription.product_id]</product_id>
           <success type="boolean">true</success>
           <type>PaymentAuthorization</type>
+          <payment_id type="integer" nil="true"></payment_id>
         </transaction>
         <transaction>
           <id type="integer">[@refund.id]</id>
@@ -162,6 +167,7 @@ Feature: Chargify API XML Transactions listing
           <product_id type="integer">[@subscription.product_id]</product_id>
           <success type="boolean">true</success>
           <type>Refund</type>
+          <payment_id type="integer">[@refund.payment_id]</payment_id>
         </transaction>
         <transaction>
           <id type="integer">[@adjustment.id]</id>
@@ -173,6 +179,7 @@ Feature: Chargify API XML Transactions listing
           <product_id type="integer">[@subscription.product_id]</product_id>
           <success type="boolean">true</success>
           <type>Adjustment</type>
+          <payment_id type="integer" nil="true"></payment_id>
         </transaction>
         <transaction>
           <id type="integer">[@info_transaction.id]</id>
@@ -184,6 +191,7 @@ Feature: Chargify API XML Transactions listing
           <product_id type="integer">[@subscription.product_id]</product_id>
           <success type="boolean">true</success>
           <type>InfoTransaction</type>
+          <payment_id type="integer" nil="true"></payment_id>
         </transaction>
       </transactions>
       """
@@ -223,6 +231,7 @@ Scenario: Retrieve a list of all the account transactions for a subscription
         <product_id type="integer">[@subscription.product_id]</product_id>
         <success type="boolean">true</success>
         <type>Charge</type>
+        <payment_id type="integer" nil="true"></payment_id>
       </transaction>
       <transaction>
         <id type="integer">[@credit.id]</id>
@@ -234,6 +243,7 @@ Scenario: Retrieve a list of all the account transactions for a subscription
         <product_id type="integer">[@subscription.product_id]</product_id>
         <success type="boolean">true</success>
         <type>Credit</type>
+        <payment_id type="integer" nil="true"></payment_id>
       </transaction>
       <transaction>
         <id type="integer">[@payment.id]</id>
@@ -245,6 +255,7 @@ Scenario: Retrieve a list of all the account transactions for a subscription
         <product_id type="integer">[@subscription.product_id]</product_id>
         <success type="boolean">true</success>
         <type>Payment</type>
+        <payment_id type="integer" nil="true"></payment_id>
       </transaction>
       <transaction>
         <id type="integer">[@payment_authorization.id]</id>
@@ -256,6 +267,7 @@ Scenario: Retrieve a list of all the account transactions for a subscription
         <product_id type="integer">[@subscription.product_id]</product_id>
         <success type="boolean">true</success>
         <type>PaymentAuthorization</type>
+        <payment_id type="integer" nil="true"></payment_id>
       </transaction>
       <transaction>
         <id type="integer">[@refund.id]</id>
@@ -267,6 +279,7 @@ Scenario: Retrieve a list of all the account transactions for a subscription
         <product_id type="integer">[@subscription.product_id]</product_id>
         <success type="boolean">true</success>
         <type>Refund</type>
+        <payment_id type="integer">[@refund.payment_id]</payment_id>
       </transaction>
     </transactions>
     """
@@ -314,6 +327,7 @@ Feature: Chargify Transactions Read/Show XML API
         <amount_in_cents type="integer">1000</amount_in_cents>
         <success type="boolean">true</success>
         <subscription_id type="integer">[@subscription.id]</subscription_id>
+        <payment_id type="integer" nil="true"></payment_id>
       </transaction>
       """
 
@@ -355,7 +369,8 @@ Feature: Chargify Transactions Read/Show JSON API
           "type":"Payment",
           "amount_in_cents":1000,
           "success":true,
-          "subscription_id":[@subscription.id]
+          "subscription_id":[@subscription.id],
+          "payment_id":null
         }
       }
       """

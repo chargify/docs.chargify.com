@@ -2,8 +2,6 @@ Chargify offers a hosted/white label signup page for all of our customers. The h
 
 If you need information on configuring the look, feel, and behavior of your Hosted Payment Page, please see "Hosted Page Settings":/hosted-page-settings.
 
-p(note). Components are not currently included in our Hosted Signup Pages. If you want to use any "Components":/product-components in your product/pricing structure, then you will need to create web pages to interact with your customers and use the Chargify API.
-
 p(warning). To use hosted signup pages with the Beanstream gateway, you *must* enable billing address collection from within the "Hosted Page Settings":/hosted-page-settings.
 
 p(warning). Accessing *any* hosted payment page will log you out of your Chargify account.  This is necessary for security reasons.  If you would like to test your hosted payment pages without being logged out, please copy the links and open them in another browser.
@@ -14,7 +12,7 @@ Each Product has its own hosted signup page page and unique URL.  You can find t
 
 For more information on the full set of URLs available, see "Hosted Page URLs":#hosted-page-urls, below.
 
-h2. Hosted Payment Page signup flow
+h2. Hosted Payment Page Signup Flow
 
 # Provide your potential Customers with a link to the Hosted page for the Product you would like to offer them.  Note that you have the option to pass in some data to pre-populate the form or variables that are sent to Chargify - see "Hosted Page Settings: Pre-populating Data":/hosted-page-settings#pre-populating-data
 # The customer fills out their credit card details and other requested or required information (the information collected by the Hosted Payment Form is controlled by the "Product Options":/product-options) and presses the submit button
@@ -107,3 +105,12 @@ A "404 Not Found" response will be returned if the URL is not valid.  Invalid UR
 
 * The resource ID does not identify a valid resource for the given Site
 * The token does not match the expected token for the page shortname and ID
+* Using POST instead of the correct GET verb to initially get the hosted page
+
+h2. Components
+
+Quantity and On/Off Components can be configured to appear on the hosted page. To enable a component on the hosted page, check the 'Allow customers to add this component on the hosted signup page' when creating or editing a component. Components with 'Stairstep' pricing schemes are not currently supported on the hosted page.
+
+Once enabled, components will appear in a 'Configure Your Plan' section on the hosted page in a div with the class name of 'component_configuration'. (Note that this name may change in the future).
+
+!{width:640px}/images/doculab/cohp.png!

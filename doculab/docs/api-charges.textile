@@ -69,7 +69,6 @@ Feature: Chargify Subscriptions Create JSON API
     Given I am a valid API user
     And I send and accept json
 
-
   Scenario: Create a charge on a subscription with an amount and a memo
     Given I have 1 subscription
     And I have this json charge data
@@ -84,12 +83,20 @@ Feature: Chargify Subscriptions Create JSON API
     And the response should be the json:
       """
       {"charge":{
+        "id":`auto generated`,
         "success":true,
         "memo":"This is the description of the one time charge.",
-        "amount_in_cents":100
+        "amount_in_cents":100,
+        "ending_balance_in_cents":100,
+        "type":"Charge",
+        "transaction_type":"charge",
+        "success":true,
+        "subscription_id":`auto generated`,
+        "product_id":`auto generated`,
+        "created_at":`auto generated`,
+        "payment_id":null
       }}
       """
-
 
   Scenario: Create a charge on a subscription with an amount_in_cents and a memo
     Given I have 1 subscription
@@ -105,9 +112,18 @@ Feature: Chargify Subscriptions Create JSON API
     And the response should be the json:
       """
       {"charge":{
+        "id":`auto generated`,
         "success":true,
         "memo":"This is the description of the one time charge.",
-        "amount_in_cents":100
+        "amount_in_cents":100,
+        "ending_balance_in_cents":100,
+        "type":"Charge",
+        "transaction_type":"charge",
+        "success":true,
+        "subscription_id":`auto generated`,
+        "product_id":`auto generated`,
+        "created_at":`auto generated`,
+        "payment_id":null
       }}
       """
 
@@ -144,10 +160,9 @@ Feature: Chargify Subscriptions Create JSON API
     And the response should be the json:
       """
       {"errors":[
-        "Bogus Gateway: Forced failure (Payment for: This is the description of the one time charge.)"
+        "Bogus Gateway: Forced failure"
       ]}
       """
-
 
   Scenario: A '404 Not Found' error is raised when the subscription is not found
     Given I have 0 subscriptions
@@ -194,7 +209,6 @@ Feature: Chargify Subscriptions Create XML API
     Given I am a valid API user
     And I send and accept xml
 
-
   Scenario: Create a charge on a subscription with an amount and a memo
     Given I have 1 subscription
     And I have this xml charge data
@@ -211,12 +225,19 @@ Feature: Chargify Subscriptions Create XML API
       """
       <?xml version="1.0" encoding="UTF-8"?>
       <charge>
-        <success type="boolean">true</success>
-        <memo>This is the description of the one time charge.</memo>
+        <id type="integer">`auto generated`</id>
         <amount_in_cents type="integer">100</amount_in_cents>
+        <created_at type="datetime">`auto generated`</created_at>
+        <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+        <memo>This is the description of the one time charge.</memo>
+        <subscription_id type="integer">`auto generated`</subscription_id>
+        <product_id type="integer">`auto generated`</product_id>
+        <success type="boolean">true</success>
+        <type>Charge</type>
+        <transaction_type>charge</transaction_type>
+        <payment_id type="integer" nil="true"></payment_id>
       </charge>
       """
-
 
   Scenario: Create a charge on a subscription with an amount_in_cents and a memo
     Given I have 1 subscription
@@ -234,9 +255,17 @@ Feature: Chargify Subscriptions Create XML API
       """
       <?xml version="1.0" encoding="UTF-8"?>
       <charge>
-        <success type="boolean">true</success>
-        <memo>This is the description of the one time charge.</memo>
+        <id type="integer">`auto generated`</id>
         <amount_in_cents type="integer">100</amount_in_cents>
+        <created_at type="datetime">`auto generated`</created_at>
+        <ending_balance_in_cents type="integer" nil="true"></ending_balance_in_cents>
+        <memo>This is the description of the one time charge.</memo>
+        <subscription_id type="integer">`auto generated`</subscription_id>
+        <product_id type="integer">`auto generated`</product_id>
+        <success type="boolean">true</success>
+        <type>Charge</type>
+        <transaction_type>charge</transaction_type>
+        <payment_id type="integer" nil="true"></payment_id>
       </charge>
       """
 
@@ -279,10 +308,9 @@ Feature: Chargify Subscriptions Create XML API
       """
       <?xml version="1.0" encoding="UTF-8"?>
       <errors>
-        <error>Bogus Gateway: Forced failure (Payment for: This is the description of the one time charge.)</error>
+        <error>Bogus Gateway: Forced failure</error>
       </errors>
       """
-
 
   Scenario: A '404 Not Found' error is raised when the subscription is not found
     Given I have 0 subscriptions
