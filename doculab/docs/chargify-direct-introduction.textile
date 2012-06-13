@@ -1,5 +1,6 @@
 p(note). Chargify Direct is currently in beta testing.  You must be on our *Start* plan ($99/month) to be eligible for Chargify Direct.  If you would like access to the feature, please "open a ticket":http://help.chargify.com/tickets/new and include the subdomain of the site you would like enabled.  This documentation is a draft and is subject to change.
-
+p(note).  At this point in development, Chargify is not rejecting any submissions based on timestamp related violations.  The specifics of this mechanism will be published in the future. (See Below)
+p(note).  At this point in development, Chargify is not rejecting any submissions based on nonce related violations.  The specifics of this mechanism will be published in the future. (See Below)
 h2. Overview
 
 Chargify Direct allows you to create Chargify resources (such as Subscriptions) via a form *on your own website* that *posts directly to Chargify*.  After Chargify receives the form submission, the user is redirected back to your own site.  The redirection communicates the result of the submission so that your website can decide how to respond to the user.  This flow is sometimes called "transparent redirect" within the industry.
