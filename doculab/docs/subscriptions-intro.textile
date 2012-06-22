@@ -2,7 +2,7 @@ Subscriptions are central to Chargify.  They tie your Customers to your Products
 
 <!-- TODO: a diagram of Subscriptions in the big picture would be nice here -->
 
-The creation of a Subscription is analogous to receiving a signup.  There are 3 basic ways that "Subscriptions are created":/creating-subscriptions: "via Hosted Payment Pages":/hosted-page-integration, "via the API":/api-integration, or manually via the UI.
+The creation of a Subscription is analogous to receiving a signup.  There are 3 basic ways that Subscriptions are created: "via Hosted Payment Pages":/hosted-page-integration, "via the API":/api-integration, or manually via the UI.
 
 Once a Subscription has been created, it will begin to auto-renew on the period specified by the Product to which it is related.  There's not much you need to do, other than keep tabs on them from time to time looking for Subsriptions that go sour.  If you've got automated "Dunning":/dunning turned on, keeping up with what going on will be even less of a concern.
 
