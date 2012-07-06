@@ -33,6 +33,9 @@ All of the transaction attribute fields are returned from GET (read) operations,
 * @product_id@ The unique identifier for the product associated with the Subscription
 * @success@ Whether or not the Transaction was successful 
 * @payment_id@ The unique identifier for the payment being explicitly refunded (in whole or in part) by this transaction. Will be null for all transaction types except for "Refund". May be null even for Refunds. For partial refunds, more than one Refund transaction may reference the same payment_id.
+* @kind@ The specific "subtype" for the @transaction_type@
+* @gateway_transaction_id@ The transaction ID from the remote gateway (i.e. Authorize.Net), if one exists
+
 
 h2. Methods
 
