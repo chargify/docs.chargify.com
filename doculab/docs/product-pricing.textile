@@ -1,11 +1,11 @@
-Product pricing is defined beneath "Step 2" of the Product creation and edit screens.  In addition to pricing, this is also how you define your recurring period intervals, trials, and expirations.
+Product pricing is defined beneath "Billing Setup" section of the Product creation and edit screens.  In addition to pricing, this is also how you define your recurring period intervals, trials, and expirations.
 
 <!-- TODO: include a screenshot of the product pricing section -->
 
 
-h3. Up-front charges
+h3. Initial/Setup fee
 
-The "one-time, up-front charge" field allows you to specify an _up-front fee_ or _startup fee_ that is charged once, at signup time only.
+The "Initial/Setup fee" field allows you to specify an _up-front fee_ or _startup fee_ that is charged once, at signup time only.
 
 
 h3. Trial period
@@ -14,8 +14,19 @@ A _trial period_ may be defined in terms of number of days or months, and can be
 
 Subscriptions that are created for a product that has a free trial are still assessed any Up-front charges.
 
-The _trial period_ for a Subscription continues for the duration defined here.  During this time it will be in the @trialing@ state.  At the end of the _trial period_, a charge in the amount of the normal recurring price will be assessed.
+The _trial period_ for a Subscription continues for the duration defined here.  During this time it will be in the @trialing@ state.
 
+There are two trial types to choose from. The trial type determines the outcome of the subscription after the trial has ended.
+
+*No Obligation Trials*
+
+At the end of the trial, if a card is on file, the card will be charged and the subscription will transition to @active@ state. If no card is on file at the end of the trial, the subscription will simply transition to @trial_ended@ state.  Chargify will not send any emails or statements.
+
+*Payment Expected Trials*
+
+At the end of the trial, if a card is on file, the card will be charged and the subscription will transition to @active@ state. If no card is on file at the end of the trial, the subscription will transition to @past_due@ state.  Chargify will send normal dunning emails and statements according to your other settings.
+
+p(note). *Tip*: You can subscribe to the @subscription_state_change@ "webhook":/webhooks to be notified when a subscription's state changes. This makes it easy to reach out to potential customers when their trial has ended.
 
 h3. Recurring period and price
 
@@ -33,6 +44,6 @@ There is a product called "Small Plan" which costs $10 per month and expires aft
 
 *Trial Examples*
 
-The expiration date is calculated from the day that the subscription is created, without any regard for trial periods.  So, if the Small Plan costs $10 a month, has a 1 month free tiral and expires after 10 months, then John's subscription starting on Jan 1 would still expire on 11/1, with his 9th and final payment occuring on 10/1.
+The expiration date is calculated from the day that the subscription is created, without any regard for trial periods.  So, if the Small Plan costs $10 a month, has a 1 month free trial and expires after 10 months, then John's subscription starting on Jan 1 would still expire on 11/1, with his 9th and final payment occurring on 10/1.
 
 What if the trial period does not match the product period?  For example what happens, if the Small Plan costs $10 per month, has a 14 day free trial, and expires after 10 months?  In this case, John's subscription which begins on Jan 1 would be first charged on Jan 14.  His expiration date would still be set to 11/1, which is 10 months from his signup.  He would be charged on the 14th of every month, up to and including Oct 14, for a total of 10 payments.  He would be paid through Nov 14.  At the time of renewal on Nov 14, his subscription would transition to expired, since this represents the first renewal after the target expiration date.
