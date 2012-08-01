@@ -1,42 +1,94 @@
+Components are defined and associated with a product family.  They become a part of your product offering.  These *component definitions* determine what components are named, how they are measured, and how much they cost.
+
+Components can then be added and "allocated" for each subscription to a product in the product family.  These *component line-items* affect how much a subscription will be charged, depending on the current allocations (i.e. 4 IP Addresses, or SSL "enabled")
+
+This documentation covers both *component definitions* and *component line-items*.  Please understand the difference.
+
 h2. URI/Method
 
 |_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
-| Components<br/>@/subscriptions/<x>/components@ | List components belonging to a Subscription | - | - | - |
-| Compoment<br/>@/subscriptions/<x>/components/<y>@ | Read a component belonging to a Subscription | - | - | - |
-| Components<br/>@/product_families/<x>/components@ | List components belonging to a Product Family | - | - | - |
-| Compoment<br/>@/product_families/<x>/components/<y>@ | Read a component belonging to a Product Family | - | - | - |
-| Compoment<br/>@/product_families/<x>/[component_type]@ | - | Create Component | - | - |
-  
-h2. Component Input Attributes
+| Component Definitions<br/>@/product_families/<x>/components@ | List component definitions | - | - | - |
+| Component Definition<br/>@/product_families/<x>/components/<y>@ | Read a component definition | - | - | - |
+| Component Definition<br/>@/product_families/<x>/[plural_kind]@ | - | Create a Component definition | - | - |
+| Components Line-Items<br/>@/subscriptions/<x>/components@ | List component line-items belonging to a Subscription | - | - | - |
+| Component Line-Item<br/>@/subscriptions/<x>/components/<y>@ | Read a component line-item belonging to a Subscription | - | - | - |
 
-* @name@ The name of the Component. i.e. Text Messages.
-* @unit_name_@ (Not required for On/Off Components) The name of the unit that the component’s usage is measured in. i.e. message
-* @unit_price@ The amount the customer will be charged per unit. The price can contain up to 4 decimal places. i.e. $1.00, $0.0012, etc.
-* @pricing_scheme@ (Not required for On/Off Components) The handle for the pricing scheme. Available options: per_unit, volume, tiered, stairstep. See "Product Components":/product-components for an overview of pricing schemes.
+
+h2. Component Definition Input Attributes
+
+These values should be nested beneath a key that defines the kind of component being created or updated.  Valid values are @on_off_component@, @quantity_based_component@, and @metered_component@
+
+* @name@ The name of the Component, suitable for display to customers on statements. i.e. "Text Messages".
+* @unit_name@ (Not required for On/Off Components) The name of the unit of measurement for the component.  It should be singular since it will be automatically pluralized when necessary. i.e. "message", which may then be shown as "5 messages" on a subscription's component line-item
+* @unit_price@ The amount the customer will be charged per unit when the pricing scheme is "per_unit".  For On/Off Components, this is the amount that the customer will be charged when they turn the component on for the subscription. The price can contain up to 4 decimal places. i.e. 1.00 or 0.0012
+* @pricing_scheme@ (Not required for On/Off Components) The identifier for the pricing scheme. Available options: per_unit, volume, tiered, stairstep. See "Product Components":/product-components for an overview of pricing schemes.
 * @prices@ (Not required for On/Off Components or 'per_unit' pricing schemes) One or more price brackets. See "Product Components":/product-components for an overview of how price brackets work for different pricing schemes.
 ** @starting_quantity@ 
 ** @ending_quantity@ 
 ** @unit_price@ 
 
-h2. Component Output Attributes
+h2. Component Definition Output Attributes
 
-In addition to the Input attributes, the following Output attributes are returned.
+Component definitions refer to the components you create that become available to subscriptions.  This differs from what we are calling "component line-items", which detail the attachment of the component to a subscription (and are documented below).
 
-* @name@ The name of the Component. i.e. Text Messages.
-* @unit_name_@ The name of the unit that the component’s usage is measured in. i.e. message
-* @unit_price@ The amount the customer will be charged per unit. This field is only populated for 'per_unit' pricing schemes.
+* @id@ The unique ID assigned to the component by Chargify.  This ID can be used to fetch the component from the API.
+* @name@ The name of the Component, suitable for display on statements. i.e. Text Messages.
+* @unit_name_@ The name of the unit that the component's usage is measured in. i.e. message
+* @unit_price@ The amount the customer will be charged per unit. This field is only populated for 'per_unit' pricing schemes, otherwise it may be null.
 * @pricing_scheme@  The handle for the pricing scheme. Available options: per_unit, volume, tiered, stairstep. See "Product Components":/product-components for an overview of pricing schemes.
 * @prices@ An array of price brackets. If the component uses the 'per_unit' pricing scheme, this array will be empty.
 ** @starting_quantity@ 
 ** @ending_quantity@ 
 ** @unit_price@
-* @product_family_id@ The id of the Product Family that the Component belongs to
+* @product_family_id@ The id of the Product Family to which the Component belongs
 * @kind@ A handle for the component type: metered_component, quantity_based_component, on_off_component
 * @price_per_unit_in_cents@ (*This field is deprecated (see note below)*) This represents the unit price prior to the Chargify upgrade to fractional cent component pricing. This field may no longer represent the correct unit price of the component. The @unit_price@ field should be used instead.
 * @archived@ Boolean flag describing whether a component is archived or not.
 
 p(note). In May 2011, we added the ability to create components with fractional cent pricing (i.e. $0.0012 per unit). To accommodate this change we made some adjustments on our end that altered how prices are stored. Because of this, we have deprecated the @price_in_cents@ field in favor of the @unit_price@ field. The @price_in_cents@ field is still returned for backwards compatibility, but may not accurately represent the current state of the component if it has been updated since the change. We recommend updating your API calls to use the @unit_price@ field as soon as possible.
 
+h2. Component Line-Item Input Attributes
+
+The attributes listed in the following sections should be nested under the @component@ key, e.g. the following JSON could be used to update the @allocated_quantity@ on a Component Line-Item:
+
+<pre><code>
+{
+  "component": {
+    "allocated_quantity": 23
+  }
+}
+</code></pre>
+
+h3. Inputs for Quantity-Based Line-Items
+
+* @allocated_quantity@ The current allocation for the component on the given subscription.
+
+For more, see also "API: Quantity Component Allocations":/api-quantity-allocations
+
+h3. Inputs for On/Off Line-Items
+
+* @enabled@ A boolean that controls whether the component is "On" for a given subscription.  Valid values are @true@/@false@, @on@/@off@, @yes@/@no@, @t@/@f@, @y@/@n@, @1@/@0@
+
+h3. Inputs for Metered Line-Items
+
+The Metered Component usages for a subscription are managed through the "Metered Usage API":/api-metered-usage
+
+
+h2. Component Line-Item Output Attributes
+
+All component line-item kinds share the following attributes:
+
+* @subscription_id@
+* @component_id@
+* @name@
+* @unit_name@
+* @kind@
+
+Then, each line-item has an indication of the current allocation on the given subscription, depending on the @kind@:
+
+* @enabled@ Provided when @kind@ is @on_off_component@
+* @allocated_quantity@ Provided when @kind@ is @quantity_based_component@
+* @unit_balance@ Provided when @kind@ is @metered_component@ and gives the TOTAL of all reported usages for the period
 
 h2. Methods
 
@@ -86,11 +138,11 @@ Response: A component
 
 h3. Create Component
 
-URL: @https://<subdomain>.chargify.com/product_families/<product_family_id_>/<component_type>.<format>@
+URL: @https://<subdomain>.chargify.com/product_families/<product_family_id_>/<plural_kind_>.<format>@
 Method: @POST@
 Required Parameters: 
 @product_family_id@: The id of the product family from which you want to get a listing of available components
-@compontent_type_@: The endpoint for the type of component you want to create. Options: metered_components, quantity_based_components, on_off_components
+@plural_kind@: The endpoint for the type of component you want to create. Valid values: @metered_components@, @quantity_based_components@, @on_off_components@
 @XML or JSON data@: Specified by the required attributes  
 Response: A component
 **Usage Examples:**  
