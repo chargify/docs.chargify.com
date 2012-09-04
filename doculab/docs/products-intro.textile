@@ -25,6 +25,6 @@ Some of the basic parameters of a Product are:
 
 h4. Archiving Products
 
-Deleting products isn't support, but what is supported is archiving products. Archiving products remove the ability for new subscriptions to that product (either by signup or migration).
+Deleting products isn't supported, but what is supported is archiving products. Archiving products removes the ability for new subscriptions to be created with that product (either by signup or migration). However, existing subscriptions will continue normally against their archived product unless moved via product change or migration away from it.
 
 p(note). *Why do we call them "Products", and not "Plans"?** Chargify makes it easy to sell other things that are not plan-based, such as Sponsorships.  Often, these things might belong to separate Product Families along side your normal recurring service offerings.  "Plans" just seemed too restrictive.  Just think of it this way: If your customers can pay for it, its a Product.  If they can upgrade/downgrade to another Product, then those Products are part of the same Product Family.*
