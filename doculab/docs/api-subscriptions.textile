@@ -261,6 +261,7 @@ Method: @PUT@
 Required Parameters: none
 Optional Parameters:
 @include_trial@ - Boolean, default 0. If 1 is sent the reactivated subscription will include a trial if one is available. If 0 is sent, the trial period will be ignored.  This parameter should be sent in a query string, and does not need to be nested inside a @subscription@ object
+@preserve_balance@ - Boolean, default '0'. If '1' is passed, the existing subscription balance will NOT be cleared/reset before adding the additional reactivation charges.
 @coupon_code@ - The coupon code to be applied during reactivation.
 Response: The updated subscription  
 
