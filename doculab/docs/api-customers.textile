@@ -12,6 +12,7 @@ All of the customer attribute fields are returned from GET (read) operations.  O
 * @id@ (Read Only) The unique identifier for this customer within Chargify
 * @created_at@ (Read Only) The creation date for this customer
 * @updated_at@ (Read Only) The date of last update for this customer
+* @vat_number@ (Optional) The VAT number, if applicable.
 
 
 h2. Methods

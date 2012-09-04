@@ -57,13 +57,13 @@ The following attributes are returned on a subscription read/list operation.
 * @current_period_ends_at@ Timestamp relating to the end of the current (recurring) period (i.e. when the next regularly scheduled attempted charge will occur)
 * @next_assessment_at@ Timestamp that indicates when capture of payment will be tried or retried.  This value will usually track the @current_period_ends_at@, but will diverge if a renewal payment fails and must be retried.  In that case, the @current_period_ends_at@ will advance to the end of the next period (time doesn't stop because a payment was missed) but the @next_assessment_at@ will be scheduled for the auto-retry time (i.e. 24 hours in the future, in some cases)
 * @trial_started_at@ Timestamp for when the trial period (if any) began
-* @trial_ended_at@ Timestamp for when the trial period (if any) ended</td>
+* @trial_ended_at@ Timestamp for when the trial period (if any) ended
 * @activated_at@ (Read Only) Timestamp for when the subscription began (i.e. when it came out of trial, or when it began in the case of no trial)
 * @expires_at@ Timestamp giving the expiration date of this subscription (if any)
 * @created_at@ The creation date for this subscription
 * @updated_at@ The date of last update for this subscription
-* @customer@ For customer attributes, see [Customers API](/faqs/api/api-customers)
-* @product@ For product attributes, see [Products API](#todo)
+* @customer@ For customer attributes, see "Customers API":/api-customers
+* @product@ For product attributes, see "Products API":/api-products
 * @credit_card@ Nested credit card attributes
 ** @id@ The Chargify-assigned ID of the stored card.  This value can be used as an input to @payment_profile_id@ when creating a subscription, in order to re-use a stored payment profile _for the same customer_
 ** @card_type@ The type of card used (bogus, visa, master)
