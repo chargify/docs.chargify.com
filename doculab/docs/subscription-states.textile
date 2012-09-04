@@ -1,6 +1,7 @@
 The state of a subscription is reported in the @state@ attribute of a subscription.  The valid states are:
 
 * trialing
+* trial_ended
 * assessing
 * active
 * soft_failure
@@ -59,3 +60,7 @@ Indicates a subscription that has expired due to running its normal life cycle. 
 h4. suspended
 
 Reserved and currently unused. May be used in the future for subscriptions that may be restarted (i.e. after being suspended due to non-payment, then payment resumes)
+
+h4. trial_ended
+
+A subscription in a @trial_ended@ state is a subscription which completed a no-obligation trial and did not have a card on file at the expiration of the trial period.
