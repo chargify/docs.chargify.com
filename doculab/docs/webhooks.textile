@@ -17,12 +17,31 @@ h2. Webhook Contents
 
 Webhooks are sent as HTTP POST requests to your URL with a form-encoded body (@Content-Type:  application/x-www-form-urlencoded@) for easy parsing in almost any programming language.  All Webhooks contain the following keys:
 
+| @id@      | A unique, numeric, identifier for the webhook.  You can use this value to record which webhooks you've already seen or recorded or acted on |
 | @event@   | An identifier for the type of event that occurred. See "Events":#events, below  |
 | @payload@ | A hash of pertinent data about the event. |
 
 For example, test Webhooks are sent with the following body:
 
-<pre><code>event=test&payload[chargify]=testing</code></pre>
+<pre><code>id=123456&event=test&payload[chargify]=testing</code></pre>
+
+h2. Webhook Acknowledgement and Automatic Retries
+
+Upon receipt of a webhook, you should **accept** it by returning an HTTP "200 OK" response as quickly as possible.  Sending any other response (i.e. "500 Internal Server Error", "404 Not Found", etc.) OR failing to return a response within approximately 15 seconds will result in automatic retries of the webhooks.
+
+Chargify will attempt to send each webhook 5 times before giving up.  The webhook retries will follow a backoff schedule:
+
+|_. Attempt |_. Approximate Timing |
+| 1         | As soon as possible after the original event |
+| 2         | 10 seconds after most recent failure |
+| 3         | 15 seconds after most recent failure |
+| 4         | 90 seconds after most recent failure |
+| 5         | 180 seconds after most recent failure |
+
+If you use the Webhook Replay feature (available via the "Webhook API":/api-webhooks or the Webhook Panel, if available on your plan), please be aware that it is possible to perform a manual replay while automatic replays are still active.  Because of this, it is your responsibility to avoid taking duplicate action.  Suggestions for avoiding duplicate actions are:
+
+* Use the unique webhook @id@ to remember which webhooks you've already recorded
+* Do not attempt to replay webhooks until the @last_attempt_at@ timestamp (see "Metadata":#metadata) is well outside of the automatic replay intervals
 
 h2(#events). Events
 
@@ -50,12 +69,10 @@ The following events are monitored within Chargify and can generate Webhooks:
 
 p(note). Multiple Webhook events may be triggered by a single system event.  For example, the creation of a new Subscription will typically fire both a @signup_success@ and @payment_success@ event (if a payment was necessary to start the Subscription).
 
-h2. Payload Resources
+h2. Payloads
 
-The resource objects sent as payload contain the same information as the corresponding API resource.  Site payload objects contain the site's @id@ and @subdomain@. To see the attribute keys that are sent with the Subscription and Payment payload objects, see the API documentation.  (Payment objects are a type of Transaction resource)
+The resource objects sent as payload typically contain the same information as the corresponding API resource.  Site payload objects contain the site's @id@ and @subdomain@. Examples of payloads for each type of event are given at the end of this page.
 
-* "API Subscription resources":/api-subscriptions
-* "API Transaction resources":/api-transactions
 
 h2. Webhook Verification
 
@@ -98,3 +115,1194 @@ h2. Webhook Testing
 On the Webhook configuration screen on the Settings tab, you can click "Send a test Webhook" to access the Webhook testing panel.  There, we will attempt to send a Webhook to your configured URL and show you what we sent and the response we received from you.
 
 p(note). Testing Tip: Try creating a "Request Bin" at "http://www.requestb.in":http://www.requestb.in and use that as your Webhook test URL.  That way, you can inspect the Webhook contents and headers while you work out your own Webhook handler.
+
+h2(#metadata). Webhook Metadata
+
+The Webhook records contain information about the acceptance or non-acceptance by your application, along with information about any error received that indicated non-acceptance.
+
+This data is available via the "Webhook API":/api-webhooks or the Webhook Panel, if that feature is available on your plan.
+
+The webhook metadata attributes are:
+
+* @id@ The unique identifier for the webhook
+* @successful@ A boolean flag describing whether the webhook was accepted by the webhook endpoint
+* @created_at@ Timestamp indicating when the Webhook was created
+* @accepted_at@ Timestamp indicating when the Webhook was accepted by the merchant endpoint
+* @last_sent_at@ Timestamp indicating when the most recent attempt was made to send the Webhook
+* @last_error_at@ Timestamp indicating when the last non-acceptance occurred
+* @last_error@ Text describing the status code and/or error from the last failed attempt to send the Webhook
+
+Webhooks also maintain their event and payload data (accessible via the API).  For a full listing of attributes available for each webhook, please see the "Webhook API":/api-webhooks documentation.
+Once a webhook is accepted, the @accepted_at@ timestamp will be filled (which can be viewed via the "Webhooks API":/api-webhooks or in the Webhooks Panel, if it is available for your plan).
+
+h2(#example-payloads). Example Payloads
+
+These example webhooks have been converted from form-encoded format to Ruby hash format for readability.
+
+* "signup_success Payload":#signup-success-payload
+* "signup_failure Payload":#signup-failure-payload
+* "renewal_success Payload":#renewal-success-payload
+* "renewal_failure Payload":#renewal-failure-payload
+* "payment_success Payload":#payment-success-payload
+* "payment_failure Payload":#payment-failure-payload
+* "billing_date_change Payload":#billing-date-change-payload
+* "subscription_state_change Payload":#subscription-state-change-payload
+* "subscription_product_change Payload":#subscription-product-change-payload
+* "expiring_card Payload":#expiring-card-payload
+* "customer_update Payload":#customer-update-payload
+
+h3(#signup-success-payload). signup_sucess Payload
+
+<pre><code>
+{
+      "event" => "signup_success",
+         "id" => "5",
+    "payload" => {
+        "subscription" => {
+                 "cancellation_message" => "",
+                             "customer" => {
+                   "last_name" => "Doe",
+                   "reference" => "",
+                       "phone" => "555-555-1234",
+                  "first_name" => "John",
+                         "zip" => "12345",
+                   "address_2" => "Apt 123",
+                     "address" => "123 Main St",
+                       "state" => "NC",
+                  "updated_at" => "2012-09-09 11:38:32 -0400",
+                  "created_at" => "2012-09-09 11:38:32 -0400",
+                "organization" => "Acme, Inc.",
+                          "id" => "15",
+                       "email" => "john@example.com",
+                     "country" => "US",
+                        "city" => "Pleasantville"
+            },
+                     "trial_started_at" => "",
+                              "product" => {
+                                  "handle" => "handle_6a9273b8a",
+                "expiration_interval_unit" => "never",
+                             "archived_at" => "",
+                           "interval_unit" => "month",
+                          "product_family" => {
+                             "handle" => "acme-online",
+                    "accounting_code" => "",
+                               "name" => "Acme Online",
+                                 "id" => "4",
+                        "description" => ""
+                },
+                         "accounting_code" => "",
+                          "price_in_cents" => "9900",
+                     "expiration_interval" => "",
+                                    "name" => "Pro",
+                     "trial_interval_unit" => "month",
+                                "interval" => "1",
+                           "return_params" => "",
+                              "updated_at" => "2012-09-09 11:36:53 -0400",
+                              "created_at" => "2012-09-06 10:09:35 -0400",
+                                      "id" => "23",
+                              "return_url" => "",
+                          "trial_interval" => "",
+                             "description" => "Vel soluta nihil qui accusamus quidem.  Et qui qui et sit omnis sit.  Veritatis voluptates aut incidunt mollitia corporis labore accusantium.",
+                    "trial_price_in_cents" => "",
+                       "update_return_url" => "",
+                 "initial_charge_in_cents" => "",
+                     "require_credit_card" => "true",
+                     "request_credit_card" => "true"
+            },
+                       "trial_ended_at" => "",
+                       "previous_state" => "active",
+                           "expires_at" => "",
+                          "coupon_code" => "",
+            "current_period_started_at" => "2012-09-09 11:38:32 -0400",
+                          "canceled_at" => "",
+                   "next_assessment_at" => "2012-10-09 11:38:32 -0400",
+                          "credit_card" => {
+                           "last_name" => "Doe",
+                           "card_type" => "bogus",
+                         "vault_token" => "1",
+                          "first_name" => "Jane",
+                       "billing_state" => "NC",
+                  "masked_card_number" => "XXXX-XXXX-XXXX-1",
+                     "expiration_year" => "2016",
+                     "billing_country" => "US",
+                "customer_vault_token" => "",
+                         "customer_id" => "15",
+                     "billing_address" => "987 Commerce St",
+                    "expiration_month" => "4",
+                       "current_vault" => "bogus",
+                        "billing_city" => "Greenberg",
+                                  "id" => "14",
+                   "billing_address_2" => "Suite 789",
+                         "billing_zip" => "67890"
+            },
+                       "signup_revenue" => "99.00",
+                    "signup_payment_id" => "30",
+                    "delayed_cancel_at" => "",
+                                "state" => "active",
+              "cancel_at_end_of_period" => "false",
+                           "updated_at" => "2012-09-09 11:38:33 -0400",
+                           "created_at" => "2012-09-09 11:38:32 -0400",
+                                   "id" => "14",
+                         "activated_at" => "2012-09-09 11:38:33 -0400",
+               "current_period_ends_at" => "2012-10-09 11:38:32 -0400",
+                     "balance_in_cents" => "9900"
+        },
+                "site" => {
+            "subdomain" => "acme-test",
+                   "id" => "3"
+        }
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#signup-failure-payload). signup_failure Payload
+
+<pre><code>
+{
+      "event" => "signup_failure",
+         "id" => "6",
+    "payload" => {
+        "subscription" => {
+                 "cancellation_message" => "",
+                             "customer" => {
+                   "last_name" => "Joker",
+                   "reference" => "",
+                       "phone" => "404-555-9876",
+                  "first_name" => "Jimmy",
+                         "zip" => "02345",
+                   "address_2" => "Apt 404",
+                     "address" => "500 Fail St",
+                       "state" => "MA",
+                  "updated_at" => "2012-09-09 11:48:23 -0400",
+                  "created_at" => "2012-09-09 11:48:23 -0400",
+                "organization" => "JankyCo",
+                          "id" => "16",
+                       "email" => "jimmy@example.com",
+                     "country" => "US",
+                        "city" => "Boston"
+            },
+                     "trial_started_at" => "",
+                              "product" => {
+                                  "handle" => "handle_6a9273b8a",
+                "expiration_interval_unit" => "never",
+                             "archived_at" => "",
+                           "interval_unit" => "month",
+                          "product_family" => {
+                             "handle" => "acme-online",
+                    "accounting_code" => "",
+                               "name" => "Acme Online",
+                                 "id" => "4",
+                        "description" => ""
+                },
+                         "accounting_code" => "",
+                          "price_in_cents" => "9900",
+                     "expiration_interval" => "",
+                                    "name" => "Pro",
+                     "trial_interval_unit" => "month",
+                                "interval" => "1",
+                           "return_params" => "",
+                              "updated_at" => "2012-09-09 11:36:53 -0400",
+                              "created_at" => "2012-09-06 10:09:35 -0400",
+                                      "id" => "23",
+                              "return_url" => "",
+                          "trial_interval" => "",
+                             "description" => "Vel soluta nihil qui accusamus quidem.  Et qui qui et sit omnis sit.  Veritatis voluptates aut incidunt mollitia corporis labore accusantium.",
+                    "trial_price_in_cents" => "",
+                       "update_return_url" => "",
+                 "initial_charge_in_cents" => "",
+                     "require_credit_card" => "true",
+                     "request_credit_card" => "true"
+            },
+                       "trial_ended_at" => "",
+                       "previous_state" => "failed_to_create",
+                           "expires_at" => "",
+                          "coupon_code" => "",
+            "current_period_started_at" => "2012-09-09 11:48:23 -0400",
+                          "canceled_at" => "",
+                   "next_assessment_at" => "",
+                          "credit_card" => {
+                           "last_name" => "Joker",
+                           "card_type" => "bogus",
+                         "vault_token" => "2",
+                          "first_name" => "Jimmy",
+                       "billing_state" => "MA",
+                  "masked_card_number" => "XXXX-XXXX-XXXX-2",
+                     "expiration_year" => "2015",
+                     "billing_country" => "US",
+                "customer_vault_token" => "",
+                         "customer_id" => "16",
+                     "billing_address" => "500 Fail St",
+                    "expiration_month" => "3",
+                       "current_vault" => "bogus",
+                        "billing_city" => "Boston",
+                                  "id" => "15",
+                   "billing_address_2" => "Apt 404",
+                         "billing_zip" => "02345"
+            },
+                       "signup_revenue" => "99.00",
+                    "signup_payment_id" => "32",
+                    "delayed_cancel_at" => "",
+                                "state" => "failed_to_create",
+              "cancel_at_end_of_period" => "false",
+                           "updated_at" => "2012-09-09 11:48:24 -0400",
+                           "created_at" => "2012-09-09 11:48:23 -0400",
+                                   "id" => "15",
+                         "activated_at" => "",
+               "current_period_ends_at" => "2012-10-09 11:48:23 -0400",
+                     "balance_in_cents" => "9900"
+        },
+                "site" => {
+            "subdomain" => "acme-test",
+                   "id" => "3"
+        }
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#renewal-success-payload). renewal_success Payload
+
+<pre><code>
+{
+      "event" => "renewal_success",
+         "id" => "7",
+    "payload" => {
+        "subscription" => {
+                 "cancellation_message" => "",
+                             "customer" => {
+                   "last_name" => "Doe",
+                   "reference" => "",
+                       "phone" => "555-555-1234",
+                  "first_name" => "John",
+                         "zip" => "12345",
+                   "address_2" => "Apt 123",
+                     "address" => "123 Main St",
+                       "state" => "NC",
+                  "updated_at" => "2012-09-09 11:38:32 -0400",
+                  "created_at" => "2012-09-09 11:38:32 -0400",
+                "organization" => "Acme, Inc.",
+                          "id" => "15",
+                       "email" => "john@example.com",
+                     "country" => "US",
+                        "city" => "Pleasantville"
+            },
+                     "trial_started_at" => "",
+                              "product" => {
+                                  "handle" => "handle_6a9273b8a",
+                "expiration_interval_unit" => "never",
+                             "archived_at" => "",
+                           "interval_unit" => "month",
+                          "product_family" => {
+                             "handle" => "acme-online",
+                    "accounting_code" => "",
+                               "name" => "Acme Online",
+                                 "id" => "4",
+                        "description" => ""
+                },
+                         "accounting_code" => "",
+                          "price_in_cents" => "9900",
+                     "expiration_interval" => "",
+                                    "name" => "Pro",
+                     "trial_interval_unit" => "month",
+                                "interval" => "1",
+                           "return_params" => "",
+                              "updated_at" => "2012-09-09 11:36:53 -0400",
+                              "created_at" => "2012-09-06 10:09:35 -0400",
+                                      "id" => "23",
+                              "return_url" => "",
+                          "trial_interval" => "",
+                             "description" => "Vel soluta nihil qui accusamus quidem.  Et qui qui et sit omnis sit.  Veritatis voluptates aut incidunt mollitia corporis labore accusantium.",
+                    "trial_price_in_cents" => "",
+                       "update_return_url" => "",
+                 "initial_charge_in_cents" => "",
+                     "require_credit_card" => "true",
+                     "request_credit_card" => "true"
+            },
+                       "trial_ended_at" => "",
+                       "previous_state" => "active",
+                           "expires_at" => "",
+                          "coupon_code" => "",
+            "current_period_started_at" => "2012-09-09 11:49:43 -0400",
+                          "canceled_at" => "",
+                   "next_assessment_at" => "2012-10-09 11:49:43 -0400",
+                          "credit_card" => {
+                           "last_name" => "Doe",
+                           "card_type" => "bogus",
+                         "vault_token" => "1",
+                          "first_name" => "Jane",
+                       "billing_state" => "NC",
+                  "masked_card_number" => "XXXX-XXXX-XXXX-1",
+                     "expiration_year" => "2016",
+                     "billing_country" => "US",
+                "customer_vault_token" => "",
+                         "customer_id" => "15",
+                     "billing_address" => "987 Commerce St",
+                    "expiration_month" => "4",
+                       "current_vault" => "bogus",
+                        "billing_city" => "Greenberg",
+                                  "id" => "14",
+                   "billing_address_2" => "Suite 789",
+                         "billing_zip" => "67890"
+            },
+                       "signup_revenue" => "99.00",
+                    "signup_payment_id" => "30",
+                    "delayed_cancel_at" => "",
+                                "state" => "active",
+              "cancel_at_end_of_period" => "false",
+                           "updated_at" => "2012-09-09 11:49:44 -0400",
+                           "created_at" => "2012-09-09 11:38:32 -0400",
+                                   "id" => "14",
+                         "activated_at" => "2012-09-09 11:38:33 -0400",
+               "current_period_ends_at" => "2012-10-09 11:49:43 -0400",
+                     "balance_in_cents" => "9900"
+        },
+                "site" => {
+            "subdomain" => "acme-test",
+                   "id" => "3"
+        }
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#renewal-failure-payload). renewal_failure Payload
+
+<pre><code>
+{
+      "event" => "renewal_failure",
+         "id" => "10",
+    "payload" => {
+        "subscription" => {
+                 "cancellation_message" => "",
+                             "customer" => {
+                   "last_name" => "Doe",
+                   "reference" => "",
+                       "phone" => "555-555-1234",
+                  "first_name" => "John",
+                         "zip" => "12345",
+                   "address_2" => "Apt 123",
+                     "address" => "123 Main St",
+                       "state" => "NC",
+                  "updated_at" => "2012-09-09 11:38:32 -0400",
+                  "created_at" => "2012-09-09 11:38:32 -0400",
+                "organization" => "Acme, Inc.",
+                          "id" => "15",
+                       "email" => "john@example.com",
+                     "country" => "US",
+                        "city" => "Pleasantville"
+            },
+                     "trial_started_at" => "",
+                              "product" => {
+                                  "handle" => "handle_6a9273b8a",
+                "expiration_interval_unit" => "never",
+                             "archived_at" => "",
+                           "interval_unit" => "month",
+                          "product_family" => {
+                             "handle" => "acme-online",
+                    "accounting_code" => "",
+                               "name" => "Acme Online",
+                                 "id" => "4",
+                        "description" => ""
+                },
+                         "accounting_code" => "",
+                          "price_in_cents" => "9900",
+                     "expiration_interval" => "",
+                                    "name" => "Pro",
+                     "trial_interval_unit" => "month",
+                                "interval" => "1",
+                           "return_params" => "",
+                              "updated_at" => "2012-09-09 11:36:53 -0400",
+                              "created_at" => "2012-09-06 10:09:35 -0400",
+                                      "id" => "23",
+                              "return_url" => "",
+                          "trial_interval" => "",
+                             "description" => "Vel soluta nihil qui accusamus quidem.  Et qui qui et sit omnis sit.  Veritatis voluptates aut incidunt mollitia corporis labore accusantium.",
+                    "trial_price_in_cents" => "",
+                       "update_return_url" => "",
+                 "initial_charge_in_cents" => "",
+                     "require_credit_card" => "true",
+                     "request_credit_card" => "true"
+            },
+                       "trial_ended_at" => "",
+                       "previous_state" => "active",
+                           "expires_at" => "",
+                          "coupon_code" => "",
+            "current_period_started_at" => "2012-09-09 11:51:10 -0400",
+                          "canceled_at" => "",
+                   "next_assessment_at" => "2012-09-10 11:51:11 -0400",
+                          "credit_card" => {
+                           "last_name" => "Doe",
+                           "card_type" => "bogus",
+                         "vault_token" => "2",
+                          "first_name" => "Jane",
+                       "billing_state" => "NC",
+                  "masked_card_number" => "XXXX-XXXX-XXXX-2",
+                     "expiration_year" => "2016",
+                     "billing_country" => "US",
+                "customer_vault_token" => "",
+                         "customer_id" => "15",
+                     "billing_address" => "987 Commerce St",
+                    "expiration_month" => "4",
+                       "current_vault" => "bogus",
+                        "billing_city" => "Greenberg",
+                                  "id" => "14",
+                   "billing_address_2" => "Suite 789",
+                         "billing_zip" => "67890"
+            },
+                       "signup_revenue" => "99.00",
+                    "signup_payment_id" => "30",
+                    "delayed_cancel_at" => "",
+                                "state" => "past_due",
+              "cancel_at_end_of_period" => "false",
+                           "updated_at" => "2012-09-09 11:51:11 -0400",
+                           "created_at" => "2012-09-09 11:38:32 -0400",
+                                   "id" => "14",
+                         "activated_at" => "2012-09-09 11:38:33 -0400",
+               "current_period_ends_at" => "2012-10-09 11:51:10 -0400",
+                     "balance_in_cents" => "9900"
+        },
+                "site" => {
+            "subdomain" => "acme-test",
+                   "id" => "3"
+        }
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#payment-success-payload). payment_success Payload
+
+<pre><code>
+{
+      "event" => "payment_success",
+         "id" => "4",
+    "payload" => {
+        "subscription" => {
+                 "cancellation_message" => "",
+                             "customer" => {
+                   "last_name" => "Doe",
+                   "reference" => "",
+                       "phone" => "555-555-1234",
+                  "first_name" => "John",
+                         "zip" => "12345",
+                   "address_2" => "Apt 123",
+                     "address" => "123 Main St",
+                       "state" => "NC",
+                  "updated_at" => "2012-09-09 11:38:32 -0400",
+                  "created_at" => "2012-09-09 11:38:32 -0400",
+                "organization" => "Acme, Inc.",
+                          "id" => "15",
+                       "email" => "john@example.com",
+                     "country" => "US",
+                        "city" => "Pleasantville"
+            },
+                     "trial_started_at" => "",
+                              "product" => {
+                                  "handle" => "handle_6a9273b8a",
+                "expiration_interval_unit" => "never",
+                             "archived_at" => "",
+                           "interval_unit" => "month",
+                          "product_family" => {
+                             "handle" => "acme-online",
+                    "accounting_code" => "",
+                               "name" => "Acme Online",
+                                 "id" => "4",
+                        "description" => ""
+                },
+                         "accounting_code" => "",
+                          "price_in_cents" => "9900",
+                     "expiration_interval" => "",
+                                    "name" => "Pro",
+                     "trial_interval_unit" => "month",
+                                "interval" => "1",
+                           "return_params" => "",
+                              "updated_at" => "2012-09-09 11:36:53 -0400",
+                              "created_at" => "2012-09-06 10:09:35 -0400",
+                                      "id" => "23",
+                              "return_url" => "",
+                          "trial_interval" => "",
+                             "description" => "Vel soluta nihil qui accusamus quidem.  Et qui qui et sit omnis sit.  Veritatis voluptates aut incidunt mollitia corporis labore accusantium.",
+                    "trial_price_in_cents" => "",
+                       "update_return_url" => "",
+                 "initial_charge_in_cents" => "",
+                     "require_credit_card" => "true",
+                     "request_credit_card" => "true"
+            },
+                       "trial_ended_at" => "",
+                       "previous_state" => "active",
+                           "expires_at" => "",
+                          "coupon_code" => "",
+            "current_period_started_at" => "2012-09-09 11:38:32 -0400",
+                          "canceled_at" => "",
+                   "next_assessment_at" => "2012-10-09 11:38:32 -0400",
+                          "credit_card" => {
+                           "last_name" => "Doe",
+                           "card_type" => "bogus",
+                         "vault_token" => "1",
+                          "first_name" => "Jane",
+                       "billing_state" => "NC",
+                  "masked_card_number" => "XXXX-XXXX-XXXX-1",
+                     "expiration_year" => "2016",
+                     "billing_country" => "US",
+                "customer_vault_token" => "",
+                         "customer_id" => "15",
+                     "billing_address" => "987 Commerce St",
+                    "expiration_month" => "4",
+                       "current_vault" => "bogus",
+                        "billing_city" => "Greenberg",
+                                  "id" => "14",
+                   "billing_address_2" => "Suite 789",
+                         "billing_zip" => "67890"
+            },
+                       "signup_revenue" => "99.00",
+                    "signup_payment_id" => "30",
+                    "delayed_cancel_at" => "",
+                                "state" => "active",
+              "cancel_at_end_of_period" => "false",
+                           "updated_at" => "2012-09-09 11:38:33 -0400",
+                           "created_at" => "2012-09-09 11:38:32 -0400",
+                                   "id" => "14",
+                         "activated_at" => "2012-09-09 11:38:33 -0400",
+               "current_period_ends_at" => "2012-10-09 11:38:32 -0400",
+                     "balance_in_cents" => "0"
+        },
+                "site" => {
+            "subdomain" => "acme-test",
+                   "id" => "3"
+        },
+         "transaction" => {
+                    "amount_in_cents" => "9900",
+            "ending_balance_in_cents" => "0",
+                   "transaction_type" => "payment",
+                         "payment_id" => "",
+                               "memo" => "John Doe - Pro: Signup payment",
+                            "success" => "true",
+                               "kind" => "",
+                               "type" => "Payment",
+             "gateway_transaction_id" => "",
+                         "created_at" => "2012-09-09 11:38:33 -0400",
+                                 "id" => "30",
+                    "subscription_id" => "14",
+                         "product_id" => "23"
+        }
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#payment-failure-payload). payment_failure Payload
+
+<pre><code>
+{
+      "event" => "payment_failure",
+         "id" => "11"
+    "payload" => {
+        "subscription" => {
+                 "cancellation_message" => "",
+                             "customer" => {
+                   "last_name" => "Doe",
+                   "reference" => "",
+                       "phone" => "555-555-1234",
+                  "first_name" => "John",
+                         "zip" => "12345",
+                   "address_2" => "Apt 123",
+                     "address" => "123 Main St",
+                       "state" => "NC",
+                  "updated_at" => "2012-09-09 11:38:32 -0400",
+                  "created_at" => "2012-09-09 11:38:32 -0400",
+                "organization" => "Acme, Inc.",
+                          "id" => "15",
+                       "email" => "john@example.com",
+                     "country" => "US",
+                        "city" => "Pleasantville"
+            },
+                     "trial_started_at" => "",
+                              "product" => {
+                                  "handle" => "handle_6a9273b8a",
+                "expiration_interval_unit" => "never",
+                             "archived_at" => "",
+                           "interval_unit" => "month",
+                          "product_family" => {
+                             "handle" => "acme-online",
+                    "accounting_code" => "",
+                               "name" => "Acme Online",
+                                 "id" => "4",
+                        "description" => ""
+                },
+                         "accounting_code" => "",
+                          "price_in_cents" => "9900",
+                     "expiration_interval" => "",
+                                    "name" => "Pro",
+                     "trial_interval_unit" => "month",
+                                "interval" => "1",
+                           "return_params" => "",
+                              "updated_at" => "2012-09-09 11:36:53 -0400",
+                              "created_at" => "2012-09-06 10:09:35 -0400",
+                                      "id" => "23",
+                              "return_url" => "",
+                          "trial_interval" => "",
+                             "description" => "Vel soluta nihil qui accusamus quidem.  Et qui qui et sit omnis sit.  Veritatis voluptates aut incidunt mollitia corporis labore accusantium.",
+                    "trial_price_in_cents" => "",
+                       "update_return_url" => "",
+                 "initial_charge_in_cents" => "",
+                     "require_credit_card" => "true",
+                     "request_credit_card" => "true"
+            },
+                       "trial_ended_at" => "",
+                       "previous_state" => "past_due",
+                           "expires_at" => "",
+                          "coupon_code" => "",
+            "current_period_started_at" => "2012-09-09 11:51:10 -0400",
+                          "canceled_at" => "",
+                   "next_assessment_at" => "2012-09-10 11:51:11 -0400",
+                          "credit_card" => {
+                           "last_name" => "Doe",
+                           "card_type" => "bogus",
+                         "vault_token" => "2",
+                          "first_name" => "Jane",
+                       "billing_state" => "NC",
+                  "masked_card_number" => "XXXX-XXXX-XXXX-2",
+                     "expiration_year" => "2016",
+                     "billing_country" => "US",
+                "customer_vault_token" => "",
+                         "customer_id" => "15",
+                     "billing_address" => "987 Commerce St",
+                    "expiration_month" => "4",
+                       "current_vault" => "bogus",
+                        "billing_city" => "Greenberg",
+                                  "id" => "14",
+                   "billing_address_2" => "Suite 789",
+                         "billing_zip" => "67890"
+            },
+                       "signup_revenue" => "99.00",
+                    "signup_payment_id" => "30",
+                    "delayed_cancel_at" => "",
+                                "state" => "past_due",
+              "cancel_at_end_of_period" => "false",
+                           "updated_at" => "2012-09-09 11:51:12 -0400",
+                           "created_at" => "2012-09-09 11:38:32 -0400",
+                                   "id" => "14",
+                         "activated_at" => "2012-09-09 11:38:33 -0400",
+               "current_period_ends_at" => "2012-10-09 11:51:10 -0400",
+                     "balance_in_cents" => "9900"
+        },
+                "site" => {
+            "subdomain" => "acme-test",
+                   "id" => "3"
+        },
+         "transaction" => {
+                    "amount_in_cents" => "9900",
+            "ending_balance_in_cents" => "9900",
+                   "transaction_type" => "payment",
+                         "payment_id" => "",
+                               "memo" => "Bogus Gateway: Forced failure",
+                            "success" => "false",
+                               "kind" => "",
+                               "type" => "Payment",
+             "gateway_transaction_id" => "",
+                         "created_at" => "2012-09-09 11:51:11 -0400",
+                                 "id" => "36",
+                    "subscription_id" => "14",
+                         "product_id" => "23"
+        }
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#billing-date-change-payload). billing_date_change Payload
+
+<pre><code>
+{
+      "event" => "billing_date_change",
+         "id" => "16",
+    "payload" => {
+        "subscription" => {
+                 "cancellation_message" => "",
+                             "customer" => {
+                   "last_name" => "Doe",
+                   "reference" => "",
+                       "phone" => "555-555-1234",
+                  "first_name" => "John",
+                         "zip" => "12345",
+                   "address_2" => "Apt 123",
+                     "address" => "123 Main St",
+                       "state" => "NC",
+                  "updated_at" => "2012-09-09 11:38:32 -0400",
+                  "created_at" => "2012-09-09 11:38:32 -0400",
+                "organization" => "Acme, Inc.",
+                          "id" => "15",
+                       "email" => "john@example.com",
+                     "country" => "US",
+                        "city" => "Pleasantville"
+            },
+                     "trial_started_at" => "",
+                              "product" => {
+                                  "handle" => "handle_6a9273b8a",
+                "expiration_interval_unit" => "never",
+                             "archived_at" => "",
+                           "interval_unit" => "month",
+                          "product_family" => {
+                             "handle" => "acme-online",
+                    "accounting_code" => "",
+                               "name" => "Acme Online",
+                                 "id" => "4",
+                        "description" => ""
+                },
+                         "accounting_code" => "",
+                          "price_in_cents" => "9900",
+                     "expiration_interval" => "",
+                                    "name" => "Pro",
+                     "trial_interval_unit" => "month",
+                                "interval" => "1",
+                           "return_params" => "",
+                              "updated_at" => "2012-09-09 11:36:53 -0400",
+                              "created_at" => "2012-09-06 10:09:35 -0400",
+                                      "id" => "23",
+                              "return_url" => "",
+                          "trial_interval" => "",
+                             "description" => "Vel soluta nihil qui accusamus quidem.  Et qui qui et sit omnis sit.  Veritatis voluptates aut incidunt mollitia corporis labore accusantium.",
+                    "trial_price_in_cents" => "",
+                       "update_return_url" => "",
+                 "initial_charge_in_cents" => "",
+                     "require_credit_card" => "true",
+                     "request_credit_card" => "true"
+            },
+                       "trial_ended_at" => "",
+                       "previous_state" => "active",
+                           "expires_at" => "",
+                          "coupon_code" => "",
+            "current_period_started_at" => "2012-09-09 11:55:02 -0400",
+                          "canceled_at" => "",
+                   "next_assessment_at" => "2012-10-15 11:55:00 -0400",
+                          "credit_card" => {
+                           "last_name" => "Doe",
+                           "card_type" => "bogus",
+                         "vault_token" => "1",
+                          "first_name" => "Jane",
+                       "billing_state" => "NC",
+                  "masked_card_number" => "XXXX-XXXX-XXXX-1",
+                     "expiration_year" => "2016",
+                     "billing_country" => "US",
+                "customer_vault_token" => "",
+                         "customer_id" => "15",
+                     "billing_address" => "987 Commerce St",
+                    "expiration_month" => "4",
+                       "current_vault" => "bogus",
+                        "billing_city" => "Greenberg",
+                                  "id" => "14",
+                   "billing_address_2" => "Suite 789",
+                         "billing_zip" => "67890"
+            },
+                       "signup_revenue" => "99.00",
+                    "signup_payment_id" => "30",
+                    "delayed_cancel_at" => "",
+                                "state" => "active",
+              "cancel_at_end_of_period" => "false",
+                           "updated_at" => "2012-09-09 11:55:27 -0400",
+                           "created_at" => "2012-09-09 11:38:32 -0400",
+                                   "id" => "14",
+                         "activated_at" => "2012-09-09 11:38:33 -0400",
+               "current_period_ends_at" => "2012-10-15 11:55:00 -0400",
+                     "balance_in_cents" => "0"
+        },
+                "site" => {
+            "subdomain" => "acme-test",
+                   "id" => "3"
+        }
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#subscription-state-change-payload). subscription_state_change Payload
+
+<pre><code>
+{
+      "event" => "subscription_state_change",
+         "id" => "9",
+    "payload" => {
+        "subscription" => {
+                 "cancellation_message" => "",
+                             "customer" => {
+                   "last_name" => "Doe",
+                   "reference" => "",
+                       "phone" => "555-555-1234",
+                  "first_name" => "John",
+                         "zip" => "12345",
+                   "address_2" => "Apt 123",
+                     "address" => "123 Main St",
+                       "state" => "NC",
+                  "updated_at" => "2012-09-09 11:38:32 -0400",
+                  "created_at" => "2012-09-09 11:38:32 -0400",
+                "organization" => "Acme, Inc.",
+                          "id" => "15",
+                       "email" => "john@example.com",
+                     "country" => "US",
+                        "city" => "Pleasantville"
+            },
+                     "trial_started_at" => "",
+                              "product" => {
+                                  "handle" => "handle_6a9273b8a",
+                "expiration_interval_unit" => "never",
+                             "archived_at" => "",
+                           "interval_unit" => "month",
+                          "product_family" => {
+                             "handle" => "acme-online",
+                    "accounting_code" => "",
+                               "name" => "Acme Online",
+                                 "id" => "4",
+                        "description" => ""
+                },
+                         "accounting_code" => "",
+                          "price_in_cents" => "9900",
+                     "expiration_interval" => "",
+                                    "name" => "Pro",
+                     "trial_interval_unit" => "month",
+                                "interval" => "1",
+                           "return_params" => "",
+                              "updated_at" => "2012-09-09 11:36:53 -0400",
+                              "created_at" => "2012-09-06 10:09:35 -0400",
+                                      "id" => "23",
+                              "return_url" => "",
+                          "trial_interval" => "",
+                             "description" => "Vel soluta nihil qui accusamus quidem.  Et qui qui et sit omnis sit.  Veritatis voluptates aut incidunt mollitia corporis labore accusantium.",
+                    "trial_price_in_cents" => "",
+                       "update_return_url" => "",
+                 "initial_charge_in_cents" => "",
+                     "require_credit_card" => "true",
+                     "request_credit_card" => "true"
+            },
+                       "trial_ended_at" => "",
+                       "previous_state" => "active",
+                           "expires_at" => "",
+                          "coupon_code" => "",
+            "current_period_started_at" => "2012-09-09 11:51:10 -0400",
+                          "canceled_at" => "",
+                   "next_assessment_at" => "2012-09-09 11:51:10 -0400",
+                          "credit_card" => {
+                           "last_name" => "Doe",
+                           "card_type" => "bogus",
+                         "vault_token" => "2",
+                          "first_name" => "Jane",
+                       "billing_state" => "NC",
+                  "masked_card_number" => "XXXX-XXXX-XXXX-2",
+                     "expiration_year" => "2016",
+                     "billing_country" => "US",
+                "customer_vault_token" => "",
+                         "customer_id" => "15",
+                     "billing_address" => "987 Commerce St",
+                    "expiration_month" => "4",
+                       "current_vault" => "bogus",
+                        "billing_city" => "Greenberg",
+                                  "id" => "14",
+                   "billing_address_2" => "Suite 789",
+                         "billing_zip" => "67890"
+            },
+                       "signup_revenue" => "99.00",
+                    "signup_payment_id" => "30",
+                    "delayed_cancel_at" => "",
+                                "state" => "past_due",
+              "cancel_at_end_of_period" => "false",
+                           "updated_at" => "2012-09-09 11:51:11 -0400",
+                           "created_at" => "2012-09-09 11:38:32 -0400",
+                                   "id" => "14",
+                         "activated_at" => "2012-09-09 11:38:33 -0400",
+               "current_period_ends_at" => "2012-10-09 11:51:10 -0400",
+                     "balance_in_cents" => "9900"
+        },
+                "site" => {
+            "subdomain" => "acme-test",
+                   "id" => "3"
+        }
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#subscription-product-change-payload). subscription_product_change Payload
+
+<pre><code>
+{
+      "event" => "subscription_product_change",
+         "id" => "17",
+    "payload" => {
+            "subscription" => {
+                 "cancellation_message" => "",
+                             "customer" => {
+                   "last_name" => "Doe",
+                   "reference" => "",
+                       "phone" => "555-555-1234",
+                  "first_name" => "John",
+                         "zip" => "12345",
+                   "address_2" => "Apt 123",
+                     "address" => "123 Main St",
+                       "state" => "NC",
+                  "updated_at" => "2012-09-09 11:38:32 -0400",
+                  "created_at" => "2012-09-09 11:38:32 -0400",
+                "organization" => "Acme, Inc.",
+                          "id" => "15",
+                       "email" => "john@example.com",
+                     "country" => "US",
+                        "city" => "Pleasantville"
+            },
+                     "trial_started_at" => "",
+                              "product" => {
+                                  "handle" => "handle_5b3ae869a",
+                "expiration_interval_unit" => "",
+                             "archived_at" => "",
+                           "interval_unit" => "month",
+                          "product_family" => {
+                             "handle" => "acme-online",
+                    "accounting_code" => "",
+                               "name" => "Acme Online",
+                                 "id" => "4",
+                        "description" => ""
+                },
+                         "accounting_code" => "",
+                          "price_in_cents" => "2400",
+                     "expiration_interval" => "",
+                                    "name" => "Basic",
+                     "trial_interval_unit" => "month",
+                                "interval" => "1",
+                           "return_params" => "",
+                              "updated_at" => "2012-09-06 10:09:35 -0400",
+                              "created_at" => "2012-09-06 10:09:35 -0400",
+                                      "id" => "22",
+                              "return_url" => "",
+                          "trial_interval" => "1",
+                             "description" => "Est est aut nobis corrupti omnis.  Nam autem et quis est.  Rerum est nihil a animi qui debitis et dolores.",
+                    "trial_price_in_cents" => "0",
+                       "update_return_url" => "",
+                 "initial_charge_in_cents" => "",
+                     "require_credit_card" => "true",
+                     "request_credit_card" => "true"
+            },
+                       "trial_ended_at" => "",
+                       "previous_state" => "active",
+                           "expires_at" => "",
+                          "coupon_code" => "",
+            "current_period_started_at" => "2012-09-09 11:55:02 -0400",
+                          "canceled_at" => "",
+                   "next_assessment_at" => "2012-10-15 11:55:00 -0400",
+                          "credit_card" => {
+                           "last_name" => "Doe",
+                           "card_type" => "bogus",
+                         "vault_token" => "1",
+                          "first_name" => "Jane",
+                       "billing_state" => "NC",
+                  "masked_card_number" => "XXXX-XXXX-XXXX-1",
+                     "expiration_year" => "2016",
+                     "billing_country" => "US",
+                "customer_vault_token" => "",
+                         "customer_id" => "15",
+                     "billing_address" => "987 Commerce St",
+                    "expiration_month" => "4",
+                       "current_vault" => "bogus",
+                        "billing_city" => "Greenberg",
+                                  "id" => "14",
+                   "billing_address_2" => "Suite 789",
+                         "billing_zip" => "67890"
+            },
+                       "signup_revenue" => "99.00",
+                    "signup_payment_id" => "30",
+                    "delayed_cancel_at" => "",
+                                "state" => "active",
+              "cancel_at_end_of_period" => "false",
+                           "updated_at" => "2012-09-09 12:00:46 -0400",
+                           "created_at" => "2012-09-09 11:38:32 -0400",
+                                   "id" => "14",
+                         "activated_at" => "2012-09-09 11:38:33 -0400",
+               "current_period_ends_at" => "2012-10-15 11:55:00 -0400",
+                     "balance_in_cents" => "0"
+        },
+                    "site" => {
+            "subdomain" => "acme-test",
+                   "id" => "3"
+        },
+        "previous_product" => {
+                              "handle" => "handle_6a9273b8a",
+            "expiration_interval_unit" => "never",
+                         "archived_at" => "",
+                       "interval_unit" => "month",
+                      "product_family" => {
+                         "handle" => "acme-online",
+                "accounting_code" => "",
+                           "name" => "Acme Online",
+                             "id" => "4",
+                    "description" => ""
+            },
+                     "accounting_code" => "",
+                      "price_in_cents" => "9900",
+                 "expiration_interval" => "",
+                                "name" => "Pro",
+                 "trial_interval_unit" => "month",
+                            "interval" => "1",
+                       "return_params" => "",
+                          "updated_at" => "2012-09-09 11:36:53 -0400",
+                          "created_at" => "2012-09-06 10:09:35 -0400",
+                                  "id" => "23",
+                          "return_url" => "",
+                      "trial_interval" => "",
+                         "description" => "Vel soluta nihil qui accusamus quidem.  Et qui qui et sit omnis sit.  Veritatis voluptates aut incidunt mollitia corporis labore accusantium.",
+                "trial_price_in_cents" => "",
+                   "update_return_url" => "",
+             "initial_charge_in_cents" => "",
+                 "require_credit_card" => "true",
+                 "request_credit_card" => "true"
+        }
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#expiring-card-payload). expiring_card Payload
+
+<pre><code>
+{
+      "event" => "expiring_card",
+         "id" => "19",
+    "payload" => {
+        "subscription" => {
+                     "trial_started_at" => "",
+                 "cancellation_message" => "",
+                             "customer" => {
+                   "last_name" => "Doe",
+                   "reference" => "",
+                       "phone" => "555-555-1234",
+                  "first_name" => "John Changed",
+                         "zip" => "12345",
+                   "address_2" => "Apt 123",
+                     "address" => "123 Main St",
+                       "state" => "NC",
+                  "updated_at" => "2012-09-09 12:02:31 -0400",
+                          "id" => "15",
+                  "created_at" => "2012-09-09 11:38:32 -0400",
+                "organization" => "Acme, Inc.",
+                       "email" => "john@example.com",
+                     "country" => "US",
+                        "city" => "Pleasantville"
+            },
+                              "product" => {
+                "expiration_interval_unit" => "",
+                                  "handle" => "handle_5b3ae869a",
+                             "archived_at" => "",
+                           "interval_unit" => "month",
+                          "price_in_cents" => "2400",
+                         "accounting_code" => "",
+                          "product_family" => {
+                             "handle" => "acme-online",
+                    "accounting_code" => "",
+                               "name" => "Acme Online",
+                                 "id" => "4",
+                        "description" => ""
+                },
+                     "expiration_interval" => "",
+                                    "name" => "Basic",
+                                "interval" => "1",
+                     "trial_interval_unit" => "month",
+                           "return_params" => "",
+                              "updated_at" => "2012-09-06 10:09:35 -0400",
+                                      "id" => "22",
+                          "trial_interval" => "1",
+                              "created_at" => "2012-09-06 10:09:35 -0400",
+                              "return_url" => "",
+                             "description" => "Est est aut nobis corrupti omnis.  Nam autem et quis est.  Rerum est nihil a animi qui debitis et dolores.",
+                    "trial_price_in_cents" => "0",
+                       "update_return_url" => "",
+                 "initial_charge_in_cents" => "",
+                     "require_credit_card" => "true",
+                     "request_credit_card" => "true"
+            },
+                       "previous_state" => "active",
+                           "expires_at" => "",
+                       "trial_ended_at" => "",
+                   "next_assessment_at" => "2012-10-15 11:55:00 -0400",
+                          "coupon_code" => "",
+                          "canceled_at" => "",
+            "current_period_started_at" => "2012-09-09 11:55:02 -0400",
+                          "credit_card" => {
+                           "last_name" => "Doe",
+                       "billing_state" => "NC",
+                         "vault_token" => "1",
+                          "first_name" => "Jane",
+                           "card_type" => "bogus",
+                     "expiration_year" => "2012",
+                  "masked_card_number" => "XXXX-XXXX-XXXX-1",
+                     "billing_country" => "US",
+                     "billing_address" => "987 Commerce St",
+                         "customer_id" => "15",
+                "customer_vault_token" => "",
+                    "expiration_month" => "10",
+                       "current_vault" => "bogus",
+                                  "id" => "14",
+                        "billing_city" => "Greenberg",
+                   "billing_address_2" => "Suite 789",
+                         "billing_zip" => "67890"
+            },
+                    "signup_payment_id" => "30",
+                       "signup_revenue" => "99.00",
+                                "state" => "active",
+                    "delayed_cancel_at" => "",
+              "cancel_at_end_of_period" => "false",
+                           "updated_at" => "2012-09-09 12:00:46 -0400",
+                                   "id" => "14",
+                           "created_at" => "2012-09-09 11:38:32 -0400",
+                         "activated_at" => "2012-09-09 11:38:33 -0400",
+               "current_period_ends_at" => "2012-10-15 11:55:00 -0400",
+                     "balance_in_cents" => "0"
+        },
+                "site" => {
+            "subdomain" => "acme-test",
+                   "id" => "3"
+        }
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#customer-update-payload). customer_update Payload
+
+<pre><code>
+{
+      "event" => "customer_update",
+         "id" => "18",
+    "payload" => {
+            "site" => {
+            "subdomain" => "acme-test",
+                   "id" => "3"
+        },
+        "customer" => {
+               "last_name" => "Doe",
+               "reference" => "",
+                   "phone" => "555-555-1234",
+              "first_name" => "John Changed",
+                     "zip" => "12345",
+               "address_2" => "Apt 123",
+                 "address" => "123 Main St",
+                   "state" => "NC",
+              "updated_at" => "2012-09-09 12:02:31 -0400",
+              "created_at" => "2012-09-09 11:38:32 -0400",
+            "organization" => "Acme, Inc.",
+                      "id" => "15",
+                   "email" => "john@example.com",
+                 "country" => "US",
+                    "city" => "Pleasantville"
+        }
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
