@@ -25,7 +25,7 @@ For example, test Webhooks are sent with the following body:
 
 <pre><code>id=123456&event=test&payload[chargify]=testing</code></pre>
 
-h2. Webhook Acknowledgement and Automatic Retries
+h2(#retries). Webhook Acknowledgement and Automatic Retries
 
 Upon receipt of a webhook, you should **accept** it by returning an HTTP "200 OK" response as quickly as possible.  Sending any other response (i.e. "500 Internal Server Error", "404 Not Found", etc.) OR failing to return a response within approximately 15 seconds will result in automatic retries of the webhooks.
 
