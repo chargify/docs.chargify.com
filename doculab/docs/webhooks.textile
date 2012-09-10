@@ -124,13 +124,13 @@ This data is available via the "Webhook API":/api-webhooks or the Webhook Panel,
 
 The webhook metadata attributes are:
 
-* @id@ The unique identifier for the webhook
-* @successful@ A boolean flag describing whether the webhook was accepted by the webhook endpoint
+* @id@ The unique identifier for the webhooks (unique across all of Chargify).  This is not changed on a retry/replay of the same webhook, so it may be used to avoid duplicate action for the same event.
+* @successful@ A boolean flag describing whether the webhook was accepted by the webhook endpoint *for the most recent attempt*. (Acceptance is defined by receiving a "200 OK" HTTP response within a reasonable timeframe, i.e. 15 seconds)
 * @created_at@ Timestamp indicating when the Webhook was created
-* @accepted_at@ Timestamp indicating when the Webhook was accepted by the merchant endpoint
+* @accepted_at@ Timestamp indicating when the Webhook was accepted by the merchant endpoint.  When a webhook is explicitly replayed by the merchant, this value will be cleared until it is accepted again.
 * @last_sent_at@ Timestamp indicating when the most recent attempt was made to send the Webhook
-* @last_error_at@ Timestamp indicating when the last non-acceptance occurred
-* @last_error@ Text describing the status code and/or error from the last failed attempt to send the Webhook
+* @last_error_at@ Timestamp indicating when the last non-acceptance occurred.  If a webhooks is later resent and accepted, this field will be cleared.
+* @last_error@ Text describing the status code and/or error from the last failed attempt to send the Webhook.  When a webhook is retried and accepted, this field will be cleared.
 
 Webhooks also maintain their event and payload data (accessible via the API).  For a full listing of attributes available for each webhook, please see the "Webhook API":/api-webhooks documentation.
 Once a webhook is accepted, the @accepted_at@ timestamp will be filled (which can be viewed via the "Webhooks API":/api-webhooks or in the Webhooks Panel, if it is available for your plan).
