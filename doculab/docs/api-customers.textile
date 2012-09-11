@@ -21,7 +21,7 @@ h3. List
 
 URL: @https://<subdomain>.chargify.com/customers.<format>@  
 Method: @GET@
-Optional Parameters: @page@
+Optional Parameters: @page@, @direction@ (may be @asc@ or @desc@ to sort customers by time of creation; defaults to @asc@)
 Response: An array of Customers, up to 50 per page
 "XML example":#api-usage-xml-customers-list
 "JSON example":#api-usage-json-customers-list
