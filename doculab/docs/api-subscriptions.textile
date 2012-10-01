@@ -22,6 +22,13 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @email@ The email address of the customer.  Required when creating a customer via attributes.
 ** @organization@ The organization/company of the customer.  Optional.
 ** @reference@ A customer "reference", or unique identifier from your app, stored in Chargify.  Can be used so that you may reference your customers within Chargify using the same unique value you use in your application.  Optional.
+** @address@ (Optional) The customers shipping street address (i.e. "123 Main St.").
+** @address_2@ (Optional) Extra shipping address information.
+** @city@ (Optional) The customers shipping address city (i.e. "Boston").
+** @state@ (Optional) The customers shipping address state (i.e. "MA")
+** @zip@ (Optional) The customers shipping address zip code (i.e. "12345").
+** @country@ (Optional) The customer shipping address country, perferably in [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format (i.e. "US").
+** @phone@ (Optional) The phone number of the customer.
 * @payment_profile_id@ The Payment Profile ID of an _existing_ card, which belongs to an _existing_ customer to use for payment for this subscription.  If the card or customer does not exist already, or if you want to use a new (unstored) card for the subscription, use @payment_profile_attributes@ *instead* to create a new payment profile along with the subscription.  (This value is available on an existing subscription via the API as @credit_card@ > @id@)
 * @payment_profile_attributes@ (this may also be referred to as @credit_card_attributes@)
 ** @first_name@ (Optional) First name on card.  If omitted, the @first_name@ from customer attributes will be used.
