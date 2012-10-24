@@ -38,6 +38,7 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @expiration_year@ (Optional when performing a Subscription Import via `vault_token`, required otherwise) The 4-digit credit card expiration year, as an integer or string, i.e. "2012"
 ** @cvv@ (Optional, may be required by your gateway settings) The 3- or 4-digit Card Verification Value. _This value is merely passed through to the payment gateway_.
 ** @billing_address@ (Optional, may be required by your product configuration or gateway settings) The credit card billing street address (i.e. "123 Main St."). _This value is merely passed through to the payment gateway_.
+** @billing_address_2@ (Optional) Second line of the customer's billing address i.e. "Apt. 100"
 ** @billing_city@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address city (i.e. "Boston"). _This value is merely passed through to the payment gateway_.
 ** @billing_state@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address state (i.e. "MA"). _This value is merely passed through to the payment gateway_.
 ** @billing_zip@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address zip code (i.e. "12345"). _This value is merely passed through to the payment gateway_.
