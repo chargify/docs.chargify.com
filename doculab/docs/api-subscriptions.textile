@@ -21,12 +21,12 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @last_name@ The last name of the customer.  Required when creating a customer via attributes.
 ** @email@ The email address of the customer.  Required when creating a customer via attributes.
 ** @organization@ The organization/company of the customer.  Optional.
-** @reference@ A customer "reference", or unique identifier from your app, stored in Chargify.  Can be used so that you may reference your customers within Chargify using the same unique value you use in your application.  Optional.
-** @address@ (Optional) The customers shipping street address (i.e. "123 Main St.").
-** @address_2@ (Optional) Extra shipping address information.
-** @city@ (Optional) The customers shipping address city (i.e. "Boston").
-** @state@ (Optional) The customers shipping address state (i.e. "MA")
-** @zip@ (Optional) The customers shipping address zip code (i.e. "12345").
+** @reference@ A customer "reference", or unique identifier from your app, stored in Chargify.  Can be used so that you may reference your customer's within Chargify using the same unique value you use in your application.  Optional.
+** @address@ (Optional) The customer's shipping street address (i.e. "123 Main St.").
+** @address_2@ (Optional) Second line of the customer's shipping address i.e. "Apt. 100"
+** @city@ (Optional) The customer's shipping address city (i.e. "Boston").
+** @state@ (Optional) The customer's shipping address state (i.e. "MA")
+** @zip@ (Optional) The customer's shipping address zip code (i.e. "12345").
 ** @country@ (Optional) The customer shipping address country, perferably in [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format (i.e. "US").
 ** @phone@ (Optional) The phone number of the customer.
 * @payment_profile_id@ The Payment Profile ID of an _existing_ card, which belongs to an _existing_ customer to use for payment for this subscription.  If the card or customer does not exist already, or if you want to use a new (unstored) card for the subscription, use @payment_profile_attributes@ *instead* to create a new payment profile along with the subscription.  (This value is available on an existing subscription via the API as @credit_card@ > @id@)
@@ -49,7 +49,7 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @card_type@  (Optional, used only for Subscription Import) If you know the card type (i.e. Visa, MC, etc) you may supply it here so that we may display the card type in the UI. May be visa, master, discover, american_express, diners_club, jcb, switch, solo, dankort, maestro, forbrugsforeningen, orlaser`
 * @cancellation_message@ (Optional) Can be used when canceling a subscription (via the HTTP DELETE method) to make a note about the reason for cancellation.
 * @next_billing_at@ (Optional) Set this attribute to a future date/time to sync imported subscriptions to your existing renewal schedule. See the notes on "Date/Time Format" below. If you provide a next_billing_at timestamp that is in the future, no trial or initial charges will be applied when you create the subscription. In fact, no payment will be captured at all. The first payment will be captured, according to the prices defined by the product, near the time specified by next_billing_at. If you do not provide a value for next_billing_at, any trial and/or initial charges will be assessed and charged at the time of subscription creation. If the card cannot be successfully charged, the subscription will not be created.
-* @vat_number@ (Optional) Supplying the VAT number allows EU customers to opt-out of the Value Added Tax assuming the merchant address and customer billing address are not within the same EU country.
+* @vat_number@ (Optional) Supplying the VAT number allows EU customer's to opt-out of the Value Added Tax assuming the merchant address and customer billing address are not within the same EU country.
 * @coupon_code@ (Optional) The coupon code of the coupon to apply (See the "coupon docs":/api-coupons#api-subscription-create-with-coupon)
 
 
