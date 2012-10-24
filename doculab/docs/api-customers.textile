@@ -13,7 +13,13 @@ All of the customer attribute fields are returned from GET (read) operations.  O
 * @created_at@ (Read Only) The creation date for this customer
 * @updated_at@ (Read Only) The date of last update for this customer
 * @vat_number@ (Optional) The VAT number, if applicable.
-
+* @address@ (Optional) The customer's shipping street address (i.e. "123 Main St.").
+* @address_2@ (Optional) Second line of the customer's shipping address i.e. "Apt. 100"
+* @city@ (Optional) The customer's shipping address city (i.e. "Boston").
+* @state@ (Optional) The customer's shipping address state (i.e. "MA")
+* @zip@ (Optional) The customer's shipping address zip code (i.e. "12345").
+* @country@ (Optional) The customer shipping address country, perferably in [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format (i.e. "US").
+* @phone@ (Optional) The phone number of the customer.
 
 h2. Methods
 
