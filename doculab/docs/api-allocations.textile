@@ -1,0 +1,208 @@
+Allocations describe a change to the allocated quantity for a particular "Component":/api-components (either "Quantity-Based":/product-components#quantity-based-components or "On/Off":/product-components#on-off-components) for a particular "Subscription":/api-subscriptions.
+
+Working with this resource, you can:
+
+* "List Allocations":#list-allocations : View the history of the allocated quantity for the component over time
+* "Create an Allocation":#create-an-allocation :  Set a new allocated quantity for the line-item (as an alternative to setting the allocated quantity directly on the Component Line-Item resource)
+
+h2(#list-allocations). List Allocations
+
+<pre><code>GET /subscriptions/<sub_id>/components/<comp_id>/allocations</code></pre>
+
+Returns the 50 most recent Allocations, ordered by most recent first.
+
+h4. Input Parameters
+
+| @page@ | (optional) Pass an integer in the page parameter via the query string to access subsequent pages of 50 transactions |
+
+h4. Output
+
+An array of allocation objects with the following fields:
+
+| @component_id@ | The integer component ID for the allocation.  This references a component that you have created in your Product setup |
+| @subscription_id@ | The integer subscription ID for the allocation.  This references a unique subscription in your Site |
+| @quantity@ | The allocated quantity set in to effect by the allocation |
+| @memo@ | The memo passed when the allocation was created |
+| @timestamp@ | The time that the allocation was recorded, in "ISO 8601":http://en.wikipedia.org/wiki/ISO_8601 format and UTC timezone, i.e. @2012-11-20T22:00:37Z@ |
+
+h4. Response Status Codes
+
+| @200 OK@ | OK: Response returned |
+| @401 Unauthorized@ | Authentication credentials were incorrect |
+| @404 Not Found@ | Either no component with the given @comp_id@, or no subscription with given @sub_id@ exists |
+
+h2(#create-an-allocation). Create an Allocation
+
+<pre><code>POST /subscriptions/<sub_id>/components/<comp_id>/allocations</code></pre>
+
+Creates a new Allocation, setting the current allocated quantity for the component and recording a memo.
+
+h4. Input Fields
+
+| @quantity@ | The allocated quantity to which to set the line-items allocated quantity |
+| @memo@ | (optional) A memo to record along with the allocation |
+
+h4. Output
+
+An allocation object with the following fields:
+
+| @component_id@ | The integer component ID for the allocation.  This references a component that you have created in your Product setup |
+| @subscription_id@ | The integer subscription ID for the allocation.  This references a unique subscription in your Site |
+| @quantity@ | The allocated quantity set in to effect by the allocation |
+| @previous_quantity@ | The allocated quantity that was in effect before this allocation was created (Note: this value is only available in the response from the Allocation creation - it is not available later when listing allocations) |
+| @memo@ | The memo passed when the allocation was created |
+| @timestamp@ | The time that the allocation was recorded, in "ISO 8601":http://en.wikipedia.org/wiki/ISO_8601 format and UTC timezone, i.e. @2012-11-20T22:00:37Z@ |
+
+h4. Response Status Codes
+
+| @201 Created@ | Allocation created successfully |
+| @422 Unprocessable Entity@ | Invalid inputs provided: inspect the errors in the response for details |
+| @401 Unauthorized@ | Authentication credentials were incorrect |
+| @404 Not Found@ | Either no component with the given @comp_id@, or no subscription with given @sub_id@ exists |
+
+h2. Examples: List Allocations
+
+h3. JSON: Fetch first page (up to 50) of allocations
+
+Response is an array, ordered most recent first.
+
+h4. Request
+
+<pre><code>curl -u <api_key>:X https://<subdomain>.chargify.com/subscriptions/2585595/components/11960/allocations.json</code></pre>
+
+h4. Response
+
+<pre><code>[
+  {
+    "allocation":{
+      "memo":"moving to 7",
+      "timestamp":"2012-11-20T22:00:37Z",
+      "quantity":7,
+      "component_id":11960,
+      "subscription_id":2585595
+    }
+  },
+  {
+    "allocation":{
+      "memo":null,
+      "timestamp":"2012-11-20T21:48:09Z",
+      "quantity":3,
+      "component_id":11960,
+      "subscription_id":2585595
+    }
+  }
+]
+</code></pre>
+
+h3. XML: Fetch first page (up to 50) of allocations
+
+Response is an array, ordered most recent first.
+
+h4. Request
+
+<pre><code>curl -u <api_key>:X https://<subdomain>.chargify.com/subscriptions/2585595/components/11960/allocations.xml</code></pre>
+
+h4. Response
+
+<pre><code><?xml version="1.0" encoding="UTF-8"?>
+<allocations type="array">
+  <allocation>
+    <timestamp>2012-11-20T22:00:37Z</timestamp>
+    <quantity type="integer">7</quantity>
+    <component_id type="integer">11960</component_id>
+    <memo>moving to 7</memo>
+    <subscription_id type="integer">2585595</subscription_id>
+  </allocation>
+  <allocation>
+    <timestamp>2012-11-20T21:48:09Z</timestamp>
+    <quantity type="integer">3</quantity>
+    <component_id type="integer">11960</component_id>
+    <memo nil="true"></memo>
+    <subscription_id type="integer">2585595</subscription_id>
+  </allocation>
+</allocations>
+</code></pre>
+
+h3. JSON: Fetch second page (up to 50 more) of allocations
+
+Response is an array, ordered most recent first.  In this example, there are no results in page 2 (response is an empty array) indicating that all allocations for this component and subscription have already been fetched.
+
+h4. Request
+
+<pre><code>curl -u <api_key>:X https://<subdomain>.chargify.com/subscriptions/2585595/components/11960/allocations.json</code></pre>
+
+h4. Response
+
+<pre><code>[]</code></pre>
+
+h3. XML: Fetch second page (up to 50 more) of allocations
+
+Response is an array, ordered most recent first.  In this example, there are no results in page 2 (response is an empty array) indicating that all allocations for this component and subscription have already been fetched.
+
+
+h4. Request
+
+<pre><code>curl -u <api_key>:X https://<subdomain>.chargify.com/subscriptions/2585595/components/11960/allocations.xml</code></pre>
+
+h4. Response
+
+<pre><code><?xml version="1.0" encoding="UTF-8"?>
+<allocations type="array"/>
+</code></pre>
+
+h2. Examples: Create an Allocation
+
+h3. JSON: Create an Allocation successfully
+
+h4. Request Data (allocation.json)
+
+<pre><code>{
+  "allocation":{
+    "quantity":2,
+    "memo":"Setting quantity to 2 at customer request"
+  }
+}
+</code></pre>
+
+h4. Request
+
+<pre><code>curl -u <api_key>:X -H "Content-Type:application/json" --data allocation.json https://acme.chargify.com/subscriptions/2585595/components/11960/allocations.json</code></pre>
+
+h4. Response
+
+<pre><code>HTTP/1.1 201 Created</code></pre>
+<pre><code>{
+  "allocation":{
+    "component_id":11960,
+    "subscription_id":2585595,
+    "quantity":2,
+    "previous_quantity":18,
+    "memo":"Setting quantity to 2 at customer request",
+    "timestamp":"2012-11-20T23:00:08Z"
+  }
+}
+</code></pre>
+
+
+h3. JSON: Attempting to create an Allocation with faulty input data
+
+h4. Request Data (allocation.json)
+
+<pre><code>{
+  "allocation":{
+    "memo":"I did not specify a quantity!"
+  }
+}
+</code></pre>
+
+h4. Request
+
+<pre><code>curl -u <api_key>:X -H "Content-Type:application/json" --data allocation.json https://acme.chargify.com/subscriptions/2585595/components/11960/allocations.json</code></pre>
+
+h4. Response
+
+<pre><code>HTTP/1.1 422 Unprocessable Entity</code></pre>
+<pre><code>{
+  "errors":["Quantity: cannot be blank."]
+}
+</code></pre>

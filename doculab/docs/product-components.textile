@@ -6,7 +6,7 @@ p(note). Components that are "used" on a Subscription have their *charges billed
 
 h2. Types of Components
 
-h3. Quantity-based
+h3(#quantity-based-components). Quantity-based
 
 This component type would be used when a Subscription is provisioned with a certain quantity of an item, and charges are calculated based on that quantity (i.e. "per-seat").  These components also give the ability to use different pricing schemes, such as per-unit, volume, tiered, and stairstep. Some examples:
 
@@ -32,7 +32,7 @@ Some examples:
 * An email gateway provides 1000 credits per period, but allows you to send over your credit limit at a cost of $0.10 per email per period
 * A hosting company that charges for hours of compute time at a certain cost per hour
 
-h3. On/Off
+h3(#on-off-components). On/Off
 
 This component type is used to elect "add-on" options where electing the option results in an extra charge. Some examples:
 

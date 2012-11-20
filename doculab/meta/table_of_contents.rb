@@ -71,6 +71,7 @@ Doculab::TableOfContents.define do
 
   section "Chargify API Resources" do
     page "API: Adjustments"
+    page "API: Allocations"
     page "API: Charges"
     page "API: Components"
     page "API: Coupons"
