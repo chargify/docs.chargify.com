@@ -61,7 +61,7 @@ The following events are monitored within Chargify and can generate Webhooks:
 | @subscription_product_change@ | A successful change from an old product to a new product within the users Subscription. | @site@, @product_change@ |
 | @expiring_card@ | A periodic event sent by Chargify | @site@, @subscription@<sup>1,6</sup> |
 | @customer_update@ | Any change to the following customer fields: @first_name@, @last_name@, @organization@, @email@, @reference@, @address@, @address 2@, @city@, @state@, @zip@, @country@, @phone@. | @site@, @customer@ |
-| @component_allocation_change@ | Any change to a subscription's quantity-based component allocation or enabled status of an on/off component.<br/><br/>@previous_allocation@ and @new_allocation@ give the allocation values before and after the change.  These will be either @0@ or @1@ for On/Off Components to represent @off@ and @on@, respectively.<br/><br/>@timestamp@ provides the date and time the allocation was recorded and is listed in "ISO8601":http://en.wikipedia.org/wiki/ISO_8601 format in the UTC timezone. | <pre><code>site[id]
+| @component_allocation_change@ | Any change to a subscription's quantity-based component allocation or enabled status of an on/off component that is made _after_ signup.<br/><br/>This webhook does not fire if allocations are set as a part of the subscription creation (i.e. signup) - it only fires upon subsequent changes. (We will soon be making component allocations available in the @signup_success@ webhook to cover the sign up case)<br/><br/>@previous_allocation@ and @new_allocation@ give the allocation values before and after the change.  These will be either @0@ or @1@ for On/Off Components to represent @off@ and @on@, respectively.<br/><br/>@timestamp@ provides the date and time the allocation was recorded and is listed in "ISO8601":http://en.wikipedia.org/wiki/ISO_8601 format in the UTC timezone. Note: this timestamp format differs slightly from the format of existing timestamps in other event types and represents our new direction for webhook timestamps.| <pre><code>site[id]
 site[subdomain]
 component[id]
 component[name]
@@ -75,7 +75,7 @@ previous_allocation
 new_allocation
 memo
 timestamp</code></pre> |
-| @metered_usage@ | Any reported usage for a subscription's metered components.<br/><br/>This webhook will not fire when the unit balance is reset to 0 at the time of renewal.<br/><br/>@timestamp@ provides the date and time the usage was recorded and is listed in "ISO8601":http://en.wikipedia.org/wiki/ISO_8601 format in the UTC timezone. | <pre><code>site[id]
+| @metered_usage@ | Any reported usage for a subscription's metered components.<br/><br/>This webhook will not fire when the unit balance is reset to 0 at the time of renewal.<br/><br/>@timestamp@ provides the date and time the usage was recorded and is listed in "ISO8601":http://en.wikipedia.org/wiki/ISO_8601 format in the UTC timezone. Note: this timestamp format differs slightly from the format of existing timestamps in other event types and represents our new direction for webhook timestamps.| <pre><code>site[id]
 site[subdomain]
 component[id]
 component[name]
