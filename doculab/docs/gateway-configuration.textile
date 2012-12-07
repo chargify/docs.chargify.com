@@ -8,8 +8,9 @@ This gateway does not do any real authorizations or captures on credit cards.  I
 
 When using the Chargify Test Gateway:
 
-* Use the credit card number "1" to simulate a successful credit card transaction
-* Use the credit card number "2" to simulate a declined credit card transaction
+* Use the credit card number "1" to simulate a credit card in good status. All payments and authorizations will succeed.
+* Use the credit card number "2" to simulate a credit card that will not accept any payments. Authorizations will suceed.
+* Use the credit card number "3" to simulate a credit card in which all authorizations and payments will fail.
 
 h3. Sites in _test_ mode connect to "Sandbox" gateways
 
