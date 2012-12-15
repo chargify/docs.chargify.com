@@ -145,7 +145,7 @@ h2. Webhook Testing
 
 On the Webhook configuration screen on the Settings tab, you can click "Send a test Webhook" to access the Webhook testing panel.  There, we will attempt to send a Webhook to your configured URL and show you what we sent and the response we received from you.
 
-p(note). Testing Tip: Try creating a "Request Bin" at "http://www.requestb.in":http://www.requestb.in and use that as your Webhook test URL.  That way, you can inspect the Webhook contents and headers while you work out your own Webhook handler.
+p(note). Testing Tip: Try creating a "Request Bin" at "http://requestb.in/":http://requestb.in/ and use that as your Webhook test URL.  That way, you can inspect the Webhook contents and headers while you work out your own Webhook handler.
 
 h2(#metadata). Webhook Metadata
 

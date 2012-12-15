@@ -44,7 +44,7 @@ h3. Debugging
 
 If you're having difficulty executing a request via our API, try the simplest thing and attempt your request via the curl command-line tool, as shown in the below example.  Add the @--verbose@ flag to your request to receive even more debugging information.
 
-Another handy tool is "PostBin":/http://postbin.org.  You could create a PostBin and send your request to them instead of us to see visually what it is you're sending, if you're not sure.
+Another handy tool is "RequestBin":http://requestb.in/  You could create a RequestBin and send your request to them instead of us to see visually what it is you're sending, if you're not sure.
 
 h3. Examples
 
