@@ -1,10 +1,16 @@
-For "live" subscriptions (i.e. subscriptions that are not @canceled@ or @expired@) you can execute an immediate, one-time (or "one-off") charge of any amount. This just charges the customer's card instantly for the amount you define.
+For "live" subscriptions (i.e. subscriptions that are not @canceled@ or @expired@) you can execute an immediate, one-time (or "one-off"), or delayed charge of any amount. 
 
-To assess a One-time Charge, navigate to the subscription detail page by clicking on the "Start Date" or on the "View" link in the Subscriptions listing. There, you will see a link to "Add a Charge".
+To assess a One-time or Delayed Charge, navigate to the subscription detail page by clicking on the "Start Date" or on the "View" link in the Subscriptions listing. There, you will see a link to "Add Charge / Charge Card".
 
-<!-- TODO: screenshot -->
+!/images/doculab/add-charge-charge-card.png!
 
-A charge is created by selecting an amount (i.e. "10.00") and a memo (i.e. "Additional charge for extra usage").
+A charge can be immediate by selecting "Charge credit card now" or the charge can be delayed until the next billing by selecting "Accrue this charge until next renewal (date)" as shown below.
+
+!/images/doculab/one-time-charge-options.png!
+
+A charge is created by entering an amount (i.e. "10.00") and a memo (i.e. "Additional charge for extra usage").
+
+!/images/doculab/charge-amount-and-memo.png!
 
 The charge will initiate a payment to be collected from the credit card on file for the subscription. If the payment is denied, you will receive a message stating that the card was declined (or that some other error occurred at the payment gateway).
 
