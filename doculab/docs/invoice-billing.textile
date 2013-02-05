@@ -30,7 +30,7 @@ Clicking any invoice views the full invoice detail page.
 
 !{width:640px;}/images/doculab/invoice-billing-4.png()!
 
-You may navigate between Statements using the "Next" and "Prev" links at the top of the Statement.
+You may navigate between invoices using the "Next" and "Prev" links at the top of the invoice.
 
 h2. Invoice States
 
