@@ -1,4 +1,4 @@
-p(note). You must be on our *Small Business* plan ($129/month) to be eligible for Chargify Direct.  If you would like access to the feature, please "open a ticket":http://help.chargify.com/tickets/new and include the subdomain of the site you would like enabled.
+p(note). Chargify Direct usually requires a more technically experienced customer, and sometimes requires our Level 2 tech support during implementation. Level 2 tech support is available on our *Small Business* and higher plans ($129 and up).<br /><br />You're welcome to use Chargify Direct on any plan, but please note that if you need assistance, we will ask that you be on a plan that includes advanced tech support.<br /><br />We have a 30-day money-back guarantee, so there's no risk if you ultimately decide that Chargify does not suit your needs.
 
 h2. Overview
 
