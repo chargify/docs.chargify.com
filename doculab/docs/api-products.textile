@@ -100,12 +100,13 @@ Response: An single Product
 
 h3. Create
 
-URL: @https://<subdomain>.chargify.com/products.<format>
+URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/products.<format>
 Method: @POST@
 Required Parameters: XML or JSON data, as specified by the required attributes
 Response: The created product, if successful. Errors otherwise.
 
 "XML example":#api-usage-xml-product-create
+"JSON example":#api-usage-json-product-create
 
 h2. Usage Examples
 
@@ -333,42 +334,159 @@ Scenario: Retrieve a list of my products belonging to a product family
 h3(#api-usage-xml-product-create). XML Create Product Example
 
 <pre><code>
-Feature: Chargif XML API Product Create
-  In order to integrate my app with Charigfy
+Feature: Chargify API XML Product create
+  In order to integrate an app with Chargify
   As a developer
-  I want to create products via the Chargify XML API
-  
+  I want to be able to create a product via the Chargify XML API
+
   Background:
     Given I am a valid API user
     And I send and accept XML
-    
+    And I have a product family
+
+
   Scenario: Create a product successfully
-    Given I have this XML prodcut data
-    """
+    Given I have this xml product data
+      ""
       <?xml version="1.0" encoding="UTF-8"?>
       <product>
-        <name>New Product</name>
-        <interval>1</interval>
-        <description>This is my new product</description>
-        <interval_unit>month</interval_unit>
+        <name>Basic Plan</name>
+        <handle>basic</handle>
+        <description>This is our basic plan.</description>
+        <accounting_code>123</accounting_code>
+        <request_credit_card type="boolean">true</request_credit_card>
         <price_in_cents>1000</price_in_cents>
-      </product>
-    """
-  When I send a POST request with the XML data to https://<subdomain>.chargify.com/products.xml
-  Then the response status should be "201 Created"
-  And the response should be the XML:
-    """
-      <?xml version="1.0" encoding="UTF-8"?>
-      <product>
-        <id type="integer">`auto generated`</id>
-        <name>New Product</name>
-        <handle>`auto generated</handle>
-        <created_at>`auto generated`</created_at>
-        <updated_at>`auto generated`</updated_at>
-        <description>This is my new product</description>
-        <interval_unit>month</interval_unit>
         <interval>1</interval>
-        <price_in_cents>100</price_in_cents>
+        <interval_unit>month</interval_unit>
       </product>
-    """
+      ""
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/products.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+    ""
+    <?xml version="1.0" encoding="UTF-8"?>
+    <product>
+      <id>`auto generated`</id>
+      <name>Basic Plan</name>
+      <handle>basic</handle>
+      <accounting_code>123</accounting_code>
+      <description>This is our basic plan.</description>
+      <interval type="integer">1</interval>
+      <interval_unit>month</interval_unit>
+      <price_in_cents type="integer">1000</price_in_cents>
+      <initial_charge_in_cents type="integer" nil="true"></initial_charge_in_cents>
+      <trial_interval type="integer" nil="true"></trial_interval>
+      <trial_interval_unit nil="true"></trial_interval_unit>
+      <trial_price_in_cents type="integer" nil="true"></trial_price_in_cents>
+      <expiration_interval type="integer">`your value`</expiration_interval>
+      <expiration_interval_unit>`your value`</expiration_interval_unit>
+      <archived_at type="datetime" nil="true"></archived_at>
+      <created_at type="datetime">`auto generated`</created_at>
+      <updated_at type="datetime">`auto generated`</updated_at>
+      <request_credit_card type="boolean">true</request_credit_card>
+      <require_credit_card type="boolean">true</require_credit_card>
+      <return_url nil="true"></return_url>
+      <update_return_url nil="true"></update_return_url>
+      <return_params nil="true"></return_params>
+      <product_family>
+        <id>`auto generated`</id>
+        <accounting_code>`your value`</accounting_code>
+        <handle>`your value`</handle>
+        <name>`your value`</name>
+        <description>`your value`</description>
+      </product_family>
+    </product>
+     """
+</code></pre>
+
+h3(#api-usage-json-product-create). JSON Create Product Example
+
+<pre><code>
+Feature: Chargify API JSON Product create
+  In order to integrate an app with Chargify
+  As a developer
+  I want to be able to create a product via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I send and accept JSON
+    And I have a product family
+
+  Scenario: Create a product successfully
+    Given I have this json product data
+      ""
+      {"product":{
+        "name":"Basic Plan",
+        "handle":"basic",
+        "description":"This is our basic plan.",
+        "accounting_code":"123",
+        "request_credit_card":true,
+        "price_in_cents":1000,
+        "interval":1,
+        "interval_unit":"month"
+      }}
+      ""
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/products.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+    ""
+     {
+       "product":{
+         "id":`auto generated`,
+         "name":"Basic Plan",
+         "handle":"basic",
+         "accounting_code":"123",
+         "description":"This is our basic plan.",
+         "price_in_cents":1000,
+         "interval_unit":"month",
+         "interval":1,
+         "initial_charge_in_cents":null,
+         "trial_price_in_cents":null,
+         "trial_interval":null,
+         "trial_interval_unit":null,
+         "expiration_interval_unit":null,
+         "expiration_interval":null,
+         "return_url":null,
+         "update_return_url":null,
+         "return_params":null,
+         "require_credit_card":true,
+         "request_credit_card":true,
+         "created_at":`auto generated`,
+         "updated_at":`auto generated`,
+         "archived_at":null,
+         "product_family":{
+           "id":`auto generated`,
+           "name":`your value`,
+           "handle":`your value`,
+           "accounting_code":`your value`,
+           "description":`your value`
+         }
+       }
+     }
+     ""
+
+  Scenario: Attempt to create a product with a trial validation error
+    Given I have this json product data
+      ""
+      {"product":{
+        "name":"Basic Plan",
+        "handle":"basic",
+        "description":"This is our basic plan.",
+        "accounting_code":"123",
+        "request_credit_card":true,
+        "price_in_cents":1000,
+        "interval":1,
+        "interval_unit":"month",
+        "trial_interval":1,
+        "trial_interval_unit":"month"
+      }}
+      ""
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/products.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the json:
+    ""
+    {
+      "errors":["Trial Price: must be given if a trial interval (duration) is provided."]
+    }
+    ""
 </code></pre>
