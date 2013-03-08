@@ -60,7 +60,8 @@ The following attributes are returned on a subscription read/list operation.
 
 * @id@ The subscription unique id within Chargify.
 * @state@ The current state of the subscription. Please see the documentation for "Subscription States":/subscription-states
-* @balance_in_cents@ Gives the current outstanding subscription balance, in the number of cents.
+* @balance_in_cents@ Gives the current outstanding subscription balance in the number of cents.
+* @total_revenue_in_cents@ Gives the total revenue from the subscription in the number of cents.
 * @current_period_started_at@ Timestamp relating to the start of the current (recurring) period
 * @current_period_ends_at@ Timestamp relating to the end of the current (recurring) period (i.e. when the next regularly scheduled attempted charge will occur)
 * @next_assessment_at@ Timestamp that indicates when capture of payment will be tried or retried.  This value will usually track the @current_period_ends_at@, but will diverge if a renewal payment fails and must be retried.  In that case, the @current_period_ends_at@ will advance to the end of the next period (time doesn't stop because a payment was missed) but the @next_assessment_at@ will be scheduled for the auto-retry time (i.e. 24 hours in the future, in some cases)
@@ -388,6 +389,7 @@ Feature: Chargify Subscriptions Read/Show/Lookup XML API
         <id type="integer">[@subscription.id]</id>
         <state>active</state>
         <balance_in_cents type="integer">0</balance_in_cents>
+        <total_revenue_in_cents type="integer">4200</total_revenue_in_cents>
         <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
         <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
         <trial_started_at type="datetime">`auto generated`</trial_started_at>
@@ -459,6 +461,7 @@ Feature: Chargify Subscriptions Read/Show/Lookup JSON API
         "id":[@subscription.id],
         "state":"active",
         "balance_in_cents":0,
+        "total_revenue_in_cents":4200,
         "current_period_started_at":`auto generated`,
         "current_period_ends_at":`auto generated`,
         "activated_at":`auto generated`,
@@ -551,6 +554,7 @@ Feature: Chargify Subscriptions Create XML API
         <id type="integer">`auto generated`</id>
         <state>active</state>
         <balance_in_cents type="integer">`auto generated`</balance_in_cents>
+        <total_revenue_in_cents type="integer">`auto generated`</total_revenue_in_cents>
         <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
         <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
         <trial_started_at type="datetime">`auto generated`</trial_started_at>
@@ -735,6 +739,7 @@ Feature: Chargify Subscriptions Create JSON API
         "id":`auto generated`,
         "state":"active",
         "balance_in_cents":`auto generated`,
+        "total_revenue_in_cents":`auto generated`
         "current_period_started_at":`auto generated`,
         "current_period_ends_at":`auto generated`,
         "activated_at":`auto generated`,
@@ -916,6 +921,7 @@ Feature: Chargify Subscriptions Edit/Update XML API
         <id type="integer">[@subscription.id]</id>
         <state>active</state>
         <balance_in_cents type="integer">0</balance_in_cents>
+        <total_revenue_in_cents type="integer">0</total_revenue_in_cents>
         <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
         <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
         <trial_started_at type="datetime">`auto generated`</trial_started_at>
@@ -980,6 +986,7 @@ Feature: Chargify Subscriptions Edit/Update XML API
         <id type="integer">[@subscription.id]</id>
         <state>active</state>
         <balance_in_cents type="integer">0</balance_in_cents>
+        <total_revenue_in_cents type="integer">0</total_revenue_in_cents>
         <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
         <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
         <trial_started_at type="datetime">`auto generated`</trial_started_at>
@@ -1060,6 +1067,7 @@ Feature: Chargify Subscriptions Edit/Update JSON API
         "id":[@subscription.id],
         "state":"active",
         "balance_in_cents":`auto generated`,
+        "total_revenue_in_cents":`auto generated`,
         "current_period_started_at":`auto generated`,
         "current_period_ends_at":`auto generated`,
         "activated_at":`auto generated`,
@@ -1123,6 +1131,7 @@ Feature: Chargify Subscriptions Edit/Update JSON API
         "id":[@subscription.id],
         "state":"active",
         "balance_in_cents":`auto generated`,
+        "total_revenue_in_cents":`auto generated`,
         "current_period_started_at":`auto generated`,
         "current_period_ends_at":`auto generated`,
         "activated_at":`auto generated`,
@@ -1350,6 +1359,7 @@ Feature: Reactivation
         <id type="integer">[@subscription.id]</id>
         <state>active</state>
         <balance_in_cents type="integer">0</balance_in_cents>
+        <total_revenue_in_cents type="integer">4200</total_revenue_in_cents>
         <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
         <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
         <trial_started_at type="datetime">`auto generated`</trial_started_at>
@@ -1433,6 +1443,7 @@ Feature: Reactivation
         "id":[@subscription.id],
         "state":"active",
         "balance_in_cents":0,
+        "total_revenue_in_cents":4200,
         "current_period_started_at":`auto generated`,
         "current_period_ends_at":`auto generated`,
         "activated_at":`auto generated`,

@@ -278,7 +278,8 @@ h3(#signup-success-payload). signup_sucess Payload
                                    "id" => "14",
                          "activated_at" => "2012-09-09 11:38:33 -0400",
                "current_period_ends_at" => "2012-10-09 11:38:32 -0400",
-                     "balance_in_cents" => "9900"
+                     "balance_in_cents" => "9900",
+               "total_revenue_in_cents" => "4200"
         },
                 "site" => {
             "subdomain" => "acme-test",
@@ -384,7 +385,8 @@ h3(#signup-failure-payload). signup_failure Payload
                                    "id" => "15",
                          "activated_at" => "",
                "current_period_ends_at" => "2012-10-09 11:48:23 -0400",
-                     "balance_in_cents" => "9900"
+                     "balance_in_cents" => "9900",
+               "total_revenue_in_cents" => "4200"
         },
                 "site" => {
             "subdomain" => "acme-test",
@@ -490,7 +492,8 @@ h3(#renewal-success-payload). renewal_success Payload
                                    "id" => "14",
                          "activated_at" => "2012-09-09 11:38:33 -0400",
                "current_period_ends_at" => "2012-10-09 11:49:43 -0400",
-                     "balance_in_cents" => "9900"
+                     "balance_in_cents" => "9900",
+               "total_revenue_in_cents" => "4200"
         },
                 "site" => {
             "subdomain" => "acme-test",
@@ -596,7 +599,9 @@ h3(#renewal-failure-payload). renewal_failure Payload
                                    "id" => "14",
                          "activated_at" => "2012-09-09 11:38:33 -0400",
                "current_period_ends_at" => "2012-10-09 11:51:10 -0400",
-                     "balance_in_cents" => "9900"
+                     "balance_in_cents" => "9900",
+               "total_revenue_in_cents" => "4200"
+
         },
                 "site" => {
             "subdomain" => "acme-test",
@@ -702,8 +707,9 @@ h3(#payment-success-payload). payment_success Payload
                                    "id" => "14",
                          "activated_at" => "2012-09-09 11:38:33 -0400",
                "current_period_ends_at" => "2012-10-09 11:38:32 -0400",
-                     "balance_in_cents" => "0"
-        },
+                     "balance_in_cents" => "0",
+               "total_revenue_in_cents" => "4200"
+         },
                 "site" => {
             "subdomain" => "acme-test",
                    "id" => "3"
@@ -823,7 +829,8 @@ h3(#payment-failure-payload). payment_failure Payload
                                    "id" => "14",
                          "activated_at" => "2012-09-09 11:38:33 -0400",
                "current_period_ends_at" => "2012-10-09 11:51:10 -0400",
-                     "balance_in_cents" => "9900"
+                     "balance_in_cents" => "9900",
+               "total_revenue_in_cents" => "4200"
         },
                 "site" => {
             "subdomain" => "acme-test",
@@ -944,7 +951,8 @@ h3(#billing-date-change-payload). billing_date_change Payload
                                    "id" => "14",
                          "activated_at" => "2012-09-09 11:38:33 -0400",
                "current_period_ends_at" => "2012-10-15 11:55:00 -0400",
-                     "balance_in_cents" => "0"
+                     "balance_in_cents" => "0",
+               "total_revenue_in_cents" => "4200"
         },
                 "site" => {
             "subdomain" => "acme-test",
@@ -1050,7 +1058,8 @@ h3(#subscription-state-change-payload). subscription_state_change Payload
                                    "id" => "14",
                          "activated_at" => "2012-09-09 11:38:33 -0400",
                "current_period_ends_at" => "2012-10-09 11:51:10 -0400",
-                     "balance_in_cents" => "9900"
+                     "balance_in_cents" => "9900",
+               "total_revenue_in_cents" => "4200"
         },
                 "site" => {
             "subdomain" => "acme-test",
@@ -1156,7 +1165,8 @@ h3(#subscription-product-change-payload). subscription_product_change Payload
                                    "id" => "14",
                          "activated_at" => "2012-09-09 11:38:33 -0400",
                "current_period_ends_at" => "2012-10-15 11:55:00 -0400",
-                     "balance_in_cents" => "0"
+                     "balance_in_cents" => "0",
+               "total_revenue_in_cents" => "4200"
         },
                     "site" => {
             "subdomain" => "acme-test",
@@ -1293,7 +1303,8 @@ h3(#expiring-card-payload). expiring_card Payload
                            "created_at" => "2012-09-09 11:38:32 -0400",
                          "activated_at" => "2012-09-09 11:38:33 -0400",
                "current_period_ends_at" => "2012-10-15 11:55:00 -0400",
-                     "balance_in_cents" => "0"
+                     "balance_in_cents" => "0",
+               "total_revenue_in_cents" => "4200"
         },
                 "site" => {
             "subdomain" => "acme-test",
