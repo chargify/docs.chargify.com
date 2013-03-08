@@ -167,11 +167,17 @@ The following _additions_ to the subscription input attributes make imports poss
 * @payment_profile_attributes@
   * @vault_token@: the "token" provided by your vault storage for an already stored payment profile
   * @customer_vault_token@ (only for Authorize.Net CIM storage): the @customerProfileId@ for the owner of the @customerPaymentProfileId@ provided as the @vault_token@
-  * @current_vault@: the vault that stores the payment profile with the provided @vault_token@.  May be @authorizenet@, @trust_commerce@, @payment_express@, @beanstream@, @braintree1@, or @braintree_blue@
+  * @current_vault@: the vault that stores the payment profile with the provided @vault_token@.  May be @authorizenet@, @trust_commerce@, @payment_express@, @beanstream@, @braintree1@, or @braintree_blue@ (see "additional notes on Braintree Blue":#braintree-blue-imports, below)
   * @last_four@ (optional): If you have the last 4 digits of the credit card number, you may supply them here so that we may create a masked card number (i.e. 'XXXX-XXXX-XXXX-1234') for display in the UI
   * @card_type@ (optional): If you know the card type (i.e. Visa, MC, etc) you may supply it here so that we may display the card type in the UI.  May be @visa@, @master@, @discover@, @american_express@, @diners_club@, @jcb@, @switch@, @solo@, @dankort@, @maestro@, @forbrugsforeningen@, or @laser@
 
 *Note:* @payment_profile_attributes@ is the same thing as @credit_card_attributes@ used elsewhere in the documentation.  The two keys are interchangeable, pick one to use but not both.  Most new documentation will refer to @payment_profile_attributes@
+
+h4(#braintree-blue-imports). Braintree Blue (Braintree v2) Imports
+
+Braintree Blue is Braintree's newer (version 2) API.  For this gateway, please provide the @vault_token@ parameter with the value from Braintree's "Customer ID" rather than the "Payment Profile Token".  At this time we do not use @current_vault_token@ with the Braintree Blue gateway.
+
+An implication of this is that we only support a single payment profile per Braintree Customer.  We may change this in the future to use both the Customer ID (in @customer_vault_token@) **and** the Payment Method Token (in @vault_token@).  When we do this, the change will be transparent to users and merchants of this gateway.  _However_, it will change how imports work.  So if you have previously done an import in the past and want to re-use the code, please check this section or watch our changelogs to see if this has changed.
 
 h4(#webhooks-during-import). Webhooks During Import
 
