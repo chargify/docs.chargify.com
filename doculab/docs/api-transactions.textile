@@ -16,9 +16,19 @@ The following is a list of available transaction types
 * @payment@
 * @credit@ 
 * @payment_authorization@ 
-* @info@ 
+* @info@
 * @adjustment@ 
- 
+
+h3(#charge-kinds). Charge Kinds (Subtypes)
+
+* @one_time@: A one-time charge, captured immediately from payment source (credit card)
+* @delay_capture@: A one-time charge accrued to the subscription to be captured at next normal billing/renewal
+* @initial@: A initial/upfront/startup charge added according to the product setup settings
+* @metered@ or @metered_component@: A charge from usage of a metered component
+* @quantity_based_component@: A charge from a quantity-based component allocation
+* @on_off_component@: A charge from an on/off component allocation
+* @tax@: A calculated tax charge
+
 h2. Transaction Attributes
 
 All of the transaction attribute fields are returned from GET (read) operations, and all are read only at this time.
