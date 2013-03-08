@@ -53,7 +53,7 @@ On the settings page for a product you can determine whether or not you want to 
 
 h3(#pre-populating-data). Pre-populating Data
 
-When linking to the hosted payment page, it is possible to have certain values pre-populated by passing parameters as a "application/x-www-form-urlencoded" encoded data set (this simply a normal query string for GET requests, and a normal form post for POST requests).
+When linking to the hosted payment page, it is possible to have certain values pre-populated by passing parameters as GET requests.
 
 The available parameters are:
 
@@ -63,6 +63,7 @@ The available parameters are:
 * @reference@: Sets a hidden field to supply a value for the customer's "reference" value (the unique identifier you use for the customer within your own application
 * @organization@: Sets a hidden field to supply a value for the customer's organization name (not currently a visible form input element)
 * @billing_zip@: Fills the value for the cardholder's "Billing ZIP code"
+* @coupon_code@: Fills the value for the coupon code to use with the subscription
 
 (For a description of how these attributes apply to the created customer and payment profile, please refer to the "Subscription Input Attributes" section of the [Subscriptions API documentation](http://support.chargify.com/faqs/api/api-subscriptions).)
 
