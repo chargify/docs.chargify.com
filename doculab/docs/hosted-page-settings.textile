@@ -65,7 +65,7 @@ The available parameters are:
 * @billing_zip@: Fills the value for the cardholder's "Billing ZIP code"
 * @coupon_code@: Fills the value for the coupon code to use with the subscription
 
-*Pre-populating quantity-based components* can be set by passing in the component id (visible in your components list,) and desired quantity.
+*Pre-populating quantity-based components* can be set by passing in the component id (visible in your components list) and desired quantity.
 
 Please note the order of the parameters matters to properly set the desired quantity for each component.
 
