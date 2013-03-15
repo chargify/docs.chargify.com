@@ -51,7 +51,7 @@ h4. Requesting/Requiring Shipping and Billing addresses
 
 On the settings page for a product you can determine whether or not you want to collect the shipping and billing address information for the user. When an address is 'requested', the fields appear on the page but are not required. Clicking the 'require' checkbox will make the fields mandatory.
 
-h3(#pre-populating-data). Pre-populating Data
+h3(#populating-data). Pre-populating Data
 
 When linking to the hosted payment page, it is possible to have certain values pre-populated by passing parameters as GET requests.
 
@@ -65,6 +65,12 @@ The available parameters are:
 * @billing_zip@: Fills the value for the cardholder's "Billing ZIP code"
 * @coupon_code@: Fills the value for the coupon code to use with the subscription
 
+*Pre-populating quantity-based components* can be set by passing in the component id (visible in your components list) and desired quantity.
+
+Please note the order of the parameters matters to properly set the desired quantity for each component.
+
+bc. ?components[][component_id]=16899&components[][allocated_quantity]=9
+
 (For a description of how these attributes apply to the created customer and payment profile, please refer to the "Subscription Input Attributes" section of the [Subscriptions API documentation](http://support.chargify.com/faqs/api/api-subscriptions).)
 
 For example, accessing a hosted signup page URL with the following query string would generate the form pre-populated as shown below:
@@ -72,7 +78,6 @@ For example, accessing a hosted signup page URL with the following query string 
 bc. ?first_name=John&last_name=Doe&email=john.doe@example.com&reference=1234
 
 !http://s3.amazonaws.com/entp-tender-production/assets/4cad8d1d427d0365b6f8e48e16c0bd2b7232a17c/hosted-signup-pre-populated_normal.png!
-
 
 h3(#return-url). Return URL and parameters
 
