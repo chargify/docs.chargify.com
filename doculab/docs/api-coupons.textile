@@ -22,8 +22,8 @@ When creating a coupon, you must specify a product family using the @product_fam
 * @percentage@ The discount percentage. Should be an interger between 1 and 100. You should set the percentage or the amount, but not both.
 * @amount@ Flat discount amount as a string with dollars and (optionally) cents, i.e. "10.00" for $10.00. You should set the percentage or the amount, but not both.
 * @allow_negative_balance@  Boolean. If true, credits will carry forward to next billing. Otherwise discount may not exceed total of the charges.
-* @recurring@ Boolean. If true, the discount will be applied at signup and every renewal (for the number of renewals given by @coupon_duration_period_count@). Otherwise, discount will be applied only at signup.
-* @coupon_duration_period_count@ Integer. Number of renewals the coupon is good for. Recurring should be set to true.  Setting @recurring@ to true and leaving this blank indicates that the coupon applies indefinitely.
+* @recurring@ Boolean. If true, the discount will be applied at signup and every renewal (for the number of renewals given by @duration_period_count@). Otherwise, discount will be applied only at signup.
+* @duration_period_count@ Integer. Number of renewals the coupon is good for. Recurring should be set to true.  Setting @recurring@ to true and leaving this blank indicates that the coupon applies indefinitely.
 * @coupon_end_date@ Coupon ending date.  If set, the coupon will expire at the end of the day on this date.
 * @product_family_id@. The ID of the product family to which the coupon belongs.  The coupon can be applied *only* to products in this product family.
 
