@@ -75,7 +75,8 @@ The following attributes are returned on a subscription read/list operation.
 * @product@ For product attributes, see "Products API":/api-products
 * @credit_card@ Nested credit card attributes
 ** @id@ The Chargify-assigned ID of the stored card.  This value can be used as an input to @payment_profile_id@ when creating a subscription, in order to re-use a stored payment profile _for the same customer_
-** @card_type@ The type of card used (bogus, visa, master)
+** @card_type@ The type of card used (bogus, visa, master, discover, american_express, diners_club, jcb, switch, solo, dankort, maestro, forbrugsforeningen, or laser)
+
 ** @expiration_month@ An integer representing the expiration month of the card(1 - 12)
 ** @expiration_year@ An integer representing the 4-digit expiration year of the card(i.e. '2012')
 ** @first_name@ The first name of the card holder
