@@ -125,7 +125,13 @@ Response: If the coupon is invalid, the status code will be 404 and the response
 
 If you have more than one product family and if the coupon you are validating does not belong to the first product family in your site, then you will need to specify (either in the url or as a query string param) the product family id.
 
-Eg. URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/coupons/validate.<format>?code=<coupon_code>@
+Eg.
+
+<pre><code>https://<subdomain>.chargify.com/product_families/<product_family_id>/coupons/validate.<format>?code=<coupon_code></code></pre>
+
+Or
+
+<pre><code>https://<subdomain>.chargify.com/coupons/validate.<format>?code=<coupon_code>&product_family_id=1</code></pre>
 
 h2(#api-coupon-find). Finding a Coupon via the API
 
@@ -137,6 +143,17 @@ URL: @https://<subdomain>.chargify.com/coupons/find.<format>@
 Method: @GET@
 Required Parameters: code
 Response: The coupon
+
+If you have more than one product family and if the coupon you are trying to find does not belong to the first product family in your site, then you will need to specify (either in the url or as a query string param) the product family id.
+
+Eg.
+
+<pre><code>https://<subdomain>.chargify.com/product_families/<product_family_id>/coupons/find.<format>?code=<coupon_code></code></pre>
+
+Or
+
+<pre><code>https://<subdomain>.chargify.com/coupons/find.<format>?code=<coupon_code>&product_family_id=1</code></pre>
+
 
 h2(#api-coupon-usage). Coupon Usage
 
