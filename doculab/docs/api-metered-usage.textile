@@ -22,6 +22,7 @@ Optional Parameters:
 
 * @since_id@ Returns usages with an id greater than or equal to the one specified
 * @max_id@ Returns usages with an id less than or equal to the one specified
+* @created_at@ The creation date for this usage
 * @page@ and @per_page@ The page number and number of results used for pagination. By default results are paginated 20 per page.
 
 Response: A collection of usages
