@@ -4,7 +4,7 @@ Doculab::TableOfContents.define do
     page "Terminology"
     page "Getting Started"
   end
-  
+
   section "Sites" do
     page "Sites Intro", :permalink => "sites"
     page "Settings"
@@ -12,7 +12,7 @@ Doculab::TableOfContents.define do
     page "Hosted Page Settings"
     page "Clearing Site Data"
   end
-  
+
   section "Products" do
     page "Products Intro"
     page "Product Families"
@@ -22,7 +22,7 @@ Doculab::TableOfContents.define do
     page "Coupons"
     page "Taxes"
   end
-  
+
   section "Subscriptions" do
     page "Subscriptions Intro"
     page "Subscription States"
@@ -36,7 +36,7 @@ Doculab::TableOfContents.define do
     page "Reactivation"
     page "Setting Component Allocations"
     page "Billing Dates"
-    page "Invoice Billing"    
+    page "Invoice Billing"
   end
 
   section "Integration" do
@@ -49,20 +49,24 @@ Doculab::TableOfContents.define do
     page "Exporting Data"
   end
 
+  section 'How To' do
+    page 'Shipping Charges'
+  end
+
   section "Chargify Direct (Transparent Redirect)" do
     page "Introduction", :permalink => "chargify-direct-introduction"
   end
-  
+
   section "Communication" do
     page "Communication Overview"
     page "Mass Emailing Subscribers"
   end
-  
+
   section "Your Account" do
     page "Currency"
     page "Users"
   end
-  
+
   section "Chargify API Basics" do
     page "API Introduction"
     page "API Authentication"
