@@ -163,7 +163,6 @@ Feature: Chargify Components List for a Subscription XML API
     Given I am a valid API user
     And I accept xml responses
 
-
   Scenario: Retrieve a customer's subscriptions
     Given I have an active subscription
     And the subscription has 2 components
@@ -183,7 +182,6 @@ Feature: Chargify Components List for a Subscription JSON API
   Background:
     Given I am a valid API user
     And I accept json responses
-
 
   Scenario: Retrieve a customer's subscriptions
     Given I have an active subscription
