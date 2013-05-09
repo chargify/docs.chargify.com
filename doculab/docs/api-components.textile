@@ -318,10 +318,25 @@ h3(#api-xml-components-create). XML Create Component Example
         <quantity_based_component>
           <name>Swizzles</name>
           <unit_name>I.P Addresses</unit_name>
-          <pricing_scheme>address</pricing_scheme>
+          <pricing_scheme>per_unit</pricing_scheme>
           <unit_price>1.00</unit_price>
         </quantity_based_component>
         """
       When I send a POST request with the xml data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/quantity_based_components.xml
+      Then the response status should be "201 Created"
+	  
+	Scenario: Successfully create a metered component with per_unit pricing
+      Given I have 1 product
+      And I have this xml metered_component data
+        """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <metered_component>
+          <name>Swizzles</name>
+          <unit_name>ip</unit_name>
+          <pricing_scheme>per_unit</pricing_scheme>
+          <unit_price>1.00</unit_price>
+        </metered_component>
+        """
+      When I send a POST request with the xml data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/metered_components.xml
       Then the response status should be "201 Created"
 </code></pre>      
