@@ -20,7 +20,7 @@ h4. Add Custom CSS and JavaScript
 
 The 'Hosted Page Settings' tab also provides input fields to collect custom CSS and JavaScript for your site. Content in the CSS field will be included at the top of the page in a @stylesheet@ tag. Custom JavaScript will be included at the bottom of the page and wrapped in a @script@ tag.
 
-We've put together a "Guide on creating Custom CSS":http://support.chargify.com/faqs/features/custom-css-for-hosted-signup-page for our hosted pages.
+We've put together a "Using your own CSS for Hosted Signup Page":https://chargify.zendesk.com/entries/20111031-Using-your-own-CSS-for-Hosted-Signup-Page for our hosted pages.
 
 h4. Custom Links
 
