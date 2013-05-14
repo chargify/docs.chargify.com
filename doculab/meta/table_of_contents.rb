@@ -83,6 +83,7 @@ Doculab::TableOfContents.define do
     page "API: Credits"
     page "API: Customers"
     page "API: Events"
+	page "API: Invoices"
     page "API: Metered Usage"
     page "API: Migrations (Prorated Upgrades/Downgrades)", :permalink => "api-migrations"
     page "API: Products"

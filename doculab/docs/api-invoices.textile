@@ -1,0 +1,248 @@
+h2. Invoice Attributes
+
+All of the call attribute fields are returned from GET (read) operations, and all are read only.
+
+* @id@ - The invoice unique id within Chargify
+* @subscription_id@ - The subscription unique id within Chargify
+* @statement_id@ - The statement unique id within Chargify
+* @site_id@ - The site unique id within Chargify
+* @state@ - The current state of the subscription associated with this invoice. Please see the documentation for "Subscription States":/subscription-states
+* @total_amount_in_cents@ - Gives the current invoice amount in the number of cents (ie. the sum of charges)
+* @paid_at@ - The date/time when the invoice was paid in full
+* @created_at@ - The creation date/time for this invoice
+* @updated_at@ - The date/time of last update for this invoice
+* @amount_due_in_cents@ - Gives the current outstanding invoice balance in the number of cents
+* @number@ - The unique (to this site) identifier for this invoice
+* @charges@ - A list of charges applied to this invoice
+* @payments_and_credits@ - A list of the financial transactions that modify the amount due
+
+For more information about the invoicing feature, please see the related "blog post":http://chargify.com/blog/invoicing-is-here
+
+h2. Methods
+
+h3. List
+
+URL: @https://<subdomain>.chargify.com/invoices.<format>@
+Method: @GET@
+
+Response: A list of invoices
+
+"XML example":#api-invoice-xml-list
+"JSON example":#api-invoice-json-list
+
+h3. Read/Show (via Invoice ID)
+
+URL: @https://<subdomain>.chargify.com/invoices/<invoice_id>.<format>@  
+Method: @GET@  
+Required Parameters: @invoice_id@  
+
+Response: An single invoice  
+
+"XML example":#api-invoice-xml-read
+"JSON example":#api-invoice-json-read
+
+h2. Usage Examples
+
+h3(#api-invoice-xml-list). XML List Invoices Example
+
+<pre><code>
+Feature: Chargify Invoice List XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to interact with my invoices via the Chargify API
+
+  Background:
+    Given I am a valid API user
+    And I accept xml responses
+
+
+  Scenario: Retrieve my sites invoices
+    Given I have a customer with these attributes
+      | id             | first_name | last_name | email           |
+      | [@customer.id] | Joe        | Blow      | joe@example.com |
+    And the customer has 1 subscription, with 1 invoice
+    When I send a GET request to https://[@subdomain].chargify.com/invoices.xml
+    Then the response status should be "200 OK"
+    And the response should be a "invoices" array with 1 "invoice" elements
+</code></pre>
+
+
+h3(#api-invoice-json-list). JSON List Invoices Example
+
+<pre><code>
+Feature: Chargify Invoices List JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to interact with my invoices via the Chargify API
+
+  Background:
+    Given I am a valid API user
+    And I accept json responses
+
+	
+  Scenario: Retrieve my sites invoices
+    Given I have a customer with these attributes
+      | id             | first_name | last_name | email           |
+      | [@customer.id] | Joe        | Blow      | joe@example.com |
+    And the customer has 1 subscription, with 1 invoice
+    When I send a GET request to https://[@subdomain].chargify.com/invoices.json
+    Then the response status should be "200 OK"
+    And the response should be a json array with 2 "invoice" objects
+</code></pre>
+
+
+h3(#api-invoice-xml-read). XML Read Invoice Example
+
+<pre><code>
+Feature: Chargify Invoices Read/Show/Lookup XML API
+  In order integrate my app with Chargify
+  As a developer
+  I want to read/show/lookup an invoice via the Chargify XML API
+
+  Background:
+    Given I am a valid API user
+    And I accept xml responses
+
+	
+  Scenario: Retrieve a invoice via ID
+    Given I have an existing invoice
+    When I send a GET request to https://[@subdomain].chargify.com/invoices/[@invoice.id].xml
+    Then the response status should be "200 OK"
+    And print the response
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+	  <invoice>
+	    <id type="integer">`generated id`</id>
+	    <subscription_id type="integer">`generated id`</subscription_id>
+	    <statement_id type="integer">`generated id`</statement_id>
+	    <site_id type="integer">`generated id`</site_id>
+	    <state>partial</state>
+	    <total_amount_in_cents type="integer">1730</total_amount_in_cents>
+	    <paid_at nil="true"></paid_at>
+	    <created_at type="datetime">2013-05-14T16:09:35-04:00</created_at>
+	    <updated_at type="datetime">2013-05-14T16:09:35-04:00</updated_at>
+	    <amount_due_in_cents type="integer">430</amount_due_in_cents>
+	    <number>000004</number>
+	    <charges type="array">
+	  	<charge>
+	  	  <created_at type="datetime">2013-05-07T12:04:04-04:00</created_at>
+	  	  <subscription_id type="integer">`generated id`</subscription_id>
+	  	  <type>Charge</type>
+	  	  <memo>This is the description of the one time charge.</memo>
+	  	  <kind>delay_capture</kind>
+	  	  <amount_in_cents type="integer">100</amount_in_cents>
+	  	  <ending_balance_in_cents type="integer">100</ending_balance_in_cents>
+	  	  <success type="boolean">true</success>
+	  	  <id type="integer">`generated id`</id>
+	  	  <payment_id nil="true"></payment_id>
+	  	  <product_id type="integer">`generated id`</product_id>
+	  	  <transaction_type>charge</transaction_type>
+	  	  <gateway_transaction_id nil="true"></gateway_transaction_id>
+	  	  <starting_balance_in_cents type="integer">0</starting_balance_in_cents>
+	  	</charge>
+	    </charges>
+	    <payments_and_credits type="array">
+	  	<payments_and_credit>
+	  	  <created_at type="datetime">2013-05-07T12:09:51-04:00</created_at>
+	  	  <subscription_id type="integer">`generated id`</subscription_id>
+	  	  <type>Adjustment</type>
+	  	  <memo></memo>
+	  	  <kind nil="true"></kind>
+	  	  <amount_in_cents type="integer">-400</amount_in_cents>
+	  	  <ending_balance_in_cents type="integer">0</ending_balance_in_cents>
+	  	  <success type="boolean">true</success>
+	  	  <id type="integer">`generated id`</id>
+	  	  <payment_id nil="true"></payment_id>
+	  	  <product_id type="integer">`generated id`</product_id>
+	  	  <transaction_type>adjustment</transaction_type>
+	  	  <gateway_transaction_id nil="true"></gateway_transaction_id>
+	  	  <starting_balance_in_cents type="integer">400</starting_balance_in_cents>
+	  	</payments_and_credit>
+	    </payments_and_credits>
+	  </invoice>
+      """
+
+  Scenario: Attempt to retrieve a subscription that doesn't exist
+    Given I have 0 subscriptions
+    When I send a GET request to https://[@subdomain].chargify.com/subscriptions/9999.xml
+    Then the response status should be "404 Not Found"
+</code></pre>
+
+
+h3(#api-invoice-json-read). JSON Read Invoice Example
+
+<pre><code>
+Feature: Chargify Invoices Read/Show/Lookup JSON API
+  In order integrate my app with Chargify
+  As a developer
+  I want to read/show/lookup an invoice via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user
+    And I accept json responses
+
+  Scenario: Retrieve a invoice via ID
+    Given I have an active subscription, with an invoice that contains one charge and one payment
+    When I send a GET request to https://[@subdomain].chargify.com/invoices/[@invoice.id].json
+    Then the response status should be "200 OK"
+    And the response should be the json:
+      """
+        {"invoice": {
+			"id": `generated id`,
+			"subscription_id": `generated id`,
+			"statement_id": `generated id`,
+			"site_id": `generated id`,
+			"state": "partial",
+			"total_amount_in_cents": 1730,
+			"paid_at": null,
+			"created_at": "2013-05-14T16:09:35-04:00",
+			"updated_at": "2013-05-14T16:09:35-04:00",
+			"amount_due_in_cents": 430,
+			"number": "000004",
+			"charges": [
+			  {
+				"created_at": "2013-05-07T12:04:04-04:00",
+				"subscription_id": `generated id`,
+				"type": "Charge",
+				"memo": "This is the description of the one time charge.",
+				"kind": "delay_capture",
+				"amount_in_cents": 100,
+				"ending_balance_in_cents": 100,
+				"success": true,
+				"id": `generated id`,
+				"payment_id": null,
+				"product_id": `generated id`,
+				"transaction_type": "charge",
+				"gateway_transaction_id": null,
+				"starting_balance_in_cents": 0
+			  }
+			],
+			"payments_and_credits": [
+			  {
+				"created_at": "2013-05-07T12:09:51-04:00",
+				"subscription_id": `generated id`,
+				"type": "Adjustment",
+				"memo": "",
+				"kind": null,
+				"amount_in_cents": -400,
+				"ending_balance_in_cents": 0,
+				"success": true,
+				"id": `generated id`,
+				"payment_id": null,
+				"product_id": `generated id`,
+				"transaction_type": "adjustment",
+				"gateway_transaction_id": null,
+				"starting_balance_in_cents": 400
+			  }
+			]
+		  }
+		}
+      """
+
+  Scenario: Attempt to retrieve an invoice that doesn't exist
+    Given I have 0 invoices
+    When I send a GET request to https://[@subdomain].chargify.com/invoices/9999.json
+    Then the response status should be "404 Not Found"
+</code></pre>
+
