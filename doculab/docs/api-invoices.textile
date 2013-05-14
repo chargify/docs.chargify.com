@@ -1,6 +1,6 @@
 h2. Invoice Attributes
 
-All of the call attribute fields are returned from GET (read) operations, and all are read only.
+All of the input attribute fields are returned from GET (read) operations, and all are read only.
 
 * @id@ - The invoice unique id within Chargify
 * @subscription_id@ - The subscription unique id within Chargify
