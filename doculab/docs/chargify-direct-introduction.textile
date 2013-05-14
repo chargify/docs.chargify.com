@@ -219,6 +219,8 @@ A POST to a Chargify Direct endpoint is the same as making an API Call.  This ca
 
 When using Chargify Direct, the "response parameters":#response-parameters will include a @call_id@ pointing to the Call that was created as a result of your form post.  You may fetch this call from @https://api.chargify.com/api/v2/calls/<call_id>@ using your API V2 credentials.
 
+See "API: Call":/api-call for a full listing of output fields.
+
 h2(#api-v2-auth). API V2 Authentication
 
 Authentication for V2 of the API is different depending on the type of request.

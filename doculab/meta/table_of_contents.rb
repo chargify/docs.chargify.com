@@ -74,7 +74,7 @@ Doculab::TableOfContents.define do
     page "API Code Samples & Libraries", :permalink => "api-code"
   end
 
-  section "Chargify API Resources" do
+  section "API v1 Resources" do
     page "API: Adjustments"
     page "API: Allocations"
     page "API: Charges"
@@ -93,6 +93,10 @@ Doculab::TableOfContents.define do
     page "API: Subscriptions"
     page "API: Transactions"
     page "API: Webhooks"
+  end
+  
+  section "API v2 Resources" do
+    page "API: Call"
   end
 
   section "3rd Party Integrations" do
