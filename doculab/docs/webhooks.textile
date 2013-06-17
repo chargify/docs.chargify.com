@@ -90,6 +90,8 @@ new_unit_balance
 usage_quantity
 memo
 timestamp</code></pre> |
+| @upgrade_downgrade_success@  | Any successful upgrade/downgrade  | @site@, @subscription@, @previous_product@ |
+| @upgrade_downgrade_failure@  | Any failed upgrade/downgrade  | @site@, @subscription@, @target_product@ |
 
 <sup>1</sup> The @subscription@ object also contains information on the Customer and Product.
 <sup>2</sup> This is usually caused by a failure at the payment gateway.  This event is not generated for input validation errors (i.e. forgetting to fill in a field).
