@@ -17,7 +17,7 @@ h2. Webhook Attributes
 * @accepted_at@ Timestamp indicating when the Webhook was accepted by the merchant endpoint.  When a webhook is explicitly replayed by the merchant, this value will be cleared until it is accepted again.
 * @last_sent_at@ Timestamp indicating when the most recent attempt was made to send the Webhook
 * @last_error_at@ Timestamp indicating when the last non-acceptance occurred.  If a webhooks is later resent and accepted, this field will be cleared.
-* @last_error_url@ The url that the endpoint was last sent to.
+* @last_sent_url@ The url that the endpoint was last sent to.
 * @last_error@ Text describing the status code and/or error from the last failed attempt to send the Webhook.  When a webhook is retried and accepted, this field will be cleared.
 
 h2. Methods
