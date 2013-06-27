@@ -115,11 +115,11 @@ Once enabled, components will appear in a 'Configure Your Plan' section on the h
 
 !{width:640px}/images/doculab/cohp.png!
 
-h2. Hosted Page Translations/Internationalization (i18n)
+h2(#translations). Hosted Page Translations/Internationalization (i18n)
 
 The hosted page is only offered in English at this time.  If you would like to add translations to page content, you may do so by writing javascript that replaces on-page content with your own content via Custom Javascript.  Adding Custom Javascript is documented in "Hosted Page Settings":/hosted-page-settings.
 
-h3(#translations). Translating Javascript Generated Content
+h3. Translating Javascript Generated Content
 
 Even though you can translate on-page content by replacing text on the page, there is still an issue where you will not have access to content that we generate via Javascript and add to the page later.  Examples of this kind of content are:
 
