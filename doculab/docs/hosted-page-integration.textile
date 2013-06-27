@@ -114,3 +114,35 @@ Quantity and On/Off Components can be configured to appear on the hosted page. T
 Once enabled, components will appear in a 'Configure Your Plan' section on the hosted page in a div with the class name of 'component_configuration'. (Note that this name may change in the future).
 
 !{width:640px}/images/doculab/cohp.png!
+
+h2. Hosted Page Translations/Internationalization (i18n)
+
+The hosted page is only offered in English at this time.  If you would like to add translations to page content, you may do so by writing javascript that replaces on-page content with your own content via Custom Javascript.  Adding Custom Javascript is documented in "Hosted Page Settings":/hosted-page-settings.
+
+h3(#translations). Translating Javascript Generated Content
+
+Even though you can translate on-page content by replacing text on the page, there is still an issue where you will not have access to content that we generate via Javascript and add to the page later.  Examples of this kind of content are:
+
+* The alert box that pops up when the Terms & Conditions are not acknowledged
+* The label on the submit button that changes as a result of a click (i.e. from "Submit" to "Processing...")
+
+We have provided a mechanism for you to add translations for this javascript-generated content.  To your Custom Javascript, you may add translations by extending `chargifyHostedPageDictionary`.
+
+<pre><code>$.extend(chargifyHostedPageDictionary, {
+  // The alert pop up when agreement to terms is required but not checked:
+  'alert.must-agree-to-terms':         'You must agree to the Terms and Conditions',
+
+  // The default value for the Billing/Shipping State selector after choosing a new country:
+  'form.address-state.blank-label':    'Please select',
+
+  // The replacement value for the submit button text once it is clicked:
+  'form.submit-button.disabled-label': 'Processing...'
+});</code></pre>
+
+Shown above is the default text from our default dictionary.  If I wanted to translate the content to another language, say "Pirate", I could:
+
+<pre><code>$.extend(chargifyHostedPageDictionary, {
+  "alert.must-agree-to-terms": "Arr matey, agree to mine terms or walk the plank",
+  'form.address-state.blank-label':    'Select yer state, swashbuckler',
+  'form.submit-button.disabled-label': 'Shiver your timbers...'
+});</code></pre>
