@@ -86,6 +86,197 @@ Method: @GET@
 Required Parameters: @id@
 Response: An single Statement
 
+h3. JSON Response
+
+<pre><code>{
+  "statement": {
+    "basic_html_view": `auto generated`,
+    "closed_at": null,
+    "created_at": `auto generated`,
+    "customer_billing_address": `your value`,
+    "customer_billing_address_2": `your value`,
+    "customer_billing_city": `your value`,
+    "customer_billing_country": `your value`,
+    "customer_billing_state": `your value`,
+    "customer_billing_zip": `your value`,
+    "customer_first_name": `your value`,
+    "customer_last_name": `your value`,
+    "customer_organization": `your value`,
+    "customer_shipping_address": `your value`,
+    "customer_shipping_address_2": `your value`,
+    "customer_shipping_city": `your value`,
+    "customer_shipping_country": `your value`,
+    "customer_shipping_state": `your value`,
+    "customer_shipping_zip": `your value`,
+    "ending_balance_in_cents": 0,
+    "events": [
+      {
+        "event": {
+          "id":  `auto generated`,
+          "key": "payment_success",
+          "message": `auto generated`,
+          "created_at": `auto generated`,
+          "subscription_id": `auto generated`,
+          "event_specific_data": {
+            "product_id": `auto generated`,
+            "account_transaction_id": `auto generated`
+          }
+        }
+      },
+      {
+        "event": {
+          "id": `auto generated`,
+          "key": "signup_success",
+          "message": `auto generated`,
+          "created_at": `auto generated`,
+          "subscription_id": `auto generated`,
+          "event_specific_data": {
+            "product_id": `auto generated`,
+            "account_transaction_id": `auto generated`
+          }
+        }
+      }
+    ],
+    "future_payments": [],
+    "html_view": `auto generated`,
+    "id": `auto generated`,
+    "memo": "",
+    "opened_at": null,
+    "settled_at": null,
+    "starting_balance_in_cents": 0,
+    "subscription_id": `auto generated`,
+    "text_view": `auto generated`,
+    "transactions": [
+      {
+        "transaction_type":"charge",
+        "created_at":`auto generated`,
+        "product_id":`auto generated`,
+        "starting_balance_in_cents":0,
+        "ending_balance_in_cents":1000,
+        "memo":`auto generated`,
+        "id":`auto generated`,
+        "type":"Charge",
+        "amount_in_cents":1000,
+        "success":true,
+        "subscription_id":`auto generated`,
+        "payment_id":`auto generated`,
+        "kind":"baseline",
+        "gateway_transaction_id":null
+      },
+      {
+        "transaction_type":"payment",
+        "created_at":`auto generated`,
+        "product_id":`auto generated`,
+        "starting_balance_in_cents":1000,
+        "ending_balance_in_cents":0,
+        "memo":`auto generated`,
+        "id":`auto generated`,
+        "type":"Payment",
+        "amount_in_cents":1000,
+        "success":true,
+        "subscription_id":`auto generated`,
+        "payment_id":`auto generated`,
+        "kind":null,
+        "gateway_transaction_id":`auto generated`
+      }
+    ],
+    "updated_at": `auto generated`
+  }
+}</pre></code>
+
+h4. XML Response
+
+<pre><code><?xml version="1.0" encoding="UTF-8"?>
+<statement>
+  <basic_html_view>`auto generated`</basic_html_view>
+  <closed_at type="datetime" nil="true"></closed_at>
+  <created_at type="datetime">`auto generated`</created_at>
+  <html_view>`auto generated`</html_view>
+  <id type="integer">`auto generated`</id>
+  <opened_at type="datetime" nil="true"></opened_at>
+  <settled_at type="datetime" nil="true"></settled_at>
+  <subscription_id type="integer">`auto generated`</subscription_id>
+  <text_view>`auto generated`</text_view>
+  <updated_at type="datetime">`auto generated`</updated_at>
+  <future_payments type="array"></future_payments>
+  <starting_balance_in_cents type="integer">0</starting_balance_in_cents>
+  <ending_balance_in_cents type="integer">0</ending_balance_in_cents>
+  <customer_first_name>`auto generated`</customer_first_name>
+  <customer_last_name>`auto generated`</customer_last_name>
+  <customer_organization nil="true">`auto generated`</customer_organization>
+  <customer_shipping_address nil="true">`auto generated`</customer_shipping_address>
+  <customer_shipping_address_2 nil="true">`auto generated`</customer_shipping_address_2>
+  <customer_shipping_city nil="true">`auto generated`</customer_shipping_city>
+  <customer_shipping_state nil="true">`auto generated`</customer_shipping_state>
+  <customer_shipping_country nil="true">`auto generated`</customer_shipping_country>
+  <customer_shipping_zip nil="true">`auto generated`</customer_shipping_zip>
+  <customer_billing_address>`auto generated`</customer_billing_address>
+  <customer_billing_address_2 nil="true">`auto generated`</customer_billing_address_2>
+  <customer_billing_city>`auto generated`</customer_billing_city>
+  <customer_billing_state>`auto generated`</customer_billing_state>
+  <customer_billing_country>`auto generated`</customer_billing_country>
+  <customer_billing_zip>`auto generated`</customer_billing_zip>
+  <memo></memo>
+  <transactions type="array">
+    <transaction>
+      <transaction_type>charge</transaction_type>
+      <created_at type="datetime">`auto generated`</created_at>
+      <product_id type="integer">`auto generated`</product_id>
+      <starting_balance_in_cents type="integer">0</starting_balance_in_cents>
+      <ending_balance_in_cents type="integer">1000</ending_balance_in_cents>
+      <memo>`auto generated`</memo>
+      <id type="integer">`auto generated`</id>
+      <type>Charge</type>
+      <amount_in_cents type="integer">1000</amount_in_cents>
+      <success type="boolean">true</success>
+      <subscription_id type="integer">`auto generated`</subscription_id>
+      <payment_id type="integer">`auto generated`</payment_id>
+      <kind>baseline</kind>
+      <gateway_transaction_id></gateway_transaction_id>
+    </transaction>
+    <transaction>
+      <transaction_type>payment</transaction_type>
+      <created_at type="datetime">`auto generated`</created_at>
+      <product_id type="integer">`auto generated`</product_id>
+      <starting_balance_in_cents type="integer">1000</starting_balance_in_cents>
+      <ending_balance_in_cents type="integer">0</ending_balance_in_cents>
+      <memo>`auto generated`</memo>
+      <id type="integer">`auto generated`</id>
+      <type>Payment</type>
+      <amount_in_cents type="integer">1000</amount_in_cents>
+      <success type="boolean">true</success>
+      <subscription_id type="integer">`auto generated`</subscription_id>
+      <payment_id type="integer">`auto generated`</payment_id>
+      <kind></kind>
+      <gateway_transaction_id>`auto generated`</gateway_transaction_id>
+    </transaction>
+  </transactions>
+  <events type="array">
+    <event>
+      <id type="integer">`auto generated`</id>
+      <key>payment_success</key>
+      <message>`auto generated`</message>
+      <created_at>`auto generated`</created_at>
+      <subscription_id>`auto generated`</subscription_id>
+      <event_specific_data>
+        <product_id>`auto generated`</product_id>
+        <account_transaction_id>`auto generated`</account_transaction_id>
+      </event_specific_data>
+    </event>
+    <event>
+      <id type="integer">`auto generated`</id>
+      <key>signup_success</key>
+      <message>`auto generated`</message>
+      <created_at>`auto generated`</created_at>
+      <subscription_id>`auto generated`</subscription_id>
+      <event_specific_data>
+        <product_id>`auto generated`</product_id>
+        <account_transaction_id>`auto generated`</account_transaction_id>
+      </event_specific_data>
+    </event>
+  </events>
+</statement></pre></code>
+
 h2. Rendering Statements on Your Site
 
 The Statements API offers three ways to easily render a statement on your site. You can include a text representation of the statement or one of two HTML views that can be styled to your liking.
