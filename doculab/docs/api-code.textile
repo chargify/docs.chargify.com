@@ -32,7 +32,7 @@ h2. .Net
 
 h2. ColdFusion
 
-* "https://github.com/GenuinePartsLLC/Chargify-Coldfusion-Component":https://github.com/GenuinePartsLLC/Chargify-Coldfusion-Component: A simple ColdFusion cfc by Jordan Sitkin ("@specifyApp":http://twitter.com/specifyApp). He says (as of Aug 23, 2010): "At the moment it only includes the basic functionality of the Customers and Subscriptions parts of the API, but can easily be extended to handle the rest."
+* "https://github.com/GenuineParts/Chargify-Coldfusion-Component":https://github.com/GenuineParts/Chargify-Coldfusion-Component: A simple ColdFusion cfc by Jordan Sitkin ("@specifyApp":http://twitter.com/specifyApp). He says (as of Aug 23, 2010): "At the moment it only includes the basic functionality of the Customers and Subscriptions parts of the API, but can easily be extended to handle the rest."
 
 h2. Java / Scala
 
