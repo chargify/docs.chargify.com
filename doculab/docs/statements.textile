@@ -12,7 +12,7 @@ h2. Emailing Statements to your Customers
 
 h3. On-Demand
 
-You may email any Statement to the Customer at any time by using the button near bottom of the Statement view.  There are also links for previewing the text and HTML-email versions of the statement.  Chargify sends all Statement emails as multi-part with both text/plain and text/html parts so that the client may choose which to render.
+You may email any Statement to the Customer at any time by using the button near bottom of the Statement view.  There are also links for viewing the statement as Text, HTML, or PDF.  Chargify sends all Statement emails as multi-part with both text/plain and text/html parts so that the client may choose which to render.  You can also choose to send a PDF attachment as well in the "Statements" section of Settings.
 
 h3. Automatic Statements
 

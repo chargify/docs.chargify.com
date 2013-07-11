@@ -86,6 +86,12 @@ Method: @GET@
 Required Parameters: @id@
 Response: An single Statement
 
+Individual PDF Statements can be retrieved by using the Accept/Content-Type header @application/pdf@ or appending @.pdf@ as the @<format>@ portion of the URL:
+
+<pre><code>
+  curl -u <api_key>:x -H Accept:application/pdf -H Content-Type:application/pdf https://acme.chargify.com/subscriptions/1.pdf > output_file.pdf
+</pre></code>
+
 h3. JSON Response
 
 <pre><code>{
@@ -284,3 +290,5 @@ The Statements API offers three ways to easily render a statement on your site. 
 * @text_view@ A text representation of the statement
 * @basic_html_view@ A simple HTML representation of the statement
 * @html_view@ A more robust HTML representation of the statement
+
+Rendering individual statements can also be done as PDF by using the Accept/Content-Type header @application/pdf@ or appending @.pdf@ as the @<format>@ portion of the URL.

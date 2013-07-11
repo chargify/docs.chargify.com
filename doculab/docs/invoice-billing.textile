@@ -61,7 +61,7 @@ h2. Applying Payments, Charges, Credits
 
 Once an invoice has been created, you can add payments, credits and additional charges to the invoice.
 
-To apply a payment to an invoice, navigate to the list of invoices and select 'Enter Payment' from the options menu. 
+To apply a payment to an invoice, navigate to the list of invoices and select 'Enter Payment' from the options menu.
 !{width:540px;}/images/doculab/invoice-billing-6.png()!
 
 h2. Dunning
@@ -72,7 +72,7 @@ h2. Emailing Invoices to your Customers
 
 h3. On-Demand
 
-You may email any Invoice to the Customer at any time by using the button near bottom of the Invoice view.  There are also links for previewing the text and HTML-email versions of the invoice.  Chargify sends all Invoice emails as multi-part with both text/plain and text/html parts so that the client may choose which to render.
+You may email any Invoice to the Customer at any time by using the button near bottom of the Invoice view.  There are also links for viewing the invoice as Text, HTML, or PDF.  Chargify sends all Invoice emails as multi-part with both text/plain and text/html parts so that the client may choose which to render.  You can also choose to send a PDF attachment as well in the "Invoice Billing" section of Settings.
 
 h3. Automatic Invoices
 
