@@ -41,6 +41,12 @@ Response: An single invoice
 "XML example":#api-invoice-xml-read
 "JSON example":#api-invoice-json-read
 
+Individual PDF Invoices can be retrieved by using the Accept/Content-Type header @application/pdf@ or appending @.pdf@ as the @<format>@ portion of the URL:
+
+<pre><code>
+  curl -u <api_key>:x -H Accept:application/pdf -H Content-Type:application/pdf https://acme.chargify.com/invoices/1.pdf > output_file.pdf
+</pre></code>
+
 h2. Usage Examples
 
 h3(#api-invoice-xml-list). XML List Invoices Example
