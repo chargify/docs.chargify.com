@@ -11,3 +11,4 @@ config/setup_load_paths.rb
 vendor/bundle
 .rbenv-version
 .powder
+.powenv
