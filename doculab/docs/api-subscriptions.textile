@@ -45,7 +45,7 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @billing_country@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address country, preferably in [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format (i.e. "US"). _This value is merely passed through to the payment gateway. Some gateways require country codes in a specific format. Please check your gateway's documentation._
 ** @vault_token@ (Optional, used only for Subscription Import) The "token" provided by your vault storage for an already stored payment profile
 ** @customer_vault_token@  (Optional, used only for Subscription Import) (only for Authorize.Net CIM storage) The customerProfileId for the owner of the customerPaymentProfileId provided as the vault_token
-** @current_vault@  (Optional, used only for Subscription Import) The vault that stores the payment profile with the provided vault_token. May be authorizenet, trust_commerce, payment_express, beanstream, braintree1, or braintree_blue
+** @current_vault@  (Optional, used only for Subscription Import) The vault that stores the payment profile with the provided vault_token. May be @authorizenet@, @trust_commerce@, @payment_express@, @beanstream@, @braintree1@, @braintree_blue@, @paypal@, @quickpay@, @eway@, @samurai@, @stripe@, or @wirecard@
 ** @last_four@  (Optional, used only for Subscription Import) If you have the last 4 digits of the credit card number, you may supply them here so that we may create a masked card number (i.e. 'XXXX-XXXX-XXXX-1234') for display in the UI
 ** @card_type@  (Optional, used only for Subscription Import) If you know the card type (i.e. Visa, MC, etc) you may supply it here so that we may display the card type in the UI. May be visa, master, discover, american_express, diners_club, jcb, switch, solo, dankort, maestro, forbrugsforeningen, or laser
 * @cancellation_message@ (Optional) Can be used when canceling a subscription (via the HTTP DELETE method) to make a note about the reason for cancellation.
@@ -86,7 +86,7 @@ The following attributes are returned on a subscription read/list operation.
 ** @customer_id@ The Chargify-assigned @id@ for the customer record to which the card belongs
 ** @customer_vault_token@ (only for Authorize.Net CIM storage): the @customerProfileId@ for the owner of the @customerPaymentProfileId@ provided as the @vault_token@
 ** @vault_token@ The "token" provided by your vault storage for an already stored payment profile
-** @current_vault@ The vault that stores the payment profile with the provided @vault_token@.  May be @authorizenet@, @trust_commerce@, @payment_express@, @beanstream@, @braintree1@, or @braintree_blue@
+** @current_vault@ The vault that stores the payment profile with the provided @vault_token@.  May be @authorizenet@, @trust_commerce@, @payment_express@, @beanstream@, @braintree1@, @braintree_blue@, @paypal@, @quickpay@, @eway@, @samurai@, @stripe@, or @wirecard@
 ** @billing_address@ The current billing street address for the card
 ** @billing_address_2@ The current billing street address, second line, for the card
 ** @billing_city@ The current billing address city for the card
