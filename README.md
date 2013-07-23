@@ -34,4 +34,4 @@ All images should be sized to 640px wide.
 Colophon
 ---------
 
-Powered by [Doculab](http://github.com/grasshopperlabs/doculab)
+Powered by [Doculab](https://github.com/chargify/doculab)
