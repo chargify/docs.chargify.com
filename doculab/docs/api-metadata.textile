@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Chargify Metadata is used to add your own meaningful values to subscription or customer records.
 Metadata is associated to a customer or subscription, and corresponds to a Metafield. When creating a new metadata object for a given record, if the metafield is not present it will be created.
 
@@ -5,6 +6,14 @@ p(warning). Metadata values are limited to 2kB in size.  Additonally, there are 
 
 The following fields are returned from GET (read) operations.
 
+=======
+Chargify Metadata is used to add meaningful values to subscription or customer records.
+Metadata is is associated to a customer or subscription, and corresponds to a Metafield. When creating a new metadata object for a given rocord, if the metafield is not present it will be created.
+
+The following fields are returned from GET (read) operations.
+
+* @id@ - The id of the attribute that is added to the resource.
+>>>>>>> fist pass at metafield/metadata documentation
 * @name@ - The name of the attribute that is added to the resource.
 * @value@ - The value of the attribute that was added to the resource
 * @resource_id@ - The resource id that the metadata belongs to
@@ -31,16 +40,28 @@ Here's an example metadata list @response@:
   "per_page": 20,
   "metadata": [
     {
+<<<<<<< HEAD
+=======
+      "id": 1,
+>>>>>>> fist pass at metafield/metadata documentation
       "resource_id": 100000,
       "name": "Shirt Size"
       "value": "L"
     },
     {
+<<<<<<< HEAD
+=======
+      "id": 2,
+>>>>>>> fist pass at metafield/metadata documentation
       "resource_id": 100004,
       "name": "Shirt Size"
       "value": "S"
     },
     {
+<<<<<<< HEAD
+=======
+      "id": 3,
+>>>>>>> fist pass at metafield/metadata documentation
       "resource_id": 100000,
       "name": "Color",
       "value": "Blue"
@@ -51,10 +72,17 @@ Here's an example metadata list @response@:
 
 h3. Read/Show
 
+<<<<<<< HEAD
 URL: @https://<subdomain>.chargify.com/<resource>/<resource_id>/metadata.<format>@
 Method: @GET@
 Formats: JSON, XML
 Optional Parameters: @name@ - If provided, returns only the metadata which match the field name.
+=======
+URL: @https://<subdomain>.chargify.com/<resource>/metadata/<id>.<format>@
+Method: @GET@
+Formats: JSON, XML
+Optional Parameters: @name@ - value must be an exact match of what you named your metafield previously
+>>>>>>> fist pass at metafield/metadata documentation
 Response: An array of Metadata
 
 Here's an example metadata show @response@:
@@ -67,11 +95,19 @@ Here's an example metadata show @response@:
   "per_page": 20,
   "metadata": [
     {
+<<<<<<< HEAD
+=======
+      "id": 1,
+>>>>>>> fist pass at metafield/metadata documentation
       "resource_id": 100000,
       "name": "Shirt Size"
       "value": "L"
     },
     {
+<<<<<<< HEAD
+=======
+      "id": 3,
+>>>>>>> fist pass at metafield/metadata documentation
       "resource_id": 100000,
       "name": "Color",
       "value": "Blue"
@@ -82,7 +118,11 @@ Here's an example metadata show @response@:
 
 h3. Create / Update
 
+<<<<<<< HEAD
 URL: @https://<subdomain>.chargify.com/<resource>/<resource_id>/metadata.<format>@
+=======
+URL: @https://<subdomain>.chargify.com/<resource>/metadata/<id>.<format>@
+>>>>>>> fist pass at metafield/metadata documentation
 Method: @POST / PUT@
 Formats: JSON, XML
 Parameters: @name@, @value@ - can be a single item or a list of metadata
@@ -127,11 +167,19 @@ Here's an example metadata create @response@:
 <pre>
 [
     {
+<<<<<<< HEAD
+=======
+        "id": 2,
+>>>>>>> fist pass at metafield/metadata documentation
         "name": "Color",
         "resource_id": 100000,
         "value": "Blue"
     },
     {
+<<<<<<< HEAD
+=======
+        "id": 3,
+>>>>>>> fist pass at metafield/metadata documentation
         "name": "Something",
         "resource_id": 100000,
         "value": "Useful"
