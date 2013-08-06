@@ -1,0 +1,100 @@
+Chargify Metafields are used to add meaningful attributes to subscription and customer resources.
+Metafield are the place where you will set up your resource to accept additional data. It is scoped to the siet instead of a specific customer or subscription. Think of it as the key, and Metadata as the value on every record.
+
+The following fields are returned from GET operations.
+
+* @name@ - The name of the attribute that is added to the resource.
+* @scope@ - Limits where the attribute will be displayed. Can be empty or csv.
+* @data_count@ - The number of metadata that are associated to this metafield.
+
+h2. Methods
+
+For brevity sake in all example urls going forward @<resource>@ can be either subscriptions or customers.
+
+h3. List
+
+URL: @https://<subdomain>.chargify.com/<resource>/metafields.<format>@
+Method: @GET@
+Formats: JSON, XML
+Optional Parameters: @name@ - value must be an exact match of what you named your metafield previously
+Response: An array of Metafields
+
+Here's an example metafield list @response@:
+
+<pre>
+{
+  "total_count": 1,
+  "current_page": 1,
+  "total_pages": 1,
+  "per_page": 20,
+  "metafields": [
+    {
+        "name": "Shirt Size",
+        "scope": "csv",
+        "data_count": 99
+    }
+  ]
+}
+</pre>
+
+h3. Create
+
+URL: @https://<subdomain>.chargify.com/<resource>/metafields.<format>@
+Method: @POST/PUT@
+Formats: JSON, XML
+Parameters: @name@, @scope@
+Optional Parameters: @current_name@ - This only applies when you are updating an existing record and you wish to rename the field. Note you must supply @name@ and @current_name@ to rename the field
+Response: An array of Metafields
+
+Here's an example metafields create @request@:
+
+<pre>
+  { 
+    "metafields": {
+      "name": "Color",
+      "scope": "csv"
+    } 
+  }
+</pre>
+
+Create a multipe metafields in one @request@:
+
+<pre>
+  {
+    "metafields": [
+      {"name": "Color", "scope": "csv"},
+      {"name": "Brand"}
+    ]
+  }
+</pre>
+
+Say a record with the name "Pant Style" exists and you wish to rename it to "Style" below is an example @request@:
+
+
+<pre>
+  {
+    "metafields": {
+      "current_name": "Pant Style", "name": "Style"
+    }
+  }
+</pre>
+
+h3. Delete
+
+URL: @https://<subdomain>.chargify.com/<resource>/metafields.<format>?name=<name>@
+Method: @DELETE@
+Formats: JSON, XML
+Query Parameter: @name@
+Response: blank use response code 200 for successful, and 404 for unsuccessful
+
+For instance if you wanted to delete the metafield for customers named @strength@ you would do:
+
+@https://my-subdomain.chargify.com/customers/metafields.json?name=strength@
+
+h2. Pagination
+
+Results are paginated and return 20 responses per page.  Get additional pages by passing a `page` parameter:
+
+<pre>
+https://[@subdomain].chargify.com/subscriptions/metafields.json?page=3
+</pre>
