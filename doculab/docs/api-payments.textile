@@ -1,0 +1,62 @@
+Chargify allows you to record payments that occur outside of the normal flow of payment processing.
+These payments are considered external payments. A common case to apply such a payment is when a customer pays by check or some other means for their subscription.
+
+h3. Payment Input Attributes
+* @amount@ The amount represented as a string of the payment.  E.g. if the payment was for $14.50, you would pass @14.50@
+* @amount_in_cents@ The amount represented as a string of the payment in cents.  E.g. if the payment was for $14.50, you would pass @1450@
+* @memo@ Typically the description of why the payment occured
+
+h2. Methods
+
+_format_ may be either 'xml' or 'json'.
+
+h3. Create
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/payments.<format>@  
+Method: @POST@  
+Required Parameters: XML or JSON data, as specified by the input attributes  
+Response: The created payment
+
+Here is a sample JSON document that you might @POST@ to @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/payments.json@ to create an external payment:
+
+<pre><code>
+{
+  "payment": {
+    "amount": 10.00,
+    "memo": "Client x paid with $10.00 of nickles"
+  }
+}
+</code></pre>
+
+or if you wish to work in cents the amount_in_cents field can be used:
+
+<pre><code>
+{
+  "payment": {
+    "amount_in_cents": 1000,
+    "memo": "Client x paid with $10.00 of pennies"
+  }
+}
+</code></pre>
+
+Here is a sample of a JSON response:
+
+<pre><code>
+{
+  "payment": {
+     "amount_in_cents": 10000,
+     "created_at": "2013-08-05T23:14:00-04:00",
+     "ending_balance_in_cents": -10000,
+     "id": 3,
+     "kind": nil,
+     "memo": "Client x paid with $10.00 of nickles",
+     "payment_id": null,
+     "product_id": 1,
+     "starting_balance_in_cents": 0,
+     "subscription_id": 99,
+     "success": true,
+     "type": "Payment",
+     "transaction_type": "payment",
+     "gateway_transaction_id": null
+   }
+}
+</pre></code>
