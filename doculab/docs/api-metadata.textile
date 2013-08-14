@@ -1,5 +1,5 @@
 Chargify Metadata is used to add meaningful values to subscription or customer records.
-Metadata is is associated to a customer or subscription, and corresponds to a Metafield. When creating a new metadata object for a given rocord, if the metafield is not present it will be created.
+Metadata is associated to a customer or subscription, and corresponds to a Metafield. When creating a new metadata object for a given rocord, if the metafield is not present it will be created.
 
 The following fields are returned from GET (read) operations.
 
