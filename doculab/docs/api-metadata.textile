@@ -1,9 +1,10 @@
-Chargify Metadata is used to add meaningful values to subscription or customer records.
-Metadata is associated to a customer or subscription, and corresponds to a Metafield. When creating a new metadata object for a given rocord, if the metafield is not present it will be created.
+Chargify Metadata is used to add your own meaningful values to subscription or customer records.
+Metadata is associated to a customer or subscription, and corresponds to a Metafield. When creating a new metadata object for a given record, if the metafield is not present it will be created.
+
+p(warning). Metadata values are limited to 2kB in size.  Additonally, there are limits on the number of unique "names" available per resource.  See "Metafields documentation":/api-metafields.
 
 The following fields are returned from GET (read) operations.
 
-* @id@ - The id of the attribute that is added to the resource.
 * @name@ - The name of the attribute that is added to the resource.
 * @value@ - The value of the attribute that was added to the resource
 * @resource_id@ - The resource id that the metadata belongs to
@@ -30,19 +31,16 @@ Here's an example metadata list @response@:
   "per_page": 20,
   "metadata": [
     {
-      "id": 1,
       "resource_id": 100000,
       "name": "Shirt Size"
       "value": "L"
     },
     {
-      "id": 2,
       "resource_id": 100004,
       "name": "Shirt Size"
       "value": "S"
     },
     {
-      "id": 3,
       "resource_id": 100000,
       "name": "Color",
       "value": "Blue"
@@ -53,10 +51,10 @@ Here's an example metadata list @response@:
 
 h3. Read/Show
 
-URL: @https://<subdomain>.chargify.com/<resource>/metadata/<id>.<format>@
+URL: @https://<subdomain>.chargify.com/<resource>/<resource_id>/metadata.<format>@
 Method: @GET@
 Formats: JSON, XML
-Optional Parameters: @name@ - value must be an exact match of what you named your metafield previously
+Optional Parameters: @name@ - If provided, returns only the metadata which match the field name.
 Response: An array of Metadata
 
 Here's an example metadata show @response@:
@@ -69,13 +67,11 @@ Here's an example metadata show @response@:
   "per_page": 20,
   "metadata": [
     {
-      "id": 1,
       "resource_id": 100000,
       "name": "Shirt Size"
       "value": "L"
     },
     {
-      "id": 3,
       "resource_id": 100000,
       "name": "Color",
       "value": "Blue"
@@ -86,7 +82,7 @@ Here's an example metadata show @response@:
 
 h3. Create / Update
 
-URL: @https://<subdomain>.chargify.com/<resource>/metadata/<id>.<format>@
+URL: @https://<subdomain>.chargify.com/<resource>/<resource_id>/metadata.<format>@
 Method: @POST / PUT@
 Formats: JSON, XML
 Parameters: @name@, @value@ - can be a single item or a list of metadata
@@ -131,13 +127,11 @@ Here's an example metadata create @response@:
 <pre>
 [
     {
-        "id": 2,
         "name": "Color",
         "resource_id": 100000,
         "value": "Blue"
     },
     {
-        "id": 3,
         "name": "Something",
         "resource_id": 100000,
         "value": "Useful"
