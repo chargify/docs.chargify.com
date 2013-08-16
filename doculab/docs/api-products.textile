@@ -51,6 +51,7 @@ h2. Input Attributes (Create)
 * @require_billing_address@ Boolean
 * @request_billing_address@ Boolean
 * @taxable@ Boolean
+* @trial_type@ The type of trial for this product, either @no_obligation@ or @payment_expected@.
 
 h2. Methods
 
