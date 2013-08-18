@@ -1,0 +1,161 @@
+Chargify Metadata is used to add your own meaningful values to subscription or customer records.
+Metadata is associated to a customer or subscription, and corresponds to a Metafield. When creating a new metadata object for a given record, if the metafield is not present it will be created.
+
+p(warning). Metadata values are limited to 2kB in size.  Additonally, there are limits on the number of unique "names" available per resource.  See "Metafields documentation":/api-metafields.
+
+The following fields are returned from GET (read) operations.
+
+* @name@ - The name of the attribute that is added to the resource.
+* @value@ - The value of the attribute that was added to the resource
+* @resource_id@ - The resource id that the metadata belongs to
+
+h2. Methods
+
+note: @<resource>@ applies to @subscriptions@ and @customers@ only at this time.
+
+h3. List
+
+URL: @https://<subdomain>.chargify.com/<resource>/metadata.<format>@
+Method: @GET@
+Formats: JSON, XML
+Optional Parameters: @name@ - value must be an exact match of what you named your metafield previously
+Response: An array of Metadata
+
+Here's an example metadata list @response@:
+
+<pre>
+{
+  "total_count": 1,
+  "current_page": 1,
+  "total_pages": 1,
+  "per_page": 20,
+  "metadata": [
+    {
+      "resource_id": 100000,
+      "name": "Shirt Size"
+      "value": "L"
+    },
+    {
+      "resource_id": 100004,
+      "name": "Shirt Size"
+      "value": "S"
+    },
+    {
+      "resource_id": 100000,
+      "name": "Color",
+      "value": "Blue"
+    }    
+  ]
+}
+</pre>
+
+h3. Read/Show
+
+URL: @https://<subdomain>.chargify.com/<resource>/<resource_id>/metadata.<format>@
+Method: @GET@
+Formats: JSON, XML
+Optional Parameters: @name@ - If provided, returns only the metadata which match the field name.
+Response: An array of Metadata
+
+Here's an example metadata show @response@:
+
+<pre>
+{
+  "total_count": 1,
+  "current_page": 1,
+  "total_pages": 1,
+  "per_page": 20,
+  "metadata": [
+    {
+      "resource_id": 100000,
+      "name": "Shirt Size"
+      "value": "L"
+    },
+    {
+      "resource_id": 100000,
+      "name": "Color",
+      "value": "Blue"
+    }    
+  ]
+}
+</pre>
+
+h3. Create / Update
+
+URL: @https://<subdomain>.chargify.com/<resource>/<resource_id>/metadata.<format>@
+Method: @POST / PUT@
+Formats: JSON, XML
+Parameters: @name@, @value@ - can be a single item or a list of metadata
+Optional Parameters: @current_name@ - This only applies when you are updating an existing record and you wish to rename the field. Note you must supply @name@ and @current_name@ to rename the field
+Response: An array of Metadata
+
+Here's an example metadata create @request@:
+
+<pre>
+  { 
+    "metadata": {
+      "name": "Color",
+      "value": "Blue"
+    } 
+  }
+</pre>
+
+Create a multipe metadata in one @request@:
+
+<pre>
+  {
+    "metadata": [
+      {"name": "Color", "value": "Blue"},
+      {"name": "Something", "value": "Useful"}
+    ]
+  }
+</pre>
+
+Say a record with the name "Color" exists and you wish to rename it to "Shirt Color" below is an example @request@:
+
+
+<pre>
+  {
+    "metadata": {
+      "current_name": "Color", "name": "Shirt Color", "value": "Blue"
+    }
+  }
+</pre>
+
+Here's an example metadata create @response@:
+
+<pre>
+[
+    {
+        "name": "Color",
+        "resource_id": 100000,
+        "value": "Blue"
+    },
+    {
+        "name": "Something",
+        "resource_id": 100000,
+        "value": "Useful"
+    }
+]
+</pre>
+
+h3. Delete
+
+URL: @https://<subdomain>.chargify.com/<resource>/<resource_id>/metadata.<format>?name=<name>@
+Method: @DELETE@
+Formats: JSON, XML
+Query Parameter: @name@
+Response: blank use response code 200 for successful, and 404 for unsuccessful
+
+For instance if you wanted to delete the metadata for customer 99 named @weight@ you would do:
+
+@https://my-subdomain.chargify.com/customers/99/metadata.json?name=weight@
+
+h2. Pagination
+
+Results are paginated and return 30 responses per page.  Get additional pages by passing a `page` parameter:
+
+<pre>
+https://[@subdomain].chargify.com/subscriptions/99/metadata.json?page=3
+</pre>
+
