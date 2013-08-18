@@ -1,22 +1,14 @@
 Chargify Metafields are used to add meaningful attributes to subscription and customer resources.
-<<<<<<< HEAD
 Metafield are the place where you will set up your resource to accept additional data. It is scoped to the site instead of a specific customer or subscription. Think of it as the key, and Metadata as the value on every record.
 
 p(note). It is possible to create Metafields "on the fly" when you create your Metadata - if a non-existant @name@ is passed when creating Metadata, a Metafield for that key will be automatically created.  The Metafield API, however, gives you more control over your "keys".
 
 p(warning). Metafield Limitations: Each site is limited to 200 unique Metafields (i.e. keys, or names) per-resource.
-=======
-Metafield are the place where you will set up your resource to accept additional data. It is scoped to the siet instead of a specific customer or subscription. Think of it as the key, and Metadata as the value on every record.
->>>>>>> fist pass at metafield/metadata documentation
 
 The following fields are returned from GET operations.
 
 * @name@ - The name of the attribute that is added to the resource.
-<<<<<<< HEAD
 * @scope@ - Reserved for future use.
-=======
-* @scope@ - Limits where the attribute will be displayed. Can be empty or csv.
->>>>>>> fist pass at metafield/metadata documentation
 * @data_count@ - The number of metadata that are associated to this metafield.
 
 h2. Methods
@@ -42,11 +34,7 @@ Here's an example metafield list @response@:
   "metafields": [
     {
         "name": "Shirt Size",
-<<<<<<< HEAD
         "scope": null,
-=======
-        "scope": "csv",
->>>>>>> fist pass at metafield/metadata documentation
         "data_count": 99
     }
   ]
@@ -58,11 +46,7 @@ h3. Create
 URL: @https://<subdomain>.chargify.com/<resource>/metafields.<format>@
 Method: @POST/PUT@
 Formats: JSON, XML
-<<<<<<< HEAD
 Parameters: @name@
-=======
-Parameters: @name@, @scope@
->>>>>>> fist pass at metafield/metadata documentation
 Optional Parameters: @current_name@ - This only applies when you are updating an existing record and you wish to rename the field. Note you must supply @name@ and @current_name@ to rename the field
 Response: An array of Metafields
 
@@ -72,11 +56,7 @@ Here's an example metafields create @request@:
   { 
     "metafields": {
       "name": "Color",
-<<<<<<< HEAD
       "scope": null
-=======
-      "scope": "csv"
->>>>>>> fist pass at metafield/metadata documentation
     } 
   }
 </pre>
@@ -86,11 +66,7 @@ Create a multipe metafields in one @request@:
 <pre>
   {
     "metafields": [
-<<<<<<< HEAD
       {"name": "Color"},
-=======
-      {"name": "Color", "scope": "csv"},
->>>>>>> fist pass at metafield/metadata documentation
       {"name": "Brand"}
     ]
   }
