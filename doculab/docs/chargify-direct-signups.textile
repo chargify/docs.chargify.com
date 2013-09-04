@@ -8,7 +8,7 @@ Each of these parameters should be nested within the @signup@ key, i.e. @signup[
 | @product[id]@ | |
 | @product[handle]@ | |
 | @components[<component_id>]@ | Sets the initial allocation for component with ID given by @<component_id>@.  This can be repeated for each component_id you wish to set. |
-| @customer][id]@ | |
+| @customer[id]@ | |
 | @customer[reference]@ | |
 | @customer[first_name]@ | |
 | @customer[last_name]@ | |
