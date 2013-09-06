@@ -74,6 +74,10 @@ Doculab::TableOfContents.define do
     page "API Code Samples & Libraries", :permalink => "api-code"
   end
 
+  section "API v2 (Beta) Basics" do
+    page "API v2 Introduction"
+  end
+
   section "API v1 Resources" do
     page "API: Adjustments"
     page "API: Allocations"
