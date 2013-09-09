@@ -42,6 +42,8 @@ GEM
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    gist (4.1.1)
+      json
     i18n (0.5.0)
     json (1.7.6)
     mail (2.2.19)
@@ -80,6 +82,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.35)
+    urlify (0.2.2)
 
 PLATFORMS
   ruby
@@ -87,5 +90,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth (>= 4.2.9)
   doculab!
+  gist (= 4.1.1)
   rails (= 3.0.19)
   rdiscount (= 1.6.8)
+  urlify (= 0.2.2)

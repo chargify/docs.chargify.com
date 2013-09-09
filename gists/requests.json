@@ -1,0 +1,16 @@
+{
+  "endpoint": "http://api.lvh.me:3000",
+  "calls":
+    [
+      {
+        "verb": "GET",
+        "url": "/api/v2/products",
+        "params": {}  
+      },
+      {
+        "verb": "GET",
+        "url": "/api/v2/sites",
+        "params": {}
+      }
+    ]
+}

@@ -1,0 +1,152 @@
+{
+    "result": {
+        "status_code": 200,
+        "result_code": 2000,
+        "errors": [
+
+        ],
+        "total_count": 4,
+        "current_page": 1,
+        "total_pages": 1
+    },
+    "meta": {
+        "status_code": 200,
+        "result_code": 2000,
+        "errors": [
+
+        ],
+        "total_count": 4,
+        "current_page": 1,
+        "total_pages": 1
+    },
+    "products": [
+        {
+            "id": 100000,
+            "name": "Free",
+            "handle": "free",
+            "description": "Manage 10 projects at once\nUnlimited users\nHigh-grade encryption and backups\nMoney back guarantee",
+            "accounting_code": null,
+            "price_in_cents": 0,
+            "interval": 1,
+            "interval_unit": "month",
+            "initial_charge_in_cents": null,
+            "expiration_interval": null,
+            "expiration_interval_unit": null,
+            "trial_price_in_cents": null,
+            "trial_interval": null,
+            "trial_interval_unit": null,
+            "return_url": null,
+            "return_params": null,
+            "request_credit_card": true,
+            "require_credit_card": false,
+            "created_at": "2013-08-23T14:39:41-04:00",
+            "updated_at": "2013-08-23T14:39:41-04:00",
+            "archived_at": null,
+            "update_return_url": null,
+            "product_family": {
+                "id": 100000,
+                "name": "Acme Projects",
+                "handle": "acme-projects",
+                "accounting_code": null,
+                "description": "Smart project management for small teams.",
+                "url": "http://api.chargify.dev/api/v2/product_families/100000.json"
+            }
+        },
+        {
+            "id": 100001,
+            "name": "Basic",
+            "handle": "basic",
+            "description": "Manage 10 projects at once\nUnlimited users\nHigh-grade encryption and backups\nMoney back guarantee",
+            "accounting_code": null,
+            "price_in_cents": 2900,
+            "interval": 1,
+            "interval_unit": "month",
+            "initial_charge_in_cents": null,
+            "expiration_interval": null,
+            "expiration_interval_unit": null,
+            "trial_price_in_cents": 0,
+            "trial_interval": 1,
+            "trial_interval_unit": "month",
+            "return_url": null,
+            "return_params": null,
+            "request_credit_card": true,
+            "require_credit_card": null,
+            "created_at": "2013-08-23T14:39:41-04:00",
+            "updated_at": "2013-08-23T14:39:41-04:00",
+            "archived_at": null,
+            "update_return_url": null,
+            "product_family": {
+                "id": 100000,
+                "name": "Acme Projects",
+                "handle": "acme-projects",
+                "accounting_code": null,
+                "description": "Smart project management for small teams.",
+                "url": "http://api.chargify.dev/api/v2/product_families/100000.json"
+            }
+        },
+        {
+            "id": 100002,
+            "name": "Pro",
+            "handle": "pro",
+            "description": "Manage 10 projects at once\r\nUnlimited users\r\nHigh-grade encryption and backups\r\nMoney back guarantee",
+            "accounting_code": "",
+            "price_in_cents": 9900,
+            "interval": 1,
+            "interval_unit": "month",
+            "initial_charge_in_cents": null,
+            "expiration_interval": null,
+            "expiration_interval_unit": "never",
+            "trial_price_in_cents": null,
+            "trial_interval": null,
+            "trial_interval_unit": "month",
+            "return_url": "",
+            "return_params": "",
+            "request_credit_card": true,
+            "require_credit_card": false,
+            "created_at": "2013-08-23T14:39:41-04:00",
+            "updated_at": "2013-09-05T22:58:29-04:00",
+            "archived_at": null,
+            "update_return_url": "",
+            "product_family": {
+                "id": 100000,
+                "name": "Acme Projects",
+                "handle": "acme-projects",
+                "accounting_code": null,
+                "description": "Smart project management for small teams.",
+                "url": "http://api.chargify.dev/api/v2/product_families/100000.json"
+            }
+        },
+        {
+            "id": 100003,
+            "name": "Super Duper",
+            "handle": "super-duper",
+            "description": "Manage 10 projects at once\nUnlimited users\nHigh-grade encryption and backups\nMoney back guarantee",
+            "accounting_code": null,
+            "price_in_cents": 19900,
+            "interval": 1,
+            "interval_unit": "month",
+            "initial_charge_in_cents": null,
+            "expiration_interval": null,
+            "expiration_interval_unit": null,
+            "trial_price_in_cents": null,
+            "trial_interval": null,
+            "trial_interval_unit": null,
+            "return_url": null,
+            "return_params": null,
+            "request_credit_card": true,
+            "require_credit_card": null,
+            "created_at": "2013-08-23T14:39:41-04:00",
+            "updated_at": "2013-08-23T14:39:41-04:00",
+            "archived_at": null,
+            "update_return_url": null,
+            "product_family": {
+                "id": 100001,
+                "name": "Acme Clowns",
+                "handle": "acme-clowns",
+                "accounting_code": null,
+                "description": "Smart clown management for chuckling teams.",
+                "url": "http://api.chargify.dev/api/v2/product_families/100001.json"
+            }
+        }
+    ]
+}
