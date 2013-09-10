@@ -1,0 +1,88 @@
+{
+    "result": {
+        "status_code": 200,
+        "result_code": 2000,
+        "errors": [
+
+        ],
+        "total_count": 2,
+        "current_page": 1,
+        "total_pages": 1
+    },
+    "meta": {
+        "status_code": 200,
+        "result_code": 2000,
+        "errors": [
+
+        ],
+        "total_count": 2,
+        "current_page": 1,
+        "total_pages": 1
+    },
+    "products": [
+        {
+            "id": 1,
+            "name": "Developer",
+            "handle": "developer",
+            "description": null,
+            "accounting_code": null,
+            "price_in_cents": 0,
+            "interval": 1,
+            "interval_unit": "month",
+            "initial_charge_in_cents": null,
+            "expiration_interval": null,
+            "expiration_interval_unit": null,
+            "trial_price_in_cents": null,
+            "trial_interval": null,
+            "trial_interval_unit": null,
+            "return_url": null,
+            "return_params": null,
+            "request_credit_card": true,
+            "require_credit_card": false,
+            "created_at": "2013-08-23T14:39:24-04:00",
+            "updated_at": "2013-08-23T14:39:26-04:00",
+            "archived_at": null,
+            "update_return_url": null,
+            "product_family": {
+                "id": 1,
+                "name": "Chargify",
+                "handle": "chargify",
+                "accounting_code": null,
+                "description": null,
+                "url": "http://api.chargify.dev/api/v2/product_families/1.json"
+            }
+        },
+        {
+            "id": 3,
+            "name": "Bootstrapper",
+            "handle": "bootstrapper",
+            "description": null,
+            "accounting_code": null,
+            "price_in_cents": 3900,
+            "interval": 1,
+            "interval_unit": "month",
+            "initial_charge_in_cents": null,
+            "expiration_interval": null,
+            "expiration_interval_unit": null,
+            "trial_price_in_cents": null,
+            "trial_interval": null,
+            "trial_interval_unit": null,
+            "return_url": null,
+            "return_params": null,
+            "request_credit_card": true,
+            "require_credit_card": true,
+            "created_at": "2013-08-23T14:39:25-04:00",
+            "updated_at": "2013-08-23T14:39:26-04:00",
+            "archived_at": null,
+            "update_return_url": null,
+            "product_family": {
+                "id": 1,
+                "name": "Chargify",
+                "handle": "chargify",
+                "accounting_code": null,
+                "description": null,
+                "url": "http://api.chargify.dev/api/v2/product_families/1.json"
+            }
+        }
+    ]
+}

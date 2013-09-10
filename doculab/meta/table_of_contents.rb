@@ -104,7 +104,8 @@ Doculab::TableOfContents.define do
   end
   
   section "API v2 Resources" do
-    page "API: Call"
+    page "API v2: Call"
+    page "API v2: Products"
   end
 
   section "3rd Party Integrations" do
