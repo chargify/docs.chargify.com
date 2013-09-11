@@ -30,31 +30,6 @@ All of the product attribute fields are returned from GET (read) operations, and
 * @updated_at@ Timestamp indicating when this product was last updated
 * @archived_at@ Timestamp indicating when this product was archived
 
-h2. Input Attributes (Create)
-
-* @price_in_cents@ The product price, in integer cents
-* @name@ The product name
-* @handle@ The product API handle
-* @description@ The product description
-* @product_family_id@ The ID of the product family to which the product belongs.
-* @accounting_code@ The accounting code (has no bearing in Chargify, may be used within your app)
-* @interval_unit@ A string representing the interval unit for this product, either @month@ or @day@
-* @interval@ The numerical interval.  i.e. an @interval@ of '30' coupled with an @interval_unit@ of 'day' would mean this product would renew every 30 days
-* @initial_charge_in_cents@ The up front charge you have specified.
-* @trial_price_in_cents@ The price of the trial period for a subscription to this product, in integer cents.
-* @trial_interval@ A numerical interval for the length of the trial period of a subscription to this product.  See the description of @interval@ for a description of how this value is coupled with an interval unit to calculate the full interval
-* @trial_interval_unit@ A string representing the trial interval unit for this product, either @month@ or @day@
-* @expiration_interval@ A numerical interval for the length a subscription to this product will run before it expires.   See the description of @interval@ for a description of how this value is coupled with an interval unit to calculate the full interval
-* @expiration_interval_unit@ A string representing the trial interval unit for this product, either @month@ or @day@
-* @return_url@ The URL a buyer is returned to after successful purchase.  See the section on "Return URLs and Parameters" [here](/product-options#return-url-and-parameters)
-* @return_params@ The parameters string we will use in constructing your return URL.  See the section on "Return URLs and Parameters" "here":/product-options#return-url-and-parameters
-* @require_credit_card@ Boolean
-* @request_credit_card@ Boolean
-* @require_billing_address@ Boolean
-* @request_billing_address@ Boolean
-* @taxable@ Boolean
-* @trial_type@ The type of trial for this product, either @no_obligation@ or @payment_expected@.
-
 h2. Methods
 
 h3. List
@@ -79,3 +54,15 @@ Response: An single Product
 <script src="http://gist.github.com/6515075.js?file=api-v2-products-1-http.txt"></script>
 <script src="http://gist.github.com/6515075.js?file=api-v2-products-1-oauth.txt"></script>
 <script src="http://gist.github.com/6515075.js?file=api-v2-products-1.json"></script>
+
+h3. Read/Show All Products In Product Family
+
+URL: @https://api.chargify.com/api/v2/products.json@  
+Method: @GET@  
+Required Parameters: @product_family_id@
+
+Response: An array of Products in a Product Family
+
+<script src="http://gist.github.com/6515075.js?file=api-v2-products-product-family-http.txt"></script>
+<script src="http://gist.github.com/6515075.js?file=api-v2-products-product-family-oauth.txt"></script>
+<script src="http://gist.github.com/6515075.js?file=api-v2-products-product-family.json"></script>
