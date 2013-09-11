@@ -1,0 +1,76 @@
+The Transactions API allows you to view a list of all transactions both for a site and for an individual subscription.
+
+h2. URIs
+
+|_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
+| Transactions<br/>@/transactions@ | List transactions | - | - | - |
+| Transaction<br/>@/transactions/<id>@ | Read transaction | - | - | - |
+
+h2. Transaction Types
+
+The following is a list of available transaction types
+
+* @charge@ 
+* @refund@ 
+* @payment@
+* @credit@ 
+* @payment_authorization@ 
+* @info@
+* @adjustment@ 
+
+h3(#charge-kinds). Charge Kinds (Subtypes)
+
+* @one_time@: A one-time charge, captured immediately from payment source (credit card)
+* @delay_capture@: A one-time charge accrued to the subscription to be captured at next normal billing/renewal
+* @initial@: A initial/upfront/startup charge added according to the product setup settings
+* @metered@ or @metered_component@: A charge from usage of a metered component
+* @quantity_based_component@: A charge from a quantity-based component allocation
+* @on_off_component@: A charge from an on/off component allocation
+* @tax@: A calculated tax charge
+* @baseline@:  The product charge
+
+h2. Transaction Attributes
+
+All of the transaction attribute fields are returned from GET (read) operations, and all are read only at this time.
+
+* @transaction_type@ The type of the transaction, see above
+* @id@ The unique identifier for the Transaction
+* @amount_in_cents@ The amount in cents of the Transaction
+* @created_at@ Timestamp indicating when the Transaction was created
+* @starting_balance_in_cents@ The initial balance on the subscription before the Transaction has been processed
+* @ending_balance_in_cents@ The remaining balance on the subscription after the Transaction has been processed
+* @memo@ A note about the Transaction
+* @subscription_id@ The unique identifier for the associated Subscription
+* @product_id@ The unique identifier for the product associated with the Subscription
+* @success@ Whether or not the Transaction was successful 
+* @payment_id@ The unique identifier for the payment being explicitly refunded (in whole or in part) by this transaction. Will be null for all transaction types except for "Refund". May be null even for Refunds. For partial refunds, more than one Refund transaction may reference the same payment_id.
+* @kind@ The specific "subtype" for the @transaction_type@
+* @gateway_transaction_id@ The transaction ID from the remote gateway (i.e. Authorize.Net), if one exists
+
+h2. Methods
+
+h3. List transactions for a Site
+
+URL: @https://api.chargify.com/transactions.json@
+Method: @GET@  
+Optional Parameters (via query string):
+
+* @page@ The page number and number of results used for pagination. By default results are paginated 20 per page.
+
+Response: An array of Transactions  
+
+<script src="http://gist.github.com/6525419.js?file=api-v2-transactions-http.text"></script>
+<script src="http://gist.github.com/6525419.js?file=api-v2-transactions-oauth.text"></script>
+<script src="http://gist.github.com/6525419.js?file=api-v2-transactions.json"></script>
+
+h3. Show transaction
+
+URL: @https://api.chargify.com/api/v2/transactions/<id>.json@  
+Method: @GET@  
+Required Parameters: @id@
+
+Response: A single Transaction
+
+<script src="http://gist.github.com/6525419.js?file=api-v2-transactions-1-http.text"></script>
+<script src="http://gist.github.com/6525419.js?file=api-v2-transactions-1-oauth.text"></script>
+<script src="http://gist.github.com/6525419.js?file=api-v2-transactions-1.json"></script>

@@ -1,6 +1,12 @@
-h2. Product Attributes
-
 All of the product attribute fields are returned from GET (read) operations, and all are read only at this time.
+
+h2. URIs
+
+|_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
+| Products<br/>@/products@ | List products | - | - | - |
+| Product<br/>@/products/<id>.json@ | Read product | - | - | - |
+
+h2. Product Attributes
 
 * @price_in_cents@ The product price, in integer cents
 * @name@ The product name

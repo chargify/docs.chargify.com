@@ -1,3 +1,7 @@
 |_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
 | Products<br/>@/products@ | List products | - | - | - |
-| Product<br/>@/products/<x>.json@ | Read product | - | - | - |
+| Product<br/>@/products/<id>.json@ | Read product | - | - | - |
+| Transactions<br/>@/transactions@ | List transactions | - | - | - |
+| Transaction<br/>@/transactions/<id>@ | Read transaction | - | - | - |
+
+
