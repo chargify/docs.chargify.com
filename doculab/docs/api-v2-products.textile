@@ -36,6 +36,7 @@ h3. List
 
 URL: @https://api.chargify.com/api/v2/products.json@  
 Method: @GET@
+Optional Parameters: @page@
 
 Response: An array of Products  
 

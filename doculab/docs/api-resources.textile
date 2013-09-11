@@ -1,5 +1,5 @@
 |_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
-| Subscriptions<br/>@/subscriptions@ | List subscriptions | Create new subscription | - | - |
+| Subscriptions<br/>@/subscriptions@ | List products | Create new subscription | - | - |
 | Subscription<br/>@/subscriptions/<x>@ | Read subscription | - | Update subscription | Cancel subscription |
 | Subscription Charges<br/>@/subscription/<x>/charges@ | - | Create one-time charge | - | - |
 | Product Family Components<br/>@/product_families/<x>/components@ | List components available on a given Product Family | - | - | - |

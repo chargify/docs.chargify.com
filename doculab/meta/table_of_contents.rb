@@ -76,6 +76,7 @@ Doculab::TableOfContents.define do
 
   section "API v2 (Beta) Basics" do
     page "API v2 Introduction"
+    page "API v2 Resources"
   end
 
   section "API v1 Resources" do
