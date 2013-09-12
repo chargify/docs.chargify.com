@@ -101,6 +101,7 @@ Doculab::TableOfContents.define do
   
   section "API v2 Resources" do
     page "API: Call"
+    page "API: Card Update"
   end
 
   section "3rd Party Integrations" do
