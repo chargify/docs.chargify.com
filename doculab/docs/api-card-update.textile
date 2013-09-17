@@ -1,0 +1,43 @@
+Updating a Subscription’s Payment Profile with new information, or creating a new Payment Profile for a Subscription where none currently exists.  
+
+h2. Input Attributes
+
+In order for your request to be processed, you must set up Secure Parameters.  See "Chargify Direct Introduction - Secure Parameters":chargify-direct-introduction#secure-parameters for detailed information on how to authenticate requests to this endpoint.
+
+Note: the @subscription_id@ MUST be part of your @secure[data]@ parameter for the card update request to be processed.
+
+* @first_name@ (required) First name of the cardholder.
+* @last_name@ (required) Last name of the cardholder.
+* @card_number@ (required) The credit card number. 
+* @cvv@ (optional) The 3 or 4 digit card verification value. 
+* @expiration_month@ (required) The two-digit card expiration month.
+* @expiration_year@ (required) The four-digit card expiration year.
+
+The resource parameters are nested beneath a key named @payment_profile@, and are similar to the normal API inputs for the resource.
+
+<pre><code><form method="post" action="https://api.chargify.com/api/v2/subscriptions/<subscription.id>/card_update">
+  <!-- Secure parameters would go here here -->
+  <!-- For brevity, this form contains no labels, only inputs -->
+  <input type="text" name="payment_profile[first_name]" />
+  <input type="text" name="payment_profile[last_name]" />
+  <input type="text" name="payment_profile[card_number]" />
+  <input type="text" name="payment_profile[cvv]" />
+  <input type="text" name="payment_profile[expiration_month]" />
+  <input type="text" name="payment_profile[expiration_year]" />
+  <input type="submit" value="Update" />
+</form></code></pre>
+
+
+h2. Output Attributes
+
+When Chargify redirects back to your "redirect URI":chargify-direct-introduction#redirection-uri, it will include the following query-string parameters:
+
+* @api_id@ The API ID that made the original request
+* @timestamp@ The reflected or auto-generated timestamp
+* @nonce@ The reflected or auto-generated nonce
+* @status_code@ An HTTP status code that represents the status of the request
+* @result_code@ A Chargify-specific result code, that is related to the status code but may give more specific information about the result of your request
+* @call_id@ The ID for the stored representation of the original Call (form post). The Call may be fetched via the API for full response information (for both success and fail scenarios).
+* @signature@ The HMAC-SHA1 hexdigest of the previous parameters, to verify their integrity
+
+See "Response Signature":chargify-direct-introduction#response-parameters for more information about these attributes and what you can use them for.

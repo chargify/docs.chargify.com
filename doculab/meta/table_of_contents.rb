@@ -101,14 +101,17 @@ Doculab::TableOfContents.define do
   
   section "API v2 Resources" do
     page "API: Call"
+    page "API: Card Update"
   end
   
   section "API v2.1 Beta" do
     page "API v2.1 Introduction", permalink: "api-v21-introduction" 
+    page "API v2.1 Resources", permalink: "api-v21-resources"
   end
   
   section "API v2.1 Resources" do
     page "API v2.1 Mirror", permalink: "api-v21-mirror"  
+    page "API v2.1 Signups", permalink: "api-v21-signups"
   end
 
   section "3rd Party Integrations" do

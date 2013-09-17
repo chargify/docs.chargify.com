@@ -1,0 +1,4 @@
+|_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
+| Mirror<br/>@/mirror@ | Mirror API credentials | Mirror API credentials<br/>and request params | - | - |
+| Signups<br/>@/signups@ | - | Create new signup | - | - |
+ 

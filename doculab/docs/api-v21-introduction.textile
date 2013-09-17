@@ -1,11 +1,10 @@
 The Chargify API allows you to interact with our system programmatically from your own application.
  
-The API attempts to conform to the "RESTful":http://en.wikipedia.org/wiki/Representational_State_Transfer design principles. You interact with the resources exposed via the API by accessing resource collection and element URIs using the HTTP verbs (GET, POST, PUT, and DELETE).  Chargify API v2.1 accepts JSON and form-encoded parameters, and returns JSON via the API.
+The API attempts to conform to the "RESTful":http://en.wikipedia.org/wiki/Representational_State_Transfer design principles. You interact with the resources exposed via the API by accessing resource collection and element URIs using the HTTP verbs (GET, POST, PUT, and DELETE).  Chargify API v2.1 accepts JSON and form-encoded parameters, and returns only JSON.
 
 h3. Authentication
 
 Authentication is implemented as HTTP Basic Authentication or OAuth over SSL (https), as described in "API Authentication":api-v21-authentication
-
 
 h3. URL
 
@@ -34,6 +33,6 @@ POST and PUT request data may be formatted as either FORM data (@application/x-w
 
 h3. Debugging
 
-If you're having difficulty executing a request via our API, try the simplest thing and attempt your request via the curl command-line tool, as shown in the below example.  Add the @--verbose@ flag to your request to receive even more debugging information.
+If you're having difficulty executing a request via our API, try the simplest thing and attempt your request via the curl command-line tool.  You can send a request to the "mirror":/api-v21-mirror endpoint to ensure you are authenticated, and that the parameters you are passing are formatted in the way you expect. Add the @--verbose@ flag to your request to receive even more debugging information.
 
 Another handy tool is "RequestBin":http://requestb.in/  You could create a RequestBin and send your request to them instead of us to see visually what it is you're sending, if you're not sure.
