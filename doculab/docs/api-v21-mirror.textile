@@ -1,0 +1,36 @@
+h2. URI/Method
+
+|_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
+| Mirror<br/>@/mirror@ | Mirror API credentials | Mirror API credentials<br/>and request params | - | - |
+  
+h2. Mirror Input Attributes
+
+The mirror endpoint serves as a way of ensuring your API credentials are accepted by Chargify.
+
+For @GET@ requests sent to @/mirror@, API v2.1 will return a @context@ object that will contain your @api_id@, and an @authenticated@ flag which will be @true@/@false@ based on whether your authentication credentials (either HTTP Auth or OAuth token) are valid.
+
+For @POST@ requests, API v2.1 returns the same @context@ object, and also returns a @mirror@ object, which contains any parameters you've sent to API v2.1. 
+
+h2. Mirror Output Attributes
+
+The following attributes are returned on a @/mirror@ @GET@/@POST@ operation.
+
+* @api_id@ The API ID associated with the credentials used.
+* @authenticated@ A @true@/@false@ value indicating whether or not the supplied credentials are valid.
+* @mirror@ Any parameters you've passed to this endpoint (for @POST@ requests only).
+
+h2. Examples
+
+URL: @https://api.chargify.com/api/v2.1/mirror@  
+Method: @GET@  
+**Usage Examples:**  
+<script src="http://gist.github.com/b297d5a2e0363cd11fab.js?file=get-mirror.txt"></script>
+<script src="http://gist.github.com/b297d5a2e0363cd11fab.js?file=get-mirror.json"></script>
+
+URL: @https://api.chargify.com/api/v2.1/mirror@  
+Method: @POST@  
+**Usage Examples:**  
+<script src="http://gist.github.com/b297d5a2e0363cd11fab.js?file=post-mirror.txt"></script>
+<script src="http://gist.github.com/b297d5a2e0363cd11fab.js?file=post-mirror.json"></script>
+
+

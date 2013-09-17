@@ -102,6 +102,14 @@ Doculab::TableOfContents.define do
   section "API v2 Resources" do
     page "API: Call"
   end
+  
+  section "API v2.1 Beta" do
+    page "API v2.1 Introduction", permalink: "api-v21-introduction" 
+  end
+  
+  section "API v2.1 Resources" do
+    page "API v2.1 Mirror", permalink: "api-v21-mirror"  
+  end
 
   section "3rd Party Integrations" do
     page "Zferral Integration"
