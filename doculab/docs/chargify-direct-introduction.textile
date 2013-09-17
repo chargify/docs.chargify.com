@@ -171,6 +171,7 @@ Updating a Subscription's Payment Profile with new information.
 
 Resource URI: @https://api.chargify.com/api/v2/subscriptions/<subscription.id>/card_update@
 
+See "API: Card Update":api-card-update for more details.
 
 h2(#resource-parameters). Resource Parameters
 
