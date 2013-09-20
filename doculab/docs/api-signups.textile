@@ -2,14 +2,14 @@ h2. URI/Method
 
 |_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
 | Signups<br/>@signups@ | - | Create new signup | - | - |
-  
+
 h2. Signup Input Attributes
 
 When creating a signup, you must specify a @product@, @customer@, and @payment_profile@, all within the @signup@ object.  Credit card details may be required, depending on the options for the Product being subscribed (see "Product Options":/product-options).
 
 The product may be specified by either @product[id]@ or by @product[handle]@ (API Handle).
 
-* @product@ 
+* @product@
 ** @id@ The id of the product your customer is signing up for
 ** @handle@ The API handle of the product your customer is signing up for
 * @customer@
@@ -39,6 +39,10 @@ The product may be specified by either @product[id]@ or by @product[handle]@ (AP
 ** @billing_zip@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address zip code (i.e. "12345"). _This value is merely passed through to the payment gateway_.
 ** @billing_country@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address country, preferably in "ISO 3166-1 alpha-2":http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 format (i.e. "US"). _This value is merely passed through to the payment gateway. Some gateways require country codes in a specific format. Please check your gateway's documentation._
 
+* @components@
+
+Components are attached/allocated to the signup by including the @component@ key.  The sub-keys should be component IDs, and the values are the allocated quantities.  See examples below.
+
 h2. Signup Request
 
 h3. Via Chargify Direct
@@ -52,6 +56,18 @@ Method: @POST@
 
 <script src="http://gist.github.com/8d9ed3261405b94b0e1f.js?file=sample-html-form.html"></script>
 
+h4. Chargify Direct Example with Components
+
+In order to set components via a Chargify Direct form, you can create form elements similar to the following:
+
+h5. Component Allocation
+
+Assume that there is a Quantity-based Component called "Widgets" with ID 1234 and an On/Off Component with ID 5678 called "Support"
+
+You would like to allow your users to select 1 - 5 Widgets, and turn support On or Off.
+
+<script src="https://gist.github.com/moklett/1b4b587447682da4b39e.js?file=sample-html-form-with-components.html"></script>
+
 h3. Via JSON
 
 New signups can also be created by sending JSON to the same endpoint. If you are going to use this method, you must set the @Content-Type@ header of your HTTP @POST@ request to @application/json@, otherwise the request will be processed as a Chargify Direct request.
@@ -62,7 +78,9 @@ URL: @https://api.chargify.com/api/v2.1/signups@
 Method: @POST@
 Content-Type: @application/json@
 
-<script src="http://gist.github.com/8d9ed3261405b94b0e1f.js?file=signup-request.json"></script>
+<script src="http://gist.github.com/1b4b587447682da4b39e.js?file=signup-request.json"></script>
+
+Note that the above example shows setting a Quantity-based Component with ID "1234" to an allocated quantity of 4, and an On/Off Component with ID "5678" to "Off".
 
 h2. Signup Response
 
