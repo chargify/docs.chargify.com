@@ -51,7 +51,7 @@ There are two ways to create a new signup via the Chargify API v2. The first is 
 
 h4. Chargify Direct Example Request
 
-URL: @https://api.chargify.com/api/v2.1/signups@
+URL: @https://api.chargify.com/api/v2/signups@
 Method: @POST@
 
 <script src="http://gist.github.com/8d9ed3261405b94b0e1f.js?file=sample-html-form.html"></script>
@@ -74,7 +74,7 @@ New signups can also be created by sending JSON to the same endpoint. If you are
 
 h4. JSON Example Request
 
-URL: @https://api.chargify.com/api/v2.1/signups@
+URL: @https://api.chargify.com/api/v2/signups@
 Method: @POST@
 Content-Type: @application/json@
 
