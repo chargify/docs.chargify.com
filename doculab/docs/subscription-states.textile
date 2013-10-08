@@ -63,4 +63,4 @@ Reserved and currently unused. May be used in the future for subscriptions that 
 
 h4. trial_ended
 
-A subscription in a @trial_ended@ state is a subscription which completed a no-obligation trial and did not have a card on file at the expiration of the trial period.
+A subscription in a @trial_ended@ state is a subscription which completed a no-obligation trial and did not have a card on file at the expiration of the trial period, and had a balance > 0. See "Product Pricing - No Obligation Trials":/product-pricing#no-obligation-trials for more details.
