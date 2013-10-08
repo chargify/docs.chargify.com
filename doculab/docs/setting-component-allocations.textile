@@ -2,7 +2,7 @@ In order for Chargify to assess charges for your Components, you must report to 
 
 Components get "post-billed" (after usage) on the next billing cycle date, so if your Customer subscribed to the parent Product on the 23rd of the month, then he'll get billed for any Components on the 23rd of each month, assuming the product is on monthly billing cycle.  Chargify simply looks at the quantity on the billing date and then bills accordingly.
 
-Future releases may allow for proration of added/removed units, averaging of the count, "high-water mark", 95th percentile, etc. There are a number of approaches we've heard about that will be interesting to consider.
+Future releases may allow for averaging of the count, "high-water mark", 95th percentile, etc. There are a number of approaches we've heard about that will be interesting to consider.
 
 
 h4. Reporting Metered Component usage
@@ -42,3 +42,35 @@ You report the status if On/Off Components (i.e. "enabled" or not) similarly to 
 On/Off components can be toggled using the Admin UI by selecting the component from the "Components (Line-Items)" tab when viewing a subscription.
 
 The API calls required to report allocated quantities are detailed in "API: Quantity Alocations":/api-quantity-allocations (they behave much like Quantity-based allocations).
+
+h4. Proration
+
+Chargify supports proration for Quantity-based and On/Off components. Depending on your 'proration scheme', changes to the allocated quantity during a period will result in either a charge or a credit to the subscription.
+
+h5. Proration 'Upgrades' vs. 'Downgrades'.
+
+When changing the allocation of a component, Chargify considers the change an 'upgrade' if the new computed cost is greater than the previous cost, and a 'downgrade' if it is less.
+
+h5. Proration Schemes
+
+!{width:640px}/images/doculab/prorated-components-2.png!
+
+The action that Chargify takes when a prorated allocation occurs is called the 'proration scheme'. The default scheme is defined under Site Settings, but it can also be overriden at the time that the allocation is created, both through the API as well as the Admin UI. Because it is often unclear at the time whether the change will be an upgrade or a downgrade, you will set both schemes when the allocation is created.
+
+!{width:640px}/images/doculab/prorated-components-1.png!
+
+The available 'upgrade' schemes are:
+
+* __prorate-delay-capture__: A charge is added for the prorated amount due, but the card is not charged until the subscription's next renewal
+
+* __prorate-attempt-capture__: A charge is added and  we attempt to charge the credit card on file.  If it fails, the charge will be accrued until the next renewal.
+
+* __no-prorate__: No charge is added.
+
+The available 'downgrade' schemes are:
+
+* __prorate__: A credit is added for the amount owed.
+
+* __no-prorate__: No credit is added
+
+*NOTE*: Proration uses the current price of the component as well as the current tax rates. Changes to either may cause the prorated charge/credit to be wrong.

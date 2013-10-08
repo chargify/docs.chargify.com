@@ -4,6 +4,29 @@ Working with this resource, you can:
 
 * "List Allocations":#list-allocations : View the history of the allocated quantity for the component over time
 * "Create an Allocation":#create-an-allocation :  Set a new allocated quantity for the line-item (as an alternative to setting the allocated quantity directly on the Component Line-Item resource)
+* "Create multiple Allocations":#create-multiple-allocations : Change the allocated quantity of multiple components at once
+
+h3. Proration Schemes
+
+Changing the allocated quantity of a component mid-period can result in either a prorated charge or adjustment being applied to the subscription. When creating an allocation via the API, you can pass the *proration_upgrade_scheme* and the *proration_downgrade_scheme* to be applied.
+
+For background information on prorated components and upgrade/downgrade schemes, see: "API: Setting Component Allocations":/setting-component-allocations
+
+The available 'upgrade' schemes are:
+
+* __prorate-delay-capture__: A charge is added for the prorated amount due, but the card is not charged until the subscription's next renewal
+
+* __prorate-attempt-capture__: A charge is added and  we attempt to charge the credit card on file.  If it fails, the charge will be accrued until the next renewal.
+
+* __no-prorate__: No charge is added.
+
+The available 'downgrade' schemes are:
+
+* __prorate__: A credit is added for the amount owed.
+
+* __no-prorate__: No credit is added
+
+*NOTE*: Proration uses the current price of the component as well as the current tax rates. Changes to either may cause the prorated charge/credit to be wrong.
 
 h2(#list-allocations). List Allocations
 
@@ -22,8 +45,11 @@ An array of allocation objects with the following fields:
 | @component_id@ | The integer component ID for the allocation.  This references a component that you have created in your Product setup |
 | @subscription_id@ | The integer subscription ID for the allocation.  This references a unique subscription in your Site |
 | @quantity@ | The allocated quantity set in to effect by the allocation |
+| @previous_quantity@ | The allocated quantity that was in effect before this allocation was created |
 | @memo@ | The memo passed when the allocation was created |
 | @timestamp@ | The time that the allocation was recorded, in "ISO 8601":http://en.wikipedia.org/wiki/ISO_8601 format and UTC timezone, i.e. @2012-11-20T22:00:37Z@ |
+| @proration_upgrade_scheme@ | The scheme used if the proration was an upgrade. This is only present when the allocation was created mid-period. |
+| @proration_downgrade_scheme@ | The scheme used if the proration was a downgrade. This is only present when the allocation was created mid-period. |
 
 h4. Response Status Codes
 
@@ -41,6 +67,8 @@ h4. Input Fields
 
 | @quantity@ | The allocated quantity to which to set the line-items allocated quantity |
 | @memo@ | (optional) A memo to record along with the allocation |
+| @proration_upgrade_scheme@ | (optional) The scheme used if the proration is an upgrade. Defaults to the site setting if one is not provided. |
+| @proration_downgrade_scheme@ | (optional) The scheme used if the proration is a downgrade. Defaults to the site setting if one is not provided. |
 
 h4. Output
 
@@ -49,8 +77,42 @@ An allocation object with the following fields:
 | @component_id@ | The integer component ID for the allocation.  This references a component that you have created in your Product setup |
 | @subscription_id@ | The integer subscription ID for the allocation.  This references a unique subscription in your Site |
 | @quantity@ | The allocated quantity set in to effect by the allocation |
-| @previous_quantity@ | The allocated quantity that was in effect before this allocation was created (Note: this value is only available in the response from the Allocation creation - it is not available later when listing allocations) |
+| @previous_quantity@ | The allocated quantity that was in effect before this allocation was created |
 | @memo@ | The memo passed when the allocation was created |
+| @proration_upgrade_scheme@ | The scheme used if the proration was an upgrade. This is only present when the allocation was created mid-period. |
+| @proration_downgrade_scheme@ | The scheme used if the proration was a downgrade. This is only present when the allocation was created mid-period. |
+| @timestamp@ | The time that the allocation was recorded, in "ISO 8601":http://en.wikipedia.org/wiki/ISO_8601 format and UTC timezone, i.e. @2012-11-20T22:00:37Z@ |
+
+h4. Response Status Codes
+
+| @201 Created@ | Allocation created successfully |
+| @422 Unprocessable Entity@ | Invalid inputs provided: inspect the errors in the response for details |
+| @401 Unauthorized@ | Authentication credentials were incorrect |
+| @404 Not Found@ | Either no component with the given @comp_id@, or no subscription with given @sub_id@ exists |
+
+h2(#create-multiple-allocations). Create multiple Allocations (JSON only)
+
+<pre><code>POST /subscriptions/<sub_id>/allocations</code></pre>
+
+Creates multiple Allocations, setting the current allocated quantity for each the component and recording a memo. If a proration scheme is provided, the charges that are created will be rolled up into a single payment.
+
+h4. Input Fields
+
+| @allocations@ | An array of allocations, each containing a @component_id@, @quantity@, and @memo@|
+| @proration_upgrade_scheme@ | (optional) The scheme used if the proration is an upgrade. Defaults to the site setting if one is not provided. |
+| @proration_downgrade_scheme@ | (optional) The scheme used if the proration is a downgrade. Defaults to the site setting if one is not provided. |
+
+h4. Output
+
+An array of allocation objects with the following fields:
+
+| @component_id@ | The integer component ID for the allocation.  This references a component that you have created in your Product setup |
+| @subscription_id@ | The integer subscription ID for the allocation.  This references a unique subscription in your Site |
+| @quantity@ | The allocated quantity set in to effect by the allocation |
+| @previous_quantity@ | The allocated quantity that was in effect before this allocation was created |
+| @memo@ | The memo passed when the allocation was created |
+| @proration_upgrade_scheme@ | The scheme used if the proration was an upgrade. This is only present when the allocation was created mid-period. |
+| @proration_downgrade_scheme@ | The scheme used if the proration was a downgrade. This is only present when the allocation was created mid-period. |
 | @timestamp@ | The time that the allocation was recorded, in "ISO 8601":http://en.wikipedia.org/wiki/ISO_8601 format and UTC timezone, i.e. @2012-11-20T22:00:37Z@ |
 
 h4. Response Status Codes
@@ -78,8 +140,11 @@ h4. Response
       "memo":"moving to 7",
       "timestamp":"2012-11-20T22:00:37Z",
       "quantity":7,
+      "previous_quantity":3,
       "component_id":11960,
-      "subscription_id":2585595
+      "subscription_id":2585595,
+      "proration_upgrade_scheme":"no-prorate",
+      "proration_downgrade_scheme":"no-prorate"
     }
   },
   {
@@ -87,8 +152,11 @@ h4. Response
       "memo":null,
       "timestamp":"2012-11-20T21:48:09Z",
       "quantity":3,
+      "previous_quantity":0,
       "component_id":11960,
-      "subscription_id":2585595
+      "subscription_id":2585595,
+      "proration_upgrade_scheme":"no-prorate",
+      "proration_downgrade_scheme":"no-prorate"
     }
   }
 ]
@@ -109,6 +177,7 @@ h4. Response
   <allocation>
     <timestamp>2012-11-20T22:00:37Z</timestamp>
     <quantity type="integer">7</quantity>
+    <previous_quantity type="integer">3</previous_quantity>
     <component_id type="integer">11960</component_id>
     <memo>moving to 7</memo>
     <subscription_id type="integer">2585595</subscription_id>
@@ -116,6 +185,7 @@ h4. Response
   <allocation>
     <timestamp>2012-11-20T21:48:09Z</timestamp>
     <quantity type="integer">3</quantity>
+    <previous_quantity type="integer">0</previous_quantity>
     <component_id type="integer">11960</component_id>
     <memo nil="true"></memo>
     <subscription_id type="integer">2585595</subscription_id>
@@ -158,6 +228,8 @@ h4. Request Data (allocation.json)
 
 <pre><code>{
   "allocation":{
+    "proration_upgrade_scheme": "prorate-attempt-capture",
+    "proration_downgrade_scheme": "no-prorate",
     "quantity":2,
     "memo":"Setting quantity to 2 at customer request"
   }
@@ -178,7 +250,9 @@ h4. Response
     "quantity":2,
     "previous_quantity":18,
     "memo":"Setting quantity to 2 at customer request",
-    "timestamp":"2012-11-20T23:00:08Z"
+    "timestamp":"2012-11-20T23:00:08Z",
+    "proration_upgrade_scheme":"prorate-attempt-capture",
+    "proration_downgrade_scheme":"no-prorate"
   }
 }
 </code></pre>
@@ -205,4 +279,89 @@ h4. Response
 <pre><code>{
   "errors":["Quantity: cannot be blank."]
 }
+</code></pre>
+
+h3. JSON: Create multiple Allocations successfully
+
+h4. Request Data (allocation.json)
+
+<pre><code>{
+  "allocation":{
+    "quantity":2,
+    "memo":"Setting quantity to 2 at customer request"
+  }
+}
+</code></pre>
+
+h4. Request
+
+<pre><code>curl -u <api_key>:X -H "Content-Type:application/json" --data allocation.json https://acme.chargify.com/subscriptions/2585595/components/11960/allocations.json</code></pre>
+
+h4. Response
+
+<pre><code>HTTP/1.1 201 Created</code></pre>
+<pre><code>{
+  "allocation":{
+    "component_id":11960,
+    "subscription_id":2585595,
+    "quantity":2,
+    "previous_quantity":18,
+    "memo":"Setting quantity to 2 at customer request",
+    "timestamp":"2012-11-20T23:00:08Z",
+    "proration_upgrade_scheme":"no-prorate",
+    "proration_downgrade_scheme":"no-prorate"
+  }
+}
+</code></pre>
+
+h2. Examples: Create multiples Allocations
+
+h3. JSON: Create multiple allocations successfully
+
+h4. Request Data (allocation.json)
+
+<pre><code>
+  {
+    "proration_upgrade_scheme": "prorate-attempt-capture",
+    "proration_downgrade_scheme": "no-prorate",
+    "allocations": [
+      { "component_id": 123, "quantity": 10, "memo": "foo" },
+      { "component_id": 456, "quantity": 5, "memo": "bar" },
+    ]
+  }
+</code></pre>
+
+h4. Request
+<pre><code>curl -u <api_key>:X -H "Content-Type:application/json" --data allocation.json https://acme.chargify.com/subscriptions/2585595/allocations.json</code></pre>
+
+
+h4. Response
+
+<pre><code>HTTP/1.1 201 Created</code></pre>
+<pre><code>[
+  {
+    "allocation":{
+      "memo":"foo",
+      "timestamp":"2012-11-20T22:00:37Z",
+      "quantity":10,
+      "previous_quantity":3,
+      "component_id":123,
+      "subscription_id":2585595,
+      "proration_upgrade_scheme":"no-prorate",
+      "proration_downgrade_scheme":"no-prorate"
+    }
+  },
+  {
+    "allocation":{
+      "memo":"bar",
+      "timestamp":"2012-11-20T21:48:09Z",
+      "quantity":5,
+      "previous_quantity":0,
+      "component_id":456,
+      "subscription_id":2585595,
+      "proration_upgrade_scheme":"no-prorate",
+      "proration_downgrade_scheme":"no-prorate"
+    }
+  }
+]
 </code></pre>
