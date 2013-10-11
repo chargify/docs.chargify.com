@@ -20,12 +20,12 @@ There are two trial types to choose from. The trial type determines the outcome 
 
 h4(#no-obligation-trials). No Obligation Trials
 
-At the end of the trial, if a card is on file, the card will be charged and the subscription will transition to @active@ state. If no card is on file at the end of the trial, the following will take place:
+At the end of the trial, if a card is on file, the card will be charged and the subscription will transition to @active@ state if the payment is successful, or @unpaid@ if the payment is declined. If no card is on file at the end of the trial, the following will take place:
 
 * If the subscription has a balance greater than 0, the subscription will transition to @trial_ended@. Chargify will not send any emails or statements.  
-* If the subscription has a balance of 0, or a negative balance, it will be transitioned to a live state. From there:
+* If the subscription has a balance of 0, or a negative balance:
 ** If the balance covers the cost of the product, the subscription will transition to the @active@ state.
-** If the balance does not cover the cost of the product, the subscription will transition to @past_due@ (which is still a live state) and enter the dunning process.
+** If the balance does not cover the cost of the product, the subscription will transition to @trial_ended@. Chargify will not send any emails or statements.
 
 *Payment Expected Trials*
 
