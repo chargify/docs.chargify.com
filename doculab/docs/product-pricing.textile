@@ -20,7 +20,7 @@ There are two trial types to choose from. The trial type determines the outcome 
 
 h4(#no-obligation-trials). No Obligation Trials
 
-At the end of the trial, if a card is on file, the card will be charged and the subscription will transition to @active@ state. If no card is on file at the end of the trial, the following will take place:
+At the end of the trial, if a card is on file, the card will be charged and the subscription will transition to @active@ state if the payment is successful, or @unpaid@ if the payment is declined. If no card is on file at the end of the trial, the following will take place:
 
 * If the subscription has a balance greater than 0, the subscription will transition to @trial_ended@. Chargify will not send any emails or statements.  
 * If the subscription has a balance of 0, or a negative balance:
