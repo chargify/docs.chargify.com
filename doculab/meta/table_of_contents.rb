@@ -11,6 +11,7 @@ Doculab::TableOfContents.define do
     page "Gateway Configuration"
     page "Hosted Page Settings"
     page "Clearing Site Data"
+    page "Email Templates"
   end
 
   section "Products" do
