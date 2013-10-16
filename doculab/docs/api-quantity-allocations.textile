@@ -61,60 +61,7 @@ In addition to the normal post data, also include a 'components' attribute, as f
 
 h2. Updating the Quantity
 
-After a subscription has been created, you may set or update the quantity at any time by sending a PUT request with component data to the following URL:
-
-<pre><code> https://[subdomain].chargify.com/subscriptions/[subscription_id]/components/[component_id].[format]</code></pre>
-
-*JSON Data*:
-
-<pre><code>{
-  "component": {
-    "allocated_quantity":23
-  }
-}
-</code></pre>
-
-*XML Data*:
-
-<pre><code><component>
-  <allocated_quantity type="integer">23</allocated_quantity>
-</component>
-</code></pre>
-
-*Via the "official Chargify Gem":http://github.com/chargify/chargify_api_ares*
-
-<pre><code># First way to find and update a component
-component = Chargify::Subscription::Component.find(1, :params => {:subscription_id => 2})
-component.allocated_quantity = 23
-component.save
-
-# Second way to find and update a component
-subscription = Chargify::Subscription.find(2)
-component = subscription.component(1)
-component.allocated_quantity = 23
-component.save
-
-subscription = Chargify::Subscription.find(2)
-subscription.component(1).allocated_quantity = 
-Chargify::Subscription.create(
-  :product_id => 2,
-  :customer_id => 1,
-  :credit_card_attributes => {
-    :full_number => 1,
-    :first_name => "John",
-    :last_name => "Doe",
-    :expiration_month => "2",
-    :expiration_year => "2020"
-  },
-  :components => [
-    {
-      :component_id => 1,
-      :allocated_quantity => 15
-    }
-  ]
-)
-</code></pre>
-
+After a subscription has been created, you may set or update the quantity at any time.  To do this, use the "Allocations endpoint.":/api-allocations
 
 h2. Reading Current Quantity
 
