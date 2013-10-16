@@ -37,7 +37,7 @@ The API calls required to report allocated quantities are detailed in "API: Quan
 
 h4. Reporting On/Off component status
 
-You report the status if On/Off Components (i.e. "enabled" or not) similarly to Quantity-based components.  Instead of reporting a number for the @allocated_quantity@, you pass a boolean to @enabled@.
+You report the status of On/Off Components (i.e. "enabled" or not) using @allocated_quantity@ similarly to Quantity-based components.  Report a @1@ for on and @0@ for off.
 
 On/Off components can be toggled using the Admin UI by selecting the component from the "Components (Line-Items)" tab when viewing a subscription.
 

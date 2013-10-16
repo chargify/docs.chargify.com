@@ -67,7 +67,7 @@ For more, see also "API: Quantity Component Allocations":/api-quantity-allocatio
 
 h3. Inputs for On/Off Line-Items
 
-* @enabled@ A boolean that controls whether the component is "On" for a given subscription.  Valid values are @true@/@false@, @on@/@off@, @yes@/@no@, @t@/@f@, @y@/@n@, @1@/@0@
+* @allocated_quantity@ Use @1@ for on and @0@ for off.
 
 h3. Inputs for Metered Line-Items
 
@@ -86,8 +86,7 @@ All component line-item kinds share the following attributes:
 
 Then, each line-item has an indication of the current allocation on the given subscription, depending on the @kind@:
 
-* @enabled@ Provided when @kind@ is @on_off_component@
-* @allocated_quantity@ Provided when @kind@ is @quantity_based_component@
+* @allocated_quantity@ Provided when @kind@ is @quantity_based_component@ or @on_off_component@ (@1@ for on and @0@ for off)
 * @unit_balance@ Provided when @kind@ is @metered_component@ and gives the TOTAL of all reported usages for the period
 
 h2. Methods
