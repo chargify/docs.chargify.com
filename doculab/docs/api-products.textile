@@ -101,7 +101,7 @@ Response: An single Product
 
 h3. Create
 
-URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/products.<format>
+URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/products.<format>@
 Method: @POST@
 Required Parameters: XML or JSON data, as specified by the required attributes
 Response: The created product, if successful. Errors otherwise.
