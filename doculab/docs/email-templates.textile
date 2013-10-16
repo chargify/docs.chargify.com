@@ -1,0 +1,98 @@
+Under the "Settings":/settings tab of your Chargify account are options related to sending automated emails from Chargify to your customers around certain subscription lifecycle events (e.g., post-signup, credit card dunning, upcoming renewal, etc.).
+
+Chargify provides default templates for each of these emails, but you are free to edit them to fit your business' needs. We expose a number of variables for you to use in each email template. Variables must be quoted in double braces, such as @{{product.name}}@.
+
+h2. Upcoming Renewal and End of Trial emails
+
+The following variables are available for upcoming renewal and end of trial emails:
+
+h4. Subscription
+
+* @{{subscription.id}}@ The subscription unique id within Chargify.
+* @{{subscription.state}}@ The current state of the subscription. Please see the documentation for "Subscription States":/subscription-states
+* @{{subscription.balance_in_cents}}@ Gives the current outstanding subscription balance in the number of cents.
+* @{{subscription.current_period_started_at}}@ Timestamp relating to the start of the current (recurring) period
+* @{{subscription.current_period_starts_at}}@ Timestamp relating to the start of the current (recurring) period
+* @{{subscription.current_period_ends_at}}@ Timestamp relating to the end of the current (recurring) period (i.e. when the next regularly scheduled attempted charge will occur)
+* @{{subscription.trial_started_at}}@ Timestamp for when the trial period (if any) began
+* @{{subscription.trial_ended_at}}@ Timestamp for when the trial period (if any) ended
+* @{{subscription.trial_ends_at}}@ Timestamp for when the trial period (if any) ended
+* @{{subscription.activated_at}}@ (Read Only) Timestamp for when the subscription began (i.e. when it came out of trial, or when it began in the case of no trial)
+* @{{subscription.expires_at}}@ Timestamp giving the expiration date of this subscription (if any)
+* @{{subscription.cancellation_message}}@ Seller-provided reason for, or note about, the cancellation.
+* @{{subscription.canceled_at}}@ Timestamp for when the subscription canceled (if it did)
+* @{{subscription.cancel_at_end_of_period}}@ Whether or not the subscription will (or has) canceled at the end of the period. 
+* @{{subscription.payment_collection_method}}@ The type of payment collection to be used in the subscription. May be automatic, or invoice.
+* @{{subscription.coupon_code}}@ The coupon code of the coupon currently applied to the subscription (if any)
+* @{{subscription.total_revenue_in_cents}}@ Gives the total revenue from the subscription in the number of cents.
+* @{{subscription.estimated_renewal_amount_in_cents}}@ Estimated amount of the next renewal, in cents
+* @{{subscription.current_billing_amount_in_cents}}@ The @balance_in_cents@ + the @estimated_renewal_amount_in_cents@
+* @{{subscription.expires_at_end_of_period?}}@ True/false value indicating whether or not the subscription expires at the end of the current period
+* @{{subscription.total_revenue}}@ Gives the total revenue from the subscription in the number of cents.
+* @{{subscription.estimated_renewal_amount}}@ The @estimated_renewal_amount_in_cents@, formatted in the currency of the subscription
+* @{{subscription.current_billing_amount}}@ The @current_billing_amount_in_cents@, formatted in the currency of the subscription
+* @{{subscription.card_on_file?}}@ True/false value indicating whether or not there is a @payment_profile@ present
+* @{{subscription.billing_portal?}}@ True/false value indicating whether or not this customer is managed in Blling Portal
+* @{{subscription.billing_portal_management_url}}@ The Billing Portal subscription management URL for this subscription, if Billing Portal is enabled
+
+h4. Product
+
+* @{{product.id}}@ The unique product id within Chargify 
+* @{{product.name}}@ The product name
+* @{{product.handle}}@ The product API handle
+* @{{product.description}}@ The product description
+* @{{product.accounting_code}}@ The product family accounting code (has no bearing in Chargify, may be used within your app)
+* @{{product.price_in_cents}}@ The product price, in integer cents
+* @{{product.initial_charge?}}@ True/false indicating whether or not the product has an initial charge
+* @{{product.initial_charge_in_cents}}@ The up front charge you have specified.
+* @{{product.expires?}}@ True/false indicating whether or not the product expires
+* @{{product.offers_trial?}}@ True/false indicating whether or not the product offers a trial price
+* @{{product.trial_price_in_cents}}@ The product trial price, in integer cents
+* @{{product.return_url}}@ The URL a buyer is returned to after successful purchase. See the section on "Return URLs and Parameters":/product-options#return-url-and-parameters
+* @{{product.update_return_url}}@ The URL a buyer is returned to after successful purchase. See the section on "Return URLs and Parameters":/product-options#return-url-and-parameters
+* @{{product.return_params}}@ The parameters string we will use in constructing your return URL. See the section on "Return URLs and Parameters":/product-options#return-url-and-parameters
+* @{{product.request_credit_card?}}@ True/false indicating whether or not the product requests a credit card at signup
+* @{{product.require_credit_card?}}@ True/false indicating whether or not the product requires a credit card at signup
+* @{{product.archived?}}@ True/false indicating whether or not the product is currently archived
+* @{{product.archived_at}}@ Timestamp for when the product was archived (if it was)
+* @{{product.currency}}@ The product currency
+* @{{product.price}}@ The product price, formatted in the product currency 
+* @{{product.initial_charge}}@ The initial charge, formatted in the product currency
+* @{{product.trial_price}}@ The trial price, formatted in the product currency
+* @{{product.recurring_duration}}@ The length of one renewal period (e.g. 30 days, 1 year, etc.)
+* @{{product.expiration_duration}}@ The length of time before the product expires (if it does)
+* @{{product.trial_duration}}@ The length of the product trial (if there is one)
+
+h4. Customer
+
+* @{{customer.id}}@ The unique customer id within Chargify
+* @{{customer.first_name}}@
+* @{{customer.last_name}}@
+* @{{customer.email}}@
+* @{{customer.organization}}@
+* @{{customer.reference}}@ The unique identifier used within your own application for this customer
+* @{{customer.created_at}}@ Timestamp for when the customer was created
+* @{{customer.address}}@
+* @{{customer.address_2}}@
+* @{{customer.city}}@
+* @{{customer.state}}@
+* @{{customer.zip}}@
+* @{{customer.country}}@
+* @{{customer.phone}}@
+* @{{customer.billing_portal?}}@ True/false indicating whether or not this customer is managed in Billing Portal
+
+h4. Payment Profile
+
+* @{{payment_profile.id}}@ The unique payment profile id within Chargify
+* @{{payment_profile.first_name}}@
+* @{{payment_profile.last_name}}@
+* @{{payment_profile.masked_card_number}}@ The customer's Credit Card, obscured to only show the last 4 digits.  e.g. XXXX-XXXX-XXXX-1234
+* @{{payment_profile.card_type}}@ The type of card used (bogus, visa, master, discover, american_express, diners_club, jcb, switch, solo, dankort, maestro, forbrugsforeningen, or laser)
+* @{{payment_profile.billing_address}}@
+* @{{payment_profile.billing_address_2}}@
+* @{{payment_profile.billing_city}}@
+* @{{payment_profile.billing_state}}@
+* @{{payment_profile.billing_zip}}@
+* @{{payment_profile.billing_country}}@
+* @{{payment_profile.expiration_month}}@ Expiration month of the credit card on file
+* @{{payment_profile.expiration_year}}@ Expiration year of the credit card on file
