@@ -8,12 +8,29 @@ p(warning). Metafield Limitations: Each site is limited to 200 unique Metafields
 The following fields are returned from GET operations.
 
 * @name@ - The name of the attribute that is added to the resource.
-* @scope@ - Reserved for future use.
+* @scope@ - This specifies where the metafield / metadata will visible
 * @data_count@ - The number of metadata that are associated to this metafield.
 
 h2. Methods
 
 For brevity sake in all example urls going forward @<resource>@ can be either subscriptions or customers.
+
+h4. scope
+
+The scope field has two acceptable attributes "hosted" and "csv". If configured in the Admin UI
+or via the API be careful sending updates to metafields with the scope attribute - if a partial update
+is sent it will overwrite the current configuration.
+
+h6. hosted
+
+The hosted field is an array of products which specifies which hosted pages that the metafield will appear on.
+Supports a special value of "all" if you would like the field to be present on all hosted pages.
+<pre>"hosted": ["1", "2"]</pre> or <pre>"hosted": ["all"]</pre>
+
+h6. csv
+
+Can be "1" or "0" to include or exclude in csv exports.
+<pre>"csv": "1"</pre> or <pre>"csv": "0"</pre>
 
 h3. List
 
@@ -34,7 +51,7 @@ Here's an example metafield list @response@:
   "metafields": [
     {
         "name": "Shirt Size",
-        "scope": null,
+        "scope": {"hosted": ["all"], csv: "1"},
         "data_count": 99
     }
   ]
@@ -56,7 +73,7 @@ Here's an example metafields create @request@:
   { 
     "metafields": {
       "name": "Color",
-      "scope": null
+      "scope": {"hosted": ["1", "2", "3"], csv: "0"}
     } 
   }
 </pre>
