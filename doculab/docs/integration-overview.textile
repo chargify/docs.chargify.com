@@ -1,4 +1,0 @@
-This section of the documentation deals with how your application and Chargify will interact.  This section can greatly benefit from community involvement for improvement, so your feedback is welcome!
-
-* "Hosted Page Integration":/hosted-page-integration
-* "API Integration":/api-integration
