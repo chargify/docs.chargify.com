@@ -41,8 +41,8 @@ Doculab::TableOfContents.define do
   end
 
   section "Integration" do
-    page "Integration Overview"
     page "Hosted Page Integration"
+    page "Billing Portal"
     page "API Integration"
     page "Post-backs"
     page "Webhooks"
@@ -78,6 +78,7 @@ Doculab::TableOfContents.define do
   section "API v1 Resources" do
     page "API: Adjustments"
     page "API: Allocations"
+    page "API: Billing Portal"
     page "API: Charges"
     page "API: Components"
     page "API: Coupons"

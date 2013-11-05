@@ -1,0 +1,84 @@
+If your customer has been invited to the Billing Portal, then they will receive a link to manage their subscription (the "Management URL") automatically at the bottom of their statements, invoices, and receipts.  _This link changes periodically for security and is only valid for 65 days_.  Please be sure to read more about "the links your customers receive for the Billing Portal":/billing-portal
+
+If you need to provide your customer their Management URL through other means, you can retrieve it via the API.  Because the URL is cryptographically signed with a timestamp, it is not possible for merchants to generate the URL without requesting it from Chargify.
+
+In order to prevent abuse & overuse, we ask that you request a new URL only when absolutely necessary.  Management URLs are good for 65 days, so you should re-use a previously generated one as much as possible.  If you use the URL frequently (such as to display on your website), please **do not** make an API request to Chargify every time.  
+
+h2. Rules for Management Link API
+
+* When retrieving a management URL, multiple requests for the same customer in a short period will return the **same** URL
+* We will not generate a new URL for 15 days
+* You **must** cache and remember this URL if you are going to need it again within 15 days
+* Only request a new URL after the @new_link_available_at@ date
+* You are limited to 15 requests for the same URL.  If you make more than 15 requests before @new_link_available_at@, you will be blocked from further Management URL requests (with a response code @429@)
+
+
+h2. Management Link Attributes
+
+All of the attribute fields are returned from GET (read) operations, and all are read only.
+
+* @url@ The customer's management URL
+* @fetch_count@ Number of times this link has been retrieved (at 15 you will be blocked)
+* @created_at@ When this link was created
+* @new_link_available_at@ When a new link will be available and @fetch_count@ is reset (15 days from when it was created)
+* @expires_at@ When this link expires (65 days from when it was created)  
+
+h2. Methods
+
+h3. Read/Show
+
+URL: @https://<subdomain>.chargify.com/portal/customers/<customer_id>/management_link@  
+Method: @GET@  
+Required Parameters: @customer_id@  
+
+"JSON example":#api-call-json-read
+"XML example":#api-call-xml-read
+
+h2. Usage Examples
+
+h3(#api-call-json-read). JSON Read Call Example
+
+<pre><code>
+
+curl -u <API_KEY>:x -H "Accept: application/json" https://<subdomain>chargify.com/portal/customers/<customer_id>/management_link.json
+
+{
+  "url": "https://www.billingportal.com/manage/123/1383672520/a5b33efa2fdedb11",
+  "fetch_count": 1,
+  "created_at": "2013-11-05T00:00:00Z",
+  "new_link_available_at": "2013-11-20T00:00:00Z",
+  "expires_at": "2014-01-09T00:00:00Z"
+}
+
+# After too many requests (status code: 429):
+
+{"errors":{"error":"Too many requests for this customer's management link"}}
+
+</code></pre>
+
+
+h3(#api-call-xml-read). XML Read Call Example
+
+<pre><code>
+
+curl -u <API_KEY>:x -H "Accept: application/xml" https://<subdomain>chargify.com/portal/customers/<customer_id>/management_link.xml
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<management_link>
+  <url>https://www.billingportal.com/manage/123/1383672520/a5b33efa2fdedb11</url>
+  <fetch_count type="integer">1</fetch_count>
+  <created_at type="datetime">2013-11-05T00:00:00Z</created_at>
+  <new_link_available_at type="datetime">2013-11-20T00:00:00Z</new_link_available_at>
+  <expires_at type="datetime">2014-01-09T00:00:00Z</expires_at>
+</management_link>
+
+# After too many requests (status code: 429):
+
+<?xml version="1.0" encoding="UTF-8"?>
+<errors>
+  <error>Too many requests for this customer's management link</error>
+</errors>
+
+
+</code></pre>
