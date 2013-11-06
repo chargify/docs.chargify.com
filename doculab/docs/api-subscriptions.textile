@@ -59,49 +59,50 @@ h2. Subscription Output Attributes
 
 The following attributes are returned on a subscription read/list operation.
 
-* @id@ The subscription unique id within Chargify.
-* @state@ The current state of the subscription. Please see the documentation for "Subscription States":/subscription-states
-* @balance_in_cents@ Gives the current outstanding subscription balance in the number of cents.
-* @total_revenue_in_cents@ Gives the total revenue from the subscription in the number of cents.
-* @current_period_started_at@ Timestamp relating to the start of the current (recurring) period
-* @current_period_ends_at@ Timestamp relating to the end of the current (recurring) period (i.e. when the next regularly scheduled attempted charge will occur)
-* @next_assessment_at@ Timestamp that indicates when capture of payment will be tried or retried.  This value will usually track the @current_period_ends_at@, but will diverge if a renewal payment fails and must be retried.  In that case, the @current_period_ends_at@ will advance to the end of the next period (time doesn't stop because a payment was missed) but the @next_assessment_at@ will be scheduled for the auto-retry time (i.e. 24 hours in the future, in some cases)
-* @trial_started_at@ Timestamp for when the trial period (if any) began
-* @trial_ended_at@ Timestamp for when the trial period (if any) ended
 * @activated_at@ (Read Only) Timestamp for when the subscription began (i.e. when it came out of trial, or when it began in the case of no trial)
-* @expires_at@ Timestamp giving the expiration date of this subscription (if any)
+* @balance_in_cents@ Gives the current outstanding subscription balance in the number of cents.
+* @cancel_at_end_of_period@ Whether or not the subscription will (or has) canceled at the end of the period.
+* @canceled_at@ The timestamp of the most recent cancellation
+* @cancellation_message@ Seller-provided reason for, or note about, the cancellation.
+* @coupon_code@ The coupon code of the coupon currently applied to the subscription
 * @created_at@ The creation date for this subscription
-* @updated_at@ The date of last update for this subscription
-* @customer@ For customer attributes, see "Customers API":/api-customers
-* @product@ For product attributes, see "Products API":/api-products
 * @credit_card@ Nested credit card attributes
-** @id@ The Chargify-assigned ID of the stored card.  This value can be used as an input to @payment_profile_id@ when creating a subscription, in order to re-use a stored payment profile _for the same customer_
-** @card_type@ The type of card used (bogus, visa, master, discover, american_express, diners_club, jcb, switch, solo, dankort, maestro, forbrugsforeningen, or laser)
-
-** @expiration_month@ An integer representing the expiration month of the card(1 - 12)
-** @expiration_year@ An integer representing the 4-digit expiration year of the card(i.e. '2012')
-** @first_name@ The first name of the card holder
-** @last_name@ The last name of the card holder
-** @masked_card_number@ A string representation of the credit card number with all but the last 4 digits masked with X's (i.e. 'XXXX-XXXX-XXXX-1234')
-** @customer_id@ The Chargify-assigned @id@ for the customer record to which the card belongs
-** @customer_vault_token@ (only for Authorize.Net CIM storage): the @customerProfileId@ for the owner of the @customerPaymentProfileId@ provided as the @vault_token@
-** @vault_token@ The "token" provided by your vault storage for an already stored payment profile
-** @current_vault@ The vault that stores the payment profile with the provided @vault_token@.  May be @authorizenet@, @trust_commerce@, @payment_express@, @beanstream@, @braintree1@, @braintree_blue@, @paypal@, @quickpay@, @eway@, @samurai@, @stripe@, or @wirecard@
 ** @billing_address@ The current billing street address for the card
 ** @billing_address_2@ The current billing street address, second line, for the card
 ** @billing_city@ The current billing address city for the card
 ** @billing_state@ The current billing address state for the card
 ** @billing_zip@ The current billing address zip code for the card
 ** @billing_country@ The current billing address country for the card
-* @cancellation_message@ Seller-provided reason for, or note about, the cancellation.
-* @canceled_at@ The timestamp of the most recent cancellation
-* @signup_revenue@ The revenue, formatted as a string of decimal separated dollars and cents, from the subscription signup ($50.00 would be formatted as 50.00)
-* @signup_payment_id@ The ID of the transaction that generated the revenue
-* @cancel_at_end_of_period@ Whether or not the subscription will (or has) canceled at the end of the period.
+** @card_type@ The type of card used (bogus, visa, master, discover, american_express, diners_club, jcb, switch, solo, dankort, maestro, forbrugsforeningen, or laser)
+** @current_vault@ The vault that stores the payment profile with the provided @vault_token@.  May be @authorizenet@, @trust_commerce@, @payment_express@, @beanstream@, @braintree1@, @braintree_blue@, @paypal@, @quickpay@, @eway@, @samurai@, @stripe@, or @wirecard@
+** @customer_id@ The Chargify-assigned @id@ for the customer record to which the card belongs
+** @customer_vault_token@ (only for Authorize.Net CIM storage): the @customerProfileId@ for the owner of the @customerPaymentProfileId@ provided as the @vault_token@
+** @expiration_month@ An integer representing the expiration month of the card(1 - 12)
+** @expiration_year@ An integer representing the 4-digit expiration year of the card(i.e. '2012')
+** @id@ The Chargify-assigned ID of the stored card.  This value can be used as an input to @payment_profile_id@ when creating a subscription, in order to re-use a stored payment profile _for the same customer_
+** @first_name@ The first name of the card holder
+** @last_name@ The last name of the card holder
+** @masked_card_number@ A string representation of the credit card number with all but the last 4 digits masked with X's (i.e. 'XXXX-XXXX-XXXX-1234')
+** @vault_token@ The "token" provided by your vault storage for an already stored payment profile
+* @current_period_started_at@ Timestamp relating to the start of the current (recurring) period
+* @current_period_ends_at@ Timestamp relating to the end of the current (recurring) period (i.e. when the next regularly scheduled attempted charge will occur)
+* @customer@ For customer attributes, see "Customers API":/api-customers
 * @delayed_cancel_at@ Timestamp for when the subscription is currently set to cancel.
+* @expires_at@ Timestamp giving the expiration date of this subscription (if any)
+* @id@ The subscription unique id within Chargify.
+* @next_assessment_at@ Timestamp that indicates when capture of payment will be tried or retried.  This value will usually track the @current_period_ends_at@, but will diverge if a renewal payment fails and must be retried.  In that case, the @current_period_ends_at@ will advance to the end of the next period (time doesn't stop because a payment was missed) but the @next_assessment_at@ will be scheduled for the auto-retry time (i.e. 24 hours in the future, in some cases)
+* @payment_collection_method@ The type of payment collection to be used in the subscription. May be automatic, or invoice.
 * @previous_state@ *Only valid for webhook payloads* The previous state for webhooks that have indicated a change in state.  For normal API calls, this will always be the same as the @state@ (current state)
-* @coupon_code@ The coupon code of the coupon currently applied to the subscription
-* @payment_collection_method@ (Optional) The type of payment collection to be used in the subscription. May be automatic, or invoice.
+* @product@ For product attributes, see "Products API":/api-products
+* @product_price_in_cents@ (Added Nov 5 2013) The recurring amount of the product (and version) currently subscribed. NOTE: this may differ from the current price of the product, if you've changed the price of the product but haven't moved this subscription to a newer version.
+* @product_version_number@ (Added Nov 5 2013) The version of the product currently subscribed. NOTE: we have not exposed versions (yet) elsewhere in the API, but if you change the price of your product the versions will increment and existing subscriptions will remain on prior versions (by default, to support price grandfathering).
+* @signup_payment_id@ The ID of the transaction that generated the revenue
+* @signup_revenue@ The revenue, formatted as a string of decimal separated dollars and cents, from the subscription signup ($50.00 would be formatted as 50.00)
+* @state@ The current state of the subscription. Please see the documentation for "Subscription States":/subscription-states
+* @total_revenue_in_cents@ Gives the total revenue from the subscription in the number of cents.
+* @trial_started_at@ Timestamp for when the trial period (if any) began
+* @trial_ended_at@ Timestamp for when the trial period (if any) ended
+* @updated_at@ The date of last update for this subscription
 
 
 h2. Methods
@@ -387,26 +388,38 @@ Feature: Chargify Subscriptions Read/Show/Lookup XML API
     And I accept xml responses
 
   Scenario: Retrieve a subscription via ID
-    Given I have an active subscription
-    When I send a GET request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
+    Given I have an active subscription with ID "1000"
+    When I send a GET request to https://acme.chargify.com/subscriptions/1000.xml
     Then the response status should be "200 OK"
-    And print the response
     And the response should be the xml:
       """
       <?xml version="1.0" encoding="UTF-8"?>
       <subscription>
         <id type="integer">[@subscription.id]</id>
         <state>active</state>
+        <previous_state>`auto generated`</previous_state>
         <balance_in_cents type="integer">0</balance_in_cents>
-        <total_revenue_in_cents type="integer">4200</total_revenue_in_cents>
+        <total_revenue_in_cents type="integer">1000</total_revenue_in_cents>
+        <product_price_in_cents type="integer">`your value`</product_price_in_cents>
+        <product_version_number type="integer">1</product_version_number>
         <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
         <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
+        <next_assessment_at type="datetime">`auto generated`</next_assessment_at>
         <trial_started_at type="datetime">`auto generated`</trial_started_at>
         <trial_ended_at type="datetime">`auto generated`</trial_ended_at>
         <activated_at type="datetime">`auto generated`</activated_at>
         <expires_at type="datetime">`auto generated`</expires_at>
         <created_at type="datetime">`auto generated`</created_at>
         <updated_at type="datetime">`auto generated`</updated_at>
+        <canceled_at type="datetime">`auto generated`</canceled_at>
+        <cancellation_message nil="true"></cancellation_message>
+        <cancel_at_end_of_period type="boolean">false</cancel_at_end_of_period>
+        <delayed_cancel_at nil="true"></delayed_cancel_at>
+        <coupon_code nil="true"></coupon_code>
+        <signup_payment_id type="integer">`auto generated`</signup_payment_id>
+        <signup_revenue>`your value`</signup_revenue>
+        <payment_collection_method>automatic</payment_collection_method>
+        <current_billing_amount_in_cents>1000</current_billing_amount_in_cents>
         <customer>
           <id type="integer">`auto generated`</id>
           <first_name>`your value`</first_name>
@@ -414,29 +427,65 @@ Feature: Chargify Subscriptions Read/Show/Lookup XML API
           <email>`your value`</email>
           <organization>`your value`</organization>
           <reference>`your value`</reference>
+          <address>`your value`</address>
+          <address_2>`your value`</address_2>
+          <city>`your value`</city>
+          <state>`your value`</state>
+          <zip>`your value`</zip>
+          <country>`your value`</country>
+          <phone>`your value`</phone>
           <created_at type="datetime">`auto generated`</created_at>
           <updated_at>`auto generated`</updated_at>
         </customer>
         <product>
-           <accounting_code>`your value`</accounting_code>
-           <handle>`your value`</handle>
-           <interval>`your value`</interval>
-           <interval_unit>`your value`</interval_unit>
-           <name>`your value`</name>
-           <price_in_cents>`your value`</price_in_cents>
-           <product_family>
-             <accounting_code>`your value`</accounting_code>
-             <handle>`your value`</handle>
-             <name>`your value`</name>
-           </product_family>
-         </product>
-        <credit_card>
+          <id>`auto generated`</id>
+          <accounting_code>`your value`</accounting_code>
+          <handle>`your value`</handle>
+          <description>`your value`</description>
+          <interval>`your value`</interval>
+          <interval_unit>`your value`</interval_unit>
+          <name>`your value`</name>
+          <price_in_cents>`your value`</price_in_cents>
+          <initial_charge_in_cents type="integer" nil="true"></initial_charge_in_cents>
+          <trial_interval type="integer" nil="true"></trial_interval>
+          <trial_interval_unit nil="true"></trial_interval_unit>
+          <trial_price_in_cents type="integer" nil="true"></trial_price_in_cents>
+          <expiration_interval type="integer">`your value`</expiration_interval>
+          <expiration_interval_unit>`your value`</expiration_interval_unit>
+          <archived_at type="datetime" nil="true"></archived_at>
+          <created_at type="datetime">`auto generated`</created_at>
+          <updated_at type="datetime">`auto generated`</updated_at>
+          <request_credit_card type="boolean">true</request_credit_card>
+          <require_credit_card type="boolean">true</require_credit_card>
+          <return_url nil="true"></return_url>
+          <update_return_url nil="true"></update_return_url>
+          <return_params nil="true"></return_params>
+          <product_family>
+            <id>`auto generated`</id>
+            <accounting_code>`your value`</accounting_code>
+            <handle>`your value`</handle>
+            <name>`your value`</name>
+            <description>`your value`</description>
+          </product_family>
+        </product>
+        <credit_card type="PaymentProfile">
+          <id type="integer">`auto generated`</id>
           <card_type>`auto generated`</card_type>
           <expiration_month>`your value`</expiration_month>
           <expiration_year type="integer">`your value`</expiration_year>
           <first_name>`your value`</first_name>
           <last_name>`your value`</last_name>
           <masked_card_number>`auto generated`</masked_card_number>
+          <billing_address>`your value`</billing_address>
+          <billing_address_2>`your value`</billing_address_2>
+          <billing_city>`your value`</billing_city>
+          <billing_state>`your value`</billing_state>
+          <billing_zip>`your value`</billing_zip>
+          <billing_country>`your value`</billing_country>
+          <current_vault type="integer">`your value`</current_vault>
+          <vault_token type="integer">`your value`</vault_token>
+          <customer_vault_token>`your value`</customer_vault_token>
+          <customer_id>`auto generated`</customer_id>
         </credit_card>
       </subscription>
       """
@@ -469,10 +518,14 @@ Feature: Chargify Subscriptions Read/Show/Lookup JSON API
       {"subscription":{
         "id":[@subscription.id],
         "state":"active",
+        "previous_state":`auto generated`,
         "balance_in_cents":0,
-        "total_revenue_in_cents":4200,
+        "total_revenue_in_cents":1000,
+        "product_price_in_cents": 1000,
+        "product_version_number": 1,
         "current_period_started_at":`auto generated`,
         "current_period_ends_at":`auto generated`,
+        "next_assessment_at":`auto generated`,
         "activated_at":`auto generated`,
         "trial_ended_at":`auto generated`,
         "trial_started_at":`auto generated`,
@@ -480,6 +533,14 @@ Feature: Chargify Subscriptions Read/Show/Lookup JSON API
         "created_at":`auto generated`,
         "updated_at":`auto generated`,
         "cancellation_message":null,
+        "canceled_at":`your value`,
+        "cancel_at_end_of_period":false,
+        "delayed_cancel_at":null,
+        "coupon_code":`your value`,
+        "signup_payment_id":`auto generated`,
+        "signup_revenue":`your value`,
+        "payment_collection_method":"automatic",
+        "current_billing_amount_in_cents": "1000",
         "customer":{
           "id":`auto generated`,
           "first_name":`your value`,
@@ -487,6 +548,13 @@ Feature: Chargify Subscriptions Read/Show/Lookup JSON API
           "email":`your value`,
           "organization":`your value`,
           "reference":`your value`,
+          "address":`your value`,
+          "address_2":`your value`,
+          "city":`your value`,
+          "state":`auto generated`,
+          "zip":`auto generated`,
+          "country":`auto generated`,
+          "phone":`auto generated`,
           "updated_at":`auto generated`,
           "created_at":`auto generated`
         },
@@ -494,24 +562,51 @@ Feature: Chargify Subscriptions Read/Show/Lookup JSON API
           "id":`auto generated`,
           "name":`your value`,
           "handle":`your value`,
+          "description":`your value`,
           "price_in_cents":`your value`,
           "accounting_code":`your value`,
           "interval":`your value`,
           "interval_unit":`your value`,
+          "initial_charge_in_cents":null,
+          "trial_price_in_cents":null,
+          "trial_interval":null,
+          "trial_interval_unit":null,
+          "expiration_interval_unit":null,
+          "expiration_interval":null,
+          "return_url":null,
+          "update_return_url":null,
+          "return_params":null,
+          "require_credit_card":true,
+          "request_credit_card":true,
+          "created_at":`auto generated`,
+          "updated_at":`auto generated`,
+          "archived_at":null,
           "product_family":{
             "id":`auto generated`,
             "name":`your value`,
             "handle":`your value`,
-            "accounting_code":`your value`
+            "accounting_code":`your value`,
+            "description":`your value`
           }
         },
         "credit_card":{
+          "id":`auto generated`,
           "first_name":`your value`,
           "last_name":`your value`,
           "masked_card_number":`your value`,
           "card_type":`auto generated`,
           "expiration_month":`your value`,
-          "expiration_year":`your value`
+          "expiration_year":`your value`,
+          "billing_address":`your value`,
+          "billing_address_2":`your value`,
+          "billing_city":`your value`,
+          "billing_state":`your value`,
+          "billing_zip":`your value`,
+          "billing_country":`your value`,
+          "current_vault":`your value`,
+          "vault_token":`your value`,
+          "customer_vault_token":`your value`,
+          "customer_id":`auto generated`
         }
       }}
       """
@@ -527,13 +622,13 @@ h3(#api-usage-xml-subscriptions-create). XML Create Usage Example
 
 <pre><code>
 Feature: Chargify Subscriptions Create XML API
-  In order integrate my app with Chargify
+  In order to integrate my app with Chargify
   As a developer
   I want to create a subscription via the Chargify XML API
 
   Background:
-    Given I am a valid API user
-    And I accept xml responses
+    Given I am a valid API user for site with subdomain "acme"
+    And I send and accept xml
 
   Scenario: Create a subscription successfully with customer data, credit card data, and a product handle
     Given I have 1 product
@@ -554,7 +649,7 @@ Feature: Chargify Subscriptions Create XML API
           </credit_card_attributes>
         </subscription>
       """
-    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions.xml
+    When I send a POST request with the xml data to https://acme.chargify.com/subscriptions.xml
     Then the response status should be "201 Created"
     And the response should be the xml:
       """
@@ -562,16 +657,28 @@ Feature: Chargify Subscriptions Create XML API
       <subscription>
         <id type="integer">`auto generated`</id>
         <state>active</state>
+        <previous_state>`auto generated`</previous_state>
         <balance_in_cents type="integer">`auto generated`</balance_in_cents>
         <total_revenue_in_cents type="integer">`auto generated`</total_revenue_in_cents>
+        <product_price_in_cents type="integer">`your value`</product_price_in_cents>
+        <product_version_number type="integer">1</product_version_number>
         <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
         <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
+        <next_assessment_at type="datetime">`auto generated`</next_assessment_at>
         <trial_started_at type="datetime">`auto generated`</trial_started_at>
         <trial_ended_at type="datetime">`auto generated`</trial_ended_at>
         <activated_at type="datetime">`auto generated`</activated_at>
         <expires_at type="datetime">`auto generated`</expires_at>
         <created_at type="datetime">`auto generated`</created_at>
         <updated_at type="datetime">`auto generated`</updated_at>
+        <canceled_at type="datetime">`auto generated`</canceled_at>
+        <cancellation_message nil="true"></cancellation_message>
+        <cancel_at_end_of_period type="boolean">false</cancel_at_end_of_period>
+        <delayed_cancel_at nil="true"></delayed_cancel_at>
+        <coupon_code nil="true"></coupon_code>
+        <signup_payment_id type="integer">`auto generated`</signup_payment_id>
+        <signup_revenue>`your value`</signup_revenue>
+        <payment_collection_method>automatic</payment_collection_method>
         <customer>
           <id type="integer">`auto generated`</id>
           <first_name>Joe</first_name>
@@ -579,33 +686,69 @@ Feature: Chargify Subscriptions Create XML API
           <email>joe@example.com</email>
           <organization>`your value`</organization>
           <reference>`your value`</reference>
+          <address>`your value`</address>
+          <address_2>`your value`</address_2>
+          <city>`your value`</city>
+          <state>`your value`</state>
+          <zip>`your value`</zip>
+          <country>`your value`</country>
+          <phone>`your value`</phone>
           <created_at type="datetime">`auto generated`</created_at>
           <updated_at type="datetime">`auto generated`</updated_at>
         </customer>
         <product>
-           <accounting_code>`your value`</accounting_code>
-           <handle>[@product.handle]</handle>
-           <interval>`your value`</interval>
-           <interval_unit>`your value`</interval_unit>
-           <name>`your value`</name>
-           <price_in_cents>`your value`</price_in_cents>
-           <product_family>
-             <accounting_code>`your value`</accounting_code>
-             <handle>`your value`</handle>
-             <name>`your value`</name>
-           </product_family>
-         </product>
-        <credit_card>
+          <id>`auto generated`</id>
+          <accounting_code>`your value`</accounting_code>
+          <handle>[@product.handle]</handle>
+          <description>`your value`</description>
+          <interval>`your value`</interval>
+          <interval_unit>`your value`</interval_unit>
+          <name>`your value`</name>
+          <price_in_cents>`your value`</price_in_cents>
+          <initial_charge_in_cents type="integer" nil="true"></initial_charge_in_cents>
+          <trial_interval type="integer" nil="true"></trial_interval>
+          <trial_interval_unit nil="true"></trial_interval_unit>
+          <trial_price_in_cents type="integer" nil="true"></trial_price_in_cents>
+          <expiration_interval type="integer">`your value`</expiration_interval>
+          <expiration_interval_unit>`your value`</expiration_interval_unit>
+          <archived_at type="datetime" nil="true"></archived_at>
+          <created_at type="datetime">`auto generated`</created_at>
+          <updated_at type="datetime">`auto generated`</updated_at>
+          <request_credit_card type="boolean">true</request_credit_card>
+          <require_credit_card type="boolean">true</require_credit_card>
+          <return_url nil="true"></return_url>
+          <update_return_url nil="true"></update_return_url>
+          <return_params nil="true"></return_params>
+          <product_family>
+            <id>`auto generated`</id>
+            <accounting_code>`your value`</accounting_code>
+            <handle>`your value`</handle>
+            <name>`your value`</name>
+            <description>`your value`</description>
+          </product_family>
+        </product>
+        <credit_card type="PaymentProfile">
+          <id type="integer">`auto generated`</id>
           <card_type>bogus</card_type>
           <expiration_month type="integer">10</expiration_month>
           <expiration_year type="integer">2020</expiration_year>
           <first_name>Joe</first_name>
           <last_name>Blow</last_name>
           <masked_card_number>XXXX-XXXX-XXXX-1</masked_card_number>
+          <billing_address>`your value`</billing_address>
+          <billing_address_2>`your value`</billing_address_2>
+          <billing_city>`your value`</billing_city>
+          <billing_state>`your value`</billing_state>
+          <billing_zip>`your value`</billing_zip>
+          <billing_country>`your value`</billing_country>
+          <current_vault type="integer">`your value`</current_vault>
+          <vault_token type="integer">`your value`</vault_token>
+          <customer_vault_token>`your value`</customer_vault_token>
+          <customer_id>`auto generated`</customer_id>
         </credit_card>
       </subscription>
       """
-
+    And the subscription's channel attribute should be set to "api"
 
   Scenario: Create a subscription using an existing customer ID
     Given I have 1 product
@@ -615,7 +758,7 @@ Feature: Chargify Subscriptions Create XML API
         <?xml version="1.0" encoding="UTF-8"?>
         <subscription>
           <product_handle>[@product.handle]</product_handle>
-          <customer_id>[@customer.id]</customer_id>
+          <customer_id type="integer">[@customer.id]</customer_id>
           <credit_card_attributes>
             <full_number>1</full_number>
             <expiration_month>10</expiration_month>
@@ -623,7 +766,7 @@ Feature: Chargify Subscriptions Create XML API
           </credit_card_attributes>
         </subscription>
       """
-    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions.xml
+    When I send a POST request with the xml data to https://acme.chargify.com/subscriptions.xml
     Then the response status should be "201 Created"
 
 
@@ -645,7 +788,7 @@ Feature: Chargify Subscriptions Create XML API
           </credit_card_attributes>
         </subscription>
       """
-    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions.xml
+    When I send a POST request with the xml data to https://acme.chargify.com/subscriptions.xml
     Then the response status should be "201 Created"
 
 
@@ -664,9 +807,8 @@ Feature: Chargify Subscriptions Create XML API
           </credit_card_attributes>
         </subscription>
       """
-    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions.xml
+    When I send a POST request with the xml data to https://acme.chargify.com/subscriptions.xml
     Then the response status should be "422 Unprocessable Entity"
-    And print the response
     And the response should be the xml:
       """
       <?xml version="1.0" encoding="UTF-8"?>
@@ -698,36 +840,256 @@ Feature: Chargify Subscriptions Create XML API
           </credit_card_attributes>
         </subscription>
       """
-    When I send a POST request with the xml data to https://[@subdomain].chargify.com/subscriptions.xml
+    When I send a POST request with the xml data to https://acme.chargify.com/subscriptions.xml
     Then the response status should be "422 Unprocessable Entity"
-    And print the response
     And the response should be the xml:
       """
       <?xml version="1.0" encoding="UTF-8"?>
       <errors>
-        <error>Product with API Handle 'this-does-not-exist' does not exist for this merchant.</error>
+        <error>Product with API Handle 'this-does-not-exist' does not exist for this site.</error>
       </errors>
       """
+
+  Scenario: Creating a subscription fails if only a 2 digit date expiration year is passed
+    Given I have 1 product
+    And I have this xml subscription data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <product_handle>[@product.handle]</product_handle>
+        <customer_attributes>
+          <first_name>Joe</first_name>
+          <last_name>Blow</last_name>
+          <email>joe@example.com</email>
+        </customer_attributes>
+        <credit_card_attributes>
+          <full_number>1</full_number>
+          <expiration_month>10</expiration_month>
+          <expiration_year>2000</expiration_year>
+        </credit_card_attributes>
+      </subscription>
+      """
+    When I send a POST request with the xml data to https://acme.chargify.com/subscriptions.xml
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <errors>
+        <error>Credit card: cannot be expired.</error>
+      </errors>
+      """
+
+  Scenario: Create a subscription successfully with a coupon
+    Given I have 1 product
+    And I have a $5 off coupon with the code "EARLYBIRD"
+    And I have this xml subscription data
+      """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <subscription>
+          <product_handle>[@product.handle]</product_handle>
+          <customer_attributes>
+            <first_name>Joe</first_name>
+            <last_name>Blow</last_name>
+            <email>joe@example.com</email>
+          </customer_attributes>
+          <credit_card_attributes>
+            <full_number>1</full_number>
+            <expiration_month>10</expiration_month>
+            <expiration_year>2020</expiration_year>
+          </credit_card_attributes>
+          <coupon_code>EARLYBIRD</coupon_code>
+        </subscription>
+      """
+    When I send a POST request with the xml data to https://acme.chargify.com/subscriptions.xml
+    Then the response status should be "201 Created"
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <id type="integer">`auto generated`</id>
+        <state>active</state>
+        <previous_state>`auto generated`</previous_state>
+        <balance_in_cents type="integer">`auto generated`</balance_in_cents>
+        <total_revenue_in_cents type="integer">`auto generated`</total_revenue_in_cents>
+        <product_price_in_cents type="integer">`your value`</product_price_in_cents>
+        <product_version_number type="integer">1</product_version_number>
+        <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
+        <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
+        <next_assessment_at type="datetime">`auto generated`</next_assessment_at>
+        <trial_started_at type="datetime">`auto generated`</trial_started_at>
+        <trial_ended_at type="datetime">`auto generated`</trial_ended_at>
+        <activated_at type="datetime">`auto generated`</activated_at>
+        <expires_at type="datetime">`auto generated`</expires_at>
+        <created_at type="datetime">`auto generated`</created_at>
+        <updated_at type="datetime">`auto generated`</updated_at>
+        <canceled_at type="datetime">`auto generated`</canceled_at>
+        <cancellation_message nil="true"></cancellation_message>
+        <cancel_at_end_of_period type="boolean" nil="true"></cancel_at_end_of_period>
+        <delayed_cancel_at nil="true"></delayed_cancel_at>
+        <coupon_code>EARLYBIRD</coupon_code>
+        <signup_payment_id type="integer">`auto generated`</signup_payment_id>
+        <signup_revenue>`your value`</signup_revenue>
+        <payment_collection_method>automatic</payment_collection_method>
+        <customer>
+          <id type="integer">`auto generated`</id>
+          <first_name>Joe</first_name>
+          <last_name>Blow</last_name>
+          <email>joe@example.com</email>
+          <organization>`your value`</organization>
+          <reference>`your value`</reference>
+          <address>`your value`</address>
+          <address_2>`your value`</address_2>
+          <city>`your value`</city>
+          <state>`your value`</state>
+          <zip>`your value`</zip>
+          <country>`your value`</country>
+          <phone>`your value`</phone>
+          <created_at type="datetime">`auto generated`</created_at>
+          <updated_at type="datetime">`auto generated`</updated_at>
+        </customer>
+        <product>
+          <id>`auto generated`</id>
+          <accounting_code>`your value`</accounting_code>
+          <handle>[@product.handle]</handle>
+          <description>`your value`</description>
+          <interval>`your value`</interval>
+          <interval_unit>`your value`</interval_unit>
+          <name>`your value`</name>
+          <price_in_cents>`your value`</price_in_cents>
+          <initial_charge_in_cents type="integer" nil="true"></initial_charge_in_cents>
+          <trial_interval type="integer" nil="true"></trial_interval>
+          <trial_interval_unit nil="true"></trial_interval_unit>
+          <trial_price_in_cents type="integer" nil="true"></trial_price_in_cents>
+          <expiration_interval type="integer">`your value`</expiration_interval>
+          <expiration_interval_unit>`your value`</expiration_interval_unit>
+          <archived_at type="datetime" nil="true"></archived_at>
+          <created_at type="datetime">`auto generated`</created_at>
+          <updated_at type="datetime">`auto generated`</updated_at>
+          <request_credit_card type="boolean">true</request_credit_card>
+          <require_credit_card type="boolean">true</require_credit_card>
+          <return_url nil="true"></return_url>
+          <update_return_url nil="true"></update_return_url>
+          <return_params nil="true"></return_params>
+          <product_family>
+            <id>`auto generated`</id>
+            <accounting_code>`your value`</accounting_code>
+            <handle>`your value`</handle>
+            <name>`your value`</name>
+            <description>`your value`</description>
+          </product_family>
+        </product>
+        <credit_card type="PaymentProfile">
+          <id type="integer">`auto generated`</id>
+          <card_type>bogus</card_type>
+          <expiration_month type="integer">10</expiration_month>
+          <expiration_year type="integer">2020</expiration_year>
+          <first_name>Joe</first_name>
+          <last_name>Blow</last_name>
+          <masked_card_number>XXXX-XXXX-XXXX-1</masked_card_number>
+          <billing_address>`your value`</billing_address>
+          <billing_address_2>`your value`</billing_address_2>
+          <billing_city>`your value`</billing_city>
+          <billing_state>`your value`</billing_state>
+          <billing_zip>`your value`</billing_zip>
+          <billing_country>`your value`</billing_country>
+          <current_vault type="integer">`your value`</current_vault>
+          <vault_token type="integer">`your value`</vault_token>
+          <customer_vault_token>`your value`</customer_vault_token>
+          <customer_id>`auto generated`</customer_id>
+        </credit_card>
+      </subscription>
+      """
+    And I should have 1 subscription
+    And the subscription should have 1 coupon
+    And the coupon should have been applied
+
+    Scenario: Create a subscription successfully when a tax is applicable
+      Given I have 1 product
+      And the product is taxable
+      And I have a tax named "PA Sales Tax"
+      And the tax applies to the customer's location
+      And I have this xml subscription data
+        """
+          <?xml version="1.0" encoding="UTF-8"?>
+          <subscription>
+            <product_handle>[@product.handle]</product_handle>
+            <customer_attributes>
+              <first_name>Joe</first_name>
+              <last_name>Blow</last_name>
+              <email>joe@example.com</email>
+              <country>US</country>
+              <state>PA</state>
+            </customer_attributes>
+            <credit_card_attributes>
+              <full_number>1</full_number>
+              <expiration_month>10</expiration_month>
+              <expiration_year>2020</expiration_year>
+            </credit_card_attributes>
+          </subscription>
+        """
+      When I send a POST request with the xml data to https://acme.chargify.com/subscriptions.xml
+      Then the response status should be "201 Created"
+      And a charge for the tax should have been created
+
+    Scenario: Create a subscription for a product with an empty credit card
+      Given I have 1 product
+      And I have this xml subscription data
+        """
+          <?xml version="1.0" encoding="UTF-8"?>
+          <subscription>
+            <product_handle>[@product.handle]</product_handle>
+            <customer_attributes>
+              <first_name>Joe</first_name>
+              <last_name>Blow</last_name>
+              <email>joe@example.com</email>
+              <country>US</country>
+              <state>PA</state>
+            </customer_attributes>
+            <credit_card_attributes>
+            </credit_card_attributes>
+          </subscription>
+        """
+      When I send a POST request with the xml data to https://acme.chargify.com/subscriptions.xml
+      Then the response status should be "422 Unprocessable Entity"
+
+    Scenario: Create a subscription for a product with empty customer params
+      Given I have 1 product
+      And I have this xml subscription data
+        """
+          <?xml version="1.0" encoding="UTF-8"?>
+          <subscription>
+            <product_handle>[@product.handle]</product_handle>
+            <customer_attributes>
+            </customer_attributes>
+            <credit_card_attributes>
+              <full_number>1</full_number>
+              <expiration_month>10</expiration_month>
+              <expiration_year>2020</expiration_year>
+            </credit_card_attributes>
+          </subscription>
+        """
+      When I send a POST request with the xml data to https://acme.chargify.com/subscriptions.xml
+      Then the response status should be "422 Unprocessable Entity"
 </pre></code>
 
 h3(#api-usage-json-subscriptions-create). JSON Create Usage Example
 
 <pre><code>
 Feature: Chargify Subscriptions Create JSON API
-  In order integrate my app with Chargify
+  In order to integrate my app with Chargify
   As a developer
   I want to create a subscription via the Chargify JSON API
 
   Background:
-    Given I am a valid API user
+    Given I am a valid API user for site with subdomain "acme"
     And I send and accept json
 
   Scenario: Create a subscription successfully with customer data, credit card data, and a product handle
-    Given I have 1 product
+    Given site "acme" has a product with handle "basic"
     And I have this json subscription data
       """
       {"subscription":{
-        "product_handle":"[@product.handle]",
+        "product_handle":"basic",
         "customer_attributes":{
           "first_name":"Joe",
           "last_name":"Blow",
@@ -740,24 +1102,35 @@ Feature: Chargify Subscriptions Create JSON API
         }
       }}
       """
-    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions.json
+    When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
     Then the response status should be "201 Created"
     And the response should be the json:
       """
       {"subscription":{
         "id":`auto generated`,
         "state":"active",
-        "balance_in_cents":`auto generated`,
-        "total_revenue_in_cents":`auto generated`
+        "previous_state":`auto generated`,
+        "balance_in_cents": 0,
+        "total_revenue_in_cents": 1000,
+        "product_price_in_cents": 1000,
+        "product_version_number": 1,
         "current_period_started_at":`auto generated`,
         "current_period_ends_at":`auto generated`,
+        "next_assessment_at":`auto generated`,
         "activated_at":`auto generated`,
         "trial_ended_at":`auto generated`,
         "trial_started_at":`auto generated`,
         "expires_at":`auto generated`,
         "created_at":`auto generated`,
         "updated_at":`auto generated`,
+        "canceled_at":`your value`,
+        "signup_payment_id":`auto generated`,
+        "signup_revenue":`your value`,
         "cancellation_message":null,
+        "cancel_at_end_of_period":false,
+        "delayed_cancel_at":null,
+        "coupon_code":`your value`,
+        "payment_collection_method":"automatic",
         "customer":{
           "id":`auto generated`,
           "first_name":"Joe",
@@ -765,44 +1138,77 @@ Feature: Chargify Subscriptions Create JSON API
           "email":"joe@example.com",
           "organization":`your value`,
           "reference":`your value`,
+          "address":`your value`,
+          "address_2":`your value`,
+          "city":`your value`,
+          "state":`auto generated`,
+          "zip":`auto generated`,
+          "country":`auto generated`,
+          "phone":`auto generated`,
           "updated_at":`auto generated`,
           "created_at":`auto generated`
         },
         "product":{
           "id":`auto generated`,
           "name":`your value`,
-          "handle":"[@product.handle]",
+          "handle":"basic",
           "price_in_cents":`your value`,
           "accounting_code":`your value`,
+          "description":`your value`,
           "interval":`your value`,
           "interval_unit":`your value`,
+          "initial_charge_in_cents":null,
+          "trial_price_in_cents":null,
+          "trial_interval":null,
+          "trial_interval_unit":null,
+          "expiration_interval_unit":null,
+          "expiration_interval":null,
+          "return_url":null,
+          "update_return_url":null,
+          "return_params":null,
+          "require_credit_card":true,
+          "request_credit_card":true,
+          "created_at":`auto generated`,
+          "updated_at":`auto generated`,
+          "archived_at":null,
           "product_family":{
             "id":`auto generated`,
             "name":`your value`,
             "handle":`your value`,
-            "accounting_code":`your value`
+            "accounting_code":`your value`,
+            "description":`your value`
           }
         },
         "credit_card":{
+          "id":`auto generated`,
           "first_name":"Joe",
           "last_name":"Blow",
           "masked_card_number":"XXXX-XXXX-XXXX-1",
           "card_type":`auto generated`,
           "expiration_month":10,
-          "expiration_year":2020
+          "expiration_year":2020,
+          "billing_address":`your value`,
+          "billing_address_2":`your value`,
+          "billing_city":`your value`,
+          "billing_state":`your value`,
+          "billing_zip":`your value`,
+          "billing_country":`your value`,
+          "current_vault":`your value`,
+          "vault_token":`your value`,
+          "customer_vault_token":`your value`,
+          "customer_id":`auto generated`
         }
       }}
       """
 
-
   Scenario: Create a subscription using an existing customer ID
-    Given I have 1 product
-    And I have 1 customer
+    Given site "acme" has a product with handle "basic"
+    And site "acme" has a customer with ID "2000"
     And I have this json subscription data
       """
       {"subscription":{
-        "product_handle":"[@product.handle]",
-        "customer_id":"[@customer.id]",
+        "product_handle":"basic",
+        "customer_id":2000,
         "credit_card_attributes":{
           "full_number":"1",
           "expiration_month":"10",
@@ -810,20 +1216,20 @@ Feature: Chargify Subscriptions Create JSON API
         }
       }}
       """
-    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions.json
+    When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
     Then the response status should be "201 Created"
 
 
   Scenario: Create a subscription using an existing customer reference
-    Given I have 1 product
+    Given site "acme" has a product with handle "basic"
     And I have a customer with these attributes
       | reference | first_name | last_name | email           |
       | 7890      | Joe        | Blow      | joe@example.com |
     And I have this json subscription data
       """
       {"subscription":{
-        "product_handle":"[@product.handle]",
-        "customer_reference":"[@customer.reference]",
+        "product_handle":"basic",
+        "customer_reference":"7890",
         "credit_card_attributes":{
           "full_number":"1",
           "expiration_month":"10",
@@ -831,17 +1237,15 @@ Feature: Chargify Subscriptions Create JSON API
         }
       }}
       """
-    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions.json
-    Then print the response
+    When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
     Then the response status should be "201 Created"
 
-
   Scenario: Creating a subscription fails due to missing or invalid attributes
-    Given I have 1 product
+    Given site "acme" has a product with handle "basic"
     And I have this json subscription data
       """
       {"subscription":{
-        "product_handle":[@product.handle],
+        "product_handle":"basic",
         "customer_attributes":{
           "first_name":"Joe"
         },
@@ -850,7 +1254,7 @@ Feature: Chargify Subscriptions Create JSON API
         }
       }}
       """
-    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions.json
+    When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
     Then the response status should be "422 Unprocessable Entity"
     And the response should be the json:
       """
@@ -864,10 +1268,8 @@ Feature: Chargify Subscriptions Create JSON API
       }
       """
 
-
   Scenario: Creating a subscription fails due to a missing product
-    Given I have 1 product
-    And I have this json subscription data
+    Given I have this json subscription data
       """
       {"subscription":{
         "product_handle":"this-does-not-exist",
@@ -883,16 +1285,546 @@ Feature: Chargify Subscriptions Create JSON API
         }
       }}
       """
-    When I send a POST request with the json data to https://[@subdomain].chargify.com/subscriptions.json
+    When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
     Then the response status should be "422 Unprocessable Entity"
     And the response should be the json:
       """
       {"errors":
         [
-          "Product with API Handle 'this-does-not-exist' does not exist for this merchant."
+          "Product with API Handle 'this-does-not-exist' does not exist for this site."
         ]
       }
       """
+
+  Scenario: Create a subscription successfully with a coupon
+    Given site "acme" has a product with handle "basic"
+    And I have a $5 off coupon with the code "EARLYBIRD"
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle":"basic",
+        "customer_attributes":{
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com"
+        },
+        "credit_card_attributes":{
+          "full_number":"1",
+          "expiration_month":"10",
+          "expiration_year":"2020"
+        },
+        "coupon_code":"EARLYBIRD"
+      }}
+      """
+    When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"subscription":{
+        "id":`auto generated`,
+        "state":"active",
+        "previous_state":`auto generated`,
+        "balance_in_cents":`auto generated`,
+        "total_revenue_in_cents":`auto generated`,
+        "product_price_in_cents": 1000,
+        "product_version_number": 1,
+        "current_period_started_at":`auto generated`,
+        "current_period_ends_at":`auto generated`,
+        "next_assessment_at":`auto generated`,
+        "activated_at":`auto generated`,
+        "trial_ended_at":`auto generated`,
+        "trial_started_at":`auto generated`,
+        "expires_at":`auto generated`,
+        "created_at":`auto generated`,
+        "updated_at":`auto generated`,
+        "canceled_at":`your value`,
+        "signup_payment_id":`auto generated`,
+        "signup_revenue":`your value`,
+        "cancellation_message":null,
+        "cancel_at_end_of_period":null,
+        "delayed_cancel_at":null,
+        "coupon_code":"EARLYBIRD",
+        "payment_collection_method":"automatic",
+        "customer":{
+          "id":`auto generated`,
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com",
+          "organization":`your value`,
+          "reference":`your value`,
+          "address":`your value`,
+          "address_2":`your value`,
+          "city":`your value`,
+          "state":`auto generated`,
+          "zip":`auto generated`,
+          "country":`auto generated`,
+          "phone":`auto generated`,
+          "updated_at":`auto generated`,
+          "created_at":`auto generated`
+        },
+        "product":{
+          "id":`auto generated`,
+          "name":`your value`,
+          "handle":"basic",
+          "price_in_cents":`your value`,
+          "accounting_code":`your value`,
+          "description":`your value`,
+          "interval":`your value`,
+          "interval_unit":`your value`,
+          "initial_charge_in_cents":null,
+          "trial_price_in_cents":null,
+          "trial_interval":null,
+          "trial_interval_unit":null,
+          "expiration_interval_unit":null,
+          "expiration_interval":null,
+          "return_url":null,
+          "update_return_url":null,
+          "return_params":null,
+          "require_credit_card":true,
+          "request_credit_card":true,
+          "created_at":`auto generated`,
+          "updated_at":`auto generated`,
+          "archived_at":null,
+          "product_family":{
+            "id":`auto generated`,
+            "name":`your value`,
+            "handle":`your value`,
+            "accounting_code":`your value`,
+            "description":`your value`
+          }
+        },
+        "credit_card":{
+          "id":`auto generated`,
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "masked_card_number":"XXXX-XXXX-XXXX-1",
+          "card_type":`auto generated`,
+          "expiration_month":10,
+          "expiration_year":2020,
+          "billing_address":`your value`,
+          "billing_address_2":`your value`,
+          "billing_city":`your value`,
+          "billing_state":`your value`,
+          "billing_zip":`your value`,
+          "billing_country":`your value`,
+          "current_vault":`your value`,
+          "vault_token":`your value`,
+          "customer_vault_token":`your value`,
+          "customer_id":`auto generated`
+        }
+      }}
+      """
+    And I should have 1 subscription
+    And the subscription should have 1 coupon
+    And the coupon should have been applied
+
+
+  Scenario: Create a subscription successfully with a coupon subcode
+    Given site "acme" has a product with handle "basic"
+    And I have a $5 off coupon with the code "EARLYBIRD"
+    And the coupon has the subcode "SUB111"
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle":"basic",
+        "customer_attributes":{
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com"
+        },
+        "credit_card_attributes":{
+          "full_number":"1",
+          "expiration_month":"10",
+          "expiration_year":"2020"
+        },
+        "coupon_code":"SUB111"
+      }}
+      """
+    When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
+    Then the response status should be "201 Created"
+    And I should have 1 subscription
+    And the subscription should have 1 coupon
+    And the coupon should have been applied
+    And the adjustment's memo should include the coupon subcode "SUB111"
+
+
+  Scenario: Create a subscription successfully with customer address and phone
+    Given site "acme" has a product with handle "basic"
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle":"basic",
+        "customer_attributes":{
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com",
+          "address":"1 Infinite Loop",
+          "address_2":"Suite 1",
+          "city":"Cupertino",
+          "state":"CA",
+          "zip":"95014",
+          "country":"US",
+          "phone":"5552666666"
+        },
+        "credit_card_attributes":{
+          "full_number":"1",
+          "expiration_month":"10",
+          "expiration_year":"2020"
+        }
+      }}
+      """
+    When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"subscription":{
+        "id":`auto generated`,
+        "state":"active",
+        "previous_state":`auto generated`,
+        "balance_in_cents":`auto generated`,
+        "total_revenue_in_cents":`auto generated`,
+        "product_price_in_cents": 1000,
+        "product_version_number": 1,
+        "current_period_started_at":`auto generated`,
+        "current_period_ends_at":`auto generated`,
+        "next_assessment_at":`auto generated`,
+        "activated_at":`auto generated`,
+        "trial_ended_at":`auto generated`,
+        "trial_started_at":`auto generated`,
+        "expires_at":`auto generated`,
+        "created_at":`auto generated`,
+        "updated_at":`auto generated`,
+        "canceled_at":`your value`,
+        "cancellation_message":null,
+        "cancel_at_end_of_period":false,
+        "delayed_cancel_at":null,
+        "coupon_code":`your value`,
+        "signup_payment_id":`auto generated`,
+        "signup_revenue":`your value`,
+        "payment_collection_method":"automatic",
+        "customer":{
+          "id":`auto generated`,
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com",
+          "organization":`your value`,
+          "reference":`your value`,
+          "address":"1 Infinite Loop",
+          "address_2":"Suite 1",
+          "city":"Cupertino",
+          "state":"CA",
+          "zip":"95014",
+          "country":"US",
+          "phone":"5552666666",
+          "updated_at":`auto generated`,
+          "created_at":`auto generated`
+        },
+        "product":{
+          "id":`auto generated`,
+          "name":`your value`,
+          "handle":"basic",
+          "price_in_cents":`your value`,
+          "accounting_code":`your value`,
+          "description":`your value`,
+          "interval":`your value`,
+          "interval_unit":`your value`,
+          "initial_charge_in_cents":null,
+          "trial_price_in_cents":null,
+          "trial_interval":null,
+          "trial_interval_unit":null,
+          "expiration_interval_unit":null,
+          "expiration_interval":null,
+          "return_url":null,
+          "update_return_url":null,
+          "return_params":null,
+          "require_credit_card":true,
+          "request_credit_card":true,
+          "created_at":`auto generated`,
+          "updated_at":`auto generated`,
+          "archived_at":null,
+          "product_family":{
+            "id":`auto generated`,
+            "name":`your value`,
+            "handle":`your value`,
+            "accounting_code":`your value`,
+            "description":`your value`
+          }
+        },
+        "credit_card":{
+          "id":`auto generated`,
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "masked_card_number":"XXXX-XXXX-XXXX-1",
+          "card_type":`auto generated`,
+          "expiration_month":10,
+          "expiration_year":2020,
+          "billing_address":`your value`,
+          "billing_address_2":`your value`,
+          "billing_city":`your value`,
+          "billing_state":`your value`,
+          "billing_zip":`your value`,
+          "billing_country":`your value`,
+          "current_vault":`your value`,
+          "vault_token":`your value`,
+          "customer_vault_token":`your value`,
+          "customer_id":`auto generated`
+        }
+      }}
+      """
+
+  Scenario: Create a subscription successfully with billing address
+    Given site "acme" has a product with handle "basic"
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle":"basic",
+        "customer_attributes":{
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com",
+          "address":"1 Infinite Loop",
+          "address_2":"Suite 1",
+          "city":"Cupertino",
+          "state":"CA",
+          "zip":"95014",
+          "country":"US",
+          "phone":"5552666666"
+        },
+        "credit_card_attributes":{
+          "full_number":"1",
+          "expiration_month":"10",
+          "expiration_year":"2020",
+          "billing_address":"1 Infinite Loop",
+          "billing_address_2":"Suite 1",
+          "billing_city":"Cupertino",
+          "billing_state":"CA",
+          "billing_zip":"95014",
+          "billing_country":"US"
+        }
+      }}
+      """
+    When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+      {"subscription":{
+        "id":`auto generated`,
+        "state":"active",
+        "previous_state":`auto generated`,
+        "balance_in_cents":`auto generated`,
+        "total_revenue_in_cents":`auto generated`,
+        "product_price_in_cents": 1000,
+        "product_version_number": 1,
+        "current_period_started_at":`auto generated`,
+        "current_period_ends_at":`auto generated`,
+        "next_assessment_at":`auto generated`,
+        "activated_at":`auto generated`,
+        "trial_ended_at":`auto generated`,
+        "trial_started_at":`auto generated`,
+        "expires_at":`auto generated`,
+        "created_at":`auto generated`,
+        "updated_at":`auto generated`,
+        "canceled_at":`your value`,
+        "cancellation_message":null,
+        "cancel_at_end_of_period":false,
+        "delayed_cancel_at":null,
+        "coupon_code":`your value`,
+        "signup_payment_id":`auto generated`,
+        "signup_revenue":`your value`,
+        "payment_collection_method":"automatic",
+        "customer":{
+          "id":`auto generated`,
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com",
+          "organization":`your value`,
+          "reference":`your value`,
+          "address":"1 Infinite Loop",
+          "address_2":"Suite 1",
+          "city":"Cupertino",
+          "state":"CA",
+          "zip":"95014",
+          "country":"US",
+          "phone":"5552666666",
+          "updated_at":`auto generated`,
+          "created_at":`auto generated`
+        },
+        "product":{
+          "id":`auto generated`,
+          "name":`your value`,
+          "handle":"basic",
+          "price_in_cents":`your value`,
+          "accounting_code":`your value`,
+          "description":`your value`,
+          "interval":`your value`,
+          "interval_unit":`your value`,
+          "initial_charge_in_cents":null,
+          "trial_price_in_cents":null,
+          "trial_interval":null,
+          "trial_interval_unit":null,
+          "expiration_interval_unit":null,
+          "expiration_interval":null,
+          "return_url":null,
+          "update_return_url":null,
+          "return_params":null,
+          "require_credit_card":true,
+          "request_credit_card":true,
+          "created_at":`auto generated`,
+          "updated_at":`auto generated`,
+          "archived_at":null,
+          "product_family":{
+            "id":`auto generated`,
+            "name":`your value`,
+            "handle":`your value`,
+            "accounting_code":`your value`,
+            "description":`your value`
+          }
+        },
+        "credit_card":{
+          "id":`auto generated`,
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "masked_card_number":"XXXX-XXXX-XXXX-1",
+          "card_type":`auto generated`,
+          "expiration_month":10,
+          "expiration_year":2020,
+          "billing_address":"1 Infinite Loop",
+          "billing_address_2":"Suite 1",
+          "billing_city":"Cupertino",
+          "billing_state":"CA",
+          "billing_zip":"95014",
+          "billing_country":"US",
+          "current_vault":`your value`,
+          "vault_token":`your value`,
+          "customer_vault_token":`your value`,
+          "customer_id":`auto generated`
+        }
+      }}
+      """
+  Scenario: Creating a subscription with a specified billing date
+    Given site "acme" has a product with handle "basic"
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle":"basic",
+        "customer_attributes":{
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com"
+        },
+        "credit_card_attributes":{
+          "full_number":"1",
+          "expiration_month":"10",
+          "expiration_year":"2020"
+        },
+        "next_billing_at":"2020-06-01"
+      }}
+      """
+    When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
+    Then the response status should be "201 Created"
+    And the subscription's channel attribute should be set to "api"
+
+  Scenario: Create a subscription successfully when a tax is applicable
+    Given site "acme" has a product with handle "basic"
+    And the product is taxable
+    And I have a tax named "PA Sales Tax"
+    And the tax applies to the customer's location
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle":"basic",
+        "customer_attributes":{
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com",
+          "state":"PA",
+          "country":"US"
+        },
+        "credit_card_attributes":{
+          "full_number":"1",
+          "expiration_month":"10",
+          "expiration_year":"2020"
+        }
+      }}
+      """
+    When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
+    Then the response status should be "201 Created"
+    And a charge for the tax should have been created
+
+  Scenario: Create a subscription successfully with an on-off component
+    Given site "acme" has a product with handle "basic"
+    And the product family has an on/off component with ID "2500"
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle":"basic",
+        "customer_attributes":{
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com"
+        },
+        "credit_card_attributes":{
+          "full_number":"1",
+          "expiration_month":"10",
+          "expiration_year":"2020"
+        },
+        "components": [{
+          "component_id": 2500,
+          "enabled": true
+        }]
+      }}
+      """
+    When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
+    Then the response status should be "201 Created"
+    And and the component will be toggled "on" for the subscription 
+
+  Scenario: Create a subscription successfully with a quantity-based component
+    Given site "acme" has a product with handle "basic"
+    And the product family has a quantity-based component with ID "2500"
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle":"basic",
+        "customer_attributes":{
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com"
+        },
+        "credit_card_attributes":{
+          "full_number":"1",
+          "expiration_month":"10",
+          "expiration_year":"2020"
+        },
+        "components": [{
+          "component_id": 2500,
+          "allocated_quantity": 14
+        }]
+      }}
+      """
+    When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
+    Then the response status should be "201 Created"
+    And the allocated quantity should be 14
+
+  Scenario: Create a subscription successfully with customer data, credit card data, and a product handle
+    Given site "acme" has a product with handle "basic"
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_handle":"basic",
+        "customer_attributes":{
+          "first_name":"Joe",
+          "last_name":"Blow",
+          "email":"joe@example.com"
+        },
+        "credit_card_attributes":{
+          "full_number":"1",
+          "expiration_month":"10",
+          "expiration_year":"2016"
+        }
+      }}
+      """
+    When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
+    Then the response status should be "201 Created"
 </code></pre>
 
 
@@ -900,16 +1832,16 @@ h3(#api-usage-xml-subscriptions-update). XML Update Usage Example
 
 <pre><code>
 Feature: Chargify Subscriptions Edit/Update XML API
-  In order integrate my app with Chargify
+  In order to integrate my app with Chargify
   As a developer
   I want to edit/update a subscription via the Chargify XML API
 
   Background:
-    Given I am a valid API user
+    Given I am a valid API user for site with subdomain "acme"
     And I send and accept xml
 
   Scenario: Update the credit card information on a subscription using credit_card_attributes
-    Given I have an active subscription
+    Given I have an active subscription with ID "1000"
     And I have this xml subscription data
       """
       <?xml version="1.0" encoding="UTF-8"?>
@@ -921,25 +1853,36 @@ Feature: Chargify Subscriptions Edit/Update XML API
         </credit_card_attributes>
       </subscription>
       """
-    When I send a PUT request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
+    When I send a PUT request with the xml data to https://acme.chargify.com/subscriptions/1000.xml
     Then the response status should be "200 OK"
     And the response should be the xml:
       """
       <?xml version="1.0" encoding="UTF-8"?>
       <subscription>
-        <id type="integer">[@subscription.id]</id>
+        <id type="integer">1000</id>
         <state>active</state>
+        <previous_state>`auto generated`</previous_state>
         <balance_in_cents type="integer">0</balance_in_cents>
-        <total_revenue_in_cents type="integer">0</total_revenue_in_cents>
+        <total_revenue_in_cents type="integer">`auto generated`</total_revenue_in_cents>
+        <product_price_in_cents type="integer">`your value`</product_price_in_cents>
+        <product_version_number type="integer">1</product_version_number>
         <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
         <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
+        <next_assessment_at type="datetime">`auto generated`</next_assessment_at>
         <trial_started_at type="datetime">`auto generated`</trial_started_at>
         <trial_ended_at type="datetime">`auto generated`</trial_ended_at>
         <activated_at type="datetime">`auto generated`</activated_at>
         <expires_at type="datetime">`auto generated`</expires_at>
         <created_at type="datetime">`auto generated`</created_at>
         <updated_at type="datetime">`auto generated`</updated_at>
+        <canceled_at type="datetime">`auto generated`</canceled_at>
         <cancellation_message nil="true"></cancellation_message>
+        <cancel_at_end_of_period type="boolean">false</cancel_at_end_of_period>
+        <delayed_cancel_at nil="true"></delayed_cancel_at>
+        <coupon_code nil="true"></coupon_code>
+        <signup_payment_id type="integer">`auto generated`</signup_payment_id>
+        <signup_revenue>`your value`</signup_revenue>
+        <payment_collection_method>automatic</payment_collection_method>
         <customer>
           <id type="integer">`auto generated`</id>
           <first_name>`your value`</first_name>
@@ -947,6 +1890,13 @@ Feature: Chargify Subscriptions Edit/Update XML API
           <email>`your value`</email>
           <organization>`your value`</organization>
           <reference>`your value`</reference>
+          <address>`your value`</address>
+          <address_2>`your value`</address_2>
+          <city>`your value`</city>
+          <state>`your value`</state>
+          <zip>`your value`</zip>
+          <country>`your value`</country>
+          <phone>`your value`</phone>
           <created_at type="datetime">`auto generated`</created_at>
           <updated_at>`auto generated`</updated_at>
         </customer>
@@ -954,57 +1904,101 @@ Feature: Chargify Subscriptions Edit/Update XML API
           <id>`auto generated`</id>
           <accounting_code>`your value`</accounting_code>
           <handle>`your value`</handle>
+          <description>`your value`</description>
           <interval>`your value`</interval>
           <interval_unit>`your value`</interval_unit>
           <name>`your value`</name>
           <price_in_cents>`your value`</price_in_cents>
+          <initial_charge_in_cents type="integer" nil="true"></initial_charge_in_cents>
+          <trial_interval type="integer" nil="true"></trial_interval>
+          <trial_interval_unit nil="true"></trial_interval_unit>
+          <trial_price_in_cents type="integer" nil="true"></trial_price_in_cents>
+          <expiration_interval type="integer">`your value`</expiration_interval>
+          <expiration_interval_unit>`your value`</expiration_interval_unit>
+          <archived_at type="datetime" nil="true"></archived_at>
+          <created_at type="datetime">`auto generated`</created_at>
+          <updated_at type="datetime">`auto generated`</updated_at>
+          <request_credit_card type="boolean">true</request_credit_card>
+          <require_credit_card type="boolean">true</require_credit_card>
+          <return_url nil="true"></return_url>
+          <update_return_url nil="true"></update_return_url>
+          <return_params nil="true"></return_params>
           <product_family>
             <id>`auto generated`</id>
             <accounting_code>`your value`</accounting_code>
             <handle>`your value`</handle>
             <name>`your value`</name>
+            <description>`your value`</description>
           </product_family>
         </product>
-        <credit_card>
+        <credit_card type="PaymentProfile">
+          <id type="integer">`auto generated`</id>
           <card_type>`auto generated`</card_type>
           <expiration_month type="integer">10</expiration_month>
           <expiration_year type="integer">2040</expiration_year>
           <first_name>`your value`</first_name>
           <last_name>`your value`</last_name>
           <masked_card_number>XXXX-XXXX-XXXX-2</masked_card_number>
+          <billing_address>`your value`</billing_address>
+          <billing_address_2>`your value`</billing_address_2>
+          <billing_city>`your value`</billing_city>
+          <billing_state>`your value`</billing_state>
+          <billing_zip>`your value`</billing_zip>
+          <billing_country>`your value`</billing_country>
+          <current_vault type="integer">`your value`</current_vault>
+          <vault_token type="integer">`your value`</vault_token>
+          <customer_vault_token>`your value`</customer_vault_token>
+          <customer_id>`auto generated`</customer_id>
         </credit_card>
       </subscription>
       """
 
   Scenario: Update the product associated with the subscription
-    Given I have 2 products
-    And I have an active subscription to the first product
+    Given I have a product family with ID "1502"
+    And I have a product with these attributes
+      | id   | handle | name       | price_in_cents | product_family_id |
+      | 2001 | basic  | Basic Plan | 1900           | 1502              |
+    And I have a product with these attributes
+      | id   | handle | name       | price_in_cents | product_family_id |
+      | 2002 | pro    | Pro Plan   | 9900           | 1502              |
+    And I have an active subscription with ID "1000" to the product with handle "basic"
     And I have this xml subscription data
       """
       <?xml version="1.0" encoding="UTF-8"?>
       <subscription>
-        <product_handle>[@products.last.handle]</product_handle>
+        <product_handle>pro</product_handle>
       </subscription>
       """
-    When I send a PUT request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
+    When I send a PUT request with the xml data to https://acme.chargify.com/subscriptions/1000.xml
     Then the response status should be "200 OK"
     And the response should be the xml:
       """
       <?xml version="1.0" encoding="UTF-8"?>
       <subscription>
-        <id type="integer">[@subscription.id]</id>
+        <id type="integer">1000</id>
         <state>active</state>
+        <previous_state>`auto generated`</previous_state>
         <balance_in_cents type="integer">0</balance_in_cents>
-        <total_revenue_in_cents type="integer">0</total_revenue_in_cents>
+        <total_revenue_in_cents type="integer">`auto generated`</total_revenue_in_cents>
+        <product_price_in_cents type="integer">`your value`</product_price_in_cents>
+        <product_version_number type="integer">1</product_version_number>
         <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
         <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
+        <next_assessment_at type="datetime">`auto generated`</next_assessment_at>
         <trial_started_at type="datetime">`auto generated`</trial_started_at>
         <trial_ended_at type="datetime">`auto generated`</trial_ended_at>
         <activated_at type="datetime">`auto generated`</activated_at>
         <expires_at type="datetime">`auto generated`</expires_at>
         <created_at type="datetime">`auto generated`</created_at>
         <updated_at type="datetime">`auto generated`</updated_at>
+        <canceled_at type="datetime">`auto generated`</canceled_at>
         <cancellation_message nil="true"></cancellation_message>
+        <cancel_at_end_of_period type="boolean">false</cancel_at_end_of_period>
+        <delayed_cancel_at nil="true"></delayed_cancel_at>
+        <coupon_code nil="true"></coupon_code>
+        <signup_payment_id type="integer">`auto generated`</signup_payment_id>
+        <signup_revenue>`your value`</signup_revenue>
+        <payment_collection_method>automatic</payment_collection_method>
         <customer>
           <id type="integer">`auto generated`</id>
           <first_name>`your value`</first_name>
@@ -1012,34 +2006,134 @@ Feature: Chargify Subscriptions Edit/Update XML API
           <email>`your value`</email>
           <organization>`your value`</organization>
           <reference>`your value`</reference>
+          <address>`your value`</address>
+          <address_2>`your value`</address_2>
+          <city>`your value`</city>
+          <state>`your value`</state>
+          <zip>`your value`</zip>
+          <country>`your value`</country>
+          <phone>`your value`</phone>
           <created_at type="datetime">`auto generated`</created_at>
           <updated_at>`auto generated`</updated_at>
         </customer>
         <product>
-          <id type="integer">[@products.last.id]</id>
-          <accounting_code>[@products.last.accounting_code]</accounting_code>
-          <handle>[@products.last.handle]</handle>
-          <interval type="integer">[@products.last.interval]</interval>
-          <interval_unit>[@products.last.interval_unit]</interval_unit>
-          <name>[@products.last.name]</name>
-          <price_in_cents type="integer">[@products.last.price_in_cents]</price_in_cents>
+          <id type="integer">2002</id>
+          <accounting_code>`your value`</accounting_code>
+          <handle>pro</handle>
+          <description>`your value`</description>
+          <interval type="integer">`your value`</interval>
+          <interval_unit>`your value`</interval_unit>
+          <name>Pro Plan</name>
+          <price_in_cents type="integer">9900</price_in_cents>
+          <initial_charge_in_cents type="integer" nil="true"></initial_charge_in_cents>
+          <trial_interval type="integer" nil="true"></trial_interval>
+          <trial_interval_unit nil="true"></trial_interval_unit>
+          <trial_price_in_cents type="integer" nil="true"></trial_price_in_cents>
+          <expiration_interval type="integer">`your value`</expiration_interval>
+          <expiration_interval_unit>`your value`</expiration_interval_unit>
+          <archived_at type="datetime" nil="true"></archived_at>
+          <created_at type="datetime">`auto generated`</created_at>
+          <updated_at type="datetime">`auto generated`</updated_at>
+          <request_credit_card type="boolean">true</request_credit_card>
+          <require_credit_card type="boolean">true</require_credit_card>
+          <return_url nil="true"></return_url>
+          <update_return_url nil="true"></update_return_url>
+          <return_params nil="true"></return_params>
           <product_family>
-            <id type="integer">[@products.last.product_family.id]</id>
-            <accounting_code>[@products.last.product_family.accounting_code]</accounting_code>
-            <handle>[@products.last.product_family.handle]</handle>
-            <name>[@products.last.product_family.name]</name>
+            <id type="integer">1502</id>
+            <accounting_code>`your value`</accounting_code>
+            <handle>`your value`</handle>
+            <name>`your value`</name>
+            <description>`your value`</description>
           </product_family>
         </product>
-        <credit_card>
+        <credit_card type="PaymentProfile">
+          <id type="integer">`auto generated`</id>
           <card_type>`auto generated`</card_type>
           <expiration_month type="integer">`your value`</expiration_month>
           <expiration_year type="integer">`your value`</expiration_year>
           <first_name>`your value`</first_name>
           <last_name>`your value`</last_name>
           <masked_card_number>`your value`</masked_card_number>
+          <billing_address>`your value`</billing_address>
+          <billing_address_2>`your value`</billing_address_2>
+          <billing_city>`your value`</billing_city>
+          <billing_state>`your value`</billing_state>
+          <billing_zip>`your value`</billing_zip>
+          <billing_country>`your value`</billing_country>
+          <current_vault type="integer">`your value`</current_vault>
+          <vault_token type="integer">`your value`</vault_token>
+          <customer_vault_token>`your value`</customer_vault_token>
+          <customer_id>`auto generated`</customer_id>
         </credit_card>
       </subscription>
       """
+
+  Scenario: Manually setting the next billing date to a later date
+    Given I have an active subscription with ID "1000"
+    And I have this xml subscription data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <next_billing_at>[@new_date = @subscription.current_period_ends_at + 1.week]</next_billing_at>
+      </subscription>
+      """
+    When I send a PUT request with the xml data to https://acme.chargify.com/subscriptions/1000.xml
+    Then the response status should be "200 OK"
+    And the subscription's "current_period_ends_at" should be set to the new date
+    And the subscription's "next_assessment_at" should be set to the new date
+
+  Scenario: Manually setting the next billing date to an earlier date
+    Given I have an active subscription with ID "1000"
+    And I have this xml subscription data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <next_billing_at>[@new_date = @subscription.current_period_ends_at - 1.week]</next_billing_at>
+      </subscription>
+      """
+    When I send a PUT request with the xml data to https://acme.chargify.com/subscriptions/1000.xml
+    Then the response status should be "200 OK"
+    And the subscription's "current_period_ends_at" should be set to the new date
+    And the subscription's "next_assessment_at" should be set to the new date
+
+  Scenario: Manually setting the next billing date to a date in the past
+    Given I have an active subscription with ID "1000"
+    And I have this xml subscription data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <next_billing_at>[@new_date = 1.week.ago]</next_billing_at>
+      </subscription>
+      """
+    When I send a PUT request with the xml data to https://acme.chargify.com/subscriptions/1000.xml
+    Then the response status should be "422 Unprocessable Entity"
+    And the subscription's "current_period_ends_at" should not be set to the new date
+    And the subscription's "next_assessment_at" should not be set to the new date
+    And the response should be the xml:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <errors>
+        <error>Provided 'Next Billing' date must be in the future</error>
+      </errors>
+      """
+
+  Scenario: Manually setting the next billing date, with trial
+    Given I have an active subscription with ID "1000"
+    And I the subscription is trialing
+    And I have this xml subscription data
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <subscription>
+        <next_billing_at>[@new_date = @subscription.current_period_ends_at + 1.week]</next_billing_at>
+      </subscription>
+      """
+    When I send a PUT request with the xml data to https://acme.chargify.com/subscriptions/1000.xml
+    When I send a PUT request with the json data to https://acme.chargify.com/subscriptions/1000.json
+    Then the response status should be "200 OK"
+    And the subscription's "current_period_ends_at" should be set to the new date
+    And the subscription's "next_assessment_at" should be set to the new date
+    And the subscription's "trial_ended_at" should be set to the new date
 </code></pre>
 
 
@@ -1048,16 +2142,16 @@ h3(#api-usage-json-subscriptions-update). JSON Update Usage Example
 
 <pre><code>
 Feature: Chargify Subscriptions Edit/Update JSON API
-  In order integrate my app with Chargify
+  In order to integrate my app with Chargify
   As a developer
   I want to edit/update a subscription via the Chargify JSON API
 
   Background:
-    Given I am a valid API user
+    Given I am a valid API user for site with subdomain "acme"
     And I send and accept json
 
   Scenario: Update the credit card information on a subscription using credit_card_attributes
-    Given I have an active subscription
+    Given I have an active subscription with ID "1000"
     And I have this json subscription data
       """
       {"subscription":{
@@ -1068,24 +2162,35 @@ Feature: Chargify Subscriptions Edit/Update JSON API
         }
       }}
       """
-    When I send a PUT request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
+    When I send a PUT request with the json data to https://acme.chargify.com/subscriptions/1000.json
     Then the response status should be "200 OK"
     And the response should be the json:
       """
       {"subscription":{
-        "id":[@subscription.id],
+        "id":1000,
         "state":"active",
+        "previous_state":`auto generated`,
         "balance_in_cents":`auto generated`,
         "total_revenue_in_cents":`auto generated`,
+        "product_price_in_cents": 1000,
+        "product_version_number": 1,
         "current_period_started_at":`auto generated`,
         "current_period_ends_at":`auto generated`,
+        "next_assessment_at":`auto generated`,
         "activated_at":`auto generated`,
         "trial_ended_at":`auto generated`,
         "trial_started_at":`auto generated`,
         "expires_at":`auto generated`,
         "created_at":`auto generated`,
         "updated_at":`auto generated`,
+        "canceled_at":`your value`,
         "cancellation_message":null,
+        "cancel_at_end_of_period":false,
+        "delayed_cancel_at":null,
+        "coupon_code":`your value`,
+        "signup_payment_id":`auto generated`,
+        "signup_revenue":`your value`,
+        "payment_collection_method":"automatic",
         "customer":{
           "id":`auto generated`,
           "first_name":`your value`,
@@ -1093,6 +2198,13 @@ Feature: Chargify Subscriptions Edit/Update JSON API
           "email":`your value`,
           "organization":`your value`,
           "reference":`your value`,
+          "address":`your value`,
+          "address_2":`your value`,
+          "city":`your value`,
+          "state":`auto generated`,
+          "zip":`auto generated`,
+          "country":`auto generated`,
+          "phone":`auto generated`,
           "updated_at":`auto generated`,
           "created_at":`auto generated`
         },
@@ -1102,54 +2214,97 @@ Feature: Chargify Subscriptions Edit/Update JSON API
           "handle":`your value`,
           "price_in_cents":`your value`,
           "accounting_code":`your value`,
+          "description":`your value`,
           "interval":`your value`,
           "interval_unit":`your value`,
+          "initial_charge_in_cents":null,
+          "trial_price_in_cents":null,
+          "trial_interval":null,
+          "trial_interval_unit":null,
+          "expiration_interval_unit":null,
+          "expiration_interval":null,
+          "return_url":null,
+          "update_return_url":null,
+          "return_params":null,
+          "require_credit_card":true,
+          "request_credit_card":true,
+          "created_at":`auto generated`,
+          "updated_at":`auto generated`,
+          "archived_at":null,
           "product_family":{
             "id":`auto generated`,
             "name":`your value`,
             "handle":`your value`,
-            "accounting_code":`your value`
+            "accounting_code":`your value`,
+            "description":`your value`
           }
         },
         "credit_card":{
+          "id":`auto generated`,
           "first_name":`your value`,
           "last_name":`your value`,
           "masked_card_number":"XXXX-XXXX-XXXX-2",
           "card_type":`auto generated`,
           "expiration_month":10,
-          "expiration_year":2030
+          "expiration_year":2030,
+          "billing_address":`your value`,
+          "billing_address_2":`your value`,
+          "billing_city":`your value`,
+          "billing_state":`your value`,
+          "billing_zip":`your value`,
+          "billing_country":`your value`,
+          "current_vault":`your value`,
+          "vault_token":`your value`,
+          "customer_vault_token":`your value`,
+          "customer_id":`auto generated`
         }
       }}
       """
 
   Scenario: Update the product associated with the subscription
-    Given I have 2 products
-    And I have an active subscription to the first product
+    Given I have a product family with ID "1502"
+    And I have a product with these attributes
+      | id   | handle | name       | price_in_cents | product_family_id |
+      | 2001 | basic  | Basic Plan | 1900           | 1502              |
+    And I have a product with these attributes
+      | id   | handle | name       | price_in_cents | product_family_id |
+      | 2002 | pro    | Pro Plan   | 9900           | 1502              |
+    And I have an active subscription with ID "1000" to the product with handle "basic"
     And I have this json subscription data
       """
       {"subscription":{
-        "product_handle": [@products.last.handle]
+        "product_handle": "pro"
       }}
       """
-    When I send a PUT request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
+    When I send a PUT request with the json data to https://acme.chargify.com/subscriptions/1000.json
     Then the response status should be "200 OK"
-    And print the response
     And the response should be the json:
       """
       {"subscription":{
-        "id":[@subscription.id],
+        "id":1000,
         "state":"active",
+        "previous_state":`auto generated`,
         "balance_in_cents":`auto generated`,
         "total_revenue_in_cents":`auto generated`,
+        "product_price_in_cents": 9900,
+        "product_version_number": 1,
         "current_period_started_at":`auto generated`,
         "current_period_ends_at":`auto generated`,
+        "next_assessment_at":`auto generated`,
         "activated_at":`auto generated`,
         "trial_ended_at":`auto generated`,
         "trial_started_at":`auto generated`,
         "expires_at":`auto generated`,
         "created_at":`auto generated`,
         "updated_at":`auto generated`,
+        "canceled_at":`your value`,
         "cancellation_message":null,
+        "cancel_at_end_of_period":false,
+        "delayed_cancel_at":null,
+        "coupon_code":`your value`,
+        "signup_payment_id":`auto generated`,
+        "signup_revenue":`your value`,
+        "payment_collection_method":"automatic",
         "customer":{
           "id":`auto generated`,
           "first_name":`your value`,
@@ -1157,34 +2312,221 @@ Feature: Chargify Subscriptions Edit/Update JSON API
           "email":`your value`,
           "organization":`your value`,
           "reference":`your value`,
+          "address":`your value`,
+          "address_2":`your value`,
+          "city":`your value`,
+          "state":`auto generated`,
+          "zip":`auto generated`,
+          "country":`auto generated`,
+          "phone":`auto generated`,
           "updated_at":`auto generated`,
           "created_at":`auto generated`
         },
         "product":{
-          "id":[@products.last.id],
-          "name":"[@products.last.name]",
-          "handle":"[@products.last.handle]",
-          "price_in_cents":[@products.last.price_in_cents],
-          "accounting_code":"[@products.last.accounting_code]",
-          "interval":[@products.last.interval],
-          "interval_unit":"[@products.last.interval_unit]",
+          "id":2002,
+          "name":"Pro Plan",
+          "handle":"pro",
+          "price_in_cents": 9900,
+          "accounting_code": `your value`,
+          "description":`your value`,
+          "interval": `your value`,
+          "interval_unit": `your value`,
+          "initial_charge_in_cents":null,
+          "trial_price_in_cents":null,
+          "trial_interval":null,
+          "trial_interval_unit":null,
+          "expiration_interval_unit":null,
+          "expiration_interval":null,
+          "return_url":null,
+          "update_return_url":null,
+          "return_params":null,
+          "require_credit_card":true,
+          "request_credit_card":true,
+          "created_at":`auto generated`,
+          "updated_at":`auto generated`,
+          "archived_at":null,
           "product_family":{
-            "id":[@products.last.product_family.id],
-            "name":"[@products.last.product_family.name]",
-            "handle":"[@products.last.product_family.handle]",
-            "accounting_code":"[@products.last.product_family.accounting_code]"
+            "id": 1502,
+            "name": `your value`,
+            "handle": `your value`,
+            "accounting_code": `your value`,
+            "description":`your value`
           }
         },
         "credit_card":{
+          "id":`auto generated`,
           "first_name":`your value`,
           "last_name":`your value`,
           "masked_card_number":`your value`,
           "card_type":`auto generated`,
           "expiration_month":`your value`,
-          "expiration_year":`your value`
+          "expiration_year":`your value`,
+          "billing_address":`your value`,
+          "billing_address_2":`your value`,
+          "billing_city":`your value`,
+          "billing_state":`your value`,
+          "billing_zip":`your value`,
+          "billing_country":`your value`,
+          "current_vault":`your value`,
+          "vault_token":`your value`,
+          "customer_vault_token":`your value`,
+          "customer_id":`auto generated`
         }
       }}
       """
+
+  Scenario: Manually setting the next billing date to a later date
+    Given I have an active subscription with ID "1000"
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "next_billing_at": "[@new_date = @subscription.current_period_ends_at + 1.week]"
+      }}
+      """
+    When I send a PUT request with the json data to https://acme.chargify.com/subscriptions/1000.json
+    Then the response status should be "200 OK"
+    And the subscription's "current_period_ends_at" should be set to the new date
+    And the subscription's "next_assessment_at" should be set to the new date
+    And the subscription's "trial_ended_at" should be nil
+
+  Scenario: Manually setting the next billing date to an earlier date
+    Given I have an active subscription with ID "1000"
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "next_billing_at": "[@new_date = @subscription.current_period_ends_at - 1.week]"
+      }}
+      """
+    When I send a PUT request with the json data to https://acme.chargify.com/subscriptions/1000.json
+    Then the response status should be "200 OK"
+    And the subscription's "current_period_ends_at" should be set to the new date
+    And the subscription's "next_assessment_at" should be set to the new date
+    And the subscription's "trial_ended_at" should be nil
+
+  Scenario: Manually setting the next billing date to a date in the past
+    Given I have an active subscription with ID "1000"
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "next_billing_at": "[@new_date =1.week.ago]"
+      }}
+      """
+    When I send a PUT request with the json data to https://acme.chargify.com/subscriptions/1000.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the subscription's "current_period_ends_at" should not be set to the new date
+    And the subscription's "next_assessment_at" should not be set to the new date
+
+  Scenario: Update the product associated with the subscription to a product on a different product family
+    Given I have a customer named "John Doe"
+    And I have a 3 tier product family named "Grasshopper"
+    And I have a product family named "Foosballs"
+    And I have a product named "Expensive Plan"
+    And "John Doe" is subscribed to the "Medium Plan" with subscription ID "1000"
+    And I have this json subscription data
+      """
+      {"subscription":{
+        "product_id": "[@product.id]"
+      }}
+      """
+    When I send a PUT request with the json data to https://acme.chargify.com/subscriptions/1000.json
+    Then the response status should be "200 OK"
+    And the subscription should be on the "Expensive plan"
+    And the response should be the json:
+    """
+    {"subscription":{
+      "id":1000,
+      "state":"active",
+      "previous_state":`auto generated`,
+      "balance_in_cents":`auto generated`,
+      "total_revenue_in_cents":`auto generated`,
+      "product_price_in_cents": 1000,
+      "product_version_number": 1,
+      "current_period_started_at":`auto generated`,
+      "current_period_ends_at":`auto generated`,
+      "next_assessment_at":`auto generated`,
+      "activated_at":`auto generated`,
+      "trial_ended_at":`auto generated`,
+      "trial_started_at":`auto generated`,
+      "expires_at":`auto generated`,
+      "created_at":`auto generated`,
+      "updated_at":`auto generated`,
+      "canceled_at":`your value`,
+      "cancellation_message":null,
+      "cancel_at_end_of_period":false,
+      "delayed_cancel_at":null,
+      "coupon_code":`your value`,
+      "signup_payment_id":`auto generated`,
+      "signup_revenue":`your value`,
+      "payment_collection_method":"automatic",
+      "customer":{
+        "id":`auto generated`,
+        "first_name":`your value`,
+        "last_name":`your value`,
+        "email":`your value`,
+        "organization":`your value`,
+        "reference":`your value`,
+        "address":`your value`,
+        "address_2":`your value`,
+        "city":`your value`,
+        "state":`auto generated`,
+        "zip":`auto generated`,
+        "country":`auto generated`,
+        "phone":`auto generated`,
+        "updated_at":`auto generated`,
+        "created_at":`auto generated`
+      },
+      "product":{
+        "id":[@product.id],
+        "name":"Expensive Plan",
+        "handle":"[@product.handle]",
+        "price_in_cents":[@product.price_in_cents],
+        "accounting_code":"[@product.accounting_code]",
+        "description":`your value`,
+        "interval":[@product.interval],
+        "interval_unit":"[@product.interval_unit]",
+        "initial_charge_in_cents":null,
+        "trial_price_in_cents":null,
+        "trial_interval":null,
+        "trial_interval_unit":null,
+        "expiration_interval_unit":null,
+        "expiration_interval":null,
+        "return_url":null,
+        "update_return_url":null,
+        "return_params":null,
+        "require_credit_card":true,
+        "request_credit_card":true,
+        "created_at":`auto generated`,
+        "updated_at":`auto generated`,
+        "archived_at":null,
+        "product_family":{
+          "id":[@product.product_family.id],
+          "name":"[@product.product_family.name]",
+          "handle":"[@product.product_family.handle]",
+          "accounting_code":"[@product.product_family.accounting_code]",
+          "description":`your value`
+        }
+      },
+      "credit_card":{
+        "id":`auto generated`,
+        "first_name":`your value`,
+        "last_name":`your value`,
+        "masked_card_number":`your value`,
+        "card_type":`auto generated`,
+        "expiration_month":`your value`,
+        "expiration_year":`your value`,
+        "billing_address":`your value`,
+        "billing_address_2":`your value`,
+        "billing_city":`your value`,
+        "billing_state":`your value`,
+        "billing_zip":`your value`,
+        "billing_country":`your value`,
+        "current_vault":`your value`,
+        "vault_token":`your value`,
+        "customer_vault_token":`your value`,
+        "customer_id":`auto generated`
+      }
+    }}
+    """
 </code></pre>
 
 
@@ -1354,30 +2696,42 @@ Feature: Reactivation
   I want the ability to reactivate a canceled subscription
 
   Background:
-    Given I am a valid API user
+    Given I am a valid API user for site with subdomain "acme"
     And I send and accept xml
 
-  Scenario: Reactivating a subscription
-    Given I have a canceled subscription
-    When I send a PUT request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/reactivate.xml
+  Scenario: Reactivating a canceled subscription
+    Given I have a canceled subscription with ID "1000"
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.xml
     Then the response status should be "200 OK"
+    And the subscription should be active
     And the response should be the xml:
       """
       <?xml version="1.0" encoding="UTF-8"?>
       <subscription>
-        <id type="integer">[@subscription.id]</id>
+        <id type="integer">1000</id>
         <state>active</state>
+        <previous_state>`auto generated`</previous_state>
         <balance_in_cents type="integer">0</balance_in_cents>
-        <total_revenue_in_cents type="integer">4200</total_revenue_in_cents>
+        <total_revenue_in_cents type="integer">`auto generated`</total_revenue_in_cents>
+        <product_price_in_cents type="integer">`your value`</product_price_in_cents>
+        <product_version_number type="integer">1</product_version_number>
         <current_period_started_at type="datetime">`auto generated`</current_period_started_at>
         <current_period_ends_at type="datetime">`auto generated`</current_period_ends_at>
+        <next_assessment_at type="datetime">`auto generated`</next_assessment_at>
         <trial_started_at type="datetime">`auto generated`</trial_started_at>
         <trial_ended_at type="datetime">`auto generated`</trial_ended_at>
         <activated_at type="datetime">`auto generated`</activated_at>
         <expires_at type="datetime">`auto generated`</expires_at>
         <created_at type="datetime">`auto generated`</created_at>
         <updated_at type="datetime">`auto generated`</updated_at>
+        <canceled_at type="datetime">`auto generated`</canceled_at>
         <cancellation_message nil="true"></cancellation_message>
+        <cancel_at_end_of_period type="boolean">false</cancel_at_end_of_period>
+        <delayed_cancel_at nil="true"></delayed_cancel_at>
+        <coupon_code nil="true"></coupon_code>
+        <signup_payment_id type="integer">`auto generated`</signup_payment_id>
+        <signup_revenue>`your value`</signup_revenue>
+        <payment_collection_method>automatic</payment_collection_method>
         <customer>
           <id type="integer">`auto generated`</id>
           <first_name>`your value`</first_name>
@@ -1385,6 +2739,13 @@ Feature: Reactivation
           <email>`your value`</email>
           <organization>`your value`</organization>
           <reference>`your value`</reference>
+          <address>`your value`</address>
+          <address_2>`your value`</address_2>
+          <city>`your value`</city>
+          <state>`your value`</state>
+          <zip>`your value`</zip>
+          <country>`your value`</country>
+          <phone>`your value`</phone>
           <created_at type="datetime">`auto generated`</created_at>
           <updated_at>`auto generated`</updated_at>
         </customer>
@@ -1409,6 +2770,7 @@ Feature: Reactivation
           <request_credit_card type="boolean">true</request_credit_card>
           <require_credit_card type="boolean">true</require_credit_card>
           <return_url nil="true"></return_url>
+          <update_return_url nil="true"></update_return_url>
           <return_params nil="true"></return_params>
           <product_family>
             <id>`auto generated`</id>
@@ -1418,16 +2780,112 @@ Feature: Reactivation
             <description>`your value`</description>
           </product_family>
         </product>
-        <credit_card>
+        <credit_card type="PaymentProfile">
+          <id type="integer">`auto generated`</id>
           <card_type>`auto generated`</card_type>
-          <expiration_month type="integer">12</expiration_month>
-          <expiration_year type="integer">2011</expiration_year>
+          <expiration_month type="integer">`your value`</expiration_month>
+          <expiration_year type="integer">`your value`</expiration_year>
           <first_name>`your value`</first_name>
           <last_name>`your value`</last_name>
           <masked_card_number>XXXX-XXXX-XXXX-1</masked_card_number>
+          <billing_address>`your value`</billing_address>
+          <billing_address_2>`your value`</billing_address_2>
+          <billing_city>`your value`</billing_city>
+          <billing_state>`your value`</billing_state>
+          <billing_zip>`your value`</billing_zip>
+          <billing_country>`your value`</billing_country>
+          <current_vault type="integer">`your value`</current_vault>
+          <vault_token type="integer">`your value`</vault_token>
+          <customer_vault_token>`your value`</customer_vault_token>
+          <customer_id>`auto generated`</customer_id>
         </credit_card>
       </subscription>
       """
+
+  Scenario: Reactivating a canceled subscription with an invalid payment profile
+    Given I have a canceled subscription with ID "1000"
+    And the subscription has an invalid payment profile
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.xml
+    Then the response status should be "422 Unprocessable Entity"
+    And the subscription should be canceled
+    And the response should be the xml:
+    """
+    <?xml version="1.0" encoding="UTF-8"?>
+    <errors>
+      <error>The credit card on file could not be charged.</error>
+    </errors>
+    """
+
+  Scenario: Attempting to reactivate an already active subscription
+    Given I have an active subscription with ID "1000"
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.xml
+    Then the response status should be "422 Unprocessable Entity"
+    And the subscription should be active
+    And the response should be the xml:
+    """
+    <?xml version="1.0" encoding="UTF-8"?>
+    <errors>
+      <error>Cannot reactivate a subscription that is not marked "Canceled", "Unpaid", or "Trial Ended".</error>
+    </errors>
+    """
+
+  Scenario: Reactivating a canceled subscription while preserving the balance
+    Given I have a product with ID "2002" that costs $19
+    And I have a canceled subscription with ID "1000" to the product with ID "2002"
+    Then 1 charge should exist for $19
+    And 1 payment should exist for $19
+    When the subscription has a negative balance of "19"
+    And I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.xml?preserve_balance=1
+    Then the response status should be "200 OK"
+    And 2 charges should exist for $19
+    And 1 payments should exist for $19
+    And the subscription should be active
+    And the subscription balance should be zero
+
+  Scenario: Reactivating a canceled subscription with a coupon
+    Given I have a canceled subscription with ID "1000"
+    And it has no current period defined
+    And I have a coupon named "Early Bird"
+    And the coupon is set to recur for 6 periods
+    And the coupon code is "EARLYBIRD"
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.json?coupon_code=EARLYBIRD
+    Then the response status should be "200 OK"
+    And the subscription should be active
+    And the subscription should have applied a coupon with code "EARLYBIRD"
+
+  Scenario: Reactivating a canceled subscription with a trial, without the include_trial flag
+    Given I have a canceled subscription with ID "1000"
+    And the product associated with the subscription has a trial
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.xml
+    Then the response status should be "200 OK"
+    And the subscription should be active
+
+  Scenario: Reactivating a canceled subscription with a trial, with the include_trial flag
+    Given I have a canceled subscription with ID "1000"
+    And the product associated with the subscription has a trial
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.xml?include_trial=1
+    Then the response status should be "200 OK"
+    And the subscription should be trialing
+
+  Scenario: Reactivating a trial ended subscription
+    Given I have a trial_ended subscription with ID "1000"
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.xml
+    Then the response status should be "200 OK"
+    And the subscription should be active
+
+  Scenario: Reactivating a trial ended subscription, without the include_trial flag
+    Given I have a trial_ended subscription with ID "1000"
+    And the product associated with the subscription has a trial
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.xml
+    Then the response status should be "200 OK"
+    And the subscription should be active
+
+  Scenario: Reactivating a trial ended subscription, with the include_trial flag
+    Given I have a trial_ended subscription with ID "1000"
+    And the product associated with the subscription has a trial
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.xml?include_trial=1
+    Then the response status should be "200 OK"
+    And the subscription should be trialing
 </code></pre>
 
 h3(#api-react-json). JSON Reactivation Example
@@ -1439,29 +2897,41 @@ Feature: Reactivation
   I want the ability to reactivate a canceled subscription
 
   Background:
-    Given I am a valid API user
+    Given I am a valid API user for site with subdomain "acme"
     And I send and accept json
 
-  Scenario: Reactivating a subscription
-    Given I have a canceled subscription
-    When I send a PUT request to https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/reactivate.json
+  Scenario: Reactivating a canceled subscription
+    Given I have a canceled subscription with ID "1000"
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.json
     Then the response status should be "200 OK"
+    And the subscription should be active
     And the response should be the json:
       """
       {"subscription":{
-        "id":[@subscription.id],
+        "id":1000,
         "state":"active",
+        "previous_state":`auto generated`,
         "balance_in_cents":0,
-        "total_revenue_in_cents":4200,
+        "total_revenue_in_cents":2000,
+        "product_price_in_cents": 1000,
+        "product_version_number": 1,
         "current_period_started_at":`auto generated`,
         "current_period_ends_at":`auto generated`,
+        "next_assessment_at":`auto generated`,
         "activated_at":`auto generated`,
         "trial_ended_at":`auto generated`,
         "trial_started_at":`auto generated`,
         "expires_at":`auto generated`,
         "created_at":`auto generated`,
         "updated_at":`auto generated`,
+        "canceled_at":`your value`,
         "cancellation_message":null,
+        "cancel_at_end_of_period":false,
+        "delayed_cancel_at":null,
+        "coupon_code":`your value`,
+        "signup_payment_id":`auto generated`,
+        "signup_revenue":`your value`,
+        "payment_collection_method":"automatic",
         "customer":{
           "id":`auto generated`,
           "first_name":`your value`,
@@ -1469,6 +2939,13 @@ Feature: Reactivation
           "email":`your value`,
           "organization":`your value`,
           "reference":`your value`,
+          "address":`your value`,
+          "address_2":`your value`,
+          "city":`your value`,
+          "state":`auto generated`,
+          "zip":`auto generated`,
+          "country":`auto generated`,
+          "phone":`auto generated`,
           "updated_at":`auto generated`,
           "created_at":`auto generated`
         },
@@ -1488,6 +2965,7 @@ Feature: Reactivation
           "expiration_interval_unit":null,
           "expiration_interval":null,
           "return_url":null,
+          "update_return_url":null,
           "return_params":null,
           "require_credit_card":true,
           "request_credit_card":true,
@@ -1503,15 +2981,109 @@ Feature: Reactivation
           }
         },
         "credit_card":{
+          "id":`auto generated`,
           "first_name":`your value`,
           "last_name":`your value`,
           "masked_card_number":"XXXX-XXXX-XXXX-1",
           "card_type":`auto generated`,
-          "expiration_month":12,
-          "expiration_year":2011
+          "expiration_month":`your value`,
+          "expiration_year":`your value`,
+          "billing_address":`your value`,
+          "billing_address_2":`your value`,
+          "billing_city":`your value`,
+          "billing_state":`your value`,
+          "billing_zip":`your value`,
+          "billing_country":`your value`,
+          "current_vault":`your value`,
+          "vault_token":`your value`,
+          "customer_vault_token":`your value`,
+          "customer_id":`auto generated`
         }
       }}
       """
+
+  Scenario: Reactivating a canceled subscription with an invalid payment profile
+    Given I have a canceled subscription with ID "1000"
+    And the subscription has an invalid payment profile
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the subscription should be canceled
+    And the response should be the json:
+      """
+      {
+      "errors": ["The credit card on file could not be charged."]
+      }
+      """
+
+  Scenario: Attempting to reactivate an already active subscription
+    Given I have an active subscription with ID "1000"
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the subscription should be active
+    And the response should be the json:
+      """
+      {
+      "errors": ["Cannot reactivate a subscription that is not marked \"Canceled\", \"Unpaid\", or \"Trial Ended\"."]
+      }
+      """
+
+  Scenario: Reactivating a canceled subscription while preserving the balance
+    Given I have a product with ID "2002" that costs $19
+    And I have a canceled subscription with ID "1000" to the product with ID "2002"
+    Then 1 charge should exist for $19
+    And 1 payment should exist for $19
+    When the subscription has a negative balance of "19"
+    And I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.json?preserve_balance=1
+    Then the response status should be "200 OK"
+    And 2 charges should exist for $19
+    And 1 payments should exist for $19
+    And the subscription should be active
+    And the subscription balance should be zero
+
+  Scenario: Reactivating a canceled subscription with a coupon
+    Given I have a canceled subscription with ID "1000"
+    And it has no current period defined
+    And I have a coupon named "Early Bird"
+    And the coupon is set to recur for 6 periods
+    And the coupon code is "EARLYBIRD"
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.json?coupon_code=EARLYBIRD
+    Then the response status should be "200 OK"
+    And the subscription should be active
+    And the subscription should have applied a coupon with code "EARLYBIRD"
+
+  Scenario: Reactivating a canceled subscription with a trial, without the include_trial flag
+    Given I have a canceled subscription with ID "1000"
+    And the product associated with the subscription has a trial
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.json
+    Then the response status should be "200 OK"
+    And the subscription should be active
+
+  Scenario: Reactivating a canceled subscription with a trial, with the include_trial flag
+    Given I have a canceled subscription with ID "1000"
+    And the product associated with the subscription has a trial
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.json?include_trial=1
+    Then the response status should be "200 OK"
+    And the subscription should be trialing
+
+  Scenario: Reactivating a trial ended subscription
+    Given I have a trial_ended subscription with ID "1000"
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.json
+    Then the response status should be "200 OK"
+    And the subscription should be active
+
+  Scenario: Reactivating a trial ended subscription, without the include_trial flag
+    Given I have a trial_ended subscription with ID "1000"
+    And the product associated with the subscription has a trial
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.json
+    Then the response status should be "200 OK"
+    And the subscription should be active
+
+  Scenario: Reactivating a trial ended subscription, with the include_trial flag
+    Given I have a trial_ended subscription with ID "1000"
+    And the product associated with the subscription has a trial
+    When I send a PUT request to https://acme.chargify.com/subscriptions/1000/reactivate.json?include_trial=1
+    Then the response status should be "200 OK"
+    And the subscription should be trialing
 </code></pre>
 
 
