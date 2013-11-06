@@ -40,10 +40,24 @@ h3. List Statement IDs for a Subscription
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/statements/ids.<format>@
 Method: @GET@
-Optional Parameters: @page@
+Optional Parameters: @page@, @sort@, @direction@
 Response: An array of Statement IDs for a subscription
 
 Note that the @per_page@ parameter is preset to 10,000.
+
+h6. sort
+
+The optional @sort@ prameter can be @created_at@, @opened_at@, or @closed_at@. This allows you to choose what you would like to sort on. (defaults to @created_at@)
+
+h6. direction
+
+The optional @direction@ parameter can be either @asc@ for ascending or @desc@ for descending order. (defaults to @asc@)
+
+h6. Sorting examples
+
+Say you would like to get the 10 most recently created statements. You would specify the following optional parameters @sort@ as @created_at@, @direction@ as @desc@ and limit your @per_page@ to 10.
+
+If you on the other hand wish to find the oldest closed statements you could do: @sort@ as @closed_at@ and @direction@ as @asc@.
 
 h3. List Statement IDs for a Site
 
