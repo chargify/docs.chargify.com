@@ -232,12 +232,8 @@ Your form post is authenticated via the "secure parameters":#secure-parameters i
 
 h3(#api-v2-auth-json). Authenticating Server-to-Server API Reqests (application/json)
 
-Chargify API V2 supports both OAuth2 and HTTP Basic Authentication.
+Chargify API V2 supports HTTP Basic Authentication.
 
 h4. HTTP Basic Authentication
 
 HTTP Basic Authentication ("on wikipedia":http://en.wikipedia.org/wiki/Basic_access_authentication) is available using your @api_id@ and @api_password@.  It works the same as described in the "article on API V1 authentication":api-authentication, only the credentials are different.
-
-h4. OAuth2
-
-Details on OAuth2 are coming soon.
