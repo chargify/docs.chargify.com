@@ -2,9 +2,17 @@ Under the "Settings":/settings tab of your Chargify account are options related 
 
 Chargify provides default templates for each of these emails, but you are free to edit them to fit your business' needs. We expose a number of variables for you to use in each email template. Variables must be quoted in double braces, such as @{{product.name}}@.
 
-h2. Upcoming Renewal and End of Trial emails
+The following variables are available for signup, dunning, receipt, expiration, end of trial, and upcoming renewal emails:
 
-The following variables are available for upcoming renewal and end of trial emails:
+h4. Legacy fields
+
+* @{{from_address}}@ this will be replaced with acme-inc@example.com if left as {{from_address}} though any valid email address will do.
+* @{{name}}@ the name of your customer. e.g. Bill Williams
+* @{{product_price}}@ the recurring price@ of the subscription's current product
+* @{{product_name}}@ the name of the product. e.g. Basic Plan
+* @{{balance_in_cents}}@ the amount, if any, they still owe. e.g. 0 (for $0.00) or 23100 (for $231.00) Useful for conditionally adding a reminder.
+* @{{balance}}@ the amount, if any, they still owe in dollars. e.g. $0.00 or $2.31
+* @{{merchant_name}}@ your merchant name. e.g. Acme, Inc.
 
 h4. Subscription
 
@@ -96,3 +104,14 @@ h4. Payment Profile
 * @{{payment_profile.billing_country}}@
 * @{{payment_profile.expiration_month}}@ Expiration month of the credit card on file
 * @{{payment_profile.expiration_year}}@ Expiration year of the credit card on file
+
+h4. Payment (only for receipt emails)
+
+* @{{payment.amount}}@ The amount just paid, formatted in your currency
+* @{{payment.amount_in_cents}}@ The amount just paid, in cents 
+* @{{payment.card_expiration}}@ 
+* @{{payment.card_number}}@ The customer's Credit Card, obscured to only show the last 4 digits.  e.g. XXXX-XXXX-XXXX-1234
+* @{{payment.card_type}}@ The type of card used (bogus, visa, master, discover, american_express, diners_club, jcb, switch, solo, dankort, maestro, forbrugsforeningen, or laser)
+* @{{payment.memo}}@
+* @{{payment.success}}@ @true/false@
+* @{{payment.test}}@ @true/false@ 
