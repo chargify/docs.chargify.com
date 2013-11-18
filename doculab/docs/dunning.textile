@@ -66,6 +66,6 @@ h3. Custom Parameters
 | reason_for_decline | The reason that a transaction was declined at the gateway. |
 | payment_profile_exists | This returns 'true' or 'false' depending on whether or not the client has a Credit Card on file. It can be used to conditionally display text based on it's value e.g. <br />  {% if payment_profile_exists %}<br />&nbsp;&nbsp;Lorem Ipsum<br />{% endif %}  |  
 
-
+Dunning emails also have access to other parameters not listed here. See "Email Templates":/email-templates for more details.
 
 For more information on how Dunning works, see: "http://support.chargify.com/faqs/features/what-is-dunning-and-how-does-it-help-me-retain-more-customers":http://support.chargify.com/faqs/features/what-is-dunning-and-how-does-it-help-me-retain-more-customers
