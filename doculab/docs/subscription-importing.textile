@@ -1,0 +1,47 @@
+We acknowledge that you may be migrating to Chargify from somewhere else, so we try to make that as easy as possible. There are multiple ways to bring your subscriptions to Chargify, you can either use the Chargify Subscriptions API endpoint or import from a CSV file.
+
+h2. Importing via the Chargify Subscriptions API
+
+This is much like creating a brand new subscription from the API, but when the subscriptions @next_billing_at@ is set we will consider it as an existing subscription.
+For more information please refer to "API Subscription Importing":/api-subscriptions#import
+
+h2. Importing via CSV
+
+Importing a set of subscriptions using the Chargify admin interface is easy. To do so navigate to the _Subscriptions_ tab, and then click _Subscription Import_ found here
+
+!/images/doculab/subscription-import-nav.png!
+
+After you have navigated to the _Subscription Import_ tab, click on _New Import_. A dialog will pop up asking you to upload your CSV file, once you have chosen your CSV file, click the _Process CSV_ button and the subscription import will begin.
+
+
+All CSV import files must contain a header row to tell us how to align each row of data to the import. The header row must contain all of the following columns:
+
+h3. Required Header Columns
+
+h4. Product Information
+@product_id@ or @product_handle@
+
+h4. Customer Information
+@customer_first_name@
+@customer_last_name@
+@customer_email@
+or
+@customer_reference@
+
+h4. Credit Card Information
+
+@credit_card_first_name@
+@credit_card_last_name@
+@credit_card_full_number@ or @credit_card_vault_token@
+@credit_card_expiration_month@
+@credit_card_expiration_year@
+
+Just like the Subscription API endpoint we support a slew of attributes when importing a subscription. The only difference for a CSV import is that columns are not nested, but instead prefixed with the resource name that they belong to. For example @customer_attributes.first_name@ becomes @customer_first_name@ and so on. In the Subscription API we support @payment_profile@ and @credit_card@, in CSV imports please use the @credit_card@ prefix. We do not currently support the @payment_profile@ prefix.
+
+Click "Here":/files/doculab/example-subscription-import.csv to download an example subscription import CSV file.
+
+
+!/images/doculab/subscription-import-import-dialog.png!
+
+Please note we currently only support importing a single _unique_ subscription per Chargify site. So if you have imported a subscription through a CSV import for the same site before, the subscription will be marked as a duplicate.
+

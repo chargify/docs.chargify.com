@@ -1,0 +1,2 @@
+product_handle,customer_first_name,customer_last_name,customer_email,credit_card_first_name,credit_card_last_name,credit_card_full_number,credit_card_expiration_month,credit_card_expiration_year
+pro,John,Appleseed,john@example.com,John,Appleseed,1,12,2021
