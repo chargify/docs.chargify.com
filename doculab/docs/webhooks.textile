@@ -92,6 +92,32 @@ memo
 timestamp</code></pre> |
 | @upgrade_downgrade_success@  | Any successful upgrade/downgrade  | @site@, @subscription@, @previous_product@ |
 | @upgrade_downgrade_failure@  | Any failed upgrade/downgrade  | @site@, @subscription@, @target_product@ |
+| @refund_success@ | Any successful refund | <pre><code>amount_in_cents
+customer_email
+customer_name
+customer_reference
+gateway_transaction_id
+gateway_used
+masked_card_number
+memo
+payment_amount_in_cents
+payment_id
+site
+subscription_id
+timestamp</code></pre> |
+| @refund_failure@ | Any failed refund | <pre><code>amount_in_cents
+customer_email
+customer_name
+customer_reference
+gateway_transaction_id
+gateway_used
+masked_card_number
+memo
+payment_amount_in_cents
+payment_id
+site
+subscription_id
+timestamp</code></pre> |
 
 <sup>1</sup> The @subscription@ object also contains information on the Customer and Product.
 <sup>2</sup> This is usually caused by a failure at the payment gateway.  This event is not generated for input validation errors (i.e. forgetting to fill in a field).
