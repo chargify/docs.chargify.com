@@ -29,9 +29,9 @@ h3(#charge-kinds). Charge Kinds (Subtypes)
 * @on_off_component@: A charge from an on/off component allocation
 * @tax@: A calculated tax charge
 
-h2. Transaction Attributes
+h2(#transaction-attributes). Transaction Attributes
 
-All of the transaction attribute fields are returned from GET (read) operations, and all are read only at this time.
+All of the transaction attribute fields are returned from GET (read) operations, and all are read only.
 
 * @transaction_type@ The type of the transaction, see above
 * @id@ The unique identifier for the Transaction
@@ -46,6 +46,11 @@ All of the transaction attribute fields are returned from GET (read) operations,
 * @payment_id@ The unique identifier for the payment being explicitly refunded (in whole or in part) by this transaction. Will be null for all transaction types except for "Refund". May be null even for Refunds. For partial refunds, more than one Refund transaction may reference the same payment_id.
 * @kind@ The specific "subtype" for the @transaction_type@
 * @gateway_transaction_id@ The transaction ID from the remote gateway (i.e. Authorize.Net), if one exists
+* @gateway_order_id@ A gateway-specific identifier for the transaction, separate from the gateway_transaction_id:
+
+|_. Gateway          |_. Value in @gateway_order_id@                 |
+| BPoint             | "ReceiptNumber" from the transaction response |
+| All other gateways | Undefined at this time                        |
 
 
 h2. Methods
