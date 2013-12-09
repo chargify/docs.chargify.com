@@ -57,8 +57,10 @@ When linking to the hosted payment page, it is possible to have certain values p
 
 The available parameters are:
 
-* @first_name@: Fills the value for the customer's "First name"
-* @last_name@: Fills the value for the customer's "Last name"
+* @first_name@: Fills the value for the customer's "First name" (Fills value for both Shipping/Contact info and Billing info, unless `billing_first_name` is provided)
+* @last_name@: Fills the value for the customer's "Last name" (Fills value for both Shipping/Contact info and Billing info, unless `billing_first_name` is provided)
+* @billing_first_name@: Fills the value for the Billing Address's "First Name" field (Overrides value provided by @first_name@, if any)
+* @billing_last_name@: Fills the value for the Billing Address's "Last Name" field (Overrides value provided by @last_name@, if any)
 * @email@: Fills the value for the customer's "Email address"
 * @reference@: Sets a hidden field to supply a value for the customer's "reference" value (the unique identifier you use for the customer within your own application
 * @organization@: Sets a hidden field to supply a value for the customer's organization name (not currently a visible form input element)
