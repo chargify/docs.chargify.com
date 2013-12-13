@@ -214,6 +214,17 @@ The signature of the response is the hexadecimal representation of a computed "H
 
 <pre><code>HMAC-SHA1(api_secret, api_id+timestamp+nonce+status_code+result_code+call_id)</code></pre>
 
+h3(#result-codes). Result Codes
+
+* @4001@ - Authentiction failed
+* @4011@ - Authentication failed due to missing nonce value
+* @4040@ - The requested object (e.g. Subscription) could not be found
+* @4220@ - One or more validation errors on input
+* @4221@ - Duplicate submission
+* @4300@ - Card declined
+* @5000@ - An error has occured
+* @5001@ - The requested resource does not exist
+
 h2(#call). Fetching the Call
 
 A POST to a Chargify Direct endpoint is the same as making an API Call.  This call is logged and made available as a Call resource in our API.  This resource makes available the original request parameters, the response values, and the results.
