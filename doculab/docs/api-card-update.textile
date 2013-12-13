@@ -41,3 +41,8 @@ When Chargify redirects back to your "redirect URI":chargify-direct-introduction
 * @signature@ The HMAC-SHA1 hexdigest of the previous parameters, to verify their integrity
 
 See "Response Signature":chargify-direct-introduction#response-parameters for more information about these attributes and what you can use them for.
+
+See "Result Codes":chargify-direct-introduction#result-codes for more information about the result codes that Chargify returns.
+
+
+
