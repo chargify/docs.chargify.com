@@ -56,7 +56,7 @@ The following events are monitored within Chargify and can generate Webhooks:
 | @renewal_failure@ | A failed periodic renewal, i.e. the credit card is declined<sup>3</sup> | @site@, @subscription@<sup>1</sup> |
 | @payment_success@ | Any successful payment against a credit card<sup>4</sup> | @site@, @payment@ |
 | @payment_failure@ | Any failed payment attempt against a credit card<sup>4</sup> | @site@, @payment@ |
-| @billing_date_change@ | Any change to the billing date that is initiated explicitly by altering the billing date via the admin UI or the API.  This will not be triggered upon a normal renewal and period advancement, or a migration. | @site@, @subscription@<sup>1</sup> |
+| @billing_date_change@ | Any change to the billing date that is initiated explicitly by altering the billing date via the admin UI or the API.  This will not be triggered upon a normal renewal and period advancement, or a migration. | @site@, @subscription@<sup>1</sup> ( with @previous_billing_date@)  |
 | @subscription_state_change@ | Any change to the Subscription state.  This is the "workhorse" of the events - watching this event can tell you if a Subscription ever moves to a "bad" state, i.e. @past_due@ | @site@, @subscription@<sup>1,5</sup> |
 | @subscription_product_change@ | A successful change from an old product to a new product within the users Subscription. | @site@, @product_change@ |
 | @expiring_card@ | A periodic event sent by Chargify | @site@, @subscription@<sup>1,6</sup> |
