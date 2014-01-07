@@ -770,7 +770,7 @@ h3(#payment-failure-payload). payment_failure Payload
 <pre><code>
 {
       "event" => "payment_failure",
-         "id" => "11"
+         "id" => "11",
     "payload" => {
         "subscription" => {
                  "cancellation_message" => "",
