@@ -8,11 +8,15 @@ h4. Legacy fields
 
 * @{{from_address}}@ this will be replaced with acme-inc@example.com if left as {{from_address}} though any valid email address will do.
 * @{{name}}@ the name of your customer. e.g. Bill Williams
+* @{{full_name}}@ the name of your customer. e.g. Bill Williams
 * @{{product_price}}@ the recurring price@ of the subscription's current product
 * @{{product_name}}@ the name of the product. e.g. Basic Plan
+* @{{product_family}}@ the name of the product family e.g. Wonderful Products
+* @{{product_family_and_name}}@ the product family name followed by the product name. e.g. Wonderful Products Basic Plan
 * @{{balance_in_cents}}@ the amount, if any, they still owe. e.g. 0 (for $0.00) or 23100 (for $231.00) Useful for conditionally adding a reminder.
 * @{{balance}}@ the amount, if any, they still owe in dollars. e.g. $0.00 or $2.31
 * @{{merchant_name}}@ your merchant name. e.g. Acme, Inc.
+* @{{masked_card_number}}@ The masked credit card number. eg XXXX-XXXX-XXXX-1
 
 h4. Subscription
 
