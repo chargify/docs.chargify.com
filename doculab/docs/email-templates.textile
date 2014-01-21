@@ -118,4 +118,5 @@ h4. Payment (only for receipt emails)
 * @{{payment.card_type}}@ The type of card used (bogus, visa, master, discover, american_express, diners_club, jcb, switch, solo, dankort, maestro, forbrugsforeningen, or laser)
 * @{{payment.memo}}@
 * @{{payment.success}}@ @true/false@
-* @{{payment.test}}@ @true/false@ 
+* @{{payment.test}}@ @true/false@
+* @{{payment.gateway_transaction_id}} The transaction id from the gateway
