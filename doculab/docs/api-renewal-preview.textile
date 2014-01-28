@@ -1,4 +1,4 @@
-Renewal Preview is an object representing a susbcription's next assessment. You can retrieve it to see a snapshot of the how much your customer will be charged on their next renewal.
+Renewal Preview is an object representing a subscription's next assessment. You can retrieve it to see a snapshot of how much your customer will be charged on their next renewal.
 
 h2. URIs
 
