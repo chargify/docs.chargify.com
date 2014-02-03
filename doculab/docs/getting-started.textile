@@ -26,4 +26,4 @@ h3. 4. Control access to your app or service
 
 h3. 5. Manage Subscriptions
 
-* "Manage Subscriptions":/manage-subscriptions
+* "Manage Subscriptions":/subscriptions-intro
