@@ -43,7 +43,9 @@ h4. Subscription
 * @{{subscription.total_revenue}}@ Gives the total revenue from the subscription in the number of cents.
 * @{{subscription.estimated_renewal_amount}}@ The @estimated_renewal_amount_in_cents@, formatted in the currency of the subscription
 * @{{subscription.current_billing_amount}}@ The @current_billing_amount_in_cents@, formatted in the currency of the subscription
-* @{{subscription.card_on_file?}}@ True/false value indicating whether or not there is a @payment_profile@ present
+* @{{subscription.payment_method_on_file?}}@ True/false value indicating whether or not there is a @payment_profile@ present
+* @{{subscription.card_on_file?}}@ True/false value indicating whether or not the @payment_profile@ is a credit card
+* @{{subscription.bank_account_on_file?}}@ True/false value indicating whether or not the @payment_profile@ is a bank account
 * @{{subscription.billing_portal?}}@ True/false value indicating whether or not this customer is managed in Blling Portal
 * @{{subscription.billing_portal_management_url}}@ The Billing Portal subscription management URL for this subscription, if Billing Portal is enabled
 
@@ -108,6 +110,15 @@ h4. Payment Profile
 * @{{payment_profile.billing_country}}@
 * @{{payment_profile.expiration_month}}@ Expiration month of the credit card on file
 * @{{payment_profile.expiration_year}}@ Expiration year of the credit card on file
+* @{{payment_profile.payment_method_type}}@ Either @card@ or @bank account@
+* @{{payment_profile.payment_method_masked_number}}@ The masked credit card or bank account number, depending on which is on file
+* @{{payment_profile.masked_bank_account_number}}@ The customer's bank account, obscured to show only the last 4 digits, e.g XXXXX1111
+* @{{payment_profile.masked_bank_routing_number}}@ The customer's bank routing number, obscured to show only the last 4 digits, e.g. XXXXX1234
+* @{{payment_profile.bank_name}}@ The customer's bank name
+* @{{payment_profile.bank_account_type}}@ Either @checking@ or @savings@
+* @{{payment_profile.bank_account_holder_type}}@ Either @personal@ or @business@
+
+p(note). If you intend to use credit card-specific fields (like @masked_card_number@), be sure to wrap those sections of your email template in a @{% if subscription.card_on_file? %}...{% endif %}@ block, to ensure you only use those fields when the payment profile is a credit card. You can use the same technique when calling bank account-specific fields by using the @{% if subscription.bank_account_on_file? %}...{% endif %}@ block.
 
 h4. Payment (only for receipt emails)
 
