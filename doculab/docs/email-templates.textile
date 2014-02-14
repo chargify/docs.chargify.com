@@ -102,6 +102,7 @@ h4. Payment Profile
 * @{{payment_profile.last_name}}@
 * @{{payment_profile.masked_card_number}}@ The customer's Credit Card, obscured to only show the last 4 digits.  e.g. XXXX-XXXX-XXXX-1234
 * @{{payment_profile.card_type}}@ The type of card used (bogus, visa, master, discover, american_express, diners_club, jcb, switch, solo, dankort, maestro, forbrugsforeningen, or laser)
+* @{{payment_profile.brand}}@ The type of card used with it's correct spelling (Bogus, Visa, Master, ...)
 * @{{payment_profile.billing_address}}@
 * @{{payment_profile.billing_address_2}}@
 * @{{payment_profile.billing_city}}@
