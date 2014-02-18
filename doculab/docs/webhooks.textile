@@ -118,7 +118,26 @@ payment_id
 site
 subscription_id
 timestamp</code></pre> |
+| @upcoming_renewal_notice@ | A subscription set to renew within 3 days ("example payload":#upcoming-renewal-notice-payload)  | <pre><code>customer
+email_sent
+estimated_renewal_amount_in_cents
+message
+payment_profile
+product
+site
+subscription</code></pre> |
+| @end_of_trial_notice@ | A trial set to end within 3 days ("example payload":#end-of-trial-notice-payload) | <pre><code>customer
+email_sent
+estimated_renewal_amount_in_cents
+message
+payment_profile
+product
+site
+subscription</code></pre> |
 
+
+
+* "end_of_trial_notice Payload":#end-of-trial-notice-payload
 <sup>1</sup> The @subscription@ object also contains information on the Customer and Product.
 <sup>2</sup> This is usually caused by a failure at the payment gateway.  This event is not generated for input validation errors (i.e. forgetting to fill in a field).
 <sup>3</sup> At the end of every recurring interval, _either_ a @renewal_success@ _or_ a @renewal_failure@ event is triggered once.  If a card is declined and a @renewal_failure@ is triggered, a subsequent payment that brings the account current will _not_ generate a @renewal_success@ (although it will generate a @payment_success@ and a @subscription_state_change@)
@@ -213,6 +232,8 @@ These example webhooks have been converted from form-encoded format to Ruby hash
 * "customer_update Payload":#customer-update-payload
 * "component_allocation_change Payload":#component-allocation-change-payload
 * "metered_usage Payload":#metered-usage-payload
+* "upcoming_renewal_notice Payload":#upcoming-renewal-notice-payload
+* "end_of_trial_notice Payload":#end-of-trial-notice-payload
 
 h3(#signup-success-payload). signup_sucess Payload
 
@@ -1447,6 +1468,104 @@ h3(#metered-usage-payload). metered_usage Payload
     "new_unit_balance" => "119",
     "memo" => "Push from app",
     "timestamp" => "2012-11-19T17:03:29Z"
+  }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+
+h3(#upcoming-renewal-notice-payload). upcoming_renewal_notice Payload
+
+<pre><code>
+{
+  "id": "1",
+  "event": "upcoming_renewal_notice",
+  "payload": {
+    "site": {
+      "id": "2",
+      "subdomain": "acme"
+    },
+    "customer": {
+      "id": "0",
+      "first_name": "John",
+      "last_name": "Doe",
+      "reference": "johndoe",
+      "organization": "Acme, Inc.",
+      "email": "john@example.com"
+    },
+    "email_sent": "true",
+    "estimated_renewal_amount_in_cents": "100",
+    "message": "Upcoming renewal notice sent.",
+    "payment_profile": {
+      "id": "0",
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "card_type": "visa",
+      "masked_card_number": "XXXX-XXXX-XXXX-1111",
+      "expiration_month": "4",
+      "expiration_year": "2016"
+    },
+    "product": {
+      "id": "0",
+      "name": "Pro",
+      "product_family_id": "0",
+      "product_family_name": "Acme Online"
+    },
+    "subscription": {
+      "id": "0",
+      "state": "active",
+      "current_period_ends_at": "2012-10-09 11:49:43 -0400"
+    }
+  }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+
+h3(#end-of-trial-notice-payload). end_of_trial_notice Payload
+
+<pre><code>
+{
+  "id": "2",
+  "event": "trial_end_notice",
+  "payload": {
+    "site": {
+      "id": "2",
+      "subdomain": "acme"
+    },
+    "customer": {
+      "id": "0",
+      "first_name": "John",
+      "last_name": "Doe",
+      "reference": "johndoe",
+      "organization": "Acme, Inc.",
+      "email": "john@example.com"
+    },
+    "email_sent": "true",
+    "estimated_renewal_amount_in_cents": "200",
+    "message": "End of trial notice sent",
+    "payment_profile": {
+      "id": "0",
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "card_type": "visa",
+      "masked_card_number": "XXXX-XXXX-XXXX-1111",
+      "expiration_month": "4",
+      "expiration_year": "2016"
+    },
+    "product": {
+      "id": "0",
+      "name": "Pro",
+      "product_family_id": "0",
+      "product_family_name": "Acme Online"
+    },
+    "subscription": {
+      "id": "0",
+      "state": "active",
+      "current_period_ends_at": "2012-10-09 11:49:43 -0400"
+    }
   }
 }
 </code></pre>
