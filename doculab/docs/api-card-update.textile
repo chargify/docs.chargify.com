@@ -6,24 +6,39 @@ In order for your request to be processed, you must set up Secure Parameters.  S
 
 Note: the @subscription_id@ MUST be part of your @secure[data]@ parameter for the card update request to be processed.
 
-* @first_name@ (required) First name of the cardholder.
-* @last_name@ (required) Last name of the cardholder.
-* @card_number@ (required) The credit card number. 
-* @cvv@ (optional) The 3 or 4 digit card verification value. 
-* @expiration_month@ (required) The two-digit card expiration month.
-* @expiration_year@ (required) The four-digit card expiration year.
-
-The resource parameters are nested beneath a key named @payment_profile@, and are similar to the normal API inputs for the resource.
+* @first_name@ (required) First name of the cardholder or bank account holder.
+* @last_name@ (required) Last name of the cardholder or bank account holder.
+* @card_number@ (required if the payment method is a credit card) The credit card number. 
+* @cvv@ (optional if the payment method is a credit card) The 3 or 4 digit card verification value. 
+* @expiration_month@ (required if the payment method is a credit card) The two-digit card expiration month.
+* @expiration_year@ (required if the payment method is a credit card) The four-digit card expiration year.
+* @bank_name@ (required if the payment method is a bank account) The name of the bank where the customer's account resides
+* @bank_routing_number@ (required if the payment method is a bank account) The routing number of the bank
+* @bank_account_number@ (required if the payment method is a bank account) The customer's bank account number
+* @bank_account_type@ (required if the payment method is a bank account) Either @checking@ or @savings@
+* @bank_account_holder_type@ (required if the payment method is a bank account) Either @personal@ or @business@
 
 <pre><code><form method="post" action="https://api.chargify.com/api/v2/subscriptions/<subscription.id>/card_update">
   <!-- Secure parameters would go here here -->
   <!-- For brevity, this form contains no labels, only inputs -->
   <input type="text" name="payment_profile[first_name]" />
   <input type="text" name="payment_profile[last_name]" />
+
+  <!-- begin credit card fields -->
   <input type="text" name="payment_profile[card_number]" />
-  <input type="text" name="payment_profile[cvv]" />
   <input type="text" name="payment_profile[expiration_month]" />
   <input type="text" name="payment_profile[expiration_year]" />
+  <input type="text" name="payment_profile[cvv]" />
+  <!-- end credit card fields -->
+  
+  <!-- begin bank account fields -->
+  <input type="text" name="payment_profile[bank_name]" />
+  <input type="text" name="payment_profile[bank_routing_number]" />
+  <input type="text" name="payment_profile[bank_account_number]" />
+  <input type="text" name="payment_profile[bank_account_type]" />
+  <input type="text" name="payment_profile[bank_account_holder_type]" />
+  <!-- end bank account fields -->
+
   <input type="submit" value="Update" />
 </form></code></pre>
 
