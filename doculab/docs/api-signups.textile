@@ -27,19 +27,24 @@ The product may be specified by either @product[id]@ or by @product[handle]@ (AP
 ** @phone@ (Optional) The phone number of the customer.
 
 * @payment_profile@
-** @first_name@ First name on card
-** @last_name@ Last name on card
+** @first_name@ First name on card or bank account
+** @last_name@ Last name on card or bank account
 ** @card_number@ The full credit card number (string representation, i.e. "5424000000000015")
 ** @expiration_month@  The 1- or 2-digit credit card expiration month, as an integer or string, i.e. "5"
 ** @expiration_year@  The 4-digit credit card expiration year, as an integer or string, i.e. "2012"
-** @billing_address@ (Optional, may be required by your product configuration or gateway settings) The credit card billing street address (i.e. "123 Main St."). _This value is merely passed through to the payment gateway_.
+** @billing_address@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing street address (i.e. "123 Main St."). _This value is merely passed through to the payment gateway_.
 ** @billing_address_2@ (Optional) Second line of the customer's billing address i.e. "Apt. 100"
-** @billing_city@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address city (i.e. "Boston"). _This value is merely passed through to the payment gateway_.
-** @billing_state@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address state (i.e. "MA"). _This value is merely passed through to the payment gateway_.
-** @billing_zip@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address zip code (i.e. "12345"). _This value is merely passed through to the payment gateway_.
-** @billing_country@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address country, preferably in "ISO 3166-1 alpha-2":http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 format (i.e. "US"). _This value is merely passed through to the payment gateway. Some gateways require country codes in a specific format. Please check your gateway's documentation._
-
+** @billing_city@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address city (i.e. "Boston"). _This value is merely passed through to the payment gateway_.
+** @billing_state@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address state (i.e. "MA"). _This value is merely passed through to the payment gateway_.
+** @billing_zip@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address zip code (i.e. "12345"). _This value is merely passed through to the payment gateway_.
+** @billing_country@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address country, preferably in "ISO 3166-1 alpha-2":http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 format (i.e. "US"). _This value is merely passed through to the payment gateway. Some gateways require country codes in a specific format. Please check your gateway's documentation. At this time, when creating a bank account, only @US@ is accepted._
+** @bank_name@ (Required when creating a subscription with ACH) The name of the bank where the customer's account resides
+** @bank_routing_number@ (Required when creating a subscription with ACH) The routing number of the bank
+** @bank_account_number@ (Required when creating a subscription with ACH) The customer's bank account number
+** @bank_account_type@ (Required when creating a subscription with ACH) Either @checking@ or @savings@
+** @bank_account_holder_type@ (Required when creating a subscription with ACH) Either @personal@ or @business@
 * @components@
+* @agreement_terms@ The ACH agreement terms, if creating a subscription with a @bank_account@ as the payment profile
 
 Components are attached/allocated to the signup by including the @component@ key.  The sub-keys should be component IDs, and the values are the allocated quantities.  See examples below.
 
@@ -79,8 +84,12 @@ Method: @POST@
 Content-Type: @application/json@
 
 <script src="http://gist.github.com/1b4b587447682da4b39e.js?file=signup-request.json"></script>
-
 Note that the above example shows setting a Quantity-based Component with ID "1234" to an allocated quantity of 4, and an On/Off Component with ID "5678" to "Off".
+
+And using ACH:
+
+<script src="http://gist.github.com/8d9ed3261405b94b0e1f.js?file=signup-request-ach.json"></script>
+
 
 h2. Signup Response
 

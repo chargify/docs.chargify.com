@@ -29,30 +29,36 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @zip@ (Optional) The customer's shipping address zip code (i.e. "12345").
 ** @country@ (Optional) The customer shipping address country, perferably in [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format (i.e. "US").
 ** @phone@ (Optional) The phone number of the customer.
-* @payment_profile_id@ The Payment Profile ID of an _existing_ card, which belongs to an _existing_ customer to use for payment for this subscription.  If the card or customer does not exist already, or if you want to use a new (unstored) card for the subscription, use @payment_profile_attributes@ *instead* to create a new payment profile along with the subscription.  (This value is available on an existing subscription via the API as @credit_card@ > @id@)
-* @payment_profile_attributes@ (this may also be referred to as @credit_card_attributes@)
-** @first_name@ (Optional) First name on card.  If omitted, the @first_name@ from customer attributes will be used.
-** @last_name@ (Optional) Last name on card.  If omitted, the @last_name@ from customer attributes will be used.
+* @payment_profile_id@ The Payment Profile ID of an _existing_ card or bank account, which belongs to an _existing_ customer to use for payment for this subscription.  If the card, bank account, or customer does not exist already, or if you want to use a new (unstored) card or bank account for the subscription, use @payment_profile_attributes@ *instead* to create a new payment profile along with the subscription.  (This value is available on an existing subscription via the API as @credit_card@ > @id@ or @bank_account@ > @id@)
+* @payment_profile_attributes@ (this may also be referred to as @credit_card_attributes@ or @bank_account_attributes@)
+** @first_name@ (Optional) First name on card or bank account.  If omitted, the @first_name@ from customer attributes will be used.
+** @last_name@ (Optional) Last name on card or bank account.  If omitted, the @last_name@ from customer attributes will be used.
 ** @full_number@ The full credit card number (string representation, i.e. "5424000000000015")
 ** @expiration_month@ (Optional when performing a Subscription Import via `vault_token`, required otherwise) The 1- or 2-digit credit card expiration month, as an integer or string, i.e. "5"
 ** @expiration_year@ (Optional when performing a Subscription Import via `vault_token`, required otherwise) The 4-digit credit card expiration year, as an integer or string, i.e. "2012"
 ** @cvv@ (Optional, may be required by your gateway settings) The 3- or 4-digit Card Verification Value. _This value is merely passed through to the payment gateway_.
-** @billing_address@ (Optional, may be required by your product configuration or gateway settings) The credit card billing street address (i.e. "123 Main St."). _This value is merely passed through to the payment gateway_.
+** @billing_address@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing street address (i.e. "123 Main St."). _This value is merely passed through to the payment gateway_.
 ** @billing_address_2@ (Optional) Second line of the customer's billing address i.e. "Apt. 100"
-** @billing_city@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address city (i.e. "Boston"). _This value is merely passed through to the payment gateway_.
-** @billing_state@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address state (i.e. "MA"). _This value is merely passed through to the payment gateway_.
-** @billing_zip@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address zip code (i.e. "12345"). _This value is merely passed through to the payment gateway_.
-** @billing_country@ (Optional, may be required by your product configuration or gateway settings) The credit card billing address country, preferably in [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format (i.e. "US"). _This value is merely passed through to the payment gateway. Some gateways require country codes in a specific format. Please check your gateway's documentation._
+** @billing_city@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address city (i.e. "Boston"). _This value is merely passed through to the payment gateway_.
+** @billing_state@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address state (i.e. "MA"). _This value is merely passed through to the payment gateway_.
+** @billing_zip@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address zip code (i.e. "12345"). _This value is merely passed through to the payment gateway_.
+** @billing_country@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address country, preferably in [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format (i.e. "US"). _This value is merely passed through to the payment gateway. Some gateways require country codes in a specific format. Please check your gateway's documentation. If creating an ACH subscription, only @US@ is supported at this time._
 ** @vault_token@ (Optional, used only for Subscription Import) The "token" provided by your vault storage for an already stored payment profile
 ** @customer_vault_token@  (Optional, used only for Subscription Import) (only for Authorize.Net CIM storage) The customerProfileId for the owner of the customerPaymentProfileId provided as the vault_token
 ** @current_vault@  (Optional, used only for Subscription Import) The vault that stores the payment profile with the provided vault_token. May be @authorizenet@, @trust_commerce@, @payment_express@, @beanstream@, @braintree1@, @braintree_blue@, @paypal@, @quickpay@, @eway@, @samurai@, @stripe@, or @wirecard@
 ** @last_four@  (Optional, used only for Subscription Import) If you have the last 4 digits of the credit card number, you may supply them here so that we may create a masked card number (i.e. 'XXXX-XXXX-XXXX-1234') for display in the UI
 ** @card_type@  (Optional, used only for Subscription Import) If you know the card type (i.e. Visa, MC, etc) you may supply it here so that we may display the card type in the UI. May be visa, master, discover, american_express, diners_club, jcb, switch, solo, dankort, maestro, forbrugsforeningen, or laser
+** @bank_name@ (Required when creating a subscription with ACH) The name of the bank where the customer's account resides
+** @bank_routing_number@ (Required when creating a subscription with ACH) The routing number of the bank
+** @bank_account_number@ (Required when creating a subscription with ACH) The customer's bank account number
+** @bank_account_type@ (Required when creating a subscription with ACH) Either @checking@ or @savings@
+** @bank_account_holder_type@ (Required when creating a subscription with ACH) Either @personal@ or @business@
 * @cancellation_message@ (Optional) Can be used when canceling a subscription (via the HTTP DELETE method) to make a note about the reason for cancellation.
 * @next_billing_at@ (Optional) Set this attribute to a future date/time to sync imported subscriptions to your existing renewal schedule. See the notes on "Date/Time Format" below. If you provide a next_billing_at timestamp that is in the future, no trial or initial charges will be applied when you create the subscription. In fact, no payment will be captured at all. The first payment will be captured, according to the prices defined by the product, near the time specified by next_billing_at. If you do not provide a value for next_billing_at, any trial and/or initial charges will be assessed and charged at the time of subscription creation. If the card cannot be successfully charged, the subscription will not be created.  See further notes in the section on Importing Subscriptions.
 * @vat_number@ (Optional) Supplying the VAT number allows EU customer's to opt-out of the Value Added Tax assuming the merchant address and customer billing address are not within the same EU country.
 * @coupon_code@ (Optional) The coupon code of the coupon to apply (See the "coupon docs":/api-coupons#api-subscription-create-with-coupon)
 * @payment_collection_method@ (Optional) The type of payment collection to be used in the subscription. May be automatic, or invoice.
+* @agreement_terms@ (Optional but recommended when creating a subscription with ACH) The ACH agreements terms.
 
 
 h2. Subscription Output Attributes
@@ -66,7 +72,7 @@ The following attributes are returned on a subscription read/list operation.
 * @cancellation_message@ Seller-provided reason for, or note about, the cancellation.
 * @coupon_code@ The coupon code of the coupon currently applied to the subscription
 * @created_at@ The creation date for this subscription
-* @credit_card@ Nested credit card attributes
+* @credit_card@ Nested credit card attributes, if payment profile is a @credit_card@
 ** @billing_address@ The current billing street address for the card
 ** @billing_address_2@ The current billing street address, second line, for the card
 ** @billing_city@ The current billing address city for the card
@@ -83,6 +89,26 @@ The following attributes are returned on a subscription read/list operation.
 ** @first_name@ The first name of the card holder
 ** @last_name@ The last name of the card holder
 ** @masked_card_number@ A string representation of the credit card number with all but the last 4 digits masked with X's (i.e. 'XXXX-XXXX-XXXX-1234')
+** @vault_token@ The "token" provided by your vault storage for an already stored payment profile
+* @bank_account@ Nested bank account attributes, if payment profile is a @bank_account@
+** @bank_account_holder_type@ Either @business@ or @personal@
+** @bank_account_type@ Either @checking@ or @savings@
+** @bank_name@ The bank where the account resides
+** @billing_address@ The current billing street address for the bank account
+** @billing_address_2@ The current billing street address, second line, for the bank account
+** @billing_city@ The current billing address city for the bank account
+** @billing_state@ The current billing address state for the bank account
+** @billing_zip@ The current billing address zip code for the bank account
+** @billing_country@ The current billing address country for the bank account
+** @current_vault@ The vault that stores the payment profile with the provided @vault_token@. As of this time, will only be @authorizenet@
+** @customer_id@ The Chargify-assigned @id@ for the customer record to which the bank account belongs
+** @customer_vault_token@ (only for Authorize.Net CIM storage): the @customerProfileId@ for the owner of the @customerPaymentProfileId@ provided as the @vault_token@
+** @first_name@ The first name of the bank account holder
+** @last_name@ The last name of the bank account holder
+** @id@ The Chargify-assigned ID of the stored bank account.  This value can be used as an input to @payment_profile_id@ when creating a subscription, in order to re-use a stored payment profile _for the same customer_
+** @masked_bank_account_number@ A string representation of the stored bank account number with all but the last 4 digits marked with X's (i.e. 'XXXXXXX1111')
+** @masked_bank_routing_number@ A string representation of the stored bank routing number with all but the last 4 digits marked with X's (i.e. 'XXXXXXX1111')
+** @payment_type@ Will be @bank_account@
 ** @vault_token@ The "token" provided by your vault storage for an already stored payment profile
 * @current_period_started_at@ Timestamp relating to the start of the current (recurring) period
 * @current_period_ends_at@ Timestamp relating to the end of the current (recurring) period (i.e. when the next regularly scheduled attempted charge will occur)
