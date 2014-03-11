@@ -6,8 +6,12 @@ The Billing Portal does **not** require the customer to set or remember a specia
 
 * **Login E-mail** - If the customer has not used the Billing Portal for an extended period of time, he or she may be asked to sign in again.  We will send a new login URL that is valid for 1 hour.  This process is very similar to the common "Reset Password" procedure on most websites (and has a similar security profile).
 
-* **Management URL** - Included at the bottom of statements & invoices your customers receive is a link to manage their subscriptions.  This link is good for 65 days.  This link alone is **not** sufficient to sign a customer into their Billing Portal account.  If the customer is already signed in (from the methods above), they can access their subscription.  If not, they will be asked to verify their identity with a new login e-mail.
+* **Management URL** - Included at the bottom of statements & invoices your customers receive is a link to manage their subscriptions.  This link is good for 65 days.  This link alone is **not** sufficient to sign a customer into their Billing Portal account, **unless** you choose to bypass email verification in your Billing Portal settings.  If the customer is already signed in (from the methods above), they can access their subscription.  If not, they will be asked to verify their identity with a new login e-mail.
 
 h3. Management URL details
 
 You can use the Chargify site to manually view a customer's Management URL.  That way you can e-mail it or provide it to them in whatever way you choose.  You may also retrieve it "via the API":/api-billing-portal
+
+h3. Billing Portal Login Flow
+
+!/images/doculab/portal-login-flow.png!:/images/doculab/portal-login-flow-full.png
