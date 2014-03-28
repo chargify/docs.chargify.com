@@ -1,4 +1,4 @@
-Chargify offers a hosted/white label signup page for all of our customers. The hosted page allows you to integrate with the Chargify platform without having to worry about collecting credit card information or writing custom code yourself. You can point your customers to a unique URL on the Chargify site and we will securely handle subscription signup and payment processing. 
+Chargify offers a hosted/white label signup page for all of our customers. The hosted page allows you to integrate with the Chargify platform without having to worry about collecting credit card information or writing custom code yourself. You can point your customers to a unique URL on the Chargify site and we will securely handle subscription signup and payment processing.
 
 If you need information on configuring the look, feel, and behavior of your Hosted Payment Page, please see "Hosted Page Settings":/hosted-page-settings.
 
@@ -6,7 +6,7 @@ p(warning). To use hosted signup pages with the Beanstream gateway, you *must* e
 
 p(warning). Accessing *any* hosted payment page will log you out of your Chargify account.  This is necessary for security reasons.  If you would like to test your hosted payment pages without being logged out, please copy the links and open them in another browser.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/0a600c477a13047b5aea02209285bb734b7de98a/screenshot_normal.jpg!
+!https://s3.amazonaws.com/entp-tender-production/assets/0a600c477a13047b5aea02209285bb734b7de98a/screenshot_normal.jpg!
 
 Each Product has its own hosted signup page page and unique URL.  You can find the URLs for these pages on your product overview screen, in the box labelled "Hosted Signup Page URL".
 
@@ -42,11 +42,11 @@ A Shared Key, that is known only to you and Chargify, is used to generate and va
 
 Every Chargify Site has a unique Shared Key.  You may obtain your key by visiting the "Settings" tab for the Site in which your are interested:
 
-!http://s3.amazonaws.com/entp-tender-production/assets/be063a896189b9fd3aa52991ff6e56db6e759eb8/_Chargify__Acme__Inc.___Your_Sites_normal.png!
-  
+!https://s3.amazonaws.com/entp-tender-production/assets/be063a896189b9fd3aa52991ff6e56db6e759eb8/_Chargify__Acme__Inc.___Your_Sites_normal.png!
+
 The Shared Key is shown in the section titled "Hosted Page URLs":
 
-!http://s3.amazonaws.com/entp-tender-production/assets/aa9f8e29e9f196278673f342c1e5c3ff303621e6/_Chargify__Acme__Inc.___My_Site___Settings_normal.png!
+!https://s3.amazonaws.com/entp-tender-production/assets/aa9f8e29e9f196278673f342c1e5c3ff303621e6/_Chargify__Acme__Inc.___My_Site___Settings_normal.png!
 
 
 h4. Generating Tokens
@@ -55,7 +55,7 @@ URLs are constructed, and later verified, via a secret token.  This token is the
 
 <pre><code>token = SHA1(message)[0..9]
 </code></pre>
-    
+
 The message is a concatenation of the page "shortname", the resource's ID, and the Site's Shared Key. The message parts are joined using double dashes (--). Consider the Update Payment page for a subscription with ID '77' and a Shared Key of '1234':
 
 <pre><code>message = "update_payment--77--1234"

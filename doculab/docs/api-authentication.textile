@@ -5,9 +5,9 @@ h3. Obtaining Your API Credentials
 
 Your API key can be generated from the "API Access" tab of your seller dashboard.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/fcfc0b15a3780bd7b2a0c516665c6550464c4b7e/_Chargify__Acme__Inc.___API_Access_2_normal.png!
+!https://s3.amazonaws.com/entp-tender-production/assets/fcfc0b15a3780bd7b2a0c516665c6550464c4b7e/_Chargify__Acme__Inc.___API_Access_2_normal.png!
 
-!http://s3.amazonaws.com/entp-tender-production/assets/dc6a8924ee5dc8f6a8fcf9338a0b0f45239928d6/_Chargify__Acme__Inc.___API_Access_normal.png!
+!https://s3.amazonaws.com/entp-tender-production/assets/dc6a8924ee5dc8f6a8fcf9338a0b0f45239928d6/_Chargify__Acme__Inc.___API_Access_normal.png!
 
 Your http username is your "API Key".
 

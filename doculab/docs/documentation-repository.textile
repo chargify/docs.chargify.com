@@ -1,2 +1,2 @@
 We use GitHub to host the git repository for our documentation.
-Please visit "https://github.com/chargify/docs.chargify.com#readme":https://github.com/chargify/docs.chargify.com#readme to read the documentation and get started.
+Please visit "https://github.com/chargify/docs.chargify.io#readme":https://github.com/chargify/docs.chargify.io#readme to read the documentation and get started.

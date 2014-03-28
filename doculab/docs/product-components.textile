@@ -54,11 +54,11 @@ h3. Creating Quantity-based Components
 
 Choose to create a "Quantity Based Component" and define it using the form.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/3cd793004f7796295b38fdbcb07a3c6aa54306da/_Chargify__Acme__Inc.___My_Site___New_Quantity_Based_Component_3_normal.png!
+!https://s3.amazonaws.com/entp-tender-production/assets/3cd793004f7796295b38fdbcb07a3c6aa54306da/_Chargify__Acme__Inc.___My_Site___New_Quantity_Based_Component_3_normal.png!
 
 Quantity Components support 4 "pricing schemes" via a dropdown select on this form: per-unit, volume, tiered, and stairstep.  The latter 3 schemes (volume, tiered, and stairstep) allow you to define multiple price brackets (or "steps"), so you can charge different amounts depending on the quantity allocated.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/33d3404d8c3facd6fe2f8088a0381a92f8e887f5/price_brackets_normal.png!
+!https://s3.amazonaws.com/entp-tender-production/assets/33d3404d8c3facd6fe2f8088a0381a92f8e887f5/price_brackets_normal.png!
 
 h4. General Price Bracket Rules
 
@@ -116,14 +116,14 @@ Creating a Metered Component works exactly like creating a Quantity Based Compon
 
 Once you have created a Metered Component, it will appear under the Product Family on the Products tab. You can make changes to the component by clicking the 'Edit' link.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/935dc96e5323745369be443fb3270adcd4dd5909/metered_index_normal.jpg!
+!https://s3.amazonaws.com/entp-tender-production/assets/935dc96e5323745369be443fb3270adcd4dd5909/metered_index_normal.jpg!
 
 h3. Creating On/Off Components
 
 Choose to create a "On/Off" and define it using the form.
 
 An On/Off Component consists of 3 pieces of information:
- 
+
 * **Name**: The name of the Component. i.e. Text Messages
 * **Price**: The amount the customer will be charged per unit
 

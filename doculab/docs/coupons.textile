@@ -41,7 +41,7 @@ Once you have created a Coupon, it will appear under the Product Family on the P
 
 h5. Adding Additional Codes
 
-Once a coupon has been created you can add additional codes to the coupon. These codes behave exactly like the main coupon code. To add more, click the 'Manage Codes' button for the coupon of your choice. 
+Once a coupon has been created you can add additional codes to the coupon. These codes behave exactly like the main coupon code. To add more, click the 'Manage Codes' button for the coupon of your choice.
 
 !{width:640px}/images/doculab/coupon-more-codes-1.png!
 
@@ -57,16 +57,16 @@ h3. Creating a Subscription with a Coupon in the Admin Interface
 
 To apply a coupon to a subscription, use the Coupon Code field on the new Subscription page.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/c5eea228b5fb0c4ab4922963503327ef17100ab3/_Chargify__Grasshopper___asdf___New_Subscription_normal.jpg!
+!https://s3.amazonaws.com/entp-tender-production/assets/c5eea228b5fb0c4ab4922963503327ef17100ab3/_Chargify__Grasshopper___asdf___New_Subscription_normal.jpg!
 
 
 h3. Creating a Subscription with a Coupon in the Hosted Payment Page
 
 Customers can also apply coupons through the Hosted Payment Page.  *However, you will first need to enable the coupon code field to be shown on your hosted pages*.  This is done in the "Hosted Page Settings" section of the "Settings" tab.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/2a8665d9ad13d2fc57c66a34fc333ab480c79723/_Chargify__Grasshopper___asdf___Buy_Chargify__basic_from_Grasshopper_normal.jpg!
+!https://s3.amazonaws.com/entp-tender-production/assets/2a8665d9ad13d2fc57c66a34fc333ab480c79723/_Chargify__Grasshopper___asdf___Buy_Chargify__basic_from_Grasshopper_normal.jpg!
 
 
 h3. Creating a Subscription with a Coupon through the API
 
-For API info see: "http://docs.chargify.com/api-coupons":http://docs.chargify.com/api-coupons
+For API info see: "https://docs.chargify.io/api-coupons":https://docs.chargify.io/api-coupons
