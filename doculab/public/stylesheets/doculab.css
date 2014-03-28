@@ -11,49 +11,49 @@
 #search                               {height: 26px; margin-bottom: 35px; border: 1px solid #ccc; background: #fff; width: 200px;}
 #search span                          {color:#aaa; font-size: 13px; line-height: 26px; margin: 0 0 0 7px;}
 
-#docupage                             {font-family: Helvetica, Arial, sans-serif; font-size: 14px; padding: 21px 0 0 12px;}
-#docupage h1                          {font-size: 28px; line-height: 42px; text-align: left; margin: 0 0 21px 0; text-shadow: #ccc 1px 1px 0;}
-#docupage h2                          {font-size: 18px; line-height: 21px; text-align: left; margin: 0 0 21px 0; text-shadow: #ccc 1px 1px 0;}
-#docupage h3                          {font-size: 16px; line-height: 21px; text-align: left; margin: 21px 0;}
-#docupage h5                          {font-size: 0.9em;}
+.docupage                             {font-family: Helvetica, Arial, sans-serif; font-size: 14px; padding: 21px 0 0 12px;}
+.docupage h1                          {font-size: 28px; line-height: 42px; text-align: left; margin: 0 0 21px 0; text-shadow: #ccc 1px 1px 0;}
+.docupage h2                          {font-size: 18px; line-height: 21px; text-align: left; margin: 0 0 21px 0; text-shadow: #ccc 1px 1px 0;}
+.docupage h3                          {font-size: 16px; line-height: 21px; text-align: left; margin: 21px 0;}
+.docupage h5                          {font-size: 0.9em;}
 
-#docupage h1.title                    {line-height: 1; padding-bottom: 14px;}
-#docupage h2.section                  {float: right; margin: -1px 0 0 0; line-height: 1; text-align: right; font-weight: normal;}
-#docupage h2.section span             {display: block; font-size: 10px; line-height: 1; font-weight: normal; text-align: right; color: #aaa; text-shadow: none;}
+.docupage h1.title                    {line-height: 1; padding-bottom: 14px;}
+.docupage h2.section                  {float: right; margin: -1px 0 0 0; line-height: 1; text-align: right; font-weight: normal;}
+.docupage h2.section span             {display: block; font-size: 10px; line-height: 1; font-weight: normal; text-align: right; color: #aaa; text-shadow: none;}
 
-#docupage p, #docupage li,
-#docupage td, #docupage th,
-#docupage dd                          {font-size: 1em; color: #333333; line-height: 1.5em;}
+.docupage p, .docupage li,
+.docupage td, .docupage th,
+.docupage dd                          {font-size: 1em; color: #333333; line-height: 1.5em;}
 
-#docupage p,
-#docupage ul,
-#docupage ol,
-#docupage table                       { margin: 0 0 1.5em 0;}
+.docupage p,
+.docupage ul,
+.docupage ol,
+.docupage table                       { margin: 0 0 1.5em 0;}
 
-#docupage p img                       {display: block; margin: 0 auto;}
+.docupage p img                       {display: block; margin: 0 auto;}
 
-#docupage table                       {width:100%;border-collapse: collapse; border-spacing: 0;}
-#docupage td, #docupage th            {text-align: left; padding: 11px 10px 9px 10px; border: 1px solid #ccc;}
-#docupage th                          {vertical-align: bottom; padding-top: 10px; background: #ccc; border-bottom: 1px solid #aaa;}
-#docupage td                          {vertical-align: top;}
+.docupage table                       {width:100%;border-collapse: collapse; border-spacing: 0;}
+.docupage td, .docupage th            {text-align: left; padding: 11px 10px 9px 10px; border: 1px solid #ccc;}
+.docupage th                          {vertical-align: bottom; padding-top: 10px; background: #ccc; border-bottom: 1px solid #aaa;}
+.docupage td                          {vertical-align: top;}
 
-#docupage ol li ol                    {margin: 0;}
-#docupage ol li                       {list-style:decimal;}
-#docupage ol ol li                    {list-style:lower-alpha;}
-#docupage ol ol ol li                 {list-style:lower-roman;}
+.docupage ol li ol                    {margin: 0;}
+.docupage ol li                       {list-style:decimal;}
+.docupage ol ol li                    {list-style:lower-alpha;}
+.docupage ol ol ol li                 {list-style:lower-roman;}
 
-#docupage pre, #docupage code         {font-family: 'Bitstream Vera Sans Mono', "Monaco", Courier, monospace; font-size: 13px;}
-#docupage .gist pre,
-#docupage .gist code                  {color: #333;}
-#docupage pre                         {padding: 20px; margin: 1.5em 0; overflow:auto; background-color: #333; color: #fff;}
-#docupage pre code                    {background-color: inherit; color: inherit; font-weight: normal; font-size: 12px;}
-#docupage code                        {padding: 0 2px; background-color: #f0f0f0; color: #000;}
+.docupage pre, .docupage code         {font-family: 'Bitstream Vera Sans Mono', "Monaco", Courier, monospace; font-size: 13px;}
+.docupage .gist pre,
+.docupage .gist code                  {color: #333;}
+.docupage pre                         {padding: 20px; margin: 1.5em 0; overflow:auto; background-color: #333; color: #fff;}
+.docupage pre code                    {background-color: inherit; color: inherit; font-weight: normal; font-size: 12px;}
+.docupage code                        {padding: 0 2px; background-color: #f0f0f0; color: #000;}
 
-#docupage .note, #docupage .warning   {border: 3px solid #000;-moz-border-radius: 5px;border-radius: 5px;padding: 15px 15px 15px 70px;background: transparent url() 15px 15px no-repeat;}
-#docupage .note                       {background-color: #ffffcc;border-color: #fad190;background-image: url("/images/doculab/icons/note.png");}
-#docupage .warning                    {background-color: #fce3e3;border-color: #990000;background-image: url("/images/doculab/icons/warning.png");}
+.docupage .note, .docupage .warning   {border: 3px solid #000;-moz-border-radius: 5px;border-radius: 5px;padding: 15px 15px 15px 70px;background: transparent url() 15px 15px no-repeat;}
+.docupage .note                       {background-color: #ffffcc;border-color: #fad190;background-image: url("/images/doculab/icons/note.png");}
+.docupage .warning                    {background-color: #fce3e3;border-color: #990000;background-image: url("/images/doculab/icons/warning.png");}
 
-#docupage #breadcrumbs p              { margin: 0 0 35px 0; font-size: 16px; line-height: 28px;}
+.docupage #breadcrumbs p              { margin: 0 0 35px 0; font-size: 16px; line-height: 28px;}
 
 #page_navigation                      {border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; margin: 28px 0 0 0; padding: 14px 0; list-style: none; overflow: auto;}
 #page_navigation li                   {margin: 0; padding: 0; display: block;}
@@ -65,3 +65,8 @@
 #page_navigation li a                 { display: block; float: left; line-height: 18px; border: none;}
 #page_navigation li.next a            { padding-right: 24px; background: transparent url("/images/doculab/icons/arrow_right_16x16.png") no-repeat right center;}
 #page_navigation li.prev a            { padding-left: 24px; background: transparent url("/images/doculab/icons/arrow_left_16x16.png") no-repeat left center;}
+
+#google-search td, #google-search th {
+  border: none;
+  padding: 4px 8px 0 8px;
+}
