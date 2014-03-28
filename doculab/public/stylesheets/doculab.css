@@ -65,3 +65,8 @@
 #page_navigation li a                 { display: block; float: left; line-height: 18px; border: none;}
 #page_navigation li.next a            { padding-right: 24px; background: transparent url("/images/doculab/icons/arrow_right_16x16.png") no-repeat right center;}
 #page_navigation li.prev a            { padding-left: 24px; background: transparent url("/images/doculab/icons/arrow_left_16x16.png") no-repeat left center;}
+
+#google-search td, #google-search th {
+  border: none;
+  padding: 4px 8px 0 8px;
+}

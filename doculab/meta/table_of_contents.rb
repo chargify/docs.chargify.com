@@ -3,6 +3,7 @@ Doculab::TableOfContents.define do
     page "Chargify Overview", :permalink => 'overview'
     page "Terminology"
     page "Getting Started"
+    page "Search"
   end
 
   section "Sites" do
