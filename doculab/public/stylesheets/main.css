@@ -1,0 +1,5324 @@
+/*---global common definitions---*/
+* {
+  font-size:100.01%
+}
+html {
+  font-size:62.5%;
+}
+body {
+  margin:0;
+  font-family:Georgia, "Times New Roman", Times, serif;
+  background:#222;
+  min-width:980px;
+}
+form, fieldset {
+  margin:0;
+  padding:0;
+  border:0;
+}
+img {
+  border:0;
+}
+a {
+  color: #6b9029;
+  outline: none;
+  text-decoration: none;
+  border-bottom: 1px dotted #91b145;
+}
+
+
+
+a:hover {
+  text-decoration: none;
+  border-bottom-style: none;
+}
+
+
+
+#frontpage_quote{
+   background: url(https://chargify.com/images/quote_bg.jpg);
+   width:1130px;
+   font-family: 'Abel', sans-serif;
+   height:259px;
+   margin-left:auto;
+   margin-right:auto;
+   font-size:30px!important;
+   
+}
+
+#frontpage_quote div.quote_text{
+    padding-top:23px;
+    padding-left:300px;
+    text-align:center;
+    padding-right:300px;
+   
+}
+#frontpage_quote div.author{
+    padding-top:22px;
+    padding-right:320px;
+   
+   text-align:right;
+   
+}
+
+
+
+
+#wrapper {
+  width:100%;
+  margin:0 auto;
+  overflow:hidden;
+}
+/* header */
+.news_banner {
+  background-color: #90b146;
+  text-align: center;
+  color: white;
+  font: 13px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  padding: 7px 10px 11px;
+  border-bottom: 1px solid #262626;
+  width: 100%;
+}
+
+ .pricing_table_wrapper_new table thead tr th.column1{
+width:278px;
+
+}
+.pricing_table_wrapper_new table thead tr th.column2{
+width:170px;
+
+}
+
+.pricing_table_wrapper_new table thead tr th.column3{
+width:172px;
+
+}
+
+.pricing_table_wrapper_new table thead tr th.column4{
+width:156px;
+
+}
+
+.pricing_table_wrapper_new table thead tr th.column6{
+width:153px;
+
+}
+
+.pricing_table_wrapper_new {
+  width: 952px;
+  float: left;
+}
+.news_banner a {
+  text-decoration: none;
+  color: white;
+  border-style: none;
+}
+.news_banner span {
+  font-weight: bold;
+  color: black;
+  padding-left: 19px;
+  background: url(https://chargify.com/images/interface/alert_icon.png) no-repeat 0 -2px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+#header {
+  width:100%;
+  font-family:Helvetica, Arial, sans-serif;
+  padding: 0;
+  border-bottom: 7px solid #7da730;
+  background: black url(https://chargify.com/images/interface/sitesprite2.png) repeat-x 0 -10px;
+}
+
+
+
+
+#header_landing {
+  background-color: black;
+  width:100%;
+  background-image: url(https://chargify.com/images/interface/sitesprite2.png);
+  background-position: 0 -10px;
+  background-repeat:repeat-x;
+  font-family:Helvetica, Arial, sans-serif;
+  padding: 0;
+  border-bottom: 7px solid #7da730;
+  height: 79px;
+}
+#header .logo {
+  display:block;
+  width: 126px;
+  height: 47px;
+  overflow:hidden;
+  text-indent:-9999px;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -10px;
+  background-repeat:no-repeat;
+  position: relative;
+  top: 13px;
+  margin-right: 0;
+  margin-left: 0;
+  margin-bottom: 0;
+}
+#header .logo a {
+  height:100%;
+  display:block;
+}
+#header_landing .logo {
+  display:block;
+  width: 126px;
+  height: 47px;
+  overflow:hidden;
+  text-indent:-9999px;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -10px;
+  background-repeat:no-repeat;
+  position: absolute;
+  top: 13px;
+  margin-right: 0;
+  margin-left: 0;
+  margin-bottom: 0;
+}
+#header_landing .logo a {
+  height:100%;
+  display:block;
+}
+.innercontainer {
+  background-position: center 325px;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/innercontainer_background.gif);
+  width: 100%;
+  margin:0 auto;
+  overflow:hidden;
+}
+.innercontainerb {
+  background-position: center 130px;
+  background-repeat: no-repeat;
+  background-image: url(/images/uploads/landing-background.jpg);
+  width: 100%;
+  margin:0 auto;
+  overflow:hidden;
+}
+.innercontainerc {
+  background-position: center 130px;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/uploads/404_background.gif);
+  width: 100%;
+  margin:0 auto;
+  overflow:hidden;
+}
+.innercontainerd {
+  background-position: center 400px;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/innercontainer_background2.gif);
+  width: 100%;
+  margin:0 auto;
+  overflow:hidden;
+}
+.innercontainere {
+  background-position: 46% 380px;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/innercontainer_background2.gif);
+  width: 100%;
+  margin:0 auto;
+  overflow:hidden;
+}
+.home_middle_banner a {
+  float: left;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+  font-size: 24px;
+  color: white;
+  border-style: none;
+}
+.inner {
+  padding-bottom: 15px;
+  
+width:936px;
+  margin:0 auto;
+  overflow:hidden;
+}
+
+
+.inner_home_boxes {
+  padding-bottom: 0px;
+  width: 1000px;
+        padding-top:15px;
+  margin:0 auto;
+  overflow:hidden;
+}
+
+.inner_nav {
+  padding-bottom: 0px;
+  width: 940px;
+  margin:0 auto;
+  overflow:hidden;
+}
+.innerd {
+  padding-bottom: 0px;
+  width:940px;
+  margin:0 auto;
+  overflow:hidden;
+}
+.innerb {
+  width:940px;
+  margin:0 auto;
+  overflow:hidden;
+}
+.innerc {
+  padding-bottom: 0px;
+  width:940px;
+  margin:0 auto;
+  overflow:hidden;
+}
+.innere {
+  padding-bottom: 0px;
+  width: 1015px;
+  margin:0 auto;
+  overflow:hidden;
+}
+.inner_pricing {
+  padding-bottom: 0px;
+  width:952px;
+  margin:0 auto;
+  overflow:hidden;
+}
+
+.inner_pricing hr {background-color: #EFEFEF; color: #EFEFEF; height: 1px;}
+
+.home_videos {
+  width: 584px;
+  height: 417px;
+  background-image: url(https://chargify.com/images/interface/chargify_happy_customers.jpg);
+  float: left;
+  margin-top: -15px;
+}
+.public_beta {
+  border-style: none;
+  text-indent: -9999px;
+  display: block;
+  position: relative;
+  width: 236px;
+  left: 37px;
+  top: 23px;
+  height: 150px;
+}
+.video_wrapper {
+  position: relative;
+  width: 515px;
+  top: 78px;
+  left: 33px;
+}
+.video1 {
+  background-image: url(https://chargify.com/images/interface/video1.png);
+  width: 223px;
+  height: 98px;
+  display: block;
+  border-style: none;
+  text-indent: -9999px;
+  top: 22px;
+  position: relative;
+  left: 24px;
+}
+.video_caption1 {
+  width: 223px;
+  display: block;
+  text-align: center;
+  position: relative;
+  top: 36px;
+  font: bold 14px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  border-style: none;
+  left: 20px;
+}
+.video_caption1:hover {
+  color: white;
+}
+.video2 {
+  background-image: url(https://chargify.com/images/interface/video2.png);
+  width: 223px;
+  height: 98px;
+  display: block;
+  border-style: none;
+  text-indent: -9999px;
+  top: -93px;
+  position: relative;
+  left: 276px;
+}
+.video_caption2 {
+  width: 223px;
+  display: block;
+  text-align: center;
+  position: relative;
+  top: -80px;
+  font: bold 14px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  border-style: none;
+  left: 274px;
+}
+.video_caption2:hover {
+  color: white;
+}
+.phone {
+  color: white;
+  font-size: 11px;
+  float: right;
+  position: relative;
+  margin-top: 8px;
+  margin-right: 15px;
+  padding-left: 18px;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+.phone_label {
+  color:#808080;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -756px;
+  background-repeat:no-repeat;
+  padding-left: 19px;
+}
+.nav {
+  float:right;
+  list-style:none;
+  padding: 0;
+  overflow:hidden;
+}
+.nav li {
+  display:inline;
+  padding: 0 0 0 17px;
+  margin: 0;
+  float:left;
+  background-position: -10px -755px;
+  font-size: 12px;
+}
+.nav a {
+  color:#BEBEBE;
+  text-decoration: none;
+  border-style: none;
+}
+.nav li a.blog {
+  background: url(https://chargify.com/images/interface/nav_blog_icon3.gif) no-repeat left -15px;
+  padding-left: 15px;
+  padding-bottom: 1px;
+}
+.nav li a.blog:hover {
+  background: url(https://chargify.com/images/interface/nav_blog_icon3.gif) no-repeat left 0px;
+}
+.nav li a.docs {
+  background: url(https://chargify.com/images/uploads/nav_folder_icon1.png) no-repeat left -15px;
+  padding-left: 15px;
+  padding-bottom: 1px;
+}
+.nav li a.docs:hover {
+  background: url(https://chargify.com/images/uploads/nav_folder_icon1.png) no-repeat left 0px;
+}
+.nav li a.ecosystem {
+  background: url(https://chargify.com/images/interface/nav-ecosys-icon.png) no-repeat left 0px;
+  padding-left: 17px;
+  padding-bottom: 1px;
+}
+.nav li a.ecosystem:hover {
+  background: url(https://chargify.com/images/interface/nav-ecosys-icon.png) no-repeat left -16px;
+}
+.nav li a.about {
+  background: url(https://chargify.com/images/interface/nav_about_icon3.gif) no-repeat left -15px;
+  padding-left: 19px;
+  padding-bottom: 1px;
+}
+.nav li a.about:hover {
+  background: url(https://chargify.com/images/interface/nav_about_icon3.gif) no-repeat left 0px;
+}
+.nav li a.login {
+  background: url(https://chargify.com/images/interface/nav_login_icon3.gif) no-repeat left -15px;
+  padding-left: 16px;
+  padding-bottom: 1px;
+}
+.nav li a.login:hover {
+  background: url(https://chargify.com/images/interface/nav_login_icon3.gif) no-repeat left 0px;
+}
+.nav li a.support {
+  background: url(https://chargify.com/images/interface/nav_support_icon3.gif) no-repeat left -15px;
+  padding-left: 11px;
+  padding-bottom: 1px;
+}
+.nav li a.support:hover {
+  background: url(https://chargify.com/images/interface/nav_support_icon3.gif) no-repeat left 0px;
+}
+.nav a:hover {
+  text-decoration: none;
+  color:#fff;
+}
+#menu_wrapper {
+  float: right;
+  width: 800px;
+  line-height:normal;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+#menu ul {
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+#menu li {
+  display:inline;
+  font-size: 15px;
+  margin: 0 0 0 3px;
+  float: right;
+  background: url(https://chargify.com/images/interface/nav-tab-right.gif) no-repeat right top;
+  padding: 0;
+}
+#menu a {
+  color:#BEBEBE;
+  text-decoration: none;
+  border-bottom-style: none;
+  display: block;
+  background: url(https://chargify.com/images/interface/nav-tab-left.gif) no-repeat left top;
+  padding: 6px 16px 7px;
+}
+#menu a:hover {
+  color:#fff;
+  text-decoration:none;
+}
+#menu .active {
+  background-image:url(https://chargify.com/images/interface/nav-tab-right-active.gif);
+}
+#menu .active a {
+  color:#fff;
+  background-image:url(https://chargify.com/images/interface/nav-tab-left-active.gif);
+  font-weight: bold;
+}
+.clearfix:after {                                 /* add .clearfix class to clear floats after an element */
+  clear: both;                                    /* (IE version is in ie6-fixes.css) */
+  content: ".";
+  display: block;
+  font-size: 0;
+  height: 0;
+  visibility: hidden;
+}
+/* content */
+#content {
+  width:100%;
+}
+.container {
+  display:inline-block;
+  padding-left: 0;
+  padding-bottom: 25px;
+  padding-right: 0;
+  padding-top: 27px;
+  width:100%;
+  background:#fff url(https://chargify.com/images/interface/bg-content2.gif) repeat-x;
+}
+.containerc {
+  padding-bottom: 0px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 27px;
+  width:100%;
+  background:#fff url(https://chargify.com/images/interface/bg-content2.gif) repeat-x;
+}
+.containerd {
+  padding-bottom: 0px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 27px;
+  width:100%;
+  background:#fff url(https://chargify.com/images/interface/bg-content.gif) repeat-x;
+  height: 108px;
+}
+.containerb {
+  padding-left: 0;
+  padding-bottom: 25px;
+  padding-right: 0;
+  padding-top: 27px;
+  width:100%;
+  background:#fff url(https://chargify.com/images/interface/bg-content2.gif) repeat-x;
+}
+#content h1 {
+  letter-spacing: -1px;
+  font:bold 4.0em Helvetica, Arial, sans-serif;
+  margin:0 0 8px;
+  text-align:center;
+}
+#content h2 {
+  font:bold 2.6em Helvetica, Arial, sans-serif;
+  margin:0 0 24px;
+  color:#7ea730;
+  text-align:center;
+}
+#content h3, .about-left-column h3 {
+  font:bold 1.6em Helvetica, Arial, sans-serif;
+  margin:0 0 7px;
+}
+#content h1.mod-h {
+  font:bold 1.6em Helvetica, Arial, sans-serif;
+  margin:0 0 7px;
+}
+#content h3.mod-h {
+  letter-spacing: -1px;
+  font:bold 4.0em Helvetica, Arial, sans-serif;
+  margin:0 0 8px;
+  text-align:center;
+}
+#content h3 a {
+  color: #91b145;
+  border-bottom-style: none;
+}
+#content h3 a:hover {
+  color: black;
+}
+.container p, .about-left-column p {
+  font-size:1.4em;
+  line-height: 20px;
+  margin: 10px 0;
+}
+.containerb p {
+  margin-left: 0;
+  margin-bottom: 10px;
+  margin-right: 0;
+  margin-top: 10px;
+  font-size:1.4em;
+  line-height: 20px;
+}
+.leftcol {
+  width: 425px;
+  float:left;
+  padding:9px 0 0;
+}
+.leftcolb {
+  width: 475px;
+  float:left;
+  padding:9px 0 0;
+}
+.list {
+  list-style:none;
+  margin:0 0 35px;
+  padding:0;
+}
+.listb {
+  margin-left: 20px;
+  margin-bottom: 25px;
+  margin-right: 0;
+  margin-top: 15px;
+  list-style:none;
+  padding:0;
+}
+.listc {
+  list-style:none;
+  margin:0 0 35px;
+  padding:0;
+}
+.listd {
+  list-style:none;
+  margin: 0 0 10px;
+  padding:0;
+  float: left;
+}
+.list li {
+  margin-left: 0;
+  margin-bottom: 17px;
+  margin-right: 0;
+  margin-top: 0;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -780px;
+  background-repeat:no-repeat;
+  padding:0 0 0 25px;
+  font-size:1.8em;
+  line-height:1.3em;
+}
+.listb li {
+  margin-left: 0;
+  margin-bottom: 10px;
+  margin-right: 0;
+  margin-top: 0;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -70px -786px;
+  background-repeat:no-repeat;
+  padding:0 0 0 23px;
+  font-size: 17px;
+}
+.listc li {
+  line-height: 24px;
+  padding-left: 25px;
+  padding-bottom: 0;
+  padding-right: 0;
+  padding-top: 0;
+  margin-left: 0;
+  margin-bottom: 17px;
+  margin-right: 0;
+  margin-top: 0;
+  background: url(https://chargify.com/images/interface/list_arrow.gif) no-repeat 0 1px;
+  font-size: 16px;
+}
+.listd li {
+  margin-left: 0;
+  margin-bottom: 15px;
+  margin-right: 0;
+  margin-top: 0;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -786px;
+  background-repeat:no-repeat;
+  padding:0 0 0 23px;
+  font-size:2.0em;
+}
+.button {
+  margin-right: auto;
+  margin-left: auto;
+  display:block;
+  width: 430px;
+  height: 71px;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -77px;
+  background-repeat:no-repeat;
+  overflow:hidden;
+  text-indent:-9999px;
+}
+.buttonb {
+  margin-right: auto;
+  margin-left: auto;
+  display:block;
+  width: 371px;
+  height: 60px;
+  background: url(https://chargify.com/images/interface/landing-cta.gif) no-repeat;
+  overflow:hidden;
+  text-indent:-9999px;
+}
+.buttonc {
+  margin-right: auto;
+  margin-left: auto;
+  display:block;
+  width: 371px;
+  height: 59px;
+  background: url(https://chargify.com/images/interface/home_cta_red_medium.gif) no-repeat;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+  clear:both;
+}
+.buttonc2 {
+  margin-right: auto;
+  margin-left: auto;
+  display:block;
+  width: 371px;
+  height: 59px;
+  background: url(https://chargify.com/images/interface/home_cta_green_medium.gif) no-repeat;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+  clear:both;
+}
+.buttond {
+  margin-top: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  display:block;
+  width: 217px;
+  height: 39px;
+  background: url(https://chargify.com/images/interface/home_demo_button.gif) no-repeat;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+}
+.button_landing {
+  margin-right: auto;
+  margin-left: auto;
+  display:block;
+  width: 371px;
+  height: 60px;
+  background: url({landing_cta_button_graphic}) no-repeat;
+  overflow:hidden;
+  text-indent:-9999px;
+}
+.btn-submit {
+  width:364px;
+  height:57px;
+  margin:0 0 0 66px;
+  background: url(https://chargify.com/images/interface/btn-submit.gif) no-repeat;
+}
+.btn-submit-beta {
+  margin-left: auto;
+  margin-bottom: 0;
+  margin-right: auto;
+  margin-top: 0;
+  display:block;
+  width: 365px;
+  height:57px;
+  background: url(https://chargify.com/images/interface/btn-submit-beta.gif) no-repeat;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+}
+.btn-howitworks {
+  height: 66px;
+  width: 382px;
+  display: block;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+  clear:both;
+  background: transparent url("https://chargify.com/images/interface/btn-seehowchargifyworks.png") 0 0 no-repeat;
+}
+.btn-howitworks:hover {
+  background: transparent url("https://chargify.com/images/interface/btn-seehowchargifyworks.png") 0 -67px no-repeat;
+}
+.btn-seechargifyfeatures {
+  height: 57px;
+  width: 278px;
+  display: block;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+  clear:both;
+  background: transparent url("https://chargify.com/images/interface/btn-seechargifysfeatures.png") 0 0 no-repeat;
+}
+.btn-seechargifyfeatures:hover {
+  background: transparent url("https://chargify.com/images/interface/btn-seechargifysfeatures.png") 0 -58px no-repeat;
+}
+.btn-learnmore {
+  width: 119px;
+  display: block;
+  border-style: none;
+  background-image: url(https://chargify.com/images/interface/btn-learnmore.png);
+  height: 32px;
+  text-indent: -9999px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 13px;
+}
+.btn-learnmore:hover {
+  background: transparent url(https://chargify.com/images/interface/btn-learnmore.png) 0 -36px no-repeat;
+}
+.btn-getstartedfree {
+  width: 222px;
+  display: block;
+  border-style: none;
+  background-image: url(https://chargify.com/images/interface/btn-getstartedfree.png);
+  height: 38px;
+  text-indent: -9999px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 13px;
+}
+.btn-getstartedfree:hover {
+  background: transparent url(https://chargify.com/images/interface/btn-getstartedfree.png) 0 -41px no-repeat;
+}
+.btn-createaccountnow {
+  display:block;
+  width: 367px;
+  height:65px;
+  background: url(https://chargify.com/images/interface/btn-createaccountnow1.png) 0 0 no-repeat;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+}
+.btn-createaccountnow:hover {
+  background: url(https://chargify.com/images/interface/btn-createaccountnow1.png) 0 -67px no-repeat;
+}
+.btn-getyourmerchantaccount {
+  display:block;
+  width: 284px;
+  height:43px;
+  background: url(https://chargify.com/images/interface/btn-getyourmerchantaccount.png) 0 0 no-repeat !important;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+}
+.btn-getyourmerchantaccount:hover {
+  background: url(https://chargify.com/images/interface/btn-getyourmerchantaccount.png) 0 -45px no-repeat !important;
+}
+.small {
+  background: url(https://chargify.com/images/interface/bg-small-button.gif) no-repeat;
+  display:block;
+  width:222px;
+  height:39px;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+}
+.leftcol p {
+  margin:7px 0;
+  font:1.3em Helvetica, Arial, sans-serif;
+  color:#808080;
+  text-align: center;
+}
+.leftcolb p {
+  margin:7px 0;
+  font:1.3em Helvetica, Arial, sans-serif;
+  color:#808080;
+  text-align: center;
+}
+.rightcol {
+  float:right;
+  width:475px;
+  padding:9px 0 0;
+}
+.rightcolc {
+  float:right;
+  width: 435px;
+  padding:9px 0 0;
+}
+.rightcold {
+  float:right;
+  width: 430px;
+  padding:9px 0 0;
+}
+.rightcol p {
+  margin:7px 0;
+  font:1.3em Helvetica, Arial, sans-serif;
+  color:#808080;
+  text-align: center;
+}
+.rightcolc p {
+  margin:7px 0;
+  font:1.3em Helvetica, Arial, sans-serif;
+  color:#808080;
+  text-align: center;
+}
+.rightcold p {
+  margin:7px 0;
+  font:1.3em Helvetica, Arial, sans-serif;
+  color:#808080;
+  text-align: center;
+}
+.rightcol .image {
+  padding-left: 21px;
+  padding-bottom: 0px;
+  padding-right: 0;
+  padding-top: 20px;
+  height: 280px;
+  overflow:hidden;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -168px;
+  background-repeat:no-repeat;
+}
+.leftcolb .image {
+  padding-left: 21px;
+  padding-bottom: 0px;
+  padding-right: 0;
+  padding-top: 20px;
+  height: 280px;
+  overflow:hidden;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -168px;
+  background-repeat:no-repeat;
+}
+.rightcolb {
+  padding-left: 0;
+  padding-bottom: 0px;
+  padding-right: 0;
+  padding-top: 9px;
+  float:right;
+  width: 450px;
+}
+.image img {
+  display:block;
+}
+.column .image {
+  height: 352px;
+  width: 451px;
+  float: left;
+  margin:0 11px 0 0;
+}
+.holder {
+  width:100%;
+  background:#e6e6e6 url(https://chargify.com/images/interface/bg-holder.gif) repeat-x;
+  padding:32px 0 20px;
+}
+.holderb {
+  padding-left: 0;
+  padding-bottom: 20px;
+  padding-right: 0;
+  padding-top: 20px;
+  width:100%;
+  background:#e6e6e6 url(https://chargify.com/images/interface/bg-holder.gif) repeat-x;
+}
+.block {
+  float: left;
+  width: 276px;
+  display:inline;
+  padding-left: 6px;
+}
+.banner {
+  height:1%;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid #ccc;
+  padding: 20px;
+  margin:0 0 21px;
+}
+.banner img {
+  margin-left: 0;
+  margin-bottom: 6px;
+  margin-right: 25px;
+  margin-top: 0;
+  float:left;
+  clear:left;
+}
+.gateways {
+  width: 287px;
+  float: right;
+}
+.gatewayshead {
+  background: url(https://chargify.com/images/interface/gateway_box_top.gif) no-repeat;
+  width: 287px;
+  height: 39px;
+  float: left;
+  text-align: center;
+  padding-top: 28px;
+}
+.gatewayshead2 {
+  background: url(https://chargify.com/images/uploads/gateway_box_top_short.png) no-repeat;
+  width: 287px;
+  height: 14px;
+  float: left;
+  text-align: center;
+  padding-top: 28px;
+}
+.gatewayshead span {
+  color: white;
+  font: bold 18px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+.gateways_middle {
+  background: url(https://chargify.com/images/interface/gateway_box_middle.gif) repeat-y;
+  width: 287px;
+  float: left;
+}
+.gateways_middle p {
+  padding-right: 27px;
+  padding-left: 27px;
+  font-size: 13px;
+  line-height: 16px;
+}
+.gateways_bottom {
+  background: url(https://chargify.com/images/interface/gateway_box_bottom.gif) repeat-y;
+  width: 287px;
+  height: 15px;
+  float: left;
+}
+.gateway_logo_wrapper {
+  margin-top: 0px;
+  padding: 0px 0px 5px;
+  margin-left: 20px;
+  float: left;
+  width: 245px;
+}
+.gateway_logo_wrapper a {
+  border-style: none;
+}
+.question {
+  text-align: center;
+  font: bold 16px/23px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  float: left;
+  width: 100%;
+  margin-top: 16px;
+}
+.learn_more {
+  width: 119px;
+  display: block;
+  border-style: none;
+  background-image: url(https://chargify.com/images/interface/learn_more_button.gif);
+  height: 32px;
+  text-indent: -9999px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 13px;
+}
+.secure {
+  padding-bottom: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 2em;
+}
+.securewide {
+  background-position: 305px center;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/securitybadgeslong.gif);
+  margin-bottom: 15px;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  padding-right: 320px;
+  padding-top: 15px;
+  border-color: #cccccc;
+  border-style: solid;
+  border-width: 1px;
+  background-color: white;
+  float: left;
+  width: 280px;
+}
+.securewide p {
+  margin-top: 5px;
+  font-size: 1.3em;
+}
+.bannertall {
+  padding-left: 20px;
+  padding-bottom: 5px;
+  padding-right: 20px;
+  padding-top: 20px;
+  height:1%;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid #ccc;
+  margin:0 0 21px;
+}
+.bannertall img {
+  margin-left: 0;
+  margin-bottom: 10px;
+  margin-right: 25px;
+  margin-top: 2px;
+  float: left;
+}
+.bannertall h3 {
+  text-align: center;
+}
+.bannertall p {
+  font-size: 1.3em;
+}
+.bannertallb {
+  padding-left: 20px;
+  padding-bottom: 5px;
+  padding-right: 20px;
+  padding-top: 20px;
+  text-align: center;
+  height:1%;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid #ccc;
+  margin:0 0 21px;
+}
+.bannertallb img {
+  padding-top: 10px;
+  width: 100%;
+  border-top-color: #cccccc;
+  border-top-style: solid;
+  border-top-width: 1px;
+  margin-left: 0;
+  margin-bottom: 10px;
+  margin-right: 25px;
+  margin-top: 10px;
+  float: left;
+}
+.bannertallb h3 {
+  font-style: normal;
+  font-weight: normal;
+  padding-bottom: 10px;
+  border-bottom-color: #b3b3b3;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  text-align: center;
+  font-size: 120%;
+}
+.bannertallb p {
+  text-align: left;
+  font-size: 1.3em;
+}
+.bannerprice {
+  text-align: center;
+  float: right;
+  width: 260px;
+  padding-left: 20px;
+  padding-bottom: 7px;
+  padding-right: 20px;
+  padding-top: 20px;
+  height:1%;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid #ccc;
+  margin:0 0 21px;
+}
+.bannerprice img {
+  text-align: center;
+  margin-left: 0;
+  margin-bottom: 10px;
+  margin-right: 25px;
+  margin-top: 2px;
+  float: left;
+}
+.bannerprice h3 {
+  text-align: center;
+}
+.bannerprice p {
+  text-align: left;
+  font-size: 1.3em;
+}
+.banner2 {
+  padding-bottom: 12px;
+  padding-right: 10px;
+  padding-left: 10px;
+  height:1%;
+  overflow:hidden;
+  background:#efefef;
+  border:solid #ccc;
+  border-width:1px 0;
+  text-align:center;
+  font-size: 1.6em;
+}
+.holder .banner2 p {
+  margin-left: 0;
+  margin-bottom: 20px;
+  margin-right: 0;
+  margin-top: 17px;
+  line-height:24px;
+}
+.holderb .banner2 p {
+  margin-left: 0;
+  margin-bottom: 20px;
+  margin-right: 0;
+  margin-top: 17px;
+  line-height:24px;
+}
+.holder .banner2 p img {
+  display:block;
+  margin:0 auto;
+}
+.holderb .banner2 p img {
+  display:block;
+  margin:0 auto;
+}
+.text {
+  height:1%;
+  overflow:hidden;
+}
+.holder p {
+  line-height: 20px;
+}
+.holderb p {
+  line-height: 20px;
+}
+.banner p {
+  font-size: 1.3em;
+  margin:0;
+}
+.block blockquote, .boxes blockquote {
+  margin:0 0 18px;
+  padding:0;
+  font-size:1.4em;
+  font-style:italic;
+}
+.boxes blockquote {
+  font-size:1.0em;
+  margin:-8px 0 0;
+}
+.block blockquote p, .boxes blockquote p {
+  margin:0;
+}
+.block blockquote cite, .boxes blockquote cite {
+  display:block;
+  font-style:normal;
+  font-family:Helvetica, Arial, sans-serif;
+  margin:22px 0 0;
+}
+.boxeswide {
+  list-style:none;
+  margin:0;
+  padding:0;
+  height:1%;
+}
+.boxesprice {
+  list-style:none;
+  margin:0;
+  padding:0;
+  height:1%;
+  overflow:hidden;
+}
+.boxeswide li {
+  padding-left: 0;
+  padding-bottom: 30px;
+  padding-right: 20px;
+  padding-top: 0;
+  float:left;
+  width: 295px;
+  display:inline;
+}
+.boxesprice li {
+  background-repeat: no-repeat;
+  background-image:url(https://chargify.com/images/interface/bg-list.gif);
+  background-position:0 12px;
+  display: inline;
+  padding-left: 23px;
+  padding-bottom: 15px;
+  padding-right: 20px;
+  padding-top: 0;
+  float:left;
+  width: 272px;
+}
+.boxeswide li.last {
+  padding-left: 0;
+  padding-bottom: 30px;
+  padding-right: 0px;
+  padding-top: 0;
+  float:left;
+  width: 300px;
+  display:inline;
+}
+.boxesprice li.last {
+  padding-left: 0;
+  padding-bottom: 30px;
+  padding-right: 0px;
+  padding-top: 0;
+  float:left;
+  width: 300px;
+  display:inline;
+}
+.boxeswide li p {
+  margin:7px 0 0;
+  font-size:1.4em;
+}
+.boxesprice li p {
+  margin:7px 0 0;
+  font-size:1.4em;
+}
+.boxeswide li p strong {
+  font-family:Helvetica, Arial, sans-serif;
+}
+.boxesprice li p strong {
+  font-family:Helvetica, Arial, sans-serif;
+}
+.pricing_container {
+  width: 952px;
+  height: 411px;
+  background: url(https://chargify.com/images/interface/pricing_chart2.png) no-repeat;
+  font-size: 0;
+  float: left;
+}
+.pricing_title {
+  position: relative;
+  top: 47px;
+  left: 47px;
+  color: white;
+  width: 242px;
+  float: left;
+}
+#content div.pricing_title h3 {
+  font: bold 23px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+.pricing_question a {
+  float: left;
+  display: block;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/pricing_question.png);
+  height: 22px;
+  width: 22px;
+  text-indent:-9999px;
+  border-bottom-style: none;
+  position: relative;
+  top: 265px;
+  left: 587px;
+}
+.bullet_container {
+  width: 425px;
+  top: 286px;
+  left: 96px;
+  height: 77px;
+  position: relative;
+  float: left;
+  clear: both;
+}
+.pricing_bullet1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font: normal 18px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  color: #5e5e5e;
+  width: 190px;
+}
+.pricing_bullet2 {
+  position: relative;
+  top: 31px;
+  font: normal 18px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  color: #5e5e5e;
+  width: 190px;
+}
+.pricing_bullet3 {
+  position: absolute;
+  top: 0;
+  left: 220px;
+  font: normal 18px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  color: #5e5e5e;
+  width: 190px;
+}
+.pricing_bullet4 {
+  position: absolute;
+  top: 31px;
+  left: 220px;
+  font: normal 18px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  color: #5e5e5e;
+  width: 190px;
+}
+.button_signup {
+  position: relative;
+  top: 208px;
+  left: 516px;
+  width: 366px;
+  float: left;
+  clear: both;
+}
+.button-submit-beta {
+  display:block;
+  width: 365px;
+  height:57px;
+  background: url(https://chargify.com/images/interface/btn-submit-beta.png) no-repeat;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+}
+.button-submit-account {
+  display:block;
+  width: 365px;
+  height:57px;
+  background: url(https://chargify.com/images/interface/btn-submit-account.png) no-repeat;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+}
+.merchant_container {
+  width: 952px;
+  float: left;
+}
+.merchant_box_top {
+  width: 952px;
+  height: 96px;
+  background: url(https://chargify.com/images/interface/merchant_box_top2.png) no-repeat;
+  float: left;
+}
+.merchant_title {
+  color: white;
+  position: relative;
+  top: 52px;
+  left: 47px;
+  text-align: center;
+  width: 856px;
+}
+#content div.merchant_title h3 {
+  font: bold 18px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+.merchant_box_middle {
+  width: 800px;
+  background: url(https://chargify.com/images/interface/merchant_box_middle.png) repeat-y;
+  float: left;
+  padding-right: 76px;
+  padding-left: 76px;
+}
+.merchant_box_middle p {
+  font-size:1.4em;
+  line-height: 20px;
+  margin: 1px 0 2px;
+}
+.merchant_page_button a {
+  display: block;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/merchant_buttonb.gif);
+  float: left;
+  height: 43px;
+  width: 283px;
+  text-indent:-9999px;
+  border-bottom-style: none;
+  margin: 11px auto 5px 252px;
+}
+.merchant_box_bottom {
+  width: 952px;
+  height: 19px;
+  background: url(https://chargify.com/images/interface/merchant_box_bottom.png) no-repeat;
+  float: left;
+}
+.boxes {
+  list-style:none;
+  margin:0;
+  padding:0;
+  height:1%;
+  overflow:hidden;
+}
+.boxes-ma {
+  width: 308px;
+  float: left;
+}
+.boxes li {
+  padding-left: 0;
+  padding-bottom: 30px;
+  padding-right: 20px;
+  padding-top: 0;
+  float:left;
+  width: 313px;
+  display:inline;
+}
+.boxes li img {
+  float:left;
+  margin:0 11px 0 0;
+}
+.boxes li p {
+  margin:7px 0 0;
+  font-size:1.3em;
+}
+.boxes li p strong {
+  font-family:Helvetica, Arial, sans-serif;
+}
+
+
+
+
+
+
+.boxes2 {
+  list-style:none;
+  margin:0;
+  padding:0;
+  height:1%;
+  overflow:hidden;
+}
+.boxes2 li {
+  padding-left: 0;
+  padding-bottom: 30px;
+  padding-right: 20px;
+  padding-top: 0;
+  float:left;
+  width: 287px;
+display:inline;
+}
+.boxes2 li img {
+  float:left;
+  margin:0 11px 0 0;
+}
+.boxes2 li p {
+  margin:7px 0 0;
+  font-size:1.3em;
+}
+.boxes2 li p strong {
+  font-family:Helvetica, Arial, sans-serif;
+}
+
+
+
+
+
+.sidebar {
+  float:left;
+  width:238px;
+  background: url(https://chargify.com/images/interface/bg-sidebar.gif) repeat-y;
+}
+.sidebar .top {
+  background: url(https://chargify.com/images/interface/bg-sidebar-top.gif) no-repeat;
+}
+.sidebar .bottom {
+  background: url(https://chargify.com/images/interface/bg-sidebar-bt2.gif) no-repeat 0 100%;
+  height:1%;
+  overflow:hidden;
+  padding: 21px 0 69px;
+}
+.menu {
+  font-family: Helvetica, Arial, sans-serif;
+  list-style:none;
+  margin:0;
+  padding:0;
+  background: url(https://chargify.com/images/interface/bg-sidebar-li.gif) no-repeat;
+}
+.menu li {
+  height:1%;
+  overflow:hidden;
+  vertical-align:top;
+  background: url(https://chargify.com/images/interface/bg-sidebar-li.gif) no-repeat 0 100%;
+  padding:0 0 1px;
+}
+.menu a {
+  display:block;
+  text-align:right;
+  margin:0 8px 0 0;
+  color:#4c4c4c;
+  text-decoration: none;
+  border-bottom-style: none;
+}
+.menu a:hover {
+  text-decoration: underline;
+}
+.menu span {
+  display:block;
+  height:1%;
+  overflow:hidden;
+  padding: 8px 15px;
+  font-size:1.3em;
+  line-height:15px;
+  cursor:pointer;
+}
+.menu li.active span {
+  background: url(https://chargify.com/images/interface/bg-sidebar-active.gif) no-repeat 100% 50%;
+  padding: 8px 23px 8px 15px;
+}
+.menu li.active a {
+  background: url(https://chargify.com/images/interface/bg-li-active.gif) repeat-y;
+  border-left:1px solid #dbdbdb;
+  margin:0;
+  border-style:none;
+  color:#fff;
+}
+.column {
+  float:right;
+  width:692px;
+}
+.column .text {
+  padding:0 0 17px 5px;
+}
+#content .column .text h3 {
+  font-size:1.4em;
+}
+.ordered {
+  font-family: Helvetica, Arial, sans-serif;
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.ordered li {
+  width:188px;
+  overflow:hidden;
+  padding:0 0 0 39px;
+  margin:0 0 13px -5px;
+  position:relative;
+}
+.number1 {
+  float:left;
+  width:35px;
+  height:34px;
+  overflow:hidden;
+  margin:0 0 0 -39px;
+  font: 18px Helvetica, Arial, sans-serif;
+  color:#fff;
+  line-height:34px;
+  text-align:center;
+  background: url(https://chargify.com/images/interface/bg-number1.gif) no-repeat;
+  text-indent:-9999px;
+}
+.number2 {
+  float:left;
+  width:35px;
+  height:34px;
+  overflow:hidden;
+  margin:0 0 0 -39px;
+  font: 18px Helvetica, Arial, sans-serif;
+  color:#fff;
+  line-height:34px;
+  text-align:center;
+  background: url(https://chargify.com/images/interface/bg-number2.gif) no-repeat;
+  text-indent:-9999px;
+}
+.number3 {
+  float:left;
+  width:35px;
+  height:34px;
+  overflow:hidden;
+  margin:0 0 0 -39px;
+  font: 18px Helvetica, Arial, sans-serif;
+  color:#fff;
+  line-height:34px;
+  text-align:center;
+  background: url(https://chargify.com/images/interface/bg-number3.gif) no-repeat;
+  text-indent:-9999px;
+}
+.ordered li p {
+  margin:0 0 7px;
+  font-size:1.2em;
+  line-height:18px;
+  color:#4c4c4c;
+}
+.info {
+  border:solid #ccc;
+  border-width:1px 0;
+  padding:16px 0 8px;
+  margin:0 0 16px;
+  min-height: 227px;
+  height:auto !important;
+  height: 220px;
+}
+.right-link {
+  display:block;
+  text-align:right;
+  font:1.4em Helvetica, Arial, sans-serif;
+}
+.right-link a {
+  text-decoration: none;
+  color: #91b145;
+  border-bottom-style: none;
+}
+.right-link a:hover {
+  text-decoration: underline;
+}
+.box {
+  margin-bottom: 15px;
+  width:380px;
+  height:329px;
+  background: url(https://chargify.com/images/interface/bg-box.gif) no-repeat;
+  float:left;
+  padding:11px 0 0;
+}
+.wide {
+  width:540px;
+  background: url(https://chargify.com/images/interface/bg-wide.gif) no-repeat;
+  float:right;
+}
+.box-inner {
+  overflow:auto;
+  height:280px;
+  margin:8px 0 0;
+  padding:0 0 0 22px;
+}
+.box-inner-beta {
+  padding-left: 22px;
+  padding-bottom: 0;
+  padding-right: 22px;
+  padding-top: 0;
+  font-size: 12px;
+  text-align: center;
+  overflow:auto;
+  height:280px;
+  margin:8px 0 0;
+}
+.box-inner-beta p {
+  line-height: 28px;
+}
+.boxwidetop {
+  padding-bottom: 5px;
+  padding-top: 10px;
+  color: white;
+  text-align: center;
+  float: left;
+  background-image: url(https://chargify.com/images/interface/box-wide-top.gif);
+  background-repeat: no-repeat;
+  background-color: black;
+  width: 940px;
+}
+.boxwidemiddle {
+  padding-bottom: 5px;
+  padding-top: 15px;
+  padding-right: 25px;
+  padding-left: 25px;
+  text-align: left;
+  float: left;
+  width: 890px;
+  background-color: #e6e6e6;
+}
+.boxwidemiddleb {
+  padding-bottom: 5px;
+  padding-top: 5px;
+  padding-right: 25px;
+  padding-left: 25px;
+  text-align: left;
+  float: left;
+  width: 890px;
+  background-color: #e6e6e6;
+}
+.boxwidemiddle p {
+  padding: 0px;
+  margin: 0px;
+  font-size: 1.4em;
+}
+.boxwidebottom {
+  margin-bottom: 10px;
+  background-image: url(https://chargify.com/images/interface/box-wide-bottom.gif);
+  float: left;
+  height: 16px;
+  width: 940px;
+}
+.boxwidebottomb {
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  padding-top: 15px;
+  padding-bottom: 16px;
+  background-position: 0 bottom;
+  margin-bottom: 10px;
+  background-image: url(https://chargify.com/images/interface/box-wide-bottom.gif);
+  float: left;
+  width: 940px;
+}
+#content .box h3 {
+  color:#fff;
+  text-align:center;
+  margin:0 0 28px;
+  font-size:16px;
+}
+.image-holder {
+  border-color: #999999;
+  border-width: 1px;
+  border-style: solid;
+  width: 337px;
+  height:194px;
+  background:#fff;
+}
+.image-holder img {
+  display:block;
+}
+.box .list {
+  float:left;
+  width:157px;
+  margin:0 14px 0 0;
+  display:inline;
+}
+.box .list li {
+  font-size:1.4em;
+  background: url(https://chargify.com/images/interface/bg-box-list.gif) no-repeat;
+  margin:17px 0 0;
+  float:left;
+  width:138px;
+  padding:0 0 0 19px;
+}
+.form {
+  list-style:none;
+  margin:0 -33px 18px 0;
+  padding:0;
+  width:518px;
+  overflow:hidden;
+}
+.form li {
+  float:left;
+  width:226px;
+  margin:0 33px 10px 0;
+  overflow:hidden;
+}
+.form li label {
+  display:block;
+  font:1.2em Helvetica, Arial, sans-serif;
+}
+.txt-input {
+  width:214px;
+  border:1px solid #b3b3b3;
+  padding:5px;
+  font:1.2em Helvetica, Arial, sans-serif;
+  margin:6px 0 0;
+}
+.captcha {
+  height:1%;
+  overflow:hidden;
+  margin:20px 0 0;
+}
+.captcha img {
+  display:block;
+}
+.bullet {
+  list-style:none;
+  margin:0;
+  padding:0;
+  height:1%;
+  overflow:hidden;
+}
+.bullet li {
+  background: url(https://chargify.com/images/interface/bg-bullet.gif) no-repeat 0 8px;
+  padding:0 0 0 14px;
+  font-size:1.4em;
+  line-height:18px;
+  margin:0 0 17px;
+}
+#content .holder h2 {
+  font-size:1.8em;
+  color:#000;
+  text-align:left;
+  margin:0 0 17px;
+}
+#content .holderb h2 {
+  font-size:1.8em;
+  color:#000;
+  text-align:left;
+  margin:0 0 17px;
+}
+.inner-gallery {
+  margin:0 auto;
+  background: url(https://chargify.com/images/interface/bg-gallery-holder.gif) no-repeat 0 100%;
+  width:860px;
+  padding:0 60px;
+  overflow:hidden;
+}
+.gallery-holder {
+  width:860px;
+  overflow:hidden;
+  position:relative;
+}
+.gallery-block {
+  float:left;
+  position:relative;
+  left:50%;
+}
+.gallery {
+  margin-left: 0;
+  margin-bottom: 10px;
+  margin-right: 0;
+  margin-top: 0;
+  list-style:none;
+  padding:0;
+  float:left;
+  left:-50%;
+  position:relative;
+}
+.gallery li {
+  float:left;
+  width:140px;
+  font-family:Helvetica, Arial, sans-serif;
+  text-align:center;
+  padding:0 10px 11px;
+  display:inline;
+}
+.gallery .image {
+  height:125px;
+  width:140px;
+  overflow:hidden;
+  padding:15px 0 0;
+  background: url(https://chargify.com/images/interface/bg-gallery-image.gif) no-repeat;
+  margin:0 0 5px;
+  position:relative;
+}
+.gallery .image img {
+  margin:0 auto;
+}
+.btn-video {
+  position:absolute;
+  width:28px;
+  height:28px;
+  background: url(https://chargify.com/images/interface/btn-video.png) no-repeat;
+  overflow:hidden;
+  right:5px;
+  bottom:5px;
+  text-decoration: none;
+  border-bottom-style: none;
+}
+.about-image-vid-wrap a.btn-video {
+  bottom: -10px;
+  right: 0px;
+  z-index: 100;
+  position: absolute;
+  overflow: visible;
+}
+.btn-video:hover {
+  text-decoration:none;
+}
+.gallery strong {
+  display:block;
+  font-size: 13px;
+  color:#7ea730;
+  margin:0 0 7px;
+        height: 35px;
+}
+.gallery p {
+  font-size:1.2em;
+  color:#4c4c4c;
+  line-height:17px;
+  margin:0;
+}
+.gallery .arrow {
+  display:block;
+  margin:56px -32px -90px 132px;
+  position:relative;
+  width:40px;
+  height:41px;
+  z-index:3;
+}
+.bordered {
+  padding-bottom: 10px;
+  border-bottom:1px solid #b3b3b3;
+  margin:0 auto 23px;
+}
+.bordered .block {
+  width:301px;
+  text-align:center;
+  margin:0;
+  font:1.3em/18px Helvetica, Arial, sans-serif;
+  color:#808080;
+}
+.inner .block {
+  width: 276px;
+  text-align:center;
+  margin:0;
+  font:1.3em/18px Helvetica, Arial, sans-serif;
+  color:#808080;
+}
+.bordered .block p {
+  margin:5px 10px;
+}
+.btn-free {
+  width: 303px;
+  height: 54px;
+  background: url(https://chargify.com/images/interface/btn-free2.gif) no-repeat;
+  display:block;
+  overflow:hidden;
+  text-indent:-9999px;
+}
+.btn-freeb {
+  float: right;
+  width: 276px;
+  height: 54px;
+  background: url(https://chargify.com/images/interface/btn-free3.gif) no-repeat;
+  display:block;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+}
+.subpagecenter {
+  margin-right: 20px;
+  float: left;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 9px;
+  width: 530px;
+}
+.subpagecenterd {
+  float: right;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 9px;
+  width: 770px;
+}
+.subpagecentere {
+  float: right;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 9px;
+  width: 770px;
+}
+.subpagecenterf {
+  float: left;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 9px;
+  width: 770px;
+}
+.member_title {
+  padding-top: 0px;
+  font-size: 1.6em;
+  font-style: italic;
+}
+#subpagecenterb {
+  margin-right: 30px;
+  float: left;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 9px;
+  width: 520px;
+}
+#subpagecenterc {
+  margin-right: 30px;
+  float: left;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 9px;
+  width: 520px;
+}
+#subpagecenterc p img {
+  border: 7px solid #E6E6E6;
+  text-align: center;
+}
+#subpagecenterc li {
+  margin-bottom: 5px;
+  line-height: 1.5em;
+  font-size: 1.4em;
+}
+#subpagecenterb h3 {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 2.1em;
+  font-family: Helvetica, Arial, sans-serif;
+}
+#subpagecenterb h3 a {
+  border-bottom-style: none;
+  color: black;
+}
+#subpagecenterb h3 a:hover {
+  color: #7ea730;
+}
+#subpagecenterc h3 {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 2.1em;
+  font-family: Helvetica, Arial, sans-serif;
+}
+#subpagecenterb span {
+  margin: 0px;
+  font-size: 1.6em;
+  font-weight: bold;
+  font-family: Helvetica, Arial, sans-serif;
+}
+#subpagecenterc span {
+  margin: 0px;
+  font-size: 1.4em;
+  font-family: Helvetica, Arial, sans-serif;
+}
+#subpagecenterc span a {
+  border-bottom-style: none;
+}
+#subpagecenterc span a:hover {
+  text-decoration: underline;
+}
+#subpagecenterc p span {
+  margin: 0px;
+  font-size: 1em;
+  font-family: Helvetica, Arial, sans-serif;
+}
+#subpagerightb {
+  float: left;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 9px;
+  width: 220px;
+}
+#subpagerightb span {
+  line-height: 1.5em;
+  margin: 0px;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: Helvetica, Arial, sans-serif;
+}
+#subpagecenterb img {
+  margin-bottom: 10px;
+  margin-right: 20px;
+  border:7px solid #E6E6E6;
+  float: left;
+}
+.news-thumb {
+  border: 7px solid #E6E6E6;
+  margin-top: 10px;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+.news-p img {
+  border: 7px solid #E6E6E6;
+}
+#content .subpagecentere h3 {
+  font-size: 1.6em;
+}
+a.more {
+  float: right;
+  margin: 20px 0px 30px;
+  font-size: 1.4em;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: #91B145;
+  border: none;
+}
+.news-read-more-wrap {
+  width: 100%;
+  float: left;
+}
+a.more:hover {
+  color: black;
+}
+.back {
+  text-align: left;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  float: left;
+}
+.back_divider {
+  text-align: left;
+  font-family: Helvetica, Arial, sans-serif;
+  float: left;
+}
+.back_dividerb {
+  text-align: left;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.moreb {
+  font-family: Helvetica, Arial, sans-serif;
+}
+.followb a {
+  font-size: 13px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.subpageright {
+  float: left;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 9px;
+  width: 220px;
+}
+.leftnav {
+  background-position: right top;
+  height: 285px;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/leftnav_gradient.gif);
+  margin-right: 20px;
+  float: left;
+  padding-right: 25px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 30px;
+  width: 125px;
+}
+.leftnavlist {
+  line-height: 1.8em;
+  display: inline;
+  font-size: 2em;
+  text-align: right;
+  font-weight: bold;
+  font-family: Helvetica, Arial, sans-serif;
+  list-style-type: none;
+}
+.leftnavlist li.active a {
+  text-align: right;
+  color: black;
+}
+.contactcenter {
+  margin-bottom: 20px;
+  margin-left: 60px;
+  float: left;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 9px;
+  width: 465px;
+}
+.contacttop {
+  float: left;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/contact_top.gif);
+  height: 17px;
+  width: 464px;
+}
+.contactmiddle {
+  padding-left: 20px;
+  float: left;
+  background-repeat: repeat-y;
+  background-image: url(https://chargify.com/images/interface/contact_middle.gif);
+  width: 444px;
+}
+.contactbottom {
+  float: left;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/contact_bottom.gif);
+  height: 17px;
+  width: 464px;
+}
+.contactright {
+  background-image: url(https://chargify.com/images/interface/big_bull.gif);
+  background-position: 0 45px;
+  background-repeat: no-repeat;
+  height: 250px;
+  float: right;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 9px;
+  width: 220px;
+}
+.contactcolumn {
+  margin-right: 20px;
+  float: left;
+  width: 200px;
+}
+.contactlinks {
+  padding-left: 0;
+  padding-bottom: 0;
+  padding-right: 0;
+  padding-top: 5px;
+  float:left;
+}
+.contactlinks a {
+  background: url(https://chargify.com/images/interface/twitter_gray.gif) no-repeat 0 50%;
+  float:left;
+  padding:0 0 0 41px;
+  font:1.4em/32px Georgia, "Times New Roman", Times, serif;
+  color:#1da4d7;
+  border-bottom-style: none;
+}
+.subpagecenter h3 {
+  font:bold 1.6em Helvetica, Arial, sans-serif;
+  margin:0 0 7px;
+}
+.subpageright h3 {
+  font:bold 1.6em Helvetica, Arial, sans-serif;
+  margin:0 0 7px;
+}
+#subpagerightb h4 {
+  width: 100%;
+  font:bold 1.6em Helvetica, Arial, sans-serif;
+}
+.featured {
+  padding-bottom: 5px;
+  background-position: left top;
+  width: 100%;
+  border-bottom-color: #cccccc;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  padding-left: 22px;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/Document_16x16.png);
+  margin:0 0 7px;
+}
+.twitterhead {
+  margin-left: 0;
+  margin-bottom: 7px;
+  margin-right: 0;
+  margin-top: 35px;
+  padding-bottom: 5px;
+  background-position: left top;
+  width: 100%;
+  border-bottom-color: #cccccc;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  padding-left: 22px;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/twitter_16x16.gif);
+}
+/*twitter*/
+.twitter {
+  font-style: normal;
+  font-weight: normal;
+  width: 220px;
+  float:right;
+}
+.twitter a {
+  color: #1da4d7;
+  border-bottom-style: none;
+}
+.twitter a:hover {
+  text-decoration: underline;
+}
+.twitterb {
+  padding: 0px;
+  margin: 0px;
+}
+.twitterb li {
+  line-height: 1.4em;
+  margin-bottom: 15px;
+  font-size: 1.3em;
+  font-family: Helvetica, Arial, sans-serif;
+  display: block;
+}
+.twitterdate {
+  font-style: italic;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+.subpagecenter p {
+  margin-left: 0;
+  margin-bottom: 10px;
+  margin-right: 0;
+  margin-top: 7px;
+  line-height: 20px;
+  font-size:1.4em;
+}
+.subpageright p {
+  margin-left: 0;
+  margin-bottom: 10px;
+  margin-right: 0;
+  margin-top: 7px;
+  line-height: 20px;
+  font-size:1.4em;
+}
+.contactmiddle h3 {
+  font:bold 1.6em Helvetica, Arial, sans-serif;
+  margin:0 0 7px;
+}
+.contactmiddle p {
+  line-height:18px;
+  margin:7px 0 0;
+  font-size:1.4em;
+}
+.blockhome {
+  float: right;
+  width: 275px;
+  margin: 0px;
+  display:inline;
+}
+.blockhomeb {
+  clear: both;
+  float: right;
+  width: 300px;
+  margin: 0px;
+  display:inline;
+}
+.blockhome blockquote {
+  margin:0 0 18px;
+  padding:0;
+  font-size:1.4em;
+  font-style:italic;
+}
+.blockhome blockquote p {
+  margin:0;
+}
+.blockhome blockquote cite {
+  display:block;
+  font-style:normal;
+  font-family:Helvetica, Arial, sans-serif;
+  margin:22px 0 0;
+}
+.menuleft {
+  padding-left: 0;
+  padding-bottom: 0;
+  padding-right: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  list-style:none;
+  margin:0;
+}
+.menuleft li {
+  line-height: 1.6em;
+  font-weight: bold;
+  font-size: 2em;
+  height:1%;
+}
+.menuleft a {
+  text-align: right;
+  margin-left: 0;
+  margin-bottom: 0;
+  margin-right: 0px;
+  margin-top: 0;
+  display: block;
+  color: #7ea62f;
+  border-bottom-style: none;
+}
+.menuleft a:hover {
+  color: black;
+  text-decoration: none;
+}
+#flickr_badge_uber_wrapper a {
+  border-bottom-style: none;
+}
+.menuleft li.active a {
+  color: black;
+}
+#terms {
+  float: left;
+  width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+}
+#terms h1 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 3em;
+  text-align: left;
+}
+#terms p {
+}
+.mapcolumn {
+  margin-right: 20px;
+  float: left;
+  width: 300px;
+}
+.mapcolumn h3 a, .mapcolumnlast h3 a {
+  margin-bottom: 15px;
+  width: 100%;
+  float: left;
+}
+.mapcolumn p {
+  margin-bottom: 20px;
+  margin-top: -5px;
+}
+.mapcolumnlast {
+  height: 50px;
+  float: left;
+  width: 300px;
+}
+.mapcolumnlast p {
+  margin-bottom: 20px;
+  margin-top: -5px;
+}
+.maplink a {
+  color: black;
+  border-bottom-style: none;
+}
+.maplink a:hover {
+  text-decoration: underline;
+}
+.badge {
+  margin-bottom: 25px;
+  text-align: center;
+  height: 65px;
+  float: right;
+  width: 275px;
+}
+.sidebarhome {
+  height: 475px;
+  background-repeat: no-repeat;
+  padding-left: 35px;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -827px;
+  float: right;
+  width: 288px;
+}
+.sidebarhomeb {
+  height: 495px;
+  background-repeat: no-repeat;
+  padding-left: 29px;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -827px;
+  float: right;
+  width: 287px;
+}
+#preload {
+  background-image: url(https://chargify.com/images/interface/TC50_small_colorb.png);
+  height: 0px;
+  width: 0px;
+}
+#preloadb {
+  background-image: url(https://chargify.com/images/interface/labs_logo_colorc.png);
+  height: 0px;
+  width: 0px;
+}
+.securityheadb {
+  font-size: 0.85em;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  color: white;
+  text-align: center;
+  background-position: 0 top;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/security_top2.gif);
+  background-color: #999999;
+  width: 294px;
+}
+.securityb {
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/security_bottom2.gif);
+  margin-bottom: 25px;
+  padding-bottom: 5px;
+  text-align: center;
+  float: right;
+  width: 294px;
+  background-color: white;
+}
+.securityb img {
+}
+.securityb p {
+  font-size: 1.3em;
+  margin-right: 20px;
+  margin-left: 20px;
+  text-align: left;
+}
+.securityhead {
+  font-size: 0.85em;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  color: white;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/sitesprite3.png);
+  background-position: -303px -10px;
+  background-color: #999999;
+  width: 273px;
+}
+.security {
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/sitesprite3.png);
+  background-position: -10px 268px;
+  margin-bottom: 25px;
+  padding-bottom: 5px;
+  text-align: center;
+  float: right;
+  width: 273px;
+  background-color: white;
+}
+.security img {
+}
+.security p {
+  font-size: 1.3em;
+  margin-right: 20px;
+  margin-left: 20px;
+  text-align: left;
+}
+.cards {
+  text-align: right;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -481px;
+  background-repeat: no-repeat;
+  float: right;
+  width: 273px;
+  cursor: default;
+}
+.cards a {
+  color: black;
+  display: block;
+  padding-bottom: 75px;
+}
+.cards a:hover {
+  text-decoration: none;
+}
+.featureside {
+  float: right;
+  width: 293px;
+}
+/* footer */
+.footer_column {
+  width: 220px;
+  float: left;
+  margin-right: 20px;
+}
+.footer_column_last {
+  width: 220px;
+  float: left;
+}
+#footer h5 {
+  color: white;
+  border-bottom: 1px solid #444;
+  margin-bottom: 3px;
+  padding: 0 0 7px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 0;
+  border-color: #5e5e5e;
+}
+.footer_column ul {
+  list-style-type: none;
+  margin-bottom: 5px;
+  font-size: 12px;
+  padding: 0;
+  margin-top: 8px;
+  margin-left: 0;
+}
+.footer_column_last ul {
+  list-style-type: none;
+  font-size: 12px;
+  padding: 0;
+  margin-top: 8px;
+  margin-bottom: 5px;
+  margin-left: 0;
+}
+.footer_column ul li {
+  margin-bottom: 5px;
+  margin-left: 0;
+  list-style-type: none;
+  padding: 0;
+}
+.footer_column_last ul li {
+  margin-bottom: 5px;
+  margin-left: 0;
+  list-style-type: none;
+  padding: 0;
+}
+.footer_column ul li a {
+  color: #86b635;
+  border-style: none;
+}
+.footer_column_last ul li a {
+  color: #86b635;
+  border-style: none;
+}
+.footer_column ul li a:hover {
+  color: white;
+}
+.footer_column_last ul li a:hover {
+  color: white;
+}
+.footer_base {
+  float: left;
+  width: 940px;
+  font-size: 9px;
+  margin-top: 15px;
+  text-align: center;
+}
+.footer_base_logos {
+  width: 940px;
+  text-align: center;
+}
+.caption {
+  float: left;
+  width: 692px;
+}
+.merchant_container_outer1 {
+  margin-right: 15px;
+  float: left;
+  width: 460px;
+}
+.merchant_container_outer2 {
+  float: left;
+  width: 460px;
+}
+.merchant_logoa {
+  margin-bottom: 10px;
+  background-position: 0 bottom;
+  background-image: url(https://chargify.com/images/interface/millennium-logo.gif);
+  background-repeat: no-repeat;
+  height: 67px;
+  float: left;
+  width: 460px;
+}
+.merchant_logob {
+  margin-bottom: 10px;
+  background-image: url(https://chargify.com/images/interface/transFS.gif);
+  background-repeat: no-repeat;
+  height: 67px;
+  float: left;
+  width: 460px;
+}
+.merchant_chart_outer {
+  float: left;
+  width: 280px;
+}
+.merchant_chart_inner {
+  margin-bottom: 15px;
+  font-size: 1.4em;
+  font-family: Helvetica, Arial, sans-serif;
+  float: left;
+  border-color: #8bb835;
+  border-style: solid;
+  border-width: 1px;
+  width: 280px;
+}
+.merchant_column_container {
+  background-color: #8bb835;
+  float: left;
+  width: 280px;
+}
+.merchant_column1a {
+  background-color: #8bb835;
+  float: left;
+  padding: 10px;
+  width: 129px;
+}
+.merchant_column1b {
+  float: left;
+  padding: 10px;
+  width: 129px;
+}
+.merchant_column2a {
+  background-color: #8bb835;
+  border-left-color: white;
+  border-left-style: solid;
+  border-left-width: 1px;
+  float: left;
+  padding: 10px;
+  width: 110px;
+}
+.merchant_column2b {
+  border-left-color: #8bb835;
+  border-left-style: solid;
+  border-left-width: 1px;
+  float: left;
+  padding: 10px;
+  width: 110px;
+}
+.merchant_button a {
+  display: block;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/merchant_button.gif);
+  float: left;
+  height: 43px;
+  width: 283px;
+  text-indent:-9999px;
+  border-bottom-style: none;
+}
+.merchant_buttonb a {
+  margin-top: 5px;
+  margin-left: 302px;
+  display: block;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/merchant_buttonb.gif);
+  float: left;
+  height: 43px;
+  width: 283px;
+  text-indent:-9999px;
+  border-bottom-style: none;
+}
+.merchant_description {
+  font-family: Helvetica, Arial, sans-serif;
+  float: right;
+  width: 160px;
+}
+.merchant_description p {
+  line-height: 16px;
+  font-size: 12px;
+  margin: 0px;
+}
+.merchant_question a {
+  float: right;
+  display: block;
+  margin-top: -1px;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/question_mark.gif);
+  height: 19px;
+  width: 19px;
+  text-indent:-9999px;
+  border-bottom-style: none;
+}
+.bottom_title {
+  float: left;
+  width: 940px;
+  font-weight: bold;
+  font-size: 2.6em;
+  font-family: Helvetica, Arial, sans-serif;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 5px;
+  color: black;
+}
+.identity {
+  background-repeat: no-repeat;
+  padding-bottom: 35px;
+  float: left;
+  height: 106px;
+  width: 273px;
+  background-image: url(https://chargify.com/images/interface/chargify_identity.gif);
+  margin-top: 15px;
+}
+#footer {
+  font-size: 8px;
+  width:100%;
+  background-image: url(https://chargify.com/images/interface/sitesprite2.png);
+  background-position: 0px -101px;
+  background-repeat:repeat-x;
+  font-family:Helvetica, Arial, sans-serif;
+  color:#b3b3b3;
+  padding:24px 0;
+}
+.links {
+  float:right;
+  padding:15px 0 0;
+}
+.links a {
+  background: url(https://chargify.com/images/interface/twitter.gif) no-repeat 0 50%;
+  float:left;
+  padding:0 0 0 41px;
+  font:1.3em/32px Helvetica, Arial, sans-serif;
+  color:#1da4d7;
+}
+.linksb {
+  float:right;
+  padding:15px 0 0;
+}
+.linksb a {
+  display: block;
+  height: 20px;
+  width: 20px;
+  float: right;
+  font:1.3em/32px Helvetica, Arial, sans-serif;
+  color:#1da4d7;
+  text-indent: -9999px;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -650px;
+  background-repeat:no-repeat;
+  border-bottom-style: none;
+}
+#footer .inner {
+  font-size: 1.25em;
+}
+#footer .logo {
+  float:left;
+  margin:0 18px 0 0;
+}
+#footer .nav {
+  left: -10px;
+  float: none;
+  height:1%;
+  overflow:hidden;
+  margin:0;
+  position:relative;
+  padding:11px 0 0;
+}
+#footer .nav li {
+  background-repeat:no-repeat;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -1320.5px;
+}
+#footer .nav a {
+  color:#7ea730;
+}
+#footer .nav a:hover {
+  text-decoration: underline;
+}
+#footer p {
+  font-size: 13px;
+  text-align: center;
+}
+#footer p a {
+  color:#b3b3b3;
+  text-decoration: none;
+}
+#footer p span, #footer p span a {
+  color:#7ea730;
+}
+.highlight {
+  color: #7ea62f;
+}
+#footer p a:hover {
+  text-decoration: underline;
+}
+.emphasis {
+  margin-bottom: 40px;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.column p {
+  line-height: 20px;
+}
+.badgecontainer {
+  width: 133px;
+  float: right;
+}
+.badgecontainer_center {
+  width: 690px;
+  margin-left: auto;
+}
+.badgecontainer_center.badgesmall a {
+  display: block;
+  margin-right: 0px;
+  margin-top: 13px;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -603px;
+  float: right;
+  height: 27px;
+  width: 100px;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+}
+.badgesmall a {
+  display: block;
+  margin-right: 0px;
+  margin-top: 13px;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -603px;
+  float: left;
+  height: 27px;
+  width: 100px;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+  margin-left: 19px;
+}
+.badgesmall a:hover {
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/TC50_small_colorb.png);
+  background-position:0 0;
+}
+.badgesmallb a {
+  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-position: -10px -690px;
+  display: block;
+  margin-right: 5px;
+  margin-top: 6px;
+  background-repeat: no-repeat;
+  height: 47px;
+  width: 104px;
+  overflow:hidden;
+  text-indent:-9999px;
+  border-bottom-style: none;
+  float: left;
+  margin-left: 90px;
+}
+.badgesmallb a:hover {
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/labs_logo_colorc.png) !important;
+  background-repeat:no-repeat;
+  background-position:0 0;
+}
+.securitybadgecontainer {
+  float: left;
+  width: 245px;
+}
+.securitybadgecontainerb {
+  float: left;
+  width: 255px;
+}
+.securitybadgecontainerinner {
+  margin-top: 0px;
+  padding: 0px;
+  margin-left: 10px;
+  float: left;
+  width: 245px;
+}
+.securitybadgecontainerinner a {
+  border-bottom-style: none;
+}
+.securitybadgecontainerinnerb {
+  margin-top: 0px;
+  padding: 0px;
+  margin-left: 20px;
+  float: left;
+  width: 245px;
+}
+.securitybadgecontainerinnerb a {
+  border-bottom-style: none;
+}
+.verisign {
+  float: left;
+  width: 100px;
+}
+.verisign table, .verisign table tr td {
+  width: 110px;
+}
+th.pg-width-200 {
+  width: 200px;
+}
+.verisignb {
+  float: right;
+  width: 100px;
+}
+.authorizeb {
+  margin-left: 5px;
+  float: left;
+  width: 130px;
+}
+.authorize {
+  margin-left: 5px;
+  margin-bottom: -5px;
+  margin-top: 10px;
+  width: 229px;
+}
+.intro {
+  font-weight: bold;
+  font-size: 17px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.introb {
+  line-height: 24px;
+  font-size: 15px;
+}
+.embed_video {
+  z-index: 1;
+  padding-left: 15px;
+  padding-top: 15px;
+  background-image: url(https://chargify.com/images/interface/video-embed-border3.gif);
+  float: left;
+  height: 339px;
+  width: 417px;
+}
+.landing_video {
+  padding-left: 15px;
+  padding-top: 15px;
+  background-image: url(https://chargify.com/images/interface/video-embed-border2.gif);
+  float: left;
+  height: 359px;
+  width: 440px;
+}
+.landing-box1-container {
+  margin-top: 25px;
+  float: left;
+  width: 380px;
+}
+.landing-box1-top {
+  float: left;
+  font-size: 0.85em;
+  color: white;
+  text-align: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-repeat: no-repeat;
+  background-color: #999999;
+  background-image: url(https://chargify.com/images/interface/landing-box1-top.gif);
+  width: 380px;
+}
+.landing-box1-middle {
+  padding-right: 45px;
+  padding-left: 30px;
+  background-color: #e6e6e6;
+  padding-top: 10px;
+  float: left;
+  width: 305px;
+}
+.landing-box1-bottom {
+  margin-bottom: 15px;
+  float: left;
+  height: 8px;
+  color: white;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-color: #999999;
+  background-image: url(https://chargify.com/images/interface/landing-box1-bottom.gif);
+  width: 380px;
+}
+.landing-box2-container {
+  margin-top: 25px;
+  float: right;
+  width: 540px;
+}
+.landing-box2-top {
+  float: left;
+  font-size: 0.85em;
+  color: white;
+  text-align: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-repeat: no-repeat;
+  background-color: #999999;
+  background-image: url(https://chargify.com/images/interface/landing-box2-top.gif);
+  width: 540px;
+}
+.landing-box2-middle {
+  padding-left: 10px;
+  background-color: #e6e6e6;
+  padding-top: 10px;
+  float: left;
+  width: 530px;
+}
+.landing-box2-bottom {
+  margin-bottom: 15px;
+  float: left;
+  height: 8px;
+  color: white;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-color: #999999;
+  background-image: url(https://chargify.com/images/interface/landing-box2-bottom.gif);
+  width: 540px;
+}
+.landing-cta-container {
+  margin-left: 9px;
+  float: left;
+  width: 400px;
+}
+.get-started a {
+  display: block;
+  margin-left: 700px;
+  position: absolute;
+  top: 0px;
+  background-repeat: no-repeat;
+  background-image: url(/images/uploads/get_started_burst_blank.png);
+  height: 125px;
+  width: 206px;
+  overflow:hidden;
+  text-align: center;
+  color: #fff;
+  font-size: 24px;
+  padding-top: 16px;
+  border-style: none;
+}
+.get-started a:hover {
+  text-decoration: none
+}
+.featuredarticles {
+  margin: 0px;
+  list-style:none;
+  padding: 0px;
+}
+.featuredarticles li a {
+  line-height: 20px;
+  font-size: 14px;
+  display: block;
+  font-weight: bold;
+  font-family: Helvetica, Arial, sans-serif;
+  margin-bottom: 10px;
+  background-position: 0px 2px;
+  padding-left: 23px;
+  background-image: url(https://chargify.com/images/interface/Arrow_right_16x16.png);
+  background-repeat: no-repeat;
+  border-bottom-style: none;
+  color: #91b145;
+}
+.featuredarticles li a:hover {
+  color: black;
+}
+.badge-align {
+  display: inline;
+  width: 125px;
+  padding: 0px;
+  margin: 0px;
+}
+/* addthis styling */
+
+.at300bs.at15t_expanded, .at300bs.at15t_compact {
+  background:transparent url(https://chargify.com/images/interface/addthis_more.gif) no-repeat scroll left center !important;
+}
+.addthis_default_style .at300m {
+  font-size:1.2em;
+}
+.addthis_default_style a {
+  border-bottom-style: none;
+}
+.management_photo {
+  float: left;
+  width: 145px;
+}
+.management_photo a {
+  border-bottom-style: none;
+}
+.management_photo a:hover {
+  text-decoration: underline;
+}
+.management_photo img {
+  padding-bottom: 0px;
+  border-color: #e6e6e6;
+  border-width: 7px;
+  border-style: solid;
+  margin-bottom: 10px;
+  float: left;
+  cursor: default
+}
+.twitter-popup {
+  margin-top: -5px;
+  margin-left: -9px;
+  padding-bottom: 10px;
+  min-height: 107px;
+  background-position: left top;
+  background-repeat: no-repeat;
+  padding-left: 100px;
+  background-image: url(https://chargify.com/images/interface/twitter_bull_and_bird.gif);
+}
+.twitter-popup a {
+  border-bottom-style: none;
+}
+.twitter-popup p {
+  line-height: 16px;
+  font-style: italic;
+  font-size: 12px;
+}
+.twitter-byline {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+  color: #4ca0c9;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.twitter-byline a {
+  text-decoration: none;
+  color: #4ca0c9;
+}
+.twitter-byline a:hover {
+  color: black;
+}
+.member_description {
+  float: right;
+  width: 600px;
+}
+.member_container {
+  width: 770px;
+  float: left;
+}
+.member_break {
+  height: 50px;
+  width: 770px;
+  float: left;
+}
+.member_breakb {
+  height: 30px;
+  width: 770px;
+  float: left;
+}
+.resumator-job-title {
+  font-size: 24px;
+}
+.twitter-popup ul {
+  line-height: 18px;
+  font-size: 14px;
+  display: inline;
+  list-style-type: none;
+}
+.quote_container_home {
+  margin-bottom: 21px;
+  height: 100px !important;
+  width: 430px !important;
+  background: url(https://chargify.com/images/interface/quote_background.png) no-repeat center;
+}
+.slideshow {
+  height: 100px !important;
+}
+.slideshow img {
+  margin-top: 11px;
+}
+.slideshow a {
+  border-style: none;
+}
+.slideshow div {
+  width: 430px;
+}
+.quote_container_hiw {
+  padding-bottom: 30px;
+  float: left;
+  width: 605px;
+}
+.quote_border_hiw {
+  float: left;
+  background-image: url(https://chargify.com/images/interface/quote_border_hiw.gif);
+  background-repeat: no-repeat;
+  height: 1px;
+  width: 605px;
+}
+.quote_middle_hiw {
+  padding-bottom: 20px;
+  float: left;
+  background-image: url(https://chargify.com/images/interface/quote_middle_hiw.gif);
+  background-repeat: repeat-y;
+  width: 605px;
+}
+.quote_box_hiw {
+  float: left;
+  padding-right: 20px;
+  width: 280px;
+}
+.quote_logo_hiw {
+  text-align: center;
+  float: left;
+  margin-top: 20px;
+  height: 55px;
+  width: 280px;
+  overflow: hidden
+}
+.quote_text_hiw p {
+  padding: 0px;
+  margin: 0px;
+  float: left;
+  text-align: center;
+  font-style: italic;
+  line-height: 22px;
+  font-size: 15px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  width: 280px;
+}
+.quote_container_features {
+  padding-bottom: 30px;
+  float: left;
+  width: 940px;
+}
+.quote_border_features {
+  float: left;
+  background-image: url(https://chargify.com/images/interface/quote_border_features.gif);
+  background-repeat: no-repeat;
+  height: 1px;
+  width: 940px;
+}
+.quote_middle_features {
+  padding-bottom: 20px;
+  float: left;
+  background-image: url(https://chargify.com/images/interface/quote_middle_features.gif);
+  background-repeat: repeat-y;
+  width: 940px;
+}
+.quote_box_features {
+  float: left;
+  padding-right: 20px;
+  width: 298px;
+}
+.quote_box_last_features {
+  float: left;
+  width: 298px;
+}
+.quote_logo_features {
+  text-align: center;
+  float: left;
+  margin-top: 20px;
+  height: 55px;
+  width: 298px;
+  overflow: hidden
+}
+.quote_text_features p {
+  padding: 0px;
+  margin: 0px;
+  float: left;
+  text-align: center;
+  font-style: italic;
+  line-height: 22px;
+  font-size: 15px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  width: 298px;
+}
+.hide {
+  display: none;
+}
+/*blog*/
+.content_container {
+  background-color:#e6e6e6;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:14px;
+  color:#000;
+  width:939px;
+  height:auto;
+  margin:auto;
+  padding:0px 0;
+}
+.content_container div.left_content {
+  width:654px;
+  height:auto;
+  float:left;
+}
+.content_container div.left_content div.each_article_container {
+  width:640px;
+  height:auto;
+  float:left;
+  padding-bottom:18px;
+}
+.content_container div.left_content div.each_article_container div.left_column {
+  width:60px;
+  height:100px;
+  float:left;
+  padding-top:17px;
+}
+.content_container div.left_content div.each_article_container div.left_column div.date_container {
+  width:60px;
+  height:76px;
+  float:left;
+  background-image:url(https://chargify.com/images/interface/date_bg.jpg);
+  background-repeat:no-repeat;
+}
+.content_container div.left_content div.each_article_container div.left_column div.date_container div.month {
+  font-size:16px;
+  font-weight:bold;
+  text-align:center;
+  width:100%;
+  text-transform:uppercase;
+  color:#fff;
+  padding:14px 0 0 0;
+  line-height:15px;
+}
+.content_container div.left_content div.each_article_container div.left_column div.date_container div.day {
+  font-size:34px;
+  font-weight:bold;
+  text-align:center;
+  width:100%;
+  color:#fff;
+  line-height:34px;
+}
+.content_container div.left_content div.each_article_container div.right_column {
+  width:580px;
+  height:auto;
+  float:left;
+}
+.content_container div.left_content div.each_article_container div.right_column div.top {
+  width:580px;
+  height:13px;
+  float:left;
+  background-image:url(https://chargify.com/images/interface/each_article_top.jpg);
+  background-repeat:no-repeat;
+  background-position:bottom;
+}
+.content_container div.left_content div.each_article_container div.right_column div.bottom {
+  width:580px;
+  height:13px;
+  clear:both;
+  background-image:url(https://chargify.com/images/interface/each_article_bottom.jpg);
+  background-repeat:no-repeat;
+  background-position:top;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid {
+  width:540px;
+  height:auto;
+  float:left;
+  padding:3px 20px;
+  background-image:url(https://chargify.com/images/interface/each_article_mid.jpg);
+  background-repeat:repeat-y;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid h3 a {
+  width:390px;
+  float:left;
+  font-size:30px;
+  color:#7ea730;
+  text-decoration:none;
+  font-weight:bold;
+  padding-bottom:5px;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid h3 a:hover {
+  color:#000;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid h4 {
+  width:376px;
+  float:left;
+  font-size:16px;
+  color:#000000;
+  text-decoration:none;
+  font-weight:normal;
+  font-style:italic;
+  padding-bottom:15px;
+  font-family:Georgia, "Times New Roman", Times, serif;
+  margin: 0px;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid div.icons {
+  width:auto;
+  height:auto;
+  float:right;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid div.icons a.comments {
+  width:32px;
+  height:26px;
+  padding:4px 0 0 0;
+  float:left;
+  text-decoration:none;
+  background-image:url(https://chargify.com/images/interface/comments_icon.jpg);
+  background-position:bottom;
+  font-size:12px;
+  color:#ffffff;
+  font-weight:bold;
+  text-align:center;
+  margin-left:10px;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid div.icons a:hover.comments {
+  background-position:top;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid div.icons a.facebook {
+  width:32px;
+  height:32px;
+  float:left;
+  text-decoration:none;
+  background-image:url(https://chargify.com/images/interface/facebook_icon.jpg);
+  background-position:bottom;
+  margin-left:10px;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid div.icons a:hover.facebook {
+  background-position:top;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid div.icons a.twitter {
+  width:32px;
+  height:32px;
+  float:left;
+  text-decoration:none;
+  background-image:url(https://chargify.com/images/interface/twitter_icon.jpg);
+  background-position:bottom;
+  margin-left:10px;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid div.icons a:hover.twitter {
+  background-position:top;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid div.photo_placeholder {
+  width:auto;
+  height:auto;
+  float:left;
+  margin-bottom:19px;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid p {
+  width:100%;
+  height:auto;
+  float:left;
+  color:#000000;
+  font-size:14px;
+  font-family:Georgia, "Times New Roman", Times, serif;
+  line-height:20px;
+  padding-bottom:0px;
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid a.read_more {
+  float:right;
+  font-size:14px;
+  color:#7ea730;
+  font-weight:bold;
+  text-decoration:none;
+  padding-bottom:5px;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid a.back {
+  float:left;
+  font-size:14px;
+  color:#7ea730;
+  font-weight:bold;
+  text-decoration:none;
+  padding-bottom:5px;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid a:hover.read_more {
+  color:#000;
+}
+.content_container div.left_content div.each_article_container div.right_column div.mid a:hover.back {
+  color:#000;
+}
+.content_container div.right_content {
+  width:219px;
+  height:auto;
+  float:right;
+  padding-left:46px;
+  background-image:url(https://chargify.com/images/interface/right_content_bg.jpg);
+  background-repeat:no-repeat;
+  background-position:left top;
+}
+.content_container div.right_content div.search_container {
+  width:100%;
+  height:33px;
+  float:left;
+  background-image:url(https://chargify.com/images/interface/search_textbox.jpg);
+  background-repeat:no-repeat;
+  background-position:left center;
+  margin-bottom:19px;
+}
+.content_container div.right_content div.search_container input.search_box {
+  width:135px;
+  height:auto;
+  font-size:14px;
+  font-weight:bold;
+  color:#000;
+  padding:0 3px 0 3px;
+  margin:9px 0 0 1px;
+  border:0;
+  background:none;
+  font-family:Arial, Helvetica, sans-serif;
+}
+.content_container div.right_content div.search_container input.search_button {
+  width:71px;
+  height:33px;
+  float:right;
+  background-image:url(https://chargify.com/images/interface/search_button.jpg);
+  background-repeat:no-repeat;
+  cursor:pointer;
+  border:0;
+  text-indent: -9999px;
+}
+.content_container div.right_content div.each_panel {
+  width:100%;
+  height:auto;
+  float:left;
+  padding-bottom:19px;
+}
+.content_container div.right_content div.each_panel div.top {
+  width:219px;
+  height:30px;
+  padding:8px 0 0 0;
+  float:left;
+  background-image:url(https://chargify.com/images/interface/right_each_panel_top.jpg);
+  background-repeat:no-repeat;
+  background-position:bottom;
+  text-align:center;
+  font-size:18px;
+  color:#ffffff;
+  font-weight:bold;
+}
+.content_container div.right_content div.each_panel div.bottom {
+  width:219px;
+  height:13px;
+  clear:both;
+  background-image:url(https://chargify.com/images/interface/right_each_panel_bottom.jpg);
+  background-repeat:no-repeat;
+  background-position:top;
+}
+.content_container div.right_content div.each_panel div.mid {
+  width:195px;
+  height:auto;
+  float:left;
+  padding:13px 12px 0 12px;
+  background-color:#fff;
+}
+.content_container div.right_content div.each_panel div.mid div.subscribe {
+  width:100%;
+  height:auto;
+  float:left;
+}
+.content_container div.right_content div.each_panel div.mid div.subscribe a {
+  width:100%;
+  float:left;
+  line-height:18px;
+  clear:both;
+  padding-bottom:4px;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:bold;
+  color:#7ea730;
+}
+.content_container div.right_content div.each_panel div.mid div.subscribe a:hover {
+  color:#000;
+}
+.content_container div.right_content div.each_panel div.mid div.subscribe a span.icon {
+  width:22px;
+  float:left;
+  padding-right:7px;
+}
+.content_container div.right_content div.each_panel div.mid ul.news {
+  width:100%;
+  height:auto;
+  float:left;
+  list-style:none;
+  margin: 0px;
+  padding: 0px;
+}
+.content_container div.right_content div.each_panel div.mid ul.categories {
+  width:100%;
+  height:auto;
+  float:left;
+  list-style:none;
+  margin: 0px;
+  padding: 0px;
+}
+.content_container div.right_content div.each_panel div.mid ul.nav_categories {
+  width:100%;
+  height:auto;
+  float:left;
+  list-style:none;
+  margin: 0px;
+  padding: 0px;
+}
+.content_container div.right_content div.each_panel div.mid ul.news li {
+  width:auto;
+  height:auto;
+  float:left;
+}
+.content_container div.right_content div.each_panel div.mid ul.categories li {
+  width:auto;
+  height:auto;
+  float:left;
+}
+.content_container div.right_content div.each_panel div.mid ul.nav_categories li {
+  width:auto;
+  height:auto;
+  float:left;
+}
+.content_container div.right_content div.each_panel div.mid ul.news li.separator {
+  width:100%;
+  height:15px;
+  float:left;
+}
+.content_container div.right_content div.each_panel div.mid ul.categories li.separator {
+  width:100%;
+  height:10px;
+  float:left;
+}
+.content_container div.right_content div.each_panel div.mid ul.nav_categories li.separator {
+  width:100%;
+  height:10px;
+  float:left;
+}
+.content_container div.right_content div.each_panel div.mid ul.news li a {
+  width:170px;
+  height:auto;
+  float:left;
+  font-size:14px;
+  font-weight:bold;
+  color:#7ea730;
+  text-decoration:none;
+  padding-left:25px;
+  padding-bottom:10px;
+  background-image:url(https://chargify.com/images/interface/black_arrow.jpg);
+  background-repeat:no-repeat;
+  background-position:left 3px;
+}
+.content_container div.right_content div.each_panel div.mid ul.categories li a {
+  width:170px;
+  height:auto;
+  float:left;
+  font-size:14px;
+  font-weight:bold;
+  color:#7ea730;
+  text-decoration:none;
+  padding-left:5px;
+  padding-bottom:5px;
+  background-image:url(#);
+  background-repeat:no-repeat;
+  background-position:left 3px;
+}
+.content_container div.right_content div.each_panel div.mid ul.nav_categories li a {
+  width:170px;
+  height:auto;
+  float:left;
+  font-size:14px;
+  font-weight:bold;
+  color:#7ea730;
+  text-decoration:none;
+  padding-left:5px;
+  padding-bottom:5px;
+  background-image:url(#);
+  background-repeat:no-repeat;
+  background-position:left 3px;
+}
+.content_container div.right_content div.each_panel div.mid ul.news li a:hover {
+  color:#000;
+}
+.content_container div.right_content div.each_panel div.mid ul.categories li a:hover {
+  color:#000;
+}
+.content_container div.right_content div.each_panel div.mid ul.nav_categories li a:hover {
+  color:#000;
+}
+.content_container div.right_content div.each_panel div.mid div.each_tweet {
+  width:100%;
+  height:auto;
+  float:left;
+  font-size:12px;
+  color:#000000;
+  padding-bottom:15px;
+  line-height:18px;
+}
+.content_container div.right_content div.each_panel div.mid div.each_tweet a {
+  color:#1da4d7;
+  text-decoration:none;
+}
+.content_container div.right_content div.each_panel div.mid div.each_tweet a:hover {
+  text-decoration:underline;
+}
+.content_container div.right_content div.each_panel div.mid a.follow_us {
+  font-size:12px;
+  font-weight:bold;
+  color: #1da4d7;
+  float:left;
+  text-decoration:none;
+}
+.content_container div.right_content div.each_panel div.mid a:hover.follow_us {
+  text-decoration:underline;
+}
+.twitter_author {
+  padding-left: 0;
+  color: #4ca0c9;
+  font-size: 12px;
+  margin-bottom: 20px;
+  float: none;
+  font-weight: normal;
+  font-style: normal;
+}
+.authors {
+  font-weight: bold;
+  font-family: Helvetica, Arial, sans-serif;
+  padding-left: 5px;
+  padding-bottom: 5px;
+}
+.blog_header_bull {
+  margin-left: 50px;
+  margin-bottom: 0;
+  margin-right: auto;
+  margin-top: -20px;
+  height: 128px;
+  padding-bottom: 0px;
+  width: 247px;
+  overflow:hidden;
+  position: absolute;
+  background: url(https://chargify.com/images/interface/blog_header_bull.png) no-repeat 0 -75px;
+}
+.blog_header {
+  width: 750px;
+  float: right;
+}
+.related_posts {
+  float: left;
+  border-top-color: #e6e6e6;
+  border-top-style: solid;
+  border-top-width: 1px;
+  padding-bottom: 0px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  padding-top: 20px;
+  width: 535px;
+}
+.comment_container {
+  float: left;
+  margin-top: 0px;
+}
+/* landing buttons */
+
+.next_previous_container {
+  float: left;
+  border-top-color: #e6e6e6;
+  border-top-style: solid;
+  border-top-width: 1px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  padding-top: 30px;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.mid h5 {
+  font-family: Helvetica, Arial, sans-serif;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  padding-top: 0px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 18px;
+}
+.input_field {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #666666;
+  font-size: 14px;
+  background-color: #e6e6e6;
+  padding: 10px;
+  width: 375px;
+  border-color: #e6e6e6;
+  border-width: 1px;
+  border-style: solid;
+}
+.input_fieldb {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: black;
+  font-size: 14px;
+  background-color: #e6e6e6;
+  padding: 10px;
+  width: 495px;
+  border-color: #e6e6e6;
+  border-width: 1px;
+  border-style: solid;
+  margin-bottom: 10px;
+}
+.input_field_short {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: black;
+  font-size: 14px;
+  background-color: #e6e6e6;
+  padding: 10px;
+  width: 230px;
+  border-color: #e6e6e6;
+  border-width: 1px;
+  border-style: solid;
+  margin-bottom: 10px;
+}
+.select {
+  margin-bottom: 15px;
+  font: 14px Helvetica, Arial, sans-serif;
+  margin-top: 5px;
+}
+.input_area {
+  line-height: 18px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #666666;
+  font-size: 14px;
+  background-color: #e6e6e6;
+  padding: 10px;
+  width: 515px;
+  border-color: #e6e6e6;
+  border-width: 1px;
+  border-style: solid;
+}
+.form_namea {
+  float: left;
+  width: 250px;
+}
+.form_nameb {
+  float: right;
+  width: 250px;
+}
+.form_namec {
+  float: left;
+  width: 515px;
+}
+.comment_box {
+  line-height: 18px;
+  float: left;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #666666;
+  font-size: 14px;
+  background-color: #e6e6e6;
+  padding: 10px;
+  width: 515px;
+  border-color: #e6e6e6;
+  border-width: 1px;
+  border-style: solid;
+}
+.comments_wrapper {
+  float: left;
+  border-top-color: #e6e6e6;
+  border-top-style: solid;
+  border-top-width: 1px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  padding-top: 30px;
+  width: 535px;
+}
+.comment_form {
+  float: left;
+  border-top-color: #e6e6e6;
+  border-top-style: solid;
+  border-top-width: 1px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  padding-top: 25px;
+  width: 535px;
+}
+.thankyouhidden {
+  display: none;
+}
+#eco-map-wrap {
+  width: 100%;
+  background-color: #FFF;
+  text-align: center;
+  padding: 20px 0px;
+}
+.errorbox {
+  float: left;
+  text-align: left;
+  font-size: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: red;
+  margin-top: -8px;
+  padding-bottom: 10px;
+}
+.form_label {
+  font-size: 14px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.triangle {
+  margin-bottom: 5px;
+  height: 16px;
+  width: 535px;
+  background-position: 30px;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/triangle.png);
+  float: left;
+}
+.submit {
+  border-width: 0px;
+  display: block;
+  height: 34px;
+  width: 72px;
+  background-repeat: no-repeat;
+  background-image: url(https://chargify.com/images/interface/submit_button.gif);
+  text-indent: -9999px;
+  cursor:pointer;
+  float: left;
+}
+a.bu_standard {
+  width: 371px;
+  /*height:53px;*/
+  margin: 10px auto 10px auto;
+  padding:13px 0 19px 0;
+  text-align:center;
+  background:transparent url(https://chargify.com/images/interface/landing-cta-blank.gif) 0 0 no-repeat;
+  display:block;
+  border-style: none;
+}
+a.bu_standard span {
+  color:#FFFFFF;
+  padding: 0x;
+  display: block;
+  font-size:24px;
+}
+a.bu_standard span img {
+  position: relative;
+  left: 0px;
+  top: 4px;
+  border-width: 0px;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+a.bu_standard:hover {
+  text-decoration: none;
+}
+.bu_standard {
+  width:220px;
+  /*height:53px;*/
+  margin: 10px auto 10px auto;
+  padding:17px 0 17px 0;
+  text-align:center;
+  background:transparent url(https://chargify.com/images/interface/landing-cta-blank.gif) 0 0 no-repeat;
+  display:block;
+}
+element {
+}
+.merchant_form_wrapper {
+  width: 500px;
+  background-color: white;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 5px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding-bottom: 30px;
+  border: 1px solid #a7a7a7;
+}
+.merchant_form_container {
+  width: 515px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.merchant_form_logo {
+  width: 515px;
+  height: 67px;
+  margin-top: 25px;
+  background: url(https://chargify.com/images/interface/millennium-logo.png) no-repeat center;
+  margin-bottom: 25px;
+  margin-left: 0px;
+}
+.inspire_form_logo {
+  width: 515px;
+  height: 67px;
+  margin-top: 25px;
+  background: url(https://chargify.com/images/interface/inspire_form_logo.png) no-repeat center;
+  margin-bottom: 25px;
+  margin-left: 0px;
+}
+.merchant_form_intro {
+  font-size: 14px;
+  line-height: 18px;
+  width: 515px;
+  margin-left: 0px;
+}
+.merchant_form {
+  width: 515px;
+  font: bold 14px/20px Helvetica, Arial, sans-serif;
+  color: #86b635;
+  margin-left: 0px;
+}
+.pagination {
+  margin-right: 15px;
+  float: right;
+}
+.bu_standard span {
+  color:#FFFFFF;
+  padding: 0x;
+  display: block;
+  font: bold 24px Helvetica, Arial, sans-serif;
+}
+.required_ {
+  padding-bottom: 5px;
+  padding-top: 5px;
+  width: 100%;
+  border-left-style: none;
+  font-weight: normal;
+  font-style: normal;
+  color: #40afd5;
+  font-size: 12px;
+}
+label {
+  width: 10em;
+  float: left;
+}
+label.error {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  float: none;
+  color: red;
+  padding-left: .5em;
+  vertical-align: top;
+}
+.error {
+  background-color: #ef8e8e;
+}
+.millennium_thankyou {
+}
+.thankyouhidden {
+  display: none;
+  color: #7ea730;
+  text-align: center;
+  font: 14px Helvetica, Arial, sans-serif;
+  margin-top: 75px;
+}
+#gateway_table_wrapper {
+  width: 898px;
+  padding: 20px;
+  background-color: #eaeaea;
+  border: 1px solid #d4d4d4;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+.ma-gateway-table-wrapper {
+  position: relative;
+  z-index: 100;
+}
+#gateway-table-wrapper-ma {
+  width: 898px;
+  padding: 20px;
+  background-color: #eaeaea;
+  border: 1px solid #d4d4d4;
+  -moz-border-radius: 7px 0px 7px 7px;
+  -webkit-border-radius: 7px 0px 7px 7px;
+  position: relative;
+  z-index: 100;
+}
+table#gateways {
+  width: 100%;
+  border: 1px solid #8bb835;
+  border-collapse: collapse;
+  border-spacing: 0px;
+ *border-collapse: expression('collapse', cellSpacing = '0px');
+  font-size: 12px;
+  font-weight: bold;
+}
+table#gateways tbody tr {
+  background-color: #ffffff;
+  color: #000000;
+}
+table#gateways tbody tr.tswOddRow {
+  background-color: #dbecc4;
+}
+table#gateways td {
+  border: 1px solid #d4d4d4;
+  font-family: Helvetica;
+  padding: 5px;
+  font-weight: normal;
+  font-style: normal;
+  text-align: left;
+}
+table#gateways thead {
+  color: #ffffff;
+  background: #7ea730 url(https://chargify.com/images/interface/table_gradient.png) repeat-x 0 bottom;
+}
+table#gateways th {
+  height: 20px;
+  border: 1px solid #d4d4d4;
+  padding: 7px 5px;
+  font-family: Helvetica;
+  text-align: center;
+}
+.gateway_learn_more_btn {
+  width: 115px;
+  display: block;
+  border-style: none;
+  height: 26px;
+  text-indent: -9999px;
+  margin-right: auto;
+  margin-left: auto;
+  background: url(https://chargify.com/images/interface/learn_more_button2.png) no-repeat;
+}
+.merchant_signup_btn {
+  width: 128px;
+  display: block;
+  border-style: none;
+  height: 39px;
+  text-indent: -9999px;
+  margin-right: auto;
+  margin-left: auto;
+  background: url(https://chargify.com/images/interface/signup_button.png) no-repeat;
+}
+.signup_merchant_btn {
+  width: 128px;
+  display: block;
+  border-style: none;
+  height: 41px;
+  text-indent: -9999px;
+  margin-right: auto;
+  margin-left: auto;
+  background: url(https://chargify.com/images/interface/btn-signup1.png) no-repeat;
+}
+.signup_merchant_btn:hover {
+  background: url(https://chargify.com/images/interface/btn-signup1.png) 0 -41px no-repeat;
+}
+.gateway_info {
+  border-style: none;
+  background-repeat: no-repeat;
+  color: white;
+  font-weight: normal;
+  font-style: normal;
+}
+.get_one {
+  width: 115px;
+  display: block;
+  border-style: none;
+  height: 26px;
+  text-indent: -9999px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 7px;
+  background: url(https://chargify.com/images/interface/get_one_btn.png) no-repeat;
+}
+#gateway_detail_wrapper {
+}
+#gateway_detail_side {
+  width: 288px;
+  float: left;
+  padding-right: 20px;
+}
+#gateway_detail_logo {
+  width: 288px;
+}
+#gateway_detail_table {
+}
+#gateway_detail_main {
+  float: right;
+  width: 632px;
+}
+#gateway_detail_main h3 {
+  margin-bottom: -5px;
+  margin-top: 17px;
+}
+#gateway_detail_btn_wrapper {
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+}
+#gateway_detail_btn_wrapper a {
+  width: 228px;
+  display: block;
+  border-style: none;
+  height: 52px;
+  text-indent: -9999px;
+  margin-right: auto;
+  margin-left: auto;
+  background: url(https://chargify.com/images/interface/get-signed-up-button.png) no-repeat;
+}
+table#gateway_detail {
+  width: 100%;
+  border: 1px solid #8bb835;
+  border-collapse: collapse;
+  border-spacing: 0px;
+ *border-collapse: expression('collapse', cellSpacing = '0px');
+  font-size: 14px;
+  font-weight: bold;
+}
+table#gateway_detail tbody tr {
+  background-color: #ffffff;
+  color: #000000;
+}
+table#gateway_detail tbody tr.tswOddRow {
+  background-color: #dbecc4;
+}
+table#gateway_detail td {
+  border: 1px solid #d4d4d4;
+  font-family: Helvetica;
+  padding: 10px;
+  font-weight: normal;
+  font-style: normal;
+  text-align: left;
+}
+table#gateway_detail thead {
+  color: #ffffff;
+  background: #7ea730 url(https://chargify.com/images/interface/table_gradient.png) repeat-x 0 bottom;
+}
+table#gateway_detail th {
+  height: 20px;
+  border: 1px solid #a7a7a7;
+  padding: 7px 5px;
+  font-family: Helvetica;
+  text-align: center;
+}
+.tellus_yep {
+  float: left;
+  padding-left: 143px;
+  padding-top: 15px;
+}
+ol.htmlisfunny li input#fld_unique {
+  float: right;
+  height:128px;
+  width: 224px;
+  border: 1px solid #bebebe;
+}
+.tell-us-a-story p {
+  margin-top: 0;
+  margin-left: 0;
+  margin-bottom: 3px;
+  padding-bottom: 11px;
+}
+.tell-us-a-story {
+  padding-right:8px;
+  width: 490px;
+  margin:0;
+  float:left;
+  color:#333;
+  overflow:hidden;
+}
+*html ol.htmlisfunny li.tellus_yep input {
+  margin:0;
+}
+.tell-us-a-story p.intro {
+  color:#000000 !important;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.6em;
+  margin-bottom: 0;
+  padding-bottom: 7px;
+}
+form h2, label {
+  padding: 0 0 5px;
+  width: 226px;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  font: 14px Helvetica, Arial, Geneva, sans-serif;
+}
+ul.about_form {
+  margin:0;
+  padding: 7px 0 0;
+  list-style:none;
+  width: 100%;
+}
+ul.about_form li {
+  width: 233px;
+  ;
+  margin:0 0 18px 0;
+  float: left;
+}
+ul.about_form li.dotline {
+  margin-top: 10px;
+}
+ul.about_form li p {
+  color: #6b9029;
+  font-size: 1.4em;
+  padding-bottom: 0;
+}
+ul.about_form li label {
+  color:#000;
+  float: left;
+}
+ul.about_form li input {
+  float:left;
+  width: 216px;
+  border: 1px solid #bebebe;
+  padding: 5px;
+  font-size: 12px;
+}
+ul.about_form li input.bu_standard {
+  width: 164px !important;
+  color:#fff;
+  font-size:1.3em;
+  height:50px;
+  padding-top:10px;
+  border: 0 none;
+  margin:0 144px;
+  font-family:Arial, Helvetica, Sans-serif !important;
+}
+ul.about_form li select {
+  float:left;
+  width: 227px;
+  font-size: 12px;
+  margin-top: 6px;
+}
+li.yourstory_yep {
+  width:463px !important;
+}
+.blog_yep {
+  height: 25px;
+  width: 383px;
+  padding: 0 0 18px;
+  float: left;
+  display: block;
+}
+.blog_yep label {
+  margin-right: 10px;
+  float:left;
+  width: 474px;
+}
+.blog_yep input {
+  width: 463px !important;
+}
+li.phone_yep {
+  clear:both !important;
+}
+li.yourstory_yep p {
+  border-bottom:none;
+  padding:0;
+  margin:0 0 10px 0;
+  color:#000 !important;
+  font-size: 1.4em;
+}
+li.yourstory_yep textarea {
+  width: 453px;
+  height:132px;
+  border: 1px solid #bebebe;
+  font-size: 12px;
+  padding: 5px;
+}
+.space {
+  margin-right:14px !important;
+}
+.thedate {
+  display:block;
+  color:#666;
+  margin-bottom:4px;
+}
+.hdr {
+  width: 465px !important;
+  font: 700 1.6em Helvetica, Arial, sans-serif;
+  padding-bottom: 0;
+}
+li.yourstory_yep label {
+  font-weight: 700;
+  font-size: 1.6em;
+  width: 100%;
+}
+.unique_yep {
+  float: right;
+  width: 242px;
+  padding-top: 2px;
+}
+.unique_yep span {
+  margin-left: auto;
+  color:#999;
+  margin-right: auto;
+  width: 238px;
+  display: block;
+  font-size: 13px;
+  padding-top: 6px;
+  text-align: right;
+  float: left;
+}
+.unique_yep textarea {
+  width: 227px;
+  height:128px;
+  border: 1px solid #bebebe;
+  padding: 5px;
+  font-size: 12px;
+}
+ul.unique_yep_question {
+  width: 242px;
+  list-style-type: none;
+  padding-left: 0;
+  float: left;
+  font-size: 1.4em;
+  margin-top: 0;
+  padding-top: 2px;
+  color: #6b9029;
+  margin-left: 0;
+}
+ul.unique_yep_question li {
+  padding-bottom: 5px;
+  list-style-type: none;
+}
+.dotline {
+}
+.sig_wrap {
+  overflow:hidden;
+}
+.sig_text {
+  float:left;
+  width: 158px;
+  padding: 0 0 0 10px;
+  font-size: 14px;
+  line-height: 18px;
+}
+.sig_photo {
+  background:transparent url(https://chargify.com/images/interface/ic_jonathan_kay.png) no-repeat 0 0;
+  height: 68px;
+  width:68px;
+  display:block;
+  float:left;
+  border: 3px solid #eaeaea;
+}
+.sig_ {
+  background:transparent url(https://chargify.com/images/interface/ic_sig_jonathan.png) no-repeat 0 0;
+  width:247px;
+  height:58px;
+  display:block;
+  float:left;
+}
+.right_side_col {
+  float: right;
+  overflow:hidden;
+  width: 215px;
+  background-color: #eaeaea;
+  padding: 17px 20px 20px;
+  margin:0;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+.right_side_col h3 {
+  font-size: 1.6em;
+}
+.news_logos {
+  background:transparent url(https://chargify.com/images/interface/tuys_icons.png) no-repeat 0 0;
+  width: 210px;
+  height:440px;
+  display:block;
+  text-indent: -9999px;
+}
+.utube {
+/*  background:transparent url(http://grasshopper.com/img/global/movie.jpg) no-repeat 0 0;*/
+  width: 200px;
+  height:140px;
+  display:block;
+}
+.list {
+  margin: 10px 0;
+}
+.bu_getgh.small {
+  display:none !important;
+}
+.right_side_col ul {
+  text-align: left;
+  padding-left: 17px;
+  font-size: 1.4em;
+  margin-top: 0;
+  padding-bottom: 12px;
+  margin-bottom: 15px;
+  border-bottom: 2px dotted #fffeff;
+  margin-left: 0;
+}
+.right_side_col ul li {
+  padding-bottom: 4px;
+  padding-left: 0;
+  margin-left: 0;
+}
+li.dotline {
+  background: transparent repeat-x scroll 0 top;
+  width: 100%;
+  border-bottom: 2px dotted #d4d4d4;
+  padding-left: 0;
+  padding-right: 0;
+}
+input.story_submit {
+  background: url(https://chargify.com/images/interface/button_gradient.png) repeat-x;
+  display: block;
+  height: 50px;
+  color: white;
+  text-align: center;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border: 1px solid #919191;
+  font-size: 1.8em;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+input.story_submit:hover {
+  background-position: 0 -5px;
+  cursor: pointer;
+}
+.story_section {
+  float: left;
+  width: 100%;
+  border-bottom: 2px dotted #d4d4d4;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+.story_section h3 {
+  padding-bottom: 4px;
+}
+.how_can {
+  width: 100%;
+  font-size: 1.6em;
+  font-weight: bold;
+  padding-bottom: 12px;
+}
+#fld_yourstory {
+  width: 461px;
+  border-style: solid;
+  border-color: #bebebe;
+  height: 142px;
+  font-size: 12px;
+  padding: 5px;
+}
+input.fld_blog {
+  width: 100%;
+}
+.yourstory_thankyou {
+  padding: 6px 23px 6px 102px;
+  background: #eaeaea url(https://chargify.com/images/interface/ic_jonathan_kay.png) no-repeat 18px 18px;
+  width: 645px;
+  float: right;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+#settings_tabs ul .submenu li {
+  padding-right: 13px;
+  background: none;
+}
+#settings_tabs ul ul {
+  background-position: 0px;
+  background-repeat: repeat-y;
+  background-image: url(https://chargify.com/images/interface/submenu_gradient.png);
+  padding-bottom: 5px;
+  padding-top: 3px;
+  padding-left: 0px;
+  text-align: left;
+  padding-right: 8px;
+}
+#settings_tabs ul ul li a {
+  padding-right: 20px;
+  background-position: right;
+  background-repeat: no-repeat;
+  text-align: right;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  font-size: 12px;
+  color: #668f20;
+  background-image: url(https://chargify.com/images/interface/submenu_arrow.png);
+}
+#settings_tabs ul ul li a:hover {
+  color: #668f20;
+  text-decoration: none;
+  background-image: url(https://chargify.com/images/interface/submenu_arrow_hoverb.png);
+}
+#settings_tabs ul ul li.here a {
+  font-weight: bold;
+  padding-right: 20px;
+  background-position: right;
+  background-repeat: no-repeat;
+  text-align: right;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  font-size: 12px;
+  color: #668f20;
+  background-image: url(https://chargify.com/images/interface/submenu_arrow_hoverb.png);
+}
+.poweredbygg a {
+  background: transparent url("https://chargify.com/images/interface/gg-chargify-new.png") top left no-repeat;
+  height: 43px;
+  width: 199px;
+  float: left;
+  border: 0 !important;
+}
+.poweredbygg a span {
+  display:none;
+}
+.pricing_plans_container {
+  width: 952px;
+  height: 279px;
+  background: url(https://chargify.com/images/interface/pricing_chart4.png) no-repeat center top;
+  float: left;
+}
+.pricing_plans_container p {
+  text-align: center;
+  color: white;
+  width: 250px;
+  font: bold 22px "Helvetica Neue", Arial, sans-serif;
+  position: relative;
+  top: 35px;
+  left: 9px;
+}
+.pricing_plans_container p span {
+  display: block;
+  font-size: 18px;
+  margin-top: 10px;
+}
+.pricing_plans_holder {
+  width: 952px;
+  height: 300px;
+  background: url(https://chargify.com/images/Pricing-2-New.png) no-repeat center top;
+  float: left;
+}
+.pricing_plans_holder p {
+  text-align: center;
+  color: white;
+  width: 250px;
+  font: bold 22px "Helvetica Neue", Arial, sans-serif;
+  position: relative;
+        top:35px;
+
+  left: -7px;
+}
+.pricing_plans_holder p span {
+  display: block;
+  font-size: 17px;
+  margin-top: 10px;
+}
+
+.pricing_plans_holder_new {
+  width: 952px;
+  height: 279px;
+  background: url(https://chargify.com/images/interface/pricing_chart6.png) no-repeat center top;
+  float: left;
+}
+.pricing_plans_holder_new p {
+  text-align: center;
+  color: white;
+  width: 250px;
+  font: bold 22px "Helvetica Neue", Arial, sans-serif;
+  position: relative;
+  top: 52px;
+  left: -7px;
+}
+.pricing_plans_holder_new p span {
+  display: block;
+  font-size: 17px;
+  margin-top: 10px;
+}
+
+
+.pricing_buttons_top {
+  width: 100%;
+  height: 58px;
+  position: relative;
+  top: 99px;
+}
+.pricing_buttons_top span {
+  color: white;
+  font: bold 16px "Helvetica Neue", Arial, sans-serif;
+  padding-left: 48px;
+}
+.pricing_buttons_top ul {
+  float: right;
+  height: 57px;
+  width: 667px;
+  list-style-type: none;
+  padding-bottom: 0;
+  padding-right: 0;
+  margin: -7px 5px 0 0;
+  padding-left: 1px;
+}
+.pricing_buttons_top ul li {
+  display: inline-block;
+  float: left;
+
+}
+.pricing_buttons_top ul li a {
+  color: white;
+  font: bold 19px "Helvetica Neue", Arial, sans-serif;
+  display: inline-block;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  float: left;
+  text-decoration: none;
+  width: 114px;
+  height: 27px;
+  background: url(https://chargify.com/images/interface/pricing_button3.png) repeat-x 0 top;
+  text-indent: -9999px;
+  padding-top: 7px;
+  border: 1px none black;
+  margin-right: 18px;
+}
+.pricing_buttons_top ul li a.last {
+  background: url(https://chargify.com/images/interface/pricing_button3.png) repeat-x -115px top;
+}
+.pricing_buttons_top ul li a:hover {
+  background-position: 0 -34px;
+}
+.pricing_buttons_top ul li a.last:hover {
+  background-position: -115px -34px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.pricing_buttons_top_new {
+  width: 100%;
+  height: 58px;
+  position: relative;
+  top: 99px;
+}
+.pricing_buttons_top_new span {
+  color: white;
+  font: bold 16px "Helvetica Neue", Arial, sans-serif;
+  padding-left: 48px;
+        top:-15px;
+       position:relative;
+
+
+}
+.pricing_buttons_top_new ul {
+  float: right;
+  height: 57px;
+  
+  list-style-type: none;
+  padding-bottom: 0;
+  padding-right: 0;
+  margin: -23px 16px 0 0;
+  padding-left: 1px;
+}
+.pricing_buttons_top_new ul li {
+  display: inline-block;
+  float: left;
+width:150px;
+
+}
+
+
+a.redbutton {
+  color: white;
+  font: bold 19px "Helvetica Neue", Arial, sans-serif;
+  display: inline-block;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  float: left;
+  text-decoration: none;
+  width: 114px;
+  height: 27px;
+  background: url(https://chargify.com/images/interface/pricing_button3.png) repeat-x 0 top;
+  text-indent: -9999px;
+  padding-top: 7px;
+  border: 1px none black;
+  margin-right: 18px;
+}
+
+a.redbutton:hover {
+  background-position: 0 -34px;
+}
+
+
+
+
+.pricing_buttons_top_new ul li a {
+  color: white;
+  font: bold 19px "Helvetica Neue", Arial, sans-serif;
+  display: inline-block;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  float: left;
+  text-decoration: none;
+  width: 114px;
+  height: 27px;
+  background: url(https://chargify.com/images/interface/pricing_button3.png) repeat-x 0 top;
+  text-indent: -9999px;
+  padding-top: 7px;
+  border: 1px none black;
+  margin-right: 18px;
+}
+.pricing_buttons_top_new ul li a.last {
+  background: url(https://chargify.com/images/interface/pricing_button3.png) repeat-x -115px top;
+}
+.pricing_buttons_top_new ul li a:hover {
+  background-position: 0 -34px;
+}
+.pricing_buttons_top_new ul li a.last:hover {
+  background-position: -115px -34px;
+}
+
+
+
+
+
+a.pricing_button_new {
+  color: white;
+  font: bold 19px "Helvetica Neue", Arial, sans-serif;
+  display: inline-block;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  float: left;
+  text-decoration: none;
+  width: 284px;
+  height: 62px;
+  background: url(https://chargify.com/images/interface/pricing_button_new.png) repeat-x 0 top;
+  text-indent: -9999px;
+  padding-top: 7px;
+  border: 1px none black;
+  margin-right: 18px;
+}
+a.pricing_button_new:hover {
+  background-position: 0 -70px;
+}
+
+
+
+
+a.login_button {
+  color: white;
+  font: bold 19px "Helvetica Neue", Arial, sans-serif;
+  display: inline-block;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  float: left;
+  text-decoration: none;
+  width: 284px;
+  height: 63px;
+  background: url(https://chargify.com/images/interface/login_button.png) repeat-x 0 top;
+  text-indent: -9999px;
+  padding-top: 7px;
+  border: 1px none black;
+  margin-right: 18px;
+}
+a.login_button:hover {
+  background-position: 0 -71px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.pricing_table_wrapper {
+  width: 952px;
+  float: left;
+}
+table#pricing_table {
+  margin-right: auto;
+  margin-left: auto;
+width: 914px;
+
+  border-collapse: collapse;
+  border-spacing: 0px;
+  font: bold 13px "Helvetica Neue", Arial, sans-serif;
+  margin-top: -15px;
+
+  text-align: center;
+}
+table#pricing_table img {
+  margin-top: -3px;
+  margin-bottom: -7px;
+}
+th.column1 {
+  width: 250px;
+  text-align: left;
+}
+th.column2 {
+  width: 135px;
+  text-align: left;
+}
+th.column3 {
+  width: 127px;
+
+  text-align: left;
+}
+th.column4 {
+  width: 124px;
+  text-align: left;
+}
+th.column5 {
+  width: 125px;
+
+  text-align: left;
+}
+
+
+td.label {
+  text-align: left;
+}
+td.row1 {
+  background-color: #f1f1f1;
+}
+td.row2 {
+  background-color: #f1f1f1;
+}
+td.row3 {
+  background-color: #f1f1f1;
+}
+#pricing_table td {
+  border: 1px solid #d5d5d5;
+  padding: 13px;
+}
+.pricing_buttons_bottom {
+  margin-top: 43px;
+  float: left;
+  width: 100%;
+  height: 58px;
+}
+.pricing_buttons_bottom ul {
+  float: right;
+  height: 57px;
+  width: 668px;
+  padding: 6px 0 0 17px;
+  margin: -39px 4px 0 0;
+  list-style-type: none;
+}
+.pricing_buttons_bottom ul li {
+  display: inline-block;
+  float: left;
+}
+.pricing_buttons_bottom ul li a {
+  color: white;
+  font: bold 19px "Helvetica Neue", Arial, sans-serif;
+  display: inline-block;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  float: left;
+  text-decoration: none;
+  width: 114px;
+  height: 27px;
+  background: url(https://chargify.com/images/interface/pricing_button4.png) repeat-x 0 top;
+  text-indent: -9999px;
+  padding-top: 7px;
+  border: 1px none black;
+  margin-right: 18px;
+}
+.pricing_buttons_bottom ul li a.last {
+  background: url(https://chargify.com/images/interface/pricing_button4.png) repeat-x 115px top;
+}
+.pricing_buttons_bottom ul li a:hover {
+  background-position: 0 -34px;
+}
+.pricing_buttons_bottom ul li a.last:hover {
+  background-position: 115px -34px;
+}
+h3.pricing {
+  text-align: center;
+  font-size: 32px !important;
+  padding-bottom: 15px;
+}
+.pricing_logos {
+  width: 100%;
+  border-top: 1px solid #d5d5d5;
+  border-bottom: 1px solid #d5d5d5;
+  margin-bottom: 12px;
+}
+.pricing_logos ul {
+  text-align: center;
+  list-style-type: none;
+  padding: 16px 0 15px;
+  margin: 0;
+}
+.pricing_logos ul li {
+  display: inline;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+/* Merchant Account revisions | 01.2011 | ER */
+  #ma-tab-wrap {
+  width: 100%;
+  height: 40px;
+  position: relative;
+  top: 5px;
+}
+a.ma-tab {
+  font-family: Helvetica;
+  color: #777777;
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 10px;
+  height: 34px;
+  display: block;
+  position: relative;
+  z-index: 50;
+  width: 160px;
+  float: right;
+  margin-left: 3px;
+  background-color: #F8F8F8;
+  border: 1px solid #D4D4D4;
+  border-bottom: none;
+  -moz-border-radius: 5px 5px 0px 0px;
+}
+a.ma-tab:hover {
+  background-color: #EAEAEA;
+  color: #404040;
+}
+a.ma-tab-right {
+  background-color: #96B45C;
+  border: 1px solid #698C28;
+  border-bottom: none;
+  color: #FFF;
+  text-decoration: none;
+}
+a.ma-tab-right:hover {
+  background-color: #DBECC4;
+  border: 1px solid #DBECC4;
+  border-bottom: none;
+}
+a.ma-tab-on {
+  background-color: #EAEAEA;
+  height: 25px;
+  z-index: 200;
+  color: #404040;
+}
+/* About Page CSS revisions | 01.2011 | ER */
+#about-left-column {
+  float: left;
+  padding-top: 9px;
+  width: 500px;
+  margin-right: 20px;
+}
+.about-right-column {
+  width: 250px;
+  float: right;
+}
+.about-image-vid-wrap {
+  background-color: #e6e6e6;
+  float: right;
+  position: relative;
+  padding: 7px 7px 0px 7px;
+  height: 137px;
+}
+.about-image-description {
+  width: 200px;
+  float: right;
+  position: relative;
+  z-index: 0;
+  border: 7px solid #e6e6e6;
+  background-color: #e6e6e6;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.about-image-description p {
+  margin: 0px;
+  padding: 0px;
+}
+.team-member-section-wrap {
+  width: 500px;
+  float: left;
+  margin-bottom: 20px;
+}
+.team-member-photo-wrap {
+  width: 89px;
+  float: left;
+  margin-right: 30px;
+}
+.team-member-photo-wrap a {
+  color: #4CA0C9;
+  width: 89px;
+  display: block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  margin-bottom: 10px;
+}
+.team-member-photo-wrap a:hover {
+  text-decoration: underline;
+}
+.team-member-photo-wrap img {
+  padding-bottom: 0px;
+  border-color: #e6e6e6;
+  border-width: 7px;
+  border-style: solid;
+  margin-bottom: 5px;
+  float: left;
+  cursor: default;
+}
+/* Features Page specific styling | ER | 01.2011 */
+body a#uservoice-feedback-tab, body a#uservoice-feedback-tab:link {
+  background-position-x: 2px !important;
+  background-position-y: 50% !important;
+  background-repeat: no-repeat !important;
+  display: block !important;
+  height: 160px !important;
+  margin: -45px 0px 0px 0px !important;
+  padding: 0px !important;
+  position: fixed !important;
+  text-indent: -9000px;
+  top: 45% !important;
+  width: 30px !important;
+  z-index: 100001 !important;
+}
+a#uservoice-feedback-tab {
+  background-color: rgb(139, 189, 30);
+  background-image: url(https://chargify.com/images/interface/uservoice_vote.png);
+  background-repeat: no-repeat;
+  border: 1px rgb(139, 189, 30);
+  border-left: none;
+  left: 0px;
+}
+#uservoice-dialog a {
+  border-bottom: 0px;
+}
+/* Flickr badge styles | 01.2011 | ER */
+#flickr_badge_source_txt {
+  padding:0;
+  font: 11px Arial, Helvetica, Sans serif;
+  color:#666666;
+}
+#flickr_badge_icon {
+  display:block !important;
+  margin:0 !important;
+  border: 1px solid rgb(0, 0, 0) !important;
+}
+#flickr_icon_td {
+  padding:0 5px 0 0 !important;
+}
+.flickr_badge_image {
+  text-align:center !important;
+}
+.flickr_badge_image img {
+  border: 1px solid black !important;
+}
+#flickr_www {
+  display:block;
+  padding:0 0px 0 10px !important;
+  font: 11px Arial, Helvetica, Sans serif !important;
+  color:#3993ff !important;
+}
+#flickr_badge_uber_wrapper a:hover, #flickr_badge_uber_wrapper a:link, #flickr_badge_uber_wrapper a:active, #flickr_badge_uber_wrapper a:visited {
+  text-decoration:none !important;
+  background:inherit !important;
+  color:#90C73E;
+}
+#flickr_badge_wrapper {
+}
+#flickr_badge_source {
+  padding:0 !important;
+  font: 11px Arial, Helvetica, Sans serif !important;
+  color:#666666 !important;
+}
+/* new hompage */
+
+.clear {
+  clear: both;
+  line-height:0px;
+  height: 0px;
+  font-size: 0px;
+  display: block;
+}
+.home_container .leftcold {
+  float: left;
+  width: 584px;
+  height: auto;
+  position:relative;
+}
+.home_container {
+  padding: 30px 0px 40px 0px;
+}
+.home_container .rightcold {
+  padding-top: 20px;
+}
+.home_container .quote_container_home {
+  position: absolute;
+  top: 295px;
+  left: 75px;
+  background: none;
+}
+.home_container .home_videos {
+  background: transparent url(https://chargify.com/images/interface/what-people-are-saying.jpg) no-repeat scroll top left;
+  height: 290px !important;
+}
+.home_container .graph_land {
+  background: transparent url(https://chargify.com/images/uploads/chargify_landing_bg.jpg) no-repeat scroll top left;
+  height: 290px !important;
+}
+.home_container .home_container {
+  padding: 30px 0px;
+}
+.home_container .lower-container {
+  width: 911px;
+  height:222px;
+  margin: 0 auto 0 auto;
+}
+.home_container .lower-container .see-more {
+  width: 431px;
+  height: 47px;
+  background: transparent url(https://chargify.com/images/uploads/900-companies-4.jpg) no-repeat scroll left top;
+  display: block;
+        background-size:100%;
+  border: none;
+  font-size: 11px;
+  color: #BBB;
+  padding: 185px 0px 0px 480px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration:none;
+}
+.home_container .lower-container .see-more:hover {
+  text-decoration: underline;
+}
+.home_container .rightcold > p{
+  text-align: left !important;
+  margin-left: 30px !important; 
+}   
+
+#zferral_bar {width: 100%; background-color: #92BB45; height: 70px;}
+#zferral_bar #zferral_container {margin: 0 auto; width: 940px;}
+#zferral_bar #zferral_container #zferral_text {vertical-align: middle; font-size: 18pt; font-weight: bold; padding: 15px; color: #FFFFFF; text-align: center;}
+
+        #customers {width: 940px; margin: 0 auto; padding: 0;}
+        #customers .customers_featured {color: #0561B4; text-align: left; font-size: 14pt;}
+        #customers #featured_img {float: left; width: 400px;}
+        #customers #featured_img img {border: 2px solid #000000;}
+        #customers #featured_bio {float: right; width: 500px; text-align: left;}
+        #customers #featured_bio p {font-size: 14pt; line-height: 20pt;}
+        #customers .green_bar {padding: 2px; width: 936px; background-color: #92BB45;}
+        #customers .clear {clear: both;}
+        #customers table {width: 80%;}
+        #customers table td {text-align: center; font-size: 15pt; line-height: 22pt;}
+        #customers table td.before {font-size: 32pt; font-weight: bold;}
+        #customers table td.after {font-size: 32pt; font-weight: bold;}
+        #customers #customer_logos {float: left; width: 650px; min-height: 700px;}
+        #customers h2.customer_header {text-align: left; color: #000000;}
+        #customers #customer_logos .customers {font-size: 11pt; line-height: 17pt; border-bottom: 1px solid #92BB45; padding: 10px 0 10px 0;}
+        #customers #customer_logos .customers img {float: left; margin: 10px;}
+        #customers #customer_logos .blurb {float: left; width: 400px; margin: 10px;}
+        #customers #customer_logos .customer_go {float: right; margin: 10px;}
+        #customers #customer_logos .customer_go a {color: red;}
+        #customer_logos .customers div.img {width: 140px; height: 100px; float: left; text-align: center;}
+        #customer_logos .customers div.img img {margin: 0 auto;}
+        #customers #feedback {background-color: #92BB45; float: right; width: 270px; height: 1890px; margin-left: 15px;}
+        #customers #feedback #feedback_body {margin: 10px;}
+        #customers #feedback #feedback_body #feedback_scroll {overflow: auto; height: 1820px;}
+        #customers #feedback #feedback_body .feedback_header {color: #000000; margin: 0 0 10px; padding: 0;}
+        #customers #feedback #feedback_body .feedback {background-color: #FFFFFF; padding: 10px; font-size: 10pt; line-height: 15pt; margin-bottom: 10px;}
+        #customers .pic_wrapper {width: 936px; background-color: #DDDDDD; padding: 5px; height: 75px;}
+        #customers .random_pics {color: #8FA730; text-align: center;}
+        #customers .pic_wrapper img {padding-right: 3px; max-height: 75px; max-width: 99px;}
+        #customers .pic_wrapper img:last-child {padding-right: 0;} 
+
+.left {float: left;}
+.right {float: right; text-align: left;}
+.center {text-align: center;}
+
+.price2_blurb1, .price2_blurb2 {margin-top: 50px; width: 460px; font-size: 13pt; line-height: 17pt;}
+.price2_blurb2 p {font-size: 10pt;}
+.price2_body {margin: 20px 0 20px 0;}
+.price2_container {float: left; background-image: url('https://chargify.com/images/uploads/msb_pricing_container.png'); background-repeat: no-repeat; width: 216px; height: 363px;}
+.price2_container .price2_container_header {text-align: center; font-weight: bold; color: #FFFFFF; padding: 11px 8px 8px 8px; font-size: 12pt;}
+.price2_container .price2_price {font-size: 15pt; font-weight: bold; padding: 0; margin: 15px 0 0 0; text-align: center;}
+.price2_container .price2_price_amonth {font-size: 9pt; font-weight: normal; text-align: center; padding: 0; margin: 0; color: #AAAAAA;}
+.price2_container .price2_total_customers {font-size: 25pt; font-weight: bold; text-align: center; margin: 15px 0 0 0;}
+.price2_container .price2_customers {font-size: 10pt; text-align: center; font-weight: normal; padding: 0; margin: 0; color: #AAAAAA;}
+.price2_container .price2_services {text-align: center; font-size: 10pt; line-height: 20pt; font-weight: bold; color: #777777; margin: 20px 0 0 0;}
+.price2_container .price2_button {text-align: center; padding: 10px; margin-top: 20px; margin-bottom: 10px;}
+.price2_pullquote {font-style: italic; padding: 10px 0 10px 0; font-size: 16pt; text-align: center; color: #066ecd; font-weight: bold;}
+.smb_pricing_container {padding: 5px; text-align: center; margin: 5px;}
+a.smb_pricing {color: #777777; text-decoration: none; border: 0;}
+a.smb_pricing:hover {color: #000000; text-decoration: underline;}
+.lb_pricing_button {margin-top: -65px; margin-left: -100px;}
+.lb_pricing_button ul {width: 50px;}
+
+.refer_border {border: 1px solid #000000; width: 80%; padding: 55px; margin: 0 auto; border-radius: 20px;}
+.form_text {font-size: 17pt;}
+.form_text input, .form_text textarea {font-size: 17pt; width: 350px; margin-left: 10px;}
+.refer_left {font-size: 18pt; width: 510px;}
+.refer_select, .form_text select {font-size: 17pt; line-height: 15pt; padding: 0; margin: 0;}
+#step1 {display: block;}
+#step2 {display: none;}
+.msr_wrapper {width: 634px; margin: 0 auto;}
+
+sub {font-size: 8pt; color: #999999; font-weight: normal;}

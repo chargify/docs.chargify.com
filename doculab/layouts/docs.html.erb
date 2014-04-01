@@ -6,37 +6,29 @@
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-  <link href="https://chargify.com/?css=styles/main-css" rel="stylesheet" type="text/css" media="all"/>
+  <link href="/stylesheets/doculab/main.css" rel="stylesheet" type="text/css" media="all"/>
   <link href="/stylesheets/doculab/doculab.css" rel="stylesheet" type="text/css" media="all"/>
-  <!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="http://chargify.com/?css=styles/ie-css" media="screen" /><![endif]-->
-  <!--[if IE 8]><link rel="stylesheet" type="text/css" href="http://chargify.com/?css=styles/ie8-css" /><![endif]-->
+  <!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="/stylesheets/doculab/ie.css" media="screen" /><![endif]-->
+  <!--[if IE 8]><link rel="stylesheet" type="text/css" href="/stylesheets/doculab/ie8.css" /><![endif]-->
 
-  <link rel="shortcut icon" href="https://chargify.com/favicon.ico" />
+  <link rel="shortcut icon" href="/favicon.ico" />
 
 </head>
 
 <body>
   <div id="wrapper">
-        <div id="header">
+    <div id="header">
       <div class="inner_nav clearfix">
         <ul class="nav">
-          <li><a href="https://chargify.com/blog/" class="blog">Blog</a></li>
-          <li><a href="https://chargify.com/about-us/" class="about">About Us</a></li>
-          <li><a href="https://chargify.com/partner-ecosystem/" class="ecoystem">Ecosystem</a></li>
-          <li><a href="http://docs.chargify.com/" class="docs">&nbsp;Documentation</a></li>
-          <li><a href="https://app.chargify.com/login" class="login">Sign In</a></li>
-          <li><a href="http://support.chargify.com" class="support">Call Us: <b>1-800-401-2414</b></a></li>
+          <li><a href="https://chargify.com/">&raquo; Chargify Website</a></li>
+          <li><a href="https://app.chargify.com/">&diams; Login to App</a></li>
         </ul>
-        <div id="menu_wrapper" class="clearfix">
-          <ul id="menu">
-            <li><a href="https://chargify.com/pricing-and-signup/" style="color: #FFFFFF;">Pricing &amp; Sign Up</a></li>
-            <li><a href="https://chargify.com/our-customers">Customers</a></li>
-            <li><a href="https://chargify.com/features/">Features</a></li>
-            <li><a href="https://chargify.com/how-it-works/">How It Works</a></li>
-            <li><a href="https://chargify.com/">Home</a></li>
-          </ul>
+        <% unless page.permalink == 'search' %>
+        <div id="searchbox">
+          <gcse:searchbox-only resultsUrl="/search"></gcse:searchbox-only>
         </div>
-        <span class="logo"><a href="https://chargify.com/">Chargify</a></span>
+        <% end %>
+        <span class="logo"><a href="/">Chargify</a></span>
       </div>
     </div>
     <div id="content">
@@ -91,62 +83,8 @@
     </div>
     <div id="footer">
       <div class="inner">
-        <div class="footer_column">
-          <h5>Features</h5>
-          <ul class="footer_links">
-            <li><a href="https://chargify.com/features/">Recurring Billing System</a></li>
-            <li><a href="https://chargify.com/features/subscription-management/">Subscription Management</a></li>
-            <li><a href="https://chargify.com/features/pci-compliant-security/">PCI Compliant Security</a></li>
-            <li><a href="https://chargify.com/features/recurring-billing-api/">Recurring Billing API</a></li>
-            <li><a href="https://chargify.com/features/branded-payment-websites/">Branded Payment Websites</a></li>
-            <li><a href="https://chargify.com/features/dunning-management/">Dunning Management</a></li>
-            <li><a href="https://chargify.com/features/easy-to-use-interface/">Easy-to-use Interface</a></li>
-            <li><a href="https://chargify.com/features/iphone-app/">iPhone App</a></li>
-            <li><a href="https://chargify.com/features/multi-gateway-support/">Multi-Gateway Support</a></li>
-            <li><a href="https://chargify.com/features/metered-billing/">Metered Billing</a></li>
-            <li><a href="https://chargify.com/features/coupon-and-discount-support/">Coupon/Discount Support</a></li>
-          </ul>
-        </div>
-        <div class="footer_column">
-          <h5>Resources</h5>
-          <ul class="footer_links">
-            <li><a href="http://docs.chargify.com/api-introduction">API Documentation</a></li>
-            <li><a href="http://support.chargify.com/">Support Center</a></li>
-            <li><a href="http://changelog.chargify.com">Changelog</a></li>
-            <li><a href="http://support.chargify.com/faqs">Knowledge Base</a></li>
-            <li><a href="http://docs.chargify.com/">Documentation</a></li>
-            <li><a href="http://support.chargify.com/faqs/general-questions">General Questions</a></li>
-            <li><a href="http://support.chargify.com/faqs/billing-payment">Billing &amp; Payment</a></li>
-            <li><a href="http://support.chargify.com/discussions">Forums</a></li>
-            <li><a href="http://support.chargify.com/discussions/suggestions">Suggestions</a></li>
-            <li><a href="https://chargify.com/consultants/">Implementation Consultants</a></li>
-          </ul>
-        </div>
-        <div class="footer_column">
-          <h5>Community</h5>
-          <ul class="footer_links">
-            <li><a href="https://chargify.com/blog/">The Bullring Blog</a></li>
-            <li><a href="http://twitter.com/chargify" target="_blank">Twitter</a></li>
-            <li><a href="http://www.flickr.com/photos/chargify/" target="_blank">Flickr</a></li>
-            <li><a href="http://labs.grasshoppergroup.com" target="_blank">Grasshopper Group Labs</a></li>
-          </ul>
-        </div>
-        <div class="footer_column_last">
-          <h5>Chargify</h5>
-          <ul class="footer_links">
-            <li><a href="http://chargify.com/about-us/">About Us</a></li>
-            <li><a href="http://chargify.com/how-it-works/">How It Works</a></li>
-            <li><a href="http://chargify.com/news/">News</a></li>
-            <li><a href="http://chargify.com/careers/">Careers</a></li>
-            <li><a href="http://chargify.com/contact-us/">Contact Us</a></li>
-            <li><a href="http://app.chargify.com/login">Sign In</a></li>
-          </ul>
-        </div>        
         <div class="footer_base">
-          <div class="poweredbygg">
-            <a href="http://grasshoppergroup.com/" target="_blank"><span>Powered by Grasshopper Group</span></a>
-          </div>
-          <p>&copy; Copyright 2010 Chargify LLC. All rights reserved. <a href="http://chargify.com/terms-conditions/">Terms &amp; Conditions</a>. <a href="http://chargify.com/privacy-policy/">Privacy Policy</a>. <span><a href="http://chargify.com/sitemap/">Sitemap.</a></span></p>
+          <p>&copy; Copyright 2010-2014 Chargify LLC. All rights reserved.</p>
         </div>
       </div>
     </div>
@@ -167,5 +105,19 @@
     })();
   </script>
   <!-- End of Google Analytics -->
+
+  <!-- Google Site Search -->
+  <script>
+    (function() {
+      var cx = '003737312216142888404:rkzenuocf78';
+      var gcse = document.createElement('script');
+      gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+          '//www.google.com/cse/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
 </body>
 </html>
