@@ -12,14 +12,14 @@
 #search span                          {color:#aaa; font-size: 13px; line-height: 26px; margin: 0 0 0 7px;}
 
 .docupage                             {font-family: Helvetica, Arial, sans-serif; font-size: 14px; padding: 21px 0 0 12px;}
-.docupage h1                          {font-size: 28px; line-height: 42px; text-align: left; margin: 0 0 21px 0; text-shadow: #ccc 1px 1px 0;}
-.docupage h2                          {font-size: 18px; line-height: 21px; text-align: left; margin: 0 0 21px 0; text-shadow: #ccc 1px 1px 0;}
-.docupage h3                          {font-size: 16px; line-height: 21px; text-align: left; margin: 21px 0;}
-.docupage h5                          {font-size: 0.9em;}
+#content .docupage h1                          {font-size: 28px; line-height: 42px; text-align: left; margin: 0 0 21px 0; text-shadow: #ccc 1px 1px 0;}
+#content .docupage h2                          {font-size: 18px; line-height: 21px; text-align: left; margin: 0 0 21px 0; text-shadow: #ccc 1px 1px 0;}
+#content .docupage h3                          {font-size: 16px; line-height: 21px; text-align: left; margin: 21px 0;}
+#content .docupage h5                          {font-size: 0.9em;}
 
-.docupage h1.title                    {line-height: 1; padding-bottom: 14px;}
-.docupage h2.section                  {float: right; margin: -1px 0 0 0; line-height: 1; text-align: right; font-weight: normal;}
-.docupage h2.section span             {display: block; font-size: 10px; line-height: 1; font-weight: normal; text-align: right; color: #aaa; text-shadow: none;}
+#content .docupage h1.title                    {line-height: 1; padding-bottom: 14px;}
+#content .docupage h2.section                  {float: right; margin: -1px 0 0 0; line-height: 1; text-align: right; font-weight: normal;}
+#content .docupage h2.section span             {display: block; font-size: 10px; line-height: 1; font-weight: normal; text-align: right; color: #aaa; text-shadow: none;}
 
 .docupage p, .docupage li,
 .docupage td, .docupage th,
