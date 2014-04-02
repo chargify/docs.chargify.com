@@ -6,17 +6,17 @@ You can customize the look and feel of your hosted page to match your site by up
 
 h4. Page Title
 
-The title will be displayed at the top of the page and in the title of the browser window. The {{product_name}} and {{product_family}} keywords will be replaced with the actual product name and product family name of the product. If left blank, the title will be set as the "Product Family Name: Product Name". 
+The title will be displayed at the top of the page and in the title of the browser window. The {{product_name}} and {{product_family}} keywords will be replaced with the actual product name and product family name of the product. If left blank, the title will be set as the "Product Family Name: Product Name".
 
 h4. Upload your logo
 
-!http://s3.amazonaws.com/entp-tender-production/assets/5ed410df63d0cc693a4a027cd94e5829bd87f1e0/upload_normal.jpg!
+!https://s3.amazonaws.com/entp-tender-production/assets/5ed410df63d0cc693a4a027cd94e5829bd87f1e0/upload_normal.jpg!
 
 To upload a logo, click the 'Settings' tab and then select the 'Hosted Page Settings' in the menu on the left. Use the file upload button to select your image. Supported file types are .gif, .jpeg, and .png. Images will automatically be resized to a maximum width of 800px and a maximum height of 100px.
 
 h4. Add Custom CSS and JavaScript
 
-!http://s3.amazonaws.com/entp-tender-production/assets/59dcbb31a94b0cc431378fb7973829ba85f90b5b/cssjs_normal.jpg!
+!https://s3.amazonaws.com/entp-tender-production/assets/59dcbb31a94b0cc431378fb7973829ba85f90b5b/cssjs_normal.jpg!
 
 The 'Hosted Page Settings' tab also provides input fields to collect custom CSS and JavaScript for your site. Content in the CSS field will be included at the top of the page in a @stylesheet@ tag. Custom JavaScript will be included at the bottom of the page and wrapped in a @script@ tag.
 
@@ -24,11 +24,11 @@ We've put together a "Using your own CSS for Hosted Signup Page":https://chargif
 
 h4. Custom Links
 
-!http://s3.amazonaws.com/entp-tender-production/assets/95c25ec4a437e6110ac1a3c4036a9fbb2f9b63fd/links_normal.jpg!
+!https://s3.amazonaws.com/entp-tender-production/assets/95c25ec4a437e6110ac1a3c4036a9fbb2f9b63fd/links_normal.jpg!
 
 The 'Hosted Page Settings' tab also provides input fields to collect custom urls. If a 'Home link URL' is provided, the title of the page or the Logo will link to that URL. 'Terms and conditions URL' and 'Privacy policy URL' links will appear in the footer if provided. Additionally, if a Terms link is provided a checkbox will appear to require the user to agree to the terms.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/4992786f497294f73345eb502195185d40a60b4d/terms_normal.jpg!
+!https://s3.amazonaws.com/entp-tender-production/assets/4992786f497294f73345eb502195185d40a60b4d/terms_normal.jpg!
 
 h4. Enable Coupons
 
@@ -36,7 +36,7 @@ The checkbox under 'Enable coupons' determines whether or not a coupon field is 
 
 h4. Accepted Cards
 
-!http://s3.amazonaws.com/entp-tender-production/assets/b288a32a78dc1be7f12bea8113b4b272fd218772/cards_normal.jpg!
+!https://s3.amazonaws.com/entp-tender-production/assets/b288a32a78dc1be7f12bea8113b4b272fd218772/cards_normal.jpg!
 
 Check the checkbox next to each card logo for that logo to display on the hosted payment page. Note that unchecking one of the the cards will not prevent users from entering a card of that type.
 
@@ -47,7 +47,7 @@ Several options exist to customize the hosted signup page on a per product basis
 
 h4. Requesting/Requiring Shipping and Billing addresses
 
-!http://s3.amazonaws.com/entp-tender-production/assets/67209fd0cbd5afd6b7a96e25f3555605b5907a0c/addresssetting_normal.jpg!
+!https://s3.amazonaws.com/entp-tender-production/assets/67209fd0cbd5afd6b7a96e25f3555605b5907a0c/addresssetting_normal.jpg!
 
 On the settings page for a product you can determine whether or not you want to collect the shipping and billing address information for the user. When an address is 'requested', the fields appear on the page but are not required. Clicking the 'require' checkbox will make the fields mandatory.
 
@@ -79,7 +79,7 @@ For example, accessing a hosted signup page URL with the following query string 
 
 bc. ?first_name=John&last_name=Doe&email=john.doe@example.com&reference=1234
 
-!http://s3.amazonaws.com/entp-tender-production/assets/4cad8d1d427d0365b6f8e48e16c0bd2b7232a17c/hosted-signup-pre-populated_normal.png!
+!https://s3.amazonaws.com/entp-tender-production/assets/4cad8d1d427d0365b6f8e48e16c0bd2b7232a17c/hosted-signup-pre-populated_normal.png!
 
 h3(#return-url). Return URL and parameters
 
@@ -106,11 +106,11 @@ Return parameters are specified using a single brace around the name of the para
 For example, a Return URL of:
 
 bc. http://example.com/callback
-  
+
 With these Return parameters:
 
 bc. subscription_id={subscription_id}&customer_reference={customer_reference}
-  
+
 Would result in the URL:
 
 bc. http://example.com/callback?subscription_id=1&customer_reference=1234

@@ -59,7 +59,7 @@ h4. Chargify Direct Example Request
 URL: @https://api.chargify.com/api/v2/signups@
 Method: @POST@
 
-<script src="http://gist.github.com/8d9ed3261405b94b0e1f.js?file=sample-html-form.html"></script>
+<script src="https://gist.github.com/8d9ed3261405b94b0e1f.js?file=sample-html-form.html"></script>
 
 h4. Chargify Direct Example with Components
 
@@ -83,12 +83,12 @@ URL: @https://api.chargify.com/api/v2/signups@
 Method: @POST@
 Content-Type: @application/json@
 
-<script src="http://gist.github.com/1b4b587447682da4b39e.js?file=signup-request.json"></script>
+<script src="https://gist.github.com/1b4b587447682da4b39e.js?file=signup-request.json"></script>
 Note that the above example shows setting a Quantity-based Component with ID "1234" to an allocated quantity of 4, and an On/Off Component with ID "5678" to "Off".
 
 And using ACH:
 
-<script src="http://gist.github.com/8d9ed3261405b94b0e1f.js?file=signup-request-ach.json"></script>
+<script src="https://gist.github.com/8d9ed3261405b94b0e1f.js?file=signup-request-ach.json"></script>
 
 
 h2. Signup Response
@@ -101,16 +101,16 @@ h3. JSON
 
 The following is an example of a successful JSON @POST@ to @/signups@:
 
-<script src="http://gist.github.com/8d9ed3261405b94b0e1f.js?file=signup-response.json"></script>
+<script src="https://gist.github.com/8d9ed3261405b94b0e1f.js?file=signup-response.json"></script>
 
 h4. Unsuccessful responses
 
 Any errors will be returned within the @meta[errors]@ and @result[errors]@ objects. For example, when trying to create a new subscription without passing in the @payment_profile[expiration_month]@, the following is returned:
 
-<script src="http://gist.github.com/8d9ed3261405b94b0e1f.js?file=signup-response-errors.json"></script>
+<script src="https://gist.github.com/8d9ed3261405b94b0e1f.js?file=signup-response-errors.json"></script>
 
 Not passing in a @customer@ at all will yield the following response:
 
-<script src="http://gist.github.com/8d9ed3261405b94b0e1f.js?file=signup-response-customer.json"></script>
+<script src="https://gist.github.com/8d9ed3261405b94b0e1f.js?file=signup-response-customer.json"></script>
 
 

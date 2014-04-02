@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails', '3.0.20'
 gem 'doculab', :git => 'git://github.com/chargify/doculab.git', :ref => 'v0.2.4'

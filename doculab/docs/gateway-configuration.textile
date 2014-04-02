@@ -28,16 +28,16 @@ You may only change gateways if the Site has *no live subscriptions*.  If you ne
 
 To set up your gateway and credentials, start by selecting the site you want to modify.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/aff15dec85327d636591aa865bfd20ff85b44524/select_site_normal.png!
+!https://s3.amazonaws.com/entp-tender-production/assets/aff15dec85327d636591aa865bfd20ff85b44524/select_site_normal.png!
 
 Next, click the Settings tab.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/55617837764711c01ad87358af77a7ee31b364cd/site_settings_tab_normal.png!
+!https://s3.amazonaws.com/entp-tender-production/assets/55617837764711c01ad87358af77a7ee31b364cd/site_settings_tab_normal.png!
 
 Click "Use this Gateway" next to the name of your gateway provider. Some providers may be disabled if they do not support the Site's selected currency or if the site already has subscriptions.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/3e30229ad1ac17683c94cd13d153e68cacce03cf/use_gateway_normal.png!
+!https://s3.amazonaws.com/entp-tender-production/assets/3e30229ad1ac17683c94cd13d153e68cacce03cf/use_gateway_normal.png!
 
 Finally, enter your gateway credentials. All fields are required. The credentials requested for your gateway should be provided by your gateway, either via email or in their administrative interface. Be sure that you are entering your test credentials for a test site or live credentials for a production site.
 
-!http://s3.amazonaws.com/entp-tender-production/assets/0f8c24d5fae5529f40d9a1e0bd1abfaa246d9524/set_gateway_credentials_normal.png!
+!https://s3.amazonaws.com/entp-tender-production/assets/0f8c24d5fae5529f40d9a1e0bd1abfaa246d9524/set_gateway_credentials_normal.png!
