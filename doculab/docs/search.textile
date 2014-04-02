@@ -1,15 +1,3 @@
 <div id="google-search">
-<script>
-  (function() {
-    var cx = '003737312216142888404:rkzenuocf78';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
-<gcse:search></gcse:search>
+<gcse:search linkTarget="_self"></gcse:search>
 </div>
