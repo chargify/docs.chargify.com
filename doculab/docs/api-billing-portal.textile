@@ -82,3 +82,146 @@ curl -u <API_KEY>:x -H "Accept: application/xml" https://<subdomain>chargify.com
 
 
 </code></pre>
+
+
+h2. Enabling Portal For a Customer
+
+You can enable Billing Portal access for a Customer, with the option of sending the Customer an Invitation email at the same time.
+
+h3. Enabling Portal
+
+URL: @https://<subdomain>.chargify.com/portal/customers/<customer_id>/enable@  
+Method: @POST@  
+Required Parameters: @id@ The Customer ID
+Optional Parameters: @auto_invite@ When set to @1@, an Invitation email will be sent to the Customer. When set to @0@, or not sent, an email will not be sent.
+
+h3(#api-call-xml-read). XML Enable Call Example
+
+<pre><code>curl -H "Content-Type: application/xml" -X POST -u <API_KEY>:x https://<subdomain>.chargify.com/portal/customers/:id/enable.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<customer>
+  <first_name>John</first_name>
+  <last_name>Doe</last_name>
+  <email>jd@example.com</email>
+  <organization></organization>
+  <reference nil="true"/>
+  <id type="integer">100032</id>
+  <created_at type="datetime">2014-04-17T11:13:52-04:00</created_at>
+  <updated_at type="datetime">2014-04-17T15:06:52-04:00</updated_at>
+  <address>123 Main St</address>
+  <address_2></address_2>
+  <city>New York</city>
+  <state>NY</state>
+  <zip>10045</zip>
+  <country>US</country>
+  <phone></phone>
+  <verified type="boolean">true</verified>
+  <portal_customer_created_at type="datetime">2014-04-17T15:06:52-04:00</portal_customer_created_at>
+  <portal_invite_last_sent_at type="datetime" nil="true"/>
+  <portal_invite_last_accepted_at type="datetime" nil="true"/>
+</customer>
+</code></pre>
+
+When sending an Invitation email at the same time as enabling Billing Portal:
+
+<pre><code>curl -H "Content-Type: application/xml" -X POST -u <API_KEY>:x https://<subdomain>.chargify.com/portal/customers/:id/enable.xml\?auto_invite\=1
+
+<?xml version="1.0" encoding="UTF-8"?>
+<customer>
+  <first_name>John</first_name>
+  <last_name>Doe</last_name>
+  <email>jd@example.com</email>
+  <organization></organization>
+  <reference nil="true"/>
+  <id type="integer">100032</id>
+  <created_at type="datetime">2014-04-17T11:13:52-04:00</created_at>
+  <updated_at type="datetime">2014-04-17T15:06:52-04:00</updated_at>
+  <address>123 Main St</address>
+  <address_2></address_2>
+  <city>New York</city>
+  <state>NY</state>
+  <zip>10045</zip>
+  <country>US</country>
+  <phone></phone>
+  <verified type="boolean">true</verified>
+  <portal_customer_created_at type="datetime">2014-04-17T15:19:42-04:00</portal_customer_created_at>
+  <portal_invite_last_sent_at type="datetime">2014-04-17T15:19:42-04:00</portal_invite_last_sent_at>
+  <portal_invite_last_accepted_at type="datetime" nil="true"/>
+</customer>
+</code></pre>
+
+When Billing Portal is already enabled for this Customer:
+
+<pre><code><?xml version="1.0" encoding="UTF-8"?>
+<errors type="array">
+  <error>Portal is already enabled for this customer.</error>
+</errors>
+</code></pre>
+
+h3(#api-call-json-read). JSON Enable Call Example
+
+<pre><code>curl -H "Content-Type: application/json" -X POST -u <API_KEY>:x https://<subdomain>.chargify.com/portal/customers/:id/enable.json
+
+{
+  "customer":
+  {
+    "first_name":"John",
+    "last_name":"Doe",
+    "email":"jd@example.com",
+    "organization":"",
+    "reference":null,
+    "id":100032,
+    "created_at":"2014-04-17T11:13:52-04:00",
+    "updated_at":"2014-04-17T15:37:08-04:00",
+    "address":"45 Main St",
+    "address_2":"",
+    "city":"New York",
+    "state":"NY",
+    "zip":"10045",
+    "country":"US",
+    "phone":"",
+    "verified":false,
+    "portal_customer_created_at":"2014-04-17T15:37:08-04:00",
+    "portal_invite_last_sent_at":null,
+    "portal_invite_last_accepted_at":null
+  }
+}
+</code></pre>
+
+When sending an Invitation email at the same time as enabling Billing Portal:
+
+<pre><code>curl -H "Content-Type: application/json" -X POST -u <API_KEY>:x https://<subdomain>.chargify.com/portal/customers/:id/enable.json\?auto_invite\=1
+
+{
+  "customer":
+  {
+    "first_name":"John",
+    "last_name":"Doe",
+    "email":"jd@example.com",
+    "organization":"",
+    "reference":null,
+    "id":100032,
+    "created_at":"2014-04-17T11:13:52-04:00",
+    "updated_at":"2014-04-17T15:37:08-04:00",
+    "address":"45 Main St",
+    "address_2":"",
+    "city":"New York",
+    "state":"NY",
+    "zip":"10045",
+    "country":"US",
+    "phone":"",
+    "verified":false,
+    "portal_customer_created_at":"2014-04-17T15:37:08-04:00",
+    "portal_invite_last_sent_at":"2014-04-17T15:37:08-04:00",
+    "portal_invite_last_accepted_at":null
+  }
+}
+</code></pre>
+
+When Billing Portal is already enabled for this Customer:
+
+<pre><code>
+{
+  "errors": [ "Portal is already enabled for this customer." ]
+}</code></pre>
