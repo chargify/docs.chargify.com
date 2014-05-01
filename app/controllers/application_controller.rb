@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   ensure_security_headers(
     :x_frame_options  =>  'DENY',
     :csp              => false,
-    :hsts             => { :max_age => 1.year.to_i, :include_subdomains => true},
+    :hsts             => { :max_age => 1.year.to_i },
     :x_xss_protection => { :value => 1, :mode => 'block'}
   )
 
