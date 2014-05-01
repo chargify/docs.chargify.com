@@ -1,0 +1,112 @@
+h2. URI/Method
+
+|_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
+| Payment Profiles<br/>@/payment_profiles@ | - | Create new payment profile | - | - |
+| Payment Profiles<br/>@/payment_profiles/<x>@ | Read payment profile | - | Update payment profile | - |
+
+
+h2. Payment Profile Input Attributes
+
+* @payment_profile@ 
+** @customer_id@ (Required when creating a new payment profile) The Chargify customer id.
+** @first_name@ First name on card or bank account.
+** @last_name@ Last name on card or bank account.
+** @full_number@ The full credit card number (string representation, i.e. "5424000000000015")
+** @expiration_month@ The 1- or 2-digit credit card expiration month, as an integer or string, i.e. "5"
+** @expiration_year@ The 4-digit credit card expiration year, as an integer or string, i.e. "2012"
+** @cvv@ (Optional, may be required by your gateway settings) The 3- or 4-digit Card Verification Value. _This value is merely passed through to the payment gateway_.
+** @billing_address@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing street address (i.e. "123 Main St."). _This value is merely passed through to the payment gateway_.
+** @billing_address_2@ (Optional) Second line of the customer's billing address i.e. "Apt. 100"
+** @billing_city@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address city (i.e. "Boston"). _This value is merely passed through to the payment gateway_.
+** @billing_state@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address state (i.e. "MA"). _This value is merely passed through to the payment gateway_.
+** @billing_zip@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address zip code (i.e. "12345"). _This value is merely passed through to the payment gateway_.
+** @billing_country@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address country, preferably in [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format (i.e. "US"). _This value is merely passed through to the payment gateway. Some gateways require country codes in a specific format. Please check your gateway's documentation. If creating an ACH subscription, only @US@ is supported at this time._
+** @bank_name@ (Required when creating a subscription with ACH) The name of the bank where the customer's account resides
+** @bank_routing_number@ (Required when creating a subscription with ACH) The routing number of the bank
+** @bank_account_number@ (Required when creating a subscription with ACH) The customer's bank account number
+** @bank_account_type@ (Required when creating a subscription with ACH) Either @checking@ or @savings@
+** @bank_account_holder_type@ (Required when creating a subscription with ACH) Either @personal@ or @business@
+
+h2. Methods
+
+_format_ may be either 'xml' or 'json'.
+
+h3. Read
+
+URL: @https://<subdomain>.chargify.com/payment_profiles/<payment_profile_id>.<format>@  
+Method: @GET@  
+Required Parameters: @payment_profile_id@  
+Response: A single Payment Profile
+
+
+**When the Payment Profile is a Credit Card**
+<pre><code>"payment_profile": {
+  "billing_address": "123 Main St.",
+  "billing_address_2": "Apt 5C",
+  "billing_city": "Penn Yan",
+  "billing_country": "US",
+  "billing_state": "NY",
+  "billing_zip": "12345",
+  "card_type": "bogus",
+  "current_vault": "bogus",
+  "customer_id": 52435,
+  "customer_vault_token": null,
+  "expiration_month": 12,
+  "expiration_year": 2022,
+  "first_name": "Marianne",
+  "id": 542,
+  "last_name": "Heidenreich",
+  "masked_card_number": "XXXX-XXXX-XXXX-1",
+  "vault_token": "1",
+  "payment_type": "credit_card"
+}</code></pre>
+
+**When the Payment Profile is a Bank Account**
+<pre><code>"payment_profile": {
+  "bank_account_holder_type": "personal",
+  "bank_account_type": "checking",
+  "bank_name": "Best Bank",
+  "billing_address": "123 Main St.",
+  "billing_address_2": "Apt 5C",
+  "billing_city": "Penn Yan",
+  "billing_country": "US",
+  "billing_state": "NY",
+  "billing_zip": "12345",
+  "current_vault": "bogus",
+  "customer_id": 7674,
+  "customer_vault_token": null,
+  "first_name": "Mark",
+  "id": 543,
+  "last_name": "Wahlberg",
+  "masked_bank_account_number": "XXXXXXX1",
+  "masked_bank_routing_number": "XXXXXXX1",
+  "vault_token": "1",
+  "payment_type": "bank_account"
+}
+</code></pre>
+
+h3. Create
+
+URL: @https://<subdomain>.chargify.com/payment_profiles.<format>@  
+Method: @POST@ 
+Required Parameters: XML or JSON data, as specified by the required attributes  
+Response: The created payment profile (see output for "Read")
+
+**Note**
+
+Creating a new payment profile for a customer via the API will not make that payment profile current for any of the customer's subscriptions. Currently the only way to make "switch" payment profiles on a Subscription is via the Admin UI.
+
+h3. Update
+
+URL: @https://<subdomain>.chargify.com/payment_profiles/<payment_profile_id>.<format>@  
+Method: @PUT@ 
+Required Parameters: XML or JSON data, as specified by the required attributes  
+Response: The created payment profile (see output for "Read")
+
+**Notes on updating payment profiles via the API**
+
+* Merchants with Authorize.net as their payment gateway can update their customer's credit cards without passing in the full credit card number and CVV.
+
+* If you are using Authorize.net, Chargify will ignore the credit card number and CVV when processing an update via the API, and attempt a partial update instead. If you wish to change the card number on a payment profile, you will need to create a new payment profile for the given customer.
+
+* A payment profile cannot be updated with the attributes of another type of payment profile. For example, if the payment profile you are attempting to update is a credit card, you cannot pass in bank account attributes (like @bank_account_number@), and vice versa. 
