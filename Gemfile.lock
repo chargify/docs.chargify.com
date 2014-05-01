@@ -40,8 +40,10 @@ GEM
     activesupport (3.0.20)
     arel (2.0.10)
     builder (2.1.2)
+    daemons (1.1.9)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    eventmachine (1.0.3)
     i18n (0.5.3)
     json (1.8.1)
     mail (2.2.20)
@@ -75,6 +77,10 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     secure_headers (1.1.1)
+    thin (1.5.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     thor (0.14.6)
     tilt (2.0.1)
     treetop (1.4.15)
@@ -91,3 +97,4 @@ DEPENDENCIES
   rails (= 3.0.20)
   rdiscount (= 1.6.8)
   secure_headers
+  thin
