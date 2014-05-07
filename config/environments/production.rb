@@ -33,11 +33,11 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
-  
+  # config.force_ssl = true
+
   # Add secure headers to every request
   config.action_dispatch.default_headers = {
-    'Strict-Transport-Security' => 'max-age=31557600; includeSubdomains',
+    'Strict-Transport-Security' => 'max-age=31557600',
     'X-Frame-Options'           => 'DENY',
     'X-XSS-Protection'          => '1; mode=block',
     'X-Content-Type-Options'    => 'nosniff'
