@@ -165,7 +165,7 @@ You can get more information about an specific coupon usage, which consists of t
 
 h3. Usage
 
-URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>/usage.<format>_@
+URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>/usage.<format>@
 Method: @GET@
 Required Parameters: coupon_id
 Response: Details about the coupon usage as an array of data hashes, one per product.  Example json:
