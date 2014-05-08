@@ -6,6 +6,8 @@ Chargify sites that are in *test mode* will work with both the "Chargify Test Ga
 
 When you're ready to go live, you can use the "Clear site data" link at the top of the web UI to clear all of your test data.  You may choose to keep your product set up at this time.  Our section on "Clearing Site Data":/clearing-site-data goes in to more detail.
 
+Test mode sites are limited to *a maximum of 500* of each of coupons, subscriptions, customers and products.
+
 h2. Do not sign up real customers while you are in test mode
 
 p(warning). You cannot bring subscriptions with you when you change from test mode to live mode. *Do not sign up real customers while you are in test mode*
