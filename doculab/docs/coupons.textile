@@ -69,4 +69,4 @@ Customers can also apply coupons through the Hosted Payment Page.  *However, you
 
 h3. Creating a Subscription with a Coupon through the API
 
-For API info see: "https://docs.chargify.io/api-coupons":https://docs.chargify.io/api-coupons
+For API info see: "https://docs.chargify.com/api-coupons":https://docs.chargify.com/api-coupons

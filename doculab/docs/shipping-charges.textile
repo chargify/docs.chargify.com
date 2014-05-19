@@ -8,7 +8,7 @@ This does not allow exact shipping charges.
 
 Instead, you'll create a Quantity Component for each standard shipping charge that you want to offer. For instance, if you ship a box of goodies to US customers with 3 different levels of speed, then you'll create 3 components: 1 for $5, 1 for $10, and 1 for $20. Your customers can choose the shipping speed/cost they want on the Chargify hosted signup page, or you can add the component to their subscription later. You can also change the component anytime you want using the Chargify control panel.
 
-More on Components can be found here: "https://docs.chargify.io/product-components":/product-components
+More on Components can be found here: "https://docs.chargify.com/product-components":/product-components
 
 h2. How to know when to ship
 
