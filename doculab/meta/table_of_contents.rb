@@ -12,6 +12,7 @@ Doculab::TableOfContents.define do
     page "Hosted Page Settings"
     page "Clearing Site Data"
     page "Email Templates"
+    page "HTML Emails", :permalink => 'html-emails'
   end
 
   section "Products" do
@@ -102,7 +103,7 @@ Doculab::TableOfContents.define do
     page "API: Transactions"
     page "API: Webhooks"
   end
-  
+
   section "API v2 Resources" do
     page "API: Call"
     page "API: Card Update"
