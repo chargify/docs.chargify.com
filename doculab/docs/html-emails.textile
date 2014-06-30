@@ -1,4 +1,4 @@
-HTML Emails allows you to send HTML part Emails to your customers. This provides the opportunity to brand the messages that are sent out on your behalf to your customers based on Chargify events.  We currently support the following emails in the HTML Email Editor: Signup, Receipt, Card Expiration, End of Trial, and Upcoming Renewal emails. Dunning emails can not be stylized yet but we plan to add the functionality in the future.
+HTML Emails allow you to send HTML part Emails to your customers. This provides the opportunity to brand the messages that are sent out on your behalf to your customers based on Chargify events.  We currently support the following emails in the HTML Email Editor: Signup, Receipt, Card Expiration, End of Trial, and Upcoming Renewal emails. Dunning emails can not be stylized yet but we plan to add the functionality in the future.
 
 !/images/doculab/composer.png!:/images/doculab/composer.png
 
