@@ -2,7 +2,7 @@ Components are defined and associated with a product family.  They become a part
 
 Components can then be added and "allocated" for each subscription to a product in the product family.  These *component line-items* affect how much a subscription will be charged, depending on the current allocations (i.e. 4 IP Addresses, or SSL "enabled")
 
-p(warning). Component proration was added to Chargify in September 2013. In order to utilize component proration when allocating through the API, you must use the "Allocations API":/api-allocations. The Components API will continue to be supported until further notice.
+p(warning). The Components API is deprecated and will not receive new features. Chargify will continue to support it until further notice. For new development or updates, please use the "Allocations API":/api-allocations instead.
 
 This documentation covers both *component definitions* and *component line-items*.  Please understand the difference.
 
