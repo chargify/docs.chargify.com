@@ -30,10 +30,6 @@ The 'Hosted Page Settings' tab also provides input fields to collect custom urls
 
 !https://s3.amazonaws.com/entp-tender-production/assets/4992786f497294f73345eb502195185d40a60b4d/terms_normal.jpg!
 
-h4. Enable Coupons
-
-The checkbox under 'Enable coupons' determines whether or not a coupon field is shown on the hosted payment page.
-
 h4. Accepted Cards
 
 !https://s3.amazonaws.com/entp-tender-production/assets/b288a32a78dc1be7f12bea8113b4b272fd218772/cards_normal.jpg!

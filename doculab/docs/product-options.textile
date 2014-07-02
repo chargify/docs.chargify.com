@@ -27,3 +27,7 @@ NOTE: Creating Subscriptions without a credit card will only currently work if t
 h4. Billing and Shipping Address settings
 
 These setting should be self-explanatory.  Like the Credit Card Settings described above, the "Request" option controls the Hosted Payment Page while the "Require" option controls all Subscription creations.
+
+h4. Enable Coupons
+
+The checkbox under ‘Hosted Page Settings’ determines whether or not a coupon field is shown on the hosted payment page.
