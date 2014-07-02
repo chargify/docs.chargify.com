@@ -36,7 +36,7 @@ h2. ColdFusion
 
 h2. Java / Scala
 
-* "http://github.com/IntroSpectrum/chargify-scala":http://github.com/IntroSpectrum/chargify-scala: A Scala API wrapper by one of our active beta testers.
+* "https://github.com/craigwblake/chargify-scala":http://github.com/IntroSpectrum/chargify-scala: A Scala API wrapper by one of our active beta testers.
 
 h2. Javascript
 

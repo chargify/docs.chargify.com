@@ -2,6 +2,8 @@ Components are defined and associated with a product family.  They become a part
 
 Components can then be added and "allocated" for each subscription to a product in the product family.  These *component line-items* affect how much a subscription will be charged, depending on the current allocations (i.e. 4 IP Addresses, or SSL "enabled")
 
+p(warning). The Components API is deprecated and will not receive new features. Chargify will continue to support it until further notice. For new development or updates, please use the "Allocations API":/api-allocations instead.
+
 This documentation covers both *component definitions* and *component line-items*.  Please understand the difference.
 
 h2. URI/Method
@@ -131,7 +133,7 @@ h3. Read Component for a Product Family
 URL: @https://<subdomain>.chargify.com/product_families/<product_family_id_>/components/<component_id>.<format>@
 Method: @GET@  
 Required Parameters:
-@subscription_id@: The id of the applicable product family
+@product_family_id@: The id of the applicable product family
 @component_id@: The id of the component you want to retrieve information about
 Response: A component
 
