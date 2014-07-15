@@ -146,3 +146,12 @@ Shown above is the default text from our default dictionary.  If I wanted to tra
   'form.address-state.blank-label':    'Select yer state, swashbuckler',
   'form.submit-button.disabled-label': 'Shiver your timbers...'
 });</code></pre>
+
+h2. Javascript Snippets
+
+Here are some javscript snippets you can use to modify the hosted pages to fit what you need.
+
+h4. Limit Signups to US
+
+<script src="https://gist.github.com/Zarnithon/5fc40acd34573e61a3db.js"></script>
+
