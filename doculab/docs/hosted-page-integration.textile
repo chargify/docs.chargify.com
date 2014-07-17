@@ -153,5 +153,39 @@ Here are some javscript snippets you can use to modify the hosted pages to fit w
 
 h4. Limit Signups to US
 
-<script src="https://gist.github.com/Zarnithon/5fc40acd34573e61a3db.js"></script>
+This javascript code will limit the country dropdown to only have US selectable.
+<pre><code>$(function() 
+{
+   $('.country_select').find('option').remove();
+   $('.country_select').append('<option value="US" checked="checked">United States</option>');
+   $('.country_select').change();
+});</code></pre>
+
+h4. Require custom fields
+
+This code will allow Custom fields to be required on the hosted pages
+ 
+You will need to find the ID of the custom field. You can find this by going to your custom fields in your chargify account and clicking edit on the custom field. The ID of the custom field will be the in the URL. You then place the ID in the XXX parts of the code.
+<pre><code>
+$(document).ready(function(){
+  var weightLabel = $("label[for='metafield_XXX']");
+  weightLabel.text("* " + weightLabel.text());
+ 
+$("form:first").submit(function(e){
+  var obj = $("#metafield_XXX");
+  if (obj.val() === "") {
+    alert("Type what you want the alert to say."); obj.addClass("field-error");
+    obj.focus();
+window.location = window.location;
+    return false;
+  }
+});
+ 
+$("#metafield_XXX").blur(function(e){
+  if ($(this).val() !== "") {
+    $(this).removeClass("field-error");
+  } else {
+    $(this).addClass("field-error");
+  }
+});</code></pre>
 
