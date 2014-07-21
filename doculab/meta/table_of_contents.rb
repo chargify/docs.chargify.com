@@ -49,6 +49,7 @@ Doculab::TableOfContents.define do
     page "Webhooks"
     page "Testing"
     page "Exporting Data"
+    page "Javascript Snippets"
   end
 
   section 'How To' do
