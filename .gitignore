@@ -1,14 +1,35 @@
-.rvmrc
-.bundle
-db/*.sqlite3
-log/*.log
-tmp/**/*
-tmp/
-public/*.html
-public/**/*.html
-.DS_Store
-config/setup_load_paths.rb
+# Ignore bundler config.
+/.bundle
 vendor/bundle
-.rbenv-version
+
+# Ignore database files
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+# Ignore sensitive config files.
+/config/setup_load_paths.rb
+
+# Ignore personal environment config files.
+/bin
+.rbenv*
+.rvmrc
+.ruby-gemset
+.project
+.powrc
 .powder
 .powenv
+Vagrantfile
+/.vagrant
+/.guard_result
+.rubocop.yml
+
+# Ignore static files.
+/public/*.html
+/public/**/*.html
+
+# OSX cruff
+.DS_Store
