@@ -3,7 +3,7 @@ h2. URI/Method
 |_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
 | Subscriptions<br/>@/subscriptions@ | List subscriptions | Create new subscription | - | - |
 | Subscription<br/>@/subscriptions/<x>@ | Read subscription | - | Update subscription | Cancel subscription |
-  
+
 h2. Subscription Input Attributes
 
 When creating a subscription, you must specify a product and a customer.  Credit card details may be required, depending on the options for the Product being subscribed (see "Product Options":/product-options).
@@ -59,6 +59,7 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 * @coupon_code@ (Optional) The coupon code of the coupon to apply (See the "coupon docs":/api-coupons#api-subscription-create-with-coupon)
 * @payment_collection_method@ (Optional) The type of payment collection to be used in the subscription. May be automatic, or invoice.
 * @agreement_terms@ (Optional but recommended when creating a subscription with ACH) The ACH agreements terms.
+* @product_change_delayed@ (Optional, used only for Delayed Product Change) When set to @true@, indicates that a changed value for @product_handle@ should schedule the product change to the next subscription renewal.
 
 
 h2. Subscription Output Attributes
@@ -141,46 +142,46 @@ Listing subscriptions is paginated, 20 at a time by default with an allowed max 
 
 You may control pagination using the @page@ and/or @per_page@ parameters.
 
-URL: @https://<subdomain>.chargify.com/subscriptions.<format>@  
-Method: @GET@  
+URL: @https://<subdomain>.chargify.com/subscriptions.<format>@
+Method: @GET@
 Optional Parameters:
 @page@: an integer value which specifies which page of results to fetch, starting at 1.  Fetching successively higher page numbers will return additional results, until there are no more results to return (in which case an empty result set will be returned).  Defaults to 1.
 @per_page@: how many records to fetch in each request, defaults to 20.  The maximum allowed is 200 - any @per_page@ value over 200 will be changed to 200.
-Response: An array of Subscriptions  
-**Usage Examples:**  
-"XML example":#api-usage-xml-subscriptions-list  
-"JSON example":#api-usage-json-subscriptions-list  
+Response: An array of Subscriptions
+**Usage Examples:**
+"XML example":#api-usage-xml-subscriptions-list
+"JSON example":#api-usage-json-subscriptions-list
 
 h3. List By Customer
 
-URL: @https://<subdomain>.chargify.com/customers/<customer_id>/subscriptions.<format>@  
-Method: @GET@  
-Required Parameters, @customer_id@  
-Response: An array of Subscriptions  
-**Usage Examples:**  
-"XML example":#api-usage-xml-subscriptions-list  
-"JSON example":#api-usage-json-subscriptions-list  
+URL: @https://<subdomain>.chargify.com/customers/<customer_id>/subscriptions.<format>@
+Method: @GET@
+Required Parameters, @customer_id@
+Response: An array of Subscriptions
+**Usage Examples:**
+"XML example":#api-usage-xml-subscriptions-list
+"JSON example":#api-usage-json-subscriptions-list
 
 
 h3. Read
 
-URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@  
-Method: @GET@  
-Required Parameters: @subscription_id@  
-Response: An single Subscription  
-"XML example":#api-usage-xml-subscriptions-read  
-"JSON example":#api-usage-json-subscriptions-read  
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@
+Method: @GET@
+Required Parameters: @subscription_id@
+Response: An single Subscription
+"XML example":#api-usage-xml-subscriptions-read
+"JSON example":#api-usage-json-subscriptions-read
 
 
 h3. Create
 
-URL: @https://<subdomain>.chargify.com/subscriptions.<format>@  
-Method: @POST@  
-Required Parameters: XML or JSON data, as specified by the required attributes  
-Response: The created subscription  
-**Usage Examples:**  
-"XML example":#api-usage-xml-subscriptions-create  
-"JSON example":#api-usage-json-subscriptions-create  
+URL: @https://<subdomain>.chargify.com/subscriptions.<format>@
+Method: @POST@
+Required Parameters: XML or JSON data, as specified by the required attributes
+Response: The created subscription
+**Usage Examples:**
+"XML example":#api-usage-xml-subscriptions-create
+"JSON example":#api-usage-json-subscriptions-create
 
 h3(#import). Importing Subscriptions
 
@@ -240,12 +241,12 @@ We will attempt to parse any string you send as the value of @next_billing_at@ i
 
 The following are all equivalent and will work as input to @next_billing_at@:
 
-@Aug 06 11:34:00 -0400 2010@  
-@Aug 06 11:34 -0400 2010@  
-@2010-08-06T11:34:00-04:00@  
-@8/6/2010 11:34:00 EDT@  
-@8/6/2010 8:34:00 PDT@  
-@2010-08-06T15:34:00Z@  
+@Aug 06 11:34:00 -0400 2010@
+@Aug 06 11:34 -0400 2010@
+@2010-08-06T11:34:00-04:00@
+@8/6/2010 11:34:00 EDT@
+@8/6/2010 8:34:00 PDT@
+@2010-08-06T15:34:00Z@
 
 You may also pass just a date, in which case we will assume the time to be midnight
 
@@ -277,49 +278,55 @@ Here is a sample JSON document that you might @POST@ to @https://<subdomain>.cha
   }
 }
 </code></pre>
-    
+
 h3(#update). Update
 
 The update action currently allows you to edit the attributes of the customer, payment profile (credit card), or subscribed product (although no proration or reset options are offered at this time).
 
 This is how you would change the card that somebody uses for their subscription.  You can also use this method to simply change the expiration date of the card.
 
-You also use this method to change the subscription to a different product by setting a new value for @product_handle@.  Note that no proration or period reset is initiated when you change the product using this method.  This method merely changes the product, and *the new payment amount is calculated and charged at the normal start of the next period*.  If you desire prorated upgrades and downgrades instead, please see the "docs on upgrades/downgrades":/upgrades-downgrades.
+You also use this method to change the subscription to a different product by setting a new value for @product_handle@.  A product change can be done in two different ways:
 
-URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@  
-Method: @PUT@  
+* **Product Change**
+This method merely changes the product, and *the new payment amount is calculated and charged at the normal start of the next period*.  To perform a Product Change, simply set the @product_handle@ attribute with the handle of a different product from the same site as the subscription.  Note that no proration or period reset is initiated when you change the product using this method.  If you desire prorated upgrades and downgrades instead, please see the "docs on upgrades/downgrades":/upgrades-downgrades.
+
+* **Delayed Product Change**
+This method schedules the product change to happen automatically at the subscription's next renewal date. To perform a Delayed Product Change, set the @product_handle@ attribute as you would in a regular Product Change, but also set the @product_change_delayed@ attribute to @true@. No proration applies in this case.
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@
+Method: @PUT@
 Required Parameters: None
 Optional Parameters: XML or JSON data with updated values for @customer_attributes@ or @credit_card_attributes@
-Response: The updated subscription  
-**Usage Examples:**  
-"XML example":#api-usage-xml-subscriptions-update  
-"JSON example":#api-usage-json-subscriptions-update  
+Response: The updated subscription
+**Usage Examples:**
+"XML example":#api-usage-xml-subscriptions-update
+"JSON example":#api-usage-json-subscriptions-update
 
 
 h3(#cancel). Delete/Cancel
 
 The delete action causes the cancellation of a subscription, i.e. it sets the subscription state to @canceled@.
 
-URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@  
-Method: @DELETE@  
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@
+Method: @DELETE@
 Required Parameters: None
 Optional Parameters: XML or JSON data with a @cancellation_message@ note that will be stored with the subscription.
 Response: 200 OK on success
-**Usage Examples:**  
-"XML example":#api-usage-xml-subscriptions-delete  
-"JSON example":#api-usage-json-subscriptions-delete  
+**Usage Examples:**
+"XML example":#api-usage-xml-subscriptions-delete
+"JSON example":#api-usage-json-subscriptions-delete
 
 h3(#delayed). Delayed Cancel
 
 Chargify offers the ability to cancel a subscription at the end of the current period (as set by its current product. Setting the subscription to cancel at the end of the period sets the @cancel_at_end_of_period@ to @true@. Note, that you cannot set @cancel_at_end_of_period@ at subscription creation.
 
-URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@  
-Method: @PUT@  
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@
+Method: @PUT@
 Required Parameters: None
 Optional Parameters: XML or JSON data with @cancel_at_end_of_period@ set to true or false.
 Response: The updated subscription
-**Usage Examples:**  
-"XML example":#api-usage-xml-subscriptions-delayed-cancel  
+**Usage Examples:**
+"XML example":#api-usage-xml-subscriptions-delayed-cancel
 "JSON example":#api-usage-json-subscriptions-delayed-cancel
 
 h3. Reactivate
@@ -333,22 +340,22 @@ Optional Parameters:
 @include_trial@ - Boolean, default 0. If 1 is sent the reactivated subscription will include a trial if one is available. If 0 is sent, the trial period will be ignored.  This parameter should be sent in a query string, and does not need to be nested inside a @subscription@ object
 @preserve_balance@ - Boolean, default '0'. If '1' is passed, the existing subscription balance will NOT be cleared/reset before adding the additional reactivation charges.
 @coupon_code@ - The coupon code to be applied during reactivation.
-Response: The updated subscription  
+Response: The updated subscription
 
 "XML example":#api-react-xml
 "JSON example":#api-react-json
 
 h3. Reset Balance
 
-Chargify offers the ability to easily reset the balance of a subscription to zero. If a subscription has a positive balance, this API call will issue a credit to the subscription for the outstanding balance. This is particularly helpful if you want to reactivate a canceled subscription without charging the customer for their previously owed balance. 
+Chargify offers the ability to easily reset the balance of a subscription to zero. If a subscription has a positive balance, this API call will issue a credit to the subscription for the outstanding balance. This is particularly helpful if you want to reactivate a canceled subscription without charging the customer for their previously owed balance.
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/reset_balance.xml@
 Method: PUT
 Required Parameters: none
 Response: The updated subscription
 
-**Usage Examples:**  
-"XML example":#api-reset-balance-xml 
+**Usage Examples:**
+"XML example":#api-reset-balance-xml
 "JSON example":#api-reset-balance-json
 
 
@@ -1802,7 +1809,7 @@ Feature: Chargify Subscriptions Create JSON API
       """
     When I send a POST request with the json data to https://acme.chargify.com/subscriptions.json
     Then the response status should be "201 Created"
-    And and the component will be toggled "on" for the subscription 
+    And and the component will be toggled "on" for the subscription
 
   Scenario: Create a subscription successfully with a quantity-based component
     Given site "acme" has a product with handle "basic"
@@ -2652,7 +2659,7 @@ Feature: Chargify Subscriptions Delayed Cancel XML API
     When I send a PUT request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
     Then the response status should be "200 OK"
 		And the response should be the subscription output xml, with the `cancel_at_end_of_period` set to the same value.
-	
+
   Scenario: Delay cancel a subscription while giving no reason/message
     Given I have an active subscription
     And I have this xml subscription data
@@ -2665,7 +2672,7 @@ Feature: Chargify Subscriptions Delayed Cancel XML API
     When I send a PUT request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
     Then the response status should be "200 OK"
 		And the response should be the subscription output xml, with the `cancel_at_end_of_period` set to the same value.
-	
+
 </code></pre>
 
 
@@ -2695,7 +2702,7 @@ Feature: Chargify Subscriptions Delayed Cancel JSON API
     When I send a PUT request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
     Then the response status should be "200 OK"
 		And the response should be the subscription output json, with the `cancel_at_end_of_period` set to the same value.
-		
+
 	Scenario: Delay cancel a subscription while giving no reason/message
     Given I have an active subscription
     And I have this json subscription data
@@ -2709,7 +2716,7 @@ Feature: Chargify Subscriptions Delayed Cancel JSON API
     When I send a PUT request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
     Then the response status should be "200 OK"
 		And the response should be the subscription output json, with the `cancel_at_end_of_period` set to the same value.
-		
+
 </code></pre>
 
 
