@@ -67,6 +67,3 @@ Once you are in the Product Change page, you'll be presented with a list of all 
 You will see a success message when your product change has been scheduled. If you wish to cancel the delayed product change, you can do so at any time by clicking the *Cancel* link next to the *Scheduled product change* bar within the subscription header.
 
 !/images/doculab/delayed_product_change_04.png!:/images/doculab/delayed_product_change_04.png
-
-# On a subscription's *Summary* tab, there is a *change* link next to the product name
-# From the Prorated Upgrades/Downgrades page, there is a link guiding you towards the Product Change page
