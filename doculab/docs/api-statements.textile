@@ -13,6 +13,7 @@ All of the statement attribute fields are returned from GET (read) operations. N
 * @future_payments@ A collection of payments from future statements that pay charges on this statement
 * @starting_balance_in_cents@ The subscription's balance at the time the statement was opened
 * @ending_balance_in_cents@ The subscription's balance at the time the statement was closed
+* @total_in_cents@ The total amount billed 
 * @customer_first_name@ The customer's first name
 * @customer_last_name@ The customer's last name
 * @customer_organization@ The customer's organization
@@ -129,6 +130,7 @@ h3. JSON Response
     "customer_shipping_state": `your value`,
     "customer_shipping_zip": `your value`,
     "ending_balance_in_cents": 0,
+    "total_in_cents": 1000,
     "events": [
       {
         "event": {
@@ -221,6 +223,7 @@ h4. XML Response
   <future_payments type="array"></future_payments>
   <starting_balance_in_cents type="integer">0</starting_balance_in_cents>
   <ending_balance_in_cents type="integer">0</ending_balance_in_cents>
+  <total_in_cents type="integer">1000</total_in_cents>
   <customer_first_name>`auto generated`</customer_first_name>
   <customer_last_name>`auto generated`</customer_last_name>
   <customer_organization nil="true">`auto generated`</customer_organization>
