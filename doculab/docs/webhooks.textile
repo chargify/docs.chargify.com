@@ -134,10 +134,10 @@ payment_profile
 product
 site
 subscription</code></pre> |
+| @statement_closed@ | A statement closes ("Statement Events":#statement-events) | "example payload":#statement-payload |
+| @statement_settled@ | A statement settles ("Statement Events":#statement-events) | "example payload":#statement-payload |
 
 
-
-* "end_of_trial_notice Payload":#end-of-trial-notice-payload
 <sup>1</sup> The @subscription@ object also contains information on the Customer and Product.
 <sup>2</sup> This is usually caused by a failure at the payment gateway.  This event is not generated for input validation errors (i.e. forgetting to fill in a field).
 <sup>3</sup> At the end of every recurring interval, _either_ a @renewal_success@ _or_ a @renewal_failure@ event is triggered once.  If a card is declined and a @renewal_failure@ is triggered, a subsequent payment that brings the account current will _not_ generate a @renewal_success@ (although it will generate a @payment_success@ and a @subscription_state_change@)
@@ -146,6 +146,12 @@ subscription</code></pre> |
 <sup>6</sup> The @expiring_card@ webhook is sent on the 1st, 15th and 7 days before the end of the month. This will identify all cards expiring in the next month.
 
 p(note). Multiple Webhook events may be triggered by a single system event.  For example, the creation of a new Subscription will typically fire both a @signup_success@ and @payment_success@ event (if a payment was necessary to start the Subscription).
+
+h2(#statement-events). Statement Events
+
+At the end of every period (i.e. at renewal) there will be either a @statement_closed@ or a @statement_settled@ webhook.  @statement_settled@ means the statement closed and payment was successfully received simultaneously (or payment was not needed). @statement_closed@ means the statement closed but payment was not successfully received.
+
+For example, if you receive a @statement_closed@ webhook for statement #3, you will also receive a @statement_settled@ webhook for statement #3 at a later time, if the statement becomes paid (i.e. out of dunning retry or card update).
 
 h2. Payloads
 
@@ -234,6 +240,8 @@ These example webhooks have been converted from form-encoded format to Ruby hash
 * "metered_usage Payload":#metered-usage-payload
 * "upcoming_renewal_notice Payload":#upcoming-renewal-notice-payload
 * "end_of_trial_notice Payload":#end-of-trial-notice-payload
+* "statement_closed Payload":#statement-closed-payload
+* "statement_settled Payload":#statement-settled-payload
 
 h3(#signup-success-payload). signup_sucess Payload
 
@@ -1565,6 +1573,256 @@ h3(#end-of-trial-notice-payload). end_of_trial_notice Payload
       "id": "0",
       "state": "active",
       "current_period_ends_at": "2012-10-09 11:49:43 -0400"
+    }
+  }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#statement-closed-payload). statement_closed Payload
+
+<pre><code>
+{
+  "id": "145",
+  "event": "statement_closed",
+  "payload": {
+    "site": {
+      "id": "2",
+      "subdomain": "acme"
+    },
+    "subscription": {
+      "id": "0",
+      "state": "active",
+      "balance_in_cents": "9900"
+    },
+    "customer": {
+      "id": "0",
+      "first_name": "John",
+      "last_name": "Doe",
+      "reference": "johndoe",
+      "organization": "Acme, Inc.",
+      "address": "123 Main St",
+      "address_2": "Apt 123",
+      "city": "Pleasantville",
+      "state": "NC",
+      "zip": "12345",
+      "country": "US",
+      "email": "john@example.com",
+      "phone": "555-555-1234"
+    },
+    "statement": {
+      "closed_at": "2012-09-09 11:38:33 -0400",
+      "created_at": "2012-09-09 11:38:33 -0400",
+      "id": "0",
+      "opened_at": "2012-09-09 11:38:33 -0400",
+      "settled_at": "2012-09-09 11:38:33 -0400",
+      "subscription_id": "0",
+      "updated_at": "2012-09-09 11:38:33 -0400",
+      "starting_balance_in_cents": "0",
+      "ending_balance_in_cents": "0",
+      "memo": "I am memo",
+      "events": {
+        "0": {
+          "id": "0",
+          "key": "payment_success",
+          "message": "Successful payment of $99.00 for John Doe's subscription to Pro"
+        },
+        "1": {
+          "id": "0",
+          "key": "signup_success",
+          "message": "Successful signup for John Doe's subscription to Pro"
+        }
+      },
+      "transactions": {
+        "0": {
+          "amount_in_cents": "9900",
+          "created_at": "2012-09-09 11:38:33 -0400",
+          "ending_balance_in_cents": "9900",
+          "id": "0",
+          "kind": "baseline",
+          "memo": "Pro (10/11/2013 - 11/11/2013)",
+          "payment_id": "0",
+          "product_id": "0",
+          "starting_balance_in_cents": "0",
+          "subscription_id": "0",
+          "success": "true",
+          "type": "Charge",
+          "transaction_type": "charge",
+          "gateway_transaction_id": "",
+          "gateway_order_id": "",
+          "component_id": "",
+          "tax_id": "",
+          "statement_id": "0"
+        },
+        "1": {
+          "amount_in_cents": "9900",
+          "created_at": "2012-09-09 11:38:33 -0400",
+          "ending_balance_in_cents": "0",
+          "id": "0",
+          "kind": "",
+          "memo": "John Doe - Pro: Signup payment",
+          "payment_id": "",
+          "product_id": "0",
+          "starting_balance_in_cents": "9900",
+          "subscription_id": "0",
+          "success": "true",
+          "type": "Payment",
+          "transaction_type": "payment",
+          "gateway_transaction_id": "53433",
+          "gateway_order_id": "53433",
+          "component_id": "",
+          "tax_id": "",
+          "statement_id": "0",
+          "card_number": "XXXX-XXXX-XXXX-1111",
+          "card_expiration": "04/2016",
+          "card_type": "visa"
+        }
+      }
+    },
+    "product": {
+      "id": "0",
+      "name": "Pro"
+    },
+    "product_family": {
+      "id": "0",
+      "name": "Acme Online"
+    },
+    "payment_profile": {
+      "id": "0",
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "billing_address": "987 Commerce St",
+      "billing_address_2": "Suite 789",
+      "billing_city": "Greenberg",
+      "billing_country": "US",
+      "billing_state": "NC",
+      "billing_zip": "67890"
+    }
+  }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#statement-settled-payload). statement_settled Payload
+
+<pre><code>
+{
+  "id": "146",
+  "event": "statement_settled",
+  "payload": {
+    "site": {
+      "id": "2",
+      "subdomain": "acme"
+    },
+    "subscription": {
+      "id": "0",
+      "state": "active",
+      "balance_in_cents": "9900"
+    },
+    "customer": {
+      "id": "0",
+      "first_name": "John",
+      "last_name": "Doe",
+      "reference": "johndoe",
+      "organization": "Acme, Inc.",
+      "address": "123 Main St",
+      "address_2": "Apt 123",
+      "city": "Pleasantville",
+      "state": "NC",
+      "zip": "12345",
+      "country": "US",
+      "email": "john@example.com",
+      "phone": "555-555-1234"
+    },
+    "statement": {
+      "closed_at": "2012-09-09 11:38:33 -0400",
+      "created_at": "2012-09-09 11:38:33 -0400",
+      "id": "0",
+      "opened_at": "2012-09-09 11:38:33 -0400",
+      "settled_at": "2012-09-09 11:38:33 -0400",
+      "subscription_id": "0",
+      "updated_at": "2012-09-09 11:38:33 -0400",
+      "starting_balance_in_cents": "0",
+      "ending_balance_in_cents": "0",
+      "memo": "I am memo",
+      "events": {
+        "0": {
+          "id": "0",
+          "key": "payment_success",
+          "message": "Successful payment of $99.00 for John Doe's subscription to Pro"
+        },
+        "1": {
+          "id": "0",
+          "key": "signup_success",
+          "message": "Successful signup for John Doe's subscription to Pro"
+        }
+      },
+      "transactions": {
+        "0": {
+          "amount_in_cents": "9900",
+          "created_at": "2012-09-09 11:38:33 -0400",
+          "ending_balance_in_cents": "9900",
+          "id": "0",
+          "kind": "baseline",
+          "memo": "Pro (10/11/2013 - 11/11/2013)",
+          "payment_id": "0",
+          "product_id": "0",
+          "starting_balance_in_cents": "0",
+          "subscription_id": "0",
+          "success": "true",
+          "type": "Charge",
+          "transaction_type": "charge",
+          "gateway_transaction_id": "",
+          "gateway_order_id": "",
+          "component_id": "",
+          "tax_id": "",
+          "statement_id": "0"
+        },
+        "1": {
+          "amount_in_cents": "9900",
+          "created_at": "2012-09-09 11:38:33 -0400",
+          "ending_balance_in_cents": "0",
+          "id": "0",
+          "kind": "",
+          "memo": "John Doe - Pro: Signup payment",
+          "payment_id": "",
+          "product_id": "0",
+          "starting_balance_in_cents": "9900",
+          "subscription_id": "0",
+          "success": "true",
+          "type": "Payment",
+          "transaction_type": "payment",
+          "gateway_transaction_id": "53433",
+          "gateway_order_id": "53433",
+          "component_id": "",
+          "tax_id": "",
+          "statement_id": "0",
+          "card_number": "XXXX-XXXX-XXXX-1111",
+          "card_expiration": "04/2016",
+          "card_type": "visa"
+        }
+      }
+    },
+    "product": {
+      "id": "0",
+      "name": "Pro"
+    },
+    "product_family": {
+      "id": "0",
+      "name": "Acme Online"
+    },
+    "payment_profile": {
+      "id": "0",
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "billing_address": "987 Commerce St",
+      "billing_address_2": "Suite 789",
+      "billing_city": "Greenberg",
+      "billing_country": "US",
+      "billing_state": "NC",
+      "billing_zip": "67890"
     }
   }
 }
