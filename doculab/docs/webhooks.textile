@@ -45,6 +45,22 @@ If you use the Webhook Replay feature (available via the "Webhook API":/api-webh
 * Use the unique webhook @id@ to remember which webhooks you've already recorded
 * Do not attempt to replay webhooks until the @last_attempt_at@ timestamp (see "Metadata":#metadata) is well outside of the automatic replay intervals
 
+h2(#endpoints). Inoperative Endpoints
+
+If Chargify experiences multiple failures when trying to get a successful acknowledgement from a configured endpoint, this begins a process of pausing or disabling the inoperative endpoints.
+
+|_. Failure count  |_. State    |_. System behaviour |
+| 1 to 25          | Enabled    | Retries proceed automatically (as above) |
+| 26 to 50         | Paused     | Webhooks are generated in the @Paused@ state, and must be sent using the webhooks panel. A retry is automatically attempted every 2 hours. |
+| 51 and over      | Disabled   | Webhooks are no longer generated for this endpoint |
+
+The Site Dashboard displays the number of paused or disabled endpoints.
+
+An endpoint's failure count can be reset back to zero if either:
+* You change the endpoint's URL in the site's Settings tab, or
+* Chargify gets a successful acknowledgement from the endpoint for any webhook.
+
+
 h2(#events). Events
 
 The following events are monitored within Chargify and can generate Webhooks:
