@@ -47,7 +47,7 @@ If you use the Webhook Replay feature (available via the "Webhook API":/api-webh
 
 h2(#endpoints). Inoperative Endpoints
 
-If Chargify experiences multiple failures when trying to get a successful acknowledgement from a configured endpoint, this begins a process of pausing or disabling the inoperative endpoints.
+If Chargify experiences multiple failures when trying to get a successful acknowledgement from a configured endpoint, this begins a process of pausing or disabling the inoperative endpoint.
 
 |_. Failure count  |_. State    |_. System behaviour |
 | 1 to 25          | Enabled    | Retries proceed automatically (as above) |
@@ -60,6 +60,9 @@ An endpoint's failure count can be reset back to zero if either:
 * You change the endpoint's URL in the site's Settings tab, or
 * Chargify gets a successful acknowledgement from the endpoint for any webhook.
 
+24 retries (for one webhook event every 2 hours) will be attempted.  So if the endpoint returns to functional within
+48 hours, then it will be re-enabled and future webhooks will be sent as normal.  However, you will still need to
+manually resend any webhooks that exceeded their retry or were paused.
 
 h2(#events). Events
 
