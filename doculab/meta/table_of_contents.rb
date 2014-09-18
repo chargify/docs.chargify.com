@@ -111,6 +111,7 @@ Doculab::TableOfContents.define do
   end
 
   section "3rd Party Integrations" do
+    page "Shopify Integration"
     page "Zferral Integration"
   end
 
