@@ -8,7 +8,7 @@ Contributing
 
 ### Running locally
 
-This is a Rails 3 app, with all dependencies managed by Bundler.  
+This is a Rails 4 app, with all dependencies managed by Bundler.
 
 #### RVM
 
@@ -26,7 +26,7 @@ You can now browse the docs at http://localhost:3000
 
 #### rbenv
 
-Ensure you have ruby <code>2.0.0-p481</code> installed, if not rbenv will prompt you to install it upon cd'ing into the directory.
+Ensure you have ruby <code>2.1.2</code> installed, if not rbenv will prompt you to install it upon cd'ing into the directory.
 
     git clone git://github.com/<your githubs>/docs.chargify.com.git
     cd docs.chargify.com
