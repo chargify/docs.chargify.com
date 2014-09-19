@@ -1,4 +1,4 @@
-*Note: Refunds are currently only supported for the Authorize.Net gateway*
+*Note: Refunds are currently only supported for the following gateways - Authorize.Net, Braintree Blue, CyberSource, Elavon, eWay Rapid, First Data, Paymill, Pin Payments, Samurai, and Stripe*
 
 With Chargify you have the ability to apply a refund to a payment that has been processed at the gateway. 
 
