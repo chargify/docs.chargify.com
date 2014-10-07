@@ -8,8 +8,10 @@ p(warning). Metafield Limitations: Each site is limited to 200 unique Metafields
 The following fields are returned from GET operations.
 
 * @name@ - The name of the attribute that is added to the resource.
-* @scope@ - This specifies where the metafield / metadata will visible
+* @scope@ - This specifies where the metafield / metadata will visible.
 * @data_count@ - The number of metadata that are associated to this metafield.
+* @input_type@ - Can be @text@, @dropdown@, or @radio@.
+* @enum@ - An array of allowed values for this metafield, if specifying an @input_type@ of @dropdown@ or @radio@.
 
 h2. Methods
 
@@ -91,7 +93,6 @@ Create a multipe metafields in one @request@:
 
 Say a record with the name "Pant Style" exists and you wish to rename it to "Style" below is an example @request@:
 
-
 <pre>
   {
     "metafields": {
@@ -99,6 +100,21 @@ Say a record with the name "Pant Style" exists and you wish to rename it to "Sty
     }
   }
 </pre>
+
+Create a @dropdown@ metafield:
+
+<pre>
+  {
+    "metafields": {
+      "input_type":    "dropdown",
+      "enum":          ["Red", "Green", "Blue"],
+      "name":          "Shirt Color",
+      "scope":         {"hosted" => [], "csv" => "1"},
+    }
+  }
+</pre>
+
+In the above case, when metafields are given the @input_type@ of @dropdown@ or @radio@, and an @enum@ of allowed values, we will render a dropdown or radio buttons with those values on the hosted pages. Otherwise, a text input will be rendered, and customers will be able to enter any value.
 
 h3. Delete
 

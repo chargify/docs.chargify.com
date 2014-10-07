@@ -2,7 +2,7 @@ ruby '2.0.0'
 
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.6'
 gem 'doculab', git:  'git://github.com/chargify/doculab.git', ref: 'v0.2.5'
 gem 'rdiscount', '1.6.8'
 gem 'RedCloth', '>=4.2.9'
