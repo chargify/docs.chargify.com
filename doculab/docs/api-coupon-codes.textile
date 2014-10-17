@@ -1,4 +1,4 @@
-Coupon subx codes can be administered in the Admin Interface or via the API.  
+Coupon subcodes can be administered in the Admin Interface or via the API.  
 
 h2. URI/Method
 
