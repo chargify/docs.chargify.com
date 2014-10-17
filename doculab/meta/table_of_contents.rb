@@ -83,6 +83,7 @@ Doculab::TableOfContents.define do
     page "API: Charges"
     page "API: Components"
     page "API: Coupons"
+    page "API: Coupon Subcodes", :permalink => "api-coupon-codes"
     page "API: Credits"
     page "API: Customers"
     page "API: Events"
