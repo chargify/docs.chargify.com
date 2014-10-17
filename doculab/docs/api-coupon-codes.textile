@@ -1,0 +1,158 @@
+Coupon subx codes can be administered in the Admin Interface or via the API.  
+
+h2. URI/Method
+
+
+|_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
+| Coupon Subcodes<br/>@/coupons/:coupon_id/codes@ | "List all coupon subcodes":#api-coupon-code-list | - | - | - |
+| Coupon Subcodes<br/>@/coupons/:coupon_id/codes@ | - | "Create new coupon subcodes":#api-coupon-code-create | - | - |
+| Coupon Subcodes<br/>@/coupons/:coupon_id/codes@ | - | - | "Update coupon subcodes":#api-coupon-codes-update | - |
+| Coupon Subcodes<br/>@/coupons/:coupon_id/codes/:id@ | - | - | - | "Delete a coupon subcode":#api-coupon-codes-delete |
+
+h2. Coupon Input Attributes
+
+When creating a coupon subcode, you must specify a coupon to attach it to using the @coupon_id@. Valid coupon subcodes are all capital letters, contain only letters and numbers, and do not have any spaces. Lowercase letters will be capitalized before the subcode is created.
+
+h2(#api-coupon-code-create). Creating a Coupon Subcode via the API
+
+To create a coupon subcode, simply POST an array of subcodes to the correct URL endpoint.
+
+h3. Create
+
+URL: @https://<subdomain>.chargify.com/coupons/:coupon_id/coupons.<format>@
+Method: @POST@
+Required Parameters: An array of valid coupon subcodes
+Response: The created subcodes, subcodes that were not created because they already exist, and any subcodes not created because they are invalid.
+**Usage Examples:**
+"XML example":#api-xml-coupon-code-create
+"JSON example":#api-json-coupon-code-create
+
+h3(#api-xml-coupon-code-create). XML Create Coupon Subcodes Example
+
+<pre><code><?xml version="1.0" encoding="UTF-8"?>
+  <codes>
+    <code>15OFF</code>
+    <code>20OFF</code>
+    <code>50 OFF</code>
+  </codes>
+</code></pre>
+
+Example Response:
+
+<pre><code> <?xml version="1.0" encoding="UTF-8"?>
+ <codes>
+   <created_codes type=\"array\">
+     <created_code>15OFF</created_code>
+     <created_code>20OFF</created_code>
+   </created_codes>
+   <duplicate_codes type="array"/>
+   <invalid_codes type="array">
+     <invalid_code>50 OFF</invalid_code>
+   </invalid_codes>
+ </codes></code></pre>
+
+h3(#api-json-coupon-code-create). JSON Create Coupon Subcodes Example
+
+<pre><code>{
+  codes: ["15OFF", "20OFF", "50 OFF"]
+ }
+</code></pre>
+
+Example response:
+
+<pre><code>{
+  "created_codes"   => ["15OFF", "20OFF"],
+  "duplicate_codes" => [],
+  "invalid_codes"   => ["50 OFF"]
+}
+</code></pre>    
+
+h2(#api-coupon-code-list). Retrieving Coupon Subcodes via the API
+
+You can retrieve all the coupon subcodes for a given coupon via the API.
+
+h3. List
+
+URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>/codes.<format>@
+Method: @GET@
+Required Parameters: coupon_id
+Response: A collection of coupon subcodes
+
+h3. XML Example Response
+
+<pre><code> <?xml version="1.0" encoding="UTF-8"?>
+ <codes>
+   <code>15OFF</code>
+   <code>20OFF</code>
+ </codes></code></pre>
+
+h3. JSON Example Response
+
+<pre><code>{
+  codes: ["15OFF", "20OFF"]
+ }
+</code></pre>
+
+h2(#api-coupon-code-update). Updating Coupon Subcodes via the API
+
+You can update the subcodes for a given coupon via the API with a @PUT@ request to the resource endpoint. Note that all current subcodes for that coupon will be deleted first, and replaced with the list of subcodes sent to this endpoint.
+
+h3. Update
+
+URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>/codes.<format>@
+Method: @PUT@
+Required Parameters: coupon_id, and an array of new coupon subcodes
+Response: The created subcodes, subcodes that were not created because they already exist, and any subcodes not created because they are invalid.
+**Usage Examples:**
+"XML example":#api-xml-coupon-code-udpate
+"JSON example":#api-json-coupon-code-update
+
+h3(#api-xml-coupon-code-update). XML Update Coupon Subcodes Example
+
+<pre><code><?xml version="1.0" encoding="UTF-8"?>
+  <codes>
+    <code>15OFF</code>
+    <code>20OFF</code>
+    <code>50 OFF</code>
+  </codes>
+</code></pre>
+
+Example Response:
+
+<pre><code> <?xml version="1.0" encoding="UTF-8"?>
+ <codes>
+   <created_codes type=\"array\">
+     <created_code>15OFF</created_code>
+     <created_code>20OFF</created_code>
+   </created_codes>
+   <duplicate_codes type="array"/>
+   <invalid_codes type="array">
+     <invalid_code>50 OFF</invalid_code>
+   </invalid_codes>
+ </codes></code></pre>
+
+h3(#api-json-coupon-code-update). JSON Update Coupon Subcodes Example
+
+<pre><code>{
+  codes: ["15OFF", "20OFF", "50 OFF"]
+ }
+</code></pre>
+
+Example response:
+
+<pre><code>{
+  "created_codes"   => ["15OFF", "20OFF"],
+  "duplicate_codes" => [],
+  "invalid_codes"   => ["50 OFF"]
+}
+</code></pre>    
+
+h2(#api-coupon-code-delete). Deleting Coupon Subcodes via the API
+
+URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>/<coupon_code>.<format>@
+Method: @DELETE@
+Required Parameters: coupon_id, and coupon subcode
+Response: If the coupon subcode is successfully removed, a '200' response code will be returned. Otherwise, a '404' error will be returned.
+
+Given a coupon with an @id@ of @567@, and a coupon subcode of @20OFF@, the URL to delete this coupon subcode would be: @@https://<subdomain>.chargify.com/coupons/567/20OFF.<format>@
+ 
