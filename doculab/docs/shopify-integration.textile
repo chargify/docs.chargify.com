@@ -72,10 +72,11 @@ It is important to understand the distinction between Product Families, Products
 * Name your Product family, add a description (the API handle isn’t necessary for the Shopify integration), and press “Create Product Family”
 
 <b>Create a new Product:</b>
-* Click on “Create New Product” under your new product family
+* Click on “Create New Product”
 * Fill in the:
 ** Product Name
 ** Description (this description will appear on the hosted signup page where your customers signup for your recurring subscription products)
+** Select the Product Family
 ** Billing Configuration
 ** Advanced Options
 ** Optional Integration Configuration

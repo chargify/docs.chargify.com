@@ -14,7 +14,7 @@ h4. How and when are Coupons applied?
 h3. Creating a Coupon
 
 
-Coupons are added to the Product Family from the Products tab. Once a coupon has been created it can be shared across all products in the family. To create a new Coupon click the "Create Coupon" link.
+Coupons are added to the from the Setup tab. When creating a coupon you can specify the products you want that coupon to available to. To create a new Coupon click the "Create Coupon" link.
 
 
 h4. Basic coupon fields:
@@ -25,6 +25,7 @@ h4. Basic coupon fields:
 * **Expiration Date**: Coupons will no longer be redeemable after this time
 * **Amount**: The amount that will be discounted from the initial subscription
 * **Percentage**: The percent of the product's base price that will be discounted
+* **Products**: A list of products that this coupon can be used with
 
 h4. Additional options:
 
@@ -37,7 +38,7 @@ h4. Recurring options:
 By default, coupons are not applied to future payments after the initial signup. However, you can configure them to do such that by selecting either of the **Continue to apply the coupon..** options. You can set them to recur indefinitely or for a certain number of periods.
 
 
-Once you have created a Coupon, it will appear under the Product Family on the Products tab. You can make changes to the component by clicking the 'Edit Coupon' link.
+Once you have created a Coupon, it will appear under the Coupons link on the Setup tab. You can make changes to the coupon by clicking the 'Edit Coupon' link.
 
 h5. Adding Additional Codes
 

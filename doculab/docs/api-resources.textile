@@ -2,5 +2,7 @@
 | Subscriptions<br/>@/subscriptions@ | List subscriptions | Create new subscription | - | - |
 | Subscription<br/>@/subscriptions/<x>@ | Read subscription | - | Update subscription | Cancel subscription |
 | Subscription Charges<br/>@/subscription/<x>/charges@ | - | Create one-time charge | - | - |
-| Product Family Components<br/>@/product_families/<x>/components@ | List components available on a given Product Family | - | - | - |
+| Product Family Components<br/>@/product_families/<x>/components@ * **deprecated*| List components available on a given Product Family  | - | - | - |
 | Subscription Components<br/>@/subscriptions/<x>/components@ | List components in use on a given subscription | - | - | - |
+
+Listing components by product family, i.e. @/product_families/<x>/components@ is not recommended. Components have a direct association with products now and we suggest using the "components API":/api-components

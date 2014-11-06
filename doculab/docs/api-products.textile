@@ -6,7 +6,7 @@ All of the product attribute fields are returned from GET (read) operations, and
 * @name@ The product name
 * @handle@ The product API handle
 * @description@ The product description
-* @product_family@ Nested attributes pertaining to the product family to which this product belongs
+* *Deprecated*: @product_family@ Nested attributes pertaining to the product family to which this product belongs
   * @name@ The product family name
   * @handle@ The product family API handle
   * @accounting_code@ The product family accounting code (has no bearing in Chargify, may be used within your app)
@@ -27,6 +27,9 @@ All of the product attribute fields are returned from GET (read) operations, and
 * @created_at@ Timestamp indicating when this product was created
 * @updated_at@ Timestamp indicating when this product was last updated
 * @archived_at@ Timestamp indicating when this product was archived
+* @coupon_ids@ An array of coupon ids that can be used for this product
+* @component_ids@ An array of component ids that can be used for this product
+
 
 h2. Input Attributes (Create)
 
@@ -34,7 +37,7 @@ h2. Input Attributes (Create)
 * @name@ The product name
 * @handle@ The product API handle
 * @description@ The product description
-* @product_family_id@ The ID of the product family to which the product belongs.
+* *Deprecated*: @product_family_id@ The ID of the product family to which the product belongs.
 * @accounting_code@ The accounting code (has no bearing in Chargify, may be used within your app)
 * @interval_unit@ A string representing the interval unit for this product, either @month@ or @day@
 * @interval@ The numerical interval.  i.e. an @interval@ of '30' coupled with an @interval_unit@ of 'day' would mean this product would renew every 30 days
@@ -52,6 +55,8 @@ h2. Input Attributes (Create)
 * @request_billing_address@ Boolean
 * @taxable@ Boolean
 * @trial_type@ The type of trial for this product, either @no_obligation@ or @payment_expected@.
+* @coupon_ids@ An array of coupon ids that can be used for this product
+* @component_ids@ An array of component ids that can be used for this product
 
 h2. Methods
 
@@ -65,7 +70,7 @@ Response: An array of Products
 "XML example":#api-usage-xml-product-family-products-list
 "JSON example":#api-usage-json-product-family-products-list
 
-h3. List products for a Product Family
+h3. *Deprecated*: List products for a Product Family
 
 URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/products.<format>@  
 Method: @GET@
@@ -101,7 +106,7 @@ Response: An single Product
 
 h3. Create
 
-URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/products.<format>@
+URL: @https://<subdomain>.chargify.com/products.<format>@
 Method: @POST@
 Required Parameters: XML or JSON data, as specified by the required attributes
 Response: The created product, if successful. Errors otherwise.
@@ -181,12 +186,12 @@ Feature: Chargify API XML Product read
         <interval type="integer">1</interval>
         <interval_unit>month</interval_unit>
         <price_in_cents type="integer">4900</price_in_cents>
-        <product_family>
-          <accounting_code>`your value`</accounting_code>
-          <description >`your value`</description>
-          <handle>`your value`</handle>
-          <name>`your value`</name>
-        </product_family>
+        <coupon_ids type="array">
+            <coupon_id type="integer">1</coupon_id>
+        </coupon_ids>
+        <component_ids type="array">
+            <component_id type="integer">1</component_id>
+        </component_ids>
       </product>
       """
 
@@ -214,12 +219,12 @@ Feature: Chargify API XML Product read
        <interval type="integer">1</interval>
        <interval_unit>month</interval_unit>
        <price_in_cents type="integer">4900</price_in_cents>
-       <product_family>
-         <accounting_code>`your value`</accounting_code>
-       <description>`your value`</description>
-         <handle>`your value`</handle>
-         <name>`your value`</name>
-       </product_family>
+        <coupon_ids type="array">
+            <coupon_id type="integer">1</coupon_id>
+        </coupon_ids>
+        <component_ids type="array">
+            <component_id type="integer">1</component_id>
+        </component_ids>
      </product>
      """
 
@@ -257,16 +262,12 @@ Feature: Chargify API JSON Product read
           "price_in_cents":4900,
           "name":"Basic",
           "handle":"basic",
-          "product_family":{
-            "name":`your value`,
-            "handle":`your value`,
-            "description":`your value`,
-            "accounting_code":`your value`
-          },
           "description":`your value`,
           "accounting_code":`your value`,
           "interval_unit":"month",
-          "interval":1
+          "interval":1,
+          "coupon_ids": [],
+          "component_ids": []
         }
       }
       """
@@ -291,16 +292,12 @@ Feature: Chargify API JSON Product read
           "price_in_cents":4900,
           "name":"Basic",
           "handle":"basic",
-          "product_family":{
-            "name":`your value`,
-            "handle":`your value`,
-            "description":`your value`,
-            "accounting_code":`your value`
-          },
           "description":`your value`,
           "accounting_code":`your value`,
           "interval_unit":"month",
-          "interval":1
+          "interval":1,
+          "coupon_ids": [],
+          "component_ids": []
         }
       }
       """
@@ -312,7 +309,7 @@ Feature: Chargify API JSON Product read
     Then the response status should be "404 Not Found"
 </code></pre>
 
-h3(#api-usage-xml-product-family-products-list). XML List Products for Product Family Example
+h3(#api-usage-xml-product-family-products-list). *Deprecated* XML List Products for Product Family Example
 
 <pre><code>
 Scenario: Retrieve a list of my products belonging to a product family
@@ -322,7 +319,7 @@ Scenario: Retrieve a list of my products belonging to a product family
   And the response should be a "products" array with 5 "product" elements
 </code></pre>
 
-h3(#api-usage-json-product-family-products-list). JSON List Products for Product Family Example
+h3(#api-usage-json-product-family-products-list). *Deprecated* JSON List Products for Product Family Example
 
 <pre><code>
 Scenario: Retrieve a list of my products belonging to a product family
@@ -343,8 +340,6 @@ Feature: Chargify API XML Product create
   Background:
     Given I am a valid API user
     And I send and accept XML
-    And I have a product family
-
 
   Scenario: Create a product successfully
     Given I have this xml product data
@@ -359,9 +354,15 @@ Feature: Chargify API XML Product create
         <price_in_cents>1000</price_in_cents>
         <interval>1</interval>
         <interval_unit>month</interval_unit>
+        <coupon_ids type="array">
+            <coupon_id type="integer">1</coupon_id>
+        </coupon_ids>
+        <component_ids type="array">
+            <component_id type="integer">1</component_id>
+        </component_ids>
       </product>
       ""
-    When I send a POST request with the xml data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/products.xml
+    When I send a POST request with the xml data to https://[@subdomain].chargify.com/products.xml
     Then the response status should be "201 Created"
     And the response should be the xml:
     ""
@@ -389,13 +390,12 @@ Feature: Chargify API XML Product create
       <return_url nil="true"></return_url>
       <update_return_url nil="true"></update_return_url>
       <return_params nil="true"></return_params>
-      <product_family>
-        <id>`auto generated`</id>
-        <accounting_code>`your value`</accounting_code>
-        <handle>`your value`</handle>
-        <name>`your value`</name>
-        <description>`your value`</description>
-      </product_family>
+      <coupon_ids type="array">
+        <coupon_id type="integer">1</coupon_id>
+      </coupon_ids>
+      <component_ids type="array">
+        <component_id type="integer">1</component_id>
+      </component_ids>
     </product>
      """
 </code></pre>
@@ -411,7 +411,6 @@ Feature: Chargify API JSON Product create
   Background:
     Given I am a valid API user
     And I send and accept JSON
-    And I have a product family
 
   Scenario: Create a product successfully
     Given I have this json product data
@@ -424,10 +423,12 @@ Feature: Chargify API JSON Product create
         "request_credit_card":true,
         "price_in_cents":1000,
         "interval":1,
-        "interval_unit":"month"
+        "interval_unit":"month",
+        "coupon_ids": [1],
+        "component_ids": [1],
       }}
       ""
-    When I send a POST request with the json data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/products.json
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/products.json
     Then the response status should be "201 Created"
     And the response should be the json:
     ""
@@ -455,13 +456,8 @@ Feature: Chargify API JSON Product create
          "created_at":`auto generated`,
          "updated_at":`auto generated`,
          "archived_at":null,
-         "product_family":{
-           "id":`auto generated`,
-           "name":`your value`,
-           "handle":`your value`,
-           "accounting_code":`your value`,
-           "description":`your value`
-         }
+         "coupon_ids": [1],
+         "component_ids": [1],
        }
      }
      ""
@@ -482,7 +478,7 @@ Feature: Chargify API JSON Product create
         "trial_interval_unit":"month"
       }}
       ""
-    When I send a POST request with the json data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/products.json
+    When I send a POST request with the json data to https://[@subdomain].chargify.com/products.json
     Then the response status should be "422 Unprocessable Entity"
     And the response should be the json:
     ""

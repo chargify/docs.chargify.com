@@ -1,6 +1,6 @@
-Components are defined and associated with a product family.  They become a part of your product offering.  These *component definitions* determine what components are named, how they are measured, and how much they cost.
+Components are defined and associated with products.  They become a part of your product offering.  These *component definitions* determine what components are named, how they are measured, and how much they cost.
 
-Components can then be added and "allocated" for each subscription to a product in the product family.  These *component line-items* affect how much a subscription will be charged, depending on the current allocations (i.e. 4 IP Addresses, or SSL "enabled")
+Components can then be added and "allocated" for each subscription to a product.  These *component line-items* affect how much a subscription will be charged, depending on the current allocations (i.e. 4 IP Addresses, or SSL "enabled")
 
 p(warning). The Components API is deprecated and will not receive new features. Chargify will continue to support it until further notice. For new development or updates, please use the "Allocations API":/api-allocations instead.
 
@@ -9,11 +9,14 @@ This documentation covers both *component definitions* and *component line-items
 h2. URI/Method
 
 |_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
-| Component Definitions<br/>@/product_families/<x>/components@ | List component definitions | - | - | - |
-| Component Definition<br/>@/product_families/<x>/components/<y>@ | Read a component definition | - | - | - |
-| Component Definition<br/>@/product_families/<x>/[plural_kind]@ | - | Create a Component definition | - | - |
+| Component Definitions<br/>@/<x>/components@ | List component definitions | - | - | - |
+| Component Definition<br/>@/<x>/components/<y>@ | Read a component definition | - | - | - |
+| Component Definition<br/>@/<x>/[plural_kind]@ | - | Create a Component definition | - | - |
 | Components Line-Items<br/>@/subscriptions/<x>/components@ | List component line-items belonging to a Subscription | - | - | - |
 | Component Line-Item<br/>@/subscriptions/<x>/components/<y>@ | Read a component line-item belonging to a Subscription | - | - | - |
+| Component Definitions<br/>@/product_families/<x>/components@  *deprecated*| List component definitions | - | - | - |
+| Component Definition<br/>@/product_families/<x>/components/<y>@ *deprecated*| Read a component definition | - | - | - |
+| Component Definition<br/>@/product_families/<x>/[plural_kind]@ *deprecated*| - | Create a Component definition | - | - |
 
 
 h2. Component Definition Input Attributes
@@ -27,7 +30,8 @@ These values should be nested beneath a key that defines the kind of component b
 * @prices@ (Not required for On/Off Components or 'per_unit' pricing schemes) One or more price brackets. See "Product Components":/product-components for an overview of how price brackets work for different pricing schemes.
 ** @starting_quantity@ 
 ** @ending_quantity@ 
-** @unit_price@ 
+** @unit_price@
+* @product_ids@ An array of product ids that this component is available to.
 
 h2. Component Definition Output Attributes
 
@@ -42,7 +46,7 @@ Component definitions refer to the components you create that become available t
 ** @starting_quantity@ 
 ** @ending_quantity@ 
 ** @unit_price@
-* @product_family_id@ The id of the Product Family to which the Component belongs
+* @product_family_id@ The id of the Product Family to which the Component belongs. (This is deprecated in favor of @product_ids@)
 * @kind@ A handle for the component type: metered_component, quantity_based_component, on_off_component
 * @price_per_unit_in_cents@ (*This field is deprecated (see note below)*) This represents the unit price prior to the Chargify upgrade to fractional cent component pricing. This field may no longer represent the correct unit price of the component. The @unit_price@ field should be used instead.
 * @archived@ Boolean flag describing whether a component is archived or not.
@@ -119,30 +123,27 @@ Response: A component
 "XML example":#api-subscription-xml-component-read
 "JSON example":#api-subscription-json-component-read
 
-h3. List Components for a Product Family
+h3. List Components
 
-URL: @https://<subdomain>.chargify.com/product_families/<product_family_id_>/components.<format>@
+URL: @https://<subdomain>.chargify.com/components.<format>@
 Method: @GET@
 Required Parameters:
-@product_family_id@: The id of the product family from which you want to get a listing of available components
 @include_archived@: Boolean, default 0. If 1 is sent then archived components will also be included.
 Response: An array of Components
 
-h3. Read Component for a Product Family
+h3. Read Component
 
-URL: @https://<subdomain>.chargify.com/product_families/<product_family_id_>/components/<component_id>.<format>@
+URL: @https://<subdomain>.chargify.com/components/<component_id>.<format>@
 Method: @GET@  
 Required Parameters:
-@product_family_id@: The id of the applicable product family
 @component_id@: The id of the component you want to retrieve information about
 Response: A component
 
 h3. Create Component
 
-URL: @https://<subdomain>.chargify.com/product_families/<product_family_id_>/<plural_kind_>.<format>@
+URL: @https://<subdomain>.chargify.com/<plural_kind_>.<format>@
 Method: @POST@
 Required Parameters: 
-@product_family_id@: The id of the product family from which you want to get a listing of available components
 @plural_kind@: The endpoint for the type of component you want to create. Valid values: @metered_components@, @quantity_based_components@, @on_off_components@
 @XML or JSON data@: Specified by the required attributes  
 Response: A component
@@ -220,6 +221,7 @@ Feature: Chargify Component Read/Show/Lookup for a Subscription XML API
              <name>`auto generated`</name>
              <unit_name>`auto generated`</unit_name>
              <kind>`auto generated`</kind>
+             <product_ids>[@product.id]</product_ids>
 	  </component>
 	</component>
       """
@@ -255,6 +257,7 @@ Feature: Chargify Subscriptions Read/Show/Lookup JSON API
             "subscription_id": [@subscription.id],
             "component_id": [@component.id],
             "unit_name": "`auto generated`"
+            "product_ids: [@subscription.product.id]
           }
 	}
       """
@@ -289,10 +292,11 @@ h3(#api-json-components-create). JSON Create Component Example
           "pricing_scheme": "stairstep",
           "prices":[
             {"starting_quantity":1, "unit_price":1.0, "component":null}
-          ]
+          ],
+          "product_ids": [@product.id]
         }}
         """
-      When I send a POST request with the json data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/metered_components.json
+      When I send a POST request with the json data to https://[@subdomain].chargify.com/metered_components.json
       Then the response status should be "201 Created"
 </code></pre>
 
@@ -319,9 +323,12 @@ h3(#api-xml-components-create). XML Create Component Example
           <unit_name>I.P Addresses</unit_name>
           <pricing_scheme>per_unit</pricing_scheme>
           <unit_price>1.00</unit_price>
+          <product_ids type="array">
+           <product_id type="integer">[@product.id]</product_id>
+          </product_ids>
         </quantity_based_component>
         """
-      When I send a POST request with the xml data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/quantity_based_components.xml
+      When I send a POST request with the xml data to https://[@subdomain].chargify.com/quantity_based_components.xml
       Then the response status should be "201 Created"
 	  
 	Scenario: Successfully create a metered component with per_unit pricing
@@ -334,8 +341,11 @@ h3(#api-xml-components-create). XML Create Component Example
           <unit_name>ip</unit_name>
           <pricing_scheme>per_unit</pricing_scheme>
           <unit_price>1.00</unit_price>
+          <product_ids type="array">
+           <product_id type="integer">[@product.id]</product_id>
+          </product_ids>
         </metered_component>
         """
-      When I send a POST request with the xml data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/metered_components.xml
+      When I send a POST request with the xml data to https://[@subdomain].chargify.com/metered_components.xml
       Then the response status should be "201 Created"
 </code></pre>      
