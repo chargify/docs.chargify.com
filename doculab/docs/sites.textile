@@ -41,7 +41,7 @@ Every Site may be in one of two modes: test mode or live mode. Test mode is diff
 
 h3. Switching Sites
 
-In order to work with a Site (configure Products, see Subscriptions, etc) you will first need to "switch" to it.  You can do this at any time via the "Site Switcher" pull down menu in the toolbar.  The current site is always listed first, with your other Sites listed thereafter.
+In order to work with a Site (configure Products, see Subscriptions, etc) you will first need to "switch" to it.  You can do this at any time via the "Site Selector" pull down menu in the toolbar.  The current site is always listed first, with your other Sites listed thereafter.
 
 !/images/doculab/sites-2.png!
 
