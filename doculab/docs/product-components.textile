@@ -1,6 +1,6 @@
 Components allow you to introduce additional "line items" to your Products that are often expressed as "add-ons", upsold features, or pay-per-use items. See the "blog post about quantity-based components":http://chargify.com/blog/new-feature-quantity-based-components/ that introduces the Components feature in general.
 
-Components are defined at the Product Family level, and are therefore available to all Products within the Family.
+*A component is available to only the products that you specify when creating or editing a component.*
 
 p(note). Components that are "used" on a Subscription have their *charges billed at the end of the period* (which coincides with the start of the next period, which is when recurring charges are also billed).  See "Setting Component Allocations":/setting-component-allocations for more.
 
@@ -39,9 +39,9 @@ This component type is used to elect "add-on" options where electing the option 
 * A web app offers an SSL connection upgrade at $5/month
 
 
-h2. Creating/Configuring Components available for Product Families
+h2. Creating/Configuring Components
 
-Components are defined on the Product Family level, and are available to all Products within the Family.  To create any Component for a Product Family, start on the "Products" tab and click "Create a Component".
+To create any Component start on the "Setup" tab and click "Components".
 
 !{width:640px}/images/doculab/prod-comp-1.png!
 
@@ -49,12 +49,15 @@ Next, you'll be able to choose what type of component to create.
 
 !{width:640px}/images/doculab/prod-comp-2.png!
 
+!{width:640px}/images/doculab/prod-comp-3.png!
+
 
 h3. Creating Quantity-based Components
 
 Choose to create a "Quantity Based Component" and define it using the form.
 
-!https://s3.amazonaws.com/entp-tender-production/assets/3cd793004f7796295b38fdbcb07a3c6aa54306da/_Chargify__Acme__Inc.___My_Site___New_Quantity_Based_Component_3_normal.png!
+!/images/doculab/new-quant-comp.png!
+
 
 Quantity Components support 4 "pricing schemes" via a dropdown select on this form: per-unit, volume, tiered, and stairstep.  The latter 3 schemes (volume, tiered, and stairstep) allow you to define multiple price brackets (or "steps"), so you can charge different amounts depending on the quantity allocated.
 
@@ -114,9 +117,9 @@ Choose to create a "Metered Component" and define it using the form.
 
 Creating a Metered Component works exactly like creating a Quantity Based Component (see above).
 
-Once you have created a Metered Component, it will appear under the Product Family on the Products tab. You can make changes to the component by clicking the 'Edit' link.
+Once you have created a Metered Component, it will appear under the Components link on the Settings tab. You can make changes to the component by clicking the 'Edit' link.
 
-!https://s3.amazonaws.com/entp-tender-production/assets/935dc96e5323745369be443fb3270adcd4dd5909/metered_index_normal.jpg!
+!{width:640px}/images/doculab/metered-comp.png!
 
 h3. Creating On/Off Components
 
@@ -128,13 +131,13 @@ An On/Off Component consists of 3 pieces of information:
 * **Price**: The amount the customer will be charged per unit
 
 
-Once you have created an On/Off Component, it will appear under the Product Family on the Products tab. You can make changes to the component by clicking the 'Edit' link.
+Once you have created an On/Off Component, it will appear under the Components link on the Settings tab. You can make changes to the component by clicking the 'Edit' link.
 
 
 
 h2. Setting Component allocations on Subscriptions
 
-Once a Component has been defined for a Product Family, any Subscription to a Product within that Family may have usage or allocation data reported in order to assess charges for them at the end of the period.
+Once a Component has been defined and explicity associated with a Product, any Subscription to one of those Products may have usage or allocation data reported in order to assess charges for them at the end of the period.
 
 For more information, please see "Setting Component Allocations":/setting-component-allocations.
 

@@ -14,11 +14,11 @@ Each seller may have as many "Sites" as they wish. A Site is a container for you
 
 For more about Sites, see the "Sites Intro":/sites
 
-h3. Products & Product Families
+h3. Products
 
 Products are the things that you sell. You must have Products set up in order to sell or initiate Subscriptions.
 
-Products are grouped in to *Product Families*. Typically, _a Product Family groups the Products between which your Customers may upgrade and downgrade_.
+Products can optionally be grouped in to *Product Families*.
 
 Consider the following example of the pricing page from "grasshopper.com":http://grasshopper.com.
 
@@ -29,8 +29,6 @@ If mapped in to Chargify, *the Products would be*:
 * Ramp
 * Grow
 * Max
-
-*All of these Products would be a part of the same Product Family*, the Grasshopper Virtual Phone System.  Customers are free to upgrade and downgrade between the different products, and Customers typically only have access to one of the Product in the Product Family at a time.
 
 For more information, see the "Products Intro":/products-intro.
 

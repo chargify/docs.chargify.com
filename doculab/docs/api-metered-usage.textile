@@ -43,11 +43,12 @@ Response: The created usage log
 "XML example":#api-usage-xml-create  
 "JSON example":#api-usage-json-create
 
-h3. List Components for a Product Family
+h3. List Components
 
-URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/components.xml@
+URL: @https://<subdomain>.chargify.com/components.xml@
 Method: @GET@  
-Required Parameters: @product_family_id@
+Required Parameters:
+Optional Parameters: @product_family_id@
 
 Response: A collection of components
 
@@ -71,7 +72,7 @@ Feature: Chargify Metered Component Usage XML API
 
   Scenario: List metered component usages for a subscription
     Given I have 1 product
-    And the product family has a metered component
+    And the site has a metered component
     And I have an active subscription to the first product
     And the component is associated with the subscription
     And the component has 2 usages
@@ -94,7 +95,7 @@ Feature: Chargify Metered Component Usage JSON API
 
   Scenario: List metered component usages for a subscription
     Given I have 1 product
-    And the product family has a metered component
+    And the site has a metered component
     And I have an active subscription to the first product
     And the component is associated with the subscription
     And the component has 2 usages
@@ -117,7 +118,7 @@ Feature: Chargify Metered Component Usage XML API
 
   Scenario: Record metered usage
     Given I have 1 product
-    And the product family has a metered component
+    And the site has a metered component
     And I have an active subscription to the first product
     And I have this xml usage data
       """
@@ -156,7 +157,7 @@ Feature: Chargify Metered Component Usage JSON API
 
   Scenario: Record metered usage
     Given I have 1 product
-    And the product family has a metered component
+    And the site has a metered component
     And I have an active subscription to the first product
     And I have this json usage data
       """
@@ -183,24 +184,24 @@ Feature: Chargify Metered Component Usage JSON API
 </code></pre>
 
 
-h3(#api-list-comp-xml). XML List Components for a Product Family
+h3(#api-list-comp-xml). XML List Components
 
 <pre><code>
-Scenario: List metered components in product family
+Scenario: List metered components
   Given I have 1 product
-  And the product family has a metered component
-  When I send a GET request to https://[@subdomain].chargify.com/product_families/[@product_family.id]/components.xml
+  And the site has a metered component
+  When I send a GET request to https://[@subdomain].chargify.com/components.xml
   Then the response status should be "200 OK"
   And the response should be a "components" array with 1 "component" element
 </code></pre>
 
-h3(#api-list-comp-json). JSON List Components for a Product Family
+h3(#api-list-comp-json). JSON List Components
 
 <pre><code>
-Scenario: List metered components in product family
+Scenario: List metered components
   Given I have 1 product
-  And the product family has a metered component
-  When I send a GET request to https://[@subdomain].chargify.com/product_families/[@product_family.id]/components.json
+  And the site has a metered component
+  When I send a GET request to https://[@subdomain].chargify.com/components.json
   Then the response status should be "200 OK"
   And the response should be a json array with 1 "component" object
 </code></pre>

@@ -14,7 +14,9 @@ h2. URI/Method
 
 h2. Coupon Input Attributes
 
-When creating a coupon, you must specify a product family using the @product_family_id@. *If no @product_family_id@ is passed, the first product family available is used.*
+When creating a coupon, you must specify the @product_ids@ that you want this coupon valid for.
+
+Previously you needed to specify a @product_family_id@. This is *deprecated* but still supported. If you do not supply @product_ids@ but you supply a @product_family_id@, the coupon will be associated to all the products in that product family. If no @product_ids@ or @product_family_id@ is passed, the first product family available is used.
 
 * @name@ The internal coupon name. This information is never displayed to customers.
 * @code@ The coupon code. This is used by you or your customers to apply the coupon to a subscription.
@@ -25,7 +27,8 @@ When creating a coupon, you must specify a product family using the @product_fam
 * @recurring@ Boolean. If true, the discount will be applied at signup and every renewal (for the number of renewals given by @duration_period_count@). Otherwise, discount will be applied only at signup.
 * @duration_period_count@ Integer. Number of renewals the coupon is good for. Recurring should be set to true.  Setting @recurring@ to true and leaving this blank indicates that the coupon applies indefinitely.
 * @coupon_end_date@ Coupon ending date.  If set, the coupon will expire at the end of the day on this date.
-* @product_family_id@. The ID of the product family to which the coupon belongs.  The coupon can be applied *only* to products in this product family.
+* @product_ids@ An array of products that this coupon is valid for.
+* *Deprecated* @product_family_id@. The ID of the product family to which the coupon belongs.  The coupon can be applied *only* to products in this product family.
 
 h2(#api-coupon-create). Creating a Coupon via the API
 
@@ -53,7 +56,7 @@ h3(#api-usage-xml-coupon-create). XML Create Coupon Example
           <allow_negative_balance>false</allow_negative_balance>
           <recurring>false</recurring>
           <end_date>2012-08-29T12:00:00-04:00</end_date>
-          <product_family_id>2</product_family_id>
+          <product_ids type="array"><product_id type="integer">1</product_id></product_ids>
         </coupon>
 </code></pre>
 
@@ -69,7 +72,7 @@ h3(#api-usage-json-coupon-create). JSON Create Coupon Example
            "allow_negative_balance": "false",
            "recurring": "false",
            "end_date": "2012-08-29T12:00:00-04:00",
-           "product_family_id": "2"
+           "product_ids": [2,3]
       }
     }
 </code></pre>
@@ -114,16 +117,16 @@ You can verify if an specific coupon code is valid using the @validate@ method. 
 
 h3. Validate
 
-URL: @https://<subdomain>.chargify.com/coupons/validate.<format>?code=<coupon_code>@
+URL: @https://<subdomain>.chargify.com/coupons/validate.<format>?code=<coupon_code>&product_id=<product_id>@
 Method: @GET@
-Required Parameters:  coupon_id or coupon_code
+Required Parameters:  coupon_id or coupon_code and product_id
 Response: If the coupon is invalid, the status code will be 404 and the response will say why its invalid. If it's valid the status code will be 200 and the coupon will be returned. The following reasons for invalidity are supported:
 
 * Coupon not found
 * Coupon is invalid
 * Coupon expired
 
-If you have more than one product family and if the coupon you are validating does not belong to the first product family in your site, then you will need to specify (either in the url or as a query string param) the product family id.
+*Deprecated*: Instead of a @product_id@ you can pass in a @product_family_id@. If you do not specify either a @product_id@ or a @product_family_id@ the coupon code will be validated against the *first* product family.
 
 Eg.
 
@@ -144,15 +147,13 @@ Method: @GET@
 Required Parameters: code
 Response: The coupon
 
-If you have more than one product family and if the coupon you are trying to find does not belong to the first product family in your site, then you will need to specify (either in the url or as a query string param) the product family id.
-
 Eg.
 
-<pre><code>https://<subdomain>.chargify.com/product_families/<product_family_id>/coupons/find.<format>?code=<coupon_code></code></pre>
+<pre><code>https://<subdomain>.chargify.com/coupons/find.<format>?code=<coupon_code></code></pre>
 
 Or
 
-<pre><code>https://<subdomain>.chargify.com/coupons/find.<format>?code=<coupon_code>&product_family_id=1</code></pre>
+*Deprecated*: <pre><code>https://<subdomain>.chargify.com/coupons/find.<format>?code=<coupon_code>&product_family_id=1</code></pre>
 
 
 h2(#api-coupon-usage). Coupon Usage
