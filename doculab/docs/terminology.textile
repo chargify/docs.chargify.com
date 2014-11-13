@@ -30,7 +30,7 @@ If mapped in to Chargify, *the Products would be*:
 * Grow
 * Max
 
-*All of these Products would be a part of the same Product Family*, the Grasshopper Virtual Phone System.  Customers are free to upgrade and downgrade between the different products, and Customers typically only have access to one of the Product in the Product Family at a time.
+*All of these Products would be a part of the same Product Family*, the Grasshopper Virtual Phone System.  Customers are free to upgrade and downgrade between the different products, and Customers typically only have access to one of the Products in the Product Family at a time.
 
 For more information, see the "Products Intro":/products-intro.
 
