@@ -7,4 +7,4 @@ Your Site Settings control the behavior of the following:
 * "Gateway Configuration":/gateway-configuration - choose your gateway and enter your credentials
 * Post-back configuration
 * Dunning plans
-* Hosted page configuration (page title, custom CSS, terms of service, etc)
+* Public Page configuration (page title, custom CSS, terms of service, etc)

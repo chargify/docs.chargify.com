@@ -22,7 +22,7 @@ h4. European Union - Value Added Tax
 
 The EU VAT type works just like the General Tax, with a few distinctions:
 * Tax Rules can only be defined on the country level, not state/province
-* EU customers are given the ability to opt out of the tax on the hosted pages if they provide a valid VAT number (Note: only customers outside of your own country are allowed to opt out.)
+* EU customers are given the ability to opt out of the tax on the Public Pages if they provide a valid VAT number (Note: only customers outside of your own country are allowed to opt out.)
 
 !/images/doculab/tax-4.png!
 

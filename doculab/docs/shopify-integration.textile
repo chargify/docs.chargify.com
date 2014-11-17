@@ -1,4 +1,4 @@
-The Chargify app allows you to subscribe your customers to the products they now buy as one-time purchases in your store. Rather than adding their purchases to the shopping cart, your customers will click “Signup” and then be directed to Chargify's customizable hosted signup pages. Once your customers have subscribed to the product in Chargify, you can use all of our great features to manage your recurring revenue business.
+The Chargify app allows you to subscribe your customers to the products they now buy as one-time purchases in your store. Rather than adding their purchases to the shopping cart, your customers will click “Signup” and then be directed to Chargify's customizable Public Signup Pages. Once your customers have subscribed to the product in Chargify, you can use all of our great features to manage your recurring revenue business.
 
 The Chargify app allows you to:
 * Setup a site in Chargify
@@ -15,7 +15,7 @@ Check out the Chargify app in the "Shopify App Store":http://apps.shopify.com/ch
 
 h2. Installation
 
-To get started, you will need to install the Chargify app in your Shopify store. 
+To get started, you will need to install the Chargify app in your Shopify store.
 * Login to your Shopify store.
 * Install the Chargify app:
 ** In Shopify, click on "Apps" in the navigation bar
@@ -27,7 +27,7 @@ To get started, you will need to install the Chargify app in your Shopify store.
 !/images/doculab/shopify-installation.png!
 
 * **If you don’t have an existing Chargify account**, you will click “Create a New Chargify Account”. A new Chargify account will automatically be created for you.
-**If you already have an existing Chargify site set up**, you will enter your Chargify site’s Subdomain and API Key. 
+**If you already have an existing Chargify site set up**, you will enter your Chargify site’s Subdomain and API Key.
 Your subdomain can be found by logging into your Chargify account and copying the “subdomain” from the site you wish to link to Shopify:
 <center>!/images/doculab/site-settings.png!</center>
 The API Key can be found in your Chargify account by clicking on the “API Access” tab in the left hand navigation column on the “Home” screen:
@@ -41,7 +41,7 @@ You’ll then be redirected to your Chargify account where you will setup your g
 
 h2. Gateway Setup
 
-You will need a payment gateway and merchant account to process payments with Chargify. Please note that Shopify Payments is not a Chargify supported gateway, however, Shopify payments is powered by Stripe, which is a supported gateway. 
+You will need a payment gateway and merchant account to process payments with Chargify. Please note that Shopify Payments is not a Chargify supported gateway, however, Shopify payments is powered by Stripe, which is a supported gateway.
 
 "Stripe":https://www.stripe.com and "Authorize.net":http://www.authorize.net are the 2 most popular supported payment gateways. Stripe has an integrated merchant account, while Authorize.net has teamed with Merchant Focus as a preferred merchant account provider.
 
@@ -49,7 +49,7 @@ For more information, see "Chargify Supported Payment Gateways":https://chargify
 
 * Click on the “Configure Gateway Credentials” link:
 <center>!/images/doculab/shopify-configure-gateway.png!</center>
-Your gateway will automatically be set to the “Chargify Test Gateway”. You will be able to process subscriptions in test mode to prepare for making your products live in your Shopify store. This will help to ensure everything is setup and working properly. 
+Your gateway will automatically be set to the “Chargify Test Gateway”. You will be able to process subscriptions in test mode to prepare for making your products live in your Shopify store. This will help to ensure everything is setup and working properly.
 (See "Gateway Configuration":https://docs.chargify.com/gateway-configuration here for more information about the Chargify test gateway and test credit card numbers available to force a successful or failed transaction.)
 
 * Once you’re ready to process live transactions and have your gateway and merchant account setup, you will click “USE THIS GATEWAY” next to the gateway of your choice:
@@ -67,7 +67,7 @@ It is important to understand the distinction between Product Families, Products
 <i>Note: A product family is auto-created when you complete your Shopify integration. To change the product family name, go to the “Setup” tab in your Chargify account and click “edit” next to the product family name.</i>
 
 <b>Create a new Product Family:</b>
-* Click on the “Setup” tab 
+* Click on the “Setup” tab
 * Click “Create a New Product Family”
 * Name your Product family, add a description (the API handle isn’t necessary for the Shopify integration), and press “Create Product Family”
 
@@ -75,7 +75,7 @@ It is important to understand the distinction between Product Families, Products
 * Click on “Create New Product” under your new product family
 * Fill in the:
 ** Product Name
-** Description (this description will appear on the hosted signup page where your customers signup for your recurring subscription products)
+** Description (this description will appear on the Public Signup Page where your customers signup for your recurring subscription products)
 ** Billing Configuration
 ** Advanced Options
 ** Optional Integration Configuration
@@ -89,17 +89,17 @@ Now that your recurring products are setup in Chargify, you will need to publish
 * Select “Shopify” from the left column
 * Press “Publish Your Products To Shopify”
 
-Your Chargify products will be retrieved and a screen will appear with all of the products that are available to publish to your Shopify store:  
+Your Chargify products will be retrieved and a screen will appear with all of the products that are available to publish to your Shopify store:
 <center>!/images/doculab/shopify-products.png!</center>
 
 * Click “Add to Shopify” next to the product.
-* The product status will update to “hidden”: 
+* The product status will update to “hidden”:
 
 <center>!/images/doculab/shopify-products-hidden.png!</center>
 
 * Press the “Publish in Shopify” link and you will be brought directly to the new product page in your Shopify dashboard (you will need to do this for each product).
 * Add your product photo(s) and additional information.
-* All Chargify products require the @product.recurring@ template in order to work properly. Once a product is published in Shopify, scroll to the bottom of the Shopify product page to ensure that the proper template is selected: 
+* All Chargify products require the @product.recurring@ template in order to work properly. Once a product is published in Shopify, scroll to the bottom of the Shopify product page to ensure that the proper template is selected:
 
 <center>!/images/doculab/shopify-recurring.png!</center>
 
@@ -115,27 +115,27 @@ Your Chargify products will be retrieved and a screen will appear with all of th
 
 h2. Verify The Setup Is Complete
 
-Once the process is complete and you’ve successfully published Chargify products to your Shopify store, you’ll want to verify that the recurring products have a “Signup” button rather than an “Add to Cart” button: 
+Once the process is complete and you’ve successfully published Chargify products to your Shopify store, you’ll want to verify that the recurring products have a “Signup” button rather than an “Add to Cart” button:
 
 <center>!/images/doculab/shopify-product.png!</center>
 
-Click on the “Signup” button to ensure the customer is brought to the Chargify hosted page for checkout instead of the Shopify cart.
+Click on the “Signup” button to ensure the customer is brought to the Chargify Public Signup Page for checkout instead of the Shopify cart.
 
 <i>Note: Some Shopify templates automatically replace the “Add to Cart” button with the “Signup” button, but some do not. If your store still shows the “Add to Cart” button on your recurring subscription product pages, please follow these additional instructions.</i>
 
 h2. Replacing "Add to Cart" with "Signup" Button
 
-* In your Shopify admin, select “Themes” in the left navigation column. 
+* In your Shopify admin, select “Themes” in the left navigation column.
 * Select “Customize theme”.
 * Select “Template editor” at the top of the page.
-* Select your published theme’s “Template Editor” to edit files: 
+* Select your published theme’s “Template Editor” to edit files:
 * Under the “Templates” section, select the @product.recurring.liquid@ template.
 You'll need to locate the following code:
 <pre><code><input type="submit" id="add-to-cart" class="button" name="add" value="Add to cart" /></code></pre>
 <i>Hint: Search for “Add to Cart” within the text using “Ctrl + F” on a PC or “Command + F” on a Mac.</i>
 * If your @product.recurring.liquid@ template doesn’t include the “Add to cart” code, then your theme uses “Snippets” and you’ll need to replace the “Add to Cart” button in a different location:
 ** Under the “Snippets” section, find the corresponding file that matches up with the snippet code referenced in the “product.recurring.liquid” template (for example: @{% include 'product' %}@ would indicate that there is a @product.liquid@ template that contains the “Add to Cart” code shown in step 4.
-** Locate the “Add to cart” reference within the code. 
+** Locate the “Add to cart” reference within the code.
 ** Continue to next step.
 * “Add to Cart” input that you’ll replace with the following snippet:
 <pre><code>{% if product.metafields.chargify.hosted_signup_url %}
@@ -178,8 +178,8 @@ Once you’re set up, you’ll notice new Orders are automatically created in yo
 <p></p>
 h2. Troubleshooting
 
-* DO NOT DELETE THE CHARGIFY APP FROM SHOPIFY. If you do, please contact Chargify so we can remove the integration from your Chargify account before you attempt to reinstall. 
-* If a product is archived in Chargify, you must manually delete it from your Shopify store. 
+* DO NOT DELETE THE CHARGIFY APP FROM SHOPIFY. If you do, please contact Chargify so we can remove the integration from your Chargify account before you attempt to reinstall.
+* If a product is archived in Chargify, you must manually delete it from your Shopify store.
 * Updating your API key in Chargify does NOT affect the Shopify integration. If you receive an error after updating your Chargify API key, clear your browser cache and history and try again.
 
 h2. FAQ
@@ -190,23 +190,23 @@ When you create a Chargify account through the Shopify app, you are entitled to 
 **Will my Chargify orders and customer information appear in my Shopify store?**
 If you choose to enable “Create a new order in my Shopify store upon Chargify subscription creation or renewal” in your Chargify app settings, a new customer will be created in Shopify (if one does not already exist) and orders will flow from Chargify to Shopify at signup and each subsequent renewal: "https://chargify.com/blog/shopify-orders/":https://chargify.com/blog/shopify-orders/
 
-If you choose not to enable this setting, no order information will flow into Shopify from Chargify and no customer records will be created. 
+If you choose not to enable this setting, no order information will flow into Shopify from Chargify and no customer records will be created.
 
 <i>Note: There is also a 3rd party app available that allows your customers to manage their orders & subscriptions through their Shopify customer account. "https://apps.shopify.com/chargify-accounts-by-eshop-admin":https://apps.shopify.com/chargify-accounts-by-eshop-admin. This app has not been tested by Chargify, therefore we cannot vouch for its reliability and are unable to provide support should any issues occur.</i>
 
 **Does Chargify work in conjunction with any fulfillment software?**
-Chargify currently does not support any integrations with fulfillment software directly, however, this may change in the future. Most Chargify merchants that ship physical products export their subscriptions to a CSV file and use the data to indicate when a product should be shipped. 
+Chargify currently does not support any integrations with fulfillment software directly, however, this may change in the future. Most Chargify merchants that ship physical products export their subscriptions to a CSV file and use the data to indicate when a product should be shipped.
 
 If you’ve opted to have orders flow into Shopify from Chargify, each time an order is created Chargify will do an API call to get the SKU of the first variant in the Shopify product page and send it with the order information. This will allow most third party fulfillment applications to pick up the SKU (just like a Shopify order).
 
 **Can my customers purchase Shopify and Chargify products and only have to checkout once?**
-Currently, each Chargify product must be purchased separately. Your customers will need to purchase recurring products through the Chargify hosted signup page and any one-time Shopify products through the Shopify shopping cart. 
+Currently, each Chargify product must be purchased separately. Your customers will need to purchase recurring products through the Chargify Public Signup Page and any one-time Shopify products through the Shopify shopping cart.
 
 **How can my customers purchase more than a Quantity of 1?**
-You can allow multiple quantities of the same recurring product to be purchased at one time by setting up product components and allowing your customer to choose the quantity (or add-on) on the Chargify hosted signup page: "https://docs.chargify.com/product-components":https://docs.chargify.com/product-components
+You can allow multiple quantities of the same recurring product to be purchased at one time by setting up product components and allowing your customer to choose the quantity (or add-on) on the Chargify Public Signup Page: "https://docs.chargify.com/product-components":https://docs.chargify.com/product-components
 
 **Will my Shopify variants get sent to Chargify?**
-No. Variants selected on Shopify product pages do not get sent to the Chargify Hosted Signup Pages. Custom fields can be created in Chargify to allow customers to input text values for sizes, colors, and other variants that don’t add a cost to the subscription.
+No. Variants selected on Shopify product pages do not get sent to the Chargify Public Signup Pages. Custom fields can be created in Chargify to allow customers to input text values for sizes, colors, and other variants that don’t add a cost to the subscription.
 
 If a cost should be added to subscription by adding a variant, a component would need to be setup in Chargify to allow the customer to select the add-on: "https://docs.chargify.com/product-components":https://docs.chargify.com/product-components
 
@@ -224,9 +224,9 @@ If you’d like to obtain your Chargify login info, you can click “reset passw
 **Does Chargify support my pricing model?**
 Here are some of the most common pricing models that Chargify merchants use: "http://chargify.com/blog/does-chargify-support-my-pricing-model/":http://chargify.com/blog/does-chargify-support-my-pricing-model/
 
-**Can I change the URL on my Chargify hosted page where my customers checkout?**
+**Can I change the URL on my Chargify Public Signup Page where my customers checkout?**
 For example, a URL like: https://shopify-setup-test.chargify.com/h/3418188/subscriptions/new
 
-Yes, but you will need to contact Support for help. If you change your Chargify subdomain, it will break your Shopify integration and Support will need to point it to the new subdomain you’ve chosen. 
+Yes, but you will need to contact Support for help. If you change your Chargify subdomain, it will break your Shopify integration and Support will need to point it to the new subdomain you’ve chosen.
 
 Please feel free to contact Chargify Support for assistance: 1 (800) 401-2414 or <a href="mailto:support@chargify.com">support@chargify.com</a>.

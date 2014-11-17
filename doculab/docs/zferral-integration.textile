@@ -16,9 +16,9 @@ You may choose to also have Chargify report revenue from one-time charges to zfe
 
 h2. Reporting Signups
 
-h3. Chargify's hosted receipt
+h3. Chargify's Public Receipt Page
 
-Chargify will report your signups to zferral automatically, *if you use our Hosted Signup page with the default receipt*.  We do this using the zferral "IMG pixel" tracking, and include a pixel for each campaign that is currently turned on in your Chargify zferral integration settings.  Here is an example of the code we include in the hosted receipt page:
+Chargify will report your signups to zferral automatically, *if you use our Public Signup Page with the default receipt*.  We do this using the zferral "IMG pixel" tracking, and include a pixel for each campaign that is currently turned on in your Chargify zferral integration settings.  Here is an example of the code we include in the Public Receipt Page:
 
 <pre><code>
 <img src="http://<subdomain>.zferral.com/e/<campaign_id>?rev=<signup_revenue>&customerId=<subscription_id>&uniqueId=<signup_payment_id>" style="border: none; display: none" alt=""/>
@@ -28,9 +28,9 @@ For zferral's @customerId@, which is a unique value to identify the customer who
 
 For zferral's @uniqueId@, we use the payment (or payment authorization) transaction ID, since each unique transaction can only capture revenue once.
 
-h3. Your custom receipt page (return URL) from a Hosted page signup
+h3. Your custom receipt page (return URL) from a Public Page signup
 
-If you use Chargify's hosted signup pages but a custom receipt page (via the "Return URL option":/hosted-page-settings#return-url), then you will need to embed the zferral tracking pixel yourself.
+If you use Chargify's Public Signup Pages but a custom receipt page (via the "Return URL option":/public-signup-page-settings#return-url), then you will need to embed the zferral tracking pixel yourself.
 
 Chargify exposes the following return parameters that you can use to pass as a query string to your return page, which can in turn generate the correct tracking pixel:
 

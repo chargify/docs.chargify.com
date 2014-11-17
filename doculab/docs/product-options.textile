@@ -2,10 +2,6 @@ When creating and editing a Product, you will have the ability to set certain op
 
 <!-- TODO: provide a screenshot of the Product Options -->
 
-h3(#return-url-and-parameters). Return URL and Parameters
-
-In these fields, you may define URLs, optionally with dynamic parameters, to which the Hosted Payment Page would redirect after a successful signup and/or credit card update.  The behavior of these fields is covered further in the documentation on "Hosted Page Settings":/hosted-page-settings#return-url.  "Hosted Page Integation":/hosted-page-integration discusses the integration use-cases for these values.
-
 h3. API Handle
 
 Used to specify a unique identifier for this product that you can use in API calls.  If you do not provide an explicit value here, a handle will be generated for you.  This can be considered a "friendly" identifier.  You could just as easily use the numeric ID to identify the resource.
@@ -14,20 +10,18 @@ h3. Credit Card Settings
 
 For each product, you can select the display and validation settings for the presence of a credit card.
 
-h4. Request credit card at signup?
-
-This option affects the Hosted Payment Page, and controls whether or not the credit card fields are displayed within the signup form.
-
 h4. Require credit card at signup?
 
-This option displays whether or not the credit card must be present in order for any signup attempt to be valid.  *This option affects both the Hosted Payment Page and API*.  Hence, even if you are using the API for integration, if you want to be able to create a Subscription without an associated credit card, then you will need to uncheck this box.
+This option displays whether or not the credit card must be present in order for any signup attempt to be valid. *This option affects both the Public Pages and API*. Hence, even if you are using the API for integration, if you want to be able to create a Subscription without an associated credit card, then you will need to uncheck this box.
 
 NOTE: Creating Subscriptions without a credit card will only currently work if there is a zero amount due at signup.  Chargify will not create a Subscription with a positive balance, at the time of this writing.
 
 h4. Billing and Shipping Address settings
 
-These setting should be self-explanatory.  Like the Credit Card Settings described above, the "Request" option controls the Hosted Payment Page while the "Require" option controls all Subscription creations.
+These setting should be self-explanatory. Like the Credit Card Settings described above, the "Request" option controls the Public Page while the "Require" option controls all Subscription creations.
 
-h4. Enable Coupons
+h3(#return-url-and-parameters). Return URL and Parameters
 
-The checkbox under ‘Hosted Page Settings’ determines whether or not a coupon field is shown on the hosted payment page.
+!/images/doculab/public_pages_17.png!:/images/doculab/public_pages_17.png
+
+These fields apply specifically to the Self-Service Page which customers can use to update their payment information. They allow you to define a URL, optionally with dynamic parameters, to which the Self-Service Page will redirect after a successful credit card update. For the corresponding fields relating to Public Signup Pages, please see "Return URL and Parameters":/public-signup-page-settings#return-url. In addition to that, "Public Pages Intro":/public-pages-intro discusses the integration use-cases for these values concerning Public Signup Pages.

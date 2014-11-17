@@ -9,7 +9,6 @@ Doculab::TableOfContents.define do
     page "Sites Intro", :permalink => "sites"
     page "Settings"
     page "Gateway Configuration"
-    page "Hosted Page Settings"
     page "Clearing Site Data"
     page "Email Templates"
     page "HTML Emails", :permalink => 'html-emails'
@@ -41,8 +40,14 @@ Doculab::TableOfContents.define do
     page "Invoice Billing"
   end
 
+  section "Public Pages" do
+    page "Public Pages Intro"
+    page "Public Page Default Settings"
+    page "Public Signup Page Settings"
+    page "Pre-populating Data"
+  end
+
   section "Integration" do
-    page "Hosted Page Integration"
     page "Billing Portal"
     page "API Integration"
     page "Post-backs"

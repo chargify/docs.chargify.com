@@ -1,6 +1,6 @@
 Chargify supports multiple currencies. Currency configuration is done on a site-by-site basis.  You may select the currency to use when you create a new site, and you may change the currency when you edit a site *only if the site has no revenue*.  If you need to sell in multiple currencies, you will need to set up a separate Site for each currency.
 
-The currency is used in price displays found in the Web UI and on Hosted Pages.  It is also the currency that is used as the "submission currency" to the gateways.  This means that the transactions we submit to your gateway are specified using this currency.  Note that this can be different than the settlement currency of your Merchant Account.
+The currency is used in price displays found in the Web UI and on Public Pages.  It is also the currency that is used as the "submission currency" to the gateways.  This means that the transactions we submit to your gateway are specified using this currency.  Note that this can be different than the settlement currency of your Merchant Account.
 
 The currencies currently supported by Chargify (updated 3/15/12) are:
 
