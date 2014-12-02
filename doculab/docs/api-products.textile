@@ -52,6 +52,7 @@ h2. Input Attributes (Create)
 * @request_billing_address@ Boolean
 * @taxable@ Boolean
 * @trial_type@ The type of trial for this product, either @no_obligation@ or @payment_expected@.
+* @auto_create_signup_page@ A @true@ or @false@ value (default @false@) indicating whether or not you want a "Public Page":/public-pages-intro" to be automatically created for this product
 
 h2. Methods
 
@@ -187,6 +188,7 @@ Feature: Chargify API XML Product read
           <handle>`your value`</handle>
           <name>`your value`</name>
         </product_family>
+        <public_signup_pages type="array"/>
       </product>
       """
 
@@ -220,6 +222,7 @@ Feature: Chargify API XML Product read
          <handle>`your value`</handle>
          <name>`your value`</name>
        </product_family>
+       <public_signup_pages type="array"/>
      </product>
      """
 
@@ -266,7 +269,8 @@ Feature: Chargify API JSON Product read
           "description":`your value`,
           "accounting_code":`your value`,
           "interval_unit":"month",
-          "interval":1
+          "interval":1,
+          "public_signup_pages":[]
         }
       }
       """
@@ -300,7 +304,8 @@ Feature: Chargify API JSON Product read
           "description":`your value`,
           "accounting_code":`your value`,
           "interval_unit":"month",
-          "interval":1
+          "interval":1,
+          "public_signup_pages":[]
         }
       }
       """
@@ -359,6 +364,7 @@ Feature: Chargify API XML Product create
         <price_in_cents>1000</price_in_cents>
         <interval>1</interval>
         <interval_unit>month</interval_unit>
+        <auto_create_signup_page>true</auto_create_signup_page>
       </product>
       ""
     When I send a POST request with the xml data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/products.xml
@@ -396,6 +402,12 @@ Feature: Chargify API XML Product create
         <name>`your value`</name>
         <description>`your value`</description>
       </product_family>
+      <public_signup_pages type="array">
+        <public_signup_page>
+          <id type="integer">`auto generated`</id>
+          <url>`auto generated`</url>
+        </public_signup_page>
+      </public_signup_pages>
     </product>
      """
 </code></pre>
@@ -424,7 +436,8 @@ Feature: Chargify API JSON Product create
         "request_credit_card":true,
         "price_in_cents":1000,
         "interval":1,
-        "interval_unit":"month"
+        "interval_unit":"month",
+        "auto_create_signup_page": true
       }}
       ""
     When I send a POST request with the json data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/products.json
@@ -461,7 +474,13 @@ Feature: Chargify API JSON Product create
            "handle":`your value`,
            "accounting_code":`your value`,
            "description":`your value`
-         }
+         },
+         "public_signup_pages": [
+          {
+            "id": `auto generated`,
+            "url": `auto generated`
+          }
+        ]
        }
      }
      ""
