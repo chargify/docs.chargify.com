@@ -1,6 +1,6 @@
 h2. Please test your integration before going live
 
-Whether you are using the hosted payment pages or our API, you need to verify your setup through real usage, both so you'll know that your configuration options are correct, and so you'll know more about what your customers will experience.
+Whether you are using the Public Pages or our API, you need to verify your setup through real usage, both so you'll know that your configuration options are correct, and so you'll know more about what your customers will experience.
 
 Chargify sites that are in *test mode* will work with both the "Chargify Test Gateway":https://docs.chargify.com/gateway-configuration *and with the test gateways provided by the gateways* like Authorize.Net, PaymentExpress, Beanstream, etc.  Note that all of the major gateway providers will give you a free test or "developer's" account so that you can test your integration.
 

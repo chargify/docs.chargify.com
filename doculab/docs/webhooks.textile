@@ -10,7 +10,7 @@ Webhooks are asynchronous events.  We do our best to always send them in a timel
 
 A good example of this is your signup path.  We do not recommend that you block a user from moving forward with provisioning or signup on your side based on a webhook response.  All of our signup paths have synchronous methods of being notified of the event:
 
-* With hosted page signups, you can use the "Return URLs and Return URL Parameters":/product-options#return-url-and-parameters as a hint of the signup.  You can use this hint to make a synchronous API fetch to learn more about the subscription
+* With Public Signup Pages, you can use the "Return URL and Parameters":/public-signup-page-settings#return-url as a hint of the signup.  You can use this hint to make a synchronous API fetch to learn more about the subscription
 * With API signups, you can use the response from the subscription creation request to take action without waiting on a webhook
 
 h2. Webhook Contents
@@ -71,8 +71,8 @@ h2(#events). Events
 The following events are monitored within Chargify and can generate Webhooks:
 
 |_. Event Key |_. Trigger |_. Payload |
-| @signup_success@  | Any successful signup (Subscription created) via the API, admin UI, or hosted pages | @site@, @subscription@<sup>1</sup> |
-| @signup_failure@  | Any failed signup (Subscription failed to begin) via the API, admin UI, or hosted pages<sup>2</sup> | @site@, @subscription@<sup>1</sup> |
+| @signup_success@  | Any successful signup (Subscription created) via the API, admin UI, or Public Pages | @site@, @subscription@<sup>1</sup> |
+| @signup_failure@  | Any failed signup (Subscription failed to begin) via the API, admin UI, or Public Pages<sup>2</sup> | @site@, @subscription@<sup>1</sup> |
 | @renewal_success@ | A successful periodic renewal<sup>3</sup> | @site@, @subscription@<sup>1</sup> |
 | @renewal_failure@ | A failed periodic renewal, i.e. the credit card is declined<sup>3</sup> | @site@, @subscription@<sup>1</sup> |
 | @payment_success@ | Any successful payment against a credit card<sup>4</sup> | @site@, @payment@ |

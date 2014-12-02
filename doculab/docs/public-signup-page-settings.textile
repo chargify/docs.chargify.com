@@ -1,0 +1,109 @@
+To customize your Public Signup Pages' individual settings, click the 'Setup' tab, then the 'Public Signup Pages' item in the menu below it, and then click the 'Edit' link next to the Public Signup Page you wish to customize. The information in this page also applies to creating a new Public Signup Page.
+
+!/images/doculab/public_pages_08.png!:/images/doculab/public_pages_08.png
+
+h2. Product
+
+!/images/doculab/public_pages_09.png!:/images/doculab/public_pages_09.png
+
+Every Public Signup Page is attached to one of your products. For information on creating and managing products, please see "Products Intro":/products-intro.
+
+h2. Calendar Billing
+
+!/images/doculab/public_pages_10.png!:/images/doculab/public_pages_10.png
+
+By using Calendar Billing, you can lock all subscriptions created through that Public Signup Page so that they will be billed on the day of the month you choose. If you don't need to specify a billing date for all new subscriptions, just leave the option 'Bill based on the signup date' selected and Callendar Billing will not be in effect.
+
+h2. Page Nickname
+
+!/images/doculab/public_pages_11.png!:/images/doculab/public_pages_11.png
+
+The Page Nickname is a freely-chosen name that merchants can personally use to identify their Public Signup Pages. Feel free to assign nicknames that mean something to you.
+
+h2. Default Settings
+
+A group of settings are considered 'Default Settings' because they can be managed through the Settings page if you don't want to individually choose values for each of them. Those settings are: Page Title, Logo, Home Link URL, Privacy Policy URL, Terms and Conditions URL, Custom CSS, Custom JavaScript, Enable Security Question (CAPTCHA), Accepted Card Types to Display, Enable SSL Certificate Badge, Enable 'Powered By Chargify' Badge.
+
+For each of those settings, you'll have the option to either use the default value or set an individual value for that Public Signup Page.
+
+!/images/doculab/public_pages_12.png!:/images/doculab/public_pages_12.png
+
+The 'Use Default' option will initially be checked for you. If you wish to edit a setting with a value that's different from the default one, you'll need to first uncheck the 'Use Default' option so you can edit the corresponding form field.
+
+For more information on those settings, please see "Public Page Default Settings":/public-page-default-settings.
+
+h2. Display Coupon Field?
+
+!/images/doculab/public_pages_13.png!:/images/doculab/public_pages_13.png
+
+By checking this option, you can request a coupon in your Public Signup Pages. For more information on coupons, please see "Coupons":/coupons.
+
+h2. Credit Card Settings
+
+!/images/doculab/public_pages_14.png!:/images/doculab/public_pages_14.png
+
+Each of those three settings manage whether a payment method, a billing address and a shipping address fields should be present at the Public Signup Page. Please keep in mind that these settings may be influenced by the following corresponding product settings:
+
+* Require payment method
+* Require billing address
+* Require shipping address
+
+If you checked any of the options above in the product settings, then the corresponding options in the Public Signup Page have to be checked:
+
+* Request payment method
+* Request billing address
+* Request shipping address
+
+On the settings page for a product you can determine whether or not you want to collect the shipping and billing address information for the user. When an address is 'requested', the fields appear on the page but are not required. Clicking the 'require' checkbox will make the fields mandatory.
+
+For more information, please see "Product Options":/product-options.
+
+h2(#return-url). Return URL and Parameters
+
+When creating or editing a Public Signup Page, you may specify a *Return URL after successful signup* and *Return parameters*.
+
+!/images/doculab/public_pages_15.png!:/images/doculab/public_pages_15.png
+
+The *Return URL after successful signup* is the URL that the user will be redirected to after they subscribe using the Public Signup Page. The *Return parameters* specify the data that will be passed back in the query string of both Return URLs (i.e. it is shared between both URLs).
+
+The available parameters are:
+
+* @subscription_id@: The Chargify generated unique identifier for the subscription that was created
+* @customer_id@: The Chargify generated unique identifier for the customer that was created
+* @customer_reference@: Your unique reference if one was sent in the pre-populated data
+* @product_handle@: The product API handle
+* @product_id@: The Chargify generated unique identifier for the product
+* @signup_revenue@: The revenue, formatted as a string of decimal separated dollars and cents, from the subscription signup ($50.00 would be formatted as 50.00)
+* @signup_payment_id@: The ID of the transaction that generated the revenue
+
+Return parameters are specified using a single brace around the name of the parameter and separated with an ampersand.
+
+For example, a Return URL of:
+
+bc. http://example.com/callback
+
+With these Return parameters:
+
+bc. subscription_id={subscription_id}&customer_reference={customer_reference}
+
+Would result in the URL:
+
+bc. http://example.com/callback?subscription_id=1&customer_reference=1234
+
+Note: Return parameters should not be considered authoritative.  Granting irrevocable access to users based on these values is not advised.  They should be considered hints until the user is verified via a secure API read.
+
+h2(#custom-fields). Custom Fields
+
+!/images/doculab/public_pages_18.png!:/images/doculab/public_pages_18.png
+
+Custom Fields that you've previously created can be configured to appear individually on your Public Signup Pages. To enable a Custom Field to appear on the Public Signup Page, check the corresponding option in the list above.
+
+h2. Components
+
+!/images/doculab/public_pages_16.png!:/images/doculab/public_pages_16.png
+
+Quantity and On/Off Components can be configured to appear on the Public Signup Page. To enable a component on the Public Signup Page, check the corresponding option in the list above. Components with 'Stairstep' pricing schemes are not currently supported on the Public Signup Page.
+
+Once enabled, components will appear in a 'Configure Your Plan' section on the Public Signup Page in a div with the class name of 'component_configuration'. (Note that this name may change in the future).
+
+!{width:640px}/images/doculab/cohp.png!

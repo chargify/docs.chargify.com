@@ -15,7 +15,7 @@ h3. 2. Configure your Products
 h3. 3. Allow Customers to buy Subscriptions
 
 * "Subscriptions Intro":/subscriptions-intro
-* Perform a "Hosted Page integration":/hosted-page-integration or
+* "Public Pages Intro":/public-pages-intro or
 * Program an "API Integration":/api-integration
 
 h3. 4. Control access to your app or service

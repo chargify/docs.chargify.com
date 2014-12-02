@@ -60,9 +60,9 @@ To apply a coupon to a subscription, use the Coupon Code field on the new Subscr
 !https://s3.amazonaws.com/entp-tender-production/assets/c5eea228b5fb0c4ab4922963503327ef17100ab3/_Chargify__Grasshopper___asdf___New_Subscription_normal.jpg!
 
 
-h3. Creating a Subscription with a Coupon in the Hosted Payment Page
+h3. Creating a Subscription with a Coupon in the Public Signup Page
 
-Customers can also apply coupons through the Hosted Payment Page.  *However, you will first need to enable the coupon code field to be shown on your hosted pages*.  This is done in the "Hosted Page Settings" section of the "Settings" tab.
+Customers can also apply coupons through the Public Signup Page.  *However, you will first need to enable the coupon code field to be shown on your Public Signup Pages*.  This is done in the "Public Signup Pages" section of the "Setup" tab.
 
 !https://s3.amazonaws.com/entp-tender-production/assets/2a8665d9ad13d2fc57c66a34fc333ab480c79723/_Chargify__Grasshopper___asdf___Buy_Chargify__basic_from_Grasshopper_normal.jpg!
 

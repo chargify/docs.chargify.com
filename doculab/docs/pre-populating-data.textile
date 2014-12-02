@@ -1,0 +1,27 @@
+When linking to the Public Page, it is possible to have certain values pre-populated by passing parameters as GET requests.
+
+The available parameters are:
+
+* @first_name@: Fills the value for the customer's "First name" (Fills value for both Shipping/Contact info and Billing info, unless `billing_first_name` is provided)
+* @last_name@: Fills the value for the customer's "Last name" (Fills value for both Shipping/Contact info and Billing info, unless `billing_first_name` is provided)
+* @billing_first_name@: Fills the value for the Billing Address's "First Name" field (Overrides value provided by @first_name@, if any)
+* @billing_last_name@: Fills the value for the Billing Address's "Last Name" field (Overrides value provided by @last_name@, if any)
+* @email@: Fills the value for the customer's "Email address"
+* @reference@: Sets a hidden field to supply a value for the customer's "reference" value (the unique identifier you use for the customer within your own application
+* @organization@: Sets a hidden field to supply a value for the customer's organization name (not currently a visible form input element)
+* @billing_zip@: Fills the value for the cardholder's "Billing ZIP code"
+* @coupon_code@: Fills the value for the coupon code to use with the subscription
+
+*Pre-populating quantity-based components* can be set by passing in the component id (visible in your components list) and desired quantity.
+
+Please note the order of the parameters matters to properly set the desired quantity for each component.
+
+bc. ?components[][component_id]=16899&components[][allocated_quantity]=9
+
+(For a description of how these attributes apply to the created customer and payment profile, please refer to the "Subscription Input Attributes" section of the [Subscriptions API documentation](http://support.chargify.com/faqs/api/api-subscriptions).)
+
+For example, accessing a Public Signup Page URL with the following query string would generate the form pre-populated as shown below:
+
+bc. ?first_name=John&last_name=Doe&email=john.doe@example.com&reference=1234
+
+!https://s3.amazonaws.com/entp-tender-production/assets/4cad8d1d427d0365b6f8e48e16c0bd2b7232a17c/hosted-signup-pre-populated_normal.png!

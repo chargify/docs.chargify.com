@@ -4,7 +4,7 @@ Invoice Billing allows you to bill your customers manually by sending them an in
 
 h2. Configuring Invoice Billing
 
-Invoice billing is turned on in the settings tab. The default option determines which payment collection method is used when customers sign up via the hosted pages. The collection method can be set to either option when creating a subscription in the Admin UI or via the API.
+Invoice billing is turned on in the settings tab. The default option determines which payment collection method is used when customers sign up via the Public Signup Pages. The collection method can be set to either option when creating a subscription in the Admin UI or via the API.
 
 In addition, You can set Payment Terms and Notes that will appear on the invoice. Finally, you can toggle whether or or not Invoices are emailed to customers automatically.
 
