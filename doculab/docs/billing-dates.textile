@@ -8,7 +8,6 @@ Chargify stores several dates associated with each subscription:
 * **Trial Start Date**: Timestamp for when the trial period (if any) began
 * **Trial End Date**: Timestamp for when the trial period (if any) ended
 
-
 h2. Changing the Billing Date
 
 You can change the next billing date of a Subscription yourself by clicking "change" next to the billing date.
@@ -28,13 +27,16 @@ Chargify also supports Calendar Billing for subscriptions, when the subscription
 * The product period must be 1 month
 * The product cannot have a trial
 
-If the product meets those criteria, then you may specify a @snap_day@ when creating the subscription via the API (see "API: Subscriptions":/api-subscriptions for details).
+If the product meets those criteria, then you may start using Calendar Billing in two different ways:
 
-A valid @snap_day@ is any number between @1@ and @28@, or @end@.  When the snap day is specified, the subscription will renew at 12:00 PM in the time zone for your site, on that snap day. If @end@ is given as the snap day, the subscription will renew on the last day of each month, at 12:00 PM in the site's time zone.
+* Through a Public Signup Page, by choosing the 'Calendar Billing' option (see "Public Signup Page Settings: Calendar Billing":/public-signup-page-settings#calendar-billing for details).
+* Through the Chargify API, by specifying a Calendar Billing day via the @snap_day@ attribute when creating the subscription (see "API: Subscriptions":/api-subscriptions for details).
+
+A valid Calendar Billing day (or @snap_day@) can be any number between @1@ and @28@, or @end@. When the Calendar Billing day is specified, the subscription will renew at 12:00 PM in the time zone for your site, on the specified day. If @end@ is given as the snap day, the subscription will renew on the last day of each month, at 12:00 PM in the site's time zone.
 
 h3. Signups With Calendar Billing
 
-Subscriptions created with Calendar Billing enabled will always be charged at signup, but the amount charged depends on the date and time of the signup relative to the @snap_day@ specified. The rule is that any signup that occurs within 24 hours before 12:00 PM on the @snap_day@ will be treated as a "full period signup", and the subscription will be charged for a month's worth of product and component usage. In addition, the subscription's @current_period_ends_at@ will be the @snap_day@ of the next month.
+Subscriptions created with Calendar Billing enabled will always be charged at signup, but the amount charged depends on the date and time of the signup relative to the Calendar Billing day (or @snap_day@) specified. The rule is that any signup that occurs within 24 hours before 12:00 PM on the @snap_day@ will be treated as a "full period signup", and the subscription will be charged for a month's worth of product and component usage. In addition, the subscription's @current_period_ends_at@ will be the @snap_day@ of the next month.
 
 In all other cases, the subscription will be charged a prorated amount at signup for the period from the signup date to the next @snap_day@, and the @current_period_ends_at@ will be the upcoming @snap_day@. The table below explains the possible scenarios:
 
@@ -45,5 +47,3 @@ In all other cases, the subscription will be charged a prorated amount at signup
 | @end@ | June 2, 3:00 PM | Pro-rated amount from 6/2 to 6/30 | June 30, 12:00 PM |
 | @end@ | June 29, 3:00 PM | Full amount from 6/29 to 7/31 | July 31, 12:00 PM |
 | @end@ | June 30, 12:01 PM | Pro-rated amount from 6/30 to 7/31 | July 31, 12:00 PM |
-
-<b>Note:</b> Currently this feature is only available via the API
