@@ -8,11 +8,15 @@ h2. Product
 
 Every Public Signup Page is attached to one of your products. For information on creating and managing products, please see "Products Intro":/products-intro.
 
-h2. Calendar Billing
+h2(#calendar-billing). Calendar Billing
 
 !/images/doculab/public_pages_10.png!:/images/doculab/public_pages_10.png
 
-By using Calendar Billing, you can lock all subscriptions created through that Public Signup Page so that they will be billed on the day of the month you choose. If you don't need to specify a billing date for all new subscriptions, just leave the option 'Bill based on the signup date' selected and Callendar Billing will not be in effect.
+By using Calendar Billing, you can lock all subscriptions created through that Public Signup Page so that they will be billed on the day of the month you choose. In addition to that, new subscriptions will receive an initial prorated charge which is calculated upon the subscription's creation according to the remaining number of days until the chosen date.
+
+If you don't need to specify a billing date for all new subscriptions, just leave the option 'Bill based on the signup date' selected and Callendar Billing will not be in effect.
+
+For more details on Calendar Billing, please see "Billing Dates: Calendar Billing":/billing-dates#calendar-billing
 
 h2. Page Nickname
 
