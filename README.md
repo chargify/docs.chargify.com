@@ -8,7 +8,7 @@ Contributing
 
 ### Running locally
 
-This is a Rails 3 app, with all dependencies managed by Bundler.  
+This is a Rails 4 app, with all dependencies managed by Bundler.  
 
 #### RVM
 
