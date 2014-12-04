@@ -8,11 +8,15 @@ Contributing
 
 ### Running locally
 
-This is a Rails 3 app, with all dependencies managed by Bundler.  
+This is a Rails 4 app, with all dependencies managed by Bundler.
+
+#### Fork
+
+First, fork our repo from <http://github.com/chargify/docs.chargify.com>
 
 #### RVM
 
-If you're not already using [RVM](http://rvm.beginrescueend.com/) and [gemsets](http://rvm.beginrescueend.com/gemsets/) do yourself a favor and get started now.  Then fork our repo from <http://github.com/chargify/docs.chargify.com> and...
+If you're not already using [RVM](http://rvm.beginrescueend.com/) and [gemsets](http://rvm.beginrescueend.com/gemsets/) do yourself a favor and get started now.  
 
     rvm gemset create docs.chargify.com
     rvm gemset use docs.chargify.com
@@ -26,12 +30,16 @@ You can now browse the docs at http://localhost:3000
 
 #### rbenv
 
-Ensure you have ruby <code>2.0.0-p481</code> installed, if not rbenv will prompt you to install it upon cd'ing into the directory.
+If you prefer to use [rbenv](https://github.com/sstephenson/rbenv), the instructions are similar.
 
+    rbenv install 2.0.0-p481
     git clone git://github.com/<your githubs>/docs.chargify.com.git
     cd docs.chargify.com
+    gem install bundler
     bundle install
     rails server
+    
+You can now browse the docs at http://localhost:3000
 
 ### Making changes
 
