@@ -19,7 +19,7 @@ h2. Methods to ship that are triggered by us successfully collecting payment fro
 * Statement emailed to customer, and bcc'd to you by turning on the Statement BCC email setting in Chargify. Statements have all info needed to ship something.
 Here's an example statement:
 
-!https://chargify.com/images/features/chargify-statements.png!
+!/images/features/statements-large.png!
 
 * Daily report emailed to merchant, which includes any renewals that day. Merchant then looks up customer shipping info for each customer on the report.
 

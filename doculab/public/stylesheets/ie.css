@@ -2,11 +2,6 @@ body {
 /* min-width */
 	width: expression(document.documentElement.clientWidth < 980 ? "980px" : "auto");
 }
-.btn-video{
-	background:none;
-	filter:progid:dximagetransform.microsoft.alphaimageloader(src='https://chargify.com/images/interface/btn-video.png', sizingmethod='crop');
-	cursor:pointer;
-}
 .container{
 	padding-bottom: 0px;
 	margin: 0px;
@@ -14,18 +9,18 @@ body {
 	padding-right: 0;
 	padding-top: 27px;
 	width:100%;
-	background:#fff url(https://chargify.com/images/interface/bg-content2.gif) repeat-x;
+	background:#fff url(/images/interface/bg-content2.gif) repeat-x;
 }
 .box{
 	width:380px;
 	height:329px;
-	background: url(https://chargify.com/images/interface/bg-box.gif) no-repeat;
+	background: url(/images/interface/bg-box.gif) no-repeat;
 	float:left;
 	padding:11px 0 0;
 }
 .wide{
 	width:540px;
-	background: url(https://chargify.com/images/interface/bg-wide.gif) no-repeat;
+	background: url(/images/interface/bg-wide.gif) no-repeat;
 	float:right;
 }
 .bannertallb{
@@ -37,7 +32,7 @@ body {
 	border:1px solid #ccc;
 	margin:0 0 21px;
 }
-.securewide{ background-position: 305px center; background-repeat: no-repeat; background-image: url(https://chargify.com/images/interface/securitybadgeslong.gif); margin-bottom: 15px; padding-left: 15px; padding-bottom: 20px; padding-right: 320px; padding-top: 15px; border-color: #cccccc; border-style: solid; border-width: 1px; background-color: white; float: left; width: 280px; }
+.securewide{ background-position: 305px center; background-repeat: no-repeat; background-image: url(/images/interface/securitybadgeslong.gif); margin-bottom: 15px; padding-left: 15px; padding-bottom: 20px; padding-right: 320px; padding-top: 15px; border-color: #cccccc; border-style: solid; border-width: 1px; background-color: white; float: left; width: 280px; }
 .bannertall{
 	padding: 20px;
 	height:1%;
@@ -103,14 +98,14 @@ body {
 	display: block;
 	height: 32px;
 	width: 32px;
-	background: url(https://chargify.com/images/interface/twitter-20x20.gif) no-repeat;
+	background: url(/images/interface/twitter-20x20.gif) no-repeat;
 	font:1.3em/32px Helvetica, Arial, sans-serif;
 	color:#1da4d7;
 	text-indent: -9999px;
 }
-.badgecontainer{ 
+.badgecontainer{
 	width: 140px;
-	float: right; 
+	float: right;
 }
 .badge-align {
 	float: right;
@@ -196,7 +191,7 @@ body {
 	height: 47px;
 	overflow:hidden;
 	text-indent:-9999px;
-  background-image: url(https://chargify.com/images/interface/sitesprite1.png);
+  background-image: url(/images/interface/sitesprite1.png);
   background-position: -10px -10px;
 background-repeat:no-repeat;
 	position: relative;
@@ -214,7 +209,7 @@ background-repeat:no-repeat;
 	overflow:hidden;
 }
 .gateways_middle{
-	background: url(https://chargify.com/images/interface/gateway_box_middle.gif) repeat-y;
+	background: url(/images/interface/gateway_box_middle.gif) repeat-y;
 	width: 287px;
 	float: left;
         padding-bottom: 10px;
@@ -256,13 +251,13 @@ background-repeat:no-repeat;
 	color: white;
 	font: bold 19px "Helvetica Neue", Arial, sans-serif;
 	display: inline-block;
-	-moz-border-radius: 5px; 
+	-moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 	float: left;
 	text-decoration: none;
 	width: 114px;
 	height: 27px;
-	background: url(https://chargify.com/images/interface/pricing_button4.png) repeat-x 0 top;
+	background: url(/images/interface/pricing_button4.png) repeat-x 0 top;
 	text-indent: -9999px;
 	padding-top: 7px;
 	border: 1px none black;
