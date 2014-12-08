@@ -21,7 +21,6 @@ Doculab::TableOfContents.define do
     page "Product Options"
     page "Product Components"
     page "Coupons"
-    page "Taxes"
   end
 
   section "Subscriptions" do
@@ -45,6 +44,12 @@ Doculab::TableOfContents.define do
     page "Public Page Default Settings"
     page "Public Signup Page Settings"
     page "Pre-populating Data"
+  end
+
+  section "Taxes" do
+    page "Taxes Intro"
+    page "Custom Taxes"
+    page "Avalara Managed Sales Tax"
   end
 
   section "Integration" do
