@@ -1,6 +1,6 @@
 Chargify offers two types of tax settings:
 
 * **"Custom Taxes:":/custom-taxes** Tax rates defined and maintined by you to collect taxes in any geographic country/region. This includes general use and generic taxes, as well as support for European Union VAT tax.
-* **"Avalara Sales Tax:":/avalara-sales-tax** Automatic sales tax collection for US and Canadian merchants. You pick the areas that you are responsible for collecting taxes in, and Chargify uses the "Avalara":http://avalara.com tax service to find and apply the correct rates.
+* **"Avalara Sales Tax:":/avalara-managed-sales-tax** Automatic sales tax collection for US and Canadian merchants. You pick the areas that you are responsible for collecting taxes in, and Chargify uses the "Avalara":http://avalara.com tax service to find and apply the correct rates.
 
 Click the links above for more details about each tax setting.
