@@ -1,7 +1,5 @@
 Chargify provides the ability to define taxes that are collected when a user subscribes to your product.
 
-
-
 Taxes are defined on the site level and are available to all product families of the site. To apply a tax to a product or component, you first create the tax and then mark the product or component as taxable.
 
 h2. Creating a Tax

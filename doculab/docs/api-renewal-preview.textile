@@ -33,4 +33,5 @@ An array of allocation objects with the following fields:
 | @total_tax_in_cents@ | An integer representing the total tax charges that will be assessed at the next renewal |
 | @total_in_cents@ | An integer representing the total amount owed, less any discounts, that will be assessed at the next renewal |
 | @total_amount_due_in_cents@ | An integer representing the existing_balance_in_cents plus the total_in_cents |
+| @uncalculated_taxes@ | A boolean indicating whether or not additional taxes will be calculated at the time of renewal. This will be true if you are using "Avalara":/avalara-sales-tax and the address of the subscription is in one of your defined taxable regions. |
 | @line_items@| An array of objects representing the individual transactions that will be created at the next renewal |
