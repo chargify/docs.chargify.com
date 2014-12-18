@@ -36,11 +36,15 @@ If you prefer to use [rbenv](https://github.com/sstephenson/rbenv), the instruct
     cd docs.chargify.com
     rbenv install 2.0.0-p481
     gem install bundler
-    rbenv rehash
     bundle install
+    rbenv rehash
     rails server
     
 You can now browse the docs at http://localhost:3000
+
+### Ports
+
+If you are behind a firewall, you may need to open port 9418 for the <code>git</code> protocol before <code>bundle install</code> will work.
 
 ### Making changes
 
