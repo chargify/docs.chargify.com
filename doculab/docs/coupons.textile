@@ -1,45 +1,72 @@
 Chargify allows you to create both one-time and recurring coupons to give customers a discount.
 
-h4. How and when are Coupons applied?
-
-* Coupons are only applied at the time a normal, recurring charge is assessed to someone.
+* Coupons are only applied when a recurring charge is assessed.
 
 * Coupons apply to the total of all charges, instead of just the base fee.  This means that any setup fees and component charges will also be discounted by a valid coupon.
 
-* They will appear on a customer's record in the order of "charge, adjustment, payment".
+* Coupons will appear on a customer's record in the order of "charge, adjustment, payment".
 
-* There is currently no way to list the coupons associated with customers, but we have a "story" for that in our development pipeline in Q2 or Q3.
-
+* If a free trial exists, the coupon will not be applied until an amount is due at the end of the free trial.
 
 h3. Creating a Coupon
 
+Coupons are added to a "Product Family":/product-families from the Setup tab.
 
-Coupons are added to the Product Family from the Products tab. Once a coupon has been created it can be shared across all products in the family. To create a new Coupon click the "Create Coupon" link.
+!/images/doculab/coupons-setup-tab.png!
 
+To create a new Coupon, click the "Create New Coupon" button.
 
-h4. Basic coupon fields:
+!/images/doculab/coupons-create-new.png!
 
-* **Name**: A name for the coupon. The name is not displayed to customers
+Once a coupon has been created, it can be shared across all products in the family.
+
+h4. Basic Coupon Fields
+
+!/images/doculab/coupon-basic-fields.png!
+
+* **Internal Name**: An internal name for the coupon. The name is not displayed to customers.
 * **Coupon Code**: The code that customers will enter to redeem the coupon. The code must be uppercase letters, numbers and underscores with no spaces. **NOTE:** You can add additional codes to the coupon once the coupon has been created.
-* **Description**: A description of the coupon that can be displayed to customers
-* **Expiration Date**: Coupons will no longer be redeemable after this time
-* **Amount**: The amount that will be discounted from the initial subscription
-* **Percentage**: The percent of the product's base price that will be discounted
+* **Description**: A description of the coupon that can be displayed to customers in transactions and on statements.
 
-h4. Additional options:
+h4. Discount Amount
 
-* **If the coupon value is greater than the payment due on signup, leave a negative remaining balance on the subscription for the difference:** Selecting this option will leave a negative balance on the subscription if the coupon amount is greater than the amount due. For example, if I apply a $100 coupon to a $30 product, with this option selected, I will have a -$70 balance on my subscription. Otherwise, my balance would be $0.
+!/images/doculab/coupon-discount-amount.png!
 
-* **If a free trial exists, delay the coupon until payment is due:** Selecting this option will associate the coupon with the subscription, but it will not be applied until the end of the free trial. This gives users the ability to use a coupon while still getting the chance to use a free trial. If this option is not selected, the coupon will be ignored in the case of a free trial.
+You may either specify an integer (whole number) percentage discount, or a flat amount in US dollars and cents.
 
-h4. Recurring options:
+Note that if you enter a decimal amount for the percentage, it will be silently truncated (not rounded).  For example, if you enter 5.5, it becomes 5%.
 
-By default, coupons are not applied to future payments after the initial signup. However, you can configure them to do such that by selecting either of the **Continue to apply the coupon..** options. You can set them to recur indefinitely or for a certain number of periods.
+h4. Discount Limit
 
+!/images/doculab/coupon-limit-discount.png!
 
-Once you have created a Coupon, it will appear under the Product Family on the Products tab. You can make changes to the component by clicking the 'Edit Coupon' link.
+The **Limit Discount** option allows you to configure whether a coupon can exceed the amount due. Selecting the 'Do not limit discount' option will leave a negative balance on the subscription if the coupon amount is greater than the amount due.
 
-h5. Adding Additional Codes
+For example, if I apply a $100 coupon to a $30 product, with the 'Do not limit discount' option selected, I will have a -$70 balance on my subscription. Otherwise, my balance would be $0.
+
+h4. Recurring Options
+
+!/images/doculab/coupon-recurring-discount.png!
+
+By default, a coupon is applied only to the initial payment at signup, or to the next recurring payment for an existing subscription. However, you can configure it to apply indefinitely, or for a certain number of renewal periods.
+
+h4. Expiration Date
+
+!/images/doculab/coupon-expiration-date.png!
+
+If you set an **Expiration Date**, the coupon will no longer be redeemable after the end of the day (Eastern Standard Time).
+
+h4. Conversion Limit
+
+!/images/doculab/coupon-conversion-limit.png!
+
+Use the **Conversion Limit** field to limit the number of times a coupon code can be used.  Note that if you add additional codes to the coupon, this number will apply to **each** code separately.
+
+h4. Editing
+
+Once you have created a Coupon, it will appear under the Product Family on the Products tab. You can make changes to the coupon by clicking the 'Edit' button to the right of the coupon.
+
+h3. Adding Additional Codes
 
 Once a coupon has been created you can add additional codes to the coupon. These codes behave exactly like the main coupon code. To add more, click the 'Manage Codes' button for the coupon of your choice.
 
@@ -48,10 +75,6 @@ Once a coupon has been created you can add additional codes to the coupon. These
 Next, enter the additional codes into the text box, with one coupon per line.
 
 !/images/doculab/coupon-more-codes-2.png!
-
-h3. Amount vs. Percentage Coupons
-
-Chargify allows you to create two types of coupons: Amount Coupons and Percentage Coupons. An Amount Coupon will give the customer a flat dollar amount discount. A Percentage Coupon will give the customer a discount equal to a specified percentage of the Product's base price only. To create a coupon for an exact dollar amount, specify the the value in the Amount field below. Amount coupons apply the discount to the total order price (including setup and trial fees), which differs from percentage-based coupons. To create a coupon that provides a percentage discount on the price of the product, specify the percentage in the Percentage field below. Note: Only one field is required. If both are specified the percentage will be ignored.
 
 h3. Creating a Subscription with a Coupon in the Admin Interface
 
