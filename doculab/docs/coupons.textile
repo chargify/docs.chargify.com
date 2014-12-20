@@ -4,8 +4,6 @@ Chargify allows you to create both one-time and recurring coupons to give custom
 
 * Coupons apply to the total of all charges, instead of just the base fee.  This means that any setup fees and component charges will also be discounted by a valid coupon.
 
-* Coupons will appear on a customer's record in the order of "charge, adjustment, payment".
-
 * If a free trial exists, the coupon will not be applied until an amount is due at the end of the free trial.
 
 h3. Creating a Coupon
