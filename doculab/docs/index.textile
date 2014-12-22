@@ -22,7 +22,7 @@ h3. Support
 
 h4. Written Ticket Tech Support
 
-Written Ticket Tech Support (U.S. business hours) is available to merchants on the Start plan (or higher).
+Written Ticket Tech Support (U.S. business hours) is available to merchants on any paid plan.  Support for API integration requires a plan of "Small Business" or higher.
 
 "Open a support ticket":http://help.chargify.com/tickets/new via the support website, or send an email directly to "support@chargify.com".
 
@@ -30,14 +30,14 @@ While we strive to answer all of our merchants' questions in a timely fashion, p
 
 We maintain a "Support Forum":http://help.chargify.com/forums with answers to community and frequently asked questions.
 
-Feel free to "ask a question":http://help.chargify.com/forums/20053887-community-support/entries/new on the Community Support forum to get help from the Chargify community.
+Feel free to "ask a question":https://chargify.zendesk.com/hc/communities/public/questions/new on the Community Support forum to get help from the Chargify community.
 
 h4. Basic Phone Support
 
-Basic Phone Support (24/7) is available to merchants on the Launch plan (or higher).
+Basic Phone Support (24/7) is available to merchants on any paid plan.
 
 Call 1-800-401-2414 to get Chargify support over the phone.
 
 h4. Developer Support
 
-If you are on the Developer (free) plan, please note that there is NO official Chargify support available for your plan at this time.  We make this distinction to ensure that our paying customers deserve the appropriate time and attention they deserve to run their business.
+If you are on the Developer (free) plan, please note that there is NO official Chargify support available for your plan at this time.  We make this distinction to ensure that our paying customers receive the appropriate time and attention they deserve to run their business.
