@@ -1,4 +1,4 @@
-p(note).  We strongly recommend using "Webhooks":/webhooks instead of Post-Backs.  Webhooks have more features and can be easier to use.
+p(note).  Post-Backs have been deprecated and are no longer available.  Please use "Webhooks":/webhooks instead of Post-Backs.  Webhooks have more features and can be easier to use.  Post-Backs will continue to work until June 1, 2015, at which time we will no longer generate new Post-Backs.
 
 h3. What is a Post-Back?
 
