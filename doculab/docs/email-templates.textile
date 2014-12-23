@@ -48,6 +48,7 @@ h4. Subscription
 * @{{subscription.bank_account_on_file?}}@ True/false value indicating whether or not the @payment_profile@ is a bank account
 * @{{subscription.billing_portal?}}@ True/false value indicating whether or not this customer is managed in Blling Portal
 * @{{subscription.billing_portal_management_url}}@ The Billing Portal subscription management URL for this subscription, if Billing Portal is enabled
+* @{{subscription.portal_invite_sent?}}@ True/false value indicating whether or not the customer was emailed an invitation to manage their subscriptions in Billing Portal
 
 h4. Product
 
@@ -94,6 +95,7 @@ h4. Customer
 * @{{customer.country}}@
 * @{{customer.phone}}@
 * @{{customer.billing_portal?}}@ True/false indicating whether or not this customer is managed in Billing Portal
+* @{{customer.portal_invite_sent?}}@ True/false value indicating whether or not the customer was emailed an invitation to manage their subscriptions in Billing Portal
 
 h4. Payment Profile
 
