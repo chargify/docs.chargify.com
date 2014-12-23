@@ -19,7 +19,7 @@ To create a coupon subcode, simply POST an array of subcodes to the correct URL 
 
 h3. Create
 
-URL: @https://<subdomain>.chargify.com/coupons/:coupon_id/coupons.<format>@
+URL: @https://<subdomain>.chargify.com/coupons/:coupon_id/codes.<format>@
 Method: @POST@
 Required Parameters: An array of valid coupon subcodes
 Response: The created subcodes, subcodes that were not created because they already exist, and any subcodes not created because they are invalid.
@@ -30,7 +30,7 @@ Response: The created subcodes, subcodes that were not created because they alre
 h3(#api-xml-coupon-code-create). XML Create Coupon Subcodes Example
 
 <pre><code><?xml version="1.0" encoding="UTF-8"?>
-  <codes>
+  <codes type="array">
     <code>15OFF</code>
     <code>20OFF</code>
     <code>50 OFF</code>
@@ -41,7 +41,7 @@ Example Response:
 
 <pre><code> <?xml version="1.0" encoding="UTF-8"?>
  <codes>
-   <created_codes type=\"array\">
+   <created_codes type="array">
      <created_code>15OFF</created_code>
      <created_code>20OFF</created_code>
    </created_codes>
@@ -81,7 +81,7 @@ Response: A collection of coupon subcodes
 h3. XML Example Response
 
 <pre><code> <?xml version="1.0" encoding="UTF-8"?>
- <codes>
+ <codes type="array">
    <code>15OFF</code>
    <code>20OFF</code>
  </codes></code></pre>
@@ -110,7 +110,7 @@ Response: The created subcodes, subcodes that were not created because they alre
 h3(#api-xml-coupon-code-update). XML Update Coupon Subcodes Example
 
 <pre><code><?xml version="1.0" encoding="UTF-8"?>
-  <codes>
+  <codes type="array">
     <code>15OFF</code>
     <code>20OFF</code>
     <code>50 OFF</code>
@@ -121,7 +121,7 @@ Example Response:
 
 <pre><code> <?xml version="1.0" encoding="UTF-8"?>
  <codes>
-   <created_codes type=\"array\">
+   <created_codes type="array">
      <created_code>15OFF</created_code>
      <created_code>20OFF</created_code>
    </created_codes>
