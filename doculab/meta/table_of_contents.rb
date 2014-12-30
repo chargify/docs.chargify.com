@@ -50,6 +50,7 @@ Doculab::TableOfContents.define do
     page "Taxes Intro"
     page "Custom Taxes"
     page "Avalara Managed Sales Tax"
+    page "Avalara VAT Tax"
   end
 
   section "Integration" do

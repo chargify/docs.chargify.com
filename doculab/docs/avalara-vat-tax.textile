@@ -1,0 +1,39 @@
+Chargify provides the ability to automatically collect European Union VAT Taxes via the "Avalara AvaTax":http://avalara.com tax service. Chargify uses the updated 2015 EU VAT tax rules.
+
+h2. Configuring Avalara VAT Tax
+
+h3. Step 1: Set your Tax Origin Address
+
+To begin, make sure that you have a "Tax Origin Address" defined. This is your business's address. Avalara needs a full adress on file to calculate the correct tax rates.
+
+!{width:680px}/images/doculab/avalara-vat-1.png!
+
+h3. Step 2: Configure your Taxable Regions
+
+Next you will define your Taxable Regions. These regions inform Chargify where your company wishes to calculate and report tax. 
+
+!{width:680px}/images/doculab/avalara-vat-2.png!
+
+h3. Step 3: Enable Avalara Taxes
+
+Finally, click the 'Enable' button in the Avalara Sales Tax section. Note that doing so will disable any existing "custom taxes":/custom-taxes that you have.
+
+!{width:680px}/images/doculab/avalara-3.png!
+
+h2. Marking Products and Components as Taxable
+
+Unless otherwise specified, all products and components are NOT eligible for taxes. Once a tax is defined, you will need to update your existing products and components so that they can be taxed. To do this, edit the product or component and check the 'This product is subject to taxes' checkbox.
+
+You will also want to ensure that the "Require Shipping Address at signup?" checkbox is also checked for each product.
+
+h2. Defining the Tax Type
+
+!{width:680px}/images/doculab/avalara-vat-4.png!
+
+The EU VAT rules treat digital products differently than physical products in some cases. When editing your products, select either "Digital Service" or "Physical Good" from the Tax Type dropdown. This information will be sent to Avalara to ensure that the correct tax rates are applied.
+
+
+h2. Coupons and Taxes
+
+When applied in conjunction, taxes are applied to the total cost of the subscription AFTER the coupon adjustment has been accounted for.
+
