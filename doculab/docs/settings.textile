@@ -4,7 +4,17 @@ Settings are selected on a Site-by-Site basis.  Choose your selections by visiti
 
 Your Site Settings control the behavior of the following:
 
-* "Gateway Configuration":/gateway-configuration - choose your gateway and enter your credentials
-* Post-back configuration
-* Dunning plans
-* Public Page configuration (page title, custom CSS, terms of service, etc)
+* "Payment Gateway":/gateway-configuration
+* Fields
+* "Webhooks":/webhooks
+* Retries and "Dunning":/dunning
+* Public Page Default Settings
+* "Self Service Page URLs":/public-pages-intro#self-service-page-urls
+* Billing Portal
+* Emails
+* Status emails
+* "Statements":/statements
+* "Invoice Billing":/invoice-billing
+* "Chargify Direct":/chargify-direct-introduction
+* Component Proration
+* CSV Exports
