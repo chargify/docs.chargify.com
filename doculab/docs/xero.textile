@@ -1,6 +1,6 @@
 Our Xero integration will automatically sync Chargify billing activity to Xero as Invoices.
 
-**This integration is currently in beta status**.  "What does it mean for a Chargify feature to have beta label?":/beta-label
+**This integration is currently in beta status**.  "What does it mean for a Chargify feature to be beta?":/beta-label
 
 h2. Availability
 
