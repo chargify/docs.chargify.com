@@ -24,7 +24,8 @@ h2. Payment Profile Input Attributes
 ** @bank_name@ (Required when creating a subscription with ACH) The name of the bank where the customer's account resides
 ** @bank_routing_number@ (Required when creating a subscription with ACH) The routing number of the bank
 ** @bank_account_number@ (Required when creating a subscription with ACH) The customer's bank account number
-** @bank_account_type@ (Required when creating a subscription with ACH) Either @checking@ or @savings@
+** @bank_account_type@ When @payment_type@ is @bank_account@, this defaults to @checking@ and cannot be changed
+** @bank_account_holder_type@ When @payment_type@ is @bank_account@, this defaults to @personal@ and cannot be changed
 
 h2. Methods
 
