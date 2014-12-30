@@ -8,6 +8,7 @@ h2. URI/Method
 h2. Payment Profile Input Attributes
 
 * @payment_profile@ 
+** @payment_type@ (Optional) Default is @credit_card@.  May be @bank_account@ or @credit_card@.
 ** @customer_id@ (Required when creating a new payment profile) The Chargify customer id.
 ** @first_name@ First name on card or bank account.
 ** @last_name@ Last name on card or bank account.
