@@ -19,7 +19,11 @@ Click the 'Ops' button to reveal the context navigation and click the 'Record Us
 
 !{width:640px}/images/doculab/setting-alloc-2.png!
 
-Fill in a quantity and an memo and press 'Record'. All recorded usage for a billing period will be tallied and charged at the end of the period.
+Enter a quantity and (optionally) a memo, and press 'Record'. The quantity must be an integer (whole number).
+
+Note that if you enter a decimal amount for the quantity, it will be silently truncated (not rounded).  For example, if you enter 5.5, it becomes 5.
+
+All recorded usage for a billing period will be tallied and charged at the end of the period.
 
 The API calls required to report usage are detailed in "API: Metered Usage":/api-metered-usage.
 
