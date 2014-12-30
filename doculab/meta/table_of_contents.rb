@@ -52,13 +52,17 @@ Doculab::TableOfContents.define do
     page "Avalara Managed Sales Tax"
   end
 
-  section "Integration" do
+  section "Integrating with your App/Service" do
     page "Billing Portal"
     page "API Integration"
     page "Post-backs"
     page "Webhooks"
     page "Testing"
     page "Exporting Data"
+  end
+
+  section "Third Party Integrations" do
+    page "Xero"
   end
 
   section 'How To' do
