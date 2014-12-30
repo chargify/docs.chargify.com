@@ -94,7 +94,7 @@ Response: The created payment profile (see output for "Read")
 
 **Note**
 
-Creating a new payment profile for a customer via the API will not make that payment profile current for any of the customer's subscriptions. Currently the only way to make "switch" payment profiles on a Subscription is via the Admin UI.
+Creating a new payment profile for a customer via the API will not make that payment profile current for any of the customer's subscriptions.  To make a change, select the Subscription in the Admin UI and choose Payment Details, then click the 'Make Active Payment Method' link next to the desired payment profile.
 
 h3. Update
 
