@@ -62,8 +62,10 @@ Doculab::TableOfContents.define do
     page "Exporting Data"
   end
 
-  section "Third Party Integrations" do
-    page "Xero"
+  section "3rd Party Integrations" do
+    page "Shopify Integration"
+    page "Zferral Integration"
+    page "Xero Integration", :permalink => 'xero'
   end
 
   section 'How To' do
@@ -124,11 +126,6 @@ Doculab::TableOfContents.define do
     page "API: Call"
     page "API: Card Update"
     page "API: Signups"
-  end
-
-  section "3rd Party Integrations" do
-    page "Shopify Integration"
-    page "Zferral Integration"
   end
 
   section "Contributing" do
