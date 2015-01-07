@@ -51,7 +51,7 @@ Now that the MailChimp integration is enabled, you have the option to disable it
 
 h2. How it Works
 
-Once you click "Start Exporting," Chargify will sync the first name, last name, subscription state, and current product of all of your customers to the MailChimp list you selected.
+Once you click the "Start Exporting" button, Chargify will sync the first name, last name, subscription state, and current product of all of your customers to the MailChimp list you selected.
 
 Going forward, we will sync changes when:
 
