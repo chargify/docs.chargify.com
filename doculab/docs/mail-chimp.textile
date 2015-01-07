@@ -1,0 +1,67 @@
+Our MailChimp integration will automatically sync Chargify customers to a MailChimp list.
+
+**This integration is currently in beta status**.  "What does it mean for a Chargify feature to be beta?":/beta-label
+
+h2. Availability
+
+The MailChimp integration is available to merchants:
+
+* On the free Developer plan (for testing), OR
+* On the Small Business Plus plan or higher
+
+If you would like to test out the integration during the beta period, but you do not meet these criteria, you may "open a support ticket":https://chargify.zendesk.com/hc/en-us/requests/new and request a one month credit for a free upgrade to the Small Business Plus plan.
+
+h2. Configuring the Integration
+
+The MailChimp integration tab is found within the main Integrations tab on each of your Sites:
+
+!/images/doculab/mailchimp-api-key-1.png!
+
+h3. API Key
+
+After you enter your <a href="http://kb.mailchimp.com/accounts/management/about-api-keys">MailChimp API Key</a>, click the 'check' link to verify that it is correct.
+
+!/images/doculab/mailchimp-api-key-check-2.png!
+
+You should see the "Everything's Chimpy!" message appear below your key.
+
+Once that's done, click the "Continue to List Configuration" button.
+
+h4. Choose List
+
+Next you will need to choose which MailChimp list to sync to.
+
+!/images/doculab/mailchimp-choose-list-3.png!
+
+Use the drop-down to select one of your MailChimp lists.  Remember that this needs to be a new, empty list.
+
+When you're ready, click the "Continue to Final Setup" button.
+
+h4. Start Exporting
+
+Click the "Start Exporting" button to begin the process.
+
+!/images/doculab/mailchimp-start-exporting-4.png!
+
+h4. Make Changes
+
+Now that the MailChimp integration is enabled, you have the option to disable it in order to make changes, or to completely start over.
+
+!/images/doculab/mailchimp-disable-start-over-5.png!
+
+h2. How it Works
+
+Once you click "Start Exporting," Chargify will sync the first name, last name, subscription state, and current product of all of your customers to the MailChimp list you selected.
+
+Going forward, we will sync changes when:
+
+1. 
+2. 
+3. 
+
+h2. FAQ
+
+h3. What if more than one Chargify customer has the same email address?
+
+h3. What happens if a customer's email address is changed in Chargify?
+
