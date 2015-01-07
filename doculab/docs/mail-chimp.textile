@@ -53,11 +53,7 @@ h2. How it Works
 
 Once you click the "Start Exporting" button, Chargify will sync the first name, last name, subscription state, and current product of all of your customers to the MailChimp list you selected.
 
-Going forward, we will sync changes when:
-
-1. 
-2. 
-3. 
+Going forward, we will sync changes when a customer is updated, a new subscription is added, or a subscription is changed.
 
 h2. FAQ
 
