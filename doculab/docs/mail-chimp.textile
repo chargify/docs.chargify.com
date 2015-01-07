@@ -59,5 +59,8 @@ h2. FAQ
 
 h3. What if more than one Chargify customer has the same email address?
 
-h3. What happens if a customer's email address is changed in Chargify?
+If more than one customer in Chargify has the same email address, we will create a single record in MailChimp that contains comma-delimited lists of the related customer IDs, product names, and subscription states.
 
+!/images/doculab/mailchimp-duplicate-email.png!
+
+h3. What happens if a customer's email address is changed in Chargify?
