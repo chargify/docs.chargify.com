@@ -61,6 +61,7 @@ Going forward, we will sync changes when a customer is updated, a new subscripti
 h2. Making Changes
 
 Once the MailChimp integration is enabled, you have the option to disable it in order to make changes, or to completely start over.
+Remember, if you start over, you need to create a new MailChimp list.
 
 !/images/doculab/mailchimp-disable-start-over-5.png!
 
