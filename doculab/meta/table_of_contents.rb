@@ -66,6 +66,7 @@ Doculab::TableOfContents.define do
     page "Shopify Integration"
     page "Zferral Integration"
     page "Xero Integration", :permalink => 'xero'
+    page "MailChimp Integration", :permalink => 'mailchimp'
   end
 
   section 'How To' do
