@@ -39,15 +39,9 @@ When you're ready, click the "Continue to Final Setup" button.
 
 h4. Start Exporting
 
-Click the "Start Exporting" button to begin the process.
-
 !/images/doculab/mailchimp-start-exporting-4.png!
 
-h4. Make Changes
-
-Now that the MailChimp integration is enabled, you have the option to disable it in order to make changes, or to completely start over.
-
-!/images/doculab/mailchimp-disable-start-over-5.png!
+Click the "Start Exporting" button to begin the process.
 
 h2. How it Works
 
@@ -63,6 +57,12 @@ Once you click the "Start Exporting" button, Chargify will sync the
 of all of the customers in your Chargify Site to the MailChimp list you selected.
 
 Going forward, we will sync changes when a customer is updated, a new subscription is added, or a subscription is changed.
+
+h2. Making Changes
+
+Once the MailChimp integration is enabled, you have the option to disable it in order to make changes, or to completely start over.
+
+!/images/doculab/mailchimp-disable-start-over-5.png!
 
 h2. FAQ
 
