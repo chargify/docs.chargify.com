@@ -80,6 +80,7 @@ The following events are monitored within Chargify and can generate Webhooks:
 | @billing_date_change@ | Any change to the billing date that is initiated explicitly by altering the billing date via the admin UI or the API.  This will not be triggered upon a normal renewal and period advancement, or a migration. | @site@, @subscription@<sup>1</sup> ( with @previous_billing_date@)  |
 | @subscription_state_change@ | Any change to the Subscription state.  This is the "workhorse" of the events - watching this event can tell you if a Subscription ever moves to a "bad" state, i.e. @past_due@ | @site@, @subscription@<sup>1,5</sup> |
 | @subscription_product_change@ | A successful change from an old product to a new product within the users Subscription. | @site@, @product_change@ |
+| @subscription_card_update@ | ... | ... |
 | @expiring_card@ | A periodic event sent by Chargify | @site@, @subscription@<sup>1,6</sup> |
 | @customer_update@ | Any change to the following customer fields: @first_name@, @last_name@, @organization@, @email@, @reference@, @address@, @address 2@, @city@, @state@, @zip@, @country@, @phone@. | @site@, @customer@ |
 | @component_allocation_change@ | Any change to a subscription's quantity-based component allocation or enabled status of an on/off component that is made _after_ signup.<br/><br/>This webhook does not fire if allocations are set as a part of the subscription creation (i.e. signup) - it only fires upon subsequent changes. (We will soon be making component allocations available in the @signup_success@ webhook to cover the sign up case)<br/><br/>@previous_allocation@ and @new_allocation@ give the allocation values before and after the change.  These will be either @0@ or @1@ for On/Off Components to represent @off@ and @on@, respectively.<br/><br/>@timestamp@ provides the date and time the allocation was recorded and is listed in "ISO8601":http://en.wikipedia.org/wiki/ISO_8601 format in the UTC timezone. Note: this timestamp format differs slightly from the format of existing timestamps in other event types and represents our new direction for webhook timestamps.| <pre><code>site[id]
@@ -255,6 +256,7 @@ These example webhooks have been converted from form-encoded format to Ruby hash
 * "billing_date_change Payload":#billing-date-change-payload
 * "subscription_state_change Payload":#subscription-state-change-payload
 * "subscription_product_change Payload":#subscription-product-change-payload
+* "subscription_card_update Payload":#subscription-card-update-payload
 * "expiring_card Payload":#expiring-card-payload
 * "customer_update Payload":#customer-update-payload
 * "component_allocation_change Payload":#component-allocation-change-payload
@@ -263,6 +265,10 @@ These example webhooks have been converted from form-encoded format to Ruby hash
 * "end_of_trial_notice Payload":#end-of-trial-notice-payload
 * "statement_closed Payload":#statement-closed-payload
 * "statement_settled Payload":#statement-settled-payload
+* "upgrade_downgrade_success Payload":#upgrade-downgrade-success-payload
+* "upgrade_downgrade_failure Payload":#upgrade-downgrade-failure-payload
+* "refund_sucess Payload":#refund-success-payload
+* "refund_failure Payload":#refund-failure-payload
 
 h3(#signup-success-payload). signup_sucess Payload
 
