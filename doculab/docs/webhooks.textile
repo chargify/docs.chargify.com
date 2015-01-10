@@ -80,7 +80,7 @@ The following events are monitored within Chargify and can generate Webhooks:
 | @billing_date_change@ | Any change to the billing date that is initiated explicitly by altering the billing date via the admin UI or the API.  This will not be triggered upon a normal renewal and period advancement, or a migration. | @site@, @subscription@<sup>1</sup> ( with @previous_billing_date@)  |
 | @subscription_state_change@ | Any change to the Subscription state.  This is the "workhorse" of the events - watching this event can tell you if a Subscription ever moves to a "bad" state, i.e. @past_due@ | @site@, @subscription@<sup>1,5</sup> |
 | @subscription_product_change@ | A successful change from an old product to a new product within the users Subscription. | @site@, @product_change@ |
-| @subscription_card_update@ | ... | ... |
+| @subscription_card_update@ | Any change to the active payment profile.<sup>7</sup> | @site@, @subscription@, @product@, @previous_payment_profile@, @updated_payment_profile@ |
 | @expiring_card@ | A periodic event sent by Chargify | @site@, @subscription@<sup>1,6</sup> |
 | @customer_update@ | Any change to the following customer fields: @first_name@, @last_name@, @organization@, @email@, @reference@, @address@, @address 2@, @city@, @state@, @zip@, @country@, @phone@. | @site@, @customer@ |
 | @component_allocation_change@ | Any change to a subscription's quantity-based component allocation or enabled status of an on/off component that is made _after_ signup.<br/><br/>This webhook does not fire if allocations are set as a part of the subscription creation (i.e. signup) - it only fires upon subsequent changes. (We will soon be making component allocations available in the @signup_success@ webhook to cover the sign up case)<br/><br/>@previous_allocation@ and @new_allocation@ give the allocation values before and after the change.  These will be either @0@ or @1@ for On/Off Components to represent @off@ and @on@, respectively.<br/><br/>@timestamp@ provides the date and time the allocation was recorded and is listed in "ISO8601":http://en.wikipedia.org/wiki/ISO_8601 format in the UTC timezone. Note: this timestamp format differs slightly from the format of existing timestamps in other event types and represents our new direction for webhook timestamps.| <pre><code>site[id]
@@ -166,6 +166,7 @@ subscription</code></pre> |
 <sup>4</sup> @payment_success@ or @payment_failure@ are triggered for _every_ payment attempted, whether it is for a normal renewal, or a "One-time Charge":one-time-charges, or a retry after failure.
 <sup>5</sup> Note that the @subscription@ object you are given contains keys for both @previous_state@ and @state@ so you can track the changes.
 <sup>6</sup> The @expiring_card@ webhook is sent on the 1st, 15th and 7 days before the end of the month. This will identify all cards expiring in the next month.
+<sup>7</sup> Adding a card through the Admin UI does not currently generate a @subscription_card_update@ event.
 
 p(note). Multiple Webhook events may be triggered by a single system event.  For example, the creation of a new Subscription will typically fire both a @signup_success@ and @payment_success@ event (if a payment was necessary to start the Subscription).
 
