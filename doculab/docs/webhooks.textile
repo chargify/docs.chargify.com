@@ -1295,6 +1295,74 @@ h3(#subscription-product-change-payload). subscription_product_change Payload
 
 "Back to Top":#example-payloads
 
+h3(#subscription-card-update-payload). subscription_card_update Payload
+
+<pre><code>
+{
+    "id" => "23958618",
+    "event" => "subscription_card_update",
+    "payload" => {
+        "site" => {
+            "subdomain" => "acme-test",
+            "id" => "3"
+        },
+        "subscription" => {
+            "id" => "7379933",
+            "state" => "active",
+            "balance_in_cents" => "0"
+        },
+        "product" => {
+            "id" => "3628356",
+            "name" => "Annual Plan",
+            "product_family_id" => "363826",
+            "product_family_name" => "Acme Online"
+        },
+        "customer" => {
+            "id" => "7362523",
+            "first_name" => "John",
+            "last_name" => "Doe",
+            "reference" => "johndoe",
+            "organization" => "Acme, Inc.",
+            "email" => "john@example.com"
+        },
+        "previous_payment_profile" => {
+            "id" => "4883333",
+            "first_name" => "John",
+            "last_name" => "Doe",
+            "masked_card_number" => "XXXX-XXXX-XXXX-4242",
+            "card_type" => "visa",
+            "expiration_month" => "5",
+            "expiration_year" => "2015",
+            "current_vault" => "stripe",
+            "vault_token" => "cus_5UP1bh2ThrrehJ",
+            "customer_vault_token" => "",
+            "billing_address" => "",
+            "billing_address_2" => "",
+            "billing_state" => "",
+            "billing_zip" => "90210",
+            "billing_country" => ""
+        },
+        "updated_payment_profile" => {
+            "id" => "4883333",
+            "first_name" => "John",
+            "last_name" => "Doe",
+            "masked_card_number" => "XXXX-XXXX-XXXX-4242",
+            "card_type" => "visa",
+            "expiration_month" => "5",
+            "expiration_year" => "2016",
+            "current_vault" => "stripe",
+            "vault_token" => "cus_5UP1bh2ThrrehJ",
+            "customer_vault_token" => "",
+            "billing_address" => "",
+            "billing_address_2" => "",
+            "billing_state" => "",
+            "billing_zip" => "90210",
+            "billing_country" => ""
+        }
+    }
+}
+</code></pre>
+
 h3(#expiring-card-payload). expiring_card Payload
 
 <pre><code>
