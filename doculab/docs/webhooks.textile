@@ -114,32 +114,8 @@ memo
 timestamp</code></pre> |
 | @upgrade_downgrade_success@  | Any successful upgrade/downgrade  | @site@, @subscription@<sup>1</sup>, @previous_product@ |
 | @upgrade_downgrade_failure@  | Any failed upgrade/downgrade  | @site@, @subscription@, @target_product@ |
-| @refund_success@ | Any successful refund | <pre><code>amount_in_cents
-customer_email
-customer_name
-customer_reference
-gateway_transaction_id
-gateway_used
-masked_card_number
-memo
-payment_amount_in_cents
-payment_id
-site
-subscription_id
-timestamp</code></pre> |
-| @refund_failure@ | Any failed refund | <pre><code>amount_in_cents
-customer_email
-customer_name
-customer_reference
-gateway_transaction_id
-gateway_used
-masked_card_number
-memo
-payment_amount_in_cents
-payment_id
-site
-subscription_id
-timestamp</code></pre> |
+| @refund_success@ | Any successful refund | "example payload":#refund-success-payload |
+| @refund_failure@ | Any failed refund | "example payload":#refund-failure-payload |
 | @upcoming_renewal_notice@ | A subscription set to renew within 3 days ("example payload":#upcoming-renewal-notice-payload)  | <pre><code>customer
 email_sent
 estimated_renewal_amount_in_cents
@@ -2228,3 +2204,66 @@ h3(#upgrade-downgrade-failure-payload). upgrade_downgrade_failure Payload
 
 "Back to Top":#example-payloads
 
+h3(#refund-success-payload). refund_success Payload
+
+<pre><code>
+{
+    "id": "29381989",
+    "event": "refund_success",
+    "payload": {
+        "site": {
+            "id": "24649",
+            "subdomain": acme-test",
+        },
+        "refund_id": "81179210",
+        "amount_in_cents": "195",
+        "customer_id": "7332448",
+        "customer_email": "john@example.com",
+        "customer_name": "John Doe",
+        "customer_reference": "",
+        "gateway_transaction_id": ch_15XXXXXXXXXXXYP,
+        "gateway_order_id": "",
+        "gateway_used": "stripe",
+        "masked_card_number": "XXXX-XXXX-XXXX-1881",
+        "memo": "example refund",
+        "payment_amount_in_cents": "195",
+        "payment_id": "81145688",
+        "subscription_id": "7473993",
+        "timestamp": 2015-01-11T03:32:17Z
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#refund-failure-payload). refund_failure Payload
+
+<pre><code>
+{
+    "id"="29581997",
+    "event"="refund_failure",
+    "payload": {
+        "site": {
+            "id": "24649",
+            "subdomain": "acme-test",
+            "subscription_id": "74783293",
+            "timestamp": "2015-01-11T03:31:25Z"
+        },
+        "amount_in_cents": "250",
+        "customer_id": "7332448",
+        "customer_email": "john@example.com",
+        "customer_name": "John Doe",
+        "customer_reference": "",
+        "errors": "Example error message",
+        "gateway_transaction_id": "",
+        "gateway_order_id": "",
+        "gateway_used": "stripe",
+        "masked_card_number": "XXXX-XXXX-XXXX-1234",
+        "memo": "test refund",
+        "payment_amount_in_cents": "195",
+        "payment_id": "811823628",
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
