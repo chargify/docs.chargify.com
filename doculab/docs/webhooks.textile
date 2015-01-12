@@ -132,8 +132,8 @@ payment_profile
 product
 site
 subscription</code></pre> |
-| @statement_closed@ | A statement closes ("Statement Events":#statement-events) | "example payload":#statement-payload |
-| @statement_settled@ | A statement settles ("Statement Events":#statement-events) | "example payload":#statement-payload |
+| @statement_closed@ | A statement closes ("Statement Events":#statement-events) | "example payload":#statement-closed-payload |
+| @statement_settled@ | A statement settles ("Statement Events":#statement-events) | "example payload":#statement-settled-payload |
 
 
 <sup>1</sup> The @subscription@ object also contains information on the Customer and Product.
