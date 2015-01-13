@@ -278,4 +278,4 @@ h3(#api-subscription-coupon-remove). Remove
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/remove_coupon.<format>@
 Method: @DELETE@
 Required Parameters: subscription_id
-Response: If the coupon is successfully removed, The string Coupon removed will be returned verifying the coupon has been removed. Otherwise, a '422 Unprocessable Entity' error will be returned.
+Response: If the coupon is successfully removed, the string "Coupon removed." will be returned. Otherwise, a '422 Unprocessable Entity' error will be returned.
