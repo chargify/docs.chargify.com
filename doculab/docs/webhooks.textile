@@ -2240,8 +2240,8 @@ h3(#refund-failure-payload). refund_failure Payload
 
 <pre><code>
 {
-    "id"="29581997",
-    "event"="refund_failure",
+    "id": "29581997",
+    "event": "refund_failure",
     "payload": {
         "site": {
             "id": "24649",
