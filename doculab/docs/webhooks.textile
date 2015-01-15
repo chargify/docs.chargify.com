@@ -80,6 +80,7 @@ The following events are monitored within Chargify and can generate Webhooks:
 | @billing_date_change@ | Any change to the billing date that is initiated explicitly by altering the billing date via the admin UI or the API.  This will not be triggered upon a normal renewal and period advancement, or a migration. | @site@, @subscription@<sup>1</sup> ( with @previous_billing_date@)  |
 | @subscription_state_change@ | Any change to the Subscription state.  This is the "workhorse" of the events - watching this event can tell you if a Subscription ever moves to a "bad" state, i.e. @past_due@ | @site@, @subscription@<sup>1,5</sup> |
 | @subscription_product_change@ | A successful change from an old product to a new product within the users Subscription. | @site@, @product_change@ |
+| @subscription_card_update@ | Any change to the active payment profile.<sup>7</sup> | @site@, @subscription@, @product@, @previous_payment_profile@, @updated_payment_profile@ |
 | @expiring_card@ | A periodic event sent by Chargify | @site@, @subscription@<sup>1,6</sup> |
 | @customer_update@ | Any change to the following customer fields: @first_name@, @last_name@, @organization@, @email@, @reference@, @address@, @address 2@, @city@, @state@, @zip@, @country@, @phone@. | @site@, @customer@ |
 | @component_allocation_change@ | Any change to a subscription's quantity-based component allocation or enabled status of an on/off component that is made _after_ signup.<br/><br/>This webhook does not fire if allocations are set as a part of the subscription creation (i.e. signup) - it only fires upon subsequent changes. (We will soon be making component allocations available in the @signup_success@ webhook to cover the sign up case)<br/><br/>@previous_allocation@ and @new_allocation@ give the allocation values before and after the change.  These will be either @0@ or @1@ for On/Off Components to represent @off@ and @on@, respectively.<br/><br/>@timestamp@ provides the date and time the allocation was recorded and is listed in "ISO8601":http://en.wikipedia.org/wiki/ISO_8601 format in the UTC timezone. Note: this timestamp format differs slightly from the format of existing timestamps in other event types and represents our new direction for webhook timestamps.| <pre><code>site[id]
@@ -111,34 +112,10 @@ new_unit_balance
 usage_quantity
 memo
 timestamp</code></pre> |
-| @upgrade_downgrade_success@  | Any successful upgrade/downgrade  | @site@, @subscription@, @previous_product@ |
+| @upgrade_downgrade_success@  | Any successful upgrade/downgrade  | @site@, @subscription@<sup>1</sup>, @previous_product@ |
 | @upgrade_downgrade_failure@  | Any failed upgrade/downgrade  | @site@, @subscription@, @target_product@ |
-| @refund_success@ | Any successful refund | <pre><code>amount_in_cents
-customer_email
-customer_name
-customer_reference
-gateway_transaction_id
-gateway_used
-masked_card_number
-memo
-payment_amount_in_cents
-payment_id
-site
-subscription_id
-timestamp</code></pre> |
-| @refund_failure@ | Any failed refund | <pre><code>amount_in_cents
-customer_email
-customer_name
-customer_reference
-gateway_transaction_id
-gateway_used
-masked_card_number
-memo
-payment_amount_in_cents
-payment_id
-site
-subscription_id
-timestamp</code></pre> |
+| @refund_success@ | Any successful refund | "example payload":#refund-success-payload |
+| @refund_failure@ | Any failed refund | "example payload":#refund-failure-payload |
 | @upcoming_renewal_notice@ | A subscription set to renew within 3 days ("example payload":#upcoming-renewal-notice-payload)  | <pre><code>customer
 email_sent
 estimated_renewal_amount_in_cents
@@ -155,8 +132,8 @@ payment_profile
 product
 site
 subscription</code></pre> |
-| @statement_closed@ | A statement closes ("Statement Events":#statement-events) | "example payload":#statement-payload |
-| @statement_settled@ | A statement settles ("Statement Events":#statement-events) | "example payload":#statement-payload |
+| @statement_closed@ | A statement closes ("Statement Events":#statement-events) | "example payload":#statement-closed-payload |
+| @statement_settled@ | A statement settles ("Statement Events":#statement-events) | "example payload":#statement-settled-payload |
 
 
 <sup>1</sup> The @subscription@ object also contains information on the Customer and Product.
@@ -165,6 +142,7 @@ subscription</code></pre> |
 <sup>4</sup> @payment_success@ or @payment_failure@ are triggered for _every_ payment attempted, whether it is for a normal renewal, or a "One-time Charge":one-time-charges, or a retry after failure.
 <sup>5</sup> Note that the @subscription@ object you are given contains keys for both @previous_state@ and @state@ so you can track the changes.
 <sup>6</sup> The @expiring_card@ webhook is sent on the 1st, 15th and 7 days before the end of the month. This will identify all cards expiring in the next month.
+<sup>7</sup> Adding a card through the Admin UI does not currently generate a @subscription_card_update@ event.
 
 p(note). Multiple Webhook events may be triggered by a single system event.  For example, the creation of a new Subscription will typically fire both a @signup_success@ and @payment_success@ event (if a payment was necessary to start the Subscription).
 
@@ -255,6 +233,7 @@ These example webhooks have been converted from form-encoded format to Ruby hash
 * "billing_date_change Payload":#billing-date-change-payload
 * "subscription_state_change Payload":#subscription-state-change-payload
 * "subscription_product_change Payload":#subscription-product-change-payload
+* "subscription_card_update Payload":#subscription-card-update-payload
 * "expiring_card Payload":#expiring-card-payload
 * "customer_update Payload":#customer-update-payload
 * "component_allocation_change Payload":#component-allocation-change-payload
@@ -263,6 +242,10 @@ These example webhooks have been converted from form-encoded format to Ruby hash
 * "end_of_trial_notice Payload":#end-of-trial-notice-payload
 * "statement_closed Payload":#statement-closed-payload
 * "statement_settled Payload":#statement-settled-payload
+* "upgrade_downgrade_success Payload":#upgrade-downgrade-success-payload
+* "upgrade_downgrade_failure Payload":#upgrade-downgrade-failure-payload
+* "refund_sucess Payload":#refund-success-payload
+* "refund_failure Payload":#refund-failure-payload
 
 h3(#signup-success-payload). signup_sucess Payload
 
@@ -1289,6 +1272,74 @@ h3(#subscription-product-change-payload). subscription_product_change Payload
 
 "Back to Top":#example-payloads
 
+h3(#subscription-card-update-payload). subscription_card_update Payload
+
+<pre><code>
+{
+    "id" => "23958618",
+    "event" => "subscription_card_update",
+    "payload" => {
+        "site" => {
+            "subdomain" => "acme-test",
+            "id" => "3"
+        },
+        "subscription" => {
+            "id" => "7379933",
+            "state" => "active",
+            "balance_in_cents" => "0"
+        },
+        "product" => {
+            "id" => "3628356",
+            "name" => "Annual Plan",
+            "product_family_id" => "363826",
+            "product_family_name" => "Acme Online"
+        },
+        "customer" => {
+            "id" => "7362523",
+            "first_name" => "John",
+            "last_name" => "Doe",
+            "reference" => "johndoe",
+            "organization" => "Acme, Inc.",
+            "email" => "john@example.com"
+        },
+        "previous_payment_profile" => {
+            "id" => "4883333",
+            "first_name" => "John",
+            "last_name" => "Doe",
+            "masked_card_number" => "XXXX-XXXX-XXXX-4242",
+            "card_type" => "visa",
+            "expiration_month" => "5",
+            "expiration_year" => "2015",
+            "current_vault" => "stripe",
+            "vault_token" => "cus_5UXXXXXXXXXXhJ",
+            "customer_vault_token" => "",
+            "billing_address" => "",
+            "billing_address_2" => "",
+            "billing_state" => "",
+            "billing_zip" => "90210",
+            "billing_country" => ""
+        },
+        "updated_payment_profile" => {
+            "id" => "4883333",
+            "first_name" => "John",
+            "last_name" => "Doe",
+            "masked_card_number" => "XXXX-XXXX-XXXX-4242",
+            "card_type" => "visa",
+            "expiration_month" => "5",
+            "expiration_year" => "2016",
+            "current_vault" => "stripe",
+            "vault_token" => "cus_5UXXXXXXXXXXXhJ",
+            "customer_vault_token" => "",
+            "billing_address" => "",
+            "billing_address_2" => "",
+            "billing_state" => "",
+            "billing_zip" => "90210",
+            "billing_country" => ""
+        }
+    }
+}
+</code></pre>
+
 h3(#expiring-card-payload). expiring_card Payload
 
 <pre><code>
@@ -1851,3 +1902,368 @@ h3(#statement-settled-payload). statement_settled Payload
 
 "Back to Top":#example-payloads
 
+h3(#upgrade-downgrade-success-payload). upgrade_downgrade_success Payload
+
+<pre><code>
+{
+    "id": "1356246",
+    "event": "upgrade_downgrade_success",
+    "payload": {
+        "site": {
+            "id": "2",
+            "subdomain": "acme"
+        },
+        "subscription": {
+            "activated_at": "2015-01-10 09:27:24 -0500",
+            "balance_in_cents": "0",
+            "cancel_at_end_of_period": "false",
+            "canceled_at": "",
+            "cancellation_message": "",
+            "created_at": "2015-01-10 09:27:22 -0500",
+            "current_period_ends_at": "2015-01-11 15:17:16 -0500",
+            "expires_at": "",
+            "id": "7473993",
+            "next_assessment_at": "2015-01-11 15:17:16 -0500",
+            "payment_collection_method": "automatic",
+            "snap_day": "",
+            "state": "active",
+            "trial_ended_at": "",
+            "trial_started_at": "",
+            "updated_at": "2015-01-10 15:17:16 -0500",
+            "current_period_started_at": "2015-01-10 15:17:13 -0500",
+            "previous_state": "active",
+            "signup_payment_id": "81122593",
+            "signup_revenue": "30.00",
+            "delayed_cancel_at": "",
+            "coupon_code": "",
+            "total_revenue_in_cents": "3195",
+            "product_price_in_cents": "195",
+            "product_version_number": "1",
+            "payment_type": "credit_card",
+            customer: {
+                "address": "",
+                "address_2": "",
+                "city": "",
+                "country": "",
+                "created_at": "2015-01-10 09:27:21 -0500",
+                "email": "john@example.com@",
+                "first_name": "John",
+                "id": "7332448",
+                "last_name": "Doe",
+                "organization": "",
+                "phone": "",
+                "portal_customer_created_at": "2015-01-10 14:44:48 -0500",
+                "portal_invite_last_accepted_at": "",
+                "portal_invite_last_sent_at": "",
+                "reference": "",
+                "state": "",
+                "updated_at": "2015-01-10 14:44:48 -0500",
+                "verified": "false",
+                "zip": "",
+            },
+            credit_card: {
+              "billing_address": "",
+              "billing_address_2": "",
+              "billing_city": "",
+              "billing_country": "",
+              "billing_state": "",
+              "billing_zip": "12345",
+              "card_type": "visa",
+              "current_vault: "stripe",
+              "customer_id": "7332448",
+              "customer_vault_token": "",
+              "expiration_month": "9",
+              "expiration_year": "2016",
+              "first_name": "John",
+              "id": "4884682",
+              "last_name: "Doe",
+              "masked_card_number": "XXXX-XXXX-XXXX-1881",
+              "vault_token": "cus_5UXXXXXXXXXXfI",
+              "payment_type": "credit_card",
+          },
+            product: {
+                "accounting_code": "",
+                "archived_at": "",
+                "created_at": "2015-01-04 12:3:31 -0500",
+                "description": "Daily test product",
+                "expiration_interval": "",
+                "expiration_interval_unit": "never",
+                "handle": "test-2",
+                "id": "3618724",
+                "initial_charge_in_cents": "",
+                "interval": "1",
+                "interval_unit": "day",
+                "name": "Daily Test Product",
+                "price_in_cents": "195",
+                "request_credit_card": "true",
+                "require_credit_card": "true",
+                "return_params": "",
+                "return_url": "",
+                "taxable": "false",
+                "trial_interval": "",
+                "trial_interval_unit": "month",
+                "trial_price_in_cents": "",
+                "update_return_url": "",
+                "updated_at": "2015-01-04 12:35:31 -0500",
+                "product_family": {
+                    "accounting_code": "",
+                    "description": "Test product family",
+                    "handle": "test-family",
+                    "id": "460852",
+                    "name": "Test Family"
+                }
+            }
+        },
+        "previous_product": {
+            "accounting_code": "",
+            "archived_at": "",
+            "created_at": "2015-01-10 09:23:47 -0500",
+            "description": "",
+            "expiration_interval": ",
+            "expiration_interval_unit": "never",
+            "handle": "annual-plan",
+            "id": "36323746",
+            "initial_charge_in_cents": "",
+            "interval": "12",
+            "interval_unit": "month",
+            "name": "Annual Plan",
+            "price_in_cents": "2000",
+            "request_credit_card": "true",
+            "require_credit_card": "true",
+            "return_params": "",
+            "return_url": "",
+            "taxable": "",
+            "trial_interval: "",
+            "trial_interval_unit: "",
+            "trial_price_in_cents": "",
+            "update_return_url: "",
+            "updated_at": "2015-01-10 09:23:47 -0500",
+            "product_family": {
+                "accounting_code": "",
+                "description": "Test product family",
+                "handle": "test-family",
+                "id": "460852",
+                "name"="Test Family"
+            }
+        }
+    }
+}
+
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#upgrade-downgrade-failure-payload). upgrade_downgrade_failure Payload
+
+<pre><code>
+{
+    "id": "1886236",
+    "event": "upgrade_downgrade_failure",
+    "payload": {
+        "site": {
+            "id": "2",
+            "subdomain": "acme"
+        },
+        "subscription": {
+            "activated_at": "2015-01-10 09:27:24 -0500",
+            "balance_in_cents": "0",
+            "cancel_at_end_of_period": "false",
+            "canceled_at": "",
+            "cancellation_message": "",
+            "created_at": "2015-01-10 09:27:22 -0500",
+            "current_period_ends_at": "2015-01-11 15:17:16 -0500",
+            "expires_at": "",
+            "id": "7473993",
+            "next_assessment_at": "2015-01-11 15:17:16 -0500",
+            "payment_collection_method": "automatic",
+            "snap_day": "",
+            "state": "active",
+            "trial_ended_at": "",
+            "trial_started_at": "",
+            "updated_at": "2015-01-10 15:17:16 -0500",
+            "current_period_started_at": "2015-01-10 15:17:13 -0500",
+            "previous_state": "active",
+            "signup_payment_id": "81122593",
+            "signup_revenue": "30.00",
+            "delayed_cancel_at": "",
+            "coupon_code": "",
+            "total_revenue_in_cents": "3195",
+            "product_price_in_cents": "195",
+            "product_version_number": "1",
+            "payment_type": "credit_card",
+            customer: {
+                "address": "",
+                "address_2": "",
+                "city": "",
+                "country": "",
+                "created_at": "2015-01-10 09:27:21 -0500",
+                "email": "john@example.com@",
+                "first_name": "John",
+                "id": "7332448",
+                "last_name": "Doe",
+                "organization": "",
+                "phone": "",
+                "portal_customer_created_at": "2015-01-10 14:44:48 -0500",
+                "portal_invite_last_accepted_at": "",
+                "portal_invite_last_sent_at": "",
+                "reference": "",
+                "state": "",
+                "updated_at": "2015-01-10 14:44:48 -0500",
+                "verified": "false",
+                "zip": "",
+            },
+            credit_card: {
+              "billing_address": "",
+              "billing_address_2": "",
+              "billing_city": "",
+              "billing_country": "",
+              "billing_state": "",
+              "billing_zip": "12345",
+              "card_type": "visa",
+              "current_vault: "stripe",
+              "customer_id": "7332448",
+              "customer_vault_token": "",
+              "expiration_month": "9",
+              "expiration_year": "2016",
+              "first_name": "John",
+              "id": "4884682",
+              "last_name: "Doe",
+              "masked_card_number": "XXXX-XXXX-XXXX-1881",
+              "vault_token": "cus_5UXXXXXXXXXXfI",
+              "payment_type": "credit_card",
+          },
+            product: {
+                "accounting_code": "",
+                "archived_at": "",
+                "created_at": "2015-01-04 12:3:31 -0500",
+                "description": "Daily test product",
+                "expiration_interval": "",
+                "expiration_interval_unit": "never",
+                "handle": "test-2",
+                "id": "3618724",
+                "initial_charge_in_cents": "",
+                "interval": "1",
+                "interval_unit": "day",
+                "name": "Daily Test Product",
+                "price_in_cents": "195",
+                "request_credit_card": "true",
+                "require_credit_card": "true",
+                "return_params": "",
+                "return_url": "",
+                "taxable": "false",
+                "trial_interval": "",
+                "trial_interval_unit": "month",
+                "trial_price_in_cents": "",
+                "update_return_url": "",
+                "updated_at": "2015-01-04 12:35:31 -0500",
+                "product_family": {
+                    "accounting_code": "",
+                    "description": "Test product family",
+                    "handle": "test-family",
+                    "id": "460852",
+                    "name": "Test Family"
+                }
+            }
+        },
+        "target_product": {
+            "accounting_code": "",
+            "archived_at": "",
+            "created_at": "2015-01-10 09:23:47 -0500",
+            "description": "",
+            "expiration_interval": ",
+            "expiration_interval_unit": "never",
+            "handle": "annual-plan",
+            "id": "36323746",
+            "initial_charge_in_cents": "",
+            "interval": "12",
+            "interval_unit": "month",
+            "name": "Annual Plan",
+            "price_in_cents": "2000",
+            "request_credit_card": "true",
+            "require_credit_card": "true",
+            "return_params": "",
+            "return_url": "",
+            "taxable": "",
+            "trial_interval: "",
+            "trial_interval_unit: "",
+            "trial_price_in_cents": "",
+            "update_return_url: "",
+            "updated_at": "2015-01-10 09:23:47 -0500",
+            "product_family": {
+                "accounting_code": "",
+                "description": "Test product family",
+                "handle": "test-family",
+                "id": "460852",
+                "name"="Test Family"
+            }
+        }
+    }
+}
+
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#refund-success-payload). refund_success Payload
+
+<pre><code>
+{
+    "id": "29381989",
+    "event": "refund_success",
+    "payload": {
+        "site": {
+            "id": "24649",
+            "subdomain": acme-test",
+        },
+        "refund_id": "81179210",
+        "amount_in_cents": "195",
+        "customer_id": "7332448",
+        "customer_email": "john@example.com",
+        "customer_name": "John Doe",
+        "customer_reference": "",
+        "gateway_transaction_id": ch_15XXXXXXXXXXXYP,
+        "gateway_order_id": "",
+        "gateway_used": "stripe",
+        "masked_card_number": "XXXX-XXXX-XXXX-1881",
+        "memo": "example refund",
+        "payment_amount_in_cents": "195",
+        "payment_id": "81145688",
+        "subscription_id": "7473993",
+        "timestamp": 2015-01-11T03:32:17Z
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
+
+h3(#refund-failure-payload). refund_failure Payload
+
+<pre><code>
+{
+    "id": "29581997",
+    "event": "refund_failure",
+    "payload": {
+        "site": {
+            "id": "24649",
+            "subdomain": "acme-test",
+            "subscription_id": "74783293",
+            "timestamp": "2015-01-11T03:31:25Z"
+        },
+        "amount_in_cents": "250",
+        "customer_id": "7332448",
+        "customer_email": "john@example.com",
+        "customer_name": "John Doe",
+        "customer_reference": "",
+        "errors": [ "First error message", "Second error message" ],
+        "gateway_transaction_id": "",
+        "gateway_order_id": "",
+        "gateway_used": "stripe",
+        "masked_card_number": "XXXX-XXXX-XXXX-1234",
+        "memo": "test refund",
+        "payment_amount_in_cents": "195",
+        "payment_id": "811823628",
+    }
+}
+</code></pre>
+
+"Back to Top":#example-payloads
