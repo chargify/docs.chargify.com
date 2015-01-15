@@ -55,7 +55,7 @@ Once you have added the currency to your Xero-supported currencies, you will see
 
 When your Chargify and Xero base currencies do not match, we supply the Chargify-originated currency code to Xero when creating Invoices and Credit Notes.  Xero will handle all currency conversions, and your invoices and payments in Xero will be represented in the correct currency.
 
-**Note:** If you enabled the Xero integration before Jan 15, 2015 and would like to make use of this currency code support, you will need to re-visit the Xero Configuration within Chargify so that we can recognize the currencies your Xero Organization supports.0
+**Note:** If you enabled the Xero integration before Jan 15, 2015 and would like to make use of this currency code support, you will need to re-visit the Xero Configuration within Chargify so that we can recognize the currencies your Xero Organization supports.
 
 
 h3. Taxes
@@ -159,4 +159,4 @@ The short answer is: nothing too bad.  We detect that the tax rate has "gone awa
 
 h3. How many Chargify Sites can I connect to my Xero Organization
 
-There is a limit of just one Chargify Site per Xero Organization.  If you attempt to connect a second Chargify Site to the same organzation, the first Site will lose its sync privileges.  This is a limitation in the Xero authentication mechanism.  We may be able to improve upon this in the future and allow multiple Chargify Sites to use the same authentication credentials.0
+There is a limit of just one Chargify Site per Xero Organization.  If you attempt to connect a second Chargify Site to the same organzation, the first Site will lose its sync privileges.  This is a limitation in the Xero authentication mechanism.  We may be able to improve upon this in the future and allow multiple Chargify Sites to use the same authentication credentials.
