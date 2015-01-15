@@ -21,7 +21,7 @@ To begin exporting data to Xero, click the "Enable Continuous Xero Exporting" bu
 
 h3. Authentication Limits Between Chargify and Xero
 
-Xero only allows one "authentication" at a time per Xero Organization.  This means that you will only be able to connect 1 Chargify Site to each Xero Organization.  Attempting to authenticate another Chargify Site to the same Xero Organization will cause the first to lose its authentication.
+Xero only allows one "authentication" at a time per Xero Organization.  This means that you will only be able to connect one Chargify Site to each Xero Organization.  Attempting to authenticate another Chargify Site to the same Xero Organization will cause the first to lose its authentication.
 
 h2. Configuring the Integration
 
@@ -55,7 +55,7 @@ Once you have added the currency to your Xero-supported currencies, you will see
 
 When your Chargify and Xero base currencies do not match, we supply the Chargify-originated currency code to Xero when creating Invoices and Credit Notes.  Xero will handle all currency conversions, and your invoices and payments in Xero will be represented in the correct currency.
 
-**Note:** If you enabled the Xero integration before Jan 15, 2015 and would like to make use of this currency code support, you will need to re-visit the Xero Configuration within Chargify so that we can recognize the currencies your Xero Organization supports.
+**Note:** If you enabled the Xero integration before Jan 15, 2015, and would like to make use of this currency code support, you will need to re-visit the Xero Configuration within Chargify so that we can recognize the currencies your Xero Organization supports.
 
 
 h3. Taxes
@@ -157,6 +157,6 @@ h3. What happens if a Chargify-created Tax Rate is deleted in Xero?
 
 The short answer is: nothing too bad.  We detect that the tax rate has "gone away", and we re-sync it with Xero.  However, this will have the effect of creating a different Tax Rate in Xero, with a different name, but with the same rates.  Since this will segment your tax reports unnecessarily, we recommend that you do not delete the rates we create in Xero.
 
-h3. How many Chargify Sites can I connect to my Xero Organization
+h3. How many Chargify Sites can I connect to my Xero Organization?
 
 There is a limit of just one Chargify Site per Xero Organization.  If you attempt to connect a second Chargify Site to the same organzation, the first Site will lose its sync privileges.  This is a limitation in the Xero authentication mechanism.  We may be able to improve upon this in the future and allow multiple Chargify Sites to use the same authentication credentials.
