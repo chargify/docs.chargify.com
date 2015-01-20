@@ -1,32 +1,28 @@
 h2. How to add shipping charges to a subscription
 
-Chargify does not have any function specifically for shipping charges.
+You can use Chargify's flexible "Components":/product-components to add various types of charges to a subscription, including shipping charges.  Usually you will want to use the "Quantity Component":/product-components#quantity-based-components, because you can "set it and forget it". That means you can set the component to a certain amount, add it to a customer's subscription, and then you're done. It will bill every time the subscription has a renewal payment for the product they're getting from you.
 
-But we do have things called ""Components"":/product-components that are used to add various types of charges to a subscription. For shipping charges, our ""Quantity Component"":/product-components#quantity-based-components is usually the one you want, because you can "set it and forget it". What that means is, you set the component to $x (whatever amount makes sense), add it to the customer's subscription, and then you're done. It will bill every time the subscription has a renewal payment for the product they're getting from you.
+For example, you might create a "Quantity Component":/product-components#quantity-based-components for each standard shipping charge that you want to offer. If you ship a box of goodies to US customers with three different levels of speed, then you would create three components: one for $5, one for $10, and one for $20. Your customers can choose the shipping speed/cost they want on the Chargify hosted signup page, or you can add the component to their subscription later. You can also change the component any time you want using the Chargify control panel.
 
-This does not allow exact shipping charges.
-
-Instead, you'll create a Quantity Component for each standard shipping charge that you want to offer. For instance, if you ship a box of goodies to US customers with 3 different levels of speed, then you'll create 3 components: 1 for $5, 1 for $10, and 1 for $20. Your customers can choose the shipping speed/cost they want on the Chargify Public Signup Page, or you can add the component to their subscription later. You can also change the component anytime you want using the Chargify control panel.
-
-More on Components can be found here: "https://docs.chargify.com/product-components":/product-components
+More on Components can be found on "https://docs.chargify.com/product-components":/product-components.
 
 h2. How to know when to ship
 
 There are two basic methods: the first waits for Chargify to collect payment from your customer, then ships; the second allows you to query our system to find out who needs a shipment.
 
-h2. Methods to ship that are triggered by us successfully collecting payment from your customer
+h3. Methods to ship that are triggered by us successfully collecting payment from your customer
 
-* Statement emailed to customer, and bcc'd to you by turning on the Statement BCC email setting in Chargify. Statements have all info needed to ship something.
+* "Statement":/statements emailed to customer, and BCC'd to you by turning on the Statement BCC email setting in Chargify. Statements have all the info needed for you to make a shipment.
 Here's an example statement:
 
 !/images/features/statements-large.png!
 
 * Daily report emailed to merchant, which includes any renewals that day. Merchant then looks up customer shipping info for each customer on the report.
 
-* We send ""webhooks"":/webhooks whenever events happen - events like signups and renewals. Webhooks contain a little bit of data regarding a subscription, and if you want to automate processes with some programming, you can wrote a script on your server that receives a renewal webhook from Chargify, then queries our API for the product and shipping info on that subscription, then sends that data to someone in an email or sends it to a fulfillment center, etc. This is one path that merchants take if they're doing high volume.
+* "Webhooks":/webhooks sent whenever events like signups and renewals happen. Webhooks contain a subset of the data for a subscription, and can be used to automate the shipping process.  For example, with some programming, you can run a script on your server that receives a renewal webhook from Chargify,  queries our API for the product and shipping info on that subscription, then sends that data to someone in an email or sends it to a fulfillment center. This is one path that merchants take if they're doing high volume.
 
-h2. Methods to ship that are triggered anytime you want
+h3. Methods to ship that are triggered anytime you want
 
-* You can generate a CSV file of all subscriptions, filter it, and see the subs that renew on a given date. Some spreadsheet/Excel work may be needed to do a bit of filtering. Some of our Level 1 support people are skilled in these things and can help you or your customer figure out the export and Excel portions.
+* You can generate a CSV file of all subscriptions, filter it, and see the subscriptions that renew on a given date. If you need help filtering or working with the data in Excel, our "support":http://support.chargify.com staff will be glad to assist you.
 
-* You can write a script to query our API and get subscriptions that are renewing now or soon, get any data needed (like customer and shipping info), then push that data to someone in an email or via API calls to a fulfillment center, etc.  This is another path that merchants take if they're doing high volume.
+* You can write a script to query our API and get subscriptions that are renewing in the near future, get any data needed (such as customer and shipping info), then push that data to someone in an email or via API calls to a fulfillment center.  This is another path that merchants take if they're doing high volume.
