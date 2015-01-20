@@ -58,6 +58,10 @@ All images should be sized to 640px wide.
 
 Images are stored in the <code>public/images/doculab/</code> directory and displayed with the <code>!/images/doculab/filename.png!</code> syntax.
 
+#### Menu
+
+The <code>doculab/meta/table_of_contents.rb</code> file controls the left-hand menu.
+
 
 Colophon
 ---------
