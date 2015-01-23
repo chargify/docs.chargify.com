@@ -45,13 +45,14 @@ Click the "Start Exporting" button to begin the process.
 
 h2. How it Works
 
-Once you click the "Start Exporting" button, Chargify will sync the 
+Once you click the "Start Exporting" button, Chargify will sync the
 
-* email address,
-* first name,
-* last name,
-* customer ID,
-* current product, and
+* customer ID
+* customer email address
+* customer first name
+* customer last name
+* customer reference
+* product name
 * subscription state
 
 of all of the customers in your Chargify Site to the MailChimp list you selected.
