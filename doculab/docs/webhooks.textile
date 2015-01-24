@@ -1281,23 +1281,23 @@ h3(#subscription-card-update-payload). subscription_card_update Payload
     "id" => "23958618",
     "event" => "subscription_card_update",
     "payload" => {
-        "site" => {
-            "subdomain" => "acme-test",
-            "id" => "3"
+        "site"=> {
+            "id"=>24649,
+            "subdomain" => "acme-test"
         },
         "subscription" => {
-            "id" => "7379933",
+            "id" => "0",
             "state" => "active",
-            "balance_in_cents" => "0"
+            "balance_in_cents" => "9900"
         },
         "product" => {
-            "id" => "3628356",
-            "name" => "Annual Plan",
-            "product_family_id" => "363826",
+            "id" => "0",
+            "name" => "Pro",
+            "product_family_id" => "0",
             "product_family_name" => "Acme Online"
         },
         "customer" => {
-            "id" => "7362523",
+            "id" => "0",
             "first_name" => "John",
             "last_name" => "Doe",
             "reference" => "johndoe",
@@ -1305,38 +1305,40 @@ h3(#subscription-card-update-payload). subscription_card_update Payload
             "email" => "john@example.com"
         },
         "previous_payment_profile" => {
-            "id" => "4883333",
-            "first_name" => "John",
+            "id" => "0",
+            "first_name" => "Jane",
             "last_name" => "Doe",
-            "masked_card_number" => "XXXX-XXXX-XXXX-4242",
+            "masked_card_number" => "XXXX-XXXX-XXXX-1111",
             "card_type" => "visa",
-            "expiration_month" => "5",
-            "expiration_year" => "2015",
-            "current_vault" => "stripe",
-            "vault_token" => "cus_5UXXXXXXXXXXhJ",
+            "expiration_month" => "4",
+            "expiration_year" => "2016",
+            "current_vault" => "bogus",
+            "vault_token" => "1",
             "customer_vault_token" => "",
-            "billing_address" => "",
-            "billing_address_2" => "",
-            "billing_state" => "",
-            "billing_zip" => "90210",
-            "billing_country" => ""
+            "billing_address" => "987 Commerce St",
+            "billing_address_2" => "Suite 789",
+            "billing_city" => "Greenberg",
+            "billing_state" => "NC",
+            "billing_zip" => "67890",
+            "billing_country" => "US"
         },
         "updated_payment_profile" => {
-            "id" => "4883333",
-            "first_name" => "John",
+            "id" => "0",
+            "first_name" => "Jane",
             "last_name" => "Doe",
-            "masked_card_number" => "XXXX-XXXX-XXXX-4242",
+            "masked_card_number" => "XXXX-XXXX-XXXX-2222",
             "card_type" => "visa",
-            "expiration_month" => "5",
-            "expiration_year" => "2016",
-            "current_vault" => "stripe",
-            "vault_token" => "cus_5UXXXXXXXXXXXhJ",
+            "expiration_month" => "2",
+            "expiration_year" => "2022",
+            "current_vault" => "bogus",
+            "vault_token" => "2",
             "customer_vault_token" => "",
-            "billing_address" => "",
-            "billing_address_2" => "",
-            "billing_state" => "",
-            "billing_zip" => "90210",
-            "billing_country" => ""
+            "billing_address" => "123 Main St",
+            "billing_address_2" => "Apt 1",
+            "billing_city" => "Boston",
+            "billing_state" => "MA",
+            "billing_zip" => "02499",
+            "billing_country" => "US"
         }
     }
 }
