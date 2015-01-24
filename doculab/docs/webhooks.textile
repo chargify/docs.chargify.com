@@ -1910,9 +1910,9 @@ h3(#upgrade-downgrade-success-payload). upgrade_downgrade_success Payload
 
 <pre><code>
 {
-    "id": "1356246",
-    "event": "upgrade_downgrade_success",
-    "payload": {
+    "id" => "1356246",
+    "event" => "upgrade_downgrade_success",
+    "payload" => {
         "site" => {
             "id" => 24649,
             "subdomain" => "acme-test"
