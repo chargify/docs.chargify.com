@@ -151,6 +151,7 @@ Optional Parameters:
 @per_page@: how many records to fetch in each request, defaults to 20.  The maximum allowed is 200 - any @per_page@ value over 200 will be changed to 200.
 @state@: The current state of the subscription. Please see the documentation for "Subscription States":/subscription-states
 @product@: The product id of the subscription. (Note that the product handle cannot be used.)
+@coupon@: The numeric id of the coupon currently applied to the subscription. (This can be found in the url when editing a coupon.  Note that the coupon code cannot be used.)
 Response: An array of Subscriptions
 **Usage Examples:**
 "XML example":#api-usage-xml-subscriptions-list
