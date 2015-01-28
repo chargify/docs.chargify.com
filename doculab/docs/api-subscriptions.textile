@@ -144,13 +144,16 @@ Listing subscriptions is paginated, 20 at a time by default with an allowed max 
 
 You may control pagination using the @page@ and/or @per_page@ parameters.
 
+Listing subscriptions may be filtered by using the @state@, @product@, (and optionally @product_revision_number@,) and/or @coupon@ parameters.
+
 URL: @https://<subdomain>.chargify.com/subscriptions.<format>@
 Method: @GET@
 Optional Parameters:
 @page@: an integer value which specifies which page of results to fetch, starting at 1.  Fetching successively higher page numbers will return additional results, until there are no more results to return (in which case an empty result set will be returned).  Defaults to 1.
 @per_page@: how many records to fetch in each request, defaults to 20.  The maximum allowed is 200 - any @per_page@ value over 200 will be changed to 200.
-@state@: The current state of the subscription. Please see the documentation for "Subscription States":/subscription-states
+@state@: The current state of the subscription. Please see the documentation for "Subscription States":/subscription-states.  Special values @expired_cards@, @expiring_next_month@, and @expiring_this_month@ may also be used.
 @product@: The product id of the subscription. (Note that the product handle cannot be used.)
+@product_revision_number@: The revision number of the product.  If supplied, @product@ is required.
 @coupon@: The numeric id of the coupon currently applied to the subscription. (This can be found in the url when editing a coupon.  Note that the coupon code cannot be used.)
 Response: An array of Subscriptions
 **Usage Examples:**
