@@ -1,0 +1,62 @@
+For information on how to add Custom JavasScript and CSS to your Public Pages, please see "Public Page Default Settings":/public-page-default-settings and "Public Signup Page Settings":/public-signup-page-settings.
+
+These snippets of code are intended as examples to show how to select and modify different elements on the Public Pages. Chargify Support can provide assistance with simple changes such as hiding a field or restricting the country location for new signups.  Depending on your level of expertise, it may be necessary to engage a Web Developer to accomplish more complex requirements.
+
+Each snippet has been tested in isolation.  If snippets are combined with each other, or with existing Custom JavaScript and CSS on your Public Pages, unexpected behavior may occur.  Please test your Public Pages thoroughly to make sure the behavior satisfies your requirements.
+
+h4(#limit-us). Limit Signups to US
+
+This JavaScript code will limit the country dropdown to only have US selectable.
+
+<script src="https://gist.github.com/rbabcock/fb53647174652158afce.js?file=Limit_to_US.js" type="text/javascript"></script>
+
+h4(#require-custom-fields). Require Custom Fields on Public Pages
+
+This code will allow a Text Field type Custom Field to be required on the Public Pages. You will need to know the ID of the Custom Field. To find the ID, go to the Setup tab, click Custom Fields, then click Edit to the right of the field you are interested in.  The ID number will be in the URL.  Replace XXX with this ID in the code below.
+
+In addition to the Custom JavaScript, lines 34-39 show the Custom CSS that is needed to make the field turn red if the customer submits the form without entering anything.
+
+<script src="https://gist.github.com/rbabcock/fb53647174652158afce.js?file=Require_custom_field.js" type="text/javascript"></script>
+
+h4(#require-organization). Require Organization Field
+
+This code will allow the Organization field to be required on the Public Pages. You will need to add the CSS from lines 41-46 to your Custom CSS box for the field to turn red if a customer does not provide a value for the Organization field.
+
+<script src="https://gist.github.com/rbabcock/fb53647174652158afce.js?file=Require_organization_field.js" type="text/javascript"></script>
+
+h4(#require-phone). Require Phone Field
+
+This code will allow the Phone Number field to be required on the Public Pages. You will need to add the CSS from lines 35-40 to your Custom CSS box for the field to turn red if a customer does not provide a value for the Phone Number field.
+
+<script src="https://gist.github.com/rbabcock/fb53647174652158afce.js?file=Require_phone_field.js" type="text/javascript"></script>
+
+h4(#hide-summary). Hide Summary Information
+
+This will hide the recurring charges and component charges on the Public Page.
+
+<script src="https://gist.github.com/rbabcock/fb53647174652158afce.js?file=Hide_summary_information.js" type="text/javascript"></script>
+
+h4(#change-text-label). Change Label Text
+
+This will change the text of a label on your Public Page. The example code shown is for the Organization label.
+
+<script src="https://gist.github.com/rbabcock/fb53647174652158afce.js?file=Change_label_text.js" type="text/javascript"></script>
+
+
+h4(#change-setup-fee-text). Change Setup Fee Text
+
+This will change the setup fee text to be anything you want it to be.
+
+<script src="https://gist.github.com/rbabcock/fb53647174652158afce.js?file=Change_setupfee_text.js" type="text/javascript"></script>
+
+h4(#change-submit-text). Change Submit Button Text
+
+This will change the submit button text from the default "Place My Order" to anything you want it to be.
+
+<script src="https://gist.github.com/rbabcock/fb53647174652158afce.js?file=Change_submit_button_text.js" type="text/javascript"></script>
+
+h4(#force-equal-components). Force Two Components to be Equal
+
+In case you ever need to have one component equal the same value as another you can use this script to accomplish the task.
+
+<script src="https://gist.github.com/rbabcock/fb53647174652158afce.js?file=Force_equal_component_value.js" type="text/javascript"></script>
