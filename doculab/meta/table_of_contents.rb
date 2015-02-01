@@ -91,6 +91,7 @@ Doculab::TableOfContents.define do
     page "API Introduction"
     page "API Authentication"
     page "API Resources"
+    page "API Duplicate Prevention", :permalink => "api-duplicate-prevention"
     page "API Code Samples & Libraries", :permalink => "api-code"
   end
 
