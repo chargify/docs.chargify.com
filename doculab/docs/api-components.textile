@@ -19,19 +19,21 @@ h2. Component Definition Input Attributes
 These values should be nested beneath a key that defines the kind of component being created or updated.  Valid values are @on_off_component@, @quantity_based_component@, and @metered_component@
 
 * @name@ The name of the Component, suitable for display to customers on statements. i.e. "Text Messages".
+* @taxable@ Boolean flag describing whether a component is taxable or not.
 * @unit_name@ (Not required for On/Off Components) The name of the unit of measurement for the component.  It should be singular since it will be automatically pluralized when necessary. i.e. "message", which may then be shown as "5 messages" on a subscription's component line-item
 * @unit_price@ The amount the customer will be charged per unit when the pricing scheme is "per_unit".  For On/Off Components, this is the amount that the customer will be charged when they turn the component on for the subscription. The price can contain up to 4 decimal places. i.e. 1.00 or 0.0012
 * @pricing_scheme@ (Not required for On/Off Components) The identifier for the pricing scheme. Available options: per_unit, volume, tiered, stairstep. See "Product Components":/product-components for an overview of pricing schemes.
 * @prices@ (Not required for On/Off Components or 'per_unit' pricing schemes) One or more price brackets. See "Product Components":/product-components for an overview of how price brackets work for different pricing schemes.
 ** @starting_quantity@ 
 ** @ending_quantity@ 
-** @unit_price@ 
+** @unit_price@
 
 h2. Component Definition Output Attributes
 
 Component definitions refer to the components you create that become available to subscriptions.  This differs from what we are calling "component line-items", which detail the attachment of the component to a subscription (and are documented below).
 
 * @id@ The unique ID assigned to the component by Chargify.  This ID can be used to fetch the component from the API.
+* @description@ The description of the component.
 * @name@ The name of the Component, suitable for display on statements. i.e. Text Messages.
 * @unit_name_@ The name of the unit that the component's usage is measured in. i.e. message
 * @unit_price@ The amount the customer will be charged per unit. This field is only populated for 'per_unit' pricing schemes, otherwise it may be null.
@@ -44,6 +46,7 @@ Component definitions refer to the components you create that become available t
 * @kind@ A handle for the component type: metered_component, quantity_based_component, on_off_component
 * @price_per_unit_in_cents@ (*This field is deprecated (see note below)*) This represents the unit price prior to the Chargify upgrade to fractional cent component pricing. This field may no longer represent the correct unit price of the component. The @unit_price@ field should be used instead.
 * @archived@ Boolean flag describing whether a component is archived or not.
+* @taxable@ Boolean flag describing whether a component is taxable or not.
 
 p(note). In May 2011, we added the ability to create components with fractional cent pricing (i.e. $0.0012 per unit). To accommodate this change we made some adjustments on our end that altered how prices are stored. Because of this, we have deprecated the @price_in_cents@ field in favor of the @unit_price@ field. The @price_in_cents@ field is still returned for backwards compatibility, but may not accurately represent the current state of the component if it has been updated since the change. We recommend updating your API calls to use the @unit_price@ field as soon as possible.
 
@@ -218,6 +221,7 @@ Feature: Chargify Component Read/Show/Lookup for a Subscription XML API
              <name>`auto generated`</name>
              <unit_name>`auto generated`</unit_name>
              <kind>`auto generated`</kind>
+             <taxable type="boolean">[@component.taxable]</taxable>
 	  </component>
 	</component>
       """
@@ -284,6 +288,7 @@ h3(#api-json-components-create). JSON Create Component Example
         {"metered_component":{
           "name":"Text messages",
           "unit_name": "text message",
+          "taxable": false,
           "pricing_scheme": "stairstep",
           "prices":[
             {"starting_quantity":1, "unit_price":1.0, "component":null}
@@ -298,7 +303,7 @@ h3(#api-json-components-create). JSON Create Component Example
 h3(#api-xml-components-create). XML Create Component Example
 
 <pre><code>
-  Feature: Create Quanitity Component
+  Feature: Create Quantity Component
     In order integrate my app with Chargify
     As a developer
     I want to create a quantity-based component via the Chargify XML API
@@ -317,6 +322,7 @@ h3(#api-xml-components-create). XML Create Component Example
           <unit_name>I.P Addresses</unit_name>
           <pricing_scheme>per_unit</pricing_scheme>
           <unit_price>1.00</unit_price>
+          <taxable>true</taxable>
         </quantity_based_component>
         """
       When I send a POST request with the xml data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/quantity_based_components.xml
@@ -332,6 +338,7 @@ h3(#api-xml-components-create). XML Create Component Example
           <unit_name>ip</unit_name>
           <pricing_scheme>per_unit</pricing_scheme>
           <unit_price>1.00</unit_price>
+          <taxable>true</taxable>
         </metered_component>
         """
       When I send a POST request with the xml data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/metered_components.xml
