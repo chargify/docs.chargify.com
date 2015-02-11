@@ -2,40 +2,53 @@ The state of a subscription is reported in the @state@ attribute of a subscripti
 
 * trialing
 * trial_ended
-* assessing
 * active
 * soft_failure
 * past_due
-* suspended
 * canceled
 * unpaid
 * expired
+
+Additionally, the following states are reserved for internal/future use:
+
+* assessing
+* pending
+* suspended
+* paused
 
 These states may be further broken down in to 3 categories: _Live_, _Problem_, and _End of Life_.
 
 You should plan on delivering services for any state *except* an _End of Life_ state.
 
-h3. Live States
+h3(#live). Live States
 
-h4. trialing
+h4(#trialing). trialing
 
 A subscription in @trialing@ state has a valid trial subscription.  This type of subscription may transition to @active@ once payment is received when the trial has ended.  Otherwise, it may go to a _Problem_ or _End of Life_ state.
 
-h4. assessing
+h4(#assessing). assessing
 
 An internal (transient) state that indicates a subscription is in the middle of periodic assessment.  Do not base any access decisions in your app on this state, as it may not always be exposed.
 
-h3. active
+h4(#pending). pending
+
+An internal (transient) state that indicates a subscription is in the creation process.  Do not base any access decisions in your app on this state, as it may not always be exposed.
+
+h4(#paused). paused
+
+Indicates that your account with Chargify is in arrears.
+
+h4(#active). active
 
 A normal, active subscription.  It is not in a trial, and is paid and up to date.  This is where you want all your Customers to be :)
 
-h3. Problem States
+h3(#problem). Problem States
 
-h4. soft_failure
+h4(#soft-failure). soft_failure
 
 Indicates that normal assessment/processing of the subscription has failed for a reason that cannot be fixed by the Customer.  For example, a Soft Fail may result from a timeout at the gateway, or incorrect credentials on your part.  The subscriptions should be retried automatically.  An interface is being built for you to review problems resulting from these events to take manual action, when needed.
 
-h4. past_due
+h4(#past-due). past_due
 
 Indicates that the most recent payment has failed, and payment is past due for this subscription.  If you have enabled our automated dunning, this subscription will be in the dunning process (additional status  and callbacks from the dunning process will be available in the future).  If you are handling dunning and payment updates yourself, you will want to use this state to initiate a payment update from your customers.
 
@@ -45,7 +58,7 @@ Indicates an unpaid subscription.  A subscription is marked unpaid if the retry 
 
 While a subscription is marked as unpaid, its period still advances and new charges continue to accrue.  However, Chargify does not attempt to automatically collect any overdue balance.  Collecting the balance, or eliminating the balance through an "Adjustment":/adjustments is your responsibility.
 
-h3. End of Life States
+h3(#end-of-life). End of Life States
 
 h4(#canceled). canceled
 
@@ -53,14 +66,18 @@ Indicates a canceled subscription.  This may happen at your request (via the API
 
 While a subscription is canceled, its period will not advance, it will not accrue any new charges, and Chargify will not attempt to collect the overdue balance.
 
-h4. expired
+h4(#expired). expired
 
 Indicates a subscription that has expired due to running its normal life cycle.  Some products may be configured to have an expiration period.  An @expired@ subscription then, is one that stayed @active@ until it fulfilled its full period.
 
-h4. suspended
+h4(#suspended). suspended
 
 Reserved and currently unused. May be used in the future for subscriptions that may be restarted (i.e. after being suspended due to non-payment, then payment resumes)
 
-h4. trial_ended
+h4(trial-ended). trial_ended
 
 A subscription in a @trial_ended@ state is a subscription which completed a no-obligation trial and did not have a card on file at the expiration of the trial period. See "Product Pricing - No Obligation Trials":/product-pricing#no-obligation-trials for more details.
+
+h3(#trouble). Troubleshooting
+
+If you find a subscription that remains in the @pending@ or @assessing@ state, please  "open a support ticket":https://chargify.zendesk.com/hc/en-us/requests/new and let us know.
