@@ -1,0 +1,29 @@
+h2. Overview
+
+Chargify has it's own referrals system integrated right into the product. Chargify generates referral codes for each of your subscriptions and rewards both the new customer, as well as the referrer, when a new signup is created with the code.
+
+h2(#configuration). Configuration
+
+# Begin by navigating to Setup > Referrals
+!{width:680px}/images/doculab/raf-1.png!
+# Click 'Edit' to configure your Referral Settings.
+!{width:680px}/images/doculab/raf-2.png!
+# Define the 'One-Time Credit for the Referring Customer'. This is the discount that will be given to the subscription whose referral code was used.
+# Define the 'Coupon Discount for the New Customer'. This is the discount that anyone signing up with a referral code will receive. The discount works exactly like our existing coupon functionality.
+# Once your settings are saved, click the 'Enable Referrals' button on Setup > Referrals.
+
+h2(#flow). Referral Signup Flow (Public Pages)
+
+# A user navigates to a Public Signup Page with a referral code in the URL. For example: @http://acme.chargify.com/subscribe/5p3wn7w7/basic?ref=4bn9x5@. The customer is shown a preview of the referral discount that will be applied to their subscription.
+!{width:680px}/images/doculab/raf-3g.png!
+# The new customer completes their signup and the referral discount is applied.
+!{width:680px}/images/doculab/raf-conf.png!
+# A one-time discount is applied to the referring subscription
+!{width:680px}/images/doculab/raf-5.png!
+# The referral appears in the Referral History in the Admin UI
+!{width:680px}/images/doculab/raf-history.png!
+
+h2(#flow-api). Referral Signup Flow (API)
+
+The Subscription#create API endpoint now takes an optional @ref@ parameter. "Click here":/api-subscriptions for more details.
+

@@ -73,6 +73,10 @@ Doculab::TableOfContents.define do
     page 'Shipping Charges'
   end
 
+  section "Referrals" do
+    page "Introduction", :permalink => "referrals"
+  end
+
   section "Chargify Direct (Transparent Redirect)" do
     page "Introduction", :permalink => "chargify-direct-introduction"
   end
