@@ -11,9 +11,9 @@ Check out the Chargify app in the "Shopify App Store":http://apps.shopify.com/ch
 
 <iframe width="649" height="365" src="//www.youtube.com/embed/1ZyTZD5Myrw" frameborder="0" allowfullscreen></iframe>
 
-**IMPORTANT: Please do not delete the Chargify app from Shopify. If you do, please contact Chargify Support at 1 (800) 401-2414 or support@chargify.com so we can remove the Chargify installation before you reinstall.**
+**IMPORTANT: Please do not delete the Chargify app from Shopify. If you do, please contact Chargify Support at 1 (800) 401-2414 or support@chargify.com so we can remove the Shopify integration from your Chargify account before you reinstall.**
 
-h2. Installation
+h2(#installation). Installation
 
 To get started, you will need to install the Chargify app in your Shopify store.
 * Login to your Shopify store.
@@ -39,7 +39,7 @@ The API Key can be found in your Chargify account by clicking on the “API Acce
 <center>!/images/doculab/shopify-post-installation.png!</center>
 You’ll then be redirected to your Chargify account where you will setup your gateway credentials, products, and settings.
 
-h2. Gateway Setup
+h2(#gateway-setup). Gateway Setup
 
 You will need a payment gateway and merchant account to process payments with Chargify. Please note that Shopify Payments is not a Chargify supported gateway, however, Shopify payments is powered by Stripe, which is a supported gateway.
 
@@ -58,7 +58,7 @@ Your gateway will automatically be set to the “Chargify Test Gateway”. You w
 * Chargify requires various pieces of information based on which gateway you are using. Follow the instructions and input the required information in each field provided in the form.
 <i>Please note that the gateway and merchant account in your Chargify account will not be the same as your Shopify account. These are separate services and you will need to setup another merchant account in order to process Chargify transactions.</i>
 
-h2. Product Setup
+h2(#product-setup). Product Setup
 
 The Chargify app will create a new site in Chargify, in which you’ll create your new recurring products. Please be aware that there is currently no way to utilize products that you already have in an existing Shopify site.
 
@@ -81,7 +81,7 @@ It is important to understand the distinction between Product Families, Products
 ** Optional Integration Configuration
 * Click “Create Product”
 
-h2. Publishing Chargify Products To Shopify
+h2(#publish). Publishing Chargify Products To Shopify
 
 Now that your recurring products are setup in Chargify, you will need to publish them to your Shopify store.
 
@@ -113,7 +113,7 @@ Your Chargify products will be retrieved and a screen will appear with all of th
 
 <center>!/images/doculab/shopify-product-type.png!</center>
 
-h2. Verify The Setup Is Complete
+h2(#verify). Verify The Setup Is Complete
 
 Once the process is complete and you’ve successfully published Chargify products to your Shopify store, you’ll want to verify that the recurring products have a “Signup” button rather than an “Add to Cart” button:
 
@@ -123,7 +123,7 @@ Click on the “Signup” button to ensure the customer is brought to the Chargi
 
 <i>Note: Some Shopify templates automatically replace the “Add to Cart” button with the “Signup” button, but some do not. If your store still shows the “Add to Cart” button on your recurring subscription product pages, please follow these additional instructions.</i>
 
-h2. Replacing "Add to Cart" with "Signup" Button
+h2(#replace-button). Replacing "Add to Cart" with "Signup" Button
 
 * In your Shopify admin, select “Themes” in the left navigation column.
 * Select “Customize theme”.
@@ -144,8 +144,7 @@ You'll need to locate the following code:
   <input type="submit" id="add-to-cart" class="button" name="add" value="Add to cart" />
 {% endif %}</code></pre>
 
-h2. Automatic Order Creation Upon Signup/Renewal
-
+h2(#create-order). Automatic Order Creation Upon Signup/Renewal
 
 Chargify can automatically create Orders in your Shopify store when a new subscription is created, or an existing one renews. To enable this functionality, click “Settings” in the top right of the Chargify app, and then enable the “Create a new Order” option, and click “Save Settings”:
 
@@ -159,13 +158,13 @@ Note: Once we have passed a new order/renewal order to Shopify, we cannot cancel
 
 <center>!/images/doculab/shopify-logs.png!</center>
 
-<b>Shopify requires shipping information for valid Shopify “Orders” to be created.</b>
+h3(#shipping). Shopify requires shipping information for valid Shopify “Orders” to be created.
 
 Events that fail to sync because of incomplete data (customer didn’t provide shipping information, for example) cannot be re-processed by Chargify. They will simply be rejected by Shopify.
 
 Because of this, it is highly recommended that you require shipping information on any Chargify products that you want to have pushed into Shopify when customers sign up for them or when normal subscription renewals occur.
 
-You can do this by logging into your Chargify site, clicking on the “Setup” tab, and clicking “Edit” for any of the applicable products. Then, choose “Request Shipping Address at signup” and “Require Shipping Address at signup”:
+You can do this by logging into your Chargify site, clicking on the “Setup” tab, and clicking “Edit” for any of the applicable products. Then, choose “Require Shipping Address":
 
 <center>!/images/doculab/shopify-product-options.png!</center>
 
@@ -176,13 +175,14 @@ Once you’re set up, you’ll notice new Orders are automatically created in yo
 <center>!/images/doculab/shopify-orders.png!</center>
 
 <p></p>
-h2. Troubleshooting
+
+h2(#trouble). Troubleshooting
 
 * DO NOT DELETE THE CHARGIFY APP FROM SHOPIFY. If you do, please contact Chargify so we can remove the integration from your Chargify account before you attempt to reinstall.
 * If a product is archived in Chargify, you must manually delete it from your Shopify store.
 * Updating your API key in Chargify does NOT affect the Shopify integration. If you receive an error after updating your Chargify API key, clear your browser cache and history and try again.
 
-h2. FAQ
+h2(#faq). FAQ
 
 **How much does Chargify cost?**
 When you create a Chargify account through the Shopify app, you are entitled to a one-month free trial.  You will then be assessed our regular fees which are based on the number of paying customers and non-paying users on your account: "https://chargify.com/pricing-and-signup/":https://chargify.com/pricing-and-signup/. There are no per transaction fees.  Our fees are in addition to those assessed by Shopify, your payment gateway and your merchant account provider.
