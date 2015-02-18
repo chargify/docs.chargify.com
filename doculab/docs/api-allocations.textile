@@ -65,7 +65,7 @@ Creates a new Allocation, setting the current allocated quantity for the compone
 
 h4. Input Fields
 
-| @quantity@ | The allocated quantity to which to set the line-items allocated quantity.  This should always be an integer.  For On/Off components, use @1@ for on and @0@ for off. |
+| @quantity@ | The allocated quantity to which to set the line-items allocated quantity.  By default, this is an integer. If decimal allocations are enabled for the component, it will be a decimal number.  For On/Off components, use @1@ for on and @0@ for off. |
 | @memo@ | (optional) A memo to record along with the allocation |
 | @proration_upgrade_scheme@ | (optional) The scheme used if the proration is an upgrade. Defaults to the site setting if one is not provided. |
 | @proration_downgrade_scheme@ | (optional) The scheme used if the proration is a downgrade. Defaults to the site setting if one is not provided. |
@@ -108,7 +108,7 @@ An array of allocation objects with the following fields:
 
 | @component_id@ | The integer component ID for the allocation.  This references a component that you have created in your Product setup |
 | @subscription_id@ | The integer subscription ID for the allocation.  This references a unique subscription in your Site |
-| @quantity@ | The allocated quantity set in to effect by the allocation.  This should always be an integer.  For On/Off components, use @1@ for on and @0@ for off. |
+| @quantity@ | The allocated quantity set in to effect by the allocation.By default this should be an integer. If decimal allocations are enabled for the component, it will be a decimal number. For On/Off components, use @1@ for on and @0@ for off. |
 | @previous_quantity@ | The allocated quantity that was in effect before this allocation was created |
 | @memo@ | The memo passed when the allocation was created |
 | @proration_upgrade_scheme@ | The scheme used if the proration was an upgrade. This is only present when the allocation was created mid-period. |
