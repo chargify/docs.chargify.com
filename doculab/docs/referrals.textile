@@ -12,6 +12,12 @@ h2(#configuration). Configuration
 # Define the 'Coupon Discount for the New Customer'. This is the discount that anyone signing up with a referral code will receive. The discount works exactly like our existing coupon functionality.
 # Once your settings are saved, click the 'Enable Referrals' button on Setup > Referrals.
 
+h2(#flow-api). How To Obtain Referral Codes
+
+Once referalls have been enabled, a unique referral code will be created for every subscription. You can obtain the referral code by visiting the subscription overview page for the subscription, or by fetching the subscription from the API.
+
+!{width:680px}/images/doculab/raf-code.png!
+
 h2(#flow). Referral Signup Flow (Public Pages)
 
 # A user navigates to a Public Signup Page with a referral code in the URL. For example: @http://acme.chargify.com/subscribe/5p3wn7w7/basic?ref=4bn9x5@. The customer is shown a preview of the referral discount that will be applied to their subscription.
