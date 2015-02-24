@@ -131,7 +131,7 @@ The signature is the hexadecimal representation of a computed "Hash-based Messag
 
 An example, in Ruby, is at "https://github.com/chargify/chargify_direct_signature_example":https://github.com/chargify/chargify_direct_signature_example
 
-This app can also serve as an online verifier of your calculations.  It can be accessed at "http://chargify-direct-signature.heroku.com/":http://chargify-direct-signature.heroku.com/
+This app can also serve as an online verifier of your calculations.  It can be accessed at "https://chargify-direct-signature.herokuapp.com/":https://chargify-direct-signature.herokuapp.com/
 
 h2(#redirection-uri). Redirection URI
 
