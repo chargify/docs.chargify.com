@@ -7,7 +7,7 @@ h2. URI/Method
 | Coupon Subcodes<br/>@/coupons/:coupon_id/codes@ | "List all coupon subcodes":#api-coupon-code-list | - | - | - |
 | Coupon Subcodes<br/>@/coupons/:coupon_id/codes@ | - | "Create new coupon subcodes":#api-coupon-code-create | - | - |
 | Coupon Subcodes<br/>@/coupons/:coupon_id/codes@ | - | - | "Update coupon subcodes":#api-coupon-codes-update | - |
-| Coupon Subcodes<br/>@/coupons/:coupon_id/codes/:id@ | - | - | - | "Delete a coupon subcode":#api-coupon-codes-delete |
+| Coupon Subcodes<br/>@/coupons/:coupon_id/codes/:id@ | - | - | - | "Delete a coupon subcode":#api-coupon-code-delete |
 
 h2. Coupon Input Attributes
 
@@ -93,7 +93,7 @@ h3. JSON Example Response
  }
 </code></pre>
 
-h2(#api-coupon-code-update). Updating Coupon Subcodes via the API
+h2(#api-coupon-codes-update). Updating Coupon Subcodes via the API
 
 You can update the subcodes for a given coupon via the API with a @PUT@ request to the resource endpoint. Note that all current subcodes for that coupon will be deleted first, and replaced with the list of subcodes sent to this endpoint.
 
@@ -149,10 +149,10 @@ Example response:
 
 h2(#api-coupon-code-delete). Deleting Coupon Subcodes via the API
 
-URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>/<coupon_code>.<format>@
+URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>/codes/<subcode>.<format>@
 Method: @DELETE@
 Required Parameters: coupon_id, and coupon subcode
 Response: If the coupon subcode is successfully removed, a '200' response code will be returned. Otherwise, a '404' error will be returned.
 
-Given a coupon with an @id@ of @567@, and a coupon subcode of @20OFF@, the URL to delete this coupon subcode would be: @@https://<subdomain>.chargify.com/coupons/567/20OFF.<format>@
+Given a coupon with an @id@ of @567@, and a coupon subcode of @20OFF@, the URL to delete this coupon subcode would be: @@https://<subdomain>.chargify.com/coupons/567/codes/20OFF.<format>@
  
