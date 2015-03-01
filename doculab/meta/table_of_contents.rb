@@ -44,6 +44,7 @@ Doculab::TableOfContents.define do
     page "Public Page Default Settings"
     page "Public Signup Page Settings"
     page "Pre-populating Data"
+    page "Custom JavaScript and CSS", :permalink => 'custom-javascript-css'
   end
 
   section "Taxes" do
