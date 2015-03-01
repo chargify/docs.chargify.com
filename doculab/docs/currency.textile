@@ -2,15 +2,26 @@ Chargify supports multiple currencies. Currency configuration is done on a site-
 
 The currency is used in price displays found in the Web UI and on Public Pages.  It is also the currency that is used as the "submission currency" to the gateways.  This means that the transactions we submit to your gateway are specified using this currency.  Note that this can be different than the settlement currency of your Merchant Account.
 
-The currencies currently supported by Chargify (updated 3/15/12) are:
+The currencies currently supported by Chargify are:
 
 |_. Currency |_. Symbol |_. Name |_. Gateway |
-| USD | $ | United States dollar | Authorize.Net, TrustCommerce, Payment Express, Beanstream, Braintree v2, eWay, Samurai |
-| GBP | &pound; | Pound sterling | Payment Express, eWay, Quickpay |
-| CAD | $ | Canadian dollar | Beanstream |
-| AUD | $ | Australian dollar | Payment Express, eWay |
-| NZD | $ | New Zealand dollar | Payment Express, eWay |
-| SGD | $ | Singapore dollar | Payment Express, eWay |
-| ZAR | R | South African rand | Payment Express, eWay |
-| EUR | &euro; | Euro | Payment Express, Quickpay, eWay |
-
+| USD | $ | United States dollar | Authorize.Net, TrustCommerce, Payment Express, Beanstream, Braintree v1, Braintree v2 (blue), eWAY, eWAY Rapid 3.1, Paymill, Samurai, CyberSource, Elavon VirtualMerchant, Wirecard, First Data, Litle, QuickPay, Pin Payments, Stripe |
+| GBP | &pound; | Pound sterling | Braintree v2 (blue), Authorize.Net, Payment Express, eWAY, eWAY Rapid 3.1, Paymill, QuickPay, Wirecard, Litle, Pin Payments, Stripe |
+| AUD | $ | Australian dollar | Braintree v2 (blue), Payment Express, eWAY, eWAY Rapid 3.1, CyberSource, Wirecard, Litle, QuickPay, Pin Payments, Stripe, BPOINT|
+| NZD | $ | New Zealand dollar | Braintree v2 (blue), Payment Express, eWAY, eWAY Rapid 3.1, Wirecard, QuickPay, Pin Payments, Stripe |
+| CAD | $ | Canadian dollar | Braintree v2 (blue), Authorize.Net, Beanstream, CyberSource, Elavon VirtualMerchant, eWAY, eWAY Rapid 3.1, First Data, Wirecard, Litle, Moneris, Payment Express, Stripe |
+| SGD | $ | Singapore dollar | Payment Express, eWay, Wirecard, QuickPay, Pin Payments, Stripe |
+| ZAR | R | South African rand | Payment Express, Braintree v2 (blue), Wirecard, QuickPay, Stripe |
+| EUR | &euro; | Euro | Authorize.Net, Braintree v2 (blue), Payment Express, Wirecard, Quickpay, eWAY, Litle, PAYMILL, Pin Payments, Stripe |
+| DKK | DKK | Danish krone | Braintree v2 (blue), Payment Express, Wirecard, QuickPay, Stripe |
+| SEK | kr | Swedish krona | Braintree v2 (blue), Wirecard, QuickPay, Stripe |
+| NOK | kr | Norwegian krone | Braintree v2 (blue), Wirecard, QuickPay, Stripe |
+| HKD | $ | Hong Kong dollar | Braintree v2 (blue), eWAY, eWAY Rapid 3.1, Wirecard, Payment Express, Stripe |
+| MYR | RM | Malaysian ringgit | Payment Express, Wirecard, Stripe |
+| JPY | &yen; | Japanese yen | Braintree v2 (blue), eWAY, eWAY Rapid 3.1, Stripe |
+| CHF | Fr. | Swiss franc | Braintree v2 (blue), Litle, Stripe |
+| INR | &#8377; | Indian rupee | Payment Express, Stripe |
+| PLN | z&#322; | Polish z&#322;oty (golden) | Wirecard, Stripe |
+| CZK | K&#269; | Czech koruna | Wirecard, Stripe |
+| RUB | &#8381; | Rubbian ruble | Stripe |
+| BRL | R$ | Brazilian real | Stripe |
