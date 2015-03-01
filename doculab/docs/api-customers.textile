@@ -1,4 +1,4 @@
-You may create a new Customer at any time, or you may create a Customer at the same time you create a Subscription.  The only validation restriction is that you may only create one customer for a given @reference@ value.  This value must be unique (but it may be blank) and represents a unique value for the customer from your own app, i.e. the customer's id.  This allows you to retrieve a given customer via a piece of shared information.  Alternatively, you may choose to store the Chargify unique ID for the customer, which is stored in the @id@ attribute.
+You may create a new Customer at any time, or you may create a Customer at the same time you create a Subscription.  The only validation restriction is that you may only create one customer for a given @reference@ value.  If provided, the @reference@ value must be unique.  It represents a unique identifier for the customer from your own app, i.e. the customer's ID.  This allows you to retrieve a given customer via a piece of shared information.  Alternatively, you may choose to leave @reference@ blank, and store Chargify's unique ID for the customer, which is in the @id@ attribute.
 
 h2. Customer Attributes
 
@@ -21,9 +21,9 @@ All of the customer attribute fields are returned from GET (read) operations.  O
 * @country@ (Optional) The customer shipping address country, perferably in [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format (i.e. "US").
 * @phone@ (Optional) The phone number of the customer.
 
-h2. Methods
+h2(#methods). Methods
 
-h3. List
+h3(#list). List
 
 URL: @https://<subdomain>.chargify.com/customers.<format>@  
 Method: @GET@
@@ -33,29 +33,29 @@ Response: An array of Customers, up to 50 per page
 "JSON example":#api-usage-json-customers-list
 
 
-h3. Read/Show (via Chargify ID)
+h3(#read-id). Read/Show (via Chargify ID)
 
 URL: @https://<subdomain>.chargify.com/customers/<id>.<format>@
 Method: @GET@
 Required Parameters: @id@
-Response: An single Customer
+Response: A single Customer
 "XML example":#api-usage-xml-customers-read
 "JSON example":#api-usage-json-customers-read
 
 
-h3. Read/Show (via Reference value)
+h3(#read-ref). Read/Show (via Reference value)
 
-Note: The old URL for this for of lookup (@https://<subdomain>.chargify.com/customers/<id>.<format>@) is being deprecated. (It will remain, though, as the List URL)
+Note: The old URL for this form of lookup (@https://<subdomain>.chargify.com/customers/<id>.<format>@) is being deprecated. (It will remain, though, as the List URL)
   
 URL: @https://<subdomain>.chargify.com/customers/lookup.<format>?reference=<reference>@  
 Method: @GET@
 Required Parameters: @reference@ (URL-encoded)
-Response: An single Customer
+Response: A single Customer
 "XML example":#api-usage-xml-customers-read
 "JSON example":#api-usage-json-customers-read
 
 
-h3. Create
+h3(#create). Create
 
 URL: @https://<subdomain>.chargify.com/customers.<format>@  
 Method: @POST@
@@ -65,7 +65,7 @@ Response: The created customer
 "JSON example":#api-usage-json-customers-create
 
 
-h3. Edit/Update
+h3(#update). Edit/Update
 
 URL: @https://<subdomain>.chargify.com/customers/<id>.<format>@  
 Method: @PUT@
@@ -75,13 +75,14 @@ Response: The updated customer
 "JSON example":#api-usage-json-customers-update
 
 
-h3. Delete
+h3(#delete). Delete
 
-Customer deletion is not currently supported (you will receive a 403 Forbidden response)
+Note:  You will first need to delete any subscriptions associated with the customer.
 
 URL: @https://<subdomain>.chargify.com/customers/<id>.<format>@  
 Method: @DELETE@
 Required Parameters: @id@
+Response: No content
 "XML example":#api-usage-xml-customers-delete
 "JSON example":#api-usage-json-customers-delete
 
@@ -126,6 +127,7 @@ Feature: Chargify XML API Customers list
     And the response should be a "customers" array with 0 "customer" elements
 </code></pre>
 
+"Back to List":#list
 
 h3(#api-usage-json-customers-list). JSON List Usage Example
 
@@ -164,6 +166,7 @@ Feature: Chargify API JSON Customers listing
     And the response should be a json array with 0 "customer" objects
 </code></pre>
 
+"Back to List":#list
 
 h3(#api-usage-xml-customers-read). XML Read Usage Example
 
@@ -306,7 +309,7 @@ Feature: Chargify XML API Customers read/fetch
     Then the response status should be "404 Not Found"
 </code></pre>
 
-
+"Back to Read":#read-id
 
 h3(#api-usage-json-customers-read). JSON Read Usage Example
 
@@ -444,6 +447,7 @@ Feature: Chargify API JSON Customer read
     Then the response status should be "404 Not Found"
 </code></pre>
 
+"Back to Read":#read-id
 
 h3(#api-usage-xml-customers-create). XML Create Usage Example
 
@@ -555,6 +559,7 @@ Feature: Chargify XML API Customer create
       """
 </code></pre>
 
+"Back to Create":#create
 
 h3(#api-usage-json-customers-create). JSON Create Usage Example
 
@@ -663,6 +668,7 @@ Feature: Chargify API JSON Customer create
       """
 </code></pre>
 
+"Back to Create":#create
 
 h3(#api-usage-xml-customers-update). XML Update Usage Example
 
@@ -739,9 +745,9 @@ Feature: Chargify XML API Customers update
     Then the response status should be "404 Not Found"
 </code></pre>
 
+"Back to Update":#update
 
 h3(#api-usage-json-customers-update). JSON Update Usage Example
-
 
 <pre><code>
 Feature: Chargify API JSON Customer update
@@ -812,6 +818,7 @@ Feature: Chargify API JSON Customer update
     Then the response status should be "404 Not Found"
 </code></pre>
 
+"Back to Update":#update
 
 h3(#api-usage-xml-customers-delete). XML Delete Usage Example
 
@@ -825,15 +832,15 @@ Feature: Chargify API XML Customer delete
     Given I am a valid API user
     And I send and accept XML
 
-  # We do not currently allow customer deletion via the API
   Scenario: Delete a customer
     Given I have a customer with these attributes
       | id   | first_name | last_name | email           |
       | <id> | Joe        | Blow      | joe@example.com |
     When I send a DELETE request to https://[@subdomain].chargify.com/customers/[@customer.id].xml
-    Then the response status should be "403 Forbidden"
+    Then the response status should be "204 No Content"
 </code></pre>
 
+"Back to Delete":#delete
 
 h3(#api-usage-json-customers-delete). JSON Delete Usage Example
 
@@ -847,11 +854,12 @@ Feature: Chargify API JSON Customer delete
     Given I am a valid API user
     And I send and accept JSON
 
-  # We do not currently allow customer deletion via the API
   Scenario: Delete a customer
     Given I have a customer with these attributes
       | id   | first_name | last_name | email           |
       | <id> | Joe        | Blow      | joe@example.com |
     When I send a DELETE request to https://[@subdomain].chargify.com/customers/[@customer.id].json
-    Then the response status should be "403 Forbidden"
+    Then the response status should be "204 No Content"
 </code></pre>
+
+"Back to Delete":#delete
