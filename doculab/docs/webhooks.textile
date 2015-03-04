@@ -286,7 +286,8 @@ h3(#signup-success-payload). signup_sucess Payload
                     "accounting_code" => "",
                                "name" => "Acme Online",
                                  "id" => "4",
-                        "description" => ""
+                        "description" => "",
+                        "version_number": 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -393,7 +394,8 @@ h3(#signup-failure-payload). signup_failure Payload
                     "accounting_code" => "",
                                "name" => "Acme Online",
                                  "id" => "4",
-                        "description" => ""
+                        "description" => "",
+                        "version_number": 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -500,7 +502,8 @@ h3(#renewal-success-payload). renewal_success Payload
                     "accounting_code" => "",
                                "name" => "Acme Online",
                                  "id" => "4",
-                        "description" => ""
+                        "description" => "",
+                        "version_number": 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -607,7 +610,8 @@ h3(#renewal-failure-payload). renewal_failure Payload
                     "accounting_code" => "",
                                "name" => "Acme Online",
                                  "id" => "4",
-                        "description" => ""
+                        "description" => "",
+                        "version_number": 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -715,7 +719,8 @@ h3(#payment-success-payload). payment_success Payload
                     "accounting_code" => "",
                                "name" => "Acme Online",
                                  "id" => "4",
-                        "description" => ""
+                        "description" => "",
+                        "version_number": 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -837,7 +842,8 @@ h3(#payment-failure-payload). payment_failure Payload
                     "accounting_code" => "",
                                "name" => "Acme Online",
                                  "id" => "4",
-                        "description" => ""
+                        "description" => "",
+                        "version_number": 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -959,7 +965,8 @@ h3(#billing-date-change-payload). billing_date_change Payload
                     "accounting_code" => "",
                                "name" => "Acme Online",
                                  "id" => "4",
-                        "description" => ""
+                        "description" => "",
+                        "version_number": 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -1066,7 +1073,8 @@ h3(#subscription-state-change-payload). subscription_state_change Payload
                     "accounting_code" => "",
                                "name" => "Acme Online",
                                  "id" => "4",
-                        "description" => ""
+                        "description" => "",
+                        "version_number": 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -1173,7 +1181,8 @@ h3(#subscription-product-change-payload). subscription_product_change Payload
                     "accounting_code" => "",
                                "name" => "Acme Online",
                                  "id" => "4",
-                        "description" => ""
+                        "description" => "",
+                        "version_number": 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "2400",
@@ -1247,7 +1256,8 @@ h3(#subscription-product-change-payload). subscription_product_change Payload
                 "accounting_code" => "",
                            "name" => "Acme Online",
                              "id" => "4",
-                    "description" => ""
+                    "description" => "",
+                    "version_number": 1
             },
                      "accounting_code" => "",
                       "price_in_cents" => "9900",
@@ -1383,7 +1393,8 @@ h3(#expiring-card-payload). expiring_card Payload
                     "accounting_code" => "",
                                "name" => "Acme Online",
                                  "id" => "4",
-                        "description" => ""
+                        "description" => "",
+                        "version_number": 1
                 },
                      "expiration_interval" => "",
                                     "name" => "Basic",
@@ -1990,6 +2001,7 @@ h3(#upgrade-downgrade-success-payload). upgrade_downgrade_success Payload
                     "id" => "0",
                     "name" => "Acme Online"
                 },
+                "version_number": 1,
                 "request_credit_card" => "true",
                 "require_credit_card" => "true",
                 "return_params" => "",
@@ -2029,6 +2041,7 @@ h3(#upgrade-downgrade-success-payload). upgrade_downgrade_success Payload
                 "id" => "0",
                 "name" => "Acme Online"
             },
+            "version_number": 1,
             "request_credit_card" => "true",
             "require_credit_card" => "true",
             "return_params" => "",
@@ -2126,6 +2139,7 @@ h3(#upgrade-downgrade-failure-payload). upgrade_downgrade_failure Payload
                     "id" => "0",
                     "name" => "Acme Online"
                 },
+                "version_number": 1,
                 "request_credit_card" => "true",
                 "require_credit_card" => "true",
                 "return_params" => "",
@@ -2165,6 +2179,7 @@ h3(#upgrade-downgrade-failure-payload). upgrade_downgrade_failure Payload
                 "id" => "0",
                 "name" => "Acme Online"
             },
+            "version_number": 1,
             "request_credit_card" => "true",
             "require_credit_card" => "true",
             "return_params" => "",
@@ -2329,6 +2344,7 @@ h3(#expiration-date-change). expiration_date_change Payload
           "id": "0",
           "name": "Acme Online"
         },
+        "version_number": 1,
         "request_credit_card": "true",
         "require_credit_card": "true",
         "return_params": "",
