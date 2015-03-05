@@ -1,0 +1,228 @@
+The Subscriptions Import tool will allow you to import new subscriptions into Chargify from a CSV file.
+
+(Subscriptions can also be imported using the API.  Please see "Subscriptions API Import":api-subscriptions#import for more information.)
+
+PLEASE NOTE: This is an advanced feature which is only recommended for merchants with technical experience in mapping data in CSV format. Limited support will be provided. If you do not feel comfortable with the procedures laid out below, please contact our support team at support@chargify.com or by phone 24/7 on (800) 401-2414.
+
+Support for the Subscriptions Import feature is available Monday - Thursday during the hours of 9am-5pm Eastern.  In the event an unexpected error occurs, please contact support@chargify.com. 
+
+h2(#sample). Sample Files
+
+If you have the customers' credit card details on file (usually merchants who are new to Chargify):
+
+"Sample XLSX with Card Numbers":files/subscription_import_card_numbers.xlsx
+"Sample CSV with Card Numbers":files/subscription_import_card_numbers.csv
+
+If your customers' payment details are stored in the secure vault of one of our supported gateways (new and existing Chargify merchants):
+
+"Sample XLSX with Vault Tokens":files/subscription_import_vault_tokens.xlsx
+"Sample CSV with Vault Tokens":files/subscription_import_vault_tokens.csv
+
+If you do not have your customers’ payment details and plan on requesting them later or are subscribing them to a free product (new and existing merchants).
+
+"Sample XLSX with No Payment Profiles":/files/subscription_import_no_payment_profile.xlsx
+"Sample CSV with No Payment Profiles":files/subscription_import_no_payment_profile.csv
+
+PLEASE NOTE: XLSX files will need to be saved as CSV prior to upload.
+
+h2(#notice). Important Notices and Disclaimers
+
+* You must disable all email notifications related to subscription creation if you do not want to alert your customers that you have created the subscription (signup emails, receipts, statements and billing portal invitations)
+
+* We recommend that you limit the number of subscriptions in each import to 100.
+
+* We recommend that you use the tool when our Tier 2 team is available to help with any issues (normally Monday-Thursday, 9a-5p Eastern).
+
+* Billing address cannot be provided unless vault tokens or full card numbers are provided as the billing address is stored with the payment profile. If you are not importing vault tokens or full card numbers, please be sure your product settings do not require payment method or billing address at signup. Once the import is complete, you can re-enable the required fields in your product settings so new signups must enter this information.
+
+* CyberSource requires billing address to process successful transactions. You will not be able to import subscriptions without a vault token or full card number for this gateway.
+
+* When working with credit card data in Excel, long strings of digits are converted into scientific notation. Excel will always convert a long series of digits into scientific notation when you open the source data in Excel (double-clicking the file and opening it in Excel).  To get around the scientific notation conversion, you have to import your csv file into Excel and define the column of digits as "Text" so that Excel will not convert it to scientific notation.  In addition, Excel only records numbers up to 15 digits if they are not entered as text.  Any additional digits are reset to 0.
+
+h2(#getting-started). Getting Started
+
+The following is a list of required fields for subscription creation via the import tool.  They must be in CSV format.
+
+1. Minimum requirements for subscription creation
+
+@product_handle@ or @product_id@ (can be found under the Setup tab, beneath the name of each product)
+@customer_first_name@ (the customer's first name - will become default for payment profile first name)
+@customer_last_name@ (the customer's last name - will become default for payment profile last name)
+@customer_email@
+@next_billing_at@ (the first time you will bill your customer - see "format":#date-format )
+
+2. Required if you are importing credit card details:
+
+@payment_profile_full_number@
+@payment_profile_cvv@
+@payment_profile_expiration_month@
+@payment_profile_expiration_year@
+@payment_profile_card_type@ (Optional, see "allowed values":#card-types)
+
+3. Required if you are importing existing vault information:
+
+@payment_profile_current_vault@ (see "allowed values":#vaults)
+@payment_profile_vault_token@ (see "format":#token )
+@payment_profile_customer_vault_token@ (Authorize.Net only)
+@payment_profile_last_four@
+@payment_profile_expiration_month@
+@payment_profile_expiration_year@
+@payment_profile_card_type@ (Optional, see "allowed values":#card-types)
+
+4. Recommended for billing:
+
+@payment_profile_first_name@ (otherwise customer_first_name is used)
+@payment_profile_last_name@ (otherwise customer_last_name is used)
+@payment_profile_billing_address@
+@payment_profile_billing_address_2@
+@payment_profile_billing_city@
+@payment_profile_billing_state@ (see "format":#state-format )
+@payment_profile_billing_zip@
+@payment_profile_billing_country@ (see "format":#country-format )
+
+5. Recommended if you also ship physical product:
+@customer_address@
+@customer_address_2@
+@customer_city@
+@customer_state@ (see "format":#state-format )
+@customer_zip@
+@customer_country@ (see "format":#country-format )
+@customer_phone@
+
+6. Optional
+
+@customer_reference@
+@coupon_code@
+
+h2(#date-format). Next Billing Date Format
+
+The following date formats are equivalent and will work as input to next_billing_at:
+
+Aug 06 11:34:00 -0400 2010
+Aug 06 11:34 -0400 2010
+2010-08-06T11:34:00-04:00
+8/6/2010 11:34:00 EDT
+8/6/2010 8:34:00 PDT
+2010-08-06T15:34:00Z
+
+You may also pass just a date, in which case we will assume the time to be midnight: 2010-08-06
+
+If you enter NOW for the next billing date, your customer will be charged immediately upon import.
+
+h2(#card-types). Card Types
+
+The @payment_profile_card_type@ field is optional.  If supplied, it must be one of: @visa@, @master@, @discover@, @american_express@, @diners_club@, @jcb@, @switch@, @solo@, @dankort@, @maestro@, @forbrugsforeningen@ or @laser@.
+
+h2(#vaults). Vaults
+
+The @payment_profile_current_vault@ field is required if you are supplying vault tokens, and must be one of: @authorizenet@, @trust_commerce@, @payment_express@, @beanstream@, @braintree1@, @braintree_blue@, @paypal@, @quickpay@, @eway@, @samurai@, @stripe@, @pin@, @wirecard@, @bpoint@, @firstdata@, @elavon@, @cybersource@, @paymill@, @litle@ or @moneris@.
+
+h2(#token). Vault Token Examples
+
+The following are example Vault Tokens showing the format used by each of the payment processing gateways:
+
+| Gateway | @payment_profile_vault_token@ Example | @customer_vault_token@ Example |
+| Authorize.net |123456789 | 123456789 |
+| Beanstream: | A1234FE123f123456F12DF1CDA1234a1 | |
+| Braintree v2 | 123456789 | |
+| Braintree Blue | *1 | |
+| CyberSource | 1234567890123456789012 | |
+| Elavon | 1234567890123456 | |
+| eWay Rapid | 0000010012345678 | |
+| First Data | 0123456789012345 | |
+| Litle&Co Vantiv | [unknown] | |
+| PaymentExpress | 0000020000123456 | |
+| Paymill | pay_123ae123bc12ae123456789f | |
+| PinPayments | cus_cAlS1vLNjRh1fFBk1-Abcf | |
+| QuickPay | 12345678 | |
+| Stripe | cus_1ie1SbGBevCW0A | |
+| TrustCommerce | Z1RYBA | |
+| Wirecard | C123456789012345678901 | |
+| Moneris Solutions | [unknown] | |
+
+*1 Braintree Blue is Braintree’s newer (version 2) API. For this gateway, please provide the vault_token parameter with the value from Braintree’s “Customer ID” rather than the “Payment Profile Token”. 
+
+h2(#country-format). Country Format
+
+Please use ISO Standard country codes when formatting the import file.
+
+Countries (2 characters): "ISO_3166-1":http://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+
+h2(#state-format). State Format
+
+Please use ISO Standard state codes when formatting the import file.
+
+US States (2 characters): "ISO_3166-2":http://en.wikipedia.org/wiki/ISO_3166-2:US#Current_codes
+
+States Outside the US (2-3 characters): 
+To find the correct state codes outside of the US, please go to "ISO_3166-1":http://en.wikipedia.org/wiki/ISO_3166-1#Current_codes and click on the link in the “ISO 3166-2 codes” column next to country you wish to populate.
+
+h2(#example-field-values). Example Field Values
+
+The following is an example of the fields for each column of the CSV file for a basic import of subscriptions with existing tokens using the Chargify test gateway.
+
+| @product_handle@ | basic |
+| @customer_first_name@ | John |
+| @customer_last_name@ | Doe |
+| @customer_email@ | johndoe@chargify.com |
+| @customer_address@ | 123 Main Street |
+| @customer_city@ | Anywhere |
+| @customer_state@ | NY |
+| @customer_zip@ | 11111 |
+| @customer_country@ | US |
+| @customer_organization@ | John Doe Inc |
+| @payment_profile_first_name@ | John |
+| @payment_profile_last_name@ | Doe |
+| @payment_profile_billing_address@ | 123 Main Street |
+| @payment_profile_billing_city@ | Anywhere |
+| @payment_profile_billing_state@ | NY |
+| @payment_profile_billing_zip@ | 11111 |
+| @payment_profile_billing_country@ | US |
+| @next_billing_at@ | NOW |
+| @payment_profile_current_vault | bogus |
+| @payment_profile_vault_token@ | 1 |
+| @payment_profile_last_four@ | 2345 |
+| @payment_profile_expiration_month@ | 11 |
+| @payment_profile_expiration_year@ | 2017 |
+| payment_profile_card_type | visa |
+
+<b>The system will reject all CSV files which are formatted incorrectly.</b>  The most common formatting issues relate to illegal characters such as commas or foreign symbols/characters.
+
+h2(#import-process). Import Process
+
+To import your file:
+
+1) Click on Subscriptions tab
+
+2) Select Subscription Import
+
+!/images/doculab/subscriptions-import-button.png!
+
+3) Select New Import
+
+!/images/doculab/subscriptions-import-new.png!
+
+4) Browse your computer for your CSV file
+
+!/images/doculab/subscriptions-import-browse.png!
+
+5) Process CSV
+
+!/images/doculab/subscriptions-import-process.png!
+
+6) Subscription Created Successfully
+
+!/images/doculab/subscriptions-import-success.png!
+
+h2(#trouble). Troubleshooting
+
+The system will generate error messages when individual subscriptions fail.  In this case, the customer email field was left blank:
+
+!/images/doculab/subscriptions-import-error.png!
+
+PLEASE NOTE: The import job is aborted if 10 successive entries fail to create a subscription.  This can happen if the data is not formatted correctly, or if the gateway declines the initial authorization or charge.
+
+When one or more subscriptions fail, you can upload the same CSV file after making corrections.  The system will ignore any subscriptions which were imported successfully.  There is no need to remove those entries from the CSV file.
+
+Please contact us via help.chargify.com if you require assistance.  You can also reach us via email at support@chargify.com or by phone on (800) 401-2414.
+
