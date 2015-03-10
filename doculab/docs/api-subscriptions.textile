@@ -4,7 +4,7 @@ h2. URI/Method
 | Subscriptions<br/>@/subscriptions@ | List subscriptions | Create new subscription | - | - |
 | Subscription<br/>@/subscriptions/<x>@ | Read subscription | - | Update subscription | Cancel subscription |
 
-h2. Subscription Input Attributes
+h2(#input). Subscription Input Attributes
 
 When creating a subscription, you must specify a product and a customer.  Credit card details may be required, depending on the options for the Product being subscribed (see "Product Options":/product-options).
 
@@ -27,7 +27,7 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @city@ (Optional) The customer's shipping address city (i.e. "Boston").
 ** @state@ (Optional) The customer's shipping address state (i.e. "MA")
 ** @zip@ (Optional) The customer's shipping address zip code (i.e. "12345").
-** @country@ (Optional) The customer shipping address country, perferably in [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format (i.e. "US").
+** @country@ (Optional) The customer shipping address country, perferably in "ISO 3166-1 alpha-2":http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 format (i.e. "US").
 ** @phone@ (Optional) The phone number of the customer.
 * @payment_profile_id@ The Payment Profile ID of an _existing_ card or bank account, which belongs to an _existing_ customer to use for payment for this subscription.  If the card, bank account, or customer does not exist already, or if you want to use a new (unstored) card or bank account for the subscription, use @payment_profile_attributes@ *instead* to create a new payment profile along with the subscription.  (This value is available on an existing subscription via the API as @credit_card@ > @id@ or @bank_account@ > @id@)
 * @payment_profile_attributes@ (this may also be referred to as @credit_card_attributes@ or @bank_account_attributes@)
@@ -42,7 +42,7 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @billing_city@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address city (i.e. "Boston"). _This value is merely passed through to the payment gateway_.
 ** @billing_state@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address state (i.e. "MA"). _This value is merely passed through to the payment gateway_.
 ** @billing_zip@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address zip code (i.e. "12345"). _This value is merely passed through to the payment gateway_.
-** @billing_country@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address country, preferably in [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format (i.e. "US"). _This value is merely passed through to the payment gateway. Some gateways require country codes in a specific format. Please check your gateway's documentation. If creating an ACH subscription, only @US@ is supported at this time._
+** @billing_country@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing address country, preferably in "ISO 3166-1 alpha-2":http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 format (i.e. "US"). _This value is merely passed through to the payment gateway. Some gateways require country codes in a specific format. Please check your gateway's documentation. If creating an ACH subscription, only @US@ is supported at this time._
 ** @vault_token@ (Optional, used only for Subscription Import) The "token" provided by your vault storage for an already stored payment profile
 ** @customer_vault_token@  (Optional, used only for Subscription Import) (only for Authorize.Net CIM storage) The customerProfileId for the owner of the customerPaymentProfileId provided as the vault_token
 ** @current_vault@  (Optional, used only for Subscription Import) The vault that stores the payment profile with the provided vault_token. May be @authorizenet@, @trust_commerce@, @payment_express@, @beanstream@, @braintree1@, @braintree_blue@, @paypal@, @quickpay@, @eway@, @samurai@, @stripe@, or @wirecard@
@@ -65,7 +65,7 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @snap_day@ A value between 1 and 28, or "end" 
 * @ref@ A valid referral code. (optional, see "Referrals":/referrals for more details).
 
-h2. Subscription Output Attributes
+h2(#output). Subscription Output Attributes
 
 The following attributes are returned on a subscription read/list operation.
 
@@ -135,11 +135,11 @@ The following attributes are returned on a subscription read/list operation.
 * @updated_at@ The date of last update for this subscription
 
 
-h2. Methods
+h2(#methods). Methods
 
 _format_ may be either 'xml' or 'json'.
 
-h3. List
+h3(#list). List
 
 Listing subscriptions is paginated, 20 at a time by default with an allowed max of 200 per page.  They are listed most recently created first.
 
@@ -161,7 +161,7 @@ Response: An array of Subscriptions
 "XML example":#api-usage-xml-subscriptions-list
 "JSON example":#api-usage-json-subscriptions-list
 
-h3. List By Customer
+h3(#list-by-customer). List By Customer
 
 URL: @https://<subdomain>.chargify.com/customers/<customer_id>/subscriptions.<format>@
 Method: @GET@
@@ -172,7 +172,7 @@ Response: An array of Subscriptions
 "JSON example":#api-usage-json-subscriptions-list
 
 
-h3. Read
+h3(#read). Read
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@
 Method: @GET@
@@ -182,7 +182,7 @@ Response: An single Subscription
 "JSON example":#api-usage-json-subscriptions-read
 
 
-h3. Create
+h3(#create). Create
 
 URL: @https://<subdomain>.chargify.com/subscriptions.<format>@
 Method: @POST@
@@ -244,9 +244,9 @@ Webhooks fired when @next_billing_at* is reached:
 * @renewal_success@ or @renewal_failure@
 * @payment_success@ or @payment_failure@
 
-h4. Date/Time formats
+h4(#date-format). Date and Time Formats
 
-We will attempt to parse any string you send as the value of @next_billing_at@ in to a date or time.  For best results, use a known format like described in ["Date and Time Specification" of RFC 2822](http://tools.ietf.org/html/rfc2822#section-3.3) or [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601).
+We will attempt to parse any string you send as the value of @next_billing_at@ in to a date or time.  For best results, use a known format like described in "Date and Time Specification" of "RFC 2822":http://tools.ietf.org/html/rfc2822#section-3.3 or "ISO 8601":http://en.wikipedia.org/wiki/ISO_8601 .
 
 The following are all equivalent and will work as input to @next_billing_at@:
 
@@ -261,7 +261,7 @@ You may also pass just a date, in which case we will assume the time to be midni
 
 @2010-08-06@
 
-h4. Full Example
+h4(#full-example). Full Example
 
 Here is a sample JSON document that you might @POST@ to @https://<subdomain>.chargify.com/subscription.json@ to import a subscription:
 
@@ -338,7 +338,7 @@ Response: The updated subscription
 "XML example":#api-usage-xml-subscriptions-delayed-cancel
 "JSON example":#api-usage-json-subscriptions-delayed-cancel
 
-h3. Reactivate
+h3(#reactivate). Reactivate
 
 Chargify offers the ability to reactivate a previously canceled subscription. For details on how reactivation works, and how to reactivate subscriptions through the Admin Interface, see "Reactivation":reactivation
 
@@ -354,7 +354,7 @@ Response: The updated subscription
 "XML example":#api-react-xml
 "JSON example":#api-react-json
 
-h3. Reset Balance
+h3(#reset-balance). Reset Balance
 
 Chargify offers the ability to easily reset the balance of a subscription to zero. If a subscription has a positive balance, this API call will issue a credit to the subscription for the outstanding balance. This is particularly helpful if you want to reactivate a canceled subscription without charging the customer for their previously owed balance.
 
@@ -368,7 +368,7 @@ Response: The updated subscription
 "JSON example":#api-reset-balance-json
 
 
-h2. Usage Examples
+h2(#usage). Usage Examples
 
 h3(#api-usage-xml-subscriptions-list). XML List Usage Example
 
@@ -393,6 +393,8 @@ Feature: Chargify Subscriptions List XML API
     And the response should be a "subscriptions" array with 2 "subscription" elements
 </code></pre>
 
+Back to "List":#list
+
 h3(#api-usage-json-subscriptions-list). JSON List Usage Example
 
 <pre><code>
@@ -416,6 +418,7 @@ Feature: Chargify Subscriptions List JSON API
     And the response should be a json array with 2 "subscription" objects
 </code></pre>
 
+Back to "List":#list
 
 h3(#api-usage-xml-subscriptions-read). XML Read Usage Example
 
@@ -538,6 +541,7 @@ Feature: Chargify Subscriptions Read/Show/Lookup XML API
     Then the response status should be "404 Not Found"
 </code></pre>
 
+Back to "Read":#read
 
 h3(#api-usage-json-subscriptions-read). JSON Read Usage Example
 
@@ -659,6 +663,7 @@ Feature: Chargify Subscriptions Read/Show/Lookup JSON API
     Then the response status should be "404 Not Found"
 </code></pre>
 
+Back to "Read":#read
 
 h3(#api-usage-xml-subscriptions-create). XML Create Usage Example
 
@@ -1113,6 +1118,8 @@ Feature: Chargify Subscriptions Create XML API
       When I send a POST request with the xml data to https://acme.chargify.com/subscriptions.xml
       Then the response status should be "422 Unprocessable Entity"
 </pre></code>
+
+Back to "Create":#create
 
 h3(#api-usage-json-subscriptions-create). JSON Create Usage Example
 
@@ -1869,6 +1876,7 @@ Feature: Chargify Subscriptions Create JSON API
     Then the response status should be "201 Created"
 </code></pre>
 
+Back to "Create":#create
 
 h3(#api-usage-xml-subscriptions-update). XML Update Usage Example
 
@@ -2178,6 +2186,7 @@ Feature: Chargify Subscriptions Edit/Update XML API
     And the subscription's "trial_ended_at" should be set to the new date
 </code></pre>
 
+Back to "Update":#update
 
 h3(#api-usage-json-subscriptions-update). JSON Update Usage Example
 
@@ -2571,6 +2580,7 @@ Feature: Chargify Subscriptions Edit/Update JSON API
     """
 </code></pre>
 
+Back to "Update":#update
 
 h3(#api-usage-xml-subscriptions-delete). XML Delete/Cancel Usage Example
 
@@ -2606,6 +2616,7 @@ Feature: Chargify Subscriptions Cancel XML API
     Then the response status should be "200 OK"
 </code></pre>
 
+Back to "Cancel":#cancel
 
 h3(#api-usage-json-subscriptions-delete). JSON Delete/Cancel Usage Example
 
@@ -2640,6 +2651,7 @@ Feature: Chargify Subscriptions Cancel JSON API
     Then the response status should be "200 OK"
 </code></pre>
 
+Back to "Cancel":#cancel
 
 h3(#api-usage-xml-subscriptions-delayed-cancel). XML Delayed Cancel Usage Example
 
@@ -2684,6 +2696,7 @@ Feature: Chargify Subscriptions Delayed Cancel XML API
 
 </code></pre>
 
+Back to "Delayed Cancel":#delayed
 
 h3(#api-usage-json-subscriptions-delayed-cancel). JSON Delayed Cancel Usage Example
 
@@ -2728,6 +2741,7 @@ Feature: Chargify Subscriptions Delayed Cancel JSON API
 
 </code></pre>
 
+Back to "Delayed Cancel":#delayed
 
 h3(#api-react-xml). XML Reactivation Example
 
@@ -2930,6 +2944,8 @@ Feature: Reactivation
     And the subscription should be trialing
 </code></pre>
 
+Back to "Reactivate":#reactivate
+
 h3(#api-react-json). JSON Reactivation Example
 
 <pre><code>
@@ -3128,6 +3144,7 @@ Feature: Reactivation
     And the subscription should be trialing
 </code></pre>
 
+Back to "Reactivate":#reactivate
 
 h3(#api-reset-balance-xml). XML Reset Balance Example
 
@@ -3149,6 +3166,7 @@ Feature: Reset Subscription Balance
     And the subscription balance should be zero
 </code></pre>
 
+Back to "Reset Balance":#reset-balance
 
 h3(#api-reset-balance-json). JSON Reset Balance Example
 
@@ -3169,3 +3187,5 @@ Feature: Reset Subscription Balance
     Then the response status should be "200 OK"
     And the subscription balance should be zero
 </code></pre>
+
+Back to "Reset Balance":#reset-balance
