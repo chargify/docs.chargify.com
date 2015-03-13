@@ -2,28 +2,35 @@ The Subscriptions Import tool will allow you to import new subscriptions into Ch
 
 (Subscriptions can also be imported using the API.  Please see "Subscriptions API Import":api-subscriptions#import for more information.)
 
-PLEASE NOTE: This is an advanced feature which is only recommended for merchants with technical experience in mapping data in CSV format. Limited support will be provided. If you do not feel comfortable with the procedures laid out below, please contact our support team at support@chargify.com or by phone 24/7 on (800) 401-2414.
+p(note). This is an advanced feature which is only recommended for merchants with technical experience in mapping data in CSV format. Limited support will be provided. If you do not feel comfortable with the procedures laid out below, please "open a support ticket":http://help.chargify.com/tickets/new or contact our support team at support@chargify.com or by phone at (800) 401-2414.
 
 Support for the Subscriptions Import feature is available Monday - Thursday during the hours of 9am-5pm Eastern.  In the event an unexpected error occurs, please contact support@chargify.com. 
 
-h2(#sample). Sample Files
+h2(#sample-xlsx). Sample XLSX Files
 
 If you have the customers' credit card details on file (usually merchants who are new to Chargify):
 
 "Sample XLSX with Card Numbers":files/subscription_import_card_numbers.xlsx
-"Sample CSV with Card Numbers":files/subscription_import_card_numbers.csv
 
 If your customers' payment details are stored in the secure vault of one of our supported gateways (new and existing Chargify merchants):
 
 "Sample XLSX with Vault Tokens":files/subscription_import_vault_tokens.xlsx
-"Sample CSV with Vault Tokens":files/subscription_import_vault_tokens.csv
 
 If you do not have your customers’ payment details and plan on requesting them later or are subscribing them to a free product (new and existing merchants).
 
 "Sample XLSX with No Payment Profiles":/files/subscription_import_no_payment_profile.xlsx
+
+p(note). XLSX files will need to be saved as CSV prior to upload.
+
+h2(#sample-csv). Sample CSV Files
+
+"Sample CSV with Card Numbers":files/subscription_import_card_numbers.csv
+
+"Sample CSV with Vault Tokens":files/subscription_import_vault_tokens.csv
+
 "Sample CSV with No Payment Profiles":files/subscription_import_no_payment_profile.csv
 
-PLEASE NOTE: XLSX files will need to be saved as CSV prior to upload.
+p(note). Editing CSV files in Excel or Numbers can cause formatting issues.  If you wish to edit the files using these programs, please use the XLSX files above, and save them as CSV prior to import.
 
 h2(#notice). Important Notices and Disclaimers
 
@@ -220,9 +227,9 @@ The system will generate error messages when individual subscriptions fail.  In 
 
 !/images/doculab/subscriptions-import-error.png!
 
-PLEASE NOTE: The import job is aborted if 10 successive entries fail to create a subscription.  This can happen if the data is not formatted correctly, or if the gateway declines the initial authorization or charge.
+p(note). The import job is aborted if 10 successive entries fail to create a subscription.  This can happen if the data is not formatted correctly, or if the gateway declines the initial authorization or charge.
 
 When one or more subscriptions fail, you can upload the same CSV file after making corrections.  The system will ignore any subscriptions which were imported successfully.  There is no need to remove those entries from the CSV file.
 
-Please contact us via help.chargify.com if you require assistance.  You can also reach us via email at support@chargify.com or by phone on (800) 401-2414.
+Please "open a support ticket":http://help.chargify.com/tickets/new if you require assistance.  You can also reach us via email at support@chargify.com or by phone at (800) 401-2414.
 
