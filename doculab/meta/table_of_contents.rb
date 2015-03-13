@@ -37,6 +37,7 @@ Doculab::TableOfContents.define do
     page "Setting Component Allocations"
     page "Billing Dates"
     page "Invoice Billing"
+    page "Subscriptions Import", :permalink => 'subscriptions-import'
   end
 
   section "Public Pages" do
