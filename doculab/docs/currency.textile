@@ -7,8 +7,8 @@ The currencies currently supported by Chargify are:
 |_. Currency |_. Symbol |_. Name |_. Gateway |
 | USD | $ | United States dollar | Authorize.Net, TrustCommerce, Payment Express, Beanstream, Braintree v1, Braintree v2 (blue), eWAY, eWAY Rapid 3.1, Paymill, Samurai, CyberSource, Elavon VirtualMerchant, Wirecard, First Data, Litle, QuickPay, Pin Payments, Stripe |
 | GBP | &pound; | Pound sterling | Braintree v2 (blue), Authorize.Net, Payment Express, eWAY, eWAY Rapid 3.1, Paymill, QuickPay, Wirecard, Litle, Pin Payments, Stripe |
-| AUD | $ | Australian dollar | Braintree v2 (blue), Payment Express, eWAY, eWAY Rapid 3.1, CyberSource, Wirecard, Litle, QuickPay, Pin Payments, Stripe, BPOINT|
-| NZD | $ | New Zealand dollar | Braintree v2 (blue), Payment Express, eWAY, eWAY Rapid 3.1, Wirecard, QuickPay, Pin Payments, Stripe |
+| AUD | $ | Australian dollar | Braintree v2 (blue), Payment Express, eWAY, eWAY Rapid 3.1, CyberSource, Wirecard, Litle, QuickPay, Pin Payments, Stripe, BPOINT, Authorize.Net |
+| NZD | $ | New Zealand dollar | Braintree v2 (blue), Payment Express, eWAY, eWAY Rapid 3.1, Wirecard, QuickPay, Pin Payments, Stripe, Authorize.Net |
 | CAD | $ | Canadian dollar | Braintree v2 (blue), Authorize.Net, Beanstream, CyberSource, Elavon VirtualMerchant, eWAY, eWAY Rapid 3.1, First Data, Wirecard, Litle, Moneris, Payment Express, Stripe |
 | SGD | $ | Singapore dollar | Payment Express, eWay, Wirecard, QuickPay, Pin Payments, Stripe |
 | ZAR | R | South African rand | Payment Express, Braintree v2 (blue), Wirecard, QuickPay, Stripe |
