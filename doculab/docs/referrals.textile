@@ -1,6 +1,17 @@
 h2. Overview
 
-Chargify has it's own referrals system integrated right into the product. Chargify generates referral codes for each of your subscriptions and rewards both the new customer, as well as the referrer, when a new signup is created with the code.
+Chargify has its own referrals system integrated right into the product. Chargify generates a referral code for each of your subscriptions and rewards the new customer, as well as the referrer, when a new signup is created with the code.
+
+**This integration is currently in beta status**.  "What does it mean for a Chargify feature to be beta?":/beta-label
+
+h2(#availability). Availability
+
+The Referrals feature is available to merchants:
+
+* On the free Developer plan (for testing), OR
+* On the Small Business plan or higher
+
+If you would like to test out the integration during the beta period, but you do not meet these criteria, you may "open a support ticket":https://chargify.zendesk.com/hc/en-us/requests/new and request a one month credit for a free upgrade to the Small Business plan.
 
 h2(#configuration). Configuration
 
@@ -14,9 +25,19 @@ h2(#configuration). Configuration
 
 h2(#flow-api). How To Obtain Referral Codes
 
-Once referalls have been enabled, a unique referral code will be created for every subscription. You can obtain the referral code by visiting the subscription overview page for the subscription, or by fetching the subscription from the API.
+Once referrals have been enabled, a unique referral code will be created for every subscription. You can obtain the referral code by visiting the subscription summary page for the subscription, or by "fetching the subscription from the API":https://docs.chargify.com/api-subscriptions#read.
 
 !{width:680px}/images/doculab/raf-code.png!
+
+h3(#email). Using Referral Codes in Email Templates
+
+Referral codes can also be inserted into the emails that Chargify sends to your customers by using the @subscription.referral_code@ field.
+
+For example, in the Signup Email, you might want to provide a signup link that your new customer can give out to their friends.  You can do this by appending @?ref=@ and the referral code to the URL of any one of your Public Signup Pages:
+
+@https://acme.chargify.com/subscribe/npvmy9bn/basic?ref={{subscription.referral_code}}@
+
+Alternately, you may want to append the referral code to a URL on your own site, and then pass it back to Chargify after the customer selects which product they would like to subscribe to.
 
 h2(#flow). Referral Signup Flow (Public Pages)
 
@@ -28,6 +49,8 @@ h2(#flow). Referral Signup Flow (Public Pages)
 !{width:680px}/images/doculab/raf-5.png!
 # The referral appears in the Referral History in the Admin UI
 !{width:680px}/images/doculab/raf-history.png!
+
+p(note). Please note that the Referring Subscription must be in the Active status in order for the referral discount and credit to be applied.
 
 h2(#flow-api). Referral Signup Flow (API)
 
