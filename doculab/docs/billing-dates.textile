@@ -5,16 +5,17 @@ Chargify stores several dates associated with each subscription:
 * **Current Period Start Date**: Timestamp relating to the start of the current (recurring) period
 * **Current Period End Date**: Timestamp relating to the end of the current (recurring) period (i.e. when the next regularly scheduled attempted charge will occur)
 * **Next Assessment Date**: Timestamp that indicates when capture of payment will be tried or retried.  For active subscriptions, this value will usually be the same as the Current Period Start Date. However, these dates will diverge if a renewal payment fails and must be retried.  In that case, the Current Period End Date will advance to the end of the next period (time doesn't stop because a payment was missed) but the Next Assessment Date will be scheduled for the auto-retry time (i.e. 24 hours in the future, in some cases)
+* **Activated At**: Timestamp for when the subscription first became Active.
 * **Trial Start Date**: Timestamp for when the trial period (if any) began
 * **Trial End Date**: Timestamp for when the trial period (if any) ended
 
 h2. Changing the Billing Date
 
-You can change the next billing date of a Subscription yourself by clicking "change" next to the billing date.
+You can change the next billing date and time of a Subscription by clicking the "Change Billing Date" button next to the billing date.
 
 !{width:640px}/images/doculab/subscription-next-billing-1.png!
 
-After clicking "change", you will have the opportunity to enter a new billing date.
+After clicking the button, you will have the opportunity to enter a new billing date and time.
 
 !{width:640px}/images/doculab/subscription-next-billing-2.png!
 
