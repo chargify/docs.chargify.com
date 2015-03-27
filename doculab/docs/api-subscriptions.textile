@@ -2288,7 +2288,8 @@ Feature: Chargify Subscriptions Edit/Update JSON API
             "handle":`your value`,
             "accounting_code":`your value`,
             "description":`your value`
-          }
+          },
+          "version_number": 1
         },
         "credit_card":{
           "id":`auto generated`,
@@ -2402,7 +2403,8 @@ Feature: Chargify Subscriptions Edit/Update JSON API
             "handle": `your value`,
             "accounting_code": `your value`,
             "description":`your value`
-          }
+          },
+          "version_number": 1
         },
         "credit_card":{
           "id":`auto generated`,
@@ -2555,7 +2557,8 @@ Feature: Chargify Subscriptions Edit/Update JSON API
           "handle":"[@product.product_family.handle]",
           "accounting_code":"[@product.product_family.accounting_code]",
           "description":`your value`
-        }
+        },
+        "version_number": 1
       },
       "credit_card":{
         "id":`auto generated`,
@@ -3036,7 +3039,8 @@ Feature: Reactivation
             "handle":`your value`,
             "accounting_code":`your value`,
             "description":`your value`
-          }
+          },
+          "version_number": 1
         },
         "credit_card":{
           "id":`auto generated`,
