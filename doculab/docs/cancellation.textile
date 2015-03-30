@@ -5,9 +5,9 @@ A canceled Subscription is no longer billed by Chargify.  There are two ways a S
 
 h2. Requesting Cancellation
 
-h3. Via the Admin UI
+h3(#admin-ui). Via the Admin UI
 
-You can request cancellation of a Subscription yourself by clicking "Initiate Cancelation" from the operations menu.
+You can request cancellation of a Subscription yourself by clicking "Initiate Cancelation" from the Actions menu.
 
 !{width:640px;}/images/doculab/cancel_2.png!
 
@@ -17,17 +17,17 @@ After clicking "Initiate Cancelation", you will have the opportunity to enter a 
 
 When you cancel a Subscription:
 
-* You have the option of canceling immediately or at the end of the period, selecting either options means the customer's credit card will no longer be charged.
+* You have the option of canceling immediately or at the end of the period, selecting either option means the customer's credit card will no longer be charged.
 * When canceling at the end of the period, the subscription will cease to renew automatically at the "Period Ends At" date and the subscription state will change.
 * No refunds or prorations are made
 * No email is sent to your Customer
 
 You can later "Reactivate":/reactivation a canceled Subscription.
 
-h3. Via the API
+h3(#api). Via the API
 
 See the "Delete/Cancel method in the Subscriptions API":/api-subscriptions#cancel.
 
-h2. Automatic Cancellation due to Dunning
+h2(#dunning). Automatic Cancellation due to Dunning
 
-After a failed payment, Subscriptions transition to the Past Due state within Chargify.  At this point, Chargify begins attempting to re-run the payment on a smart schedule.  Eventually, we cease retrying to re-run the payment, and some of the Dunning strategies will automatically move the Subscription to Canceled state. See the "Dunning documentation":/dunning for how to control this automatic cancelation.
+After a failed payment, Subscriptions transition to the Past Due state within Chargify.  At this point, Chargify begins attempting to re-run the payment on a smart schedule.  Eventually, we cease retrying to re-run the payment, and some of the Dunning strategies will automatically move the Subscription to Canceled state. See the "Dunning documentation":/dunning for how to control this automatic cancellation.
