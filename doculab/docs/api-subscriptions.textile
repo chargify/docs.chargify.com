@@ -62,8 +62,10 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 * @agreement_terms@ (Optional but recommended when creating a subscription with ACH) The ACH agreements terms.
 * @product_change_delayed@ (Optional, used only for Delayed Product Change) When set to @true@, indicates that a changed value for @product_handle@ should schedule the product change to the next subscription renewal.
 * @calendar_billing@ (optional, see "Calendar Billing":/billing-dates#calendar-billing for more details). Cannot be used when also specifying @next_billing_at@
-** @snap_day@ A value between 1 and 28, or "end" 
+* @snap_day@ A value between 1 and 28, or "end"
 * @ref@ A valid referral code. (optional, see "Referrals":/referrals for more details).
+* @components@ (Optional) An array of component ids and quantities to be added to the subscription.  See "API Quantity Component Allocations":/api-quantity-allocations for more information.
+
 
 h2(#output). Subscription Output Attributes
 
@@ -263,7 +265,7 @@ You may also pass just a date, in which case we will assume the time to be midni
 
 h4(#full-example). Full Example
 
-Here is a sample JSON document that you might @POST@ to @https://<subdomain>.chargify.com/subscription.json@ to import a subscription:
+Here is a sample JSON document that you might @POST@ to @https://<subdomain>.chargify.com/subscriptions.json@ to import a subscription:
 
 <pre><code>
 {
@@ -287,6 +289,8 @@ Here is a sample JSON document that you might @POST@ to @https://<subdomain>.cha
   }
 }
 </code></pre>
+
+Components may also be included in the import.  See "API Quantity Component Allocations":/api-quantity-allocations for more information.
 
 h3(#update). Update
 
