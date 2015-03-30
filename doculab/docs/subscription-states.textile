@@ -81,3 +81,19 @@ A subscription in a @trial_ended@ state is a subscription which completed a no-o
 h3(#trouble). Troubleshooting
 
 If you find a subscription that remains in the @pending@ or @assessing@ state, please  "open a support ticket":https://chargify.zendesk.com/hc/en-us/requests/new and let us know.
+
+h2(#transitions). State Transitions
+
+Subscriptions normally transition automatically between the states in response to events such as signups, trials, payments and expirations.
+
+Occasionally, manual intervention is necessary to move a subscription into the desired state.
+
+h3(past-due-trialing). Past Due to Trialing
+
+<b>Scenario:</b>  A subscription completes its trial period and then becomes Past Due because payment was expected at the end of the trial, but the charge was declined or there was no card on file.  The customer requests more time to try out your product, and you want to clear the balance and extend the trial.
+
+Since the trial has already ended, simply resetting the balance of a Past Due subscription will put it into the Active state.
+
+In order to return it to the Trialing state, you must first "Cancel":/cancellation the subscription using the Cancel Immediately option, and then "Reactivate":/reactivation it, at which time you will have the option to include the trial.  (The balance will be reset to zero by default, however you have the option to NOT reset it.)
+
+If needed, you can now "change the next billing date":/billing-dates#change, and the trial end date will automatically be adjusted to match.
