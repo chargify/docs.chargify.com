@@ -9,7 +9,7 @@ Chargify stores several dates associated with each subscription:
 * **Trial Start Date**: Timestamp for when the trial period (if any) began
 * **Trial End Date**: Timestamp for when the trial period (if any) ended
 
-h2. Changing the Billing Date
+h2(#change). Changing the Billing Date
 
 You can change the next billing date and time of a Subscription by clicking the "Change Billing Date" button next to the billing date.
 
