@@ -28,6 +28,7 @@ Doculab::TableOfContents.define do
     page "Subscription States"
     page "Statements"
     page "Dunning"
+    page "SMS Dunning", :permalink => 'sms-dunning'
     page "Cancellation"
     page "Upgrades/Downgrades"
     page "One-time Charges"
