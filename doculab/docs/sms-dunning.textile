@@ -1,0 +1,50 @@
+SMS Dunning allows you to send SMS (text) messages to customers throughout the dunning process.
+
+**This integration is currently in beta status**.  "What does it mean for a Chargify feature to be beta?":/beta-label
+
+h2(#availability). Availability
+
+The Twilio integration is available to merchants:
+
+* On the free Developer plan (for testing), OR
+* On the Growing Business plan or higher
+
+If you would like to test out the integration during the beta period, but you do not meet these criteria, you may "open a support ticket":https://chargify.zendesk.com/hc/en-us/requests/new and request a one month credit for a free upgrade to the Growing Business plan.
+
+h2(#setup). Setup
+
+You will need a "Twilio":http://www.twilio.com account to use this integration.
+
+We suggest that you use one Twilio number per Chargify Site. It is possible for customers to unsubscribe from SMS dunning messages so you will want to make sure they are not unsubscribed from a secondary Chargify site.
+
+We also suggest sending both Emails and SMS messages during dunning so that customers will still receive an Email even if they unsubscribe from SMS messages.
+
+h2(#getting-started). Getting started
+
+Go to the integrations tab, and then go to the Twilio tab.
+
+!{width:640px}/images/doculab/twilio-integrations-tab.png!
+
+Fill in your Twilio number and Twilio API credentials. You can find them in Twilio on the following two pages:
+
+!{width:640px}/images/doculab/twilio-credentials.png!
+
+Remember: if someone at your organization regenerates your Twilio credentials, the integration will stop working until you update the credentials in Chargify.
+
+After you have filled in your Twilio credentials and enabled the integration you can go to your Chargify Settings and go to the "Retries and Dunning" tab.
+
+!{width:640px}/images/doculab/dunning-settings.png!
+
+You can add an SMS message to each dunning step by either clicking on the "failed renewal attempts" link at the top of the page or by adding or editing new messages at the bottom of the page.
+
+Once a message is selected click "and send this SMS message" at the bottom of the dunning editor popup.
+
+The SMS message body also supports Liquid fields.  More information on those can be found in the "Customizing Dunning Emails":/dunning#customizing-dunning-emails documentation.
+
+Please make sure to include "STOP" and "HELP" text in each of your dunning messages. See the "Twilio docs on SMS Filtering":https://www.twilio.com/help/faq/sms/does-twilio-support-stop-block-and-cancel-aka-sms-filtering for more information.
+
+Also note that it is a good idea to keep your text messages short and sweet (160 characters is recommended).
+
+And that's it! Customers who have provided a cell phone number will now receive SMS messages on all of the configured dunning steps.
+
+!{width:320px}/images/doculab/sms-message.png!
