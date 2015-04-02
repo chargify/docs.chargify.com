@@ -1,9 +1,10 @@
 In order for Chargify to assess charges for your Components, you must report to us the Component's status (i.e. quantity used or allocated, or whether the feature was enabled or not) for each Subscription. 
 
-Components get "post-billed" (after usage) on the next billing cycle date, so if your Customer subscribed to the parent Product on the 23rd of the month, then he'll get billed for any Components on the 23rd of each month, assuming the product is on monthly billing cycle.  Chargify simply looks at the quantity on the billing date and then bills accordingly.
+Components are billed in advance, on the same billing cycle as the product they are associated with.  If your Customer subscribed to the parent Product on the 23rd of the month, then he'll get billed for any Components on the 23rd of each month, assuming the product is on monthly billing cycle.  Chargify simply looks at the quantity on the billing date and then bills accordingly.
+
+The exception to advance billing is Metered Components, which are billed in arrears according to the usage recorded during the billing period.
 
 Future releases may allow for averaging of the count, "high-water mark", 95th percentile, etc. There are a number of approaches we've heard about that will be interesting to consider.
-
 
 h4. Reporting Metered Component usage
 
@@ -47,9 +48,13 @@ On/Off components can be toggled using the Admin UI by selecting the component f
 
 The API calls required to report allocated quantities are detailed in "API: Quantity Alocations":/api-quantity-allocations (they behave much like Quantity-based allocations).
 
-h4. Proration
+h4(#proration). Proration
 
 Chargify supports proration for Quantity-based and On/Off components. Depending on your 'proration scheme', changes to the allocated quantity during a period will result in either a charge or a credit to the subscription.
+
+Note that proration is done based on the length of the current billing period for the subscription, not the billing period configured for the product.
+
+If you modify the Next Billing Date, you may need to calculate and apply any prorations manually for that billing period.
 
 h5. Proration 'Upgrades' vs. 'Downgrades'.
 
@@ -77,4 +82,4 @@ The available 'downgrade' schemes are:
 
 * __no-prorate__: No credit is added
 
-*NOTE*: Proration uses the current price of the component as well as the current tax rates. Changes to either may cause the prorated charge/credit to be wrong.
+*NOTE*: Proration uses the current price of the component as well as the current tax rates. If either has changed since the beginning of the period, then you may want to calculate the amount and apply the proration manually by adding a charge or credit to the subscription.
