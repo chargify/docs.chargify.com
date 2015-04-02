@@ -268,7 +268,7 @@ h4(#full-example). Full Example
 Here is a sample JSON document that you might @POST@ to @https://<subdomain>.chargify.com/subscriptions.json@ to import a subscription:
 
 <pre><code>
-{
+{"subscription":{
   "product_handle":"basic",
   "next_billing_at":"2010-08-29T12:00:00-04:00",
   "customer_attributes":{
@@ -286,8 +286,7 @@ Here is a sample JSON document that you might @POST@ to @https://<subdomain>.cha
     "expiration_month":"12",
     "card_type":"visa",
     "last_four":"1111"
-  }
-}
+  }}}
 </code></pre>
 
 Components may also be included in the import.  See "API Quantity Component Allocations":/api-quantity-allocations for more information.
