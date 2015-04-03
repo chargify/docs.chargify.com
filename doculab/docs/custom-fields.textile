@@ -1,0 +1,38 @@
+Custom Fields (also called Metafields) can be used on "Public Signup Pages":/public-pages-intro#signup to collect additional data from your customers and store it with their subscriptions.  This data can also be displayed on "Statements":/statements and Invoices, and included in the "Subscriptions CSV Export":/exporting-data#subscriptions.
+
+h2(#adding). Adding a Custom Field
+
+From the *Setup* tab, choose *Custom Fields*:
+
+!/images/doculab/custom-fields-3.png()!
+
+Then, click the *Create Custom Field* button.
+
+h2(#config). Configuration
+
+!/images/doculab/custom-fields-5.png()!
+
+*Field Name:* This text will be displayed on the Public Signup Page to prompt the user for input.
+
+*Field Type:*  Text, Dropdown or Radio Button
+
+!/images/doculab/custom-fields-6.png()!
+
+*Display Field Data on CSV Export:*  Yes or No.  If Yes, the field will be included in the Subscriptions CSV Export.
+
+*Display Field Data on Statements:*  Yes or No.  If Yes, the field will be displayed on your customers' Statements
+
+*Display Field Data on Invoices:* Yes or No.  If Yes, the field will be displayed on your customers' Invoices.  (Invoice billing is available starting on the Small Business Plus plan.)
+
+h2(#allowed-values). Allowed Values
+
+For Radio Button and Dropdown type fields, you can configure the values that the customer is allowed to select from.
+
+!/images/doculab/custom-fields-8.png()!
+
+h2(#example). Example
+
+Once you have created a Custom Field, you will see the option to display it when "editing your Public Signup Pages":/public-signup-page-settings#custom-fields.  Once you have done so, you will see the field at the bottom of the signup page:
+
+!/images/doculab/custom-fields-9.png()!
+

@@ -48,6 +48,10 @@ Doculab::TableOfContents.define do
     page "Custom JavaScript and CSS", :permalink => 'custom-javascript-css'
   end
 
+  section "Custom Fields" do
+    page "Custom Fields"
+  end
+
   section "Taxes" do
     page "Taxes Intro"
     page "Custom Taxes"
