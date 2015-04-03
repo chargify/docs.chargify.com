@@ -1,0 +1,49 @@
+Our many merchants all use our API for different purposes.  API access is included on all plans at no charge because we believe that you are the owner of your data and you should never feel like your data is ‘locked up’.
+
+However, because the API means there is little or no user-interaction, it can be very easy to create a program or routine that causes an unnecessarily high burden on our system.  Even small accounts can generate huge numbers of expensive API requests by accident.
+
+In order to maintain a high quality of service for everyone, we ask that you be cautious when implementing your API integration to avoid run-away usage that is disproportionate to the size of your account.
+
+h2(#best-practices). Best Practices
+
+Here are some tips and best-practices to help keep both your site and ours running smoothly:
+
+h3(#state). Getting Subscription States
+
+You likely want to check if your customer has an active account, has cancelled, or is behind on his/her payments.  The best approach is to keep a local cached copy of the subscription’s state in your own database.  You can use "Webhooks":/webhooks to keep up-to-date in near real-time on any changes that occur.  This keeps your website up, reduces your coupling to Chargify, and ensures both sites remain as fast as possible.
+
+Avoid querying Chargify in-line as part of a customer’s request to your site.  Doing so could result in:
+
+* Slowing down your own site while the customer waits for a check to Chargify on every request.
+* If there is a network connectivity issue or in the unlikely event that Chargify is down, your site will also break.
+* As you grow and your customers are more active, you will use up huge numbers of API requests that could result in being blocked because of our automatic abuse prevention.
+
+h3(#sync). Synchronizing Your Database
+
+Normally you should keep your local customer database in sync by using "Webhooks":/webhooks.  But if you think your  database has become out of sync with Chargify, then using the API to check the state of all subscriptions may be the only way to ensure consistency.  
+
+It’s perfectly okay to do this as needed.  But it should generally only be relied upon in exceptional circumstances or for periodic reconciliation (usually no more than once a month).
+
+h3(#usage). Reporting Usage
+
+When reporting component usage, avoid sending lots of tiny usage amounts.  If you charge by the minute for phone calls, for instance: 
+* Don’t send in a usage for every minute or every phone call individually.
+* Don’t send all usage for all customers all at once.  Spread it out or wait a short period of time between each request
+
+Instead:
+
+* Do send a usage report once a day with how much a customer used for the whole day.
+
+h3(#bulk). Downloading Bulk Data
+
+Periodically exporting transaction, subscription, or customer data is a common use case.  When possible, we recommend using the built-in "Export":/exporting-data functions inside Chargify to generate reports and download the data.  This can often be much faster and can significantly lower your API usage.
+
+h2(#limits). About Limits & Blocks
+
+When doing a large synchronization or retrieving a large amount of data, you may trigger a security failsafe used to prevent abuse and protect our site from attacks.
+
+We don’t want to block small bursts in usage.  So instead of immediately rejecting your requests, we will slow and throttle them.  If you see your responses coming in slower, **do not** parallelize your requests or try to make more concurrent requests to speed things up.  You’ll only have to wait longer for your requests to get through.
+
+If you have too many slowed requests, or your individual account queue gets too full with too many concurrent requests, you’ll likely receive an HTTP "429 Too Many Requests" response code with a message `Your request was denied due to a usage violation.  You can track this request with support by referencing ...` with a reference code.  Please feel free to "contact support":http://help.chargify.com so we can help describe what happened and why the request was blocked.
+
+If you receive a "429 Too Many Requests" response, your code should be prepared to handle it by pausing its queries, waiting a few minutes, and then proceeding slower (or with less concurrency).

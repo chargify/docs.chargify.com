@@ -96,6 +96,7 @@ Doculab::TableOfContents.define do
 
   section "Chargify API Basics" do
     page "API Introduction"
+    page "API Guidelines"
     page "API Authentication"
     page "API Resources"
     page "API Duplicate Prevention", :permalink => "api-duplicate-prevention"
