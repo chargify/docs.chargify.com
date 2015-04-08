@@ -40,4 +40,4 @@ h2. Java / Scala
 
 h2. Javascript
 
-* "https://github.com/andyet/node-chargify":https://github.com/andyet/node-chargify: A simple node.js wrapper for the Chargify REST API, by (Nathan Vander Wilt, "@natevw":http://twitter.com/natevw)
+* "https://github.com/natevw/node-chargify":https://github.com/natevw/node-chargify: A simple node.js wrapper for the Chargify REST API, by (Nathan Vander Wilt, "@natevw":http://twitter.com/natevw)
