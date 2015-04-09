@@ -1,0 +1,61 @@
+The "Clear Sites" API is method of allowing merchants to clear customers and subscriptions or all data from a site in TEST mode only.
+
+p(note). This functionality will only work on sites in TEST mode. Attempts to perform this on sites in "live" mode will result in a response of @403 FORBIDDEN@
+
+h2. URIs
+
+|_. Resource/URI |_. POST |
+| @/sites/clear_data@ | "Clear Data":#clear-default |
+
+"Authentication":/api-authentication is required.
+
+h2. Query String Attributes
+
+The Chargify API allows you initiate an upgrade/downgrade by posting to either as JSON or XML that potentially includes:
+
+* @cleanup_scope@: Optional, @all@ or @customers@, the scope of cleanup of the site to be performed. Default is @all@.
+  
+h3. Cleanup Scope
+
+* A @cleanup_scope@ of @all@ will clear all products, customers, and related subscriptions from the site. "Example":#clear-all
+
+* A @cleanup_scope@ of @customers@ will clear only customers and related subscriptions (leaving the products untouched) for the site. Revenue will also be reset to 0. "Example":#clear-customers
+
+* Unknown values will be returned @403 FORBIDDEN@. "Example":#clear-bogus
+      
+h3(#clear-default). Example 1 (Default)
+
+URL: @https://<subdomain>.chargify.com/sites/clear_data.json@  
+Method: @POST@
+Response: @200 OK@
+
+Result: All product families, products, coupons, components, customers, and related subscriptions will be removed from the site.
+
+h3(#clear-all). Example 2 (Specifying "All" Cleanup Scope)
+
+URL: @https://<subdomain>.chargify.com/sites/clear_data.json?cleanup_scope=all@  
+Method: @POST@
+Required Parameter: @cleanup_scope@
+Response: @200 OK@
+
+Result: All product families, products, coupons, components, customers, and related subscriptions will be removed from the site.
+
+h3(#clear-customers). Example 3 (Specifying "Customers" Cleanup Scope)
+
+URL: @https://<subdomain>.chargify.com/sites/clear_data.json?cleanup_scope=customers@  
+Method: @POST@
+Required Parameter: @cleanup_scope@
+Response: @200 OK@
+
+Result: Only customers and related subscriptions (leaving the products untouched) for the site. Revenue will also be reset to 0.
+
+h3(#clear-bogus). Example 4 (Using Non-Conforming Cleanup Scope)
+
+In this example, attempting to specify a @cleanup_scope@ that isn't @all@ or @customers@ will result in a "403 FORBIDDEN".
+
+URL: @https://<subdomain>.chargify.com/sites/clear_data.json?cleanup_scope=bogus@  
+Method: @POST@
+Required Parameter: @cleanup_scope@
+Response: @403 FORBIDDEN@
+
+Result: No change will have been made to the site.
