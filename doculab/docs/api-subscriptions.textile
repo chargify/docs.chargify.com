@@ -305,6 +305,9 @@ This method merely changes the product, and *the new payment amount is calculate
 * **Delayed Product Change**
 This method schedules the product change to happen automatically at the subscription's next renewal date. To perform a Delayed Product Change, set the @product_handle@ attribute as you would in a regular Product Change, but also set the @product_change_delayed@ attribute to @true@. No proration applies in this case.
 
+* **Cancel Delayed Product Change**
+In order to cancel a delayed product change, set @next_product_id@ to an empty string.  (This attribute is not currently exposed in the @subscription@ output.)
+
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@
 Method: @PUT@
 Required Parameters: None
