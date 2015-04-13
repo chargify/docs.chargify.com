@@ -17,9 +17,7 @@ For brevity sake in all example urls going forward @<resource>@ can be either su
 
 h4. scope
 
-The scope field has two acceptable attributes "hosted" and "csv". If configured in the Admin UI
-or via the API be careful sending updates to metafields with the scope attribute - if a partial update
-is sent it will overwrite the current configuration.
+The scope field has four acceptable attributes: @hosted@, @csv@, @invoices@, and @statements@. If configured in the Admin UI or via the API be careful sending updates to metafields with the scope attribute - if a partial update is sent it will overwrite the current configuration.
 
 h6. hosted
 
@@ -30,9 +28,17 @@ Supports a special value of "all" if you would like the field to be present on a
 h6. csv
 
 Can be "1" or "0" to include or exclude in csv exports.
-<pre>"csv": "1"</pre> or <pre>"csv": "0"</pre>
+<pre>"csv": "1"</pre>
 
-h3. List
+h6. statements
+
+Can be "1" or "0" to include or exclude metadata on statements.
+<pre>"statements": "1"</pre>
+
+h6. invoices
+
+Can be "1" or "0" to include or exclude metadata on invoices.
+<pre>"invoices": "1"</pre>
 
 URL: @https://<subdomain>.chargify.com/<resource>/metafields.<format>@
 Method: @GET@
@@ -51,7 +57,7 @@ Here's an example metafield list @response@:
   "metafields": [
     {
         "name": "Shirt Size",
-        "scope": {"hosted": ["all"], csv: "1"},
+        "scope": {"hosted": ["all"], csv: "1", invoices: "1", statements: "1"},
         "data_count": 99
     }
   ]
@@ -73,7 +79,7 @@ Here's an example metafields create @request@:
   { 
     "metafields": {
       "name": "Color",
-      "scope": {"hosted": ["1", "2", "3"], csv: "0"}
+      "scope": {"hosted": ["1", "2", "3"], csv: "0", invoices: "1", statements: "1"}
     } 
   }
 </pre>
