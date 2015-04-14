@@ -69,6 +69,7 @@ h4. Input Fields
 | @memo@ | (optional) A memo to record along with the allocation |
 | @proration_upgrade_scheme@ | (optional) The scheme used if the proration is an upgrade. Defaults to the site setting if one is not provided. |
 | @proration_downgrade_scheme@ | (optional) The scheme used if the proration is a downgrade. Defaults to the site setting if one is not provided. |
+| @payment_collection_method@ | (optional, default @automatic@) For subscriptions on invoice billing, when @proration_upgrade_scheme@ is set to @prorate-attempt-capture@, and @payment_collection_method@ is set to @invoice@, a mid-period invoice will be created from any charges that are a result of the allocation change. The charge will not appear on the invoice created at the next renewal. For subscriptions on statement billing, this option is ignored.|
 
 h4. Output
 
