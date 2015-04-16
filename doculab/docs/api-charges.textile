@@ -9,6 +9,7 @@ In order to create a charge, you must pass an amount and a memo.  The amount can
 * @memo@ (required) A helpful explanation for the charge.  This amount will remind you and your customer for the reason for the assessment of the charge.
 * @use_negative_balance@ (optional) This option specifies whether or not a negative current balance should be used when creating the new charge. If true, use the negative balance on the subscription to calculate the charge. If false, do not use the negative balance. Acceptable values are @true@ or @1@ for true and @false@ or @0@ for false. 
 * @delay_capture@ (optional) If true, don't attempt to immediately capture a payment for this charge (instead, wait until the next assessment date). Acceptable values are @true@ or @1@ for true and @false@ or @0@ for false. Note if this option is used @use_negative_balance@ is assumed as false.
+* @taxable@ (optional, default @false@) If true, taxes will be assessed on the charge. Acceptable values are @true@ or @1@ for true and @false@ or @0@ for false.
 * @payment_collection_method@ (optional, default @automatic@) For subscriptions on invoice billing, when @delay_capture@ is set to @false@, and @payment_collection_method@ is set to @invoice@, a mid-period invoice will be created from this charge. The charge will not appear on the invoice created at the next renewal. For subscriptions on statement billing, this option is ignored.
 
 
