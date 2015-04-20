@@ -20,6 +20,7 @@ These values should be nested beneath a key that defines the kind of component b
 
 * @name@ The name of the Component, suitable for display to customers on statements. i.e. "Text Messages".
 * @taxable@ Boolean flag describing whether a component is taxable or not.
+* @allow_fractional_quantities@ Boolean flag indicating whether fractional quantities are allowed.  Valid for Quantity-Based and Metered components only.
 * @unit_name@ (Not required for On/Off Components) The name of the unit of measurement for the component.  It should be singular since it will be automatically pluralized when necessary. i.e. "message", which may then be shown as "5 messages" on a subscription's component line-item
 * @unit_price@ The amount the customer will be charged per unit when the pricing scheme is "per_unit".  For On/Off Components, this is the amount that the customer will be charged when they turn the component on for the subscription. The price can contain up to 4 decimal places. i.e. 1.00 or 0.0012
 * @pricing_scheme@ (Not required for On/Off Components) The identifier for the pricing scheme. Available options: per_unit, volume, tiered, stairstep. See "Product Components":/product-components for an overview of pricing schemes.
