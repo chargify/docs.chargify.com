@@ -27,6 +27,7 @@ Chargify also supports Calendar Billing for subscriptions, when the subscription
 
 * The product period must be 1 month
 * The product cannot have a trial
+* The product cannot have an expiration
 
 If the product meets those criteria, then you may start using Calendar Billing in two different ways:
 
