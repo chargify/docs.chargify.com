@@ -55,12 +55,12 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @bank_account_holder_type@ (Required when creating a subscription with ACH) Either @personal@ or @business@
 * @cancellation_message@ (Optional) Can be used when canceling a subscription (via the HTTP DELETE method) to make a note about the reason for cancellation.
 * @next_billing_at@ (Optional) Set this attribute to a future date/time to sync imported subscriptions to your existing renewal schedule. See the notes on "Date/Time Format" below. If you provide a next_billing_at timestamp that is in the future, no trial or initial charges will be applied when you create the subscription. In fact, no payment will be captured at all. The first payment will be captured, according to the prices defined by the product, near the time specified by next_billing_at. If you do not provide a value for next_billing_at, any trial and/or initial charges will be assessed and charged at the time of subscription creation. If the card cannot be successfully charged, the subscription will not be created.  See further notes in the section on Importing Subscriptions.
-* @expiration_tracks_next_billing_change@ (Optional, default @false@) When set to @true@, and when @next_billing_at@ is present, if the subscription expires, the @expires_at@ will be shifted by the same amount of time as the difference between the old and new "next billing" dates. 
+* @expiration_tracks_next_billing_change@ (Optional, default @false@) When set to @true@, and when @next_billing_at@ is present, if the subscription expires, the @expires_at@ will be shifted by the same amount of time as the difference between the old and new "next billing" dates.
 * @vat_number@ (Optional) Supplying the VAT number allows EU customer's to opt-out of the Value Added Tax assuming the merchant address and customer billing address are not within the same EU country.
 * @coupon_code@ (Optional) The coupon code of the coupon to apply (See the "coupon docs":/api-coupons#api-subscription-create-with-coupon)
 * @payment_collection_method@ (Optional) The type of payment collection to be used in the subscription. May be automatic, or invoice.
 * @agreement_terms@ (Optional but recommended when creating a subscription with ACH) The ACH agreements terms.
-* @product_change_delayed@ (Optional, used only for Delayed Product Change) When set to @true@, indicates that a changed value for @product_handle@ should schedule the product change to the next subscription renewal.
+* @product_change_delayed@ (Optional, used only for "Delayed Product Change":#delayed-product-change) When set to @true@, indicates that a changed value for @product_handle@ should schedule the product change to the next subscription renewal.
 * @calendar_billing@ (optional, see "Calendar Billing":/billing-dates#calendar-billing for more details). Cannot be used when also specifying @next_billing_at@
 * @snap_day@ A value between 1 and 28, or "end"
 * @ref@ A valid referral code. (optional, see "Referrals":/referrals for more details).
@@ -135,6 +135,7 @@ The following attributes are returned on a subscription read/list operation.
 * @trial_started_at@ Timestamp for when the trial period (if any) began
 * @trial_ended_at@ Timestamp for when the trial period (if any) ended
 * @updated_at@ The date of last update for this subscription
+* @next_product_id@ If a "delayed product change":#delayed-product-change is scheduled, the ID of the product that the subscription will be changed to at the next renewal.
 
 
 h2(#methods). Methods
@@ -299,14 +300,17 @@ This is how you would change the card that somebody uses for their subscription.
 
 You also use this method to change the subscription to a different product by setting a new value for @product_handle@.  A product change can be done in two different ways:
 
-* **Product Change**
+h4(#product-change). Product Change
+
 This method merely changes the product, and *the new payment amount is calculated and charged at the normal start of the next period*.  To perform a Product Change, simply set the @product_handle@ attribute with the handle of a different product from the same site as the subscription.  Note that no proration or period reset is initiated when you change the product using this method.  If you desire prorated upgrades and downgrades instead, please see the "docs on upgrades/downgrades":/upgrades-downgrades.
 
-* **Delayed Product Change**
+h4(#delayed-product-change). Delayed Product Change
+
 This method schedules the product change to happen automatically at the subscription's next renewal date. To perform a Delayed Product Change, set the @product_handle@ attribute as you would in a regular Product Change, but also set the @product_change_delayed@ attribute to @true@. No proration applies in this case.
 
-* **Cancel Delayed Product Change**
-In order to cancel a delayed product change, set @next_product_id@ to an empty string.  (This attribute is not currently exposed in the @subscription@ output.)
+h4(#cancel-delayed-product-change). Cancel Delayed Product Change
+
+In order to cancel a delayed product change, set @next_product_id@ to an empty string.
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@
 Method: @PUT@
