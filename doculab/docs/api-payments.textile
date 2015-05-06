@@ -11,9 +11,10 @@ h2. Methods
 _format_ may be either 'xml' or 'json'.
 
 h3. Create
-URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/payments.<format>@  
-Method: @POST@  
-Required Parameters: XML or JSON data, as specified by the input attributes  
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/payments.<format>@
+Method: @POST@
+Required Parameters: XML or JSON data, as specified by the input attributes
 Response: The created payment
 
 Here is a sample JSON document that you might @POST@ to @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/payments.json@ to create an external payment:

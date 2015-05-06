@@ -1,0 +1,61 @@
+h3. Adding Charges to Invioces
+
+Use this endpoint to record charge on an existing invoice.
+
+* @amount@ The amount represented as a string of the.  E.g. if the charge was for $14.50, you would pass @14.50@
+* @amount_in_cents@ The amount represented as a string in cents.  E.g. if the charge was for $14.50, you would pass @1450@
+* @memo@ Typically the description of why the charge occured
+
+h2. Methods
+
+_format_ may be either 'xml' or 'json'.
+
+h3. Create
+
+URL: @https://<subdomain>.chargify.com/invoices/<invoice_id>/charges.<format>@
+Method: @POST@
+Required Parameters: XML or JSON data, as specified by the input attributes
+Response: The created charge
+
+Here is a sample JSON document that you might @POST@ to @https://<subdomain>.chargify.com/invoices/<invoice_id>/charges.json@
+
+<pre><code>
+{
+  "payment": {
+    "amount": 10.00,
+    "memo": "Lorem ipsum"
+  }
+}
+</code></pre>
+
+or if you wish to work in cents the amount_in_cents field can be used:
+
+<pre><code>
+{
+  "payment": {
+    "amount_in_cents": 1000,
+    "memo": "Lorem ipsum"
+  }
+}
+</code></pre>
+
+Here is a sample of a JSON response:
+
+<pre><code>
+{
+  "charge":{
+    "id":`auto generated`,
+    "success":true,
+    "memo":"Lorem ipsum",
+    "amount_in_cents":1000,
+    "ending_balance_in_cents":1000,
+    "type":"Charge",
+    "transaction_type":"charge",
+    "success":true,
+    "subscription_id":`auto generated`,
+    "product_id":`auto generated`,
+    "created_at":`auto generated`,
+    "payment_id":null
+  }
+}
+</code></pre>

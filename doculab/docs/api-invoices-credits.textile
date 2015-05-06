@@ -1,0 +1,60 @@
+h3. Adding Credits to Invioces
+
+Use this endpoint to record credits on an existing invoice.
+
+* @amount@ The amount represented as a string.  E.g. if the credit was for $14.50, you would pass @14.50@
+* @amount_in_cents@ The amount represented as a string cents.  E.g. if the credit was for $14.50, you would pass @1450@. This can be a positive or negative number, but it will always result as a credit on the invoice.
+* @memo@ Typically the description of why the credit occured
+
+h2. Methods
+
+_format_ may be either 'xml' or 'json'.
+
+h3. Create
+
+URL: @https://<subdomain>.chargify.com/invoices/<invoice_id>/credits.<format>@
+Method: @POST@
+Required Parameters: XML or JSON data, as specified by the input attributes
+Response: The created credit
+
+Here is a sample JSON document that you might @POST@ to @https://<subdomain>.chargify.com/invoices/<invoice_id>/credits.json@
+
+<pre><code>
+{
+  "adjustment": {
+    "amount": 10.00,
+    "memo": "Lorem ipsum"
+  }
+}
+</code></pre>
+
+or if you wish to work in cents the amount_in_cents field can be used:
+
+<pre><code>
+{
+  "adjustment": {
+    "amount_in_cents": 1000,
+    "memo": "Lorem ipsum"
+  }
+}
+</code></pre>
+
+Here is a sample of a JSON response:
+
+<pre><code>
+{
+  "adjustment":{
+    "id":`auto generated`,
+    "success":true,
+    "memo": "lorem ipsum",
+    "amount_in_cents":1000,
+    "ending_balance_in_cents":0,
+    "type":"Adjustment",
+    "transaction_type":"adjustment",
+    "subscription_id":`auto generated`,
+    "product_id":`auto generated`,
+    "created_at":`auto generated`,
+    "payment_id":null
+  }
+}
+</code></pre>

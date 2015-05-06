@@ -28,7 +28,6 @@ Doculab::TableOfContents.define do
     page "Subscription States"
     page "Statements"
     page "Dunning"
-    page "SMS Dunning", :permalink => 'sms-dunning'
     page "Cancellation"
     page "Upgrades/Downgrades"
     page "One-time Charges"
@@ -39,6 +38,7 @@ Doculab::TableOfContents.define do
     page "Billing Dates"
     page "Invoice Billing"
     page "Subscriptions Import", :permalink => 'subscriptions-import'
+    page "SMS Dunning", :permalink => 'sms-dunning'
   end
 
   section "Public Pages" do
@@ -120,6 +120,9 @@ Doculab::TableOfContents.define do
     page "API: Customers"
     page "API: Events"
     page "API: Invoices"
+    page "API: Invoices - Payments", :permalink => "api-invoices-payments"
+    page "API: Invoices - Charges",  :permalink => "api-invoices-charges"
+    page "API: Invoices - Credits",  :permalink => "api-invoices-credits"
     page "API: Metadata"
     page "API: Metafields"
     page "API: Metered Usage"
