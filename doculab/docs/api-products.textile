@@ -27,6 +27,11 @@ All of the product attribute fields are returned from GET (read) operations, and
 * @created_at@ Timestamp indicating when this product was created
 * @updated_at@ Timestamp indicating when this product was last updated
 * @archived_at@ Timestamp indicating when this product was archived
+* @public_signup_pages@ An array of signup pages containing the following attributes:
+** @id@ The id of the signup page
+** @url@ The url where the signup page can be viewed
+** @return_url@ The url to which a customer will be returned after a successful signup
+
 
 h2. Input Attributes (Create)
 
@@ -51,52 +56,52 @@ h2. Input Attributes (Create)
 * @request_billing_address@ Boolean
 * @taxable@ Boolean
 * @trial_type@ The type of trial for this product, either @no_obligation@ or @payment_expected@.
-* @auto_create_signup_page@ A @true@ or @false@ value (default @false@) indicating whether or not you want a "Public Page":/public-pages-intro" to be automatically created for this product
+* @auto_create_signup_page@ A @true@ or @false@ value (default @true@) indicating whether or not you want a "Public Page":/public-pages-intro" to be automatically created for this product
 
 h2. Methods
 
 h3. List
 
-URL: @https://<subdomain>.chargify.com/products.<format>@  
-Method: @GET@  
+URL: @https://<subdomain>.chargify.com/products.<format>@
+Method: @GET@
 
-Response: An array of Products  
+Response: An array of Products
 
 "XML example":#api-usage-xml-product-family-products-list
 "JSON example":#api-usage-json-product-family-products-list
 
 h3. List products for a Product Family
 
-URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/products.<format>@  
+URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/products.<format>@
 Method: @GET@
 Required Parameters: @product_family_id@
 
 Response: An array of Products
 
-"XML example":#api-usage-xml-products-list  
+"XML example":#api-usage-xml-products-list
 "JSON example":#api-usage-json-products-list
 
 h3. Read/Show (via Chargify ID)
 
-URL: @https://<subdomain>.chargify.com/products/<id>.<format>@  
-Method: @GET@  
-Required Parameters: @id@  
+URL: @https://<subdomain>.chargify.com/products/<id>.<format>@
+Method: @GET@
+Required Parameters: @id@
 
-Response: An single Product  
+Response: A single Product
 
-"XML example":#api-usage-xml-products-read  
+"XML example":#api-usage-xml-products-read
 "JSON example":#api-usage-json-products-read
 
 
 h3. Read/Show (via API handle)
 
-URL: @https://<subdomain>.chargify.com/products/handle/<handle>.<format>@  
-Method: @GET@  
-Required Parameters: @handle@  
+URL: @https://<subdomain>.chargify.com/products/handle/<handle>.<format>@
+Method: @GET@
+Required Parameters: @handle@
 
-Response: An single Product  
+Response: An single Product
 
-"XML example":#api-usage-xml-products-read  
+"XML example":#api-usage-xml-products-read
 "JSON example":#api-usage-json-products-read
 
 h3. Create
