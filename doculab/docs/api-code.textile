@@ -6,7 +6,8 @@ Please note that these samples were graciously given to us by our users, so we d
 
 h2. PHP
 
-* "http://www.crucialwebstudio.com/made/chargify-sample-app":http://www.crucialwebstudio.com/made/chargify-sample-app Sample PHP app based on Zend Framework and Zend_Service_Chargify by Crucial Web Studio
+* "https://github.com/chargely/chargify-sample-app":https://github.com/chargely/chargify-sample-app Sample PHP app based on Zend Framework, from the makers of "Chargely":http://www.chargely.com
+* "https://github.com/chargely/chargify-sdk-php":https://github.com/chargely/chargify-sdk-php A PHP API wrapper, from the makers of "Chargely":http://www.chargely.com
 * "http://github.com/abraham/chargify":http://github.com/abraham/chargify Sample PHP app by Abraham Williams. "http://abrah.am":http://abrah.am, "@abraham":http://twitter.com/abraham
 * "http://github.com/jforrest/Chargify-PHP-Client":http://github.com/jforrest/Chargify-PHP-Client: A PHP API wrapper from Jason at RigBooks
 * "http://github.com/lewsid/chargify_api_php":http://github.com/lewsid/chargify_api_php: A PHP API wrapper by one of our active beta testers.
