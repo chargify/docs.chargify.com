@@ -5,6 +5,7 @@ For now, you may refer to the documentation for "API V1 Subscriptions":/api-subs
 Each of these parameters should be nested within the @signup@ key, i.e. @signup[product][handle]@
 
 | @coupon_code@ | |
+| @ref | |
 | @product[id]@ | |
 | @product[handle]@ | |
 | @components[<component_id>]@ | Sets the initial allocation for component with ID given by @<component_id>@.  This can be repeated for each component_id you wish to set. |
