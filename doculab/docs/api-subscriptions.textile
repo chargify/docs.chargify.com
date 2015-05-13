@@ -62,7 +62,7 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 * @agreement_terms@ (Optional but recommended when creating a subscription with ACH) The ACH agreements terms.
 * @product_change_delayed@ (Optional, used only for "Delayed Product Change":#delayed-product-change) When set to @true@, indicates that a changed value for @product_handle@ should schedule the product change to the next subscription renewal.
 * @calendar_billing@ (optional, see "Calendar Billing":/billing-dates#calendar-billing for more details). Cannot be used when also specifying @next_billing_at@
-* @snap_day@ A value between 1 and 28, or "end"
+** @snap_day@ A value between 1 and 28, or "end"
 * @ref@ A valid referral code. (optional, see "Referrals":/referrals for more details).
 * @components@ (Optional) An array of component ids and quantities to be added to the subscription.  See "API Quantity Component Allocations":/api-quantity-allocations for more information.
 
