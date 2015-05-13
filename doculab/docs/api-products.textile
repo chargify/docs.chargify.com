@@ -57,6 +57,7 @@ h2. Input Attributes (Create)
 * @taxable@ Boolean
 * @trial_type@ The type of trial for this product, either @no_obligation@ or @payment_expected@.
 * @auto_create_signup_page@ A @true@ or @false@ value (default @true@) indicating whether or not you want a "Public Page":/public-pages-intro" to be automatically created for this product
+* @return_url@ If @auto_create_signup_page@ is true, this will set the url to which a customer will be returned after a successful signup for the auto-created signup page.
 
 h2. Methods
 
