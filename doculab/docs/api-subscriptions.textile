@@ -377,6 +377,25 @@ Response: The updated subscription
 "XML example":#api-reset-balance-xml
 "JSON example":#api-reset-balance-json
 
+h3(#delete-payment-profile). Delete Payment Profile
+
+This will delete a payment profile belonging to the customer on the subscription.
+
+Please note that if the customer has multiple subscriptions, the payment profile will be removed from _all_ of them.
+
+Please note that if you delete the _default_ payment profile for a subscription, there is currently no way to designate a different payment profile as the default via the API.  You may want to "Update":#update the subscription instead.
+
+To establish a new default payment profile after it has been deleted, either prompt the user to enter a card in the billing portal or on the self-service page, or visit the Payment Details tab on the subscription in the Admin UI and use the "Add New Credit Card" or "Make Active Payment Method" link, (depending on whether there are other cards present.)
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/payment_profiles/<payment_profile_id>@
+Method: DELETE
+Required Parameters: none
+Response:  204 No Content on success
+
+**Usage Examples:**
+"XML example":#api-delete-payment-profile-xml
+"JSON example":#api-delete-payment-profile-json
+
 
 h2(#usage). Usage Examples
 
@@ -3203,3 +3222,41 @@ Feature: Reset Subscription Balance
 </code></pre>
 
 Back to "Reset Balance":#reset-balance
+
+h3(#api-delete-payment-profile-json). JSON Delete Payment Profile Example
+
+<pre><code>
+Feature: Delete payment Profile
+  Scenario: Deleting a payment profile
+    Given I have a subscription
+    And the customer associated with the subscription has a payment profile
+    When I send a DELETE request to https://acme.chargify.com/subscriptions/[@subscription.id]/payment_profiles/[@payment_profile.id].json
+    Then the response status should be "204 No Content"
+    And the payment profile should be deleted
+
+  If any errors occur, the response will be:
+
+  {
+    "errors" => "There was an error deleting the payment profile"
+  }
+</code></pre>
+
+h3(#api-delete-payment-profile-xml). XML Delete Payment Profile Example
+
+<pre><code>
+Feature: Delete payment Profile
+  Scenario: Deleting a payment profile
+    Given I have a subscription
+    And the customer associated with the subscription has a payment profile
+    When I send a DELETE request to https://acme.chargify.com/subscriptions/[@subscription.id]/payment_profiles/[@payment_profile.id].xml
+    Then the response status should be "204 No Content"
+    And the payment profile should be deleted
+
+  If any errors occur, the response will be:
+
+  <errors>
+    <error>There was an error deleting the payment profile</error>
+  </error>
+</code></pre>
+
+Back to "Delete Payment Profile":#delete-payment-profile

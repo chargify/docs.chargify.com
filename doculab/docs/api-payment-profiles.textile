@@ -7,7 +7,7 @@ h2. URI/Method
 
 h2. Payment Profile Input Attributes
 
-* @payment_profile@ 
+* @payment_profile@
 ** @payment_type@ (Optional) Default is @credit_card@.  May be @bank_account@ or @credit_card@.
 ** @customer_id@ (Required when creating a new payment profile) The Chargify customer id.
 ** @first_name@ First name on card or bank account.
@@ -34,9 +34,9 @@ _format_ may be either 'xml' or 'json'.
 
 h3. Read
 
-URL: @https://<subdomain>.chargify.com/payment_profiles/<payment_profile_id>.<format>@  
-Method: @GET@  
-Required Parameters: @payment_profile_id@  
+URL: @https://<subdomain>.chargify.com/payment_profiles/<payment_profile_id>.<format>@
+Method: @GET@
+Required Parameters: @payment_profile_id@
 Response: A single Payment Profile
 
 
@@ -88,9 +88,9 @@ Response: A single Payment Profile
 
 h3. Create
 
-URL: @https://<subdomain>.chargify.com/payment_profiles.<format>@  
-Method: @POST@ 
-Required Parameters: XML or JSON data, as specified by the required attributes  
+URL: @https://<subdomain>.chargify.com/payment_profiles.<format>@
+Method: @POST@
+Required Parameters: XML or JSON data, as specified by the required attributes
 Response: The created payment profile (see output for "Read")
 
 **Note**
@@ -99,9 +99,9 @@ Creating a new payment profile for a customer via the API will not make that pay
 
 h3. Update
 
-URL: @https://<subdomain>.chargify.com/payment_profiles/<payment_profile_id>.<format>@  
-Method: @PUT@ 
-Required Parameters: XML or JSON data, as specified by the required attributes  
+URL: @https://<subdomain>.chargify.com/payment_profiles/<payment_profile_id>.<format>@
+Method: @PUT@
+Required Parameters: XML or JSON data, as specified by the required attributes
 Response: The created payment profile (see output for "Read")
 
 **Notes on updating payment profiles via the API**
@@ -110,4 +110,9 @@ Response: The created payment profile (see output for "Read")
 
 * If you are using Authorize.net, Chargify will ignore the credit card number and CVV when processing an update via the API, and attempt a partial update instead. If you wish to change the card number on a payment profile, you will need to create a new payment profile for the given customer.
 
-* A payment profile cannot be updated with the attributes of another type of payment profile. For example, if the payment profile you are attempting to update is a credit card, you cannot pass in bank account attributes (like @bank_account_number@), and vice versa. 
+* A payment profile cannot be updated with the attributes of another type of payment profile. For example, if the payment profile you are attempting to update is a credit card, you cannot pass in bank account attributes (like @bank_account_number@), and vice versa.
+
+h3. Delete
+
+See "Deleting a Payment Profile":api-subscriptions#delete-payment-profile in the Subscriptions API documentation.
+
