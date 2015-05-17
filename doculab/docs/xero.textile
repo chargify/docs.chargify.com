@@ -88,6 +88,8 @@ We sync transaction data to Xero under 3 conditions:
 2. When a Chargify statement is "settled" by receiving a payment.  This usually happens simultaneously to the statement being closed, unless the card fails to charge and we have to retry.
 3. When a refund is made.
 
+p(note). Charges and credits added during the billing period, including component allocations, will not sync to Xero until the statement settles or closes at the end of the period.
+
 h3(#sync). Syncing Chargify Statements to Xero Invoices
 
 !/images/doculab/xero-invoice.png!
