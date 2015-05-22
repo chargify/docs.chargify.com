@@ -110,7 +110,7 @@ If 20 units are allocated, then the cost would be $20 total for this component.
 
 h4. Fractional Allocations
 
-Quantity component allocations are represented as whole numbers by default (i.e. 5 Licenses). Checking 'Allow fractional quantities' setting will allow you to allocate partrial quantities (i.e 4.5 Minutes). API representations of this component will return a decimal instead of an integer for the quantity values.
+Quantity component allocations are represented as whole numbers by default (i.e. 5 Licenses). Checking 'Allow fractional quantities' setting will allow you to allocate partial quantities (i.e. 4.5 Minutes). API representations of this component will return a decimal instead of an integer for the quantity values.
 
 h3. Creating Metered Components
 
