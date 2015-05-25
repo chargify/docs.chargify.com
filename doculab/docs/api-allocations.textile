@@ -87,6 +87,7 @@ An allocation object with the following fields:
 | @proration_upgrade_scheme@ | The scheme used if the proration was an upgrade. This is only present when the allocation was created mid-period. |
 | @proration_downgrade_scheme@ | The scheme used if the proration was a downgrade. This is only present when the allocation was created mid-period. |
 | @timestamp@ | The time that the allocation was recorded, in "ISO 8601":http://en.wikipedia.org/wiki/ISO_8601 format and UTC timezone, i.e. @2012-11-20T22:00:37Z@ |
+| @payment@ | If capture was attempted for a mid-period allocation, includes @amount_in_cents@, @success@, @memo@ and @id@ attributes describing the payment, or @null@ if no card was on file. |
 
 h4. Response Status Codes
 
@@ -119,6 +120,8 @@ An array of allocation objects with the following fields:
 | @proration_upgrade_scheme@ | The scheme used if the proration was an upgrade. This is only present when the allocation was created mid-period. |
 | @proration_downgrade_scheme@ | The scheme used if the proration was a downgrade. This is only present when the allocation was created mid-period. |
 | @timestamp@ | The time that the allocation was recorded, in "ISO 8601":http://en.wikipedia.org/wiki/ISO_8601 format and UTC timezone, i.e. @2012-11-20T22:00:37Z@ |
+| @payment@ | If capture was attempted for a mid-period allocation, includes @amount_in_cents@, @success@, @memo@ and @id@ attributes describing the payment, or @null@ if no card was on file. |
+
 
 h4. Response Status Codes
 
