@@ -41,13 +41,18 @@ Alternately, you may want to append the referral code to a URL on your own site,
 
 h2(#flow). Referral Signup Flow (Public Pages)
 
-# A user navigates to a Public Signup Page with a referral code in the URL. For example: @http://acme.chargify.com/subscribe/5p3wn7w7/basic?ref=4bn9x5@. The customer is shown a preview of the referral discount that will be applied to their subscription.
+1. A user navigates to a Public Signup Page with a referral code in the URL. For example: @http://acme.chargify.com/subscribe/5p3wn7w7/basic?ref=4bn9x5@. The customer is shown a preview of the referral discount that will be applied to their subscription.
 !{width:680px}/images/doculab/raf-3g.png!
-# The new customer completes their signup and the referral discount is applied.
+
+Note:  Either a referral code or a coupon code may be used.  If valid codes for both are supplied, the referral discount will be applied and the coupon will be ignored.
+
+2. The new customer completes their signup and the referral discount is applied.
 !{width:680px}/images/doculab/raf-conf.png!
-# A one-time discount is applied to the referring subscription
+
+3. A one-time discount is applied to the referring subscription
 !{width:680px}/images/doculab/raf-5.png!
-# The referral appears in the Referral History in the Admin UI
+
+4. The referral appears in the Referral History in the Admin UI
 !{width:680px}/images/doculab/raf-history.png!
 
 p(note). Please note that the Referring Subscription must be in the Active status in order for the referral discount and credit to be applied.
