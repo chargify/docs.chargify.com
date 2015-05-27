@@ -44,6 +44,8 @@ h2(#flow). Referral Signup Flow (Public Pages)
 1. A user navigates to a Public Signup Page with a referral code in the URL. For example: @http://acme.chargify.com/subscribe/5p3wn7w7/basic?ref=4bn9x5@. The customer is shown a preview of the referral discount that will be applied to their subscription.
 !{width:680px}/images/doculab/raf-3g.png!
 
+Note:  If the referral code is not valid, it will be silently ignored.
+
 Note:  Either a referral code or a coupon code may be used.  If valid codes for both are supplied, the referral discount will be applied and the coupon will be ignored.
 
 2. The new customer completes their signup and the referral discount is applied.
