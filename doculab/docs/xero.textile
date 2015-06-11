@@ -149,6 +149,12 @@ h3(#taxes-special). Mapping to Special Xero System Tax Rates
 
 For the AU, NZ, and UK version of Xero, we allow you to map each Chargify tax to a corresponding system tax rate in Xero.  More information on this feature can be found in "the section on Tax Configuration":#taxes-other, above.
 
+h3(#taxes-credits). Taxes on Refunds and Credits
+
+Please note that refunds are always synced to Xero as Tax Exempt.  If the original charge that is being refunded included taxes, you will need to record a Journal Entry to adjust the tax amount.
+
+Most Credit Notes will also sync as Tax Exempt because there are no taxes associated with the credit in Chargify.  An exception is a prorated credit for a taxable product or component.
+
 h2(#faq). FAQ
 
 h3(#faq-old-txns). Are old statements & transactions synced to Xero?
