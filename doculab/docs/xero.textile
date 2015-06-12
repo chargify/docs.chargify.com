@@ -81,7 +81,7 @@ h2(#how-it-works). How it Works
 We sync transaction data to Xero under 3 conditions:
 
 1. Any time a new Chargify statement is "closed": this happens at the time of signup, renewal, or upgrade/downgrade migrations.
-2. When a Chargify statement is "settled" by receiving a payment.  This usually happens simultaneously to the statement being closed, unless the card fails to charge and we have to retry.
+2. When a Chargify statement is "settled".  For Automatic billing, this usually happens simultaneously to the statement being closed, unless the card fails to charge and we have to retry.  For Invoice billing, the statement is always settled immediately at the beginning of the billing period, without waiting for payment.
 3. When a refund is made.
 
 p(note). Charges and credits added during the billing period, including component allocations, will not sync to Xero until the statement settles or closes at the end of the period.
@@ -150,6 +150,14 @@ h3(#taxes-credits). Taxes on Refunds and Credits
 Please note that refunds are always synced to Xero as Tax Exempt.  If the original charge that is being refunded included taxes, you will need to record a Journal Entry to adjust the tax amount.
 
 Most Credit Notes will also sync as Tax Exempt because there are no taxes associated with the credit in Chargify.  An exception is a prorated credit for a taxable product or component.
+
+h3(#invoice-billing). Chargify Invoice Billing
+
+Payments applied to Chargify Invoices are not synced to Xero.  If you are using "Invoice billing":invoice-billing, you will need to manually record the payments in Xero.
+
+Charges and Credits applied to Chargify Invoices are not synced to Xero.  If you are using "Invoice billing":invoice-billing, you will need to manually record these items in Xero.
+
+It is important to note that even if you are using "Invoice billing":invoice-billing, the basis for syncing data to Xero is *Statements*, which are tied to the billing period.  Please review the "How It Works":#how-it-works section for more information on when data will be synced to Xero.
 
 h2(#faq). FAQ
 
