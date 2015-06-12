@@ -4,7 +4,7 @@ The Subscriptions Import tool will allow you to import new subscriptions into Ch
 
 p(note). This is an advanced feature which is only recommended for merchants with technical experience in mapping data in CSV format. Limited support will be provided. If you do not feel comfortable with the procedures laid out below, please "open a support ticket":http://help.chargify.com/tickets/new or contact our support team at support@chargify.com or by phone at (800) 401-2414.
 
-Support for the Subscriptions Import feature is available Monday - Thursday during the hours of 9am-5pm Eastern.  In the event an unexpected error occurs, please contact support@chargify.com. 
+Support for the Subscriptions Import feature is available Monday - Thursday during the hours of 9am-5pm Eastern.  In the event an unexpected error occurs, please contact support@chargify.com.
 
 h2(#sample-xlsx). Sample XLSX Files
 
@@ -61,7 +61,7 @@ The following is a list of required fields for subscription creation via the imp
 2. Required if you are importing credit card details:
 
 @payment_profile_full_number@
-@payment_profile_cvv@
+@payment_profile_cvv@ (Optional)
 @payment_profile_expiration_month@
 @payment_profile_expiration_year@
 @payment_profile_card_type@ (Optional, see "allowed values":#card-types)
@@ -147,7 +147,7 @@ The following are example Vault Tokens showing the format used by each of the pa
 | Wirecard | C123456789012345678901 | |
 | Moneris Solutions | [unknown] | |
 
-*1 Braintree Blue is Braintree’s newer (version 2) API. For this gateway, please provide the vault_token parameter with the value from Braintree’s “Customer ID” rather than the “Payment Profile Token”. 
+*1 Braintree Blue is Braintree’s newer (version 2) API. For this gateway, please provide the vault_token parameter with the value from Braintree’s “Customer ID” rather than the “Payment Profile Token”.
 
 h2(#country-format). Country Format
 
@@ -161,7 +161,7 @@ Please use ISO Standard state codes when formatting the import file.
 
 US States (2 characters): "ISO_3166-2":http://en.wikipedia.org/wiki/ISO_3166-2:US#Current_codes
 
-States Outside the US (2-3 characters): 
+States Outside the US (2-3 characters):
 To find the correct state codes outside of the US, please go to "ISO_3166-1":http://en.wikipedia.org/wiki/ISO_3166-1#Current_codes and click on the link in the “ISO 3166-2 codes” column next to country you wish to populate.
 
 h2(#example-field-values). Example Field Values
