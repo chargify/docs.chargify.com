@@ -75,8 +75,8 @@ The following events are monitored within Chargify and can generate Webhooks:
 | @signup_failure@  | Any failed signup (Subscription failed to begin) via the API, admin UI, or Public Pages<sup>2</sup> | @site@, @subscription@<sup>1</sup> |
 | @renewal_success@ | A successful periodic renewal<sup>3</sup> | @site@, @subscription@<sup>1</sup> |
 | @renewal_failure@ | A failed periodic renewal, i.e. the credit card is declined<sup>3</sup> | @site@, @subscription@<sup>1</sup> |
-| @payment_success@ | Any successful payment against a credit card<sup>4</sup> | @site@, @payment@ |
-| @payment_failure@ | Any failed payment attempt against a credit card<sup>4</sup> | @site@, @payment@ |
+| @payment_success@ | Any successful payment<sup>4</sup> "(example payload)":#payment-success-payload | @site@, @subscription@, @transaction@ |
+| @payment_failure@ | Any failed payment attempt <sup>4</sup> "(example payload)":#payment-failure-payload |  @site@, @subscription@, @transaction@ |
 | @billing_date_change@ | Any change to the billing date that is initiated explicitly by altering the billing date via the admin UI or the API.  This will not be triggered upon a normal renewal and period advancement, or a migration. | @site@, @subscription@<sup>1</sup> ( with @previous_billing_date@)  |
 | @subscription_state_change@ | Any change to the Subscription state.  This is the "workhorse" of the events - watching this event can tell you if a Subscription ever moves to a "bad" state, i.e. @past_due@ | @site@, @subscription@<sup>1,5</sup> |
 | @subscription_product_change@ | A successful change from an old product to a new product within the users Subscription. | @site@, @product_change@ |
@@ -140,7 +140,7 @@ subscription</code></pre> |
 <sup>1</sup> The @subscription@ object also contains information on the Customer and Product.
 <sup>2</sup> This is usually caused by a failure at the payment gateway.  This event is not generated for input validation errors (i.e. forgetting to fill in a field).
 <sup>3</sup> At the end of every recurring interval, _either_ a @renewal_success@ _or_ a @renewal_failure@ event is triggered once.  If a card is declined and a @renewal_failure@ is triggered, a subsequent payment that brings the account current will _not_ generate a @renewal_success@ (although it will generate a @payment_success@ and a @subscription_state_change@)
-<sup>4</sup> @payment_success@ or @payment_failure@ are triggered for _every_ payment attempted, whether it is for a normal renewal, or a "One-time Charge":one-time-charges, or a retry after failure.
+<sup>4</sup> @payment_success@ or @payment_failure@ are triggered for _every_ payment attempted, whether it is for a normal renewal, a "One-time Charge":one-time-charges, a retry after failure, or a payment applied to an "Invoice":invoice-billing.
 <sup>5</sup> Note that the @subscription@ object you are given contains keys for both @previous_state@ and @state@ so you can track the changes.
 <sup>6</sup> The @expiring_card@ webhook is sent on the 1st, 15th and 7 days before the end of the month. This will identify all cards expiring in the next month.
 <sup>7</sup> Adding a card through the Admin UI does not currently generate a @subscription_card_update@ event.
