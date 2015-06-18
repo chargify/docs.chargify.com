@@ -2,7 +2,7 @@ Components allow you to introduce additional "line items" to your Products that 
 
 Components are defined at the Product Family level, and are therefore available to all Products within the Family.
 
-p(note). Components that are "used" on a Subscription have their *charges billed at the end of the period* (which coincides with the start of the next period, which is when recurring charges are also billed).  See "Setting Component Allocations":/setting-component-allocations for more.
+p(note). Quantity-Based and On/Off Components associated with a Subscription are billed *in advance* along with the product, while Metered Component usage is billed in arrears.  See "Setting Component Allocations":/setting-component-allocations for more information.
 
 h2. Types of Components
 
