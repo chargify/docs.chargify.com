@@ -38,10 +38,22 @@ bc. ?first_name=John&last_name=Doe&email=john.doe@example.com&reference=1234
 
 !/images/doculab/hosted-signup-pre-populated_normal.png!
 
-h2. Pre-populating quantity-based components
+h2(#components). Pre-Populating Components
 
-Quantity-based components can be pre-populated by passing in the component id (visible in your components list) and desired quantity.
+Components can be pre-populated by passing in the numeric component id (visible in your components list) and desired quantity.
 
-Please note the order of the parameters matters to properly set the desired quantity for each component.
+Please note that the order of the parameters matters to properly set the quantity for each component.
+
+h3(#qty). Quantity-based components:
 
 bc. ?components[][component_id]=16899&components[][allocated_quantity]=9
+
+h3(#on-off). On/Off components:
+
+bc. ?components[][component_id]=16899&components[][allocated_quantity]=1
+
+Note:  Use 1 for "on" and 0 for "off"
+
+h3(#metered). Metered components:
+
+bc. ?components[][component_id]=12345&components[][unit_balance]=16
