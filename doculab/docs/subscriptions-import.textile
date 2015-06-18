@@ -233,3 +233,9 @@ When one or more subscriptions fail, you can upload the same CSV file after maki
 
 Please "open a support ticket":http://help.chargify.com/tickets/new if you require assistance.  You can also reach us via email at support@chargify.com or by phone at (800) 401-2414.
 
+
+h2(#faq). FAQ
+
+h3(#components). Can I include component allocations in the CSV file?
+
+Unfortunately, no.  Components can be added after the subscriptions are imported either by "Setting Component Allocations":/setting-component-allocations in the Admin UI, or via the API using the "Allocations":/api-allocations and "Metered Usage":/api-metered-usage endpoints.
