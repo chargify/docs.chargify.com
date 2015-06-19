@@ -27,7 +27,7 @@ p(warning). To use Public Signup Pages with the Beanstream gateway, you *must* e
 
 h3. Public Signup Page Flow
 
-# Provide your potential Customers with a link to the Public Signup Page for the Product you would like to offer them.  Note that you have the option to pass in some data to pre-populate the form or variables that are sent to Chargify - see "Public Page Default Settings: Pre-populating Data":/public-page-default-settings#pre-populating-data
+# Provide your potential Customers with a link to the Public Signup Page for the Product you would like to offer them.  Note that you have the option to pass in some data to pre-populate the form or variables that are sent to Chargify - see "Pre-populating Data":/pre-populating-data
 # The customer fills out their credit card details and other requested or required information (the information collected by the Public Signup Page is controlled by the "Public Page Default Settings":/public-page-default-settings) and presses the submit button
 ## If the customer enters information incorrectly or their credit card is declined, they are notified within the Public Signup Page and given a chance to make corrections
 ## If the customer enters information correctly and their credit card is accepted (or is not required) then they are redirected either to:
@@ -129,7 +129,7 @@ A "404 Not Found" response will be returned if the URL is not valid.  Invalid UR
 
 h2(#translations). Public Page Translations/Internationalization (i18n)
 
-The Public Pages are only offered in English at this time.  If you would like to add translations to page content, you may do so by writing Javascript that replaces on-page content with your own content via Custom Javascript.  Adding Custom Javascript is documented in "Public Page Settings":/public-page-settings.
+The Public Pages are only offered in English at this time.  If you would like to add translations to page content, you may do so by writing JavaScript that replaces on-page content with your own content via "Custom JavaScript":/custom-javascript-css.
 
 h3. Translating Javascript Generated Content
 
