@@ -7,9 +7,9 @@ h2(#availability). Availability
 The Twilio integration is available to merchants:
 
 * On the free Developer plan (for testing), OR
-* On the Growing Business plan or higher
+* On the Small Business Plus plan or higher
 
-If you would like to test out the integration during the beta period, but you do not meet these criteria, you may "open a support ticket":https://chargify.zendesk.com/hc/en-us/requests/new and request a one month credit for a free upgrade to the Growing Business plan.
+If you would like to test out the integration during the beta period, but you do not meet these criteria, you may "open a support ticket":https://chargify.zendesk.com/hc/en-us/requests/new and request a one month credit for a free upgrade to the Small Business Plus plan.
 
 h2(#setup). Setup
 
