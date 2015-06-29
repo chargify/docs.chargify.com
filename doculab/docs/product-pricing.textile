@@ -1,18 +1,16 @@
 Product pricing is defined beneath "Billing Setup" section of the Product creation and edit screens.  In addition to pricing, this is also how you define your recurring period intervals, trials, and expirations.
 
-<!-- TODO: include a screenshot of the product pricing section -->
-
+!/images/doculab/product-billing-setup.png!
 
 h3. Initial/Setup fee
 
-The "Initial/Setup fee" field allows you to specify an _up-front fee_ or _startup fee_ that is charged once, at signup time only.
-
+The "Initial/Setup fee" field allows you to specify an _up-front fee_ or _startup fee_ that is charged *once*.  The Setup fee is normally charged at signup, but if your product has a trial period, the Setup fee may be charged at the end of the trial.
 
 h3. Trial period
 
 A _trial period_ may be defined in terms of number of days or months, and can be given a price or be marked as free (i.e. 0 units of your currency).
 
-Subscriptions that are created for a product that has a free trial are still assessed any Up-front charges.
+As mentioned, you have the option of charging a Setup fee either before or after the trial.
 
 The _trial period_ for a Subscription continues for the duration defined here.  During this time it will be in the @trialing@ state.
 
@@ -22,7 +20,7 @@ h4(#no-obligation-trials). No Obligation Trials
 
 At the end of the trial, if a card is on file, the card will be charged and the subscription will transition to @active@ state if the payment is successful, or @unpaid@ if the payment is declined. If no card is on file at the end of the trial, the following will take place:
 
-* If the subscription has a balance greater than 0, the subscription will transition to @trial_ended@. Chargify will not send any emails or statements.  
+* If the subscription has a balance greater than 0, the subscription will transition to @trial_ended@. Chargify will not send any emails or statements.
 * If the subscription has a balance of 0, or a negative balance:
 ** If the balance covers the cost of the product, the subscription will transition to the @active@ state.
 ** If the balance does not cover the cost of the product, the subscription will transition to @trial_ended@. Chargify will not send any emails or statements.
@@ -35,7 +33,7 @@ p(note). *Tip*: You can subscribe to the @subscription_state_change@ "webhook":/
 
 h3(#recurring-period). Recurring Period and Price
 
-The _recurring period_ can also be defined in terms of the number of days or months.  You also define a price that is charged *at the beginning* of each active period (unless there is a trial period).  Subscriptions would renew according to the period until they are either cancelled, expired, or otherwise terminated.
+The _recurring period_ is defined as a number of days or months.  You also define a price that is charged *at the beginning* of each active period (unless there is a trial period).  Subscriptions renew according to the period until they are either cancelled, expired, or otherwise terminated.
 
 Out of all of the pricing option fields, the recurring period and price are the only ones that are absolutely required.
 
