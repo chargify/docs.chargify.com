@@ -1,7 +1,5 @@
 Webhooks offer a way to quickly find out about changes to your Subscriptions that happen within Chargify.  You can subscribe to events of interest, and we'll post data to the URL you specify when one of those events occurs.
 
-p(note). Webhooks are recommended over "Post-backs":post-backs for your integration.<br><br>
-
 h2(#asynchronous). Webhooks are Asynchronous
 
 p(note). Webhook events usually get sent quickly, but sometimes there can be a small delay (if you experience a delay longer than a few minutes please contact us).
@@ -2369,4 +2367,3 @@ h3(#expiration-date-change). expiration_date_change Payload
 </code></pre>
 
 "Back to Top":#example-payloads
-
