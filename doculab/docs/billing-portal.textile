@@ -1,12 +1,24 @@
 The Chargify billing portal provides a great way for your customers to manage their subscription without you having to write any code.  They can update their card, change plans, or cancel, all from one convenient interface.
 
-The Billing Portal does **not** require the customer to set or remember a special username or password.  Instead, everything they need is included in a variety of helpful e-mails:
+h2. Authentication
+
+Your customers authenticate (i.e. log in) to Billing Portal using either an email/password OR by clicking a link sent to their validated email address.
+
+h3. Password Authentication
+
+If the merchant enables Password Logins in the Billing Portal settings, then the customer is prompted to choose a password after accepting their invitation.  The customer uses their email address and password to log in via your site-specific login page located at: @billingportal.com/s/shortname@, where "shortname" is your Chargify subdomain.  Once logged in, the customer can change the email address and/or the password.
+
+**Note:** We do not recommend the use of both the "Password Logins" option and the "Low-Security Logins" at the same time.  Password Logins address most of the concerns that led to the desire of Low-Security Logins, so we would pick one or the other.  See "Billing Portal Login Flow" below for more information on Low-Security Logins.
+
+h3. Email-based Authentication
+
+The Billing Portal does **not** require the customer to set or remember a password.  Instead, everything they need to sign in is included in a variety of helpful e-mails:
 
 * **Invite E-mail** - You may choose to have all customers automatically invited to the Billing Portal or you may invite them manually.  When the customer accepts an invitation, they will be signed in to the Billing Portal to be able to access their subscriptions.  The invite e-mail is valid for 48 hours after it is sent.  If a customer tries to use the invite after this time, they'll be asked to generate a new invite.
 
-* **Login E-mail** - If the customer has not used the Billing Portal for an extended period of time, he or she may be asked to sign in again.  We will send a new login URL that is valid for 1 hour.  This process is very similar to the common "Reset Password" procedure on most websites (and has a similar security profile).
+* **Login E-mail** - If the customer has not used the Billing Portal for an extended period of time, he or she may be asked to sign in again.  From the login screen, the customer can request to receive a new login URL via email.  This link is valid for 1 hour.  This process is very similar to the common "Reset Password" procedure on most websites (and has a similar security profile).
 
-* **Management URL** - Included at the bottom of statements & invoices your customers receive is a link to manage their subscriptions.  This link is good for 65 days.  This link alone is **not** sufficient to sign a customer into their Billing Portal account, **unless** you choose to bypass email verification in your Billing Portal settings.  If the customer is already signed in (from the methods above), they can access their subscription.  If not, they will be asked to verify their identity with a new login e-mail.
+* **Management URL** - Included at the bottom of statements & invoices your customers receive is a link to manage their subscriptions.  This link is good for 65 days.  This link alone is **not** sufficient to sign a customer into their Billing Portal account, **unless** you choose to bypass email verification in your Billing Portal settings.  If the customer has already signed in recently (from the methods above), they can access their subscription.  If not, they will be asked to verify their identity with a new login e-mail (or entering a password, if password logins are enabled).
 
 h3. Management URL details
 
