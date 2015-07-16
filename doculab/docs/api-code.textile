@@ -11,7 +11,7 @@ h2. PHP
 * "http://github.com/abraham/chargify":http://github.com/abraham/chargify Sample PHP app by Abraham Williams. "http://abrah.am":http://abrah.am, "@abraham":http://twitter.com/abraham
 * "http://github.com/jforrest/Chargify-PHP-Client":http://github.com/jforrest/Chargify-PHP-Client: A PHP API wrapper from Jason at RigBooks
 * "http://github.com/lewsid/chargify_api_php":http://github.com/lewsid/chargify_api_php: A PHP API wrapper by one of our active beta testers.
-* "http://chargeigniter.com":http://chargeigniter.com: CodeIgniter PHP code by Kyle Anderson
+* "https://github.com/ChargeIgniter/ChargeIgniter":https://github.com/ChargeIgniter/ChargeIgniter: CodeIgniter PHP code by Kyle Anderson
 
 h2. Ruby/Rails
 
