@@ -18,7 +18,7 @@ We always enjoy (and appreciate) hearing about larger integrations ahead of time
 
 Our API, while considered stable, is continually being improved and polished.  Please feel free to contact support if you experience issues when integrating with the Chargify API.
 
-h3. Support
+h3(#support). Support
 
 h4. Written Ticket Tech Support
 
