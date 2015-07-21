@@ -1,0 +1,144 @@
+Notes allow you to record information about a particular Subscription in a free text format.
+
+If you have structured data such as birth date, color, etc., consider using "Metadata":/api-metadata instead.
+
+The following fields are returned from GET (read) operations:
+
+@id@: The note's unique id
+@body@: The main text content of the note
+@subscription_id@: The id of the related subscription
+@sticky@: (boolean) Whether or not it is pinned to the top of the list of notes
+@created_at@: Date and time the note was created
+@updated_at@: Last update timestamp
+
+h2. Methods
+
+h3. List
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/notes.<format>@
+Method: @GET@
+Formats: JSON, XML
+
+Optional Parameters:
+* @page@ (default = 1)
+* @per_page@ (default = 20, max = 200)
+
+Response: An array of Notes
+
+<pre>
+[{
+  "note": {
+    "body": "Test note.",
+    "created_at": "2015-06-15T13:26:47-04:00",
+    "id": 5,
+    "sticky": false,
+    "subscription_id": 100046,
+    "updated_at": "2015-06-15T13:28:12-04:00"
+  }
+}, {
+  "note": {
+    "body": "Another test note.",
+    "created_at": "2015-06-15T12:04:46-04:00",
+    "id": 4,
+    "sticky": false,
+    "subscription_id": 100046,
+    "updated_at": "2015-06-15T13:26:33-04:00"
+  }
+}]
+</pre>
+
+<pre>
+<?xml version="1.0" encoding="UTF-8"?>
+<notes type="array">
+  <note>
+    <body>Test note.</body>
+    <created_at type="datetime">2015-06-15T13:26:47-04:00</created_at>
+    <id type="integer">5</id>
+    <sticky type="boolean">false</sticky>
+    <subscription_id type="integer">100046</subscription_id>
+    <updated_at type="datetime">2015-06-15T13:28:12-04:00</updated_at>
+  </note>
+  <note>
+    <body>Another test note.</body>
+    <created_at type="datetime">2015-06-15T12:04:46-04:00</created_at>
+    <id type="integer">4</id>
+    <sticky type="boolean">false</sticky>
+    <subscription_id type="integer">100046</subscription_id>
+    <updated_at type="datetime">2015-06-15T13:26:33-04:00</updated_at>
+  </note>
+</notes>
+</pre>
+
+h3(#read). Read/Show
+
+URL:  @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/notes/<note_id>.<format>@
+Method: @GET@
+Formats: JSON, XML
+
+Response: A single Note
+
+<pre>
+{
+  "note": {
+    "body": "Test note.",
+    "created_at": "2015-06-15T13:26:47-04:00",
+    "id": 5,
+    "sticky": false,
+    "subscription_id": 100046,
+    "updated_at": "2015-06-15T13:28:12-04:00"
+  }
+}
+</pre>
+
+<pre>
+<?xml version="1.0" encoding="UTF-8"?>
+<note>
+  <body>Test note.</body>
+  <created_at type="datetime">2015-06-15T13:26:47-04:00</created_at>
+  <id type="integer">5</id>
+  <sticky type="boolean">false</sticky>
+  <subscription_id type="integer">100046</subscription_id>
+  <updated_at type="datetime">2015-06-15T13:28:12-04:00</updated_at>
+</note>
+</pre>
+
+h3(#create). Create
+
+URL:  @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/notes.<format>@
+Method: @POST@
+Formats: JSON, XML
+
+<pre>
+{
+  "note": {
+    "body": "New test note.",
+    "sticky": true
+  }
+}
+</pre>
+
+Response: A single Note (See "Read/Show":#read)
+
+h3(#update). Update
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/notes/<note_id>.<format>@
+Method: @PUT@
+Formats: JSON, XML
+
+<pre>
+{
+  "note": {
+    "body": "Modified test note.",
+    "sticky": true
+  }
+}
+</pre>
+
+Result: A single Note (See "Read/Show":#read)
+
+h3. Delete
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/notes/<note_id>.<format>@
+Method: @DELETE@
+
+Response: @200 OK@ or @422 Unprocessable Entity@ with no response body
