@@ -150,7 +150,7 @@ You may control pagination using the @page@ and/or @per_page@ parameters.
 
 Listing subscriptions may be filtered by using the @state@, @product@, (and optionally @product_revision_number@,) and/or @coupon@ parameters.
 
-Listing subscriptions may also be filtered by supplying a @date_field@ along with a @start_date@ and/or @end_date@ and (optionally) the @direction@.
+Listing subscriptions may also be filtered by supplying a @date_field@ along with a @start_date@ and @end_date@ and (optionally) the @direction@.
 
 URL: @https://<subdomain>.chargify.com/subscriptions.<format>@
 Method: @GET@
