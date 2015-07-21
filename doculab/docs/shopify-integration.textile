@@ -184,7 +184,11 @@ h3(#order-contents). Components, Coupons, Taxes, and Adjustments
 
 Charges related to the product and any components will show up as line items in new Shopify Orders. Coupons will show up as discounts, and taxes will be applied as such if you have them enabled within Chargify.
 
-A Shopify Order created by Chargify represents the total dollar value of the product, components, coupons, and taxes in a given billing period. Chargify will not take into account any mid-period adjustments that you apply towards a subscription, any one-time charges, or any existing subscription balances.  This can lead to your Shopify revenue total being different than your Chargify revenue total, in the event you utilize the balance adjustment at any point during the current billing period, prior to the order being generated.
+A Shopify Order created by Chargify represents the total dollar value of the product, components, coupons, and taxes in a given billing period. Chargify will not take into account any mid-period adjustments that you apply towards a subscription, any one-time charges, or any existing subscription balances.
+
+This can lead to your Shopify revenue total being different than your Chargify revenue total, in the event you utilize the balance adjustment at any point during the current billing period, prior to the order being generated.
+
+This also means that if a subscription goes into dunning and then returns to an active state, an order will be sent to Shopify for the charge that went past-due, even if you adjust (or reset) the balance.  These orders may need to be manually canceled in Shopify.
 
 h2(#trouble). Troubleshooting
 
