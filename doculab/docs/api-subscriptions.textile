@@ -164,7 +164,6 @@ Optional Parameters:
 @date_field@: The date field to filter on, such as @canceled_at@ or @updated_at@.  See the "Subscription Output Attributes":#output for a full list.
 @start_date@: The start date with which to filter the @date_field@.  See "Date Format":#date-format for allowable formats.
 @end_date@: The end date with which to to filter the @date_field@.  See "Date Format":#date-format for allowable formats.
-@direction@: The order to be applied to the @date_field@. Use @asc@ for ascending or @desc@ for descending.
 
 Response: An array of Subscriptions
 **Usage Examples:**
