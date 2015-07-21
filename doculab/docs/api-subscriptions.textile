@@ -150,6 +150,8 @@ You may control pagination using the @page@ and/or @per_page@ parameters.
 
 Listing subscriptions may be filtered by using the @state@, @product@, (and optionally @product_revision_number@,) and/or @coupon@ parameters.
 
+Listing subscriptions may also be filtered by supplying a @date_field@ along with a @start_date@ and/or @end_date@ and (optionally) the @direction@.
+
 URL: @https://<subdomain>.chargify.com/subscriptions.<format>@
 Method: @GET@
 Optional Parameters:
@@ -159,6 +161,11 @@ Optional Parameters:
 @product@: The product id of the subscription. (Note that the product handle cannot be used.)
 @product_revision_number@: The revision number of the product.  If supplied, @product@ is required.  Please note that revision is an internal, zero-based identifier, and differs from the Version number displayed in the Admin UI.  Example: To filter for version "v2", supply a @product_revision_number@ of 1.
 @coupon@: The numeric id of the coupon currently applied to the subscription. (This can be found in the URL when editing a coupon.  Note that the coupon code cannot be used.)
+@date_field@: The date field to filter on, such as @canceled_at@ or @updated_at@.  See the "Subscription Output Attributes":#output for a full list.
+@start_date@: The start date with which to filter the @date_field@.  See "Date Format":#date-format for allowable formats.
+@end_date@: The end date with which to to filter the @date_field@.  See "Date Format":#date-format for allowable formats.
+@direction@: The order to be applied to the @date_field@. Use @asc@ for ascending or @desc@ for descending.
+
 Response: An array of Subscriptions
 **Usage Examples:**
 "XML example":#api-usage-xml-subscriptions-list
