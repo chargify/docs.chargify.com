@@ -13,6 +13,8 @@ The following are different types of events you may see in the `key` field:
 
 * @payment_success@
 * @payment_failure@
+* @refund_success@
+* @refund_failure@
 * @signup_success@
 * @signup_failure@
 * @billing_date_change@
