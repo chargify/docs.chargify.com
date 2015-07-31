@@ -109,16 +109,16 @@ The value attribute of the @secure[data]@ parameter should be a string of data i
 
 Your individual keys and values should be themselves URL-encoded, but the overall string should not be.  Since your string will be inserted inside the @value@ attribute of an @input@ tag, it should then be HTML-entity escaped.  Consider the following hidden input:
 
-<pre><code><input type="hidden" name="secure[data]" value="address[city]=Raleigh&amp;address[state]=North%20Carolina&amp;hobbies[0]=soccer&amp;hobbies[1]=snowboarding&amp;hobbies[2]=playing%20inside%20the%20%3Chtml%3E%20tag%20at%20http%3A%2F%2Fchargify.com" /> 
+<pre><code><input type="hidden" name="secure[data]" value="address[city]=Raleigh&amp;address[state]=North%20Carolina&amp;hobbies[0]=soccer&amp;hobbies[1]=snowboarding&amp;hobbies[2]=playing%20inside%20the%20%3Chtml%3E%20tag%20at%20http%3A%2F%2Fchargify.com" />
 </code></pre>
 
 The input above would parse out to the following data structure (represented in YAML):
 
-<pre><code>--- 
-  address: 
+<pre><code>---
+  address:
     city: Raleigh
     state: North Carolina
-  hobbies: 
+  hobbies:
   - soccer
   - snowboarding
   - playing inside the <html> tag at http://chargify.com</code></pre>
@@ -231,6 +231,10 @@ A POST to a Chargify Direct endpoint is the same as making an API Call.  This ca
 
 When using Chargify Direct, the "response parameters":#response-parameters will include a @call_id@ pointing to the Call that was created as a result of your form post.  You may fetch this call from @https://api.chargify.com/api/v2/calls/<call_id>@ using your API V2 credentials.
 
+During development, you may want to use <code>curl</code> to fetch the call to view any error messages. For example:
+
+<code>curl -u <CHARGIFY_DIRECT_API_ID>:<CHARGIFY_DIRECT_PASSWORD> -H Accept:application/json -H Content-Type:application/json -X GET https://api.chargify.com/api/v2/calls/<CALL_ID>.json</code>
+
 See "API: Call":/api-call for a full listing of output fields.
 
 h2(#api-v2-auth). API V2 Authentication
@@ -248,3 +252,5 @@ Chargify API V2 supports HTTP Basic Authentication.
 h4. HTTP Basic Authentication
 
 HTTP Basic Authentication ("on wikipedia":http://en.wikipedia.org/wiki/Basic_access_authentication) is available using your @api_id@ and @api_password@.  It works the same as described in the "article on API V1 authentication":api-authentication, only the credentials are different.
+
+Your Chargify Direct API credentials can be found under Settings -> Chargify Direct in the Admin UI.
