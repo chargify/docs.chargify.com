@@ -12,7 +12,7 @@ The currencies currently supported by Chargify are:
 | CAD | $ | Canadian dollar | Braintree v2 (blue), Authorize.Net, Beanstream, CyberSource, Elavon VirtualMerchant, eWAY, eWAY Rapid 3.1, First Data, Wirecard, Litle, Moneris, Payment Express, Stripe |
 | SGD | $ | Singapore dollar | Payment Express, eWay, Wirecard, QuickPay, Pin Payments, Stripe |
 | ZAR | R | South African rand | Payment Express, Braintree v2 (blue), Wirecard, QuickPay, Stripe |
-| EUR | &euro; | Euro | Authorize.Net, Braintree v2 (blue), Payment Express, Wirecard, Quickpay, eWAY, Litle, PAYMILL, Pin Payments, Stripe |
+| EUR | &euro; | Euro | Authorize.Net, Braintree v2 (blue), Payment Express, Wirecard, Quickpay, eWAY, eWAY Rapid 3.1, Litle, PAYMILL, Pin Payments, Stripe |
 | DKK | DKK | Danish krone | Braintree v2 (blue), Payment Express, Wirecard, QuickPay, Stripe |
 | SEK | kr | Swedish krona | Braintree v2 (blue), Wirecard, QuickPay, Stripe |
 | NOK | kr | Norwegian krone | Braintree v2 (blue), Wirecard, QuickPay, Stripe |
