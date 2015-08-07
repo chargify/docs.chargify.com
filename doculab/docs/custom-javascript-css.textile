@@ -60,3 +60,104 @@ h4(#force-equal-components). Force Two Components to be Equal
 In case you ever need to have one component equal the same value as another you can use this script to accomplish the task.
 
 <script src="https://gist.github.com/rbabcock/fb53647174652158afce.js?file=Force_equal_component_value.js" type="text/javascript"></script>
+
+h4(#signup-css-classes). Signup Page CSS Classes
+
+The following is a list of all CSS classes used on the Public Signup Page.
+
+new_subscription
+company_name
+hidden
+component_configuration
+row
+left
+component-label
+component-description
+quantity_component_number_field
+component-info
+component-multiplier
+component-price
+componentError
+priceDetails tip
+component-price-list
+component-checkbox
+checkbox component-price
+section_one
+line-item_initial
+line-item_baseline
+tint
+section_two
+right
+address shipping_address
+country_select address shipping_address
+subdivision_select address shipping_address
+use-ship-label
+section_three
+hint
+section_four
+metafield_configuration
+button_wrapper
+powered-by-chargify
+
+h4(#signup-css-ids). Signup Page CSS IDs
+
+The following is a list of all CSS IDs used on the Public Signup Page.
+
+page_wrapper
+page_column
+security
+content
+company
+hosted-payment-form
+token
+component_configuration
+component_row_####
+components__component_id
+component_allocated_quantity_####
+component_errors_####
+component_price_list_####
+on_off_component_####
+component_checkbox_####
+apply_component_button
+summary
+billing_summary
+summary-setup-fee
+summary-recurring-charges
+total
+todays-charge
+expiration-date
+subscription_ref
+subscription_customer_attributes_first_name
+subscription_customer_attributes_last_name
+subscription_customer_attributes_address
+subscription_customer_attributes_address_2
+subscription_customer_attributes_country
+subscription_customer_attributes_state
+subscription_customer_attributes_city
+subscription_customer_attributes_zip
+copy-address
+billing_info
+subscription_coupon_code
+coupon_button
+coupon_spinner
+short_coupon_message
+long_coupon_message
+payment_type
+subscription_payment_profile_attributes_first_name
+subscription_payment_profile_attributes_last_name
+credit_card_info
+subscription_payment_profile_attributes_full_number
+credit_card_logos
+subscription_payment_profile_attributes_cvv
+subscription_payment_profile_attributes_expiration_month
+subscription_payment_profile_attributes_expiration_year
+subscription_payment_profile_attributes_billing_zip
+contact_info
+subscription_customer_attributes_email
+subscription_customer_attributes_reference
+subscription_customer_attributes_phone
+subscription_customer_attributes_organization
+metafield_####
+product_id
+subscription_submit
+footer
