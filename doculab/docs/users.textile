@@ -11,3 +11,5 @@ There are 3 levels of access for user accounts:
 * *Owner*: The first user account is the "owner" of the Seller account.  They have implicit admin capabilities that cannot be revoked.
 * *Admin*: Any user may be made an Admin by the owner or by the other Admins.
 * *Team Member*: A user on the account without Admin privileges.
+
+Team Member access is currently available on our "Growing Business":https://www.chargify.com/sign-up/ and higher plans.  Read more about "Access Control and User Permissions":https://www.chargify.com/blog/access-controls/ on our blog.
