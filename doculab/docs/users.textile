@@ -4,7 +4,7 @@ You have the option of adding more user accounts (login and password) to your Se
 
 Starting on your Seller homepage, navigate to the "Users" tab and click on the "Create New User" link.
 
-!https://s3.amazonaws.com/entp-tender-production/assets/de05d8b8bb4e9a87a4cee0877a999c95d5ba6f08/user_management_normal.png!
+!/images/doculab/users-create.png!
 
 There are 3 levels of access for user accounts:
 
