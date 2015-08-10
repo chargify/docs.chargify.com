@@ -10,6 +10,4 @@ There are 3 levels of access for user accounts:
 
 * *Owner*: The first user account is the "owner" of the Seller account.  They have implicit admin capabilities that cannot be revoked.
 * *Admin*: Any user may be made an Admin by the owner or by the other Admins.
-* *Regular*: A user on the account without Admin privileges.
-
-Currently - only the Owner account may create, edit, and delete other user accounts.
+* *Team Member*: A user on the account without Admin privileges.
