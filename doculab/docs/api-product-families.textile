@@ -1,0 +1,147 @@
+h2. Product Family Attributes
+
+* @name@ The product family name
+* @handle@ The product family API handle
+* @description@ The product family description
+
+h2. Input Attributes (Create)
+
+* @name@ The product family name
+* @handle@ The product family API handle
+* @description@ The product family description
+
+h2. Methods
+
+h3. List
+
+URL: @https://<subdomain>.chargify.com/product_families.<format>@
+Method: @GET@
+
+Response: An array of Product Families
+
+"JSON example":#api-usage-json-product-families-list
+
+h3. Read/Show (via Chargify ID)
+
+URL: @https://<subdomain>.chargify.com/product_families/<id>.<format>@
+Method: @GET@
+Required Parameters: @id@
+
+Response: A single Product Family
+
+"JSON example":#api-usage-json-product-families-read
+
+h3. Create
+
+URL: @https://<subdomain>.chargify.com/product_families.<format>@
+Method: @POST@
+Required Parameters: XML or JSON data, as specified by the required attributes
+Response: The created product, if successful. Errors otherwise.
+
+"JSON example":#api-usage-json-product-families-create
+
+h2. Usage Examples
+
+h3(#api-usage-json-product-families-list). JSON List Usage Example
+
+<pre><code>
+Feature: Chargify API JSON Product Families listing
+  In order to integrate an app with Chargify
+  As a developer
+  I want to be able to list my product families via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user for site with subdomain "acme"
+    And I send and accept JSON
+
+  Scenario: Retrieve a list of my products
+    Given I have 2 product families
+    When I send a GET request to https://acme.chargify.com/product_families.json
+    Then the response status should be "200 OK"
+    And the response should be a json array with 2 "product_family" objects
+</code></pre>
+
+h3(#api-usage-json-product-families-read). JSON Read/Show Usage Example
+
+<pre><code>
+Feature: Chargify API JSON Product Family read
+  In order to integrate an app with Chargify
+  As a developer
+  I want to be able to fetch a product family via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user for site with subdomain "acme"
+    And I send and accept JSON
+
+
+  Scenario: Retrieve a product family via Chargify's id
+     Given I have a product family with these attributes
+       | id   | name    | description     |
+       | 1700 | Family  | my description  |
+     When I send a GET request to https://acme.chargify.com/product_families/1700.json
+     Then the response status should be "200 OK"
+     And the response should be the json:
+     """
+      {
+        "product_family":{
+          "id":`auto generated`,
+          "name":"Family",
+          "handle":"family",
+          "description":"my description"
+        }
+      }
+      """
+</code></pre>
+
+h3(#api-usage-json-product-families-create). JSON Create Usage Example
+
+<pre><code>
+Feature: Chargify API JSON Product Family create
+  In order to integrate an app with Chargify
+  As a developer
+  I want to be able to create a product family via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user for site with subdomain "acme"
+    And I send and accept JSON
+
+  Scenario: Create a product family successfully
+    Given I have this json product family data
+      """
+      {"product_family":{
+        "name":"Acme Projects",
+        "description":"Amazing project management tool"
+      }}
+      """
+    When I send a POST request with the json data to https://acme.chargify.com/product_families.json
+    Then the response status should be "201 Created"
+    And the response should be the json:
+      """
+       {
+         "product_family":{
+           "id":`auto generated`,
+           "name":"Acme Projects",
+           "handle":"acme-projects",
+           "description":"Amazing project management tool"
+         }
+       }
+       """
+
+  Scenario: Creating a product family fails (missing required attributes)
+    Given I have this json product family data
+      """
+      {"product_family":{
+        "description":"missing a name"
+      }}
+      """
+    When I send a POST request with the json data to https://acme.chargify.com/product_families.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the json:
+      """
+      {"errors":
+        [
+          "Name: cannot be blank."
+        ]
+      }
+      """
+</code></pre>

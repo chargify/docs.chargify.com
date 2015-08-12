@@ -130,6 +130,7 @@ Doculab::TableOfContents.define do
     page "API: Notes"
     page "API: Payments"
     page "API: Payment Profiles"
+    page "API: Product Families"
     page "API: Products"
     page "API: Quantity Component Allocations", :permalink => "api-quantity-allocations"
     page "API: Refunds"
