@@ -13,8 +13,6 @@ The following are different types of events you may see in the `key` field:
 
 * @payment_success@
 * @payment_failure@
-* @refund_success@
-* @refund_failure@
 * @signup_success@
 * @signup_failure@
 * @billing_date_change@
@@ -22,10 +20,26 @@ The following are different types of events you may see in the `key` field:
 * @renewal_failure@
 * @subscription_state_change@
 * @subscription_product_change@
-* @zferral_revenue_post_success@ Specific to the Zferral integration
-* @zferral_revenue_post_failure@ Specific to the Zferral integration
 * @expiring_card@
 * @customer_update@
+* @subscription_deletion@
+* @component_allocation_change@
+* @metered_usage@
+* @upgrade_downgrade_success@
+* @upgrade_downgrade_failure@
+* @trial_end_notice@
+* @upcoming_renewal_notice@
+* @statement_closed@
+* @statement_settled@
+* @subscription_card_update@
+* @subscription_bank_account_update@
+* @subscription_paypal_account_update@
+* @refund_success@
+* @refund_failure@
+* @expiration_date_change@
+* @account_transaction_changed@ - Transaction Deleted
+* @zferral_revenue_post_success@ - Specific to the "Zferral integration":/zferral-integration
+* @zferral_revenue_post_failure@ - Specific to the "Zferral integration":/zferral-integration
 * @renewal_success_recreated@ Created as result of "this incident":http://help.chargify.com/entries/20756693-missing-webhooks-12-5-12-10
 * @renewal_failure_recreated@ Created as result of "this incident":http://help.chargify.com/entries/20756693-missing-webhooks-12-5-12-10
 * @payment_success_recreated@ Created as result of "this incident":http://help.chargify.com/entries/20756693-missing-webhooks-12-5-12-10
@@ -38,7 +52,7 @@ h3. List Events for a Subscription
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/events.<format>@
 Method: @GET@
 Formats: JSON, XML
-Optional Parameters: @page@, @per_page@, @since_id@, @max_id@, @direction@ - values @asc@ and @desc@ are valid, @desc@ by default
+Optional Parameters: @filter@ - any type listed above, @page@, @per_page@, @since_id@, @max_id@, @direction@ - values @asc@ and @desc@ are valid, @desc@ by default
 Response: An array of Events
 
 h3. List Events for a Site
@@ -47,7 +61,7 @@ URL: @https://<subdomain>.chargify.com/events.<format>@
 Method: @GET@
 Formats: JSON, XML
 Required Parameters: @id@
-Optional Parameters: @page@, @per_page@, @since_id@, @max_id@, @direction@ - values @asc@ and @desc@ are valid, @desc@ by default
+Optional Parameters: @filter@ - any type listed above, @page@, @per_page@, @since_id@, @max_id@, @direction@ - values @asc@ and @desc@ are valid, @desc@ by default
 Response: An array of Events
 
 h2. Event Specific Data
