@@ -1,6 +1,10 @@
 Chargify allows you to create both one-time and recurring coupons to give customers a discount.
 
-* Coupons are only applied when a recurring charge is assessed.
+* Coupons are applied whenever a recurring charge is assessed.
+
+* Coupons are also applied to mid-period component allocations, however this does not count as a usage for coupons with a limit.
+
+p(note). Note:  For amount-based coupons, this can result in applying more credit than was intended.  For subscriptions with an amount-based coupon, you may wish to manually calculate any mid-period component allocations and use a "one-time charge":/one-time-charges to avoid an additional discount being applied.
 
 * Coupons apply to the total of all charges, instead of just the base fee.  This means that any setup fees and component charges will also be discounted by a valid coupon.
 
