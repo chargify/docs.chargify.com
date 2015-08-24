@@ -1,6 +1,6 @@
 h2. Product Attributes
 
-All of the product attribute fields are returned from GET (read) operations, and all are read only at this time.
+All of the product attribute fields are returned from GET (read) operations.
 
 * @price_in_cents@ The product price, in integer cents
 * @name@ The product name
@@ -116,6 +116,15 @@ Response: The created product, if successful. Errors otherwise.
 
 "XML example":#api-usage-xml-product-create
 "JSON example":#api-usage-json-product-create
+
+h3(#update). Update
+
+URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/products.<format>@
+Method: @PUT@
+Required Parameters: XML or JSON data
+Response: The updated product, if successful. Errors otherwise.
+
+"JSON example":#api-usage-json-product-update
 
 h2. Usage Examples
 
@@ -522,4 +531,102 @@ Feature: Chargify API JSON Product create
       "errors":["Trial Price: must be given if a trial interval (duration) is provided."]
     }
     ""
+</code></pre>
+
+h3(#api-usage-json-product-update). JSON Update Product Example
+
+<pre><code>
+Feature: Chargify API JSON Product update
+  In order to integrate an app with Chargify
+  As a developer
+  I want to be able to update a product via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user for site with subdomain "acme"
+    And I send and accept JSON
+    And I have a product family with ID "1700"
+    And I have a product with ID "1900"
+
+  Scenario: Update a product
+    And I have this json product data
+      """
+      {"product":{
+        "name":"Basic Plan",
+        "handle":"basic",
+        "accounting_code":"acme1",
+        "require_credit_card":false,
+        "request_credit_card":false,
+        "description":"lorem ipsum",
+        "price_in_cents":"2121"
+      }}
+      """
+    When I send a PUT request with the json data to https://acme.chargify.com/products/1900.json
+    Then the response status should be "200 OK"
+    And the response should be the json:
+     """
+      {
+        "product":{
+          "id":1900,
+          "name":"Basic Plan",
+          "handle":"basic",
+          "accounting_code":"acme1",
+          "description":"lorem ipsum",
+          "price_in_cents":`auto generated`,
+          "interval_unit":"month",
+          "interval":1,
+          "initial_charge_in_cents":null,
+          "trial_price_in_cents":null,
+          "trial_interval":null,
+          "trial_interval_unit":null,
+          "expiration_interval_unit":null,
+          "expiration_interval":null,
+          "update_return_url":null,
+          "return_params":null,
+          "require_credit_card":false,
+          "request_credit_card":false,
+          "created_at":`auto generated`,
+          "updated_at":`auto generated`,
+          "archived_at":null,
+          "taxable":false,
+          "product_family":{
+            "id":1700,
+            "name":`your value`,
+            "handle":`your value`,
+            "accounting_code":`your value`,
+            "description":`your value`
+          },
+          "public_signup_pages": [],
+          "version_number": 2
+        }
+      }
+      """
+
+  Scenario: Update a product fails due to invalid attributes
+    And I have this json product data
+      """
+        {"product":{
+          "name":""
+        }}
+      """
+    When I send a PUT request with the json data to https://acme.chargify.com/products/1900.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the json:
+      """
+      {"errors":
+        [
+          "Name: cannot be blank."
+        ]
+      }
+      """
+
+  Scenario: Update a product fails due to "Product not found" (i.e. unknown ID of 0)
+    Given I have 0 products
+    And I have this json product data
+      """
+      {"product":{
+        "name":"My Updated Product"
+      }}
+      """
+    When I send a PUT request with the json data to https://acme.chargify.com/products/0.json
+    Then the response status should be "404 Not Found"
 </code></pre>
