@@ -1,4 +1,4 @@
-For "live" subscriptions (i.e. subscriptions that are not @canceled@ or @expired@) you can execute an immediate, one-time (or "one-off"), or delayed charge of any amount. 
+For "live" subscriptions (i.e. subscriptions that are not @canceled@ or @expired@) you can execute an immediate, one-time (or "one-off"), or delayed charge of any amount.
 
 To assess a One-time or Delayed Charge, navigate to the subscription detail page by clicking on the "Start Date" or on the "View" link in the Subscriptions listing. There, you will see a link to "Add Charge / Charge Card".
 
@@ -15,3 +15,5 @@ A charge is created by entering an amount (i.e. "10.00") and a memo (i.e. "Addit
 The charge will initiate a payment to be collected from the credit card on file for the subscription. If the payment is denied, you will receive a message stating that the card was declined (or that some other error occurred at the payment gateway).
 
 NOTE: Using this feature is like swiping the Customer's credit card - even if your customer has a negative balance (i.e. a credit) at the time you run the charge, using this feature will still capture the payment from the credit card on file.  Options will be added in the future that allow you to alter this behavior, but this will always be the default.
+
+NOTE: If you are connected to the Authorize.Net gateway, any commas (",") you include in the memo will be removed before the transaction is submitted.
