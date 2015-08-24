@@ -81,12 +81,15 @@ p(note).  At this point in development, Chargify is not rejecting any submission
 
 h4(#nonce-values). Nonce Values
 
-Adding a nonce to your request can help to guard against replay attacks and duplicate submissions but also has the potential to diminish the experience of valid users.  If you do not send a nonce with your requests, Chargify will not perform any rejections based on timestamp-nonce pair duplicates.
+Adding a nonce to your request helps to guard against replay attacks and duplicate submissions.
 
 Values for your nonce must be 40 characters or less.
 
-If you submit a nonce with your request, it will be reflected back to you in the "response parameters":#response-parameters.  If you do not submit a nonce, one will be generated automatically.
+If you do not send a nonce with your signup request, Chargify will generate one, but will not perform any rejections based on timestamp-nonce pair duplicates.
 
+The nonce is required for the card_update endpoint.
+
+The nonce will be reflected back to you in the "response parameters":#response-parameters.
 
 h4(#secure-data). Secure Data
 
