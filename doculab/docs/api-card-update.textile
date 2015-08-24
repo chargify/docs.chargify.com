@@ -1,4 +1,4 @@
-Updating a Subscription’s Payment Profile with new information, or creating a new Payment Profile for a Subscription where none currently exists.  
+Updating a Subscription’s Payment Profile with new information, or creating a new Payment Profile for a Subscription where none currently exists.
 
 h2. Input Attributes
 
@@ -8,8 +8,8 @@ Note: the @subscription_id@ MUST be part of your @secure[data]@ parameter for th
 
 * @first_name@ (required) First name of the cardholder or bank account holder.
 * @last_name@ (required) Last name of the cardholder or bank account holder.
-* @card_number@ (required if the payment method is a credit card) The credit card number. 
-* @cvv@ (optional if the payment method is a credit card) The 3 or 4 digit card verification value. 
+* @card_number@ (required if the payment method is a credit card) The credit card number.
+* @cvv@ (optional if the payment method is a credit card) The 3 or 4 digit card verification value.
 * @expiration_month@ (required if the payment method is a credit card) The two-digit card expiration month.
 * @expiration_year@ (required if the payment method is a credit card) The four-digit card expiration year.
 * @bank_name@ (required if the payment method is a bank account) The name of the bank where the customer's account resides
@@ -19,7 +19,10 @@ Note: the @subscription_id@ MUST be part of your @secure[data]@ parameter for th
 * @bank_account_holder_type@ (required if the payment method is a bank account) Either @personal@ or @business@
 
 <pre><code><form method="post" action="https://api.chargify.com/api/v2/subscriptions/<subscription.id>/card_update">
-  <!-- Secure parameters would go here here -->
+
+  <!-- Secure parameters, for example: -->
+  <input type="hidden" name="secure[data]" value="redirect_uri=http%3A%2F%2Fexample.com%2Fcallback&amp;subscription_id=12345"/>
+
   <!-- For brevity, this form contains no labels, only inputs -->
   <input type="text" name="payment_profile[first_name]" />
   <input type="text" name="payment_profile[last_name]" />
@@ -30,7 +33,7 @@ Note: the @subscription_id@ MUST be part of your @secure[data]@ parameter for th
   <input type="text" name="payment_profile[expiration_year]" />
   <input type="text" name="payment_profile[cvv]" />
   <!-- end credit card fields -->
-  
+
   <!-- begin bank account fields -->
   <input type="text" name="payment_profile[bank_name]" />
   <input type="text" name="payment_profile[bank_routing_number]" />
