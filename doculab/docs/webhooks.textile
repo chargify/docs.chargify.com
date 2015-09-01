@@ -71,7 +71,7 @@ h2(#events). Events
 The following events are monitored within Chargify and can generate Webhooks:
 
 |_. Event Key |_. Trigger |_. Payload |
-| @signup_success@  | Any successful signup (Subscription created) via the API, admin UI, or Public Pages | @site@, @subscription@<sup>1</sup> |
+| @signup_success@  | Any successful signup (Subscription created) via the API, admin UI, or Public Pages | @site@, @subscription@<sup>1,9</sup> |
 | @signup_failure@  | Any failed signup (Subscription failed to begin) via the API, admin UI, or Public Pages<sup>2</sup> | @site@, @subscription@<sup>1</sup> |
 | @renewal_success@ | A successful periodic renewal<sup>3</sup> | @site@, @subscription@<sup>1</sup> |
 | @renewal_failure@ | A failed periodic renewal, i.e. the credit card is declined<sup>3</sup> | @site@, @subscription@<sup>1</sup> |
@@ -83,7 +83,7 @@ The following events are monitored within Chargify and can generate Webhooks:
 | @subscription_card_update@ | Any change to the active Credit Card type payment profile.<sup>7,8</sup> | @site@, @subscription@, @product@, @previous_payment_profile@, @updated_payment_profile@ |
 | @expiring_card@ | A periodic event sent by Chargify | @site@, @subscription@<sup>1,6</sup> |
 | @customer_update@ | Any change to the following customer fields: @first_name@, @last_name@, @organization@, @email@, @reference@, @address@, @address 2@, @city@, @state@, @zip@, @country@, @phone@. | @site@, @customer@ |
-| @component_allocation_change@ | Any change to a subscription's quantity-based component allocation or enabled status of an on/off component that is made _after_ signup.<br/><br/>This webhook does not fire if allocations are set as a part of the subscription creation (i.e. signup) - it only fires upon subsequent changes. (We will soon be making component allocations available in the @signup_success@ webhook to cover the sign up case)<br/><br/>@previous_allocation@ and @new_allocation@ give the allocation values before and after the change.  These will be either @0@ or @1@ for On/Off Components to represent @off@ and @on@, respectively.<br/><br/>@timestamp@ provides the date and time the allocation was recorded and is listed in "ISO8601":http://en.wikipedia.org/wiki/ISO_8601 format in the UTC timezone. Note: this timestamp format differs slightly from the format of existing timestamps in other event types and represents our new direction for webhook timestamps.| <pre><code>site[id]
+| @component_allocation_change@ | Any change to a subscription's quantity-based component allocation or enabled status of an on/off component that is made _after_ signup.<br/><br/>This webhook does not fire if allocations are set as a part of the subscription creation (i.e. signup) - it only fires upon subsequent changes.<br/><br/>@previous_allocation@ and @new_allocation@ give the allocation values before and after the change.  These will be either @0@ or @1@ for On/Off Components to represent @off@ and @on@, respectively.<br/><br/>@timestamp@ provides the date and time the allocation was recorded and is listed in "ISO8601":http://en.wikipedia.org/wiki/ISO_8601 format in the UTC timezone. Note: this timestamp format differs slightly from the format of existing timestamps in other event types and represents our new direction for webhook timestamps.| <pre><code>site[id]
 site[subdomain]
 component[id]
 component[name]
@@ -145,6 +145,7 @@ subscription</code></pre> |
 <sup>6</sup> The @expiring_card@ webhook is sent on the 1st, 15th and 7 days before the end of the month. This will identify all cards expiring in the next month.
 <sup>7</sup> Adding a card through the Admin UI does not currently generate a @subscription_card_update@ event.
 <sup>8</sup> Changes to PayPal and Bank Account type payment profiles do not currently generate any webhooks.
+<sup>9</sup> Component allocations are not currently included in the @signup_success@ webhook.
 
 p(note). Multiple Webhook events may be triggered by a single system event.  For example, the creation of a new Subscription will typically fire both a @signup_success@ and @payment_success@ event (if a payment was necessary to start the Subscription).
 
