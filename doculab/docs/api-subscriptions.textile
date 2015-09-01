@@ -302,6 +302,8 @@ h3(#update). Update
 
 The update action currently allows you to edit the attributes of the customer, payment profile (credit card), or subscribed product (although no proration or reset options are offered at this time).
 
+h4(#card-change) Card Change
+
 This is how you would change the card that somebody uses for their subscription.  You can also use this method to simply change the expiration date of the card.
 
 You also use this method to change the subscription to a different product by setting a new value for @product_handle@.  A product change can be done in two different ways:
@@ -2225,6 +2227,7 @@ Back to "Update":#update
 
 h3(#api-usage-json-subscriptions-update). JSON Update Usage Example
 
+h3(#api-usage-json-subscriptions-update-card). Card Update
 
 <pre><code>
 Feature: Chargify Subscriptions Edit/Update JSON API
@@ -2347,7 +2350,11 @@ Feature: Chargify Subscriptions Edit/Update JSON API
         }
       }}
       """
+</code></pre>
 
+h4(#api-usage-json-subscriptions-update-product). Product Change
+
+<pre><code>
   Scenario: Update the product associated with the subscription
     Given I have a product family with ID "1502"
     And I have a product with these attributes
@@ -2462,7 +2469,11 @@ Feature: Chargify Subscriptions Edit/Update JSON API
         }
       }}
       """
+</code></pre>
 
+h4(#api-usage-json-subscriptions-update-date). Billing Date Change
+
+<pre><code>
   Scenario: Manually setting the next billing date to a later date
     Given I have an active subscription with ID "1000"
     And I have this json subscription data
@@ -2503,6 +2514,12 @@ Feature: Chargify Subscriptions Edit/Update JSON API
     Then the response status should be "422 Unprocessable Entity"
     And the subscription's "current_period_ends_at" should not be set to the new date
     And the subscription's "next_assessment_at" should not be set to the new date
+
+</code></pre>
+
+h3(#api-usage-json-subscriptions-update-product). Product Change to Different Family
+
+<pre><code>
 
   Scenario: Update the product associated with the subscription to a product on a different product family
     Given I have a customer named "John Doe"
