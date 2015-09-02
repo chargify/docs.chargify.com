@@ -79,7 +79,7 @@ The following events are monitored within Chargify and can generate Webhooks:
 | @payment_failure@ | Any failed payment attempt <sup>4</sup> "(example payload)":#payment-failure-payload |  @site@, @subscription@, @transaction@ |
 | @billing_date_change@ | Any change to the billing date that is initiated explicitly by altering the billing date via the admin UI or the API.  This will not be triggered upon a normal renewal and period advancement, or a migration. | @site@, @subscription@<sup>1</sup> ( with @previous_billing_date@)  |
 | @subscription_state_change@ | Any change to the Subscription state.  This is the "workhorse" of the events - watching this event can tell you if a Subscription ever moves to a "bad" state, i.e. @past_due@ | @site@, @subscription@<sup>1,5</sup> |
-| @subscription_product_change@ | A successful change from an old product to a new product within the users Subscription. | @site@, @product_change@ |
+| @subscription_product_change@ | A successful change from an old product to a new product for a Subscription. | @site@, @previous_product@, @subscription<sup>1</sup> |
 | @subscription_card_update@ | Any change to the active Credit Card type payment profile.<sup>7,8</sup> | @site@, @subscription@, @product@, @previous_payment_profile@, @updated_payment_profile@ |
 | @expiring_card@ | A periodic event sent by Chargify | @site@, @subscription@<sup>1,6</sup> |
 | @customer_update@ | Any change to the following customer fields: @first_name@, @last_name@, @organization@, @email@, @reference@, @address@, @address 2@, @city@, @state@, @zip@, @country@, @phone@. | @site@, @customer@ |
