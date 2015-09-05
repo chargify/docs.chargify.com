@@ -20,9 +20,18 @@ For more information about the invoicing feature, please see the related "blog p
 
 h2. Methods
 
-h3. List
+h3(#list). List
+
+h4. List All Invoices
 
 URL: @https://<subdomain>.chargify.com/invoices.<format>@
+Method: @GET@
+
+Response: A list of invoices
+
+h4. List Invoices for a Subscription
+
+URL: @https://<subdomain>.chargify.com/invoices.<format>?subscription_id=<sub_id>@
 Method: @GET@
 
 Response: A list of invoices
@@ -32,11 +41,11 @@ Response: A list of invoices
 
 h3. Read/Show (via Invoice ID)
 
-URL: @https://<subdomain>.chargify.com/invoices/<invoice_id>.<format>@  
-Method: @GET@  
-Required Parameters: @invoice_id@  
+URL: @https://<subdomain>.chargify.com/invoices/<invoice_id>.<format>@
+Method: @GET@
+Required Parameters: @invoice_id@
 
-Response: An single invoice  
+Response: A single invoice
 
 "XML example":#api-invoice-xml-read
 "JSON example":#api-invoice-json-read
@@ -85,7 +94,7 @@ Feature: Chargify Invoices List JSON API
     Given I am a valid API user
     And I accept json responses
 
-	
+
   Scenario: Retrieve my sites invoices
     Given I have a customer with these attributes
       | id             | first_name | last_name | email           |
@@ -109,7 +118,7 @@ Feature: Chargify Invoices Read/Show/Lookup XML API
     Given I am a valid API user
     And I accept xml responses
 
-	
+
   Scenario: Retrieve a invoice via ID
     Given I have an existing invoice
     When I send a GET request to https://[@subdomain].chargify.com/invoices/[@invoice.id].xml
