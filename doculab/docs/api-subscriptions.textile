@@ -302,9 +302,11 @@ h3(#update). Update
 
 The update action currently allows you to edit the attributes of the customer, payment profile (credit card), or subscribed product (although no proration or reset options are offered at this time).
 
-h4(#card-change) Card Change
+h4(#card-change). Card Change
 
 This is how you would change the card that somebody uses for their subscription.  You can also use this method to simply change the expiration date of the card.
+
+Note that partial card updates for Authorize.Net are not allowed via this endpoint.  See "Payment Profiles Update":/api-payment-profiles#update instead
 
 You also use this method to change the subscription to a different product by setting a new value for @product_handle@.  A product change can be done in two different ways:
 
@@ -371,6 +373,16 @@ Response: The updated subscription
 
 "XML example":#api-react-xml
 "JSON example":#api-react-json
+
+h3(#retry). Retry
+
+Chargify offers the ability to retry collecting the balance due on a past due subscription without waiting for the next scheduled attempt.
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/retry.json@
+Method: @PUT@
+Required Parameters: none
+Optional Parameters: none
+Response: 422 Unprocessable Entity and error message or 200 OK and updated subscription
 
 h3(#reset-balance). Reset Balance
 
