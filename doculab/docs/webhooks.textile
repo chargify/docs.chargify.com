@@ -186,8 +186,6 @@ We would post the example Webhook to the following address:
 
 You can thus verify the contents of the POST by taking the same hash yourself and comparing.
 
-We will soon be offering a 2nd layer of verification, wherein you can send the Webhook ID and Signature to Chargify and get back a pass/fail response as to whether it matches one we in fact sent.
-
 p(note). When in doubt, you can always verify the information contained in a Webhook by checking current resource state via our "API":/api-introduction.
 
 h3(#finding-your-site-shared-key). Finding Your Site Shared Key
