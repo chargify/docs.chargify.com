@@ -22,7 +22,7 @@ All of the product attribute fields are returned from GET (read) operations.
 * @expiration_interval_unit@ A string representing the trial interval unit for this product, either @month@ or @day@
 * @version_number@ The version of the product
 * @update_return_url@ The url to which a customer will be returned after a successful account update
-* @return_params@ The parameters string we will use in constructing your return URL.  See the section on "Return URLs and Parameters" "here":/product-options#return-url-and-parameters
+* @update_return_params@ The parameters will append to the url after a successful account update.  See "Return URLs and Parameters":/product-options#return-url-and-parameters
 * @require_credit_card@ Boolean
 * @request_credit_card@ Boolean
 * @created_at@ Timestamp indicating when this product was created
@@ -32,9 +32,9 @@ All of the product attribute fields are returned from GET (read) operations.
 ** @id@ The id of the signup page
 ** @url@ The url where the signup page can be viewed
 ** @return_url@ The url to which a customer will be returned after a successful signup
+** @return_params@ The params to be appended to the @return_url@
 
-
-h2. Input Attributes (Create)
+h2(#input-create). Input Attributes (Create)
 
 * @price_in_cents@ The product price, in integer cents
 * @name@ The product name
@@ -50,8 +50,6 @@ h2. Input Attributes (Create)
 * @trial_interval_unit@ A string representing the trial interval unit for this product, either @month@ or @day@
 * @expiration_interval@ A numerical interval for the length a subscription to this product will run before it expires.   See the description of @interval@ for a description of how this value is coupled with an interval unit to calculate the full interval
 * @expiration_interval_unit@ A string representing the trial interval unit for this product, either @month@ or @day@
-* @update_return_url@ The url to which a customer will be returned after a successful account update.
-* @return_params@ The parameters string we will use in constructing your return URL.  See the section on "Return URLs and Parameters" "here":/product-options#return-url-and-parameters
 * @require_credit_card@ Boolean
 * @request_credit_card@ Boolean
 * @require_billing_address@ Boolean
@@ -59,11 +57,17 @@ h2. Input Attributes (Create)
 * @taxable@ Boolean
 * @trial_type@ The type of trial for this product, either @no_obligation@ or @payment_expected@.
 * @auto_create_signup_page@ A @true@ or @false@ value (default @true@) indicating whether or not you want a "Public Page":/public-pages-intro" to be automatically created for this product
+* @update_return_url@ The url to which a customer will be returned after a successful account update.
 * @return_url@ If @auto_create_signup_page@ is true, this will set the url to which a customer will be returned after a successful signup for the auto-created signup page.
+* @return_params@ The parameters to be appended to both @update_return_url@ and, (if @auto_create_signup_page@ is true,) @return_url@ for the auto-created signup page.  See "Return URLs and Parameters.":/product-options#return-url-and-parameters
+
+h2(#input-update). Input Attributes (Update)
+
+* @update_return_params@ The parameters we will append to your @update_return_url@. See "Return URLs and Parameters":/product-options#return-url-and-parameters
 
 h2. Methods
 
-h3. List
+h3(#list). List
 
 URL: @https://<subdomain>.chargify.com/products.<format>@
 Method: @GET@
@@ -73,7 +77,7 @@ Response: An array of Products
 "XML example":#api-usage-xml-product-family-products-list
 "JSON example":#api-usage-json-product-family-products-list
 
-h3. List products for a Product Family
+h3(#list-family). List products for a Product Family
 
 URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/products.<format>@
 Method: @GET@
@@ -84,7 +88,7 @@ Response: An array of Products
 "XML example":#api-usage-xml-products-list
 "JSON example":#api-usage-json-products-list
 
-h3. Read/Show (via Chargify ID)
+h3(#read-id). Read/Show (via Chargify ID)
 
 URL: @https://<subdomain>.chargify.com/products/<id>.<format>@
 Method: @GET@
@@ -96,7 +100,7 @@ Response: A single Product
 "JSON example":#api-usage-json-products-read
 
 
-h3. Read/Show (via API handle)
+h3(#read-handle). Read/Show (via API handle)
 
 URL: @https://<subdomain>.chargify.com/products/handle/<handle>.<format>@
 Method: @GET@
@@ -107,7 +111,7 @@ Response: An single Product
 "XML example":#api-usage-xml-products-read
 "JSON example":#api-usage-json-products-read
 
-h3. Create
+h3(#create). Create
 
 URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/products.<format>@
 Method: @POST@
