@@ -2,8 +2,8 @@ Public Pages (formerly known as Hosted Pages) are highly customizable white labe
 
 There are two types of Public Pages available to merchants in all Chargify plans:
 
-* **Public Signup Pages** must be individually created by the merchant in the admin UI and allow new subscriptions to be created for any of your current active products.
-* **Self-Service Pages** are automatically created for each active subscription and allow the customer to manage payment methods.
+* A **Public Signup Page** is automatically created for each new product and allows people to sign up for any of your current active products.
+* A **Self-Service Page** is automatically created for each active subscription and allows the customer to manage payment methods.
 
 If you need information on configuring the look, feel, and behavior of your Public Page, please see "Public Page Default Settings":/public-page-default-settings.
 
@@ -50,10 +50,9 @@ h3(#self-service-page-urls). Self-Service Page URLs
 
 If you choose to use the Self-Service Pages, you can programmatically generate some of the URLs for the pages so that you may easily embed the links within your own site or emails.
 
-The pages that are (or will be) accessible via generated URLs are as follows:
+The pages that are accessible via generated URLs are as follows:
 
 |_. Page          |_. Shortname     |_. Resource    |_. URI |
-| Signup          | Coming soon...  | Product       | (can be obtained from UI, as described above) |
 | Update Payment  | update_payment  | Subscription  | @/update_payment/[subscription.id]/[token]@ |
 
 h4. Obtaining your Shared Key
