@@ -32,7 +32,7 @@ h2. Methods
 
 _format_ may be either 'xml' or 'json'.
 
-h3. Read
+h3(#read). Read
 
 URL: @https://<subdomain>.chargify.com/payment_profiles/<payment_profile_id>.<format>@
 Method: @GET@
@@ -86,7 +86,7 @@ Response: A single Payment Profile
 }
 </code></pre>
 
-h3. Create
+h3(#create). Create
 
 URL: @https://<subdomain>.chargify.com/payment_profiles.<format>@
 Method: @POST@
@@ -97,7 +97,7 @@ Response: The created payment profile (see output for "Read")
 
 Creating a new payment profile for a customer via the API will not make that payment profile current for any of the customer's subscriptions.  To make a change, select the Subscription in the Admin UI and choose Payment Details, then click the 'Make Active Payment Method' link next to the desired payment profile.
 
-h3. Update
+h3(#update). Update
 
 URL: @https://<subdomain>.chargify.com/payment_profiles/<payment_profile_id>.<format>@
 Method: @PUT@
@@ -112,7 +112,11 @@ Response: The created payment profile (see output for "Read")
 
 * A payment profile cannot be updated with the attributes of another type of payment profile. For example, if the payment profile you are attempting to update is a credit card, you cannot pass in bank account attributes (like @bank_account_number@), and vice versa.
 
-h3. Delete
+* Updating a payment profile directly will not trigger an attempt to capture a past-due balance.  If this is the intent, "update the card details via the subscription":/api-subscriptions#card-change instead.
+
+* If you are using Authorize.net, you may elect to manually trigger a "retry":/api-subscriptions#retry for a past due subscription after a partial update.
+
+h3(#delete). Delete
 
 See "Deleting a Payment Profile":api-subscriptions#delete-payment-profile in the Subscriptions API documentation.
 
