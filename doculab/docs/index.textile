@@ -22,15 +22,31 @@ h3(#support). Support
 
 h4. Written Ticket Tech Support
 
-Written Ticket Tech Support (U.S. business hours) is available to merchants on any paid plan.  Support for API integration requires a plan of "Small Business" or higher.
+Written Ticket Tech Support (U.S. business hours) is available to merchants on any paid plan.  "Support for API integration":#api-support requires a plan of "Small Business" or higher.
 
 "Open a support ticket":http://help.chargify.com/tickets/new via the support website, or send an email directly to "support@chargify.com".
 
 While we strive to answer all of our merchants' questions in a timely fashion, please note that support requests are prioritized based on your current Chargify Plan.
 
-We maintain a "Support Forum":http://help.chargify.com/forums with answers to community and frequently asked questions.
+Feel free to ask a question in the "public Community Support forum":https://chargify.zendesk.com/hc/communities/public/topics/200158374-Community-Community-Support to get help from the Chargify community.
 
-Feel free to "ask a question":https://chargify.zendesk.com/hc/communities/public/questions/new on the Community Support forum to get help from the Chargify community.
+h4(#api-support). API Support
+
+Access to our Tier 2 team for API support is currently only available to customers on our Small Business ($129) plan or above given the cost of providing that level of support.
+
+But don't worry! There are quite a few options to help you get the answers you need:
+
+Upgrade to the Small Business plan: "Log into Chargify":https://app.chargify.com/ and click "Home" -> "Billing & Plans" -> "Change"
+
+"Read through our helpful API documentation":https://docs.chargify.com/api-introduction
+
+"Watch our videos and tutorials on YouTube":https://www.youtube.com/user/chargify
+
+"Check out the Chargify tag on Stack Overflow":http://stackoverflow.com/questions/tagged/chargify
+
+"Visit our community support forum":https://chargify.zendesk.com/hc/communities/public/topics/200158374-Community-Community-Support
+
+"Refer to our trusted Integration Consultants":https://www.chargify.com/consultants/
 
 h4. Basic Phone Support
 
