@@ -7,7 +7,7 @@ h2. URIs
 
 h2. Input Attributes
 
-The Chargify API allows you initiate an upgrade/downgrade by posting JSON or XML that includes:
+The Chargify API allows you to preview a renewal by posting JSON or XML that includes:
 
 * @subscription_id@: Integer, the id for the subscription that is to be previewed.
 
@@ -17,17 +17,17 @@ _format_ may be either 'xml' or 'json'.
 
 h3(#create). Create
 
-URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/renewals/preview.json@  
-Method: @POST@
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/renewals/preview.json@
+Method: @POST@ (with no side effects)
 Required Parameters: susbcription_id
-Response: A renewal preview obejct
+Response: A renewal preview object
 
 h4. Output
 
 An array of allocation objects with the following fields:
 
 | @next_assessment_at@ | The timestamp for the subscription's next renewal |
-| @exiting_balance_in_cents@ | An integer representing the amount of the subscription's current balance |
+| @existing_balance_in_cents@ | An integer representing the amount of the subscription's current balance |
 | @subtotal_in_cents@ | An integer representing the amount of the total pre-tax, pre-discount charges that will be assessed at the next renewal |
 | @total_discount_in_cents@ | An integer representing the amount of the coupon discounts that will be applied to the next renewal |
 | @total_tax_in_cents@ | An integer representing the total tax charges that will be assessed at the next renewal |
