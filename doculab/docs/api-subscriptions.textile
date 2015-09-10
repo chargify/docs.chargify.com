@@ -64,8 +64,9 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 * @calendar_billing@ (optional, see "Calendar Billing":/billing-dates#calendar-billing for more details). Cannot be used when also specifying @next_billing_at@
 ** @snap_day@ A value between 1 and 28, or "end"
 * @ref@ A valid referral code. (optional, see "Referrals":/referrals for more details).
-* @components@ (Optional) An array of component ids and quantities to be added to the subscription.  See "API Quantity Component Allocations":/api-quantity-allocations for more information.
-
+* @components@ (Optional) An array of component ids and quantities to be added to the subscription.  See examples below and "Product Components":/product-components for more information.
+** @component_id@
+** @allocated_quantity@ or @usage_balance@ or @enabled@
 
 h2(#output). Subscription Output Attributes
 
@@ -296,7 +297,7 @@ Here is a sample JSON document that you might @POST@ to @https://<subdomain>.cha
   }}}
 </code></pre>
 
-Components may also be included in the import.  See "API Quantity Component Allocations":/api-quantity-allocations for more information.
+Components may also be included in the import.  See "Product Components":/product-components for more information.
 
 h3(#update). Update
 
