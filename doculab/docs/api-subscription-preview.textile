@@ -1,0 +1,128 @@
+A Subscription Preview is an object representing a proposed subscription's initial assessment and first renewal, including discounts and taxes. You can retrieve it to see a snapshot of how much your customer will be charged if they complete their signup.
+
+h2. URIs
+
+|_. Resource/URI |_. POST |
+| @/subscriptions/preview@ | "Create":#create new renewal preview |
+
+h2. Input Attributes
+
+The Chargify API allows you to preview a subscription by POSTing the same JSON or XML as for a subscription creation.
+
+h2. Methods
+
+_format_ may be either 'xml' or 'json'.
+
+h3(#create). Create
+
+URL: @https://<subdomain>.chargify.com/subscriptions/preview.<format>@
+Method: @POST@ (with no side effects)
+Required Parameters: subscription object, see "API Subscriptions Create":/api-subscriptions#create
+Response: A subscription preview object
+
+h4. Output
+
+A @subscription_preview@ object with a @current_billing_manifest@ and a @next_billing_manifest@ containing the following fields:
+
+| @start_date@ | The timestamp for the beginning of the period covered by the manifest |
+| @end_date@ | The timestamp for the end of the period covered by the manifest |
+| @period_type@ | The type of billing period: @recurring@ for previews |
+| @existing_balance_in_cents@ | An integer representing the amount of the subscription's current balance.  Will be zero since the subscription does not yet exist. |
+| @subtotal_in_cents@ | An integer representing the amount of the total pre-tax, pre-discount charges that would be assessed |
+| @total_discount_in_cents@ | An integer representing the amount of the coupon discounts that would be applied |
+| @total_tax_in_cents@ | An integer representing the total tax charges that would be assessed |
+| @total_in_cents@ | An integer representing the total amount owed, less any discounts, that would be assessed |
+| @line_items@| An array of objects representing the individual transactions that would be created for this subscription |
+
+h3(#example). Example Output
+
+Example JSON response for a subscription to a taxable product with a coupon that applies only at signup.
+
+<pre><code>
+{
+    "subscription_preview": {
+        "current_billing_manifest": {
+            "end_date": "2015-10-07T14:06:20Z",
+            "existing_balance_in_cents": 0,
+            "line_items": [
+                {
+                    "amount_in_cents": 3000,
+                    "discount_amount_in_cents": 1500,
+                    "kind": "baseline",
+                    "memo": "Monthly Plan (8 Sep 2015 - 8 Oct 2015)",
+                    "taxable_amount_in_cents": 1500,
+                    "taxations": [
+                        {
+                            "rate": "",
+                            "tax_amount_in_cents": 375,
+                            "tax_id": null,
+                            "tax_name": "SE Tax (25.0%)",
+                            "tax_rules": []
+                        }
+                    ],
+                    "transaction_type": "charge"
+                },
+                {
+                    "amount_in_cents": -1500,
+                    "discount_amount_in_cents": 0,
+                    "kind": "coupon",
+                    "memo": "Coupon: FIFTYRMN - 50% Discount",
+                    "taxable_amount_in_cents": 0,
+                    "transaction_type": "adjustment"
+                },
+                {
+                    "amount_in_cents": 375,
+                    "discount_amount_in_cents": 0,
+                    "kind": "tax",
+                    "memo": "SE Tax (25.0%)",
+                    "taxable_amount_in_cents": 0,
+                    "transaction_type": "charge"
+                }
+            ],
+            "period_type": "recurring",
+            "start_date": "2015-09-07T14:06:20Z",
+            "subtotal_in_cents": 3000,
+            "total_discount_in_cents": 1500,
+            "total_in_cents": 1875,
+            "total_tax_in_cents": 375
+        },
+        "next_billing_manifest": {
+            "end_date": "2015-11-07T14:06:20Z",
+            "existing_balance_in_cents": 0,
+            "line_items": [
+                {
+                    "amount_in_cents": 3000,
+                    "discount_amount_in_cents": 0,
+                    "kind": "baseline",
+                    "memo": "Monthly Plan (8 Oct 2015 - 8 Nov 2015)",
+                    "taxable_amount_in_cents": 3000,
+                    "taxations": [
+                        {
+                            "rate": "",
+                            "tax_amount_in_cents": 750,
+                            "tax_id": null,
+                            "tax_name": "SE Tax (25.0%)",
+                            "tax_rules": []
+                        }
+                    ],
+                    "transaction_type": "charge"
+                },
+                {
+                    "amount_in_cents": 750,
+                    "discount_amount_in_cents": 0,
+                    "kind": "tax",
+                    "memo": "SE Tax (25.0%)",
+                    "taxable_amount_in_cents": 0,
+                    "transaction_type": "charge"
+                }
+            ],
+            "period_type": "recurring",
+            "start_date": "2015-10-07T14:06:20Z",
+            "subtotal_in_cents": 3000,
+            "total_discount_in_cents": 0,
+            "total_in_cents": 3750,
+            "total_tax_in_cents": 750
+        }
+    }
+}
+</code></pre>
