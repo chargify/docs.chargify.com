@@ -48,6 +48,18 @@ If you're having difficulty executing a request via our API, try the simplest th
 
 Another handy tool is "RequestBin":http://requestb.in/  You could create a RequestBin and send your request to them instead of us to see visually what it is you're sending, if you're not sure.
 
+h3(#backwards-compatibility). Backwards Compatibility
+
+We consider the following changes to be backwards compatible and may make them without advance notice:
+
+* Adding new API endpoints, or adding new attributes to existing endpoints
+* Adding new optional parameters to existing API endpoints
+* Changing the type or length of any of the ID attributes
+
+For example, most IDs are currently integers, but you should not assume that this will always be the case.
+
+In addition, you should not depend on the order of attributes within the API response as this may change.
+
 h3. Examples
 
 The following examples use the curl command-line tool to exectute API requests.
