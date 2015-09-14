@@ -1,11 +1,11 @@
 h2. Signup Input Parameters
 
-For now, you may refer to the documentation for "API V1 Subscriptions":/api-subscriptions for a description of these parameters.  Some of the names have changed slightly, but the mapping should be fairly obvious.
+Refer to the documentation for "API V1 Subscriptions":/api-subscriptions for a description of these parameters.  Some of the parameter names may be slightly different.
 
-Each of these parameters should be nested within the @signup@ key, i.e. @signup[product][handle]@
+These parameters should be nested within the @signup@ key, i.e. @signup[product][handle]@.
 
 | @coupon_code@ | |
-| @ref | |
+| @ref@ | |
 | @product[id]@ | |
 | @product[handle]@ | |
 | @components[<component_id>]@ | Sets the initial allocation for component with ID given by @<component_id>@.  This can be repeated for each component_id you wish to set. |
@@ -35,3 +35,6 @@ Each of these parameters should be nested within the @signup@ key, i.e. @signup[
 | @payment_profile[billing_state]@ | |
 | @payment_profile[billing_country]@ | |
 | @payment_profile[billing_zip]@ | |
+| @payment_profile[payment_type]@ | Required for PayPal. Set to @paypal_account@. |
+| @payment_profile[payment_method_nonce]@ | Required for Paypal. |
+| @payment_profile[paypal_email]@ | Required for PayPal, but only used for display. |

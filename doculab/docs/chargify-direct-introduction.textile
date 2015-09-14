@@ -1,4 +1,4 @@
-p(note). Chargify Direct usually requires a more technically experienced customer, and sometimes requires our Level 2 tech support during implementation. Level 2 tech support is available on our *Small Business* and higher plans ($129 and up).<br /><br />You're welcome to use Chargify Direct on any plan, but please note that if you need assistance, we will ask that you be on a plan that includes advanced tech support.<br /><br />We have a 30-day money-back guarantee, so there's no risk if you ultimately decide that Chargify does not suit your needs.
+p(note). Chargify Direct usually requires a more technically experienced customer, and sometimes requires our Level 2 tech support during implementation. Level 2 tech support is available on our *Small Business* and higher plans ($129 and up).<br /><br />You're welcome to use Chargify Direct on any plan, but please note that if you need assistance, we will ask that you be on a plan that includes advanced tech support.
 
 h2. Overview
 
