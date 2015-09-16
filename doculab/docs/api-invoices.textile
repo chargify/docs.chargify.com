@@ -1,6 +1,6 @@
 h2. Invoice Attributes
 
-All of the input attribute fields are returned from GET (read) operations, and all are read only.
+All of the invoice attributes are returned from GET (read) operations, and all are read only.
 
 * @id@ - The invoice unique id within Chargify
 * @subscription_id@ - The subscription unique id within Chargify
@@ -22,14 +22,22 @@ h2. Methods
 
 h3(#list). List
 
-h4. List All Invoices
+h4(#list-all). List All Invoices
 
 URL: @https://<subdomain>.chargify.com/invoices.<format>@
 Method: @GET@
 
 Response: A list of invoices
 
-h4. List Invoices for a Subscription
+h4(#list-by-date). List Invoices for a Date Range
+
+URL: @https://<subdomain>.chargify.com/invoices.<format>?start_date=<YYYY-MM-DD>&end_date=<YYY-MM-DD>@
+Optional Parameters: @start_date@, @end_date@
+Method: @GET@
+
+Response: A list of invoices
+
+h4(#list-for-sub). List Invoices for a Subscription
 
 URL: @https://<subdomain>.chargify.com/invoices.<format>?subscription_id=<sub_id>@
 Method: @GET@
@@ -39,7 +47,7 @@ Response: A list of invoices
 "XML example":#api-invoice-xml-list
 "JSON example":#api-invoice-json-list
 
-h3. Read/Show (via Invoice ID)
+h3(#read). Read/Show (via Invoice ID)
 
 URL: @https://<subdomain>.chargify.com/invoices/<invoice_id>.<format>@
 Method: @GET@
