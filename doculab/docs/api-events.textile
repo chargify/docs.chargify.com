@@ -52,7 +52,7 @@ h3. List Events for a Subscription
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/events.<format>@
 Method: @GET@
 Formats: JSON, XML
-Optional Parameters: @page@, @per_page@, @since_id@, @max_id@, @direction@ - values @asc@ and @desc@ are valid, @desc@ by default
+Optional Parameters: @filter@ - any type listed above, @page@, @per_page@, @since_id@, @max_id@, @direction@ - values @asc@ and @desc@ are valid, @desc@ by default
 Response: An array of Events
 
 h3. List Events for a Site
