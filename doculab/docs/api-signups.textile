@@ -54,7 +54,7 @@ The product may be specified by either @product[id]@ or by @product[handle]@ (AP
 
 Components are attached/allocated to the signup by including the @component@ key.  The sub-keys should be component IDs, and the values are the allocated quantities.  See examples below.
 
-h2. Signup Request
+h2(#signup-request). Signup Request
 
 h3. Via Chargify Direct
 
@@ -97,7 +97,7 @@ And using ACH:
 <script src="https://gist.github.com/8d9ed3261405b94b0e1f.js?file=signup-request-ach.json"></script>
 
 
-h2. Signup Response
+h2(#signup-response). Signup Response
 
 h3. Chargify Direct
 
