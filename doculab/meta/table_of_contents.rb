@@ -63,7 +63,6 @@ Doculab::TableOfContents.define do
   section "Integrating with your App/Service" do
     page "Billing Portal"
     page "API Integration"
-    page "Post-backs"
     page "Webhooks"
     page "Testing"
     page "Exporting Data"

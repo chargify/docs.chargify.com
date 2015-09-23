@@ -21,7 +21,6 @@ h3. 3. Allow Customers to buy Subscriptions
 h3. 4. Control access to your app or service
 
 * "Integration Overview":/integration-overview
-* Receiving "Post-backs":/post-backs
 * Receiving "Webhooks":/webhooks
 
 h3. 5. Manage Subscriptions
