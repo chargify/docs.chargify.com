@@ -15,6 +15,7 @@ Additionally, the following states are reserved for internal/future use:
 * pending
 * suspended
 * paused
+* failed_to_create
 
 These states may be further broken down in to 3 categories: _Live_, _Problem_, and _End of Life_.
 
@@ -77,6 +78,10 @@ Reserved and currently unused. May be used in the future for subscriptions that 
 h4(trial-ended). trial_ended
 
 A subscription in a @trial_ended@ state is a subscription which completed a no-obligation trial and did not have a card on file at the expiration of the trial period. See "Product Pricing - No Obligation Trials":/product-pricing#no-obligation-trials for more details.
+
+h4(failed-to-create). failed_to_create
+
+Indicates that a signup has failed.  (You may see this state in a @signup_failure@ webhook.)
 
 h3(#trouble). Troubleshooting
 
