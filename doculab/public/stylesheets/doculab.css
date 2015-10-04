@@ -7,9 +7,9 @@
 #table_of_contents li strong          {font-size: 16px; color: #333333; line-height: 21px; }
 #table_of_contents ul ul              {margin: 0 0 0 21px;}
 #table_of_contents li li              {font-size: 14px; font-weight: normal; color: #333333; margin: 0; padding: 0; line-height: 21px; text-indent: -14px;}
-#table_of_contents li li a            {color: #6B9029; text-decoration: none; border: none;}
+#table_of_contents li li a            {color: #28B22C; text-decoration: none; border: none;}
 #table_of_contents li li a.current    {color: #4c4c4c; font-weight: bold;}
-#table_of_contents li li a:hover      {color: #6B9029; text-decoration: underline;}
+#table_of_contents li li a:hover      {color: #28B22C; text-decoration: underline;}
 
 #search                               {height: 26px; margin-bottom: 35px; border: 1px solid #ccc; background: #fff; width: 200px;}
 #search span                          {color:#aaa; font-size: 13px; line-height: 26px; margin: 0 0 0 7px;}
