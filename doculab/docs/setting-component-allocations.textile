@@ -1,4 +1,4 @@
-In order for Chargify to assess charges for your Components, you must report to us the Component's status (i.e. quantity used or allocated, or whether the feature was enabled or not) for each Subscription. 
+In order for Chargify to assess charges for your Components, you must report to us the Component's status (i.e. quantity used or allocated, or whether the feature was enabled or not) for each Subscription.
 
 Components are billed in advance, on the same billing cycle as the product they are associated with.  If your Customer subscribed to the parent Product on the 23rd of the month, then he'll get billed for any Components on the 23rd of each month, assuming the product is on monthly billing cycle.  Chargify simply looks at the quantity on the billing date and then bills accordingly.
 
@@ -55,6 +55,8 @@ Chargify supports proration for Quantity-based and On/Off components. Depending 
 Note that proration is done based on the length of the current billing period for the subscription, not the billing period configured for the product.
 
 If you modify the Next Billing Date, you may need to calculate and apply any prorations manually for that billing period.
+
+Similarly, if you have a trial period that is not the same length as the product's billing period, then you may need to calculate and apply any prorations manually during the trial period.
 
 h5. Proration 'Upgrades' vs. 'Downgrades'.
 
