@@ -5,6 +5,10 @@ Doculab::TableOfContents.define do
     page "Getting Started"
   end
 
+  section "Notices" do
+    page "TLS Upgrade Notice"
+  end
+
   section "Sites" do
     page "Sites Intro", :permalink => "sites"
     page "Settings"
