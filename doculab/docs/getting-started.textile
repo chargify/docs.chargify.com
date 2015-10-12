@@ -1,3 +1,5 @@
+Check out the "Top 20 Getting Started Questions and Answers":https://www.chargify.com/blog/getting-started-qa/
+
 h3. 1. Create/configure a Site and configure a gateway
 
 * "Sites Intro":/sites
