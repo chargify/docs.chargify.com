@@ -82,6 +82,7 @@ Doculab::TableOfContents.define do
 
   section 'How To' do
     page 'Shipping Charges'
+    page 'Mobile Responsive'
   end
 
   section "Referrals" do
