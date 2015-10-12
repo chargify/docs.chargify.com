@@ -50,7 +50,7 @@ Upgrade to the Small Business plan: "Log into Chargify":https://app.chargify.com
 
 h4. Basic Phone Support
 
-Basic Phone Support (24/7) is available to merchants on the "Small Business" plan or higher.
+Basic Phone Support (24/7) is available to all merchants, however, Tier 2 phone support is currently only available to merchants on the “Small Business” plan or higher.
 
 Call 1-800-401-2414 to get Chargify support over the phone.
 
