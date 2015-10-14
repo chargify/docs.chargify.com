@@ -1,16 +1,16 @@
-# What's happening
+# What's happening?
 
-On January 12, 2016 Chargify will no longer support TLS 1.0 or TLS 1.1 over HTTPS on the chargify.com domain.  Any older browser or API client that does not support TLS 1.2 will no longer work after this date.  This change is mandated by the PCI Security Council and affects all merchants and service providers processing or transmitting credit card data.
+On January 12, 2016 Chargify will no longer support TLS 1.0 or TLS 1.1 over HTTPS on the chargify.com domain.  Any older browsers or API clients that do not support TLS 1.2 will no longer work after this date.  This change is mandated by the PCI Security Council and affects all merchants and service providers processing or transmitting credit card data.
 
 If you use webhooks, your non-test endpoints will also be required to support HTTPS and TLS 1.2 in order to receive webhooks from us after January 12, 2016.  Any endpoints that do not support a TLS 1.2 connection will be disabled.
 
-## Why are we making this change
+## Why are we making this change?
 
 The PCI Security Council sets the rules on which technologies are acceptable for use in transmitting cardholder data.  They have explicitly identified TLS 1.0 as no longer being a strong form of encryption because it is vulnerable to many known attacks.
 
-This is not an action Chargify is taking alone. **EVERY** website that transmits or processes credit card data will be making this change.  If you or your customers are using an insecure or unsupported browser or API client, you will find that all secure website will stop working very soon.
+This is not an action Chargify is taking alone. **EVERY** website that transmits or processes credit card data will be making this change.  If you or your customers are using an insecure or unsupported browser or API client, you will find that all secure websites will stop working very soon.
 
-# How do I know if I'm affected
+# How do I know if I'm affected?
 
 Most browsers have supported TLS for at least the last few years.  So end-users are unlikely to be affected by this change.  The biggest impact is likely to be felt by API users with very old libraries.
 
