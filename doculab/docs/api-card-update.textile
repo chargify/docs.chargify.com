@@ -17,6 +17,8 @@ Note: the @subscription_id@ MUST be part of your @secure[data]@ parameter for th
 * @bank_account_number@ (required if the payment method is a bank account) The customer's bank account number
 * @bank_account_type@ (required if the payment method is a bank account) Either @checking@ or @savings@
 * @bank_account_holder_type@ (required if the payment method is a bank account) Either @personal@ or @business@
+* @payment_method_nonce@
+* @paypal_email@
 
 <pre><code><form method="post" action="https://api.chargify.com/api/v2/subscriptions/<subscription.id>/card_update">
 
@@ -41,6 +43,11 @@ Note: the @subscription_id@ MUST be part of your @secure[data]@ parameter for th
   <input type="text" name="payment_profile[bank_account_type]" />
   <input type="text" name="payment_profile[bank_account_holder_type]" />
   <!-- end bank account fields -->
+
+  <!-- begin paypal account fields -->
+  <input type="text" name="payment_profile[payment_method_nonce]" />
+  <input type="text" name="payment_profile[paypal_email]" />
+  <!-- end paypal account fields -->
 
   <input type="submit" value="Update" />
 </form></code></pre>
