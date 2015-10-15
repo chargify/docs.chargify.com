@@ -49,3 +49,9 @@ In all other cases, the subscription will be charged a prorated amount at signup
 | @end@ | June 2, 3:00 PM | Pro-rated amount from 6/2 to 6/30 | June 30, 12:00 PM |
 | @end@ | June 29, 3:00 PM | Full amount from 6/29 to 7/31 | July 31, 12:00 PM |
 | @end@ | June 30, 12:01 PM | Pro-rated amount from 6/30 to 7/31 | July 31, 12:00 PM |
+
+h2(#end-of-month). End of the Month
+
+When Calendar Billing is not in use, for signups at the end of the month, the billing date will shift back a day or two as it passes through shorter months, and eventually land on the 28th.
+
+"https://chargify.zendesk.com/hc/communities/public/questions/201383604-Billing-dates-for-end-of-month-subscriptions":https://chargify.zendesk.com/hc/communities/public/questions/201383604-Billing-dates-for-end-of-month-subscriptions
