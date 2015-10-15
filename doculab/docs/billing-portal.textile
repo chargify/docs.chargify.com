@@ -27,3 +27,9 @@ You can use the Chargify site to manually view a customer's Management URL.  Tha
 h3. Billing Portal Login Flow
 
 !/images/doculab/portal-login-flow.png!:/images/doculab/portal-login-flow-full.png
+
+h2(#faq). FAQ
+
+h3(#faq-reactivate). Can a customer reactivate a canceled subscription via the Billing Portal?
+
+No, reactivation can only be done through the Admin UI, or automated via the API.
