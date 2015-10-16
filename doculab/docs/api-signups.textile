@@ -49,7 +49,7 @@ The product may be specified by either @product[id]@ or by @product[handle]@ (AP
 ** @paypal_email@ Required for PayPal, but only used for display.
 * @components@
 * @agreement_terms@ The ACH agreement terms, if creating a subscription with a @bank_account@ as the payment profile
-* @metafields@ (Optional) An array of key/value pairs representing custom fields and their values. Metafields will be created "on-the-fly" in your site for a given key, if they have not been created yet.
+* @metafields@ (Optional) A set of key/value pairs representing custom fields and their values. Metafields will be created "on-the-fly" in your site for a given key, if they have not been created yet.
 * @ref@ (Optional, see "Referrals":/referrals for more details.) A valid referral code.
 
 
@@ -80,6 +80,14 @@ You would like to allow your users to select 1 - 5 Widgets, and turn support On 
 
 <script src="https://gist.github.com/moklett/1b4b587447682da4b39e.js?file=sample-html-form-with-components.html"></script>
 
+h4. Chargify Direct Example with Custom Fields
+
+Custom Fields (or Metafields) can be included in Chargify Direct forms as follows:
+
+<pre><code><input type="text" name="signup[metafields][color]" />
+<input type="text" name="signup[metafields][size]" />
+</code></pre>
+
 h3. Via JSON
 
 New signups can also be created by sending JSON to the same endpoint. If you are going to use this method, you must set the @Content-Type@ header of your HTTP @POST@ request to @application/json@, otherwise the request will be processed as a Chargify Direct request.
@@ -96,6 +104,19 @@ Note that the above example shows setting a Quantity-based Component with ID "12
 And using ACH:
 
 <script src="https://gist.github.com/8d9ed3261405b94b0e1f.js?file=signup-request-ach.json"></script>
+
+And with metafields:
+
+<pre><code>{
+  "signup": {
+    [...]
+    "metafields": {
+      "color": "blue",
+      "size": "large"
+    }
+  }
+}
+</code></pre>
 
 
 h2(#signup-response). Signup Response
