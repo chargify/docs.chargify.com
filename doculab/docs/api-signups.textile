@@ -30,6 +30,7 @@ The product may be specified by either @product[id]@ or by @product[handle]@ (AP
 ** @first_name@ First name on card or bank account
 ** @last_name@ Last name on card or bank account
 ** @card_number@ The full credit card number (string representation, i.e. "5424000000000015")
+** @cvv@ (optional if the payment method is a credit card) The 3 or 4 digit card verification value.
 ** @expiration_month@  The 1- or 2-digit credit card expiration month, as an integer or string, i.e. "5"
 ** @expiration_year@  The 4-digit credit card expiration year, as an integer or string, i.e. "2012"
 ** @billing_address@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing street address (i.e. "123 Main St."). _This value is merely passed through to the payment gateway_.
