@@ -9,6 +9,10 @@ Doculab::TableOfContents.define do
     page "TLS Upgrade Notice"
   end
 
+  section "Security" do
+    page "Password Requirements"
+  end
+
   section "Sites" do
     page "Sites Intro", :permalink => "sites"
     page "Settings"
