@@ -33,3 +33,7 @@ h2(#faq). FAQ
 h3(#faq-reactivate). Can a customer reactivate a canceled subscription via the Billing Portal?
 
 No, reactivation can only be done through the Admin UI, or automated via the API.
+
+h3(#faq-css). Can I add Custom JavaScript and CSS to modify and style the Billing Portal?
+
+Unfortunately, no.  We support "Custom JavaScript and CSS":/custom-javascript-css on the Public Signup Pages, Receipt Pages and Self-Service Pages, but not the Billing Portal.
