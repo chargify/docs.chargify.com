@@ -2,6 +2,72 @@ You can export Subscription, Customer, and Transaction data to a CSV file.  Simp
 
 You can also use our API to extract data.
 
+h2(#subscriptions). Subscriptions CSV
+
+  1: id
+  2: customer_id
+  3: customer_reference
+  4: customer_name
+  5: customer_email
+  6: state
+  7: product_id
+  8: next_product_id
+  9: product_name
+ 10: recurring_price
+ 11: recurring_interval
+ 12: recurring_interval_unit
+ 13: coupon
+ 14: created_at
+ 15: created_at_day
+ 16: created_at_month
+ 17: created_at_year
+ 18: current_period_starts_at
+ 19: current_period_ends_at
+ 20: next_assessment_at
+ 21: trial_started_at
+ 22: trial_ended_at
+ 23: activated_at
+ 24: expires_at
+ 25: canceled_at
+ 26: canceled_at_day
+ 27: canceled_at_month
+ 28: canceled_at_year
+ 29: cancellation_message
+ 30: balance_in_cents
+ 31: balance
+ 32: revenue_in_cents
+ 33: revenue
+ 34: credit_card_masked_number
+ 35: credit_card_type
+ 36: credit_card_first_name
+ 37: credit_card_last_name
+ 38: credit_card_expiration_month
+ 39: credit_card_expiration_year
+ 40: credit_card_vault
+ 41: credit_card_vault_token
+ 42: credit_card_customer_vault_token
+ 43: credit_card_billing_address
+ 44: credit_card_billing_address_2
+ 45: credit_card_billing_city
+ 46: credit_card_billing_state
+ 47: credit_card_billing_zip
+ 48: credit_card_billing_country
+ 49: shipping_address
+ 50: shipping_address_2
+ 51: shipping_city
+ 52: shipping_state
+ 53: shipping_zip
+ 54: shipping_country
+ 55: customer_organization
+ 56: customer_phone
+ 57: cancel_at_end_of_period
+ 58: delayed_cancel_at
+ 59: product_version_number
+ 60: updated_at
+ 61: referral_code
+ 62: state_changed_at
+ Custom Fields / Metadata
+
 h2(#invoices). Invoices CSV
 
 The invoices CSV export consists of the line items for each invoice, with the following columns:
