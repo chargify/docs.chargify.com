@@ -149,6 +149,7 @@ Doculab::TableOfContents.define do
     page "API: Stats"
     page "API: Subscription Preview"
     page "API: Subscriptions"
+    page "API: Subscription Override"
     page "API: Transactions"
     page "API: Webhooks"
   end

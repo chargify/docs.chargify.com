@@ -1,0 +1,95 @@
+This API endpoint allows you to set certain subscription fields that are usually managed for you automatically.  Some of the fields can be set via the normal "Subscriptions Update API":/api-subscriptions#update, but others can only be set using this endpoint.
+
+This endpoint is provided for cases where you need to "align" Chargify data with data that happened in your system, perhaps before you started using Chargify. For example, you may choose to import your historical subscription data, and would like the activation and cancellation dates in Chargify to match your existing historical dates.  Chargify **does not** backfill historical events (i.e. from the "Events API":/api-events), but some static data can be changed via this API.
+
+p(note). Why are some fields only settable from this endpoint, and not the normal subscription create and update endpoints?  Because we want users of this endpoint to be aware that these fields are usually managed by Chargify, and using this API means you are stepping out on your own.
+
+h2. Fields That Can Be Manipulated
+
+* @activated_at@: Can be used to record an external signup date.  Chargify uses this field to record when a subscription first goes active (either at signup or at trial end)
+* @canceled_at@: Can be used to record an external cancellation date.  Chargify sets this field automatically when a subscription is canceled, whether by request or via dunning.
+* @cancellation_message@: Can be used to record a reason for the original cancellation.
+* @expires_at@: Can be used to record an external expiration date.  Chargify sets this field automatically when a subscription expires (ceases billing) after a prescribed amount of time.
+
+No other fields are currently available.  Attempting to set any other fields will cauase a @400 Bad Request@ response.  You only need to send the fields you would like to change.
+
+The fields should be nested beneath a @subscription@ key - see the examples below for more information.
+
+h2. URI/Method
+
+This API supports both JSON and XML request bodies.
+
+<pre><code>PUT https://<subdomain>.chargify.com/subscriptions/<id>/override.{json,xml}
+</pre></code>
+
+h2. Headers
+
+* @Accept@: set to either @application/json@ or @application/xml@ depending on the top of response you desire
+* @Content-Type@: set to either @application/json@ or @application/xml@ depending on the top of request body you send
+
+h2. Responses
+
+h3. Successful - @204 No Content@
+
+On a successful update, a @204@ HTTP response is sent along with no body. You can assume the update was successful, and fetch the subscription again if needed.
+
+h3. Unpermitted Parameters - @400 Bad Request@
+
+If unpermitted parameters are sent, a @400@ HTTP response is sent along with a string giving the reason for the problem, e.g.
+
+<pre><code>Unpermitted paramters in request: created_at
+</code></pre>
+
+**Note:** this will be changing to a JSON or XML response in the near future.
+
+h2. JSON Example
+
+h3. Request
+
+<pre><code>PUT /subscriptions/9346476/override.json HTTP/1.1
+Accept: application/json
+Authorization: Basic <your digested credentials>
+Content-Length: 162
+Content-Type: application/json
+
+{
+    "subscription": {
+        "activated_at": "1999-12-01",
+        "canceled_at": "2000-12-31",
+        "cancellation_message": "Original cancellation in 2000",
+        "expires_at": "2001-07-15"
+    }
+}
+</pre>
+
+h3. Response
+
+<pre><code>HTTP/1.1 204 No Content
+Cache-Control: no-cache
+Connection: keep-alive
+Date: Tue, 03 Nov 2015 21:40:48 GMT
+Status: 204 No Content
+</pre></code>
+
+h2. XML Example
+
+h3. Request
+
+<pre><code>PUT /subscriptions/9346476/override.xml HTTP/1.1
+Accept: application/xml
+Authorization: Basic <your digested credentials>
+Content-Length: 127
+Content-Type: application/xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<subscription>
+    <activated_at>2003-11-30T22:00:00-05:00</activated_at>
+</subscription>
+</pre></code>
+
+h3. Response
+
+<pre><code>HTTP/1.1 204 No Content
+Date: Tue, 03 Nov 2015 21:50:27 GMT
+Status: 204 No Content
+</pre></code>
