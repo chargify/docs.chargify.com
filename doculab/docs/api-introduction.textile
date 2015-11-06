@@ -8,12 +8,12 @@ The API attempts to conform to the "RESTful":http://en.wikipedia.org/wiki/Repres
 
 You'll likely need access to a web developer or programmer (if you're not one) to get the most use out of the API.
 
-h3. Authentication
+h3(#authentication). Authentication
 
 Authentication is implemented as HTTP Basic Authentication over SSL (https), as described in "API Authentication":api-authentication
 
 
-h3. URL
+h3(#url). URL
 
 The URL for API requests includes the subdomain of the Site you are working with:
 
@@ -22,12 +22,12 @@ The URL for API requests includes the subdomain of the Site you are working with
 </pre>
 
 
-h3. Resources
+h3(#resources). Resources
 
 The available resources are listed on the "API Resources":/api-resources page.
 
 
-h3. Response Data
+h3(#response). Response Data
 
 Response data is sent as either XML or JSON, depending on the type of data requested (HTTP @Content-Type@ header) or the type specified as being accepted (HTTP @Accept@ header).
 
@@ -37,14 +37,14 @@ Response codes are sent via the normal HTTP Response Code, and are documented se
 
 For boolean fields, please note that a value of null should be considered as false.
 
-h3. Request Data
+h3(#request). Request Data
 
 POST and PUT request data may be formatted as either XML (@application/xml@) or JSON (@application/json@).  For best results, you should set your HTTP @Content-Type@ request header accordingly, although you may also specify your format by appending @.xml@ or @.json@ extensions on to the resource URI.
 
 Note that Chargify does not accept PUT or POST data sent as query params or form encoded data - data must be sent as either XML or JSON.  If you fail to set your @Content-Type@ to either @application/xml@ or @application/json@, your request may fail due to triggering of forgery protection mechanisms.
 
 
-h3. Debugging
+h3(#debugging). Debugging
 
 If you're having difficulty executing a request via our API, try the simplest thing and attempt your request via the curl command-line tool, as shown in the below example.  Add the @--verbose@ flag to your request to receive even more debugging information.
 
@@ -62,11 +62,11 @@ For example, most IDs are currently integers, but you should not assume that thi
 
 In addition, you should not depend on the order of attributes within the API response as this may change.
 
-h3. Examples
+h3(#examples). Examples
 
 The following examples use the curl command-line tool to exectute API requests.
 
-h4. Subscription listing
+h4(#subscription-listing). Subscription listing
 
 *Request:*
 
