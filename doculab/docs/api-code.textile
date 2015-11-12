@@ -12,6 +12,7 @@ h2. PHP
 * "http://github.com/jforrest/Chargify-PHP-Client":http://github.com/jforrest/Chargify-PHP-Client: A PHP API wrapper from Jason at RigBooks
 * "http://github.com/lewsid/chargify_api_php":http://github.com/lewsid/chargify_api_php: A PHP API wrapper by one of our active beta testers.
 * "https://github.com/ChargeIgniter/ChargeIgniter":https://github.com/ChargeIgniter/ChargeIgniter: CodeIgniter PHP code by Kyle Anderson
+* "https://github.com/litwicki/chargify-bundle":https://github.com/litwicki/chargify-bundle: API v1 and v2 integration for Symfony/Laravel apps by "Jake Litwicki":http://jakelitwicki.com, "@jakelitwicki":http://twitter.com/jakelitwicki
 
 h2. Ruby/Rails
 
