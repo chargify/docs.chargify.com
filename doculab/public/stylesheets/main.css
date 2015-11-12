@@ -8,7 +8,7 @@ html {
 body {
   margin:0;
   font-family:Georgia, "Times New Roman", Times, serif;
-  background:#222;
+  background:#fff;
   min-width:980px;
 }
 form, fieldset {
@@ -20,7 +20,7 @@ img {
   border:0;
 }
 a {
-  color: #6b9029;
+  color: #28B22C;
   outline: none;
   text-decoration: none;
   border-bottom: 1px dotted #91b145;
@@ -96,8 +96,8 @@ width:153px;
   width:100%;
   font-family:Helvetica, Arial, sans-serif;
   padding: 0;
-  border-bottom: 7px solid #7da730;
-  background: black url(/images/interface/sitesprite2.png) repeat-x 0 -10px;
+  border-bottom: 7px solid #28B22C;
+  background: #2C2C2C;
 }
 
 
@@ -111,7 +111,7 @@ width:153px;
   background-repeat:repeat-x;
   font-family:Helvetica, Arial, sans-serif;
   padding: 0;
-  border-bottom: 7px solid #7da730;
+  border-bottom: 7px solid #28B22C;
   height: 79px;
 }
 #header .logo {
@@ -434,7 +434,6 @@ width:936px;
   padding-right: 0;
   padding-top: 27px;
   width:100%;
-  background:#fff url(/images/interface/bg-content2.gif) repeat-x;
 }
 .containerc {
   padding-bottom: 0px;
@@ -1400,13 +1399,10 @@ display:inline;
 .sidebar {
   float:left;
   width:238px;
-  background: url(/images/interface/bg-sidebar.gif) repeat-y;
 }
 .sidebar .top {
-  background: url(/images/interface/bg-sidebar-top.gif) no-repeat;
 }
 .sidebar .bottom {
-  background: url(/images/interface/bg-sidebar-bt2.gif) no-repeat 0 100%;
   height:1%;
   overflow:hidden;
   padding: 21px 0 69px;
@@ -1416,7 +1412,6 @@ display:inline;
   list-style:none;
   margin:0;
   padding:0;
-  background: url(/images/interface/bg-sidebar-li.gif) no-repeat;
 }
 .menu li {
   height:1%;
@@ -4189,7 +4184,7 @@ ul.about_form li.dotline {
   margin-top: 10px;
 }
 ul.about_form li p {
-  color: #6b9029;
+  color: #28B22C;
   font-size: 1.4em;
   padding-bottom: 0;
 }
@@ -4304,7 +4299,7 @@ ul.unique_yep_question {
   font-size: 1.4em;
   margin-top: 0;
   padding-top: 2px;
-  color: #6b9029;
+  color: #28B22C;
   margin-left: 0;
 }
 ul.unique_yep_question li {
