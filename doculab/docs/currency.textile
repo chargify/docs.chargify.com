@@ -10,7 +10,7 @@ The currencies currently supported by Chargify are:
 | AUD | $ | Australian dollar | Braintree v2 (blue), Payment Express, eWAY, eWAY Rapid 3.1, CyberSource, Wirecard, Litle, QuickPay, Pin Payments, Stripe, BPOINT, Authorize.Net |
 | NZD | $ | New Zealand dollar | Braintree v2 (blue), Payment Express, eWAY, eWAY Rapid 3.1, Wirecard, QuickPay, Pin Payments, Stripe, Authorize.Net |
 | CAD | $ | Canadian dollar | Braintree v2 (blue), Authorize.Net, Beanstream, CyberSource, Elavon VirtualMerchant, eWAY, eWAY Rapid 3.1, First Data, Wirecard, Litle, Moneris, Payment Express, Stripe |
-| SGD | $ | Singapore dollar | Payment Express, eWay, Wirecard, QuickPay, Pin Payments, Stripe |
+| SGD | $ | Singapore dollar | Payment Express, eWay, Wirecard, QuickPay, Pin Payments, Stripe, Braintree Blue |
 | ZAR | R | South African rand | Payment Express, Braintree v2 (blue), Wirecard, QuickPay, Stripe |
 | EUR | &euro; | Euro | Authorize.Net, Braintree v2 (blue), Payment Express, Wirecard, Quickpay, eWAY, eWAY Rapid 3.1, Litle, PAYMILL, Pin Payments, Stripe |
 | DKK | DKK | Danish krone | Braintree v2 (blue), Payment Express, Wirecard, QuickPay, Stripe |
@@ -20,7 +20,7 @@ The currencies currently supported by Chargify are:
 | MYR | RM | Malaysian ringgit | Payment Express, Wirecard, Stripe |
 | JPY | &yen; | Japanese yen | Braintree v2 (blue), eWAY, eWAY Rapid 3.1, Stripe |
 | CHF | Fr. | Swiss franc | Braintree v2 (blue), Litle, Stripe |
-| INR | &#8377; | Indian rupee | Payment Express, Stripe |
+| INR | &#8377; | Indian rupee | Payment Express, Stripe, Braintree Blue |
 | PLN | z&#322; | Polish z&#322;oty (golden) | Wirecard, Stripe |
 | CZK | K&#269; | Czech koruna | Wirecard, Stripe |
 | RUB | &#8381; | Rubbian ruble | Stripe |
