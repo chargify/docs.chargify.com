@@ -68,8 +68,8 @@ If you use Chargify solely through Shopify, you do not need to take any action. 
 
 * **.NET 4.6** -  TLS 1.2 is used automatically.  No changes are necessary.
 * **.NET 4.5** - The SecurityProtocolType needs to be changed to `Tls12` (using the SecurityProtocol Setter)
-  * [https://msdn.microsoft.com/en-us/library/system.net.securityprotocoltype(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/system.net.securityprotocoltype(v=vs.110).aspx)
-  * [https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.securityprotocol(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.securityprotocol(v=vs.110).aspx)
+  * [https://msdn.microsoft.com/en-us/library/system.net.securityprotocoltype(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/system.net.securityprotocoltype%28v=vs.110%29.aspx)
+  * [https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.securityprotocol(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.securityprotocol%28v=vs.110%29.aspx)
 * **.NET 3 and below** - Must be upgraded to 4.5
 
 ## Ruby
