@@ -52,6 +52,14 @@ In all other cases, the subscription will be charged a prorated amount at signup
 
 h2(#end-of-month). End of the Month
 
-When Calendar Billing is not in use, for signups at the end of the month, the billing date will shift back a day or two as it passes through shorter months, and eventually land on the 28th.
+When Calendar Billing is not in use, for signups at the end of the month, the billing date will shift back a day or two as it passes through shorter months, and will eventually land on the 28th.
 
-"https://chargify.zendesk.com/hc/communities/public/questions/201383604-Billing-dates-for-end-of-month-subscriptions":https://chargify.zendesk.com/hc/communities/public/questions/201383604-Billing-dates-for-end-of-month-subscriptions
+For example, a signup on October 31 will renew on November 30, December 30, January 30, February 28, March 28, and on the 28th thereafter.
+
+h2(#dst). Daylight Savings Time
+
+If your time zone observes Daylight Savings Time, you may notice that your subscription renewal times seem to shift by one hour twice a year as you "spring forward" and "fall back".
+
+Chargify stores the dates internally in UTC (Universal Coordinated Time) which does _not_ observe Daylight Savings Time.
+
+If you would like your subscriptions to renew at a certain time regardless of whether Daylight Savings Time is in effect, you would need to modify the next billing date/time for all of your monthly subscriptions twice a year when the time changes, and also take into account what the offset should be at the next renewal each time you modify the next billing date/time on a subscription.
