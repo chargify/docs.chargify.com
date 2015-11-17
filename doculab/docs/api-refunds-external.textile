@@ -27,7 +27,7 @@ Here is a sample JSON document that you might @POST@ to @https://<subdomain>.cha
     "amount": 20.00,
     "memo": "Refunded with check# 123"
   },
-  external: 1
+  "external": 1
 }
 </code></pre>
 
@@ -39,7 +39,7 @@ or if you wish to work in cents the amount_in_cents field can be used:
     "amount_in_cents": 2000,
     "memo": "Processed refund directly at gateway"
   },
-  external: 1
+  "external": 1
 }
 </code></pre>
 
