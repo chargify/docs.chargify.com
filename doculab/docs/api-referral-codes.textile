@@ -1,0 +1,11 @@
+h2. Validating Referral Codes via the API
+
+You can verify if a referral code is valid using the @validate@ method. This method is useful for validating referral codes that are entered by a customer.
+
+h3. Validate
+
+URL: @https://<subdomain>.chargify.com/referral_codes/validate.<format>?code=<referral_code>@
+Method: @GET@
+Required Parameters: code
+Response: If the referral code is valid the status code will be 200 and the referral code will be returned. If the referral code is invalid, a 404 response will be returnd.
+
