@@ -106,8 +106,8 @@ Here's an example event for the `subscription_state_change` event:
 
 h2. Pagination
 
-Results are paginated and return 30 responses per page.  Get additional pages by passing a `page` parameter:
+Results are paginated and return 20 responses per page.  Get additional pages or more results per page (up to 200) by passing the @page@ and @per_page@ parameters:
 
 <pre>
-https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/events.json?page=3
+https://[@subdomain].chargify.com/subscriptions/[@subscription.id]/events.json?per_page=100&page=3
 </pre>
