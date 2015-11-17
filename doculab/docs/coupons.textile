@@ -56,7 +56,9 @@ h4. Expiration Date
 
 !/images/doculab/coupon-expiration-date.png!
 
-If you set an **Expiration Date**, the coupon will no longer be redeemable after the end of the day (Eastern Standard Time).
+If you set an **Expiration Date**, the coupon can no longer be added to subscriptions after the end of that day in your time zone. Recurring discounts, however, will continue to apply even after the expiration date. 
+
+Note that if you change the time zone for your site, coupons will continue to expire at midnight in the original time zone.
 
 h4. Conversion Limit
 
