@@ -110,7 +110,7 @@ Response: The coupon resource
 
 h2. Validating a Coupon via the API
 
-You can verify if an specific coupon code is valid using the @validate@ method. This method is useful for validating coupon codes that are entered by a customer.  If the coupon is found and is valid, the coupon will be returned with a 200 status code.
+You can verify if a specific coupon code is valid using the @validate@ method. This method is useful for validating coupon codes that are entered by a customer.  If the coupon is found and is valid, the coupon will be returned with a 200 status code.
 
 h3. Validate
 
