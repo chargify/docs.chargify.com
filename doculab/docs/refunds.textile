@@ -1,4 +1,4 @@
-*Note: Refunds are currently only supported for the following gateways - Authorize.Net, Braintree Blue, CyberSource, Elavon, eWay Rapid, First Data, Paymill, Pin Payments, Samurai, and Stripe*
+*Note: Refunds are only supported for the following gateways:  Authorize.Net, Samurai, Braintree Blue, Stripe, eWay Rapid, Payeezy (First Data), Elavon, Pin Payments, CyberSource, Paymill, Litle, QuickPay, Orbital,  Trust Commerce, and Moneris.*
 
 With Chargify you have the ability to apply a refund to payments that have been processed at the gateway. It is important to note the distinction between a Credit and a Refund. A refund will return an amount, up to the full amount of the original payment, back to the customer's credit card. A credit, however, will simply update the customer's Chargify balance without actually returning the funds. A refund does *not* affect the customer's account balance, but will change the total revenue collected for the subscription.
 
