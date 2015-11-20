@@ -30,7 +30,7 @@ The product may be specified by either @product[id]@ or by @product[handle]@ (AP
 ** @first_name@ First name on card or bank account
 ** @last_name@ Last name on card or bank account
 ** @card_number@ The full credit card number (string representation, i.e. "5424000000000015")
-** @cvv@ (optional if the payment method is a credit card) The 3 or 4 digit card verification value.
+** @cvv@ (Optional if the payment method is a credit card) The 3 or 4 digit card verification value.
 ** @expiration_month@  The 1- or 2-digit credit card expiration month, as an integer or string, i.e. "5"
 ** @expiration_year@  The 4-digit credit card expiration year, as an integer or string, i.e. "2012"
 ** @billing_address@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing street address (i.e. "123 Main St."). _This value is merely passed through to the payment gateway_.
@@ -47,6 +47,10 @@ The product may be specified by either @product[id]@ or by @product[handle]@ (AP
 ** @payment_type@ Required for PayPal. Set to @paypal_account@.
 ** @payment_method_nonce@ Required for Paypal.
 ** @paypal_email@ Required for PayPal, but only used for display.
+
+* @subscription@
+** @snap_day@ (Optional) Used for "Calendar Billing":/billing-dates#calendar-billing. Set to a number between @1@ and @28@, or @end@.
+
 * @components@
 * @agreement_terms@ The ACH agreement terms, if creating a subscription with a @bank_account@ as the payment profile
 * @metafields@ (Optional) A set of key/value pairs representing custom fields and their values. Metafields will be created "on-the-fly" in your site for a given key, if they have not been created yet.
