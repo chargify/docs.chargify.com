@@ -51,6 +51,12 @@ The following browsers **DO NOT** support TLS 1.2 and will no longer work.
 * iOS 4
 * Android 4
 
+## Chargify Direct
+
+Chargify Direct, when used as a browser-side transparent redirect will not affect **MOST** end users with modern browsers. It will fail for customers with very old browsers that are unable to initiate a secure connection.  Those customers are likely to find that all secure websites will start failing for them soon and will be forced to upgrade anyway, so the impact is expected to be minimal.
+
+Note that Chargify V2 signups (NOT transparent redirect) must be tested to make sure they can make API calls successfully.
+
 ## Shopify Merchants
 
 If you use Chargify solely through Shopify, you do not need to take any action. We have already ensured everything will continue to work.
