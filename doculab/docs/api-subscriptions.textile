@@ -314,7 +314,7 @@ You also use this method to change the subscription to a different product by se
 
 h4(#product-change). Product Change
 
-This method merely changes the product, and *the new payment amount is calculated and charged at the normal start of the next period*.  To perform a Product Change, simply set the @product_handle@ attribute with the handle of a different product from the same site as the subscription.  Note that no proration or period reset is initiated when you change the product using this method.  If you desire prorated upgrades and downgrades instead, please see the "docs on upgrades/downgrades":/upgrades-downgrades.
+This method merely changes the product, and *the new payment amount is calculated and charged at the normal start of the next period*.  To perform a Product Change, simply set the @product_handle@ attribute with the handle of a different product from the same site as the subscription.  Note that no proration or period reset is initiated when you change the product using this method.  If you desire prorated upgrades and downgrades instead, please see the "docs on upgrades/downgrades":/upgrades-downgrades and "the Migrations API":/api-migrations.
 
 h4(#delayed-product-change). Delayed Product Change
 
