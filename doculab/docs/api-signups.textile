@@ -55,6 +55,7 @@ The product may be specified by either @product[id]@ or by @product[handle]@ (AP
 * @agreement_terms@ The ACH agreement terms, if creating a subscription with a @bank_account@ as the payment profile
 * @metafields@ (Optional) A set of key/value pairs representing custom fields and their values. Metafields will be created "on-the-fly" in your site for a given key, if they have not been created yet.
 * @ref@ (Optional, see "Referrals":/referrals for more details.) A valid referral code.
+* @coupon_code@ (Optional, see "Coupons":/coupons for more details.) A valid coupon code.
 
 
 Components are attached/allocated to the signup by including the @component@ key.  The sub-keys should be component IDs, and the values are the allocated quantities.  See examples below.
@@ -90,6 +91,13 @@ Custom Fields (or Metafields) can be included in Chargify Direct forms as follow
 
 <pre><code><input type="text" name="signup[metafields][color]" />
 <input type="text" name="signup[metafields][size]" />
+</code></pre>
+
+h4. Chargify Direct Example with a Coupon Code
+
+A coupon code can be included in Chargify Direct forms as follows:
+
+<pre><code><input type="text" name="signup[coupon_code]" />
 </code></pre>
 
 h3. Via JSON
