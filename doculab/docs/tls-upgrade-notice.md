@@ -12,11 +12,20 @@ This is not an action Chargify is taking alone. **EVERY** website that transmits
 
 # How do I know if I'm affected?
 
-Most browsers have supported TLS for at least the last few years.  So end-users are unlikely to be affected by this change.  The biggest impact is likely to be felt by API users with very old libraries.
+Visit [https://app.chargify.com/tls_check](https://app.chargify.com/tls_check).  You'll see two sets of checks:
 
-A comprehensive list of support is available here: [https://www.ssllabs.com/ssltest/clients.html](https://www.ssllabs.com/ssltest/clients.html)
+* Webhook Endpoint checks will confirm if your endpoints are ready for the switchover.  If there's a problem with us connecting to one of your endpoints, it'll be listed here.
+* API checks are a list of recent connections you've made to our API that may have trouble after January 12, 2016.
 
-## How to test
+*Caveat* We reviewed recent connections made to your Chargify subdomains to try and help you.  But there may be false-negatives or false-positives.  This method is imperfect because:
+
+* Sometimes an API client using an older version will auto-upgrade when we remove support.
+* We ignored connections from browser-like user-agents (Firefox, Gecko, Mozilla, Chrome, AppleWebKit, Safari, etc).  If your API client “fakes” a browser user-agent, it’s not included here.
+* Connections to "https://app.chargify.com" (such as Chargify API v2) are not included
+
+A comprehensive list of client library support is available here: [https://www.ssllabs.com/ssltest/clients.html](https://www.ssllabs.com/ssltest/clients.html)
+
+## How to test yourself
 
 1. Point your browser, API client, or code to [https://tlscheck.chargify.com](https://tlscheck.chargify.com).  
 2. You should expect to see "ConnectionOK" (with a 200 response code).  
