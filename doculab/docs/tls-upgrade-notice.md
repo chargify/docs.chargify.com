@@ -1,16 +1,18 @@
-# What's happening?
+# What has happened?
 
-On January 12, 2016 Chargify will no longer support TLS 1.0 or TLS 1.1 over HTTPS on the chargify.com domain.  Any older browsers or API clients that do not support TLS 1.2 will no longer work after this date.  This change is mandated by the PCI Security Council and affects all merchants and service providers processing or transmitting credit card data.
+As of January 12, 2016 (approximated 9:00am ET) Chargify now no longer supports TLS 1.0 or TLS 1.1 over HTTPS on the chargify.com domain.  Any older browsers or API clients that do not support TLS 1.2 will no longer work.  This change is mandated by the PCI Security Council and affects all merchants and service providers processing or transmitting credit card data.
 
-If you use webhooks, your non-test endpoints will also be required to support HTTPS and TLS 1.2 in order to receive webhooks from us after January 12, 2016.  Any endpoints that do not support a TLS 1.2 connection will be disabled.
-
-The change will begin at 9:00 AM EST on January 12, 2016, and is expected to be complete by 10:30 AM EST.
+If you use webhooks, your non-test endpoints are also be required to support HTTPS and TLS 1.2 in order to receive webhooks from us.  Any endpoints that do not support a TLS 1.2 connection will be disabled.
 
 ## Why are we making this change?
 
 The PCI Security Council sets the rules on which technologies are acceptable for use in transmitting cardholder data.  They have explicitly identified TLS 1.0 as no longer being a strong form of encryption because it is vulnerable to many known attacks.
 
 This is not an action Chargify is taking alone. **EVERY** website that transmits or processes credit card data will be making this change.  If you or your customers are using an insecure or unsupported browser or API client, you will find that all secure websites will stop working very soon.
+
+# Previous information
+
+The switch has been completed, but we've kept the old guidance here below for a period of time for posterity:
 
 # How do I know if I'm affected?
 
@@ -92,7 +94,6 @@ If you use Chargify solely through Shopify, you do not need to take any action. 
 ## Ruby
 
 Ruby uses the system openssl.  OpenSSL v0.9.8 will no longer work, but later versions work without any changes required.  With Ruby 1.9+ you can test the connection with this script:
-should we create gist and embed the follow code snippets into the docs and blog posts? At least for WP, gist is the cleanest way to do code snippets
 
     require 'openssl'
     require 'net/http'
