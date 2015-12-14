@@ -180,3 +180,13 @@ Yes, you can connect more than one Chargify Site to the same Xero Organization.
 h3(#faq-change-org). What if I need to change the Xero Organization that my Chargify Site is connected to?
 
 If you have connected a Chargify Site to a Xero Organization and later need to switch to a different Xero Organization, please "contact support":/index.html#support.
+
+h3(#duplicate-contacts). Why does Chargify create duplicate contacts?
+
+If the contact existed in Xero prior to your enabling Chargify's Xero integration, then unfortunately, this is going to happen.
+
+We have no way of knowing that a "John Smith" in your Xero Organization is in fact the same one that we have in Chargify, so we must create a new contact.
+
+h3(#contact-number). Why does Chargify append a number to the Contact Name?
+
+Xero currently requires that Contact Names be unique within an Organization, which is why we append the Chargify Customer ID in parentheses.
