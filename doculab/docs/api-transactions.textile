@@ -17,7 +17,7 @@ The following is a list of available transaction types
 | @adjustment@ | A postive or negative amount that adjusts the subscription balance but cannot usually be directly attributed to a single item (Product or Component) | Increases or decreases balance due | No effect on revenue |
 | @payment@ | A postive amount that denotes amount paid to you by the subscriber, usually on their credit card or bank account via your payment gateway.  Payments may also be recorded "manually" in the case of checks received, or money received outside of Chargify. | Decreases balance due | Increases revenue |
 | @refund@ | A positive amount that denotes "cash" given back to a subscriber (i.e. put back on their card) via a refund or credit at the gateway. | No effect on balance due | Decreases revenue |
-| @info@ | An informational transaction whose description provides context for transactions nearby in time, or serves as a placeholder for another transaction that could not be attempted (i.e. when payment cannot be attempted because no card is on file) | N/A | N/A |
+| @info_transaction@ | An informational transaction whose description provides context for transactions nearby in time, or serves as a placeholder for another transaction that could not be attempted (i.e. when payment cannot be attempted because no card is on file) | N/A | N/A |
 | @payment_authorization@ | Deprecated. No longer appears in transactions listing | N/A | N/A |
 
 h3(#charge-kinds). Transaction Kinds (Subtypes)
