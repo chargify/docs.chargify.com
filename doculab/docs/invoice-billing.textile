@@ -14,6 +14,8 @@ h2. Creating an Invoice Billing subscription in the Admin UI
 
 Once invoice billing has been enabled, you can select the payment collection method when creating a subscription in the admin ui. The collection method will default to the option set in the site settings. Payment Collection Method does not appear if invoice billing is turned off.
 
+p(note). A subscription should only be switched to Invoice Billing if it is Active with a zero balance.
+
 !{width:400px;}/images/doculab/invoice-billing-2.png()!
 
 h2. Viewing Invoices
