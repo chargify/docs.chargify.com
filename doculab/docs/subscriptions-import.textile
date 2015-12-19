@@ -46,6 +46,8 @@ h2(#notice). Important Notices and Disclaimers
 
 * When working with credit card data in Excel, long strings of digits are converted into scientific notation. Excel will always convert a long series of digits into scientific notation when you open the source data in Excel (double-clicking the file and opening it in Excel).  To get around the scientific notation conversion, you have to import your csv file into Excel and define the column of digits as "Text" so that Excel will not convert it to scientific notation.  In addition, Excel only records numbers up to 15 digits if they are not entered as text.  Any additional digits are reset to 0.
 
+!/images/doculab/subscriptions-import-spreadsheet-text.png!
+
 h2(#getting-started). Getting Started
 
 The following is a list of required fields for subscription creation via the import tool.  They must be in CSV format.
