@@ -243,4 +243,9 @@ For example, a URL like: https://shopify-setup-test.chargify.com/h/3418188/subsc
 
 Yes, but you will need to contact Support for help. If you change your Chargify subdomain, it will break your Shopify integration and Support will need to point it to the new subdomain you’ve chosen.
 
+**I installed the Chargify app, but no longer want it, how can I cancel my Chargify account?**
+Prior to uninstalling the Chargify app, you will want to log into Chargify and delete the Chargify account. This can be done by clicking "Billing & Plans", then clicking "Delete My Account" and following the prompts.
+
+After the Chargify account has successfully been deleted, you can remove the Chargify app from Shopify.
+
 Please feel free to contact Chargify Support for assistance: 1 (800) 401-2414 or <a href="mailto:support@chargify.com">support@chargify.com</a>.
