@@ -75,7 +75,8 @@ h3. List
 
 URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>/codes.<format>@
 Method: @GET@
-Required Parameters: coupon_id
+Required Parameters: @coupon_id@
+Optional Parameters: @page@, @per_page@ (default of @20@)
 Response: A collection of coupon subcodes
 
 h3. XML Example Response
