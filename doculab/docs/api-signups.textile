@@ -85,7 +85,7 @@ You would like to allow your users to select 1 - 5 Widgets, and turn support On 
 
 <script src="https://gist.github.com/moklett/1b4b587447682da4b39e.js?file=sample-html-form-with-components.html"></script>
 
-h4. Chargify Direct Example with Custom Fields
+h4(#direct-custom). Chargify Direct Example with Custom Fields
 
 Custom Fields (or Metafields) can be included in Chargify Direct forms as follows:
 
@@ -93,7 +93,7 @@ Custom Fields (or Metafields) can be included in Chargify Direct forms as follow
 <input type="text" name="signup[metafields][size]" />
 </code></pre>
 
-h4. Chargify Direct Example with a Coupon Code
+h4(#direct-coupon). Chargify Direct Example with a Coupon Code
 
 A coupon code can be included in Chargify Direct forms as follows:
 
