@@ -1,4 +1,4 @@
-Chargify Statements give you and your customers a breakdown of Subscription charges, payments, credits, and activity on a period-by-period basis.  A Statement is similar to an "Invoice" because it is marked as currently paid or unpaid.  Statements display all account activity for a specific usage period.
+Chargify Statements give you and your customers a breakdown of Subscription charges, payments, credits, and activity on a period-by-period basis.  Statements display all account activity for a specific usage period, and are marked as either "Paid" or "Unpaid".
 
 h2. Statements in the Chargify UI
 
@@ -45,3 +45,10 @@ When configured to be sent automatically, Statements can be a robust replacement
 | *Configurable content with replacement variables?* | No | Yes |
 | *Shows line item charges?* | Yes | No |
 | *Can be easily resent?* | Yes | No |
+
+h2(#faq). Frequently Asked Questions
+
+h4(#change-info). Q: If I change a customer's name or address, will it be changed on all their old statements?
+
+A: No, changes will not appear on previous statements. Statements reflect historical financial information, and generally are not modified after they are settled. If you need to provide an updated statement to your customer, you may download a text, HTML, or PDF version and edit it locally before sending it to the customer.
+
