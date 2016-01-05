@@ -13,6 +13,7 @@ h2. Webhook Attributes
 * @event@ A string describing which event type produced the given Webhook
 * @body@ The data sent within the Webhook post
 * @signature@ The calculated Webhook signature
+* @signature_hmac_sha_256@ The calculated HMAC-SHA-256 Webhook signature
 * @created_at@ Timestamp indicating when the Webhook was created
 * @accepted_at@ Timestamp indicating when the Webhook was accepted by the merchant endpoint.  When a webhook is explicitly replayed by the merchant, this value will be cleared until it is accepted again.
 * @last_sent_at@ Timestamp indicating when the most recent attempt was made to send the Webhook
