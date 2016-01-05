@@ -243,7 +243,7 @@ These example webhooks have been converted from form-encoded format to Ruby hash
 * "statement_settled Payload":#statement-settled-payload
 * "upgrade_downgrade_success Payload":#upgrade-downgrade-success-payload
 * "upgrade_downgrade_failure Payload":#upgrade-downgrade-failure-payload
-* "refund_sucess Payload":#refund-success-payload
+* "refund_success Payload":#refund-success-payload
 * "refund_failure Payload":#refund-failure-payload
 * "expiration_date_change Payload":#expiration-date-change
 
@@ -285,7 +285,7 @@ h3(#signup-success-payload). signup_sucess Payload
                                "name" => "Acme Online",
                                  "id" => "4",
                         "description" => "",
-                        "version_number": 1
+                        "version_number" => 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -393,7 +393,7 @@ h3(#signup-failure-payload). signup_failure Payload
                                "name" => "Acme Online",
                                  "id" => "4",
                         "description" => "",
-                        "version_number": 1
+                        "version_number" => 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -501,7 +501,7 @@ h3(#renewal-success-payload). renewal_success Payload
                                "name" => "Acme Online",
                                  "id" => "4",
                         "description" => "",
-                        "version_number": 1
+                        "version_number" => 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -609,7 +609,7 @@ h3(#renewal-failure-payload). renewal_failure Payload
                                "name" => "Acme Online",
                                  "id" => "4",
                         "description" => "",
-                        "version_number": 1
+                        "version_number" => 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -718,7 +718,7 @@ h3(#payment-success-payload). payment_success Payload
                                "name" => "Acme Online",
                                  "id" => "4",
                         "description" => "",
-                        "version_number": 1
+                        "version_number" => 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -841,7 +841,7 @@ h3(#payment-failure-payload). payment_failure Payload
                                "name" => "Acme Online",
                                  "id" => "4",
                         "description" => "",
-                        "version_number": 1
+                        "version_number" => 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -964,7 +964,7 @@ h3(#billing-date-change-payload). billing_date_change Payload
                                "name" => "Acme Online",
                                  "id" => "4",
                         "description" => "",
-                        "version_number": 1
+                        "version_number" => 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -1072,7 +1072,7 @@ h3(#subscription-state-change-payload). subscription_state_change Payload
                                "name" => "Acme Online",
                                  "id" => "4",
                         "description" => "",
-                        "version_number": 1
+                        "version_number" => 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "9900",
@@ -1180,7 +1180,7 @@ h3(#subscription-product-change-payload). subscription_product_change Payload
                                "name" => "Acme Online",
                                  "id" => "4",
                         "description" => "",
-                        "version_number": 1
+                        "version_number" => 1
                 },
                          "accounting_code" => "",
                           "price_in_cents" => "2400",
@@ -1255,7 +1255,7 @@ h3(#subscription-product-change-payload). subscription_product_change Payload
                            "name" => "Acme Online",
                              "id" => "4",
                     "description" => "",
-                    "version_number": 1
+                    "version_number" => 1
             },
                      "accounting_code" => "",
                       "price_in_cents" => "9900",
@@ -1392,7 +1392,7 @@ h3(#expiring-card-payload). expiring_card Payload
                                "name" => "Acme Online",
                                  "id" => "4",
                         "description" => "",
-                        "version_number": 1
+                        "version_number" => 1
                 },
                      "expiration_interval" => "",
                                     "name" => "Basic",
@@ -1572,43 +1572,43 @@ h3(#upcoming-renewal-notice-payload). upcoming_renewal_notice Payload
 
 <pre><code>
 {
-  "id": "1",
-  "event": "upcoming_renewal_notice",
-  "payload": {
-    "site": {
-      "id": "2",
-      "subdomain": "acme"
+  "id" => "1",
+  "event" => "upcoming_renewal_notice",
+  "payload" => {
+    "site" => {
+      "id" => "2",
+      "subdomain" => "acme"
     },
-    "customer": {
-      "id": "0",
-      "first_name": "John",
-      "last_name": "Doe",
-      "reference": "johndoe",
-      "organization": "Acme, Inc.",
-      "email": "john@example.com"
+    "customer" => {
+      "id" => "0",
+      "first_name" => "John",
+      "last_name" => "Doe",
+      "reference" => "johndoe",
+      "organization" => "Acme, Inc.",
+      "email" => "john@example.com"
     },
-    "email_sent": "true",
-    "estimated_renewal_amount_in_cents": "100",
-    "message": "Upcoming renewal notice sent.",
-    "payment_profile": {
-      "id": "0",
-      "first_name": "Jane",
-      "last_name": "Doe",
-      "card_type": "visa",
-      "masked_card_number": "XXXX-XXXX-XXXX-1111",
-      "expiration_month": "4",
-      "expiration_year": "2016"
+    "email_sent" => "true",
+    "estimated_renewal_amount_in_cents" => "100",
+    "message" => "Upcoming renewal notice sent.",
+    "payment_profile" => {
+      "id" => "0",
+      "first_name" => "Jane",
+      "last_name" => "Doe",
+      "card_type" => "visa",
+      "masked_card_number" => "XXXX-XXXX-XXXX-1111",
+      "expiration_month" => "4",
+      "expiration_year" => "2016"
     },
-    "product": {
-      "id": "0",
-      "name": "Pro",
-      "product_family_id": "0",
-      "product_family_name": "Acme Online"
+    "product" => {
+      "id" => "0",
+      "name" => "Pro",
+      "product_family_id" => "0",
+      "product_family_name" => "Acme Online"
     },
-    "subscription": {
-      "id": "0",
-      "state": "active",
-      "current_period_ends_at": "2012-10-09 11:49:43 -0400"
+    "subscription" => {
+      "id" => "0",
+      "state" => "active",
+      "current_period_ends_at" => "2012-10-09 11:49:43 -0400"
     }
   }
 }
@@ -1621,43 +1621,43 @@ h3(#end-of-trial-notice-payload). end_of_trial_notice Payload
 
 <pre><code>
 {
-  "id": "2",
-  "event": "trial_end_notice",
-  "payload": {
-    "site": {
-      "id": "2",
-      "subdomain": "acme"
+  "id" => "2",
+  "event" => "trial_end_notice",
+  "payload" => {
+    "site" => {
+      "id" => "2",
+      "subdomain" => "acme"
     },
-    "customer": {
-      "id": "0",
-      "first_name": "John",
-      "last_name": "Doe",
-      "reference": "johndoe",
-      "organization": "Acme, Inc.",
-      "email": "john@example.com"
+    "customer" => {
+      "id" => "0",
+      "first_name" => "John",
+      "last_name" => "Doe",
+      "reference" => "johndoe",
+      "organization" => "Acme, Inc.",
+      "email" => "john@example.com"
     },
-    "email_sent": "true",
-    "estimated_renewal_amount_in_cents": "200",
-    "message": "End of trial notice sent",
-    "payment_profile": {
-      "id": "0",
-      "first_name": "Jane",
-      "last_name": "Doe",
-      "card_type": "visa",
-      "masked_card_number": "XXXX-XXXX-XXXX-1111",
-      "expiration_month": "4",
-      "expiration_year": "2016"
+    "email_sent" => "true",
+    "estimated_renewal_amount_in_cents" => "200",
+    "message" => "End of trial notice sent",
+    "payment_profile" => {
+      "id" => "0",
+      "first_name" => "Jane",
+      "last_name" => "Doe",
+      "card_type" => "visa",
+      "masked_card_number" => "XXXX-XXXX-XXXX-1111",
+      "expiration_month" => "4",
+      "expiration_year" => "2016"
     },
-    "product": {
-      "id": "0",
-      "name": "Pro",
-      "product_family_id": "0",
-      "product_family_name": "Acme Online"
+    "product" => {
+      "id" => "0",
+      "name" => "Pro",
+      "product_family_id" => "0",
+      "product_family_name" => "Acme Online"
     },
-    "subscription": {
-      "id": "0",
-      "state": "active",
-      "current_period_ends_at": "2012-10-09 11:49:43 -0400"
+    "subscription" => {
+      "id" => "0",
+      "state" => "active",
+      "current_period_ends_at" => "2012-10-09 11:49:43 -0400"
     }
   }
 }
@@ -1669,120 +1669,120 @@ h3(#statement-closed-payload). statement_closed Payload
 
 <pre><code>
 {
-  "id": "145",
-  "event": "statement_closed",
-  "payload": {
-    "site": {
-      "id": "2",
-      "subdomain": "acme"
+  "id" => "145",
+  "event" => "statement_closed",
+  "payload" => {
+    "site" => {
+      "id" => "2",
+      "subdomain" => "acme"
     },
-    "subscription": {
-      "id": "0",
-      "state": "active",
-      "balance_in_cents": "9900"
+    "subscription" => {
+      "id" => "0",
+      "state" => "active",
+      "balance_in_cents" => "9900"
     },
-    "customer": {
-      "id": "0",
-      "first_name": "John",
-      "last_name": "Doe",
-      "reference": "johndoe",
-      "organization": "Acme, Inc.",
-      "address": "123 Main St",
-      "address_2": "Apt 123",
-      "city": "Pleasantville",
-      "state": "NC",
-      "zip": "12345",
-      "country": "US",
-      "email": "john@example.com",
-      "phone": "555-555-1234"
+    "customer" => {
+      "id" => "0",
+      "first_name" => "John",
+      "last_name" => "Doe",
+      "reference" => "johndoe",
+      "organization" => "Acme, Inc.",
+      "address" => "123 Main St",
+      "address_2" => "Apt 123",
+      "city" => "Pleasantville",
+      "state" => "NC",
+      "zip" => "12345",
+      "country" => "US",
+      "email" => "john@example.com",
+      "phone" => "555-555-1234"
     },
-    "statement": {
-      "closed_at": "2012-09-09 11:38:33 -0400",
-      "created_at": "2012-09-09 11:38:33 -0400",
-      "id": "0",
-      "opened_at": "2012-09-09 11:38:33 -0400",
-      "settled_at": "2012-09-09 11:38:33 -0400",
-      "subscription_id": "0",
-      "updated_at": "2012-09-09 11:38:33 -0400",
-      "starting_balance_in_cents": "0",
-      "ending_balance_in_cents": "0",
-      "memo": "I am memo",
-      "events": {
-        "0": {
-          "id": "0",
-          "key": "payment_success",
-          "message": "Successful payment of $99.00 for John Doe's subscription to Pro"
+    "statement" => {
+      "closed_at" => "2012-09-09 11:38:33 -0400",
+      "created_at" => "2012-09-09 11:38:33 -0400",
+      "id" => "0",
+      "opened_at" => "2012-09-09 11:38:33 -0400",
+      "settled_at" => "2012-09-09 11:38:33 -0400",
+      "subscription_id" => "0",
+      "updated_at" => "2012-09-09 11:38:33 -0400",
+      "starting_balance_in_cents" => "0",
+      "ending_balance_in_cents" => "0",
+      "memo" => "I am memo",
+      "events" => {
+        "0" => {
+          "id" => "0",
+          "key" => "payment_success",
+          "message" => "Successful payment of $99.00 for John Doe's subscription to Pro"
         },
-        "1": {
-          "id": "0",
-          "key": "signup_success",
-          "message": "Successful signup for John Doe's subscription to Pro"
+        "1" => {
+          "id" => "0",
+          "key" => "signup_success",
+          "message" => "Successful signup for John Doe's subscription to Pro"
         }
       },
-      "transactions": {
-        "0": {
-          "amount_in_cents": "9900",
-          "created_at": "2012-09-09 11:38:33 -0400",
-          "ending_balance_in_cents": "9900",
-          "id": "0",
-          "kind": "baseline",
-          "memo": "Pro (10/11/2013 - 11/11/2013)",
-          "payment_id": "0",
-          "product_id": "0",
-          "starting_balance_in_cents": "0",
-          "subscription_id": "0",
-          "success": "true",
-          "type": "Charge",
-          "transaction_type": "charge",
-          "gateway_transaction_id": "",
-          "gateway_order_id": "",
-          "component_id": "",
-          "tax_id": "",
-          "statement_id": "0"
+      "transactions" => {
+        "0" => {
+          "amount_in_cents" => "9900",
+          "created_at" => "2012-09-09 11:38:33 -0400",
+          "ending_balance_in_cents" => "9900",
+          "id" => "0",
+          "kind" => "baseline",
+          "memo" => "Pro (10/11/2013 - 11/11/2013)",
+          "payment_id" => "0",
+          "product_id" => "0",
+          "starting_balance_in_cents" => "0",
+          "subscription_id" => "0",
+          "success" => "true",
+          "type" => "Charge",
+          "transaction_type" => "charge",
+          "gateway_transaction_id" => "",
+          "gateway_order_id" => "",
+          "component_id" => "",
+          "tax_id" => "",
+          "statement_id" => "0"
         },
-        "1": {
-          "amount_in_cents": "9900",
-          "created_at": "2012-09-09 11:38:33 -0400",
-          "ending_balance_in_cents": "0",
-          "id": "0",
-          "kind": "",
-          "memo": "John Doe - Pro: Signup payment",
-          "payment_id": "",
-          "product_id": "0",
-          "starting_balance_in_cents": "9900",
-          "subscription_id": "0",
-          "success": "true",
-          "type": "Payment",
-          "transaction_type": "payment",
-          "gateway_transaction_id": "53433",
-          "gateway_order_id": "53433",
-          "component_id": "",
-          "tax_id": "",
-          "statement_id": "0",
-          "card_number": "XXXX-XXXX-XXXX-1111",
-          "card_expiration": "04/2016",
-          "card_type": "visa"
+        "1" => {
+          "amount_in_cents" => "9900",
+          "created_at" => "2012-09-09 11:38:33 -0400",
+          "ending_balance_in_cents" => "0",
+          "id" => "0",
+          "kind" => "",
+          "memo" => "John Doe - Pro: Signup payment",
+          "payment_id" => "",
+          "product_id" => "0",
+          "starting_balance_in_cents" => "9900",
+          "subscription_id" => "0",
+          "success" => "true",
+          "type" => "Payment",
+          "transaction_type" => "payment",
+          "gateway_transaction_id" => "53433",
+          "gateway_order_id" => "53433",
+          "component_id" => "",
+          "tax_id" => "",
+          "statement_id" => "0",
+          "card_number" => "XXXX-XXXX-XXXX-1111",
+          "card_expiration" => "04/2016",
+          "card_type" => "visa"
         }
       }
     },
-    "product": {
-      "id": "0",
-      "name": "Pro"
+    "product" => {
+      "id" => "0",
+      "name" => "Pro"
     },
-    "product_family": {
-      "id": "0",
-      "name": "Acme Online"
+    "product_family" => {
+      "id" => "0",
+      "name" => "Acme Online"
     },
-    "payment_profile": {
-      "id": "0",
-      "first_name": "Jane",
-      "last_name": "Doe",
-      "billing_address": "987 Commerce St",
-      "billing_address_2": "Suite 789",
-      "billing_city": "Greenberg",
-      "billing_country": "US",
-      "billing_state": "NC",
-      "billing_zip": "67890"
+    "payment_profile" => {
+      "id" => "0",
+      "first_name" => "Jane",
+      "last_name" => "Doe",
+      "billing_address" => "987 Commerce St",
+      "billing_address_2" => "Suite 789",
+      "billing_city" => "Greenberg",
+      "billing_country" => "US",
+      "billing_state" => "NC",
+      "billing_zip" => "67890"
     }
   }
 }
@@ -1794,120 +1794,120 @@ h3(#statement-settled-payload). statement_settled Payload
 
 <pre><code>
 {
-  "id": "146",
-  "event": "statement_settled",
-  "payload": {
-    "site": {
-      "id": "2",
-      "subdomain": "acme"
+  "id" => "146",
+  "event" => "statement_settled",
+  "payload" => {
+    "site" => {
+      "id" => "2",
+      "subdomain" => "acme"
     },
-    "subscription": {
-      "id": "0",
-      "state": "active",
-      "balance_in_cents": "9900"
+    "subscription" => {
+      "id" => "0",
+      "state" => "active",
+      "balance_in_cents" => "9900"
     },
-    "customer": {
-      "id": "0",
-      "first_name": "John",
-      "last_name": "Doe",
-      "reference": "johndoe",
-      "organization": "Acme, Inc.",
-      "address": "123 Main St",
-      "address_2": "Apt 123",
-      "city": "Pleasantville",
-      "state": "NC",
-      "zip": "12345",
-      "country": "US",
-      "email": "john@example.com",
-      "phone": "555-555-1234"
+    "customer" => {
+      "id" => "0",
+      "first_name" => "John",
+      "last_name" => "Doe",
+      "reference" => "johndoe",
+      "organization" => "Acme, Inc.",
+      "address" => "123 Main St",
+      "address_2" => "Apt 123",
+      "city" => "Pleasantville",
+      "state" => "NC",
+      "zip" => "12345",
+      "country" => "US",
+      "email" => "john@example.com",
+      "phone" => "555-555-1234"
     },
-    "statement": {
-      "closed_at": "2012-09-09 11:38:33 -0400",
-      "created_at": "2012-09-09 11:38:33 -0400",
-      "id": "0",
-      "opened_at": "2012-09-09 11:38:33 -0400",
-      "settled_at": "2012-09-09 11:38:33 -0400",
-      "subscription_id": "0",
-      "updated_at": "2012-09-09 11:38:33 -0400",
-      "starting_balance_in_cents": "0",
-      "ending_balance_in_cents": "0",
-      "memo": "I am memo",
-      "events": {
-        "0": {
-          "id": "0",
-          "key": "payment_success",
-          "message": "Successful payment of $99.00 for John Doe's subscription to Pro"
+    "statement" => {
+      "closed_at" => "2012-09-09 11:38:33 -0400",
+      "created_at" => "2012-09-09 11:38:33 -0400",
+      "id" => "0",
+      "opened_at" => "2012-09-09 11:38:33 -0400",
+      "settled_at" => "2012-09-09 11:38:33 -0400",
+      "subscription_id" => "0",
+      "updated_at" => "2012-09-09 11:38:33 -0400",
+      "starting_balance_in_cents" => "0",
+      "ending_balance_in_cents" => "0",
+      "memo" => "I am memo",
+      "events" => {
+        "0" => {
+          "id" => "0",
+          "key" => "payment_success",
+          "message" => "Successful payment of $99.00 for John Doe's subscription to Pro"
         },
-        "1": {
-          "id": "0",
-          "key": "signup_success",
-          "message": "Successful signup for John Doe's subscription to Pro"
+        "1" => {
+          "id" => "0",
+          "key" => "signup_success",
+          "message" => "Successful signup for John Doe's subscription to Pro"
         }
       },
-      "transactions": {
-        "0": {
-          "amount_in_cents": "9900",
-          "created_at": "2012-09-09 11:38:33 -0400",
-          "ending_balance_in_cents": "9900",
-          "id": "0",
-          "kind": "baseline",
-          "memo": "Pro (10/11/2013 - 11/11/2013)",
-          "payment_id": "0",
-          "product_id": "0",
-          "starting_balance_in_cents": "0",
-          "subscription_id": "0",
-          "success": "true",
-          "type": "Charge",
-          "transaction_type": "charge",
-          "gateway_transaction_id": "",
-          "gateway_order_id": "",
-          "component_id": "",
-          "tax_id": "",
-          "statement_id": "0"
+      "transactions" => {
+        "0" => {
+          "amount_in_cents" => "9900",
+          "created_at" => "2012-09-09 11:38:33 -0400",
+          "ending_balance_in_cents" => "9900",
+          "id" => "0",
+          "kind" => "baseline",
+          "memo" => "Pro (10/11/2013 - 11/11/2013)",
+          "payment_id" => "0",
+          "product_id" => "0",
+          "starting_balance_in_cents" => "0",
+          "subscription_id" => "0",
+          "success" => "true",
+          "type" => "Charge",
+          "transaction_type" => "charge",
+          "gateway_transaction_id" => "",
+          "gateway_order_id" => "",
+          "component_id" => "",
+          "tax_id" => "",
+          "statement_id" => "0"
         },
-        "1": {
-          "amount_in_cents": "9900",
-          "created_at": "2012-09-09 11:38:33 -0400",
-          "ending_balance_in_cents": "0",
-          "id": "0",
-          "kind": "",
-          "memo": "John Doe - Pro: Signup payment",
-          "payment_id": "",
-          "product_id": "0",
-          "starting_balance_in_cents": "9900",
-          "subscription_id": "0",
-          "success": "true",
-          "type": "Payment",
-          "transaction_type": "payment",
-          "gateway_transaction_id": "53433",
-          "gateway_order_id": "53433",
-          "component_id": "",
-          "tax_id": "",
-          "statement_id": "0",
-          "card_number": "XXXX-XXXX-XXXX-1111",
-          "card_expiration": "04/2016",
-          "card_type": "visa"
+        "1" => {
+          "amount_in_cents" => "9900",
+          "created_at" => "2012-09-09 11:38:33 -0400",
+          "ending_balance_in_cents" => "0",
+          "id" => "0",
+          "kind" => "",
+          "memo" => "John Doe - Pro: Signup payment",
+          "payment_id" => "",
+          "product_id" => "0",
+          "starting_balance_in_cents" => "9900",
+          "subscription_id" => "0",
+          "success" => "true",
+          "type" => "Payment",
+          "transaction_type" => "payment",
+          "gateway_transaction_id" => "53433",
+          "gateway_order_id" => "53433",
+          "component_id" => "",
+          "tax_id" => "",
+          "statement_id" => "0",
+          "card_number" => "XXXX-XXXX-XXXX-1111",
+          "card_expiration" => "04/2016",
+          "card_type" => "visa"
         }
       }
     },
-    "product": {
-      "id": "0",
-      "name": "Pro"
+    "product" => {
+      "id" => "0",
+      "name" => "Pro"
     },
-    "product_family": {
-      "id": "0",
-      "name": "Acme Online"
+    "product_family" => {
+      "id" => "0",
+      "name" => "Acme Online"
     },
-    "payment_profile": {
-      "id": "0",
-      "first_name": "Jane",
-      "last_name": "Doe",
-      "billing_address": "987 Commerce St",
-      "billing_address_2": "Suite 789",
-      "billing_city": "Greenberg",
-      "billing_country": "US",
-      "billing_state": "NC",
-      "billing_zip": "67890"
+    "payment_profile" => {
+      "id" => "0",
+      "first_name" => "Jane",
+      "last_name" => "Doe",
+      "billing_address" => "987 Commerce St",
+      "billing_address_2" => "Suite 789",
+      "billing_city" => "Greenberg",
+      "billing_country" => "US",
+      "billing_state" => "NC",
+      "billing_zip" => "67890"
     }
   }
 }
@@ -1999,7 +1999,7 @@ h3(#upgrade-downgrade-success-payload). upgrade_downgrade_success Payload
                     "id" => "0",
                     "name" => "Acme Online"
                 },
-                "version_number": 1,
+                "version_number" => 1,
                 "request_credit_card" => "true",
                 "require_credit_card" => "true",
                 "return_params" => "",
@@ -2039,7 +2039,7 @@ h3(#upgrade-downgrade-success-payload). upgrade_downgrade_success Payload
                 "id" => "0",
                 "name" => "Acme Online"
             },
-            "version_number": 1,
+            "version_number" => 1,
             "request_credit_card" => "true",
             "require_credit_card" => "true",
             "return_params" => "",
@@ -2052,6 +2052,9 @@ h3(#upgrade-downgrade-success-payload). upgrade_downgrade_success Payload
         }
     }
 }
+</code></pre>
+
+"Back to Top":#example-payloads
 
 h3(#upgrade-downgrade-failure-payload). upgrade_downgrade_failure Payload
 
@@ -2137,7 +2140,7 @@ h3(#upgrade-downgrade-failure-payload). upgrade_downgrade_failure Payload
                     "id" => "0",
                     "name" => "Acme Online"
                 },
-                "version_number": 1,
+                "version_number" => 1,
                 "request_credit_card" => "true",
                 "require_credit_card" => "true",
                 "return_params" => "",
@@ -2177,7 +2180,7 @@ h3(#upgrade-downgrade-failure-payload). upgrade_downgrade_failure Payload
                 "id" => "0",
                 "name" => "Acme Online"
             },
-            "version_number": 1,
+            "version_number" => 1,
             "request_credit_card" => "true",
             "require_credit_card" => "true",
             "return_params" => "",
@@ -2262,105 +2265,105 @@ h3(#expiration-date-change). expiration_date_change Payload
 
 <pre><code>
 {
-  "id": "21",
-  "event": "expiration_date_change",
-  "payload": {
-    "site": {
-      "id": "2",
-      "subdomain": "acme"
+  "id" => "21",
+  "event" => "expiration_date_change",
+  "payload" => {
+    "site" => {
+      "id" => "2",
+      "subdomain" => "acme"
     },
-    "subscription": {
-      "activated_at": "2012-09-09 11:38:33 -0400",
-      "balance_in_cents": "9900",
-      "cancel_at_end_of_period": "false",
-      "canceled_at": "",
-      "cancellation_message": "",
-      "coupon_code": "",
-      "created_at": "2012-09-09 11:38:32 -0400",
-      "credit_card": {
-        "billing_address": "987 Commerce St",
-        "billing_address_2": "Suite 789",
-        "billing_city": "Greenberg",
-        "billing_country": "US",
-        "billing_state": "NC",
-        "billing_zip": "67890",
-        "card_type": "visa",
-        "current_vault": "bogus",
-        "customer_id": "0",
-        "expiration_month": "4",
-        "expiration_year": "2016",
-        "first_name": "Jane",
-        "id": "0",
-        "last_name": "Doe",
-        "masked_card_number": "XXXX-XXXX-XXXX-1111",
-        "vault_token": "1",
-        "customer_vault_token": ""
+    "subscription" => {
+      "activated_at" => "2012-09-09 11:38:33 -0400",
+      "balance_in_cents" => "9900",
+      "cancel_at_end_of_period" => "false",
+      "canceled_at" => "",
+      "cancellation_message" => "",
+      "coupon_code" => "",
+      "created_at" => "2012-09-09 11:38:32 -0400",
+      "credit_card" => {
+        "billing_address" => "987 Commerce St",
+        "billing_address_2" => "Suite 789",
+        "billing_city" => "Greenberg",
+        "billing_country" => "US",
+        "billing_state" => "NC",
+        "billing_zip" => "67890",
+        "card_type" => "visa",
+        "current_vault" => "bogus",
+        "customer_id" => "0",
+        "expiration_month" => "4",
+        "expiration_year" => "2016",
+        "first_name" => "Jane",
+        "id" => "0",
+        "last_name" => "Doe",
+        "masked_card_number" => "XXXX-XXXX-XXXX-1111",
+        "vault_token" => "1",
+        "customer_vault_token" => ""
       },
-      "current_period_ends_at": "2012-10-09 11:49:43 -0400",
-      "current_period_started_at": "2012-09-09 11:49:43 -0400",
-      "customer": {
-        "address": "123 Main St",
-        "address_2": "Apt 123",
-        "city": "Pleasantville",
-        "country": "US",
-        "created_at": "2012-09-09 11:38:32 -0400",
-        "email": "john@example.com",
-        "first_name": "John",
-        "id": "0",
-        "last_name": "Doe",
-        "organization": "Acme, Inc.",
-        "phone": "555-555-1234",
-        "reference": "johndoe",
-        "state": "NC",
-        "updated_at": "2012-09-09 11:38:32 -0400",
-        "zip": "12345"
+      "current_period_ends_at" => "2012-10-09 11:49:43 -0400",
+      "current_period_started_at" => "2012-09-09 11:49:43 -0400",
+      "customer" => {
+        "address" => "123 Main St",
+        "address_2" => "Apt 123",
+        "city" => "Pleasantville",
+        "country" => "US",
+        "created_at" => "2012-09-09 11:38:32 -0400",
+        "email" => "john@example.com",
+        "first_name" => "John",
+        "id" => "0",
+        "last_name" => "Doe",
+        "organization" => "Acme, Inc.",
+        "phone" => "555-555-1234",
+        "reference" => "johndoe",
+        "state" => "NC",
+        "updated_at" => "2012-09-09 11:38:32 -0400",
+        "zip" => "12345"
       },
-      "delayed_cancel_at": "",
-      "expires_at": "",
-      "id": "0",
-      "next_assessment_at": "2012-10-09 11:49:43 -0400",
-      "previous_state": "active",
-      "payment_type": "credit_card",
-      "product": {
-        "accounting_code": "pro1234",
-        "archived_at": "",
-        "created_at": "2012-09-06 10:09:35 -0400",
-        "description": "Vel soluta nihil qui accusamus quidem.",
-        "expiration_interval": "",
-        "expiration_interval_unit": "never",
-        "handle": "handle_6a9273b8a",
-        "id": "0",
-        "initial_charge_in_cents": "",
-        "interval": "1",
-        "interval_unit": "month",
-        "name": "Pro",
-        "price_in_cents": "9900",
-        "product_family": {
-          "accounting_code": "aopf1234",
-          "description": "Lorem ipsum dolor sit amet.",
-          "handle": "acme-online",
-          "id": "0",
-          "name": "Acme Online"
+      "delayed_cancel_at" => "",
+      "expires_at" => "",
+      "id" => "0",
+      "next_assessment_at" => "2012-10-09 11:49:43 -0400",
+      "previous_state" => "active",
+      "payment_type" => "credit_card",
+      "product" => {
+        "accounting_code" => "pro1234",
+        "archived_at" => "",
+        "created_at" => "2012-09-06 10:09:35 -0400",
+        "description" => "Vel soluta nihil qui accusamus quidem.",
+        "expiration_interval" => "",
+        "expiration_interval_unit" => "never",
+        "handle" => "handle_6a9273b8a",
+        "id" => "0",
+        "initial_charge_in_cents" => "",
+        "interval" => "1",
+        "interval_unit" => "month",
+        "name" => "Pro",
+        "price_in_cents" => "9900",
+        "product_family" => {
+          "accounting_code" => "aopf1234",
+          "description" => "Lorem ipsum dolor sit amet.",
+          "handle" => "acme-online",
+          "id" => "0",
+          "name" => "Acme Online"
         },
-        "version_number": 1,
-        "request_credit_card": "true",
-        "require_credit_card": "true",
-        "return_params": "",
-        "return_url": "",
-        "trial_interval": "",
-        "trial_interval_unit": "month",
-        "trial_price_in_cents": "",
-        "update_return_url": "",
-        "updated_at": "2012-09-09 11:36:53 -0400"
+        "version_number" => 1,
+        "request_credit_card" => "true",
+        "require_credit_card" => "true",
+        "return_params" => "",
+        "return_url" => "",
+        "trial_interval" => "",
+        "trial_interval_unit" => "month",
+        "trial_price_in_cents" => "",
+        "update_return_url" => "",
+        "updated_at" => "2012-09-09 11:36:53 -0400"
       },
-      "signup_payment_id": "30",
-      "signup_revenue": "99.00",
-      "state": "active",
-      "total_revenue_in_cents": "4200",
-      "trial_ended_at": "",
-      "trial_started_at": "",
-      "updated_at": "2012-09-09 11:49:44 -0400",
-      "previous_expires_at": "2022-06-14 11:49:43 -0400"
+      "signup_payment_id" => "30",
+      "signup_revenue" => "99.00",
+      "state" => "active",
+      "total_revenue_in_cents" => "4200",
+      "trial_ended_at" => "",
+      "trial_started_at" => "",
+      "updated_at" => "2012-09-09 11:49:44 -0400",
+      "previous_expires_at" => "2022-06-14 11:49:43 -0400"
     }
   }
 }
