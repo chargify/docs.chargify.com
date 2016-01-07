@@ -77,7 +77,6 @@ Doculab::TableOfContents.define do
   end
 
   section "3rd Party Integrations" do
-    page "Shopify Integration"
     page "Zferral Integration"
     page "Xero Integration", :permalink => 'xero'
     page "MailChimp Integration", :permalink => 'mailchimp'
