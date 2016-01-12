@@ -1,3 +1,5 @@
+h1. As of January 2016 the Chargify app for Shopify is no longer available.  Existing installations will continue to be supported but no new sites can be configured.
+
 The Chargify app allows you to subscribe your customers to the products they now buy as one-time purchases in your store. Rather than adding their purchases to the shopping cart, your customers will click “Signup” and then be directed to Chargify's customizable Public Signup Pages. Once your customers have subscribed to the product in Chargify, you can use all of our great features to manage your recurring revenue business.
 
 The Chargify app allows you to:
@@ -11,7 +13,7 @@ Check out the Chargify app in the "Shopify App Store":http://apps.shopify.com/ch
 
 <iframe width="649" height="365" src="//www.youtube.com/embed/1ZyTZD5Myrw" frameborder="0" allowfullscreen></iframe>
 
-**IMPORTANT: Please do not delete the Chargify app from Shopify. If you do, please contact Chargify Support at 1 (800) 401-2414 or support@chargify.com so we can remove the Shopify integration from your Chargify account before you reinstall.**
+h1. IMPORTANT: If you are currently using the Chargify app in Shopify, DO NOT delete it.  The Chargify app has been removed from the Shopify app store and it will not be possible to re-install.
 
 h2(#installation). Installation
 
@@ -192,7 +194,7 @@ This also means that if a subscription goes into dunning and then returns to an 
 
 h2(#trouble). Troubleshooting
 
-* DO NOT DELETE THE CHARGIFY APP FROM SHOPIFY. If you do, please contact Chargify so we can remove the integration from your Chargify account before you attempt to reinstall.
+* DO NOT DELETE THE CHARGIFY APP FROM SHOPIFY.
 * If a product is archived in Chargify, you must manually delete it from your Shopify store.
 * Updating your API key in Chargify does NOT affect the Shopify integration. If you receive an error after updating your Chargify API key, clear your browser cache and history and try again.
 
