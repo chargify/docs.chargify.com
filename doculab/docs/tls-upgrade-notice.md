@@ -4,6 +4,8 @@ On January 12, 2016 Chargify will no longer support TLS 1.0 or TLS 1.1 over HTTP
 
 If you use webhooks, your non-test endpoints will also be required to support HTTPS and TLS 1.2 in order to receive webhooks from us after January 12, 2016.  Any endpoints that do not support a TLS 1.2 connection will be disabled.
 
+The change will begin at 9:00 AM EST on January 12, 2016, and is expected to be complete by 10:00 AM EST.
+
 ## Why are we making this change?
 
 The PCI Security Council sets the rules on which technologies are acceptable for use in transmitting cardholder data.  They have explicitly identified TLS 1.0 as no longer being a strong form of encryption because it is vulnerable to many known attacks.
