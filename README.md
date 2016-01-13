@@ -39,7 +39,7 @@ If you prefer to use [rbenv](https://github.com/sstephenson/rbenv), the instruct
     bundle install
     rbenv rehash
     rails server
-    
+
 You can now browse the docs at http://localhost:3000
 
 ### Ports
