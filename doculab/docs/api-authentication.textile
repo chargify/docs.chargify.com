@@ -37,3 +37,14 @@ or
 
 Please review the recommendations for setting your HTTP Accept and Content-Type headers as outlined in the "API Introduction":/api-introduction
 
+h3(#troubleshooting). Troubleshooting
+
+h4(#unable-to-connect). Unable to Connect
+
+If you are unable to connect, the problem is often that you are using an old/unsupported version of SSL or TLS.  In this case, Chargify will simply drop the connection, and the error message you receive may be cryptic.
+
+Here are some common error messages that have been reported:
+
+* <code>The underlying connection was closed: An unexpected error occurred on a send.  Authentication failed because the remote party has closed the transport stream.</code>
+
+Please review the information on the "TLS Upgrade Notice":/tls-upgrade-notice in order to correct the problem.
