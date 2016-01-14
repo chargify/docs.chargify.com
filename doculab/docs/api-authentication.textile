@@ -1,5 +1,6 @@
-The API Authentication is implemented as HTTP Basic Authentication over SSL (HTTPS).  *Your API login credentials are not the same as the credentials you use to log in to the web interface*.  You must obtain your API credentials separately.
+The API Authentication is implemented as HTTP Basic Authentication over TLS (HTTPS).  *Your API login credentials are not the same as the credentials you use to log in to the web interface*.  You must obtain your API credentials separately.
 
+Please note that as of January 2016, you must use TLS >= 1.2 in order to connect to the API.  See the "TLS Upgrade Notice":/tls-upgrade-notice for more information.
 
 h3. Obtaining Your API Credentials
 
@@ -16,7 +17,7 @@ Your "password" is always the letter "x".
 
 h3. Authenticating with your API Credentials
 
-You will use HTTP Basic Authentication to verify your identity via the API.  All requests must come over SSL/HTTPS, and be to the subdomain of the Site you wish to access.  For example, if your Site's subdomain is @acme@, then you would access the Customer resource at:
+You will use HTTP Basic Authentication to verify your identity via the API.  All requests must come over TLS/HTTPS, and be to the subdomain of the Site you wish to access.  For example, if your Site's subdomain is @acme@, then you would access the Customer resource at:
 
 <pre>
   <code>https://acme.chargify.com/customers.json</code>
@@ -35,3 +36,4 @@ or
 </pre>
 
 Please review the recommendations for setting your HTTP Accept and Content-Type headers as outlined in the "API Introduction":/api-introduction
+
