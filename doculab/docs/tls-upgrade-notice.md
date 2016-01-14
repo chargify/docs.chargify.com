@@ -97,7 +97,7 @@ If you use Chargify solely through Shopify, you do not need to take any action. 
 * You should set the `ProtocolType` property of `ChargifyConnect` to the values from above (`SecurityProtocolType.Tls12` for _.NET 4.5+_ or `(SecurityProtocolType)3072` for _.NET 4.0_) before making any API calls.
 
 <pre>
-    var chargify = new ChargifyConnect("<your chargify url>", "<your api key>", "X");
+    var chargify = new ChargifyConnect("&lt;your chargify url>", "&lt;your api key>", "X");
     chargify.ProtocolType = SecurityProtocolType.Tls12;
 </pre>
 
