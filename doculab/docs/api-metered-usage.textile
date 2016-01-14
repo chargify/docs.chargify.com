@@ -1,19 +1,15 @@
-h2. URI/Methods
-
-TODO
-
-h2. Input Attributes
+h2(#input). Input Attributes
 
 The Chargify API allows you to record metered component usage by posting JSON or XML that includes:
 
 * **quantity**: The amount of units used
 * **memo**: An optional description of the usage
 
-h2. Methods
+h2(#methods). Methods
 
 _format_ may be either 'xml' or 'json'.
 
-h3. List Usage
+h3(#list). List Usage
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/components/<component_id>/usages.json@
 Method: @GET@  
@@ -31,7 +27,7 @@ Response: A collection of usages
 "XML example":#api-list-usage-xml  
 "JSON example":#api-list-usage-json  
 
-h3. Create Usage
+h3(#create). Create Usage
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/components/<component_id>/usages.json@  
 Method: @POST@  
@@ -43,7 +39,7 @@ Response: The created usage log
 "XML example":#api-usage-xml-create  
 "JSON example":#api-usage-json-create
 
-h3. List Components for a Product Family
+h3(#list-for-family). List Components for a Product Family
 
 URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/components.xml@
 Method: @GET@  
