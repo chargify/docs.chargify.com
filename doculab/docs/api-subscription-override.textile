@@ -11,7 +11,9 @@ h2. Fields That Can Be Manipulated
 * @cancellation_message@: Can be used to record a reason for the original cancellation.
 * @expires_at@: Can be used to record an external expiration date.  Chargify sets this field automatically when a subscription expires (ceases billing) after a prescribed amount of time.
 
-No other fields are currently available.  Attempting to set any other fields will cauase a @400 Bad Request@ response.  You only need to send the fields you would like to change.
+No other fields are currently available.  Attempting to set any other fields will cause a @400 Bad Request@ response.  You only need to send the fields you would like to change.
+
+Note that changing these fields will not affect any other attributes.  For example, adding an expiration date will not affect the next assessment date on the subscription.
 
 The fields should be nested beneath a @subscription@ key - see the examples below for more information.
 
