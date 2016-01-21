@@ -2,6 +2,8 @@ Under the "Settings":/settings tab of your Chargify account are options related 
 
 Chargify provides default templates for each of these emails, but you are free to edit them to fit your business' needs. We expose a number of variables for you to use in each email template. Variables must be quoted in double braces, such as @{{product.name}}@.
 
+The syntax used in the email templates is called "Liquid". The "Liquid for Designers":https://github.com/Shopify/liquid/wiki/Liquid-for-Designers wiki page provides a good overview and many examples, including "If / Else":https://github.com/Shopify/liquid/wiki/Liquid-for-Designers#if--else for conditional logic.
+
 The following variables are available for signup, dunning, receipt, expiration, end of trial, and upcoming renewal emails:
 
 h4(#legacy). Legacy fields
