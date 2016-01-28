@@ -110,7 +110,8 @@ Optional Parameters (via query string):
 * @since_date (format YYYY-MM-DD)@ Returns transactions with a @created_at@ timestamp at or after midnight (12:00:00 AM) in your site's time zone on the date specified
 * @until_date (format YYYY-MM-DD)@ Returns transactions with a @created_at@ timestamp up to and including 11:59:59PM in your site's time zone on the date specified
 * @page@ and @per_page@ The page number and number of results used for pagination. By default results are paginated 20 per page.
-* @direction@ can be either @asc@ for ascending or @desc@ for descending order. (defaults to @desc@) The sort order is based on the @created_at@ timestamp and cannot be changed.
+* @direction@ can be either @asc@ for ascending or @desc@ for descending order. (defaults to @desc@) The sort order is based on the @created_at@ timestamp then @id@ for transactions within the same second.
+* @order_by@ Transactions can be listed strictly in @id@ order by supplying @since_id@, @max_id@ and @order_by@ with @order_by@ set to @id@.  Note that all other filters are ignored with this sort order.
 
 Response: An array of Transactions
 
