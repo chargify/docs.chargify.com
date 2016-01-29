@@ -54,6 +54,12 @@ Response: A single Customer
 "XML example":#api-usage-xml-customers-read
 "JSON example":#api-usage-json-customers-read
 
+h3(#read-q). Read/Show (via Query)
+
+URL: @https://<subdomain>.chargify.com/customers.<format>?q=<search-string>@
+Method: @GET@
+Required Parameters: @q@ (URL-encoded)
+Response: An array of Customers
 
 h3(#create). Create
 
