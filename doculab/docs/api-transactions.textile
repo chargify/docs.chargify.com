@@ -397,6 +397,7 @@ Feature: Chargify Transactions Read/Show XML API
         <transaction_type>payment</transaction_type>
         <created_at type="datetime">`auto generated`</created_at>
         <product_id type="integer">[@product.id]</product_id>
+        <refunded_amount_in_cents type="integer">`auto generated`</refunded_amount_in_cents>
         <starting_balance_in_cents type="integer">`auto generated`</starting_balance_in_cents>
         <ending_balance_in_cents type="integer">`auto generated`</ending_balance_in_cents>
         <memo></memo>
@@ -441,6 +442,7 @@ Feature: Chargify Transactions Read/Show JSON API
           "transaction_type":"payment",
           "created_at":`auto generated`,
           "product_id":[@product.id],
+          "refunded_amount_in_cents": `auto generated`,
           "starting_balance_in_cents": `auto generated`,
           "ending_balance_in_cents":null,
           "memo":null,
