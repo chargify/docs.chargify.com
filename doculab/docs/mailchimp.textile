@@ -35,6 +35,8 @@ Next you will need to choose which MailChimp list to sync to.
 
 Use the drop-down to select one of your MailChimp lists.  Remember that this needs to be a new, empty list.
 
+Note that the integration only supports connecting to one of the 25 most recently created lists.  Other lists will not appear in the drop-down.
+
 When you're ready, click the "Continue to Final Setup" button.
 
 h4. Start Exporting
