@@ -11,6 +11,8 @@ The Xero integration is available to merchants:
 
 If you would like to test out the integration during the beta period, but you do not meet these criteria, you may "open a support ticket":https://chargify.zendesk.com/hc/en-us/requests/new and request a one month credit for a free upgrade to the Small Business Plus plan.
 
+p(note). The integration is limited to about 500 invoices per day. If you have more than 500 subscriptions renewing on a single day, please space them out by changing the Next Billing Date before enabling the Xero integration.
+
 h2(#enable). How to Enable the Integration
 
 The Xero integration tab is found within the main Integrations tab on each of your Sites:
