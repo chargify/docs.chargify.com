@@ -1,4 +1,8 @@
+p(note). If you need Shopify integration, we recommend the third-party "Chargify Accounts by eShop Admin" app which will allow your customers to manage their orders and subscriptions through their Shopify customer account. "https://apps.shopify.com/chargify-accounts-by-eshop-admin":https://apps.shopify.com/chargify-accounts-by-eshop-admin.
+
 h1. As of January 2016 the Chargify app for Shopify is no longer available.  Existing installations will continue to be supported but no new sites can be configured.
+
+h2. Documentation for Existing Installations Only
 
 The Chargify app allows you to subscribe your customers to the products they now buy as one-time purchases in your store. Rather than adding their purchases to the shopping cart, your customers will click “Signup” and then be directed to Chargify's customizable Public Signup Pages. Once your customers have subscribed to the product in Chargify, you can use all of our great features to manage your recurring revenue business.
 
@@ -207,8 +211,6 @@ When you create a Chargify account through the Shopify app, you are entitled to 
 If you choose to enable “Create a new order in my Shopify store upon Chargify subscription creation or renewal” in your Chargify app settings, a new customer will be created in Shopify (if one does not already exist) and orders will flow from Chargify to Shopify at signup and each subsequent renewal: "https://chargify.com/blog/shopify-orders/":https://chargify.com/blog/shopify-orders/
 
 If you choose not to enable this setting, no order information will flow into Shopify from Chargify and no customer records will be created.
-
-<i>Note: There is also a 3rd party app available that allows your customers to manage their orders & subscriptions through their Shopify customer account. "https://apps.shopify.com/chargify-accounts-by-eshop-admin":https://apps.shopify.com/chargify-accounts-by-eshop-admin. This app has not been tested by Chargify, therefore we cannot vouch for its reliability and are unable to provide support should any issues occur.</i>
 
 **Does Chargify work in conjunction with any fulfillment software?**
 Chargify currently does not support any integrations with fulfillment software directly, however, this may change in the future. Most Chargify merchants that ship physical products export their subscriptions to a CSV file and use the data to indicate when a product should be shipped.
