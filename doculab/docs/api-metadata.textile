@@ -21,7 +21,7 @@ Formats: JSON, XML
 Optional Parameters: @name@ - value must be an exact match of what you named your metafield previously
 Response: An array of Metadata
 
-Here's an example metadata list @response@:
+Here's an example metadata list @response@ in JSON:
 
 <pre>
 {
@@ -47,6 +47,30 @@ Here's an example metadata list @response@:
     }    
   ]
 }
+</pre>
+
+And an example in XML:
+
+<pre>
+<?xml version="1.0" encoding="UTF-8"?>
+<results>
+  <total-count type="integer">2</total-count>
+  <current-page type="integer">1</current-page>
+  <total-pages type="integer">1</total-pages>
+  <per-page type="integer">20</per-page>
+  <metadata type="array">
+    <metadatum>
+      <resource-id type="integer">11592482</resource-id>
+      <value>large</value>
+      <name>Size</name>
+    </metadatum>
+    <metadatum>
+      <resource-id type="integer">11592482</resource-id>
+      <value>blue</value>
+      <name>Color</name>
+    </metadatum>
+  </metadata>
+</results>
 </pre>
 
 h3. Read/Show
