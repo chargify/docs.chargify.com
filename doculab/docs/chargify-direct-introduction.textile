@@ -256,4 +256,6 @@ h4. HTTP Basic Authentication
 
 HTTP Basic Authentication ("on wikipedia":http://en.wikipedia.org/wiki/Basic_access_authentication) is available using your @api_id@ and @api_password@.  It works the same as described in the "article on API V1 authentication":api-authentication, only the credentials are different.
 
-Your Chargify Direct API credentials can be found under Settings -> Chargify Direct in the Admin UI.
+Your Chargify Direct API ID and Password are different for each of your Sites, and can be found under Settings -> Chargify Direct in the Admin UI:
+
+!/images/doculab/chargify-direct-credentials.png!
