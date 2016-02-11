@@ -18,9 +18,11 @@ Optional Parameters:
 
 * @since_id@ Returns usages with an id greater than or equal to the one specified
 * @max_id@ Returns usages with an id less than or equal to the one specified
-* @since_date@ Returns usages with a @created_at@ date greater than or equal to the one specified.
-* @until_date@ Returns usages with a @created_at@ date less than or equal to the one specified.
+* @since_date@ Returns usages with a @created_at@ date greater than or equal to midnight (12:00 AM) on the date specified.
+* @until_date@ Returns usages with a @created_at@ date less than or equal to midnight (12:00 AM) on the date specified.
 * @page@ and @per_page@ The page number and number of results used for pagination. By default results are paginated 20 per page.
+
+Note:  The @since_date@ and @until_date@ attributes each default to midnight on the date specified.  For example, in order to list usages for January 20th, you would need to append @?since_date=2016-01-20&until_date=2016-01-21@ to the URL.
 
 Response: A collection of usages
 
