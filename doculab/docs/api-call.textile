@@ -1,3 +1,7 @@
+h2. Authentication
+
+API V2 resources use different credentials than the V1 API.  If you receive a 401 Unauthorized response, please see the section on "API V2 Authentication":/chargify-direct-introduction#api-v2-auth in the "Chargify Direct Introduction":/chargify-direct-introduction .
+
 h2. Call Attributes
 
 All of the call attribute fields are returned from GET (read) operations, and all are read only.
@@ -34,11 +38,11 @@ h2. Methods
 
 h3. Read/Show (via Call ID)
 
-URL: @https://api.chargify.com/api/v2/calls/<call_id>@  
-Method: @GET@  
-Required Parameters: @call_id@  
+URL: @https://api.chargify.com/api/v2/calls/<call_id>@
+Method: @GET@
+Required Parameters: @call_id@
 
-Response: An single call  
+Response: An single call
 
 "JSON example":#api-call-json-read
 

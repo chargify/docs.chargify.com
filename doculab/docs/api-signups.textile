@@ -1,3 +1,7 @@
+h2. Authentication
+
+API V2 resources use different credentials than the V1 API.  If you receive a 401 Unauthorized response, please see the section on "API V2 Authentication":/chargify-direct-introduction#api-v2-auth in the "Chargify Direct Introduction":/chargify-direct-introduction .
+
 h2. URI/Method
 
 |_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |

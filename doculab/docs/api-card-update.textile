@@ -1,5 +1,9 @@
 Updating a Subscription’s Payment Profile with new information, or creating a new Payment Profile for a Subscription where none currently exists.
 
+h2. Authentication
+
+API V2 resources use different credentials than the V1 API.  If you receive a 401 Unauthorized response, please see the section on "API V2 Authentication":/chargify-direct-introduction#api-v2-auth in the "Chargify Direct Introduction":/chargify-direct-introduction .
+
 h2. Input Attributes
 
 In order for your request to be processed, you must set up Secure Parameters.  See "Chargify Direct Introduction - Secure Parameters":chargify-direct-introduction#secure-parameters for detailed information on how to authenticate requests to this endpoint.
