@@ -104,19 +104,19 @@ h3(#update). Update
 URL: @https://<subdomain>.chargify.com/payment_profiles/<payment_profile_id>.<format>@
 Method: @PUT@
 Required Parameters: XML or JSON data, as specified by the required attributes
-Response: The created payment profile (see output for "Read")
+Response: The updated payment profile (see output for "Read")
 
 **Notes on updating payment profiles via the API**
 
-* Merchants with Authorize.net as their payment gateway can update their customer's credit cards without passing in the full credit card number and CVV.
+* Merchants with Authorize.net or Stripe as their payment gateway can update their customer's credit cards without passing in the full credit card number and CVV.
 
-* If you are using Authorize.net, Chargify will ignore the credit card number and CVV when processing an update via the API, and attempt a partial update instead. If you wish to change the card number on a payment profile, you will need to create a new payment profile for the given customer.
+* If you are using Authorize.net or Stripe, Chargify will ignore the credit card number and CVV when processing an update via the API, and attempt a partial update instead. If you wish to change the card number on a payment profile, you will need to create a new payment profile for the given customer.
 
 * A payment profile cannot be updated with the attributes of another type of payment profile. For example, if the payment profile you are attempting to update is a credit card, you cannot pass in bank account attributes (like @bank_account_number@), and vice versa.
 
 * Updating a payment profile directly will not trigger an attempt to capture a past-due balance.  If this is the intent, "update the card details via the subscription":/api-subscriptions#card-change instead.
 
-* If you are using Authorize.net, you may elect to manually trigger a "retry":/api-subscriptions#retry for a past due subscription after a partial update.
+* If you are using Authorize.net or Stripe, you may elect to manually trigger a "retry":/api-subscriptions#retry for a past due subscription after a partial update.
 
 h3(#delete). Delete
 
