@@ -196,7 +196,7 @@ You can configure your Webhooks from the Settings tab for each Site.  You can ch
 
 h2. Webhook Testing
 
-On the Webhook configuration screen on the Settings tab, you can click "Send a test Webhook" to access the Webhook testing panel.  There, we will attempt to send a Webhook to your configured URL and show you what we sent and the response we received from you.
+The Webhook Testing panel (accessed from the site's Dashboard) will allow you to send test Webhook data to any of your configured endpoints, and will show you what we sent and the response we received from you.
 
 p(note). Testing Tip: Try using "UltraHook":http://ultrahook.com/ or "requestb.in":http://requestb.in/ to create Webhook test URL's. That way, you can inspect the Webhook contents and headers while you work out your own Webhook handler.
 
