@@ -56,7 +56,7 @@ h4. Expiration Date
 
 !/images/doculab/coupon-expiration-date.png!
 
-If you set an **Expiration Date**, the coupon can no longer be added to subscriptions after the end of that day in your time zone. Recurring discounts, however, will continue to apply even after the expiration date. 
+If you set an **Expiration Date**, the coupon can no longer be added to subscriptions after the end of that day in your time zone. Recurring discounts, however, will continue to apply even after the expiration date.
 
 Note that if you change the time zone for your site, coupons will continue to expire at midnight in the original time zone.
 
@@ -97,3 +97,14 @@ Customers can also apply coupons through the Public Signup Page.  *However, you 
 h3. Creating a Subscription with a Coupon through the API
 
 For API info see: "https://docs.chargify.com/api-coupons":https://docs.chargify.com/api-coupons
+
+
+h3. Product Changes and Upgrades/Downgrades
+
+A coupon can only be **added** to a subscription to Product in the same Product Family, however if a migration (upgrade/downgrade) or a product change is done, the coupon may be kept on the subscription, even if the new product is in a different family.
+
+h4(#faq). FAQ
+
+**Q: Can I restrict a coupon to a certain product?**
+
+A: Coupons can be added to any product in the same product family, so you would need to put the product and coupon in a separate family in order to restrict this.  (Note that the coupon may still be applied to the subscription if the product is later *changed* to one in a different family.)
