@@ -12,20 +12,26 @@ h2. URI/Method
 | Subscription Coupon<br/>@/subscriptions/<id>/add_coupon@ | - | "Add Coupon to existing subscription":#api-subscription-coupon-add | - | - |
 | Subscription Coupon<br/>@/subscriptions/<id>/remove_coupon@ | - | - | - | "Remove Coupon from existing subscription":#api-subscription-coupon-remove |
 
-h2. Coupon Input Attributes
+h2. Coupon Attributes
 
 When creating a coupon, you must specify a product family using the @product_family_id@. *If no @product_family_id@ is passed, the first product family available is used.*
 
 * @name@ The internal coupon name. This information is never displayed to customers.
 * @code@ The coupon code. This is used by you or your customers to apply the coupon to a subscription.
 * @description@ The coupon description. This will be displayed to the customers after the coupon validation.
-* @percentage@ The discount percentage. Should be an interger between 1 and 100. You should set the percentage or the amount, but not both.
+* @percentage@ The discount percentage. Should be an integer between 1 and 100. You should set the percentage or the amount, but not both.
 * @amount@ Flat discount amount as a string with dollars and (optionally) cents, i.e. "10.00" for $10.00. You should set the percentage or the amount, but not both.
 * @allow_negative_balance@  Boolean. If true, credits will carry forward to next billing. Otherwise discount may not exceed total of the charges.
 * @recurring@ Boolean. If true, the discount will be applied at signup and every renewal (for the number of renewals given by @duration_period_count@). Otherwise, discount will be applied only at signup.
 * @duration_period_count@ Integer. Number of renewals the coupon is good for. Recurring should be set to true.  Setting @recurring@ to true and leaving this blank indicates that the coupon applies indefinitely.
-* @coupon_end_date@ Coupon ending date.  If set, the coupon will expire at the end of the day on this date.
-* @product_family_id@. The ID of the product family to which the coupon belongs.  The coupon can be applied *only* to products in this product family.
+* @duration_interval_unit@ and @duration_interval@ Description of the number of days/months the coupon should be applied. (See Recurring Options on "Coupons":/coupons for more details.)
+* @end_date@ Coupon ending date.  If set, the coupon will expire at the end of the day in your site's time zone on this date. (See Expiration Date on "Coupons":/coupons for more details.)
+* @conversion_limit@ Number of times this coupon (or any of its codes) may be added to a subscription
+* @product_family_id@ The ID of the product family to which the coupon belongs.  The coupon can be added *only* to products in this product family.
+* @created_at@ (Read Only) The creation date for this coupon
+* @start_date@ (Read Only) Timestamp indicating when this coupon began to be valid. Defaults to @created_at@.
+* @updated_at@ (Read Only) The date of last update for this coupon
+* @archived_at@ Timestamp indicating when this coupon was archived
 
 h2(#api-coupon-create). Creating a Coupon via the API
 
