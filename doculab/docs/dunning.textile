@@ -33,6 +33,8 @@ Finally, you may *optionally specify an email* to be sent upon the execution of 
 
 h3(#dunning-emails). Dunning Emails
 
+p(note). Warning! Editing the settings while any subscriptions are in dunning may result in duplicate email notifications for those subscriptions.
+
 During the retry period (that you define in the "Retry and Final Action":#dunning-retries section), you can choose to send periodic "reminder" emails to the customer of the past due subscription.
 
 In the section marked "Dunning", you can configure your "From Address" for the Dunning Emails, add a new Dunning Email, or edit an existing Dunning Email:
