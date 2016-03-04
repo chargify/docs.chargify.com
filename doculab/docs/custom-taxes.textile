@@ -32,7 +32,7 @@ h2. Marking Products and Components as Taxable
 
 Unless otherwise specified, all products and components are NOT eligible for taxes. Once a tax is defined, you will need to update your existing products and components so that they can be taxed. To do this, edit the product or component and check the 'This product is subject to taxes' checkbox.
 
-You will also want to ensure that the "Require Shipping Address at signup?" checkbox is also checked for each product.
+You will also want to ensure that you collect a Billing or Shipping address, depending on how you have defined the taxes to be calculated. To do this, edit the product and check "Require Billing Address" and/or "Require Shipping Address".
 
 h2. Coupons and Taxes
 
