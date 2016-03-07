@@ -19,7 +19,7 @@ The invoices CSV export consists of the line items for each invoice, with the fo
 * @customer_id@ The Customer's unique ID within Chargify
 * @customer_name@ The Customer's name
 * @product_id@ The Product's unique ID within Chargify
-* @product_name@ The Product's bname
+* @product_name@ The Product's name
 * @kind@ The specific "subtype" for the Transaction type (see "API: Invoices":/api-invoices for a list of available subtypes)
 * @invoice_status@ The current status of the Invoice
 * @invoice_settled_at@ The date the Invoice was settled at, if applicable
