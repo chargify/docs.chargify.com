@@ -34,7 +34,7 @@ If you prefer to use [rbenv](https://github.com/sstephenson/rbenv), the instruct
 
     git clone git://github.com/<your githubs>/docs.chargify.com.git
     cd docs.chargify.com
-    rbenv install 2.0.0-p481
+    rbenv install 2.1.6
     gem install bundler
     bundle install
     rbenv rehash
