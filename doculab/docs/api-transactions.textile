@@ -107,16 +107,45 @@ Optional Parameters (via query string):
 * @kinds[]@ An array of transaction types (see above). Multiple values can be passed in the url, for example: @http://example.com?kinds[]=charge&kinds[]=payment&kinds[]=credit@
 * @since_id@ Returns transactions with an id greater than or equal to the one specified
 * @max_id@ Returns transactions with an id less than or equal to the one specified
-* @since_date (format YYYY-MM-DD)@ Returns transactions with a @created_at@ timestamp at or after midnight (12:00:00 AM) in your site's time zone on the date specified
-* @until_date (format YYYY-MM-DD)@ Returns transactions with a @created_at@ timestamp up to and including 11:59:59PM in your site's time zone on the date specified
-* @page@ and @per_page@ The page number and number of results used for pagination. By default results are paginated 20 per page.
+* @since_date@ (format YYYY-MM-DD) Returns transactions with a @created_at@ timestamp at or after midnight (12:00:00 AM) in your site's time zone on the date specified
+* @until_date@ (format YYYY-MM-DD) Returns transactions with a @created_at@ timestamp up to and including 11:59:59PM in your site's time zone on the date specified
+* @page@ and @per_page@ The page number and number of results used for pagination. By default results are paginated 20 per page.  Please see the "pagination notes":#index-pagination below.
 * @direction@ can be either @asc@ for ascending or @desc@ for descending order. (defaults to @desc@) The sort order is based on the @created_at@ timestamp then @id@ for transactions within the same second.
-* @order_by@ Transactions can be listed strictly in @id@ order by supplying @since_id@, @max_id@ and @order_by@ with @order_by@ set to @id@.  Note that all other filters are ignored with this sort order.
+* @order_by@ Either @id@ or @created_at@. Using an ID filter (@since_id@/@max_id@) will force @id@ order, while using a Date filter (@since_date@/@until_date@) will force @created_at@ order.  Otherwise, your requested value will be used.
 
 Response: An array of Transactions
 
 "XML example":#api-usage-xml-site-list
 "JSON example":#api-usage-json-site-list
+
+h4. Notes about ID/Date Filters
+
+* Using @since_id@ and/or @max_id@ is known as creating an "ID Filter".
+* Using @since_date@ and/or @until_date@ is known as creating a "Date Filter".
+* You may ONLY make use of either an ID Filter or a Date Filter in any one request.
+* If you specify both an ID Filter and a Date Filter, the Date Filter *will be ignored*.
+
+h4(#index-pagination). Pagination Notes
+
+Stepping through pages of results by incrementing the @page@ number is typically
+less performant than using an ID Filter with @since_id@, especially at high
+values of @page@.
+
+For example, instead of these successive requests to traverse pagination...
+
+<pre><code>GET /transactions.json?page=1&per_page=200
+GET /transactions.json?page=2&per_page=200
+</code></pre>
+
+... it is usually faster to use @since_id@ to continue fetching from the last ID
+you observed:
+
+<pre><code>GET /transactions.json?since_id=0&per_page=200&direction=asc
+GET /transactions.json?since_id=1567&per_page=200&direction=asc
+</code></pre>
+
+In the above example, @1567@ is derived by adding 1 to the "last" ID you
+received from the first request.
 
 h3. Show transaction
 
