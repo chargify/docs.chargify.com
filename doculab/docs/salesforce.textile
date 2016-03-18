@@ -38,3 +38,7 @@ h2. FAQ
 h3. Is old activity synced to Salesforce?
 
 No, only new subscriptions that are created _after_ you enable the integration will be sent to Salesforce.
+
+h3. How many Chargify Sites can I connect to Salesforce?
+
+This Salesforce knowledgebase article on "Managing OAuth Access for Your Connected Apps":https://help.salesforce.com/apex/HTViewHelpDoc?id=remoteaccess_request_manage.htm states that "The default limit is five access tokens for each application."
