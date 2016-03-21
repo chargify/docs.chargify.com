@@ -21,7 +21,7 @@ This component type would be used when a Subscription is provisioned with a cert
 Each "widget" that you've reported to us as being in use is assumed to remain in use by that Customer until some future change.  In other words, the quantity allocated does NOT reset to 0 at the end of the billing period.  In contrast, Metered-usage component usages DO reset to 0 at the end of the period.
 
 
-h3. Metered-usage
+h3(#metered-components). Metered-usage
 
 For Metered Components, you tell us every time one of your Customers uses some unit or units of your "widgets". At the end of the billing period, Chargify will bill your customer for the total number of widgets used, and then we will reset the widget count to zero and the whole process starts over for the new billing period.
 
