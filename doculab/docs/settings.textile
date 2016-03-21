@@ -8,7 +8,7 @@ Your Site Settings control the behavior of the following:
 * Fields
 * "Webhooks":/webhooks
 * Retries and "Dunning":/dunning
-* Public Page Default Settings
+* "Public Page Default Settings":/public-page-default-settings
 * "Self Service Page URLs":/public-pages-intro#self-service-page-urls
 * Billing Portal
 * Emails
