@@ -80,6 +80,10 @@ Next, enter the additional codes into the text box, with one coupon per line.
 
 !/images/doculab/coupon-more-codes-2.png!
 
+h3. Deleting Codes
+
+You may delete a code as soon as it is created. This will immediately remove it from the system. Newer subscriptions will not be able to apply this code. Subscriptions created before the code was deleted will still retain the discount applied. 
+
 h3. Creating a Subscription with a Coupon in the Admin Interface
 
 To apply a coupon to a subscription, use the Coupon Code field on the new Subscription page.
