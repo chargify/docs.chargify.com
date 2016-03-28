@@ -7,11 +7,11 @@ This documentation covers both *component definitions* and *component line-items
 h2. URI/Method
 
 |_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
-| Component Definitions<br/>@/product_families/<x>/components@ | List component definitions | - | - | - |
-| Component Definition<br/>@/product_families/<x>/components/<y>@ | Read a component definition | - | - | - |
-| Component Definition<br/>@/product_families/<x>/[plural_kind]@ | - | Create a Component definition | - | - |
-| Components Line-Items<br/>@/subscriptions/<x>/components@ | List component line-items belonging to a Subscription | - | - | - |
-| Component Line-Item<br/>@/subscriptions/<x>/components/<y>@ | Read a component line-item belonging to a Subscription | - | - | - |
+| Component Definitions<br/>@/product_families/<product_family_id>/components@ | List component definitions | - | - | - |
+| Component Definition<br/>@/product_families/<product_family_id>/components/<y>@ | Read a component definition | - | - | - |
+| Component Definition<br/>@/product_families/<product_family_id>/[plural_kind]@ | - | Create a Component definition | - | - |
+| Components Line-Items<br/>@/subscriptions/<product_family_id>/components@ | List component line-items belonging to a Subscription | - | - | - |
+| Component Line-Item<br/>@/subscriptions/<product_family_id>/components/<y>@ | Read a component line-item belonging to a Subscription | - | - | - |
 
 
 h2. Component Definition Input Attributes
