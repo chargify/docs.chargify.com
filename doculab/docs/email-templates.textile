@@ -19,6 +19,9 @@ h4(#legacy). Legacy fields
 * @{{balance}}@ the amount, if any, they still owe in dollars. e.g. $0.00 or $2.31
 * @{{merchant_name}}@ your merchant name. e.g. Acme, Inc.
 * @{{masked_card_number}}@ The masked credit card number. eg XXXX-XXXX-XXXX-1
+* @{{return_url}}@
+* @{{product.return_url}}@
+* @{{product.return_params}}@
 
 h4(#subscription). Subscription
 
