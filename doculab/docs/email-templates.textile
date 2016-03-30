@@ -66,9 +66,8 @@ h4(#product). Product
 * @{{product.expires?}}@ True/false indicating whether or not the product expires
 * @{{product.offers_trial?}}@ True/false indicating whether or not the product offers a trial price
 * @{{product.trial_price_in_cents}}@ The product trial price, in integer cents
-* @{{product.return_url}}@ The URL a buyer is returned to after successful purchase. See the section on "Return URLs and Parameters":/product-options#return-url-and-parameters
-* @{{product.update_return_url}}@ The URL a buyer is returned to after successful purchase. See the section on "Return URLs and Parameters":/product-options#return-url-and-parameters
-* @{{product.return_params}}@ The parameters string we will use in constructing your return URL. See the section on "Return URLs and Parameters":/product-options#return-url-and-parameters
+* @{{product.update_return_url}}@ The URL a buyer is returned to after successful account update. See the section on "Product Return URLs and Parameters":/product-options#return-url-and-parameters
+* @{{product.update_return_params}}@ The parameters string we will use in constructing your return URL. See the section on "Product Return URLs and Parameters":/product-options#return-url-and-parameters
 * @{{product.request_credit_card?}}@ True/false indicating whether or not the product requests a credit card at signup
 * @{{product.require_credit_card?}}@ True/false indicating whether or not the product requires a credit card at signup
 * @{{product.archived?}}@ True/false indicating whether or not the product is currently archived
