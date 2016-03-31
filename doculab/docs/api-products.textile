@@ -123,7 +123,7 @@ Response: The created product, if successful. Errors otherwise.
 
 h3(#update). Update
 
-URL: @https://<subdomain>.chargify.com/product_families/<product_family_id>/products.<format>@
+URL: @https://<subdomain>.chargify.com/products/<productid>.<format>@
 Method: @PUT@
 Required Parameters: XML or JSON data
 Response: The updated product, if successful. Errors otherwise.
