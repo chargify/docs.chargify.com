@@ -37,7 +37,7 @@ h2. FAQ
 
 h3. Is old activity synced to Salesforce?
 
-No, only new subscriptions that are created _after_ you enable the integration will be sent to Salesforce.
+No, only new events that happen _after_ you enable the integration will be sent to Salesforce. As subscriptions are updated and renewed, they should eventually all sync to Salesforce.
 
 h3. How many Chargify Sites can I connect to Salesforce?
 
