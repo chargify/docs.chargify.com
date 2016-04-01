@@ -6,7 +6,7 @@ Working with this resource, you can:
 * "Create an Allocation":#create-an-allocation :  Set a new allocated quantity for the line-item (as an alternative to setting the allocated quantity directly on the Component Line-Item resource)
 * "Create multiple Allocations":#create-multiple-allocations : Change the allocated quantity of multiple components at once
 
-h3. Proration Schemes
+h3(#proration-schemes). Proration Schemes
 
 Changing the allocated quantity of a component mid-period can result in either a prorated charge or adjustment being applied to the subscription. When creating an allocation via the API, you can pass the *proration_upgrade_scheme* and the *proration_downgrade_scheme* to be applied.
 
