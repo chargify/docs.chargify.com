@@ -1,4 +1,4 @@
-h3. Adding Credits to Invioces
+h3. Adding Credits to Invoices
 
 Use this endpoint to record credits on an existing invoice.
 
