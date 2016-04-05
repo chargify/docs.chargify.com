@@ -5,7 +5,7 @@ h2. URI/Method
 
 |_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
 | Coupons<br/>@/coupons@ | - | "Create new coupon":#api-coupon-create | - | - |
-| Coupon<br/>@/coupon/<id>@ | "Retrieve coupon":#api-coupon-show | - | "Update coupon":#api-coupon-update | "Archive subscription":#api-coupon-archive |
+| Coupons<br/>@/coupons/<id>@ | "Retrieve coupon":#api-coupon-show | - | "Update coupon":#api-coupon-update | "Archive subscription":#api-coupon-archive |
 | Coupon (by code)<br/>@/coupons/find@ | "Find by coupon code":#api-coupon-find | - | - | - |
 | Coupon Usage<br/>@/coupons/<id>/usage@ | "Retrieve Usage":#api-coupon-usage | - | - | - |
 | Subscription<br/>@/subscriptions@ | - | "Create Subscription w/ Coupon":#api-subscription-create-with-coupon | - | - |
