@@ -10,6 +10,12 @@ This JavaScript code will limit the country dropdown to only have US selectable.
 
 <script src="https://gist.github.com/rbabcock/fb53647174652158afce.js?file=Limit_to_US.js" type="text/javascript"></script>
 
+h4(#remove-pr). Remove Puerto Rico from state list
+
+This JavaScript code will remove Puerto Rico from the state dropdown so that it will not be selected.
+
+<script src="https://gist.github.com/woodchopgirl/fd7ade96f9337926698d8dcaa540896f.js"></script>
+
 h4(#require-custom-fields). Require Custom Fields on Public Pages
 
 This code will allow a Text Field type Custom Field to be required on the Public Pages. You will need to know the ID of the Custom Field. To find the ID, go to the Setup tab, click Custom Fields, then click Edit to the right of the field you are interested in.  The ID number will be in the URL.  Replace XXX with this ID in the code below.
