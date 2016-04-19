@@ -226,9 +226,7 @@ The following _additions_ to the subscription input attributes make imports poss
 
 h4(#braintree-blue-imports). Braintree Blue (Braintree v2) Imports
 
-Braintree Blue is Braintree's newer (version 2) API.  For this gateway, please provide the @vault_token@ parameter with the value from Braintree's "Customer ID" rather than the "Payment Profile Token".  At this time we do not use @current_vault_token@ with the Braintree Blue gateway.
-
-An implication of this is that we only support a single payment profile per Braintree Customer.  We may change this in the future to use both the Customer ID (in @customer_vault_token@) **and** the Payment Method Token (in @vault_token@).  When we do this, the change will be transparent to users and merchants of this gateway.  _However_, it will change how imports work.  So if you have previously done an import in the past and want to re-use the code, please check this section or watch our changelogs to see if this has changed.
+Braintree Blue is Braintree's newer (version 2) API.  For this gateway, please provide the @vault_token@ parameter with the value from Braintree's "Customer ID" rather than the "Payment Profile Token".  At this time we do not use @current_vault_token@ with the Braintree Blue gateway, and we only support a single payment profile per Braintree Customer.
 
 h4(#webhooks-during-import). Webhooks During Import
 
