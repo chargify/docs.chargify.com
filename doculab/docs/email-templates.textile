@@ -4,7 +4,7 @@ Chargify provides default templates for each of these emails, but you are free t
 
 The syntax used in the email templates is called "Liquid". The "Liquid for Designers":https://github.com/Shopify/liquid/wiki/Liquid-for-Designers wiki page provides a good overview and many examples, including "If / Else":https://github.com/Shopify/liquid/wiki/Liquid-for-Designers#if--else for conditional logic.
 
-The following variables are available for signup, dunning, receipt, expiration, end of trial, and upcoming renewal emails:
+The following variables are available for signup, dunning, receipt, expiration, end of trial, upcoming renewal, and cancellation emails:
 
 h4(#legacy). Legacy fields
 
