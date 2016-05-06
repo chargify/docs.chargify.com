@@ -7,9 +7,9 @@ h2(#availability). Availability
 The Xero integration is available to merchants:
 
 * On the free Developer plan (for testing), OR
-* On the Small Business Plus plan or higher
+* On the Plus plan or higher
 
-If you would like to test out the integration during the beta period, but you do not meet these criteria, you may "open a support ticket":https://chargify.zendesk.com/hc/en-us/requests/new and request a one month credit for a free upgrade to the Small Business Plus plan.
+If you would like to test out the integration during the beta period, but you do not meet these criteria, you may "open a support ticket":https://chargify.zendesk.com/hc/en-us/requests/new and request a one month credit for a free upgrade to the Plus plan.
 
 p(note). Due to limits that Xero has placed on their API, the integration is limited to syncing about 500 invoices per day. If you have more than 500 subscriptions renewing on a single day, please note that it may take several days for the data to be fully synced to Xero.
 
