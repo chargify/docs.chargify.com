@@ -22,7 +22,7 @@ h2(#config). Configuration
 
 *Display Field Data on Statements:*  Yes or No.  If Yes, the field will be displayed on your customers' Statements
 
-*Display Field Data on Invoices:* Yes or No.  If Yes, the field will be displayed on your customers' Invoices.  (Invoice billing is available starting on the Small Business Plus plan.)
+*Display Field Data on Invoices:* Yes or No.  If Yes, the field will be displayed on your customers' Invoices.  (Invoice billing is available starting on the Plus plan.)
 
 h2(#allowed-values). Allowed Values
 
