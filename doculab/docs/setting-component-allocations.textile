@@ -72,13 +72,13 @@ The action that Chargify takes when a prorated allocation occurs is called the '
 
 The available 'upgrade' schemes are:
 
-* __prorate-delay-capture__: A charge is added for the prorated amount due, but the card is not charged until the subscription's next renewal
+* **Prorate + Accrue** __(prorate-delay-capture)__: A charge is added for the prorated amount due, but the card is not charged until the subscription's next renewal
 
-* __prorate-attempt-capture__: A charge is added and  we attempt to charge the credit card on file.  If it fails, the charge will be accrued until the next renewal.
+* **Prorate + Process** __(prorate-attempt-capture)__: A charge is added and  we attempt to charge the credit card on file.  If it fails, the charge will be accrued until the next renewal.
 
-* __full-price-attempt-capture__: A charge is added for the full price of the component change, and we attempt to charge the credit card on file.  If it fails, the charge will be accrued until the next renewal.
+* **Full Cost + Process** __(full-price-attempt-capture)__: A charge is added for the full price of the component change, and we attempt to charge the credit card on file.  If it fails, the charge will be accrued until the next renewal.
 
-* __full-price-delay-capture__: A charge is added for the full price of the component change, but the card is not charged until the subscription's next renewal.
+* **Full Cost + Accrue** __(full-price-delay-capture)__: A charge is added for the full price of the component change, but the card is not charged until the subscription's next renewal.
 
 * __no-prorate__: No charge is added.
 
