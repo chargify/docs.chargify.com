@@ -5,9 +5,9 @@ h2. Availability
 The Salesforce integration is available to merchants:
 
 * On the free Developer plan (for testing), OR
-* On the Small Business Plus plan or higher
+* On the Plus plan or higher
 
-If you would like to test out the integration, but you do not meet these criteria, you may "open a support ticket":https://chargify.zendesk.com/hc/en-us/requests/new and request a one month credit for a free upgrade to the Small Business Plus plan.
+If you would like to test out the integration, but you do not meet these criteria, you may "open a support ticket":https://chargify.zendesk.com/hc/en-us/requests/new and request a one month credit for a free upgrade to the Plus plan.
 
 For us to connect to your Salesforce account, it must allow access to the Salesforce API. This comes standard on Salesforce Enterprise plans. API access may also be added to other Salesforce plans for an extra fee.  Alternately, you may use a "Salesforce Developer account":https://developer.salesforce.com/signup (not a free trial) for testing.
 
