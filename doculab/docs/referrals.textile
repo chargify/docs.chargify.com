@@ -7,7 +7,7 @@ h2(#availability). Availability
 The Referrals feature is available to merchants:
 
 * On the free Developer plan (for testing), OR
-* On the Small Business plan or higher
+* On the Basic plan or higher
 
 h2(#configuration). Configuration
 
