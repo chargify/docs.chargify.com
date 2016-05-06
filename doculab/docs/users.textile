@@ -12,9 +12,9 @@ There are 3 levels of access for user accounts:
 * *Admin*: Any user may be made an Admin by the owner or by the other Admins.
 * *Team Member*: A user on the account without Admin privileges.
 
-Team Member access controls are currently available on our "Growing Business":https://www.chargify.com/sign-up/ and higher plans.  Read more about "Access Control and User Permissions":https://www.chargify.com/blog/access-controls/ on our blog. 
+Team Member access controls are currently available on our "Pro":https://www.chargify.com/sign-up/ and higher plans.  Read more about "Access Control and User Permissions":https://www.chargify.com/blog/access-controls/ on our blog. 
 
-h3. Team Member Access for Small Business & Small Business Plus Plans
+h3. Team Member Access for Basic & Plus Plans
 
 If you are subscribed to one of the plans mentioned above, you will not be able to control the sites your users can access. They will have access to all your sites. The outline below that details specifically what access a Team Member is granted. Team Members can perform the same tasks as an Admin can except as noted below:
 
