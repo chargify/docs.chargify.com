@@ -69,19 +69,20 @@ h2(#events). Events
 The following events are monitored within Chargify and can generate Webhooks:
 
 |_. Event Key |_. Trigger |_. Payload |
-| @signup_success@  | Any successful signup (Subscription created) via the API, admin UI, or Public Pages | @site@, @subscription@<sup>1,9</sup> |
-| @signup_failure@  | Any failed signup (Subscription failed to begin) via the API, admin UI, or Public Pages<sup>2</sup> | @site@, @subscription@<sup>1</sup> |
-| @renewal_success@ | A successful periodic renewal<sup>3</sup> | @site@, @subscription@<sup>1</sup> |
-| @renewal_failure@ | A failed periodic renewal, i.e. the credit card is declined<sup>3</sup> | @site@, @subscription@<sup>1</sup> |
-| @payment_success@ | Any successful payment<sup>4</sup> "(example payload)":#payment-success-payload | @site@, @subscription@, @transaction@ |
-| @payment_failure@ | Any failed payment attempt <sup>4</sup> "(example payload)":#payment-failure-payload |  @site@, @subscription@, @transaction@ |
-| @billing_date_change@ | Any change to the billing date that is initiated explicitly by altering the billing date via the admin UI or the API.  This will not be triggered upon a normal renewal and period advancement, or a migration. | @site@, @subscription@<sup>1</sup> ( with @previous_billing_date@)  |
-| @subscription_state_change@ | Any change to the Subscription state.  This is the "workhorse" of the events - watching this event can tell you if a Subscription ever moves to a "bad" state, i.e. @past_due@ | @site@, @subscription@<sup>1,5</sup> |
-| @subscription_product_change@ | A successful change from an old product to a new product for a Subscription. | @site@, @previous_product@, @subscription<sup>1</sup> |
-| @subscription_card_update@ | Any change to the active Credit Card type payment profile.<sup>7,8</sup> | @site@, @subscription@, @product@, @previous_payment_profile@, @updated_payment_profile@ |
-| @expiring_card@ | A periodic event sent by Chargify | @site@, @subscription@<sup>1,6</sup> |
-| @customer_update@ | Any change to the following customer fields: @first_name@, @last_name@, @organization@, @email@, @reference@, @address@, @address 2@, @city@, @state@, @zip@, @country@, @phone@. | @site@, @customer@ |
-| @component_allocation_change@ | Any change to a subscription's quantity-based component allocation or enabled status of an on/off component that is made _after_ signup.<br/><br/>This webhook does not fire if allocations are set as a part of the subscription creation (i.e. signup) - it only fires upon subsequent changes.<br/><br/>@previous_allocation@ and @new_allocation@ give the allocation values before and after the change.  These will be either @0@ or @1@ for On/Off Components to represent @off@ and @on@, respectively.<br/><br/>@timestamp@ provides the date and time the allocation was recorded and is listed in "ISO8601":http://en.wikipedia.org/wiki/ISO_8601 format in the UTC timezone. Note: this timestamp format differs slightly from the format of existing timestamps in other event types and represents our new direction for webhook timestamps.| <pre><code>site[id]
+| @signup_success@  | Any successful signup (Subscription created) via the API, admin UI, or Public Pages | @event_id@, @site@, @subscription@<sup>1,9</sup> |
+| @signup_failure@  | Any failed signup (Subscription failed to begin) via the API, admin UI, or Public Pages<sup>2</sup> | @event_id@,  @site@, @subscription@<sup>1</sup> |
+| @renewal_success@ | A successful periodic renewal<sup>3</sup> | @event_id@, @site@, @subscription@<sup>1</sup> |
+| @renewal_failure@ | A failed periodic renewal, i.e. the credit card is declined<sup>3</sup> | @event_id@, @site@, @subscription@<sup>1</sup> |
+| @payment_success@ | Any successful payment<sup>4</sup> "(example payload)":#payment-success-payload | @event_id@, @site@, @subscription@, @transaction@ |
+| @payment_failure@ | Any failed payment attempt <sup>4</sup> "(example payload)":#payment-failure-payload | @event_id@, @site@, @subscription@, @transaction@ |
+| @billing_date_change@ | Any change to the billing date that is initiated explicitly by altering the billing date via the admin UI or the API.  This will not be triggered upon a normal renewal and period advancement, or a migration. | @event_id@, @site@, @subscription@<sup>1</sup> ( with @previous_billing_date@)  |
+| @subscription_state_change@ | Any change to the Subscription state.  This is the "workhorse" of the events - watching this event can tell you if a Subscription ever moves to a "bad" state, i.e. @past_due@ | @event_id@, @site@, @subscription@<sup>1,5</sup> |
+| @subscription_product_change@ | A successful change from an old product to a new product for a Subscription. | @event_id@, @site@, @previous_product@, @subscription<sup>1</sup> |
+| @subscription_card_update@ | Any change to the active Credit Card type payment profile.<sup>7,8</sup> | @event_id@, @site@, @subscription@, @product@, @previous_payment_profile@, @updated_payment_profile@ |
+| @expiring_card@ | A periodic event sent by Chargify | @event_id@, @site@, @subscription@<sup>1,6</sup> |
+| @customer_update@ | Any change to the following customer fields: @first_name@, @last_name@, @organization@, @email@, @reference@, @address@, @address 2@, @city@, @state@, @zip@, @country@, @phone@. | @event_id@, @site@, @customer@ |
+| @component_allocation_change@ | Any change to a subscription's quantity-based component allocation or enabled status of an on/off component that is made _after_ signup.<br/><br/>This webhook does not fire if allocations are set as a part of the subscription creation (i.e. signup) - it only fires upon subsequent changes.<br/><br/>@previous_allocation@ and @new_allocation@ give the allocation values before and after the change.  These will be either @0@ or @1@ for On/Off Components to represent @off@ and @on@, respectively.<br/><br/>@timestamp@ provides the date and time the allocation was recorded and is listed in "ISO8601":http://en.wikipedia.org/wiki/ISO_8601 format in the UTC timezone. Note: this timestamp format differs slightly from the format of existing timestamps in other event types and represents our new direction for webhook timestamps.| <pre><code>event_id
+site[id]
 site[subdomain]
 component[id]
 component[name]
@@ -95,7 +96,8 @@ previous_allocation
 new_allocation
 memo
 timestamp</code></pre> |
-| @metered_usage@ | Any reported usage for a subscription's metered components.<br/><br/>This webhook will not fire when the unit balance is reset to 0 at the time of renewal.<br/><br/>@timestamp@ provides the date and time the usage was recorded and is listed in "ISO8601":http://en.wikipedia.org/wiki/ISO_8601 format in the UTC timezone. Note: this timestamp format differs slightly from the format of existing timestamps in other event types and represents our new direction for webhook timestamps.| <pre><code>site[id]
+| @metered_usage@ | Any reported usage for a subscription's metered components.<br/><br/>This webhook will not fire when the unit balance is reset to 0 at the time of renewal.<br/><br/>@timestamp@ provides the date and time the usage was recorded and is listed in "ISO8601":http://en.wikipedia.org/wiki/ISO_8601 format in the UTC timezone. Note: this timestamp format differs slightly from the format of existing timestamps in other event types and represents our new direction for webhook timestamps.| <pre><code>event_id
+site[id]
 site[subdomain]
 component[id]
 component[name]
@@ -110,13 +112,14 @@ new_unit_balance
 usage_quantity
 memo
 timestamp</code></pre> |
-| @upgrade_downgrade_success@  | Any successful upgrade/downgrade  | @site@, @subscription@<sup>1</sup>, @previous_product@ |
-| @upgrade_downgrade_failure@  | Any failed upgrade/downgrade  | @site@, @subscription@, @target_product@ |
+| @upgrade_downgrade_success@  | Any successful upgrade/downgrade  | @event_id@, @site@, @subscription@<sup>1</sup>, @previous_product@ |
+| @upgrade_downgrade_failure@  | Any failed upgrade/downgrade  | @event_id@, @site@, @subscription@, @target_product@ |
 | @refund_success@ | Any successful refund | "example payload":#refund-success-payload |
 | @refund_failure@ | Any failed refund | "example payload":#refund-failure-payload |
 | @upcoming_renewal_notice@ | A subscription set to renew within 3 days ("example payload":#upcoming-renewal-notice-payload)  | <pre><code>customer
 email_sent
 estimated_renewal_amount_in_cents
+event_id
 message
 payment_profile
 product
@@ -125,6 +128,7 @@ subscription</code></pre> |
 | @end_of_trial_notice@ | A trial set to end within 3 days ("example payload":#end-of-trial-notice-payload) | <pre><code>customer
 email_sent
 estimated_renewal_amount_in_cents
+event_id
 message
 payment_profile
 product
@@ -254,6 +258,7 @@ h3(#signup-success-payload). signup_sucess Payload
       "event" => "signup_success",
          "id" => "5",
     "payload" => {
+        "event_id" => "99",
         "subscription" => {
                  "cancellation_message" => "",
                              "customer" => {
@@ -362,6 +367,7 @@ h3(#signup-failure-payload). signup_failure Payload
       "event" => "signup_failure",
          "id" => "6",
     "payload" => {
+        "event_id" => "99",
         "subscription" => {
                  "cancellation_message" => "",
                              "customer" => {
@@ -470,6 +476,7 @@ h3(#renewal-success-payload). renewal_success Payload
       "event" => "renewal_success",
          "id" => "7",
     "payload" => {
+        "event_id" => "99",
         "subscription" => {
                  "cancellation_message" => "",
                              "customer" => {
@@ -578,6 +585,7 @@ h3(#renewal-failure-payload). renewal_failure Payload
       "event" => "renewal_failure",
          "id" => "10",
     "payload" => {
+        "event_id" => "99",
         "subscription" => {
                  "cancellation_message" => "",
                              "customer" => {
@@ -687,6 +695,7 @@ h3(#payment-success-payload). payment_success Payload
       "event" => "payment_success",
          "id" => "4",
     "payload" => {
+        "event_id" => "99",
         "subscription" => {
                  "cancellation_message" => "",
                              "customer" => {
@@ -810,6 +819,7 @@ h3(#payment-failure-payload). payment_failure Payload
       "event" => "payment_failure",
          "id" => "11",
     "payload" => {
+        "event_id" => "99",
         "subscription" => {
                  "cancellation_message" => "",
                              "customer" => {
@@ -933,6 +943,7 @@ h3(#billing-date-change-payload). billing_date_change Payload
       "event" => "billing_date_change",
          "id" => "16",
     "payload" => {
+        "event_id" => "99",
         "subscription" => {
                  "cancellation_message" => "",
                              "customer" => {
@@ -1041,6 +1052,7 @@ h3(#subscription-state-change-payload). subscription_state_change Payload
       "event" => "subscription_state_change",
          "id" => "9",
     "payload" => {
+        "event_id" => "99",
         "subscription" => {
                  "cancellation_message" => "",
                              "customer" => {
@@ -1149,6 +1161,7 @@ h3(#subscription-product-change-payload). subscription_product_change Payload
       "event" => "subscription_product_change",
          "id" => "17",
     "payload" => {
+            "event_id" => "99",
             "subscription" => {
                  "cancellation_message" => "",
                              "customer" => {
@@ -1289,6 +1302,7 @@ h3(#subscription-card-update-payload). subscription_card_update Payload
     "id" => "23958618",
     "event" => "subscription_card_update",
     "payload" => {
+        "event_id" => "99",
         "site"=> {
             "id"=>24649,
             "subdomain" => "acme-test"
@@ -1359,6 +1373,7 @@ h3(#expiring-card-payload). expiring_card Payload
       "event" => "expiring_card",
          "id" => "19",
     "payload" => {
+        "event_id" => "99",
         "subscription" => {
                      "trial_started_at" => "",
                  "cancellation_message" => "",
@@ -1467,7 +1482,8 @@ h3(#customer-update-payload). customer_update Payload
       "event" => "customer_update",
          "id" => "18",
     "payload" => {
-            "site" => {
+        "event_id" => "99",
+        "site" => {
             "subdomain" => "acme-test",
                    "id" => "3"
         },
@@ -1502,6 +1518,7 @@ h3(#component-allocation-change-payload). component_allocation_change Payload
   "id" => "68",
   "event" => "component_allocation_change",
   "payload" => {
+    "event_id" => "99",
     "site" => {
       "subdomain" => "acme-test",
       "id" => "3"
@@ -1538,6 +1555,7 @@ h3(#metered-usage-payload). metered_usage Payload
   "id" => "70",
   "event" => "metered_usage",
   "payload" => {
+    "event_id" => "99",
     "site" => {
       "subdomain" => "acme-test",
       "id" => "3"
@@ -1575,6 +1593,7 @@ h3(#upcoming-renewal-notice-payload). upcoming_renewal_notice Payload
   "id" => "1",
   "event" => "upcoming_renewal_notice",
   "payload" => {
+    "event_id" => "99",
     "site" => {
       "id" => "2",
       "subdomain" => "acme"
@@ -1624,6 +1643,7 @@ h3(#end-of-trial-notice-payload). end_of_trial_notice Payload
   "id" => "2",
   "event" => "trial_end_notice",
   "payload" => {
+    "event_id" => "99",
     "site" => {
       "id" => "2",
       "subdomain" => "acme"
@@ -1672,6 +1692,7 @@ h3(#statement-closed-payload). statement_closed Payload
   "id" => "145",
   "event" => "statement_closed",
   "payload" => {
+    "event_id" => "99",
     "site" => {
       "id" => "2",
       "subdomain" => "acme"
@@ -1797,6 +1818,7 @@ h3(#statement-settled-payload). statement_settled Payload
   "id" => "146",
   "event" => "statement_settled",
   "payload" => {
+    "event_id" => "99",
     "site" => {
       "id" => "2",
       "subdomain" => "acme"
@@ -1922,6 +1944,7 @@ h3(#upgrade-downgrade-success-payload). upgrade_downgrade_success Payload
     "id" => "1356246",
     "event" => "upgrade_downgrade_success",
     "payload" => {
+        "event_id" => "99",
         "site" => {
             "id" => 24649,
             "subdomain" => "acme-test"
@@ -2063,6 +2086,7 @@ h3(#upgrade-downgrade-failure-payload). upgrade_downgrade_failure Payload
     "id" => "1886236",
     "event" => "upgrade_downgrade_failure",
     "payload" => {
+        "event_id" => "99",
         "site" => {
             "id" => 24649,
             "subdomain" => "acme-test"
@@ -2211,6 +2235,7 @@ h3(#refund-success-payload). refund_success Payload
         "customer_email" => "john@example.com",
         "customer_name" => "John Doe",
         "customer_reference" => "johndoe",
+        "event_id" => "99",
         "gateway_transaction_id" => "5",
         "gateway_order_id" => "",
         "gateway_used" => "bogus",
@@ -2243,6 +2268,7 @@ h3(#refund-failure-payload). refund_failure Payload
         "customer_name" => "John Doe",
         "customer_reference" => "johndoe",
         "errors" => [ "Amount: must be greater than 0.", "Memo: cannot be blank." ],
+        "event_id" => "99",
         "gateway_transaction_id" => "5",
         "gateway_order_id" => "",
         "gateway_used" => "bogus",
@@ -2268,6 +2294,7 @@ h3(#expiration-date-change). expiration_date_change Payload
   "id" => "21",
   "event" => "expiration_date_change",
   "payload" => {
+    "event_id" => "99",
     "site" => {
       "id" => "2",
       "subdomain" => "acme"
