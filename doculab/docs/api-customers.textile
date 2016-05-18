@@ -7,6 +7,7 @@ All of the customer attribute fields are returned from GET (read) operations.  O
 * @first_name@ (Required)
 * @last_name@ (Required)
 * @email@ (Required)
+* @cc_emails@ (Optional) A comma-separated list of emails that should be cc’d on all customer communications (i.e. "joe@example.com, sue@example.com")
 * @organization@ (Optional) Company/Organization name
 * @reference@ (Optional, but encouraged) The unique identifier used within your own application for this customer
 * @id@ (Read Only) The unique identifier for this customer within Chargify
@@ -25,7 +26,7 @@ h2(#methods). Methods
 
 h3(#list). List
 
-URL: @https://<subdomain>.chargify.com/customers.<format>@  
+URL: @https://<subdomain>.chargify.com/customers.<format>@
 Method: @GET@
 Optional Parameters: @page@, @direction@ (may be @asc@ or @desc@ to sort customers by time of creation; defaults to @asc@)
 Response: An array of Customers, up to 50 per page
@@ -46,8 +47,8 @@ Response: A single Customer
 h3(#read-ref). Read/Show (via Reference value)
 
 Note: The old URL for this form of lookup (@https://<subdomain>.chargify.com/customers/<id>.<format>@) is being deprecated. (It will remain, though, as the List URL)
-  
-URL: @https://<subdomain>.chargify.com/customers/lookup.<format>?reference=<reference>@  
+
+URL: @https://<subdomain>.chargify.com/customers/lookup.<format>?reference=<reference>@
 Method: @GET@
 Required Parameters: @reference@ (URL-encoded)
 Response: A single Customer
@@ -63,7 +64,7 @@ Response: An array of Customers
 
 h3(#create). Create
 
-URL: @https://<subdomain>.chargify.com/customers.<format>@  
+URL: @https://<subdomain>.chargify.com/customers.<format>@
 Method: @POST@
 Required Parameters: XML or JSON data, as specified by the required attributes
 Response: The created customer
@@ -73,7 +74,7 @@ Response: The created customer
 
 h3(#update). Edit/Update
 
-URL: @https://<subdomain>.chargify.com/customers/<id>.<format>@  
+URL: @https://<subdomain>.chargify.com/customers/<id>.<format>@
 Method: @PUT@
 Required Parameters: XML or JSON data, as specified by the required attributes
 Response: The updated customer
@@ -85,7 +86,7 @@ h3(#delete). Delete
 
 Note:  You will first need to delete any subscriptions associated with the customer.
 
-URL: @https://<subdomain>.chargify.com/customers/<id>.<format>@  
+URL: @https://<subdomain>.chargify.com/customers/<id>.<format>@
 Method: @DELETE@
 Required Parameters: @id@
 Response: No content
@@ -189,8 +190,8 @@ Feature: Chargify XML API Customers read/fetch
 
   Scenario: Retrieve a customer via Chargify's id
     Given I have a customer with these attributes
-      | id             | first_name | last_name | email           | organization | reference |
-      | [@customer.id] | Joe        | Blow      | joe@example.com | ABC Corp.    | 777       |
+      | id             | first_name | last_name | email           | cc_emails                         | organization | reference |
+      | [@customer.id] | Joe        | Blow      | joe@example.com | john@example.com, sue@example.com | ABC Corp.    | 777       |
     When I send a GET request to https://[@subdomain].chargify.com/customers/[@customer.id].xml
     Then the response status should be "200 OK"
     And the response should be the xml:
@@ -201,6 +202,7 @@ Feature: Chargify XML API Customers read/fetch
         <first_name>Joe</first_name>
         <last_name>Blow</last_name>
         <email>joe@example.com</email>
+        <cc_emails>john@example.com, sue@example.com</cc_emails>
         <organization>ABC Corp.</organization>
         <reference>777</reference>
         <created_at type="datetime">`auto generated`</created_at>
@@ -217,8 +219,8 @@ Feature: Chargify XML API Customers read/fetch
 
   Scenario: [DEPRECATED] Retrieve a customer via my reference id (as an integer or simple string)
     Given I have a customer with these attributes
-      | reference | first_name | last_name | email           |
-      | 7890      | Joe        | Blow      | joe@example.com |
+      | reference | first_name | last_name | email           | cc_emails                         |
+      | 7890      | Joe        | Blow      | joe@example.com | john@example.com, sue@example.com |
     When I send a GET request to https://[@subdomain].chargify.com/customers.xml?reference=7890
     Then the response status should be "200 OK"
     And the response should be the xml:
@@ -229,6 +231,7 @@ Feature: Chargify XML API Customers read/fetch
         <first_name>Joe</first_name>
         <last_name>Blow</last_name>
         <email>joe@example.com</email>
+        <cc_emails>john@example.com, sue@example.com</cc_emails>
         <organization>`your value`</organization>
         <reference>7890</reference>
         <created_at type="datetime">`auto generated`</created_at>
@@ -239,8 +242,8 @@ Feature: Chargify XML API Customers read/fetch
 
   Scenario: Retrieve a customer via my reference id (as an integer or simple string)
     Given I have a customer with these attributes
-      | reference | first_name | last_name | email           |
-      | 7890      | Joe        | Blow      | joe@example.com |
+      | reference | first_name | last_name | email           | cc_emails                         |
+      | 7890      | Joe        | Blow      | joe@example.com | john@example.com, sue@example.com |
     When I send a GET request to https://[@subdomain].chargify.com/customers/lookup.xml?reference=7890
     Then the response status should be "200 OK"
     And the response should be the xml:
@@ -251,6 +254,7 @@ Feature: Chargify XML API Customers read/fetch
         <first_name>Joe</first_name>
         <last_name>Blow</last_name>
         <email>joe@example.com</email>
+        <cc_emails>john@example.com, sue@example.com</cc_emails>
         <organization>`your value`</organization>
         <reference>7890</reference>
         <created_at type="datetime">`auto generated`</created_at>
@@ -261,8 +265,8 @@ Feature: Chargify XML API Customers read/fetch
 
   Scenario: [DEPRECATED] Retrieve a customer via my reference id (as a string needing escaping)
     Given I have a customer with these attributes
-      | reference       | first_name | last_name | email           |
-      | joe@example.com | Joe        | Blow      | joe@example.com |
+      | reference       | first_name | last_name | email           | cc_emails                         |
+      | joe@example.com | Joe        | Blow      | joe@example.com | john@example.com, sue@example.com |
     When I send a GET request to https://[@subdomain].chargify.com/customers.xml?reference=joe%40example.com
     Then the response status should be "200 OK"
     And the response should be the xml:
@@ -273,6 +277,7 @@ Feature: Chargify XML API Customers read/fetch
         <first_name>Joe</first_name>
         <last_name>Blow</last_name>
         <email>joe@example.com</email>
+        <cc_emails>john@example.com, sue@example.com</cc_emails>
         <organization>`your value`</organization>
         <reference>joe@example.com</reference>
         <created_at type="datetime">`auto generated`</created_at>
@@ -283,8 +288,8 @@ Feature: Chargify XML API Customers read/fetch
 
   Scenario: Retrieve a customer via my reference id (as a string needing escaping)
     Given I have a customer with these attributes
-      | reference       | first_name | last_name | email           |
-      | joe@example.com | Joe        | Blow      | joe@example.com |
+      | reference       | first_name | last_name | email           | cc_emails                         |
+      | joe@example.com | Joe        | Blow      | joe@example.com | john@example.com, sue@example.com |
     When I send a GET request to https://[@subdomain].chargify.com/customers/lookup.xml?reference=joe%40example.com
     Then the response status should be "200 OK"
     And the response should be the xml:
@@ -295,6 +300,7 @@ Feature: Chargify XML API Customers read/fetch
         <first_name>Joe</first_name>
         <last_name>Blow</last_name>
         <email>joe@example.com</email>
+        <cc_emails>john@example.com, sue@example.com</cc_emails>
         <organization>`your value`</organization>
         <reference>joe@example.com</reference>
         <created_at type="datetime">`auto generated`</created_at>
@@ -332,8 +338,8 @@ Feature: Chargify API JSON Customer read
 
   Scenario: Retrieve a customer via Chargify's id
      Given I have a customer with these attributes
-       | id             | first_name | last_name | email           | organization | reference |
-       | [@customer.id] | Joe        | Blow      | joe@example.com | ABC Corp.    | 777       |
+       | id             | first_name | last_name | email           | cc_emails                         | organization | reference |
+       | [@customer.id] | Joe        | Blow      | joe@example.com | john@example.com, sue@example.com | ABC Corp.    | 777       |
      When I send a GET request to https://[@subdomain].chargify.com/customers/[@customer.id].json
      Then the response status should be "200 OK"
      And the response should be the json:
@@ -342,6 +348,7 @@ Feature: Chargify API JSON Customer read
          "first_name":"Joe",
          "last_name":"Blow",
          "email":"joe@example.com",
+         "cc_emails":"john@example.com, sue@example.com",
          "organization":"ABC Corp.",
          "reference":"777",
          "id":[@customer.id],
@@ -359,8 +366,8 @@ Feature: Chargify API JSON Customer read
 
    Scenario: [DEPRECATED] Retrieve a customer via my reference id (as an integer or simple string)
      Given I have a customer with these attributes
-       | reference | first_name | last_name | email           |
-       | 7890      | Joe        | Blow      | joe@example.com |
+       | reference | first_name | last_name | email           | cc_emails                         |
+       | 7890      | Joe        | Blow      | joe@example.com | john@example.com, sue@example.com |
      When I send a GET request to https://[@subdomain].chargify.com/customers.json?reference=7890
      Then the response status should be "200 OK"
      And the response should be the json:
@@ -369,6 +376,7 @@ Feature: Chargify API JSON Customer read
          "first_name":"Joe",
          "last_name":"Blow",
          "email":"joe@example.com",
+         "cc_emails":"john@example.com, sue@example.com",
          "organization":`your value`,
          "reference":"7890",
          "id":[@customer.id],
@@ -380,8 +388,8 @@ Feature: Chargify API JSON Customer read
 
   Scenario: Retrieve a customer via my reference id (as an integer or simple string)
     Given I have a customer with these attributes
-      | reference | first_name | last_name | email           |
-      | 7890      | Joe        | Blow      | joe@example.com |
+      | reference | first_name | last_name | email           | cc_emails                         |
+      | 7890      | Joe        | Blow      | joe@example.com | john@example.com, sue@example.com |
     When I send a GET request to https://[@subdomain].chargify.com/customers/lookup.json?reference=7890
     Then the response status should be "200 OK"
     And the response should be the json:
@@ -390,6 +398,7 @@ Feature: Chargify API JSON Customer read
         "first_name":"Joe",
         "last_name":"Blow",
         "email":"joe@example.com",
+        "cc_emails":"john@example.com, sue@example.com",
         "organization":`your value`,
         "reference":"7890",
         "id":[@customer.id],
@@ -401,8 +410,8 @@ Feature: Chargify API JSON Customer read
 
    Scenario: [DEPRECATED] Retrieve a customer via my reference id (as a string needing escaping)
      Given I have a customer with these attributes
-       | reference       | first_name | last_name | email           |
-       | joe@example.com | Joe        | Blow      | joe@example.com |
+       | reference       | first_name | last_name | email           | cc_emails                         |
+       | joe@example.com | Joe        | Blow      | joe@example.com | john@example.com, sue@example.com |
      When I send a GET request to https://[@subdomain].chargify.com/customers.json?reference=joe%40example.com
      Then the response status should be "200 OK"
      And the response should be the json:
@@ -411,6 +420,7 @@ Feature: Chargify API JSON Customer read
          "first_name":"Joe",
          "last_name":"Blow",
          "email":"joe@example.com",
+         "cc_emails":"john@example.com, sue@example.com",
          "organization":`your value`,
          "reference":"joe@example.com",
          "id":`auto generated`,
@@ -422,8 +432,8 @@ Feature: Chargify API JSON Customer read
 
    Scenario: Retrieve a customer via my reference id (as a string needing escaping)
      Given I have a customer with these attributes
-       | reference       | first_name | last_name | email           |
-       | joe@example.com | Joe        | Blow      | joe@example.com |
+       | reference       | first_name | last_name | email           | cc_emails                         |
+       | joe@example.com | Joe        | Blow      | joe@example.com | john@example.com, sue@example.com |
      When I send a GET request to https://[@subdomain].chargify.com/customers/lookup.json?reference=joe%40example.com
      Then the response status should be "200 OK"
      And the response should be the json:
@@ -432,6 +442,7 @@ Feature: Chargify API JSON Customer read
          "first_name":"Joe",
          "last_name":"Blow",
          "email":"joe@example.com",
+         "cc_emails":"john@example.com, sue@example.com",
          "organization":`your value`,
          "reference":"joe@example.com",
          "id":`auto generated`,
@@ -489,6 +500,7 @@ Feature: Chargify XML API Customer create
         <first_name>Joe</first_name>
         <last_name>Blow</last_name>
         <email>joe@example.com</email>
+        <cc_emails>`your value`</cc_emails>
         <organization>`your value`</organization>
         <reference>`your value`</reference>
         <created_at type="datetime">`auto generated`</created_at>
@@ -504,6 +516,7 @@ Feature: Chargify XML API Customer create
           <email>joe@example.com</email>
           <first_name>Joe</first_name>
           <last_name>Blow</last_name>
+          <cc_emails>john@example.com, sue@example.com</cc_emails>
           <organization>ABC Corp.</organization>
           <reference>777</reference>
         </customer>
@@ -518,6 +531,7 @@ Feature: Chargify XML API Customer create
         <first_name>Joe</first_name>
         <last_name>Blow</last_name>
         <email>joe@example.com</email>
+        <cc_emails>john@example.com, sue@example.com</cc_emails>
         <organization>ABC Corp.</organization>
         <reference>777</reference>
         <created_at type="datetime">`auto generated`</created_at>
@@ -599,6 +613,7 @@ Feature: Chargify API JSON Customer create
         "first_name":"Joe",
         "last_name":"Blow",
         "email":"joe@example.com",
+        "cc_emails":`your value`,
         "organization":null,
         "reference":null,
         "id":`auto generated`,
@@ -615,6 +630,7 @@ Feature: Chargify API JSON Customer create
         "first_name":"Joe",
         "last_name":"Blow",
         "email":"joe@example.com",
+        "cc_emails":"john@example.com, sue@example.com",
         "organization":"ABC Corp.",
         "reference":"777"
       }}
@@ -627,6 +643,7 @@ Feature: Chargify API JSON Customer create
         "first_name":"Joe",
         "last_name":"Blow",
         "email":"joe@example.com",
+        "cc_emails":"john@example.com, sue@example.com",
         "organization":"ABC Corp.",
         "reference":"777",
         "id":`auto generated`,
@@ -691,8 +708,8 @@ Feature: Chargify XML API Customers update
 
   Scenario: Update a customer successfully (i.e. with a valid attribute)
     Given I have a customer with these attributes
-      | id   | first_name | last_name | email           |
-      | <id> | Joe        | Blow      | joe@example.com |
+      | id   | first_name | last_name | email           | cc_emails                         |
+      | <id> | Joe        | Blow      | joe@example.com | john@example.com, sue@example.com |
     And I have this xml customer data
       """
         <?xml version="1.0" encoding="UTF-8"?>
@@ -710,6 +727,7 @@ Feature: Chargify XML API Customers update
         <first_name>Joe</first_name>
         <last_name>Blow</last_name>
         <email>joe.blow@example.com</email>
+        <cc_emails>john@example.com, sue@example.com</cc_emails>
         <organization>`your value`</organization>
         <reference>`your value`</reference>
         <created_at type="datetime">`auto generated`</created_at>
@@ -767,8 +785,8 @@ Feature: Chargify API JSON Customer update
 
   Scenario: Update a customer
     Given I have a customer with these attributes
-      | id   | first_name | last_name | email           |
-      | <id> | Joe        | Blow      | joe@example.com |
+      | id   | first_name | last_name | email           | cc_emails                         |
+      | <id> | Joe        | Blow      | joe@example.com | john@example.com, sue@example.com |
     And I have this json customer data
       """
       {"customer":{
@@ -783,6 +801,7 @@ Feature: Chargify API JSON Customer update
         "first_name":"Joe",
         "last_name":"Blow",
         "email":"joe.blow@example.com",
+        "cc_emails":"john@example.com, sue@example.com",
         "organization":`your value`,
         "reference":`your value`,
         "id":`auto generated`,

@@ -23,6 +23,7 @@ The customer may be specified by either @customer[id]@ or by the following attri
 ** @first_name@ (Required)
 ** @last_name@ (Required)
 ** @email@ (Required)
+** @cc_emails@ (Optional) A comma-separated list of emails that should be cc’d on all customer communications (i.e. “joe@example.com, sue@example.com”)
 ** @organization@ (Optional) Customer's organization
 ** @reference@ (Optional, but encouraged) The unique identifier used within your own application for this customer
 ** @address@ (Optional) The customer’s shipping street address (i.e. “123 Main St.”).
