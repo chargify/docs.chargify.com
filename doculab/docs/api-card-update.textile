@@ -1,8 +1,8 @@
 Updating a Subscription’s Payment Profile with new information, or creating a new Payment Profile for a Subscription where none currently exists.
 
-h2. Authentication
+h2. URI/Method
 
-API V2 resources use different credentials than the V1 API.  If you receive a 401 Unauthorized response, please see the section on "API V2 Authentication":/chargify-direct-introduction#api-v2-auth in the "Chargify Direct Introduction":/chargify-direct-introduction .
+The @card_update@ endpoint is only available for HTML forms and does not respond to JSON API calls.
 
 h2. Input Attributes
 
