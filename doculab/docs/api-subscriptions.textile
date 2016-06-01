@@ -52,8 +52,6 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @bank_name@ (Required when creating a subscription with ACH) The name of the bank where the customer's account resides
 ** @bank_routing_number@ (Required when creating a subscription with ACH) The routing number of the bank
 ** @bank_account_number@ (Required when creating a subscription with ACH) The customer's bank account number
-** @bank_account_type@ (Required when creating a subscription with ACH) Either @checking@ or @savings@
-** @bank_account_holder_type@ (Required when creating a subscription with ACH) Either @personal@ or @business@
 * @cancellation_message@ (Optional) Can be used when canceling a subscription (via the HTTP DELETE method) to make a note about the reason for cancellation.
 * @next_billing_at@ (Optional) Set this attribute to a future date/time to sync imported subscriptions to your existing renewal schedule. See the notes on "Date/Time Format" below. If you provide a next_billing_at timestamp that is in the future, no trial or initial charges will be applied when you create the subscription. In fact, no payment will be captured at all. The first payment will be captured, according to the prices defined by the product, near the time specified by next_billing_at. If you do not provide a value for next_billing_at, any trial and/or initial charges will be assessed and charged at the time of subscription creation. If the card cannot be successfully charged, the subscription will not be created.  See further notes in the section on Importing Subscriptions.
 * @expiration_tracks_next_billing_change@ (Optional, default @false@) When set to @true@, and when @next_billing_at@ is present, if the subscription expires, the @expires_at@ will be shifted by the same amount of time as the difference between the old and new "next billing" dates.
@@ -100,8 +98,8 @@ The following attributes are returned on a subscription read/list operation.
 ** @masked_card_number@ A string representation of the credit card number with all but the last 4 digits masked with X's (i.e. 'XXXX-XXXX-XXXX-1234')
 ** @vault_token@ The "token" provided by your vault storage for an already stored payment profile
 * @bank_account@ Nested bank account attributes, if payment profile is a @bank_account@
-** @bank_account_holder_type@ Either @business@ or @personal@
-** @bank_account_type@ Either @checking@ or @savings@
+** @bank_account_holder_type@ Defaults to @personal@
+** @bank_account_type@ Defaults to @checking@
 ** @bank_name@ The bank where the account resides
 ** @billing_address@ The current billing street address for the bank account
 ** @billing_address_2@ The current billing street address, second line, for the bank account
