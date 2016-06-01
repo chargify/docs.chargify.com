@@ -54,7 +54,7 @@ When editing your Final Action Email and Dunning Emails, you can use keywords th
 h3. Custom Parameters
 
 |_. Parameter |_. Description |
-| failure_subject | The reason the transaction failed. e.g. 'Failed Credit Card Transaction' or 'No Credit Card On File' depending on whether or not the client has a Credit Card on file. |
+| failure_subject | The reason the transaction failed. e.g. 'Failed Credit Card Transaction' or 'No Credit Card On File' depending on whether or not the client has a payment method on file. |
 | from_address | The "from address" defined for your dunning emails |
 | name | The name of your customer. e.g. Bill Williams |
 | payment.amount | The amount just paid, formatted in your currency |
@@ -63,10 +63,10 @@ h3. Custom Parameters
 | balance_in_cents | The amount, if any, they still owe. e.g. 0 (for $0.00) or 23100 (for $231.00) Useful for conditionally adding a reminder. |
 | balance | The amount, if any, they still owe in dollars. e.g. $0.00 or $2.31 |
 | merchant_name | Your merchant name. e.g. Acme Corp. |
-| update_url | The URL that the customer can use to update their Credit Card information. |
+| update_url | The URL that the customer can use to update their payment information. |
 | masked_card_number | The customer's Credit Card, obscured to only show the last 4 digits.  e.g. XXXX-XXXX-XXXX-1 |
 | reason_for_decline | The reason that a transaction was declined at the gateway. |
-| payment_profile_exists | This returns 'true' or 'false' depending on whether or not the client has a Credit Card on file. It can be used to conditionally display text based on it's value e.g. <br />  {% if payment_profile_exists %}<br />&nbsp;&nbsp;Lorem Ipsum<br />{% endif %}  |  
+| payment_profile_exists | This returns 'true' or 'false' depending on whether or not the client has a payment method on file. It can be used to conditionally display text based on it's value e.g. <br />  {% if payment_profile_exists %}<br />&nbsp;&nbsp;Lorem Ipsum<br />{% endif %}  |  
 
 Dunning emails also have access to other parameters not listed here. See "Email Templates":/email-templates for more details.
 
