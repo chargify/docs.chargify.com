@@ -17,7 +17,7 @@ The product may be specified by either @product[id]@ or by @product[handle]@ (AP
 ** @id@ The id of the product your customer is signing up for
 ** @handle@ The API handle of the product your customer is signing up for
 
-The customer may be specified by either @customer[id]@ or by the following attributes:
+The customer may be specified by either @customer[id]@ or by @customer[reference]@ or by the following attributes:
 
 * @customer@
 ** @first_name@ (Required)
