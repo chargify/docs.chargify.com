@@ -21,6 +21,10 @@ After clicking the button, you will have the opportunity to enter a new billing 
 
 This will set both the **Current Period End Date** and the **Next Assessment Date** to the specified date. If the subscription is trialing, it will also set the **Trial End Date** date to extend or shorten the trial period.
 
+When in live mode, in addition to being able to change the date/time to any **future** time, you can change the billing time up to 2 hours in the **past.** When setting the time in the past, the payment will be added to the next batch of processing.
+
+Payments are batch processed approximately every 20 minutes. The next billing date represents the scheduled date/time, and the payment itself will be processed by your gateway within 20 minutes of the scheduled next billing date.
+
 h2(#calendar-billing). Calendar Billing
 
 Chargify also supports Calendar Billing for subscriptions, when the subscription's product meets the following criteria:
