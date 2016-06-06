@@ -2757,14 +2757,14 @@ Feature: Chargify Subscriptions Delayed Cancel XML API
       <?xml version="1.0" encoding="UTF-8"?>
       <subscription>
         <cancel_at_end_of_period>1</cancel_at_end_of_period>
-		<cancellation_message>
-			Canceling the subscription at the end of the period via the API
-		</cancellation_message>
+        <cancellation_message>
+          Canceling the subscription at the end of the period via the API
+        </cancellation_message>
       </subscription>
       """
     When I send a PUT request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
     Then the response status should be "200 OK"
-		And the response should be the subscription output xml, with the `cancel_at_end_of_period` set to the same value.
+    And the response should be the subscription output xml, with the `cancel_at_end_of_period` set to the same value.
 
   Scenario: Delay cancel a subscription while giving no reason/message
     Given I have an active subscription
@@ -2777,7 +2777,7 @@ Feature: Chargify Subscriptions Delayed Cancel XML API
       """
     When I send a PUT request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
     Then the response status should be "200 OK"
-		And the response should be the subscription output xml, with the `cancel_at_end_of_period` set to the same value.
+    And the response should be the subscription output xml, with the `cancel_at_end_of_period` set to the same value.
 
 </code></pre>
 
@@ -2801,28 +2801,28 @@ Feature: Chargify Subscriptions Delayed Cancel JSON API
       """
       {
         'subscription': {
-					'cancel_at_end_of_period': 1,
+          'cancel_at_end_of_period': 1,
           'cancellation_message': 'Canceling the subscription via the API'
         }
       }
       """
     When I send a PUT request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
     Then the response status should be "200 OK"
-		And the response should be the subscription output json, with the `cancel_at_end_of_period` set to the same value.
+    And the response should be the subscription output json, with the `cancel_at_end_of_period` set to the same value.
 
-	Scenario: Delay cancel a subscription while giving no reason/message
+  Scenario: Delay cancel a subscription while giving no reason/message
     Given I have an active subscription
     And I have this json subscription data
       """
       {
         'subscription': {
-					'cancel_at_end_of_period': 1
+          'cancel_at_end_of_period': 1
         }
       }
       """
     When I send a PUT request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
     Then the response status should be "200 OK"
-		And the response should be the subscription output json, with the `cancel_at_end_of_period` set to the same value.
+    And the response should be the subscription output json, with the `cancel_at_end_of_period` set to the same value.
 
 </code></pre>
 
