@@ -20,7 +20,7 @@ When you cancel a Subscription:
 * You have the option of canceling immediately or at the end of the period, selecting either option means the customer's credit card will no longer be charged.
 * When canceling at the end of the period, the subscription will cease to renew automatically at the "Period Ends At" date and the subscription state will change.
 * No refunds or prorations are made
-* No email is sent to your Customer
+* The cancellation email is sent to your Customer
 
 You can later "Reactivate":/reactivation a canceled Subscription.
 

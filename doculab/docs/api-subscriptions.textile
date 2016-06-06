@@ -137,6 +137,7 @@ The following attributes are returned on a subscription read/list operation.
 * @trial_ended_at@ Timestamp for when the trial period (if any) ended
 * @updated_at@ The date of last update for this subscription
 * @next_product_id@ If a "delayed product change":#delayed-product-change is scheduled, the ID of the product that the subscription will be changed to at the next renewal.
+* @cancellation_method@ The process used to cancel the subscription, if the subscription has been canceled. Can be one of @nil@, @merchant_ui@, @merchant_api@, @dunning@, or @billing_portal@. It is @nil@ if the subscription's state is not @canceled@.
 
 
 h2(#methods). Methods
@@ -506,6 +507,7 @@ Feature: Chargify Subscriptions Read/Show/Lookup XML API
         <updated_at type="datetime">`auto generated`</updated_at>
         <canceled_at type="datetime">`auto generated`</canceled_at>
         <cancellation_message nil="true"></cancellation_message>
+        <cancellation_method nil="true"></cancellation_message>
         <cancel_at_end_of_period type="boolean">false</cancel_at_end_of_period>
         <delayed_cancel_at nil="true"></delayed_cancel_at>
         <coupon_code nil="true"></coupon_code>
@@ -628,6 +630,7 @@ Feature: Chargify Subscriptions Read/Show/Lookup JSON API
         "created_at":`auto generated`,
         "updated_at":`auto generated`,
         "cancellation_message":null,
+        "cancellation_method":null,
         "canceled_at":`your value`,
         "cancel_at_end_of_period":false,
         "delayed_cancel_at":null,
@@ -2757,14 +2760,14 @@ Feature: Chargify Subscriptions Delayed Cancel XML API
       <?xml version="1.0" encoding="UTF-8"?>
       <subscription>
         <cancel_at_end_of_period>1</cancel_at_end_of_period>
-		<cancellation_message>
-			Canceling the subscription at the end of the period via the API
-		</cancellation_message>
+        <cancellation_message>
+          Canceling the subscription at the end of the period via the API
+        </cancellation_message>
       </subscription>
       """
     When I send a PUT request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
     Then the response status should be "200 OK"
-		And the response should be the subscription output xml, with the `cancel_at_end_of_period` set to the same value.
+    And the response should be the subscription output xml, with the `cancel_at_end_of_period` set to the same value.
 
   Scenario: Delay cancel a subscription while giving no reason/message
     Given I have an active subscription
@@ -2777,7 +2780,7 @@ Feature: Chargify Subscriptions Delayed Cancel XML API
       """
     When I send a PUT request with the xml data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].xml
     Then the response status should be "200 OK"
-		And the response should be the subscription output xml, with the `cancel_at_end_of_period` set to the same value.
+    And the response should be the subscription output xml, with the `cancel_at_end_of_period` set to the same value.
 
 </code></pre>
 
@@ -2801,28 +2804,28 @@ Feature: Chargify Subscriptions Delayed Cancel JSON API
       """
       {
         'subscription': {
-					'cancel_at_end_of_period': 1,
+          'cancel_at_end_of_period': 1,
           'cancellation_message': 'Canceling the subscription via the API'
         }
       }
       """
     When I send a PUT request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
     Then the response status should be "200 OK"
-		And the response should be the subscription output json, with the `cancel_at_end_of_period` set to the same value.
+    And the response should be the subscription output json, with the `cancel_at_end_of_period` set to the same value.
 
-	Scenario: Delay cancel a subscription while giving no reason/message
+  Scenario: Delay cancel a subscription while giving no reason/message
     Given I have an active subscription
     And I have this json subscription data
       """
       {
         'subscription': {
-					'cancel_at_end_of_period': 1
+          'cancel_at_end_of_period': 1
         }
       }
       """
     When I send a PUT request with the json data to https://[@subdomain].chargify.com/subscriptions/[@subscription.id].json
     Then the response status should be "200 OK"
-		And the response should be the subscription output json, with the `cancel_at_end_of_period` set to the same value.
+    And the response should be the subscription output json, with the `cancel_at_end_of_period` set to the same value.
 
 </code></pre>
 
