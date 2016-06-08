@@ -67,6 +67,12 @@ In case you ever need to have one component equal the same value as another you 
 
 <script src="https://gist.github.com/rbabcock/fb53647174652158afce.js?file=Force_equal_component_value.js" type="text/javascript"></script>
 
+h4(#language). Use custom JavaScript to translate any Public Signup Page to the language of your choice
+
+You will need to input the translation and put in in the Custom Javascript box in the Public Signup Page. Everything that is **uppercase** is where you would put the translation for that field.
+
+<script src="https://gist.github.com/woodchopgirl/8beeae90a9d87103428336563d727a09.js"></script>
+
 h4(#signup-css-classes). Signup Page CSS Classes
 
 The following is a list of all CSS classes used on the Public Signup Page.
