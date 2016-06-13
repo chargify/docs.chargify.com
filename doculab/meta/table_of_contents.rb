@@ -89,6 +89,10 @@ Doculab::TableOfContents.define do
     page 'Mobile Stats Page'
   end
 
+  section "Sales Report" do
+    page "Introduction", permalink: "sales-report-introduction"
+  end
+
   section "Referrals" do
     page "Introduction", :permalink => "referrals"
   end
