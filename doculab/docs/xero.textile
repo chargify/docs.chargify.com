@@ -105,6 +105,8 @@ A Xero invoice is created whenever a Chargify statement is closed (i.e. at signu
 
 Payment data is not pushed to Xero until a Statement is "settled" in Chargify. This happens when the statement is successfully paid, which could be when the renewal happens, or perhaps later after the payment is retried.
 
+p(note). In order to sync a statement to Xero, each line item on the Statement must have a description. When creating an Adjustment in the Chargify UI, you must add a memo to ensure the Statement will sync to Xero.
+
 h4(#negative). Caveats for Negative Statements and Negative Subscription Balances
 
 In Chargify, it is possible to have a statement with a negative total.  This can happen in the case of a downgrade, where the credit for the unused portion of the more expensive plan is more than the cost of the new, less expensive plan.
