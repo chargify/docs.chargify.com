@@ -6,6 +6,10 @@ The initial view of the Sales Report shows the last 3 months of data, grouped by
 
 !/images/doculab/sales-report-toolbar.png!
 
+h2. Selecting What Data To Include
+
+You may view your data "grouped by product" or "itemized".  In either case, you can choose to view "All Products" or specific products or items.
+
 h3. Grouped By Product View
 
 In the "grouped by Product" view, all sales data is tied to the base product that a customer's sale/discount/tax etc. is associated with. For example, if you have two Products ("Pro Plan" and "Basic Plan"), and also have a "Widget" component, the data for the "Widget" component will be broken out between "Pro" and "Basic", depending on which plan each customer was subscribed to at the time of a renewal, payment, etc.
@@ -17,6 +21,18 @@ h3. Itemized View
 In the "itemized" view, all sales data is totaled for each Product, Component, or "special item":#special-items, regardless of the customer's base product.
 
 !/images/doculab/sales-report-table-itemized.png!
+
+h2. Cash vs. Accrual
+
+The Sales Report displays only those sales for which you have been paid - subscriptions in dunning are not included.  After payment, the Cash vs. Accrual toggle controls the timing of the sale and, hence, within which month it will appear.
+
+* Accrual: Sales are displayed in the month in which they were originally billed.
+* Cash: Sales are displayed in the month in which they were actually paid.
+
+For example, consider the case where a subscriber renews on January 31st but their card is declined.  Then, they enter a new card which is successfully charged on February 1st.
+
+* Under the accrual method, this sale will be counted in January.
+* Under the cash method, this sale will be counted in Febrary.
 
 h2. Sales Report Data Explained
 
