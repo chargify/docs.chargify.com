@@ -1,4 +1,4 @@
-The Sales Report can be accessed by click on the "Reporting" tab:
+The Sales Report can be accessed by clicking on the "Reporting" tab:
 
 !/images/doculab/sales-report-tab.png!
 
