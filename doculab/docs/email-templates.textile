@@ -8,6 +8,12 @@ The following variables are available for signup, dunning, receipt, expiration, 
 
 h4(#legacy). Legacy fields
 
+* @{{return_url}}@ Do not use
+* @{{product.return_url}}@ Do not use
+* @{{product.return_params}}@ Do not use
+
+h4(#basic). Basic fields
+
 * @{{from_address}}@ this will be replaced with acme-inc@example.com if left as {{from_address}} though any valid email address will do.
 * @{{name}}@ the name of your customer. e.g. Bill Williams
 * @{{full_name}}@ the name of your customer. e.g. Bill Williams
@@ -19,9 +25,7 @@ h4(#legacy). Legacy fields
 * @{{balance}}@ the amount, if any, they still owe in dollars. e.g. $0.00 or $2.31
 * @{{merchant_name}}@ your merchant name. e.g. Acme, Inc.
 * @{{masked_card_number}}@ The masked credit card number. eg XXXX-XXXX-XXXX-1
-* @{{return_url}}@ Do not use
-* @{{product.return_url}}@ Do not use
-* @{{product.return_params}}@ Do not use
+* @{{update_url}}@ The self-service URL for the Subscription
 
 h4(#subscription). Subscription
 
