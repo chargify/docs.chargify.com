@@ -153,7 +153,7 @@ h3(#taxes-credits). Taxes on Refunds and Credits
 
 Please note that refunds are always synced to Xero as Tax Exempt.  If the original charge that is being refunded included taxes, you will need to record a Journal Entry to adjust the tax amount.
 
-Most Credit Notes will also sync as Tax Exempt because there are no taxes associated with the credit in Chargify.  An exception is a prorated credit for a taxable product or component.
+Most Credit Notes will also sync as Tax Exempt because there are no taxes associated with the credit in Chargify.  An exception is a prorated credit for a taxable component.
 
 h3(#invoice-billing). Chargify Invoice Billing
 
