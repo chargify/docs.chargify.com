@@ -1,9 +1,0 @@
-Subscriptions are central to Chargify.  They tie your Customers to your Products and are responsible for billing and charging on your recurring intervals.
-
-<!-- TODO: a diagram of Subscriptions in the big picture would be nice here -->
-
-The creation of a Subscription is analogous to receiving a signup.  There are 3 basic ways that Subscriptions are created: "via Public Signup Pages":/public-pages-intro, "via the API":/api-integration, or manually via the UI.
-
-Once a Subscription has been created, it will begin to auto-renew on the period specified by the Product to which it is related.  There's not much you need to do, other than keep tabs on them from time to time looking for Subscriptions that go sour.  If you've got automated "Dunning":/dunning turned on, keeping up with what going on will be even less of a concern.
-
-Hint: Turn on the Daily status emails in the Notifications tab to stay on top of things.  You can go even farther and add yourself as a BCC recipient on every email that goes out to your Customers.

@@ -1,3 +1,0 @@
-Chargify is a web service that manages the recurring billing for your subscription-based business.  
-
-!/images/doculab/overview.png!

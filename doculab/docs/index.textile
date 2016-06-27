@@ -1,12 +1,6 @@
-h3. Getting Started
+h3. Chargify Documentation has moved.
 
-We suggest starting with our "Quick Start Guide", specifically one of the following pages:
-
-* "Chargify Overview":/overview - get quickly oriented to see where Chargify fits in to the big picture
-* "Terminology":/terminology - learn the terms we'll use throughout these docs
-* "Getting Started":/getting-started - a guide that helps you get up and running
-
-If you're new to the concept of Merchant Accounts and Gateways, you may be interested in our "Basic Payment Gateway Requirements":http://support.chargify.com/faqs/getting-started/payment-gateway-requirements knowledge base article.
+The API documentation remains here, but all basic product information, guides, tutorials, etc are now available on our new "Help Center":https://help.chargify.com
 
 h3. API Integration
 
@@ -17,18 +11,6 @@ Check out the list of "Chargify Consultants":http://chargify.com/consultants if 
 We always enjoy (and appreciate) hearing about larger integrations ahead of time.  If you're planning on importing a large amount of data into Chargify via our API, we suggest sending a "heads up" to "support@chargify.com" so we can coordinate with you to ensure your import process goes smoothly.
 
 Our API, while considered stable, is continually being improved and polished.  Please feel free to contact support if you experience issues when integrating with the Chargify API.
-
-h3(#support). Support
-
-h4. Written Ticket Tech Support
-
-Written Ticket Tech Support (U.S. business hours) is available to merchants on any paid plan.  "Support for API integration":#api-support requires a plan of "Small Business" or higher.
-
-"Open a support ticket":http://help.chargify.com/tickets/new via the support website, or send an email directly to "support@chargify.com".
-
-While we strive to answer all of our merchants' questions in a timely fashion, please note that support requests are prioritized based on your current Chargify Plan.
-
-Feel free to ask a question in the "public Community Support forum":https://chargify.zendesk.com/hc/communities/public/topics/200158374-Community-Community-Support to get help from the Chargify community.
 
 h4(#api-support). API Support
 
@@ -47,12 +29,6 @@ Upgrade to the Small Business plan: "Log into Chargify":https://app.chargify.com
 "Visit our community support forum":https://chargify.zendesk.com/hc/communities/public/topics/200158374-Community-Community-Support
 
 "Refer to our trusted Integration Consultants":https://www.chargify.com/consultants/
-
-h4. Basic Phone Support
-
-Basic Phone Support (24/7) is available to all merchants, however, Tier 2 phone support is currently only available to merchants on the “Small Business” plan or higher.
-
-Call 1-800-401-2414 to get Chargify support over the phone.
 
 h4. Developer Support
 
