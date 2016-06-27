@@ -1,5 +1,0 @@
-Adding a Credit to a subscription will decrease the balance due on the subscription. *A credit does not actually touch the gateway or return any funds to the customer's credit card*. For example, if the customer has a zero balance, a credit will result in a negative balance.
-
-Any outstanding credit (i.e. a negative balance) will be used up first before an attempt is made to charge the card _for normal periodic assessment charges_.  Creating a "One-time Charge":/one-time-charges will not attempt to use outstanding credit.
-
-<!-- TODO: screenshot -->

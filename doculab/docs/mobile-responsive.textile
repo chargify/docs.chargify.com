@@ -1,3 +1,0 @@
-Many Chargify merchants have asked us to make Public Signup Pages responsive to provide a better mobile and tablet experience to their customers. Now you can accomplish this using custom CSS and JavaScript!
-
-Read more about "Making Chargify Public Pages Responsive":https://chargify.zendesk.com/hc/en-us/articles/212359957-Making-Chargify-Public-Pages-Responsive .
