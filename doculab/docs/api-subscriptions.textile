@@ -165,8 +165,8 @@ Optional Parameters:
 @product_revision_number@: The revision number of the product.  If supplied, @product@ is required.  Please note that revision is an internal, zero-based identifier, and differs from the Version number displayed in the Admin UI.  Example: To filter for version "v2", supply a @product_revision_number@ of 1.
 @coupon@: The numeric id of the coupon currently applied to the subscription. (This can be found in the URL when editing a coupon.  Note that the coupon code cannot be used.)
 @date_field@: The date field to filter on, such as @canceled_at@ or @updated_at@.  See the "Subscription Output Attributes":#output for a full list.
-@start_date@: The start date with which to filter the @date_field@.  See "Date Format":#date-format for allowable formats.
-@end_date@: The end date with which to to filter the @date_field@.  See "Date Format":#date-format for allowable formats.
+@start_date@: The start date (format YYYY-MM-DD) with which to filter the @date_field@. Returns subscriptions with a timestamp at or after midnight (12:00:00 AM) in your site’s time zone on the date specified
+@end_date@: The end date (format YYYY-MM-DD) with which to to filter the @date_field@. Returns subscriptions with a timestamp up to and including 11:59:59PM in your site’s time zone on the date specified
 
 Response: An array of Subscriptions
 **Usage Examples:**
