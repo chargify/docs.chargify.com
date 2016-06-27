@@ -14,7 +14,7 @@ Our API, while considered stable, is continually being improved and polished.  P
 
 h4(#api-support). API Support
 
-Access to our Tier 2 team for API support is currently only available to customers on our Small Business ($129) plan or above given the cost of providing that level of support.
+Access to our Tier 2 team for API support is currently only available to customers on our Basic ($149) plan or above given the cost of providing that level of support.
 
 But don't worry! There are quite a few options to help you get the answers you need:
 
