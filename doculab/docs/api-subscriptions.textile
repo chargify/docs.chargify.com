@@ -348,7 +348,7 @@ Response: 200 OK on success
 
 h3(#delayed). Delayed Cancel
 
-Chargify offers the ability to cancel a subscription at the end of the current period (as set by its current product. Setting the subscription to cancel at the end of the period sets the @cancel_at_end_of_period@ to @true@. Note, that you cannot set @cancel_at_end_of_period@ at subscription creation.
+Chargify offers the ability to cancel a subscription at the end of the current billing period (as set by its current product.) Setting the subscription to cancel at the end of the period sets the @cancel_at_end_of_period@ flag to @true@. Note that you cannot set @cancel_at_end_of_period@ at subscription creation, or if the subscription is past due.
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>.<format>@
 Method: @PUT@
