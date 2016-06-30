@@ -57,6 +57,10 @@ Doculab::TableOfContents.define do
     page "API: Signups"
   end
 
+  section "Chargify Direct (Transparent Redirect)" do
+    page "Introduction", :permalink => "chargify-direct-introduction"
+  end
+
   section "Contributing" do
     page "Documentation Repository"
   end

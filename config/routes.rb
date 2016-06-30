@@ -111,6 +111,5 @@ Rails.application.routes.draw do
   get '/mass-emailing-subscribers', to: redirect('https://help.chargify.com/communications/mass-emailing-subscribers.html')
   get '/currency', to: redirect('https://help.chargify.com/sites/currency.html')
   get '/users', to: redirect('https://help.chargify.com/my-account/users.html')
-  get '/chargify-direct-introduction', to: redirect('https://help.chargify.com/settings/chargify-direct.html')
   get '/sales-report-introduction', to: redirect('http://help.chargify.com/reports/sales-report-intro.html')
 end
