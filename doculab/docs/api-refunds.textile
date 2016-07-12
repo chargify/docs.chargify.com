@@ -55,3 +55,14 @@ URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/refunds.<
 Method: @POST@  
 Required Parameters: XML or JSON data, as specified by the required attributes  
 Response: The created refund, if successful.  Errors otherwise
+
+JSON example as indicated below:
+
+<pre><code>
+{"refund":{
+        "payment_id":"1234567"
+        "amount":"4.00",
+        "memo":"Your memo here."
+      }}
+
+</code></pre>
