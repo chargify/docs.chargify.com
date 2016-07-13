@@ -2,7 +2,8 @@ h2. URI/Method
 
 |_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
 | Subscriptions<br/>@/subscriptions@ | List subscriptions | Create new subscription | - | - |
-| Subscription<br/>@/subscriptions/<x>@ | Read subscription | - | Update subscription | Cancel subscription |
+| Subscription<br/>@/subscriptions/<id>@ | Read subscription | - | Update subscription | Cancel subscription |
+| Subscription<br/>@/subscriptions/<id>/payment_profiles/<payment_profile_id>/change_payment_profile@ | - | Change payment profile | - | - |
 
 h2(#input). Subscription Input Attributes
 
@@ -404,9 +405,7 @@ This will delete a payment profile belonging to the customer on the subscription
 
 Please note that if the customer has multiple subscriptions, the payment profile will be removed from _all_ of them.
 
-Please note that if you delete the _default_ payment profile for a subscription, there is currently no way to designate a different payment profile as the default via the API.  You may want to "Update":#update the subscription instead.
-
-To establish a new default payment profile after it has been deleted, either prompt the user to enter a card in the billing portal or on the self-service page, or visit the Payment Details tab on the subscription in the Admin UI and use the "Add New Credit Card" or "Make Active Payment Method" link, (depending on whether there are other cards present.)
+Please note that if you delete the _default_ payment profile for a subscription, you will need to "specify another payment profile to be the default":#change-default-payment-profile through the api, or either prompt the user to enter a card in the billing portal or on the self-service page, or visit the Payment Details tab on the subscription in the Admin UI and use the "Add New Credit Card" or "Make Active Payment Method" link, (depending on whether there are other cards present).
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/payment_profiles/<payment_profile_id>@
 Method: DELETE
@@ -417,6 +416,14 @@ Response:  204 No Content on success
 "XML example":#api-delete-payment-profile-xml
 "JSON example":#api-delete-payment-profile-json
 
+h3(#change-default-payment-profile). Change Default Payment Profile
+
+This will change the default payment profile on the subscription to the _existing_ payment profile with the @id@ specified.
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/payment_profiles/<payment_profile_id>@
+Method: POST
+Required Parameters: none
+Response: The payment profile
 
 h2(#usage). Usage Examples
 
