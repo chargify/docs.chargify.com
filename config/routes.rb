@@ -112,4 +112,5 @@ Rails.application.routes.draw do
   get '/currency', to: redirect('https://help.chargify.com/sites/currency.html')
   get '/users', to: redirect('https://help.chargify.com/my-account/users.html')
   get '/sales-report-introduction', to: redirect('http://help.chargify.com/reports/sales-report-intro.html')
+  get '/hosted-page-settings', to: redirect('https://help.chargify.com/public-pages/public-signup-page-settings.html')
 end
