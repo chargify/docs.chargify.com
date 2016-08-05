@@ -6,7 +6,7 @@ All of the invoice attributes are returned from GET (read) operations, and all a
 * @subscription_id@ - The subscription unique id within Chargify
 * @statement_id@ - The statement unique id within Chargify
 * @site_id@ - The site unique id within Chargify
-* @state@ - The current state of the subscription associated with this invoice. Please see the documentation for "Subscription States":/subscription-states
+* @state@ - The current state of the invoice. Possible states: @paid@, @unpaid@, @partial@, @archived@. 
 * @total_amount_in_cents@ - Gives the current invoice amount in the number of cents (ie. the sum of charges)
 * @paid_at@ - The date/time when the invoice was paid in full
 * @created_at@ - The creation date/time for this invoice
@@ -35,7 +35,15 @@ URL: @https://<subdomain>.chargify.com/invoices.<format>?start_date=<YYYY-MM-DD>
 Optional Parameters: @start_date@, @end_date@
 Method: @GET@
 
-Response: A list of invoices
+Response: A list of invoices for given date range
+
+h4(#list-by-state). List Invoices by State
+
+URL: @https://<subdomain>.chargify.com/invoices.<format>?status[]=<state>@
+Parameter: @status@ An array of invoice states types (see above).
+Method: @GET@
+
+Response: A list of invoices for given state(s)
 
 h4(#list-for-sub). List Invoices for a Subscription
 
