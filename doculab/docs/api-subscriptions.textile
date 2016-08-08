@@ -3,8 +3,9 @@ h2. URI/Method
 |_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
 | Subscriptions<br/>@/subscriptions@ | List subscriptions | Create new subscription | - | - |
 | Subscription<br/>@/subscriptions/<id>@ | Read subscription | - | Update subscription | Cancel subscription |
-| Subscription<br/>@/subscriptions/<id>/payment_profiles/
-<payment_profile_id>/change_payment_profile@ | - | Change payment profile | - | - |
+| Subscription<br/>@/subscriptions/<id>
+/payment_profiles/<payment_profile_id>
+/change_payment_profile@ | - | Change payment profile | - | - |
 
 h2(#input). Subscription Input Attributes
 
