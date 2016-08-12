@@ -66,6 +66,7 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 * @product_change_delayed@ (Optional, used only for "Delayed Product Change":#delayed-product-change) When set to @true@, indicates that a changed value for @product_handle@ should schedule the product change to the next subscription renewal.
 * @calendar_billing@ (optional, see "Calendar Billing":/billing-dates#calendar-billing for more details). Cannot be used when also specifying @next_billing_at@
 ** @snap_day@ A value between 1 and 28, or "end"
+** @calendar_billing_first_charge@ (Optional) One of "prorated" (the default - the prorated product price will be charged immediately), "immediate" (the full product price will be charged immediately), or "delayed" (the full product price will be charged with the first scheduled renewal).
 * @metafields@ (Optional) A set of key/value pairs representing custom fields and their values. Metafields will be created "on-the-fly" in your site for a given key, if they have not been created yet.
 * @ref@ A valid referral code. (optional, see "Referrals":/referrals for more details). If supplied, must be valid, or else subscription creation will fail.
 * @components@ (Optional) An array of component ids and quantities to be added to the subscription.  See examples below and "Product Components":/product-components for more information.
