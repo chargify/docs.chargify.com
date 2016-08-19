@@ -11,20 +11,20 @@ h2. Transaction Types
 
 The following is a list of available transaction types
 
-|_. Type |_. Description |_. Effect on Subscriber Balance Due |_. Effect on "Revenue" (money collected) |
+|_. Type / Transaction Type |_. Description |_. Effect on Subscriber Balance Due |_. Effect on "Revenue" (money collected) |
 | @charge@ | A positive amount assessed to a subscription for an item (i.e. a Product or Component) sale.  Usually assessed at signup or renewal time. | Increases balance due | No effect on revenue |
 | @credit@ | A negative amount assessed to a subscription that indicates a "return" or "credit" for an item (i.e. a Product or Component). Usually offsets an earlier charge, i.e. in the case of a prorated downgrade. | Decreases balance due | No effect on revenue |
 | @adjustment@ | A postive or negative amount that adjusts the subscription balance but cannot usually be directly attributed to a single item (Product or Component) | Increases or decreases balance due | No effect on revenue |
 | @payment@ | A postive amount that denotes amount paid to you by the subscriber, usually on their credit card or bank account via your payment gateway.  Payments may also be recorded "manually" in the case of checks received, or money received outside of Chargify. | Decreases balance due | Increases revenue |
 | @refund@ | A positive amount that denotes "cash" given back to a subscriber (i.e. put back on their card) via a refund or credit at the gateway. | No effect on balance due | Decreases revenue |
-| @info_transaction@ | An informational transaction whose description provides context for transactions nearby in time, or serves as a placeholder for another transaction that could not be attempted (i.e. when payment cannot be attempted because no card is on file) | N/A | N/A |
+| @InfoTransaction@ / @info@ | An informational transaction whose description provides context for transactions nearby in time, or serves as a placeholder for another transaction that could not be attempted (i.e. when payment cannot be attempted because no card is on file) | N/A | N/A |
 | @payment_authorization@ | Deprecated. No longer appears in transactions listing | N/A | N/A |
 
 h3(#charge-kinds). Transaction Kinds (Subtypes)
 
 h4. Kinds for the @charge@ transaction type
 
-|_. Type |_. Kind     |_. Description |
+|_. Type / Transaction Type |_. Kind     |_. Description |
 | @charge@ | @trial@    | A charge for a subscription's trial period. Usually applied at the time of signup, but sometimes after a migration where a trial is allowed. |
 | @charge@ | @initial@  | A charge for the initial/setup fee assessed according to the product setup settings. Usually applied at the time of signup, but sometimes after a migration where the setup fee is included. |
 | @charge@ | @baseline@ | A charge for the normal, recurring fee. |
@@ -39,7 +39,7 @@ h4. Kinds for the @charge@ transaction type
 
 h4. Kinds for the @credit@ transaction type
 
-|_. Type |_. Kind |_. Description |
+|_. Type / Transaction Type |_. Kind |_. Description |
 | @credit@ | @quantity_based_component@ | A credit against a quantity-based component charge.  Usually generated during a prorated downgrade for an amount previously charged. |
 | @credit@ | @on_off_component@ | A credit against an on/off component charge.  Usually generated during a prorated downgrade for an amount previously charged. |
 | @credit@ | @tax@ | A credit against tax charges.  Usually generated during a prorated downgrade to offset a tax amount already assessed. |
@@ -47,7 +47,7 @@ h4. Kinds for the @credit@ transaction type
 
 h4. Kinds for the @adjustment@ transaction type
 
-|_. Type |_. Kind       |_. Description |
+|_. Type / Transaction Type |_. Kind       |_. Description |
 | @adjustment@ | @coupon | An adjustment that reflects the discount provided by a coupon. Is almost always a negative amount. |
 | @adjustment@ | @prorated@ | An adjustment applied during a migration proration that offsets overpayments resulting from the shortened period on the old product.  Followed by the assessment of new charges for the new product. |
 | @adjustment@ | @quantity_based_component@ | Deprecated.  Like a @quantity_based_component@ @credit@ in function but no longer used (since credits can be taxable but adjustments cannot). |
@@ -59,7 +59,7 @@ h4. Kinds for the @adjustment@ transaction type
 
 h4. Kinds for the @payment@ transaction type
 
-|_. Type |_. Kind     |_. Description |
+|_. Type / Transaction Type |_. Kind     |_. Description |
 | @payment@ | @one_time@            | A payment received for a mid-period one-time charge (i.e. for a @charge@ with kind @one_time@). |
 | @payment@ | @component_proration@ | A payment received for a mid-period component proration (allocation change). |
 | @payment@ | @manual@              | A payment recorded "manually" via the Admin UI or API.  This kind of payment was not one automatically processed by Chargify, but instead entered manually. |
@@ -67,7 +67,7 @@ h4. Kinds for the @payment@ transaction type
 
 h4. Kinds for the @refund@ transaction type
 
-|_. Type |_. Kind     |_. Description |
+|_. Type / Transaction Type |_. Kind     |_. Description |
 | @refund@ | @manual@   | A refund recorded "manually" via the Admin UI or API to reflect a refund already given outside of Chargify.  Chargify does not actually submit this kind of refund to the payment gateway. |
 | @refund@ |            | A generic refund resulting from any sitation not described above. This kind of refund is submitted by Chargify to the payment gateway to return money to the subscriber. |
 
@@ -76,7 +76,7 @@ h2(#transaction-attributes). Transaction Attributes
 
 All of the transaction attribute fields are returned from GET (read) operations, and all are read only.
 
-* @transaction_type@ The type of the transaction, see above
+* @transaction_type@ / @type@ The type of the transaction, see above
 * @id@ The unique identifier for the Transaction
 * @amount_in_cents@ The amount in cents of the Transaction
 * @created_at@ Timestamp indicating when the Transaction was created
