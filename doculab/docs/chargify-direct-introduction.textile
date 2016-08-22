@@ -219,13 +219,13 @@ The signature of the response is the hexadecimal representation of a computed "H
 
 h3(#result-codes). Result Codes
 
-* @4001@ - Authentiction failed
+* @4001@ - Authentication failed
 * @4011@ - Authentication failed due to missing nonce value
 * @4040@ - The requested object (e.g. Subscription) could not be found
 * @4220@ - One or more validation errors on input
 * @4221@ - Duplicate submission
 * @4300@ - Card declined
-* @5000@ - An error has occured
+* @5000@ - An error has occurred
 * @5001@ - The requested resource does not exist
 
 h2(#call). Fetching the Call
@@ -248,7 +248,7 @@ h3(#api-v2-auth-direct). Authenticating Chargify Direct Requests (application/x-
 
 Your form post is authenticated via the "secure parameters":#secure-parameters included with your form submission.
 
-h3(#api-v2-auth-json). Authenticating Server-to-Server API Reqests (application/json)
+h3(#api-v2-auth-json). Authenticating Server-to-Server API Requests (application/json)
 
 Chargify API V2 supports HTTP Basic Authentication.
 
@@ -256,6 +256,6 @@ h4. HTTP Basic Authentication
 
 HTTP Basic Authentication ("on wikipedia":http://en.wikipedia.org/wiki/Basic_access_authentication) is available using your @api_id@ and @api_password@.  It works the same as described in the "article on API V1 authentication":api-authentication, only the credentials are different.
 
-Your Chargify Direct API ID and Password are different for each of your Sites, and can be found under Settings -> Chargify Direct in the Admin UI:
+Your Chargify Direct API ID and Password are different for each of your Sites, and can be found under Integrations -> API Keys/Chargify Direct in the Admin UI:
 
-!/images/doculab/chargify-direct-credentials.png!
+!/images/doculab/api_keys_management.png!

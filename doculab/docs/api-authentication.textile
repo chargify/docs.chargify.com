@@ -4,11 +4,11 @@ Please note that as of January 2016, you must use TLS >= 1.2 in order to connect
 
 h3. Obtaining Your API Credentials
 
-Your API key can be generated from the "API Access" tab of your seller dashboard.
+Your API key can be generated from the "Integrations" tab of your site dashboard.
 
-!https://s3.amazonaws.com/entp-tender-production/assets/fcfc0b15a3780bd7b2a0c516665c6550464c4b7e/_Chargify__Acme__Inc.___API_Access_2_normal.png!
+!/images/doculab/api_keys_management.png!
 
-!https://s3.amazonaws.com/entp-tender-production/assets/dc6a8924ee5dc8f6a8fcf9338a0b0f45239928d6/_Chargify__Acme__Inc.___API_Access_normal.png!
+!/images/doculab/new_api_v1_key.png!
 
 Your http username is your "API Key".
 
