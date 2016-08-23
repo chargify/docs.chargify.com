@@ -12,9 +12,9 @@ h2. Payment Profile Input Attributes
 ** @customer_id@ (Required when creating a new payment profile) The Chargify customer id.
 ** @first_name@ First name on card or bank account.
 ** @last_name@ Last name on card or bank account.
-** @full_number@ The full credit card number (string representation, i.e. "5424000000000015")
-** @expiration_month@ The 1- or 2-digit credit card expiration month, as an integer or string, i.e. "5"
-** @expiration_year@ The 4-digit credit card expiration year, as an integer or string, i.e. "2012"
+** @full_number@ (Required when @payment_type@ is @credit_card@ unless you provide the @vault_token@) The full credit card number (string representation, i.e. "5424000000000015")
+** @expiration_month@ (Required when @payment_type@ is @credit_card@ unless you provide the @vault_token@) The 1- or 2-digit credit card expiration month, as an integer or string, i.e. "5"
+** @expiration_year@ (Required when @payment_type@ is @credit_card@ unless you provide the @vault_token@) The 4-digit credit card expiration year, as an integer or string, i.e. "2012"
 ** @cvv@ (Optional, may be required by your gateway settings) The 3- or 4-digit Card Verification Value. _This value is merely passed through to the payment gateway_.
 ** @billing_address@ (Optional, may be required by your product configuration or gateway settings) The credit card or bank account billing street address (i.e. "123 Main St."). _This value is merely passed through to the payment gateway_.
 ** @billing_address_2@ (Optional) Second line of the customer's billing address i.e. "Apt. 100"
@@ -29,6 +29,8 @@ h2. Payment Profile Input Attributes
 ** @bank_account_holder_type@ When @payment_type@ is @bank_account@, this defaults to @personal@ and cannot be changed
 ** @payment_method_nonce@
 ** @paypal_email@
+** @vault_token@ (Only allowed during the creation of a new payment profile) If you have an existing @vault_token@ from your gateway, you may associate it with this new payment profile.
+** @current_vault@ (Required when you pass in a @vault_token@) One of @bogus@ (for testing), @authorizenet@, @trust_commerce@, @payment_express@, @beanstream@, @braintree1@ (deprecated), @braintree_blue@, @paypal@ (deprecated), @quickpay@, @eway@, @eway_rapid@ (deprecated), @eway_rapid_std@, @stripe@, @pin@, @wirecard@, @bpoint@, @firstdata@, @elavon@, @cybersource@, @paymill@, @litle@, @moneris@, @moneris_us@, @orbital@, @fusebox@, @authorizenet_cim@, or @chargify@.
 
 h2. Methods
 
