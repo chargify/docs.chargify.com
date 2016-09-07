@@ -14,7 +14,7 @@ h2. Example Response
   "seller_name":"Acme, Inc.",
   "site_name":"Production",
   "site_id": 12345,
-  "site_currency": "USD"
+  "site_currency": "USD",
   "stats":{
     "total_subscriptions":120,
     "subscriptions_today":4,
