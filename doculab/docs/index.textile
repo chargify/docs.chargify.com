@@ -26,10 +26,8 @@ Upgrade to the Small Business plan: "Log into Chargify":https://app.chargify.com
 
 "Check out the Chargify tag on Stack Overflow":http://stackoverflow.com/questions/tagged/chargify
 
-"Visit our community support forum":https://chargify.zendesk.com/hc/communities/public/topics/200158374-Community-Community-Support
-
 "Refer to our trusted Integration Consultants":https://www.chargify.com/consultants/
 
 h4. Developer Support
 
-If you are on the Developer (free) plan, please note that there is NO official Chargify support available for your plan at this time.  We make this distinction to ensure that our paying customers receive the appropriate time and attention they deserve to run their business.
+If you are on the Developer (free) plan, please note that we do offer limited API support. Your ticket will be given a low priority and will receive a response within 48 hours. **All paid merchants receive priority support.**  We make this distinction to ensure that our paying customers receive the appropriate time and attention they deserve to run their business.
