@@ -13,12 +13,14 @@ h2. Example Response
 <pre><code>{
   "seller_name":"Acme, Inc.",
   "site_name":"Production",
+  "site_id": 12345,
+  "site_currency": "USD"
   "stats":{
-    "revenue_this_month":"$10,000.00",
     "total_subscriptions":120,
     "subscriptions_today":4,
-    "revenue_today":"$1,405.12",
     "total_revenue":"$45,978.81",
+    "revenue_today":"$1,405.12",
+    "revenue_this_month":"$10,000.00",
     "revenue_this_year":"$27,935.24"
   }
 }</code></pre>
