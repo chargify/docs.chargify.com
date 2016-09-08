@@ -97,9 +97,36 @@ Method: @POST@
 Required Parameters: XML or JSON data, as specified by the required attributes
 Response: The created payment profile (see output for "Read")
 
+<pre><code>
+  {
+    "payment_profile": {
+      "first_name": "Jessica",
+      "last_name": "Test",
+      "masked_card_number": "XXXX-XXXX-XXXX-2222",
+      "card_type": "visa",
+      "expiration_month": 10,
+      "expiration_year": 2018,
+      "customer_id": 13733362,
+      "current_vault": "bogus",
+      "vault_token": "1",
+      "billing_address": "123 Main St.",
+      "billing_city": "Boston",
+      "billing_state": "MA",
+      "billing_zip": "02120",
+      "billing_country": "US",
+      "customer_vault_token": null,
+      "billing_address_2": null,
+      "payment_type": "credit_card"
+    }
+  }
+</code></pre>
+
 **Note**
 
-Creating a new payment profile for a customer via the API will not make that payment profile current for any of the customer's subscriptions.  To make a change, select the Subscription in the Admin UI and choose Payment Details, then click the 'Make Active Payment Method' link next to the desired payment profile.
+Creating a new payment profile for a customer via the API **will not** make that payment profile current for any of the customer's subscriptions.  To make a change, please use one of the following methods:
+
++ Change the [default payment profile](https://docs.chargify.com/api-subscriptions#change-default-payment-profile) for the subscription.
++ Select the Subscription in the Admin UI and choose Payment Details, then click the 'Make Active Payment Method' link next to the desired payment profile.
 
 h3(#update). Update
 
