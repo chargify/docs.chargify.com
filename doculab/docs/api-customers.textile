@@ -60,6 +60,7 @@ h3(#read-q). Read/Show (via Query)
 URL: @https://<subdomain>.chargify.com/customers.<format>?q=<search-string>@
 Method: @GET@
 Required Parameters: @q@ (URL-encoded)
+Available Parameter Values (via query string): @email@, @id@, @reference@, @organization@
 Response: An array of Customers
 
 h3(#create). Create
