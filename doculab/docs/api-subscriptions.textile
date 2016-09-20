@@ -2,7 +2,7 @@ h2. URI/Method
 
 |_. Resource/URI |_. GET |_. POST |_. PUT |_. DELETE |
 | Subscriptions<br/>@/subscriptions@ | List subscriptions | Create new subscription | - | - |
-| Subscription<br/>@/subscriptions/<id>@ | Read subscription | - | Update subscription | Cancel subscription |
+| Subscription<br/>@/subscriptions/<id>@ | Read subscription | - | "Update subscription":#update | Cancel subscription |
 | Subscription<br/>@/subscriptions/<id>
 /payment_profiles/<payment_profile_id>
 /change_payment_profile@ | - | Change payment profile | - | - |
@@ -306,6 +306,8 @@ Components may also be included in the import.  See "Product Components":/produc
 h3(#update). Update
 
 The update action currently allows you to edit the attributes of the customer, payment profile (credit card), or subscribed product (although no proration or reset options are offered at this time).
+
+p(note). This functionality is not intended to record a <b>component</b>. If used to record components, charges will not be assessed as this sets the quantity, but does not record usage or generate transactions. If you would like to record allocations please view "API: Allocations":/api-allocations for more inforamation.
 
 h4(#card-change). Card Change
 
