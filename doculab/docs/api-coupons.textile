@@ -100,6 +100,33 @@ Method: @GET@
 Required Parameters: product_family_id, coupon_id
 Response: The coupon
 
+<b>Response Example</b>
+
+<pre><code>
+{
+	"coupon": {
+		"id": 129873,
+		"name": "100OFF",
+		"code": "100OFF",
+		"description": "100OFF",
+		"amount_in_cents": null,
+		"product_family_id": 528484,
+		"created_at": "2016-08-31T13:54:57-04:00",
+		"updated_at": "2016-08-31T13:54:57-04:00",
+		"start_date": "2016-08-31T13:54:57-04:00",
+		"end_date": null,
+		"percentage": 100,
+		"recurring": false,
+		"duration_period_count": null,
+		"duration_interval": 1,
+		"duration_interval_unit": "month",
+		"allow_negative_balance": false,
+		"archived_at": null,
+		"conversion_limit": null
+	}
+}
+</pre></code>
+
 h2(#api-coupon-update). Updating a Coupon via the API
 
 You can update a coupon via the API with a @PUT@ request to the resource endpoint.
