@@ -197,7 +197,7 @@ The resource parameters are nested beneath a key named after the resource, and a
   <input type="submit" value="Sign Up" />
 </form></code></pre>
 
-See "Chargify Direct Signups":/chargify-direct-signups for a full listing of input parameters.
+See "Chargify Direct Signups":/api-signups for a full listing of input parameters.
 
 h2(#response-parameters). Response Parameters
 
