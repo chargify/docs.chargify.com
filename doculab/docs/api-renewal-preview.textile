@@ -15,7 +15,7 @@ h2. Methods
 
 _format_ may be either 'xml' or 'json'.
 
-h3(#create). Create
+h3(#create). Create/Request
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/renewals/preview.json@
 Method: @POST@ (with no side effects)
@@ -23,6 +23,36 @@ Required Parameters: susbcription_id
 Response: A renewal preview object
 
 h4. Output
+
+<pre><code>
+{
+	"renewal_preview": {
+		"next_assessment_at": "2016-10-04T14:00:00-04:00",
+		"subtotal_in_cents": 8499,
+		"total_tax_in_cents": 0,
+		"total_discount_in_cents": 0,
+		"total_in_cents": 8499,
+		"existing_balance_in_cents": 15530,
+		"total_amount_due_in_cents": 24029,
+		"uncalculated_taxes": false,
+		"line_items": [{
+			"transaction_type": "charge",
+			"kind": "baseline",
+			"amount_in_cents": 3999,
+			"memo": "Initial Fee without Trial (10/04/2016 - 10/05/2016)",
+			"discount_amount_in_cents": 0,
+			"taxable_amount_in_cents": 0
+		}, {
+			"transaction_type": "charge",
+			"kind": "on_off_component",
+			"amount_in_cents": 4500,
+			"memo": "$45 component",
+			"discount_amount_in_cents": 0,
+			"taxable_amount_in_cents": 0
+		}]
+	}
+}
+</code></pre>
 
 An array of allocation objects with the following fields:
 
