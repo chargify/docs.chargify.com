@@ -1,6 +1,6 @@
 Adjustments allow you to change the current balance of a subscription. Adjustments with positive amounts make the balance go up, Adjustments with negative amounts make the balance go down (like Credits).
 
-h2. Ajustment Input Attributes
+h2. Adjustment Input Attributes
 
 In order to create an adjustment, you must pass an amount and an optional memo.  The amount can be specified by either the @amount@ parameter or the @amount_in_cents@ parameter. The amount can be specified as a positive or a negative number. Optionally, an @adjustment_method@ parameter can be specified.
 
