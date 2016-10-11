@@ -64,9 +64,10 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 * @payment_collection_method@ (Optional) The type of payment collection to be used in the subscription. May be automatic, or invoice.
 * @agreement_terms@ (Optional but recommended when creating a subscription with ACH) The ACH agreements terms.
 * @product_change_delayed@ (Optional, used only for "Delayed Product Change":#delayed-product-change) When set to @true@, indicates that a changed value for @product_handle@ should schedule the product change to the next subscription renewal.
-* @calendar_billing@ (optional, see "Calendar Billing":/billing-dates#calendar-billing for more details). Cannot be used when also specifying @next_billing_at@
+* @calendar_billing@ (Optional, used when creating a subscription. See "Calendar Billing":/billing-dates#calendar-billing for more details.) Cannot be used when also specifying @next_billing_at@.
 ** @snap_day@ A value between 1 and 28, or "end"
 ** @calendar_billing_first_charge@ (Optional) One of "prorated" (the default - the prorated product price will be charged immediately), "immediate" (the full product price will be charged immediately), or "delayed" (the full product price will be charged with the first scheduled renewal).
+* @snap_day@ A value between 1 and 28, or "end". (Optional, used when updating a subscription.)
 * @metafields@ (Optional) A set of key/value pairs representing custom fields and their values. Metafields will be created "on-the-fly" in your site for a given key, if they have not been created yet.
 * @ref@ A valid referral code. (optional, see "Referrals":/referrals for more details). If supplied, must be valid, or else subscription creation will fail.
 * @components@ (Optional) An array of component ids and quantities to be added to the subscription.  See examples below and "Product Components":/product-components for more information.
@@ -308,6 +309,10 @@ h3(#update). Update
 The update action currently allows you to edit the attributes of the customer, payment profile (credit card), or subscribed product (although no proration or reset options are offered at this time).
 
 p(note). This functionality is not intended to record a <b>component</b>. If used to record components, charges will not be assessed as this sets the quantity, but does not record usage or generate transactions. If you would like to record allocations please view "API: Allocations":/api-allocations for more inforamation.
+
+h4(#snap-day-change). Calendar Billing Day Change
+
+This is how you would change the snap day value for "Calendar Billing":/billing-dates#calendar-billing.   You can use this method to change the subscription to a different snap day by setting a new value for @snap_day@.
 
 h4(#card-change). Card Change
 
