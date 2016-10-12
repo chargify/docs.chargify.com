@@ -10,8 +10,8 @@ h2. URI/Method
 | Component Definitions<br/>@/product_families/<product_family_id>/components@ | List component definitions | - | - | - |
 | Component Definition<br/>@/product_families/<product_family_id>/components/<y>@ | Read a component definition | - | - | - |
 | Component Definition<br/>@/product_families/<product_family_id>/[plural_kind]@ | - | Create a Component definition | - | - |
-| Components Line-Items<br/>@/subscriptions/<product_family_id>/components@ | List component line-items belonging to a Subscription | - | - | - |
-| Component Line-Item<br/>@/subscriptions/<product_family_id>/components/<y>@ | Read a component line-item belonging to a Subscription | - | - | - |
+| Components Line-Items<br/>@/subscriptions/<subscription_id>/components@ | List component line-items belonging to a Subscription | - | - | - |
+| Component Line-Item<br/>@/subscriptions/<subscription_id>/components/<y>@ | Read a component line-item belonging to a Subscription | - | _Deprecated_ Update a component line-item belonging to a Subscription | - |
 
 
 h2. Component Definition Input Attributes
@@ -24,8 +24,8 @@ These values should be nested beneath a key that defines the kind of component b
 * @unit_price@ The amount the customer will be charged per unit when the pricing scheme is "per_unit".  For On/Off Components, this is the amount that the customer will be charged when they turn the component on for the subscription. The price can contain up to 4 decimal places. i.e. 1.00 or 0.0012
 * @pricing_scheme@ (Not required for On/Off Components) The identifier for the pricing scheme. Available options: per_unit, volume, tiered, stairstep. See "Product Components":/product-components for an overview of pricing schemes.
 * @prices@ (Not required for On/Off Components or 'per_unit' pricing schemes) One or more price brackets. See "Product Components":/product-components for an overview of how price brackets work for different pricing schemes.
-** @starting_quantity@ 
-** @ending_quantity@ 
+** @starting_quantity@
+** @ending_quantity@
 ** @unit_price@
 
 h2. Component Definition Output Attributes
@@ -39,8 +39,8 @@ Component definitions refer to the components you create that become available t
 * @unit_price@ The amount the customer will be charged per unit. This field is only populated for 'per_unit' pricing schemes, otherwise it may be null.
 * @pricing_scheme@  The handle for the pricing scheme. Available options: per_unit, volume, tiered, stairstep. See "Product Components":/product-components for an overview of pricing schemes.
 * @prices@ An array of price brackets. If the component uses the 'per_unit' pricing scheme, this array will be empty.
-** @starting_quantity@ 
-** @ending_quantity@ 
+** @starting_quantity@
+** @ending_quantity@
 ** @unit_price@
 * @product_family_id@ The id of the Product Family to which the Component belongs
 * @kind@ A handle for the component type: metered_component, quantity_based_component, on_off_component
@@ -104,21 +104,34 @@ Required Parameters:
 @subscription_id@: The id of the subscription from which you want to get a listing of applied components
 Optional Parameters:
 Response: An array of Components
-**Usage Examples:**  
+**Usage Examples:**
 "XML example":#api-subscription-xml-components-list
 "JSON example":#api-subscription-json-components-list
 
 h3. Read Component for a Subscription
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/components/<component_id>.<format>@
-Method: @GET@  
+Method: @GET@
 Required Parameters:
 @subscription_id@: The id of the applicable subscription
 @component_id@: The id of the component you want to retrieve information about
 Response: A component
-**Usage Examples:**  
+**Usage Examples:**
 "XML example":#api-subscription-xml-component-read
 "JSON example":#api-subscription-json-component-read
+
+h3. Update Component for a Subscription - Deprecated
+
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/components/<component_id>.<format>@
+Method: @PUT@
+Required Parameters:
+@subscription_id@: The id of the applicable subscription
+@component_id@: The id of the component you want to retrieve information about
+Response: A component
+
+This method of updating a component is deprecated and should not be used.  See the documentation for the "Allocations API":/api-allocations instead.
+
+This method will not create an allocation change event or webhook, and does not have the option to prorate and charge for a partial billing period.  If it is used, it will silently change the component quantity on the subscription, and the new quantity will be used at the next renewal.
 
 h3. List Components for a Product Family
 
@@ -132,7 +145,7 @@ Response: An array of Components
 h3. Read Component for a Product Family
 
 URL: @https://<subdomain>.chargify.com/product_families/<product_family_id_>/components/<component_id>.<format>@
-Method: @GET@  
+Method: @GET@
 Required Parameters:
 @product_family_id@: The id of the applicable product family
 @component_id@: The id of the component you want to retrieve information about
@@ -142,19 +155,19 @@ h3. Create Component
 
 URL: @https://<subdomain>.chargify.com/product_families/<product_family_id_>/<plural_kind_>.<format>@
 Method: @POST@
-Required Parameters: 
+Required Parameters:
 @product_family_id@: The id of the product family from which you want to get a listing of available components
 @plural_kind@: The endpoint for the type of component you want to create. Valid values: @metered_components@, @quantity_based_components@, @on_off_components@
-@XML or JSON data@: Specified by the required attributes  
+@XML or JSON data@: Specified by the required attributes
 Response: A component
-**Usage Examples:**  
+**Usage Examples:**
 "XML example":#api-xml-components-create
 "JSON example":#api-json-components-create
 
 h2. Usage Examples
- 
+
 h3(#api-subscription-xml-components-list). XML List Components Example
- 
+
 <pre><code>
 Feature: Chargify Components List for a Subscription XML API
   In order integrate my app with Chargify
@@ -327,7 +340,7 @@ h3(#api-xml-components-create). XML Create Component Example
         """
       When I send a POST request with the xml data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/quantity_based_components.xml
       Then the response status should be "201 Created"
-	  
+
 	Scenario: Successfully create a metered component with per_unit pricing
       Given I have 1 product
       And I have this xml metered_component data
@@ -343,4 +356,4 @@ h3(#api-xml-components-create). XML Create Component Example
         """
       When I send a POST request with the xml data to https://[@subdomain].chargify.com/product_families/[@product_family.id]/metered_components.xml
       Then the response status should be "201 Created"
-</code></pre>      
+</code></pre>
