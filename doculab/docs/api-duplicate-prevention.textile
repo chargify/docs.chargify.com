@@ -55,5 +55,5 @@ h2. Summary
 
 We hope this feature will help you prevent duplicate transactions during error handling.
 
-That said, if you are experiencing repeated timeouts, please "open a support ticket":http://help.chargify.com/tickets/new so we can investigate.
+That said, if you are experiencing repeated timeouts, please "open a support ticket":https://chargify.zendesk.com/hc/en-us/requests/new so we can investigate.
 
