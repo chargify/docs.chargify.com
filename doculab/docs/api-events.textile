@@ -40,10 +40,10 @@ The following are different types of events you may see in the `key` field:
 * @account_transaction_changed@ - Transaction Deleted
 * @zferral_revenue_post_success@ - Specific to the "Zferral integration":/zferral-integration
 * @zferral_revenue_post_failure@ - Specific to the "Zferral integration":/zferral-integration
-* @renewal_success_recreated@ Created as result of "this incident":http://help.chargify.com/entries/20756693-missing-webhooks-12-5-12-10
-* @renewal_failure_recreated@ Created as result of "this incident":http://help.chargify.com/entries/20756693-missing-webhooks-12-5-12-10
-* @payment_success_recreated@ Created as result of "this incident":http://help.chargify.com/entries/20756693-missing-webhooks-12-5-12-10
-* @payment_failure_recreated@ Created as result of "this incident":http://help.chargify.com/entries/20756693-missing-webhooks-12-5-12-10
+* @renewal_success_recreated@ Created as result of "this incident":https://chargify.zendesk.com/hc/en-us/articles/202803124--2012-12-7-Missing-Webhooks-12-5-12-10
+* @renewal_failure_recreated@ Created as result of "this incident":https://chargify.zendesk.com/hc/en-us/articles/202803124--2012-12-7-Missing-Webhooks-12-5-12-10
+* @payment_success_recreated@ Created as result of "this incident":https://chargify.zendesk.com/hc/en-us/articles/202803124--2012-12-7-Missing-Webhooks-12-5-12-10
+* @payment_failure_recreated@ Created as result of "this incident":https://chargify.zendesk.com/hc/en-us/articles/202803124--2012-12-7-Missing-Webhooks-12-5-12-10
 
 h2. Methods
 
