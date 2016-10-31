@@ -431,7 +431,7 @@ h3(#change-default-payment-profile). Change Default Payment Profile
 This will change the default payment profile on the subscription to the _existing_ payment profile with the @id@ specified.
 
 URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/
-payment_profiles/<payment_profile_id>/change_payment_profile@
+payment_profiles/<payment_profile_id>/change_payment_profile.<format>@
 Method: POST
 Required Parameters: none
 Response: The payment profile
