@@ -17,7 +17,7 @@ h2. Coupon Attributes
 When creating a coupon, you must specify a product family using the @product_family_id@. *If no @product_family_id@ is passed, the first product family available is used.* You will also need to formulate your URL to cite the Product Family ID in your request.
 
 * @name@ The internal coupon name. This information is never displayed to customers.
-* @code@ The coupon code. This is used by you or your customers to apply the coupon to a subscription.
+* @code@ The coupon code. This is used by you or your customers to apply the coupon to a subscription. The code may contain uppercase alphanumeric characters and these special characters (which allow for email addresses to be used): "%", "@", "+", "-", "_", and "."
 * @description@ The coupon description. This will be displayed to the customers after the coupon validation.
 * @percentage@ The discount percentage. Should be an integer between 1 and 100. You should set the percentage or the amount, but not both.
 * @amount@ Flat discount amount as a string with dollars and (optionally) cents, i.e. "10.00" for $10.00. You should set the percentage or the amount, but not both.

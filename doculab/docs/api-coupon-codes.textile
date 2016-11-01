@@ -1,4 +1,4 @@
-Coupon subcodes can be administered in the Admin Interface or via the API.  
+Coupon subcodes can be administered in the Admin Interface or via the API.
 
 h2. URI/Method
 
@@ -65,7 +65,7 @@ Example response:
   "duplicate_codes" => [],
   "invalid_codes"   => ["50 OFF"]
 }
-</code></pre>    
+</code></pre>
 
 h2(#api-coupon-code-list). Retrieving Coupon Subcodes via the API
 
@@ -146,7 +146,7 @@ Example response:
   "duplicate_codes" => [],
   "invalid_codes"   => ["50 OFF"]
 }
-</code></pre>    
+</code></pre>
 
 h2(#api-coupon-code-delete). Deleting Coupon Subcodes via the API
 
@@ -155,5 +155,18 @@ Method: @DELETE@
 Required Parameters: coupon_id, and coupon subcode
 Response: If the coupon subcode is successfully removed, a '200' response code will be returned. Otherwise, a '404' error will be returned.
 
+*Note*: If you are using any of the allowed special characters ("%", "@", "+", "-", "_", and "."), you must encode them for use in the URL.
+
+|_. Special character |_. Encoding |
+| % | %25 |
+| @ | %40 |
+| + | %2B |
+| - | %2D |
+| _ | %5F |
+| . | %2E |
+
+
 Given a coupon with an @id@ of @567@, and a coupon subcode of @20OFF@, the URL to delete this coupon subcode would be: @@https://<subdomain>.chargify.com/coupons/567/codes/20OFF.<format>@
- 
+
+Or if the coupon subcode is @20%OFF@, the URL to delete this coupon subcode would be: @@https://<subdomain>.chargify.com/coupons/567/codes/20%25OFF.<format>@
+
