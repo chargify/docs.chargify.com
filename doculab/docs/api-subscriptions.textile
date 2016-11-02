@@ -144,7 +144,8 @@ The following attributes are returned on a subscription read/list operation.
 * @updated_at@ The date of last update for this subscription
 * @next_product_id@ If a "delayed product change":#delayed-product-change is scheduled, the ID of the product that the subscription will be changed to at the next renewal.
 * @cancellation_method@ The process used to cancel the subscription, if the subscription has been canceled. Can be one of @nil@, @merchant_ui@, @merchant_api@, @dunning@, or @billing_portal@. It is @nil@ if the subscription's state is not @canceled@.
-
+* @coupon_use_count@ The amount of times that a coupon has been used for a subscription.
+* @coupon_uses_allowed@ The number of uses originally allowed for the coupon. This will return @null@ if the coupon recurs indefinitely.
 
 h2(#methods). Methods
 
@@ -530,6 +531,8 @@ Feature: Chargify Subscriptions Read/Show/Lookup XML API
         <cancel_at_end_of_period type="boolean">false</cancel_at_end_of_period>
         <delayed_cancel_at nil="true"></delayed_cancel_at>
         <coupon_code nil="true"></coupon_code>
+        <coupon_use_count nil="true"></coupon_use_count>
+        <coupon_uses_allowed nil="true"></coupon_uses_allowed>
         <signup_payment_id type="integer">`auto generated`</signup_payment_id>
         <signup_revenue>`your value`</signup_revenue>
         <payment_collection_method>automatic</payment_collection_method>
@@ -654,6 +657,8 @@ Feature: Chargify Subscriptions Read/Show/Lookup JSON API
         "cancel_at_end_of_period":false,
         "delayed_cancel_at":null,
         "coupon_code":`your value`,
+        "coupon_use_count":null,
+        "coupon_uses_allowed":null,
         "signup_payment_id":`auto generated`,
         "signup_revenue":`your value`,
         "payment_collection_method":"automatic",
@@ -796,6 +801,8 @@ Feature: Chargify Subscriptions Create XML API
         <cancel_at_end_of_period type="boolean">false</cancel_at_end_of_period>
         <delayed_cancel_at nil="true"></delayed_cancel_at>
         <coupon_code nil="true"></coupon_code>
+        <coupon_use_count nil="true"></coupon_use_count>
+        <coupon_uses_allowed nil="true"></coupon_uses_allowed>
         <signup_payment_id type="integer">`auto generated`</signup_payment_id>
         <signup_revenue>`your value`</signup_revenue>
         <payment_collection_method>automatic</payment_collection_method>
@@ -1049,6 +1056,8 @@ Feature: Chargify Subscriptions Create XML API
         <cancel_at_end_of_period type="boolean" nil="true"></cancel_at_end_of_period>
         <delayed_cancel_at nil="true"></delayed_cancel_at>
         <coupon_code>EARLYBIRD</coupon_code>
+        <coupon_use_count nil="true"></coupon_use_count>
+        <coupon_uses_allowed nil="true"></coupon_uses_allowed>
         <signup_payment_id type="integer">`auto generated`</signup_payment_id>
         <signup_revenue>`your value`</signup_revenue>
         <payment_collection_method>automatic</payment_collection_method>
@@ -1256,6 +1265,8 @@ Feature: Chargify Subscriptions Create JSON API
         "cancel_at_end_of_period":false,
         "delayed_cancel_at":null,
         "coupon_code":`your value`,
+        "coupon_use_count":null,
+        "coupon_uses_allowed":null,
         "payment_collection_method":"automatic",
         "customer":{
           "id":`auto generated`,
@@ -1472,6 +1483,8 @@ Feature: Chargify Subscriptions Create JSON API
         "cancel_at_end_of_period":null,
         "delayed_cancel_at":null,
         "coupon_code":"EARLYBIRD",
+        "coupon_use_count":null,
+        "coupon_uses_allowed":null,
         "payment_collection_method":"automatic",
         "customer":{
           "id":`auto generated`,
@@ -1629,6 +1642,8 @@ Feature: Chargify Subscriptions Create JSON API
         "cancel_at_end_of_period":false,
         "delayed_cancel_at":null,
         "coupon_code":`your value`,
+        "coupon_use_count":null,
+        "coupon_uses_allowed":null,
         "signup_payment_id":`auto generated`,
         "signup_revenue":`your value`,
         "payment_collection_method":"automatic",
@@ -1761,6 +1776,8 @@ Feature: Chargify Subscriptions Create JSON API
         "cancel_at_end_of_period":false,
         "delayed_cancel_at":null,
         "coupon_code":`your value`,
+        "coupon_use_count":null,
+        "coupon_uses_allowed":null,
         "signup_payment_id":`auto generated`,
         "signup_revenue":`your value`,
         "payment_collection_method":"automatic",
@@ -2014,6 +2031,8 @@ Feature: Chargify Subscriptions Edit/Update XML API
         <cancel_at_end_of_period type="boolean">false</cancel_at_end_of_period>
         <delayed_cancel_at nil="true"></delayed_cancel_at>
         <coupon_code nil="true"></coupon_code>
+        <coupon_use_count nil="true"></coupon_use_count>
+        <coupon_uses_allowed nil="true"></coupon_uses_allowed>
         <signup_payment_id type="integer">`auto generated`</signup_payment_id>
         <signup_revenue>`your value`</signup_revenue>
         <payment_collection_method>automatic</payment_collection_method>
@@ -2131,6 +2150,8 @@ Feature: Chargify Subscriptions Edit/Update XML API
         <cancel_at_end_of_period type="boolean">false</cancel_at_end_of_period>
         <delayed_cancel_at nil="true"></delayed_cancel_at>
         <coupon_code nil="true"></coupon_code>
+        <coupon_use_count nil="true"></coupon_use_count>
+        <coupon_uses_allowed nil="true"></coupon_uses_allowed>
         <signup_payment_id type="integer">`auto generated`</signup_payment_id>
         <signup_revenue>`your value`</signup_revenue>
         <payment_collection_method>automatic</payment_collection_method>
@@ -2326,6 +2347,8 @@ Feature: Chargify Subscriptions Edit/Update JSON API
         "cancel_at_end_of_period":false,
         "delayed_cancel_at":null,
         "coupon_code":`your value`,
+        "coupon_use_count":null,
+        "coupon_uses_allowed":null,
         "signup_payment_id":`auto generated`,
         "signup_revenue":`your value`,
         "payment_collection_method":"automatic",
@@ -2446,6 +2469,8 @@ h4(#api-usage-json-subscriptions-update-product). Product Change
         "cancel_at_end_of_period":false,
         "delayed_cancel_at":null,
         "coupon_code":`your value`,
+        "coupon_use_count":null,
+        "coupon_uses_allowed":null,
         "signup_payment_id":`auto generated`,
         "signup_revenue":`your value`,
         "payment_collection_method":"automatic",
@@ -2611,6 +2636,8 @@ h3(#api-usage-json-subscriptions-update-product). Product Change to Different Fa
       "cancel_at_end_of_period":false,
       "delayed_cancel_at":null,
       "coupon_code":`your value`,
+      "coupon_use_count":null,
+      "coupon_uses_allowed":null,
       "signup_payment_id":`auto generated`,
       "signup_revenue":`your value`,
       "payment_collection_method":"automatic",
@@ -2892,6 +2919,8 @@ Feature: Reactivation
         <cancel_at_end_of_period type="boolean">false</cancel_at_end_of_period>
         <delayed_cancel_at nil="true"></delayed_cancel_at>
         <coupon_code nil="true"></coupon_code>
+        <coupon_use_count nil="true"></coupon_use_count>
+        <coupon_uses_allowed nil="true"></coupon_uses_allowed>
         <signup_payment_id type="integer">`auto generated`</signup_payment_id>
         <signup_revenue>`your value`</signup_revenue>
         <payment_collection_method>automatic</payment_collection_method>
@@ -3095,6 +3124,8 @@ Feature: Reactivation
         "cancel_at_end_of_period":false,
         "delayed_cancel_at":null,
         "coupon_code":`your value`,
+        "coupon_use_count":null,
+        "coupon_uses_allowed":null,
         "signup_payment_id":`auto generated`,
         "signup_revenue":`your value`,
         "payment_collection_method":"automatic",
