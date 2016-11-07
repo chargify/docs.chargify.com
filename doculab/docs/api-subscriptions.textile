@@ -72,7 +72,7 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 * @ref@ A valid referral code. (optional, see "Referrals":/referrals for more details). If supplied, must be valid, or else subscription creation will fail.
 * @components@ (Optional) An array of component ids and quantities to be added to the subscription.  See examples below and "Product Components":/product-components for more information.
 ** @component_id@
-** @allocated_quantity@ or @usage_balance@ or @enabled@
+** @allocated_quantity@ or @unit_balance@ or @enabled@ depending on the type of component
 
 h2(#output). Subscription Output Attributes
 
