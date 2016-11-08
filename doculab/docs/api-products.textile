@@ -33,6 +33,7 @@ All of the product attribute fields are returned from GET (read) operations.
 ** @url@ The url where the signup page can be viewed
 ** @return_url@ The url to which a customer will be returned after a successful signup
 ** @return_params@ The params to be appended to the @return_url@
+* @initial_charge_after_trial@ Boolean indicating whether to charge setup fee before or after trail period
 
 h2(#input-create). Input Attributes (Create)
 
