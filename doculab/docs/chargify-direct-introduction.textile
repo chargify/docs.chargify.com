@@ -1,4 +1,4 @@
-p(note). Chargify Direct usually requires a more technically experienced customer, and sometimes requires our Level 2 tech support during implementation. Level 2 tech support is available on our *Basic* and higher plans ($149 and up).<br /><br />You're welcome to use Chargify Direct on any plan, but please note that if you need assistance, we will ask that you be on a plan that includes advanced tech support.<br /><br />Please note that Chargify Direct currently doesn't support creating Invoice Billing subscriptions.
+p(note). Chargify Direct usually requires a more technically experienced customer, and sometimes requires our Level 2 tech support during implementation. Level 2 tech support is available on our *Basic* and higher plans ($149 and up).<br /><br />You're welcome to use Chargify Direct on any plan, but please note that if you need assistance, we will ask that you be on a plan that includes advanced tech support.<br /><br />Please note that Chargify Direct currently doesn't support creating "Invoice Billing":https://help.chargify.com/settings/invoice-billing.html subscriptions.
 
 h2. Overview
 
