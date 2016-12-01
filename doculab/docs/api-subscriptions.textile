@@ -2793,7 +2793,7 @@ h3(#api-usage-xml-subscriptions-delayed-cancel). XML Delayed Cancel Usage Exampl
 Feature: Chargify Subscriptions Delayed Cancel XML API
   In order integrate my app with Chargify
   As a developer
-  I want to cancel a subscription at the end of it's current period via the Chargify XML API
+  I want to cancel a subscription at the end of its current period via the Chargify XML API
 
   Background:
     Given I am a valid API user
