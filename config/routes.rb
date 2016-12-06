@@ -90,7 +90,7 @@ Rails.application.routes.draw do
   get '/public-signup-page-settings', to: redirect('https://help.chargify.com/public-pages/public-signup-page-settings.html')
   get '/pre-populating-data', to: redirect('https://help.chargify.com/public-pages/pre-populating-data.html')
   get '/custom-javascript-css', to: redirect('https://help.chargify.com/public-pages/custom-javascript-and-css.html')
-  get '/custom-fields', to: redirect('https://help.chargify.com/products/product-custom-fields.html')
+  get '/custom-fields', to: redirect('http://help.chargify.com/custom-fields/custom-fields-intro.html')
   get '/taxes-intro', to: redirect('https://help.chargify.com/taxes/introduction.html')
   get '/custom-taxes', to: redirect('https://help.chargify.com/taxes/custom-taxes.html')
   get '/avalara-managed-sales-tax', to: redirect('https://help.chargify.com/taxes/avalara-managed-sales-tax.html')
