@@ -34,7 +34,7 @@ An existing customer may be specified by a @customer_id@ (ID within Chargify) or
 ** @country@ (Optional) The customer shipping address country, perferably in "ISO 3166-1 alpha-2":http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 format (i.e. "US").
 ** @phone@ (Optional) The phone number of the customer.
 ** @vat_number@ (Optional) Supplying the VAT number allows EU customer's to opt-out of the Value Added Tax assuming the merchant address and customer billing address are not within the same EU country.
-** @tax_exempt@ (Optional) the tax exempt status for the customer (@true@ or @false@ only)
+** @tax_exempt@ (Optional) the tax exempt status for the customer.  Acceptable values are @true@ or @1@ for true and @false@ or @0@ for false.
 * @payment_profile_id@ The Payment Profile ID of an _existing_ card or bank account, which belongs to an _existing_ customer to use for payment for this subscription.  If the card, bank account, or customer does not exist already, or if you want to use a new (unstored) card or bank account for the subscription, use @payment_profile_attributes@ *instead* to create a new payment profile along with the subscription.  (This value is available on an existing subscription via the API as @credit_card@ > @id@ or @bank_account@ > @id@)
 * @payment_profile_attributes@ (this may also be referred to as @credit_card_attributes@ or @bank_account_attributes@)
 ** @first_name@ (Optional) First name on card or bank account.  If omitted, the @first_name@ from customer attributes will be used.

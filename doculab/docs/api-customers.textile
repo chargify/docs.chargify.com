@@ -21,8 +21,7 @@ All of the customer attribute fields are returned from GET (read) operations.  O
 * @zip@ (Optional) The customer's shipping address zip code (i.e. "12345").
 * @country@ (Optional) The customer shipping address country, perferably in [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format (i.e. "US").
 * @phone@ (Optional) The phone number of the customer
-* @tax_exempt@ (Optional) the tax exempt status for the customer (@true@ or @false@ only)
-
+* @tax_exempt@ (Optional) the tax exempt status for the customer.  Acceptable values are @true@ or @1@ for true and @false@ or @0@ for false.
 h2(#methods). Methods
 
 h3(#list). List
