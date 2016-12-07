@@ -7,10 +7,10 @@ In order to create a charge, you must pass an amount and a memo.  The amount can
 * @amount@ (either 'amount' or 'amount_in_cents' is required) If you use this parameter, you should pass a dollar amount represented as a string.  For example, $10.00 would be represented as @10.00@.
 * @amount_in_cents@ (either 'amount' or 'amount_in_cents' is required) If you use this parameter, you should pass the amount represented as a number of cents, either as a string or integer.  For example, $10.00 would be represented as @1000@.  If you pass a value for both 'amount' and 'amount_in_cents', the value in 'amount_in_cents' will be used and 'amount' will be discarded.
 * @memo@ (required) A helpful explanation for the charge.  This amount will remind you and your customer for the reason for the assessment of the charge.
-* @use_negative_balance@ (optional) This option specifies whether or not a negative current balance should be used when creating the new charge. If true, use the negative balance on the subscription to calculate the charge. If false, do not use the negative balance. Acceptable values are @true@ or @1@ for true and @false@ or @0@ for false. 
+* @use_negative_balance@ (optional) This option specifies whether or not a negative current balance should be used when creating the new charge. If true, use the negative balance on the subscription to calculate the charge. If false, do not use the negative balance. Acceptable values are @true@ or @1@ for true and @false@ or @0@ for false.
 * @delay_capture@ (optional) If true, don't attempt to immediately capture a payment for this charge (instead, wait until the next assessment date). Acceptable values are @true@ or @1@ for true and @false@ or @0@ for false. Note if this option is used @use_negative_balance@ is assumed as false.
 * @accrue_on_failure@ (optional) If true, the charge will be added to the subscription whether or not the payment succeeds.  If false, only the failed payment will be recorded, and the balance will not be increased.  This attribute is ignored if @delay_capture@ is true. Acceptable values are @true@ or @1@ for true and @false@ or @0@ for false. Defaults to @false@.
-* @taxable@ (optional, default @false@) If true, taxes will be assessed on the charge. Acceptable values are @true@ or @1@ for true and @false@ or @0@ for false.
+* @taxable@ (optional, default @false@) If true, taxes will be assessed on the charge. Acceptable values are @true@ or @1@ for true and @false@ or @0@ for false.  This setting is ignored if the customer tax_exempt flag is true
 * @payment_collection_method@ (optional, default @automatic@) For subscriptions on invoice billing, when @delay_capture@ is set to @false@, and @payment_collection_method@ is set to @invoice@, a mid-period invoice will be created from this charge. The charge will not appear on the invoice created at the next renewal. For subscriptions on statement billing, this option is ignored.
 
 
@@ -53,12 +53,12 @@ A payment in the amount of the assessed charge is automatically captured from th
 
 Please refer to the usage examples for more information.
 
-URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/charges.<format>@  
-Method: @POST@  
-Required Parameters: XML or JSON data, as specified by the required attributes  
-Response: The created charge, if successful.  Errors otherwise  
-**Usage Examples:**  
-"JSON example":#api-usage-json-charges-create  
+URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/charges.<format>@
+Method: @POST@
+Required Parameters: XML or JSON data, as specified by the required attributes
+Response: The created charge, if successful.  Errors otherwise
+**Usage Examples:**
+"JSON example":#api-usage-json-charges-create
 "XML example":#api-usage-xml-charges-create
 
 h2. Usage Examples

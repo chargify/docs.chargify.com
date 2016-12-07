@@ -31,8 +31,10 @@ The customer may be specified by @customer[id]@ or by @customer[reference]@ or b
 ** @city@ (Optional) The customer’s shipping address city (i.e. “Boston”).
 ** @state@ (Optional) The customer’s shipping address state (i.e. “MA”)
 ** @zip@ (Optional) The customer’s shipping address zip code (i.e. “12345”).
-** @country@ (Optional) The customer shipping address country, perferably in "ISO 3166-1 alpha-2":http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 format (i.e. “US”).
+** @country@ (Optional) The customer shipping address country, preferably in "ISO 3166-1 alpha-2":http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 format (i.e. “US”).
 ** @phone@ (Optional) The phone number of the customer.
+** @tax_exempt@ (Optional) The tax exempt status of the customer.   Acceptable values are @true@ or @1@ for true and @false@ or @0@ for false.
+
 
 The payment profile may be specified by either @payment_profile[id]@ or by the following attributes:
 
@@ -162,5 +164,3 @@ Any errors will be returned within the @meta[errors]@ and @result[errors]@ objec
 Not passing in a @customer@ at all will yield the following response:
 
 <script src="https://gist.github.com/8d9ed3261405b94b0e1f.js?file=signup-response-customer.json"></script>
-
-
