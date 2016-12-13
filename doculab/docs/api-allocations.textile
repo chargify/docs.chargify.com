@@ -382,7 +382,7 @@ Chargify offers the ability to preview a potential subscription component alloca
 
 <pre><code>POST /subscriptions/<sub_id>/allocations/preview</code></pre>
 
-Creates a preview of the effect of adding compoonents to a subscription.
+Creates a preview of the effect of adding components to a subscription.
 
 h4. Input Fields
 
@@ -397,7 +397,7 @@ An allocation_preview object with the following fields:
 
 | @start_date@ |  The start date of the allocation preview |
 | @end_date@  | The end date of the allocation preview |
-| @period_type@ | The period type for this preview.  This is always 'prorated' for mid period allocations. |
+| @period_type@ | The period type for this preview.  This is always 'prorated' for mid-period allocations. |
 | @subtotal_in_cents@ | The subtotal for this preview. |
 | @total_tax_in_cents@ | The total tax in cents. |
 | @total_discount_in_cents@ | The total discount in cents. |
