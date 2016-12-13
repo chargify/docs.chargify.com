@@ -329,14 +329,22 @@ h3. JSON: Create multiple allocations successfully
 h4. Request Data (allocation.json)
 
 <pre><code>
-  {
-    "proration_upgrade_scheme": "prorate-attempt-capture",
-    "proration_downgrade_scheme": "no-prorate",
-    "allocations": [
-      { "component_id": 123, "quantity": 10, "memo": "foo" },
-      { "component_id": 456, "quantity": 5, "memo": "bar" },
-    ]
-  }
+{
+  "proration_upgrade_scheme": "prorate-attempt-capture",
+  "proration_downgrade_scheme": "prorate",
+  "allocations": [
+    {
+      "component_id": "11",
+      "quantity": "1",
+      "memo": "foo"
+    },
+    {
+      "component_id": "77",
+      "quantity": "10",
+      "memo": "bar"
+    }
+  ]
+}
 </code></pre>
 
 h4. Request
@@ -347,29 +355,39 @@ h4. Response
 
 <pre><code>HTTP/1.1 201 Created</code></pre>
 <pre><code>[
-  {
-    "allocation":{
-      "memo":"foo",
-      "timestamp":"2012-11-20T22:00:37Z",
-      "quantity":10,
-      "previous_quantity":3,
-      "component_id":123,
-      "subscription_id":2585595,
-      "proration_upgrade_scheme":"no-prorate",
-      "proration_downgrade_scheme":"no-prorate"
-    }
-  },
-  {
-    "allocation":{
-      "memo":"bar",
-      "timestamp":"2012-11-20T21:48:09Z",
-      "quantity":5,
-      "previous_quantity":0,
-      "component_id":456,
-      "subscription_id":2585595,
-      "proration_upgrade_scheme":"no-prorate",
-      "proration_downgrade_scheme":"no-prorate"
-    }
+{
+  "allocation_preview": {
+    "start_date": "2016-12-13T18:59:38Z",
+    "end_date": "2017-01-07T20:29:07Z",
+    "period_type": "prorated",
+    "subtotal_in_cents": 7256,
+    "total_tax_in_cents": 0,
+    "total_discount_in_cents": 0,
+    "total_in_cents": 7256,
+    "existing_balance_in_cents": 40600,
+    "direction": "upgrade",
+    "proration_scheme": "prorate-attempt-capture",
+    "line_items": [
+      {
+        "transaction_type": "charge",
+        "kind": "quantity_based_component",
+        "amount_in_cents": -1637,
+        "memo": "IP Addresses: 10 to 1 unit",
+        "discount_amount_in_cents": 0,
+        "taxable_amount_in_cents": 0,
+        "component_id": 11
+      },
+      {
+        "transaction_type": "charge",
+        "kind": "quantity_based_component",
+        "amount_in_cents": 8893,
+        "memo": "dollar charges: 0 to 10 dollars",
+        "discount_amount_in_cents": 0,
+        "taxable_amount_in_cents": 8893,
+        "component_id": 77
+      }
+    ]
   }
+}
 ]
 </code></pre>
