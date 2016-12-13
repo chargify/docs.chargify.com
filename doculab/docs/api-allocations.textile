@@ -399,12 +399,12 @@ An allocation_preview object with the following fields:
 | @end_date@  | The end date of the allocation preview |
 | @period_type@ | The period type for this preview.  This is always 'prorated' for mid period allocations. |
 | @subtotal_in_cents@ | The subtotal for this preview. |
-| @total_tax_in_cents@ |  |
-| @total_discount_in_cents@ | |
-| @total_in_cents@ | |
-| @existing_balance_in_cents@ | |
-| @direction@ |  |
-| @proration_scheme@ | |
+| @total_tax_in_cents@ | The total tax in cents. |
+| @total_discount_in_cents@ | The total discount in cents. |
+| @total_in_cents@ | The total in cents.|
+| @existing_balance_in_cents@ | The existing balance in cents. |
+| @direction@ |  The direction of this allocation.  Valid values are 'upgrade' or 'downgrade'. |
+| @proration_scheme@ | The proration scheme for this allocation.  This is always 'prorate' for mid period transactions. |
 | @line_items@ | An array of line_items, each containing @transaction_type@, @kind@, @amount_in_cents@, @memo@, @discount_amount_in_cents@, @taxable_amount_in_cents@,@component_id|
 
 h4. Response Status Codes
