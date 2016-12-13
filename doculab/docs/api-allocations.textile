@@ -5,6 +5,7 @@ Working with this resource, you can:
 * "List Allocations":#list-allocations : View the history of the allocated quantity for the component over time
 * "Create an Allocation":#create-an-allocation :  Set a new allocated quantity for the line-item (as an alternative to setting the allocated quantity directly on the Component Line-Item resource)
 * "Create multiple Allocations":#create-multiple-allocations : Change the allocated quantity of multiple components at once
+* "Preview Allocations":#preview-allocations : See a preview of a proposed allocation operation
 
 h3(#proration-schemes). Proration Schemes
 
@@ -322,7 +323,7 @@ h4. Response
 }
 </code></pre>
 
-h2. Examples: Create multiples Allocations
+h2. Examples: Create multiple Allocations
 
 h3. JSON: Create multiple allocations successfully
 
@@ -372,4 +373,105 @@ h4. Response
     }
   }
 ]
+</code></pre>
+
+h2(#preview-allocations). Preview Allocations
+
+Chargify offers the ability to preview a potential subscription component allocation in the middle of the current billing period.  This is useful if you want users to be able to see the effect of a component operation before actually doing it.
+
+
+<pre><code>POST /subscriptions/<sub_id>/allocations/preview</code></pre>
+
+Creates a preview of the effect of adding compoonents to a subscription.
+
+h4. Input Fields
+
+
+| @allocations@ | An array of allocations, each containing a @component_id@, @quantity@, and @memo@|
+| @proration_upgrade_scheme@ | (optional) The scheme used if the proration is an upgrade. Defaults to the site setting if one is not provided. |
+| @proration_downgrade_scheme@ | (optional) The scheme used if the proration is a downgrade. Defaults to the site setting if one is not provided. |
+
+h4. Output
+
+An allocation_preview object with the following fields:
+
+| @start_date@ |  The start date of the allocation preview |
+| @end_date@  | The end date of the allocation preview |
+| @period_type@ | The period type for this preview.  This is always 'prorated' for mid period allocations. |
+| @subtotal_in_cents@ | The subtotal for this preview. |
+| @total_tax_in_cents@ | The total tax in cents. |
+| @total_discount_in_cents@ | The total discount in cents. |
+| @total_in_cents@ | The total in cents.|
+| @existing_balance_in_cents@ | The existing balance in cents. |
+| @direction@ |  The direction of this allocation.  Valid values are 'upgrade' or 'downgrade'. |
+| @proration_scheme@ | The proration scheme for this allocation.  |
+| @line_items@ | An array of line_items, each containing @transaction_type@, @kind@, @amount_in_cents@, @memo@, @discount_amount_in_cents@, @taxable_amount_in_cents@,@component_id@ |
+
+h4. Response Status Codes
+
+| @201 Created@ | Allocation created successfully |
+| @422 Unprocessable Entity@ | Invalid inputs provided: inspect the errors in the response for details |
+| @401 Unauthorized@ | Authentication credentials were incorrect |
+| @404 Not Found@ | Either no component with the given @component_id@, or no subscription with given @sub_id@ exists |
+
+h2. Examples: Create Allocation Preview
+
+
+h3. JSON: Create multiple allocations preview successfully
+
+h4. Request Data (allocation.json)
+
+<pre><code>
+  {
+    "proration_upgrade_scheme": "prorate-attempt-capture",
+    "proration_downgrade_scheme": "no-prorate",
+    "allocations": [
+      { "component_id": 123, "quantity": 10, "memo": "foo" },
+      { "component_id": 456, "quantity": 5, "memo": "bar" },
+    ]
+  }
+</code></pre>
+
+h4. Request
+<pre><code>curl -u <api_key>:X -H "Content-Type:application/json" --data allocation.json https://acme.chargify.com/subscriptions/2585595/allocations/preview.json</code></pre>
+
+
+h4. Response
+
+<pre><code>HTTP/1.1 201 Created</code></pre>
+<pre><code>
+{
+  "allocation_preview": {
+    "start_date": "2016-12-13T14:59:42Z",
+    "end_date": "2017-01-07T20:29:07Z",
+    "period_type": "prorated",
+    "subtotal_in_cents": -1648,
+    "total_tax_in_cents": 0,
+    "total_discount_in_cents": 0,
+    "total_in_cents": -1648,
+    "existing_balance_in_cents": 40600
+    direction": "downgrade",
+    "proration_scheme": "prorate",
+    "line_items": [
+      {
+        "transaction_type": "charge",
+        "kind": "quantity_based_component",
+        "amount_in_cents": -1648,
+        "memo": "IP Addresses: 0 to 10 units",
+        "discount_amount_in_cents": 0,
+        "taxable_amount_in_cents": 0,
+        "component_id": 123
+      },
+      {
+        "transaction_type": "charge",
+        "kind": "quantity_based_component",
+        "amount_in_cents": -1648,
+        "memo": "IP Addresses: 0 to 5 units",
+        "discount_amount_in_cents": 0,
+        "taxable_amount_in_cents": 0,
+        "component_id": 456
+      }
+    ]
+  }
+}
 </code></pre>
