@@ -404,7 +404,7 @@ An allocation_preview object with the following fields:
 | @total_in_cents@ | The total in cents.|
 | @existing_balance_in_cents@ | The existing balance in cents. |
 | @direction@ |  The direction of this allocation.  Valid values are 'upgrade' or 'downgrade'. |
-| @proration_scheme@ | The proration scheme for this allocation.  This is always 'prorate' for mid period transactions. |
+| @proration_scheme@ | The proration scheme for this allocation.  |
 | @line_items@ | An array of line_items, each containing @transaction_type@, @kind@, @amount_in_cents@, @memo@, @discount_amount_in_cents@, @taxable_amount_in_cents@,@component_id@ |
 
 h4. Response Status Codes
