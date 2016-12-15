@@ -59,6 +59,8 @@ The payment profile may be specified by either @payment_profile[id]@ or by the f
 ** @payment_type@ Required for PayPal. Set to @paypal_account@.
 ** @payment_method_nonce@ Required for Paypal.
 ** @paypal_email@ Required for PayPal, but only used for display.
+** @current_vault@ (Optional, used only for Subscription Import) The vault that stores the payment profile with the provided vault_token. May be authorizenet, trust_commerce, payment_express, beanstream, braintree1, braintree_blue, paypal, quickpay, eway, eway_rapid_std, stripe, pin, wirecard, bpoint, firstdata, elavon, cybersource, paymill, litle or moneris.
+** @vault_token@ (Optional, used only for Subscription Import) The “token” provided by your vault storage for an already stored payment profile
 
 * @subscription@
 ** @snap_day@ (Optional) Used for "Calendar Billing":/billing-dates#calendar-billing. Set to a number between @1@ and @28@, or @end@.
