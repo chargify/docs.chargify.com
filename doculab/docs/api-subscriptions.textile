@@ -274,7 +274,7 @@ The following are all equivalent and will work as input to @next_billing_at@:
 @8/6/2010 8:34:00 PDT@
 @2010-08-06T15:34:00Z@
 
-You may also pass just a date, in which case we will assume the time to be midnight
+You may also pass just a date, in which case we will assume the time to be noon
 
 @2010-08-06@
 
