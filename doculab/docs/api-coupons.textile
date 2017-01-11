@@ -181,6 +181,12 @@ Or
 
 <pre><code>https://<subdomain>.chargify.com/coupons/validate.<format>?code=<coupon_code>&product_family_id=1</code></pre>
 
+If the coupon is restricted to specific products / components and you would like to specify which items are currently in the cart, you can include the @product_id@ and an array of @component_ids@ to the query string.
+
+Eg.
+
+<pre><code>https://<subdomain>.chargify.com/coupons/validate.<format>?code=<coupon_code>&product_family_id=1&product_id=1&component_ids=[1, 2, 3]</code></pre>
+
 h2(#api-coupon-find). Finding a Coupon via the API
 
 You can search for a coupon via the API with the @find@ method. By passing a @code@ parameter, the find  will attempt to locate a coupon that matches that code.   If no coupon is found, a 404 is returned.
@@ -327,3 +333,59 @@ URL: @https://<subdomain>.chargify.com/subscriptions/<subscription_id>/remove_co
 Method: @DELETE@
 Required Parameters: subscription_id
 Response: If the coupon is successfully removed, the string "Coupon removed." will be returned. Otherwise, a '422 Unprocessable Entity' error will be returned.
+
+h2. Restricting a Coupon to Certain Products and/or Components via the API
+
+You can restrict a coupon to only apply to specific products / components by passing in hashes of @restricted_products@ and/or @restricted_components@ in the format of
+@{ <product_id>: boolean_value }@.
+
+h3. On Create
+
+URL: @https://<subdomain>.chargify.com/coupons.<format>@
+Method: @POST@
+Required Parameters: Coupon parameters, Restricted Products, Restricted Components
+Response: The created coupon.
+
+<pre><code>
+    {
+        "coupon": {
+            "name": "15% off",
+            "code": "15OFF",
+            "description": "15% off for life",
+            "percentage": "15",
+            "allow_negative_balance": "false",
+            "recurring": "false",
+            "end_date": "2012-08-29T12:00:00-04:00",
+            "product_family_id": "2"
+        },
+        "restricted_products": {
+            "4": true,
+            "5": false
+        },
+        "restricted_components": {
+            "10": true
+        }
+    }
+</code></pre>
+
+h3. On Update
+
+URL: @https://<subdomain>.chargify.com/coupons/<coupon_id>.<format>@
+Method: @PUT@
+Required Parameters: Coupon params (including coupon_id), Restricted Products, Restricted Components
+Response: The updated coupon.
+
+<pre><code>
+    {
+        "coupon": {
+            "id": "2",
+        },
+        "restricted_products": {
+            "4": true,
+            "5": false
+        },
+        "restricted_components": {
+            "10": true
+        }
+    }
+</code></pre>
