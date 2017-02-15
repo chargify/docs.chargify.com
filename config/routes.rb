@@ -113,7 +113,7 @@ Rails.application.routes.draw do
   get '/users', to: redirect('https://help.chargify.com/my-account/users.html')
   get '/sales-report-introduction', to: redirect('http://help.chargify.com/reports/sales-report-intro.html')
   get '/hosted-page-settings', to: redirect('https://help.chargify.com/public-pages/public-signup-page-settings.html')
-  get '/chargify-direct-signups' to: redirect('https://docs.chargify.com/api-signups')
-  get '/beta-label' to: redirect('https://help.chargify.com/support/support-faq.html#what-does-it-mean-for-a-chargify-feature-to-be-beta')
-  get '/taxes' to: redirect('https://help.chargify.com/taxes/introduction.html')
+  get '/chargify-direct-signups', to: redirect('https://docs.chargify.com/api-signups')
+  get '/beta-label', to: redirect('https://help.chargify.com/support/support-faq.html#what-does-it-mean-for-a-chargify-feature-to-be-beta')
+  get '/taxes', to: redirect('https://help.chargify.com/taxes/introduction.html')
 end
