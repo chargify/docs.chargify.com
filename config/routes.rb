@@ -66,7 +66,7 @@ Rails.application.routes.draw do
   get '/html-emails', to: redirect('https://help.chargify.com/communications/html-emails.html')
   get '/products-intro', to: redirect('https://help.chargify.com/products/products-intro.html')
   get '/product-families', to: redirect('https://help.chargify.com/products/product-families.html')
-  get '/product-pricing', to: redirect('https://help.chargify.com/products/product-pricing.html')
+  get '/product-pricing', to: redirect('https://help.chargify.com/products/product-editing.html')
   get '/product-options', to: redirect('https://help.chargify.com/products/product-options.html')
   get '/product-components', to: redirect('https://help.chargify.com/products/product-components.html')
   get '/coupons', to: redirect('https://help.chargify.com/products/product-coupons.html')
