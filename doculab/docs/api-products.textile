@@ -130,6 +130,17 @@ Response: The updated product, if successful. Errors otherwise.
 
 "JSON example":#api-usage-json-product-update
 
+h3(#Archive). Archive
+
+URL: @https://<subdomain>.chargify.com/products/<productid>.<format>@
+Method: @DELETE@
+Required Parameters: XML or JSON data, product_id
+Response: The archived product, if successful. Errors otherwise.
+
+Note: This will not delete the product, it will only archive it. Products are unable to be deleted outright.
+
+"JSON example":#api-usage-json-product-archive
+
 h2. Usage Examples
 
 h3(#api-usage-xml-products-list). XML List Usage Example
@@ -633,4 +644,73 @@ Feature: Chargify API JSON Product update
       """
     When I send a PUT request with the json data to https://acme.chargify.com/products/0.json
     Then the response status should be "404 Not Found"
+</code></pre>
+
+h3(#api-usage-json-product-archive). JSON Archive Product Example
+
+<pre><code>
+Feature: Chargify API JSON Product archive
+  In order to keep Chargify up to date
+  As a developer
+  I want to be able to archive a product via the Chargify JSON API
+
+  Background:
+    Given I am a valid API user for site with subdomain "acme"
+    And I send and accept JSON
+    And I have a product family with ID "1700"
+    And I have a product with ID "1900"
+
+  Scenario: Archive a product
+    When I send a DELETE request to https://acme.chargify.com/products/1900.json
+    Then the response status should be "200 OK"
+    And the response should be the json:
+     """
+      {
+        "product":{
+          "id":1900,
+          "name":"Basic Plan",
+          "handle":"basic",
+          "accounting_code":"acme1",
+          "description":"lorem ipsum",
+          "price_in_cents":`auto generated`,
+          "interval_unit":"month",
+          "interval":1,
+          "initial_charge_in_cents":null,
+          "trial_price_in_cents":null,
+          "trial_interval":null,
+          "trial_interval_unit":null,
+          "expiration_interval_unit":null,
+          "expiration_interval":null,
+          "update_return_url":null,
+          "return_params":null,
+          "require_credit_card":false,
+          "request_credit_card":false,
+          "created_at":`auto generated`,
+          "updated_at":`auto generated`,
+          "archived_at":`auto generated`,
+          "taxable":false,
+          "product_family":{
+            "id":1700,
+            "name":`your value`,
+            "handle":`your value`,
+            "accounting_code":`your value`,
+            "description":`your value`
+          },
+          "public_signup_pages": [],
+          "version_number": 2
+        }
+      }
+      """
+
+  Scenario: Archive a product fails due to subscription set with a delayed_product_change to this product
+   
+    When I send a DELETE request to https://acme.chargify.com/products/1900.json
+    Then the response status should be "422 Unprocessable Entity"
+    And the response should be the json:
+      """
+      {
+	      "errors": ["Product cannot be archived because delayed product changes are pending."]
+      }
+      """
+
 </code></pre>
